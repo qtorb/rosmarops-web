@@ -1,0 +1,74 @@
+name: Deploy to OVH
+
+on:
+  push:
+    branches: [main]
+    paths: ["site/**", ".github/workflows/deploy.yml"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    # Albert approves each deploy in this environment (required reviewer).
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check files
+        run: |
+          set -eu
+          # Only these files are published. Nothing else on the server is touched or deleted.
+          ls -l site/index.html site/es/index.html site/llms.txt
+          ! grep -RIl 'noindex' site/index.html site/es/index.html
+
+      - name: Install lftp
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq lftp
+
+      - name: Upload over SFTP
+        env:
+          SFTP_HOST: ${{ vars.OVH_SFTP_HOST }}
+          SFTP_USER: ${{ vars.OVH_SFTP_USER }}
+          SFTP_PATH: ${{ vars.OVH_SITE_PATH }}
+          SFTP_PASS: ${{ secrets.OVH_SFTP_PASSWORD }}
+          SFTP_HOSTKEY: ${{ vars.OVH_SFTP_HOSTKEY }}
+        run: |
+          set -eu
+          mkdir -p ~/.ssh
+          # Host key pinned in a repository variable, so a spoofed server is refused.
+          # First run: if the variable is empty, print the server key and stop, so it can be
+          # checked against OVH's published fingerprint and saved as OVH_SFTP_HOSTKEY.
+          if [ -z "$SFTP_HOSTKEY" ]; then
+            ssh-keyscan -t ed25519,rsa "$SFTP_HOST" 2>/dev/null | tee /tmp/hk
+            ssh-keygen -lf /tmp/hk
+            echo "::error::OVH_SFTP_HOSTKEY is empty. Check the fingerprint above and save the key line as that variable."
+            exit 1
+          fi
+          echo "$SFTP_HOSTKEY" > ~/.ssh/known_hosts
+          lftp -e "
+            set sftp:auto-confirm no;
+            set net:max-retries 2;
+            open -u \"$SFTP_USER\",\"$SFTP_PASS\" sftp://$SFTP_HOST;
+            cd \"$SFTP_PATH\";
+            put site/index.html -o index.html;
+            mkdir -p es;
+            put site/es/index.html -o es/index.html;
+            put site/llms.txt -o llms.txt;
+            bye
+          "
+
+      - name: Verify live
+        run: |
+          set -eu
+          sleep 5
+          for u in https://rosmarops.com/ https://rosmarops.com/es/ https://rosmarops.com/llms.txt; do
+            code=$(curl -s -o /dev/null -w '%{http_code}' "$u?deploy=${GITHUB_SHA::7}")
+            echo "$code $u"; test "$code" = "200"
+          done
+          curl -s "https://rosmarops.com/?deploy=${GITHUB_SHA::7}" | cmp -s - site/index.html && echo "home EN matches" || (echo "home EN differs from repo"; exit 1)

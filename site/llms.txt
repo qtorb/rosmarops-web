@@ -1,0 +1,20 @@
+# RosmarOps
+
+> RosmarOps reads the configuration of the AI coding agents on your Windows computer (today Claude Code and Cursor) and draws an exposure map: what each agent can read and change, which keys it can reach, and whether one agent can change another agent's configuration or instructions.
+
+Everything is computed on your computer. It doesn't connect to the internet, doesn't send anything to anyone, and doesn't change anything on your machine: it only writes its own reports to its own folder. If you choose to paste its export into an AI in the cloud, that text leaves your computer because you paste it.
+
+Today it evaluates Claude Code and Cursor on Windows. It detects Cline, but doesn't score it yet. It can't be downloaded yet.
+
+## Key terms
+
+- Exposure map: what an agent can do with the permissions it has today. It is not a verdict on whether a machine has been attacked.
+- Agent Posture Score: a score out of 100 for each agent, calculated with a versioned formula; when the formula changes, the report says so.
+- What wasn't read doesn't count as clean.
+
+## Links
+
+- [RosmarOps (English)](https://rosmarops.com/)
+- [RosmarOps (español)](https://rosmarops.com/es/)
+- [Blog](https://rosmarops.com/blog/)
+- [My machine scored 18/100](https://rosmarops.com/blog/my-machine-scored-18-of-100/): first run of RosmarOps on the founder's machine
