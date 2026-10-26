@@ -18,6 +18,7 @@
 <meta property="og:locale:alternate" content="es_ES">
 <meta name="twitter:card" content="summary">
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://rosmarops.com/#org", "name": "RosmarOps", "url": "https://rosmarops.com/", "logo": "https://rosmarops.com/wp-content/uploads/2026/10/image.png", "founder": {"@type": "Person", "name": "Albert Garcia Pujadas"}}, {"@type": "WebSite", "@id": "https://rosmarops.com/#website", "name": "RosmarOps", "url": "https://rosmarops.com/", "publisher": {"@id": "https://rosmarops.com/#org"}, "inLanguage": ["en", "es"]}, {"@type": "WebPage", "@id": "https://rosmarops.com/#page", "url": "https://rosmarops.com/", "name": "RosmarOps — an exposure map of your AI agents", "description": "RosmarOps reads the configuration of your AI coding agents (today Claude Code and Cursor) and draws an exposure map: what each agent can read and change, which keys it can reach, and whether one agent can change another agent's configuration or instructions. Everything is computed on your computer.", "inLanguage": "en", "isPartOf": {"@id": "https://rosmarops.com/#website"}}]}</script>
+<link rel="stylesheet" href="/assets/consent/cookieconsent.css?v=3.1.0">
 <link rel="icon" href="/wp-content/uploads/2026/10/image-1.png">
 <style>
 :root{--bg:#F6F5F2;--ink:#1B1A18;--ink2:#3A3833;--muted:#66635D;--line:#E3E0D8;--card:#FFFFFF;--accent:#6F8F78}
@@ -89,7 +90,7 @@ footer nav{gap:20px;font-size:15px}
 </div></main>
 
 <footer><div class="wrap">
-<nav><a href="/blog/">Blog</a><a href="/es/" hreflang="es" lang="es" aria-label="Español">ES</a></nav>
+<nav><a href="/blog/">Blog</a><a href="/es/" hreflang="es" lang="es" aria-label="Español">ES</a><a href="#" data-cc="show-preferencesModal">Cookie settings</a></nav>
 </div></footer>
 
 <div id="lang-hint" data-nosnippet role="region" aria-label="Idioma" lang="es">
@@ -102,6 +103,9 @@ footer nav{gap:20px;font-size:15px}
   var dismissed=false;
   try{dismissed=localStorage.getItem(KEY)==='1'}catch(e){}
   if(dismissed)return;
+  if(document.cookie.indexOf('cc_cookie=')===-1){window.addEventListener('cc:onConsent',show,{once:true});return;}
+  show();
+  function show(){
   var langs=(navigator.languages&&navigator.languages.length)?navigator.languages:[navigator.language||''];
   var first=String(langs[0]||'').toLowerCase();
   if(first.indexOf('es')!==0)return;
@@ -111,7 +115,10 @@ footer nav{gap:20px;font-size:15px}
     el.className='';
     try{localStorage.setItem(KEY,'1')}catch(e){}
   });
+  }
 })();
 </script>
+<script src="/assets/consent/cookieconsent.umd.js?v=3.1.0" defer></script>
+<script src="/assets/consent/consent.js?v=1" defer></script>
 </body>
 </html>

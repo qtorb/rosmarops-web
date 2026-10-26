@@ -3,7 +3,7 @@ name: Deploy to OVH
 on:
   push:
     branches: [main]
-    paths: ["site/**", ".github/workflows/deploy.yml"]
+    paths: ["site/**", "wp/**", ".github/workflows/deploy.yml"]
   workflow_dispatch:
 
 permissions:
@@ -25,7 +25,8 @@ jobs:
         run: |
           set -eu
           # Only these files are published. Nothing else on the server is touched or deleted.
-          ls -l site/index.html site/es/index.html site/llms.txt
+          ls -l site/index.html site/es/index.html site/llms.txt site/assets/consent/* wp/mu-plugins/rosmarops-consent.php
+          php -l wp/mu-plugins/rosmarops-consent.php
           ! grep -RIl 'noindex' site/index.html site/es/index.html
 
       - name: Install sshpass
@@ -63,6 +64,14 @@ jobs:
           -mkdir es
           put site/es/index.html es/index.html
           put site/llms.txt llms.txt
+          -mkdir assets
+          -mkdir assets/consent
+          put site/assets/consent/cookieconsent.umd.js assets/consent/cookieconsent.umd.js
+          put site/assets/consent/cookieconsent.css assets/consent/cookieconsent.css
+          put site/assets/consent/consent.js assets/consent/consent.js
+          put site/assets/consent/LICENSE-cookieconsent.txt assets/consent/LICENSE-cookieconsent.txt
+          -mkdir wp-content/mu-plugins
+          put wp/mu-plugins/rosmarops-consent.php wp-content/mu-plugins/rosmarops-consent.php
           BATCH
           # The password travels in the SSHPASS environment variable, never on the command line.
           sshpass -e sftp -o BatchMode=no -b /tmp/batch \
@@ -81,3 +90,13 @@ jobs:
             echo "$code $u"; test "$code" = "200"
           done
           curl -s "https://rosmarops.com/?deploy=${GITHUB_SHA::7}" | cmp -s - site/index.html && echo "home EN matches" || (echo "home EN differs from repo"; exit 1)
+          for f in assets/consent/cookieconsent.umd.js assets/consent/cookieconsent.css assets/consent/consent.js; do
+            curl -s "https://rosmarops.com/$f?deploy=${GITHUB_SHA::7}" | cmp -s - "site/$f" && echo "$f matches" || (echo "$f differs from repo"; exit 1)
+          done
+          for u in https://rosmarops.com/blog/ https://rosmarops.com/es/blog/; do
+            curl -s "$u?deploy=${GITHUB_SHA::7}" | grep -q '/assets/consent/consent.js' && echo "banner loaded on $u" || (echo "banner missing on $u"; exit 1)
+          done
+          # Nothing from Google may be in the HTML before consent.
+          for u in https://rosmarops.com/ https://rosmarops.com/es/ https://rosmarops.com/blog/ https://rosmarops.com/es/blog/; do
+            ! curl -s "$u?deploy=${GITHUB_SHA::7}" | grep -q 'googletagmanager.com/gtag' || (echo "Google tag in HTML of $u"; exit 1)
+          done
