@@ -25,8 +25,9 @@ jobs:
         run: |
           set -eu
           # Only these files are published. Nothing else on the server is touched or deleted.
-          ls -l site/index.html site/es/index.html site/llms.txt site/assets/consent/* site/assets/brand/* wp/mu-plugins/rosmarops-consent.php
+          ls -l site/index.html site/es/index.html site/llms.txt site/assets/consent/* site/assets/brand/* wp/htaccess-https.txt wp/mu-plugins/rosmarops-consent.php
           php -l wp/mu-plugins/rosmarops-consent.php
+          php -l wp/mu-plugins/rosmarops-seo.php
           ! grep -RIl 'noindex' site/index.html site/es/index.html
 
       - name: Install sshpass
@@ -74,8 +75,10 @@ jobs:
           put site/assets/brand/rosmarops-logo.png assets/brand/rosmarops-logo.png
           put site/assets/brand/rosmarops-logo@2x.png assets/brand/rosmarops-logo@2x.png
           put site/assets/brand/rosmarops-logo.svg assets/brand/rosmarops-logo.svg
+          put site/assets/brand/rosmarops-social.png assets/brand/rosmarops-social.png
           -mkdir wp-content/mu-plugins
           put wp/mu-plugins/rosmarops-consent.php wp-content/mu-plugins/rosmarops-consent.php
+          put wp/mu-plugins/rosmarops-seo.php wp-content/mu-plugins/rosmarops-seo.php
           BATCH
           # The password travels in the SSHPASS environment variable, never on the command line.
           sshpass -e sftp -o BatchMode=no -b /tmp/batch \
@@ -84,6 +87,50 @@ jobs:
             -o PreferredAuthentications=password,keyboard-interactive \
             -o PubkeyAuthentication=no \
             "$SFTP_USER@$SFTP_HOST"
+
+      - name: Force HTTPS in .htaccess (once, with automatic rollback)
+        env:
+          SFTP_HOST: ${{ vars.OVH_SFTP_HOST }}
+          SFTP_USER: ${{ vars.OVH_SFTP_USER }}
+          SFTP_PATH: ${{ vars.OVH_SITE_PATH }}
+          SSHPASS: ${{ secrets.OVH_SFTP_PASSWORD }}
+        run: |
+          set -eu
+          SFTP_HOST=$(printf %s "$SFTP_HOST" | tr -d '[:space:]')
+          SFTP_USER=$(printf %s "$SFTP_USER" | tr -d '[:space:]')
+          SFTP_PATH=$(printf %s "$SFTP_PATH" | tr -d '[:space:]')
+          sftp_run() {
+            sshpass -e sftp -o BatchMode=no -b "$1" \
+              -o StrictHostKeyChecking=yes \
+              -o UserKnownHostsFile="$HOME/.ssh/known_hosts" \
+              -o PreferredAuthentications=password,keyboard-interactive \
+              -o PubkeyAuthentication=no \
+              "$SFTP_USER@$SFTP_HOST"
+          }
+          printf 'cd %s\nget .htaccess /tmp/ht.current\n' "$SFTP_PATH" > /tmp/b1
+          sftp_run /tmp/b1
+          # The file's content is never printed: the repository and its logs are public.
+          if grep -q 'BEGIN RosmarOps HTTPS' /tmp/ht.current; then
+            echo "HTTPS block already present; nothing to do."
+            exit 0
+          fi
+          { cat wp/htaccess-https.txt; echo; cat /tmp/ht.current; } > /tmp/ht.new
+          printf 'cd %s\nput /tmp/ht.current .htaccess.pre-https\nput /tmp/ht.new .htaccess\n' "$SFTP_PATH" > /tmp/b2
+          sftp_run /tmp/b2
+          sleep 5
+          ok=yes
+          for u in https://rosmarops.com/ https://rosmarops.com/es/ https://rosmarops.com/blog/ https://rosmarops.com/es/blog/ https://rosmarops.com/wp-login.php; do
+            code=$(curl -s -o /dev/null -w '%{http_code}' "$u")
+            echo "$code $u"; [ "$code" = "200" ] || ok=no
+          done
+          loc=$(curl -s -o /dev/null -w '%{http_code} %{redirect_url}' "http://rosmarops.com/blog/?x=1")
+          echo "http -> $loc"; [ "$loc" = "301 https://rosmarops.com/blog/?x=1" ] || ok=no
+          if [ "$ok" != yes ]; then
+            printf 'cd %s\nput /tmp/ht.current .htaccess\n' "$SFTP_PATH" > /tmp/b3
+            sftp_run /tmp/b3
+            echo "::error::HTTPS redirect check failed; the previous .htaccess was restored."
+            exit 1
+          fi
 
       - name: Verify live
         run: |
@@ -94,7 +141,7 @@ jobs:
             echo "$code $u"; test "$code" = "200"
           done
           curl -s "https://rosmarops.com/?deploy=${GITHUB_SHA::7}" | cmp -s - site/index.html && echo "home EN matches" || (echo "home EN differs from repo"; exit 1)
-          for f in assets/consent/cookieconsent.umd.js assets/consent/cookieconsent.css assets/consent/consent.js assets/brand/rosmarops-logo.png assets/brand/rosmarops-logo@2x.png; do
+          for f in assets/consent/cookieconsent.umd.js assets/consent/cookieconsent.css assets/consent/consent.js assets/brand/rosmarops-logo.png assets/brand/rosmarops-logo@2x.png assets/brand/rosmarops-social.png; do
             curl -s "https://rosmarops.com/$f?deploy=${GITHUB_SHA::7}" | cmp -s - "site/$f" && echo "$f matches" || (echo "$f differs from repo"; exit 1)
           done
           for u in https://rosmarops.com/blog/ https://rosmarops.com/es/blog/; do
@@ -105,6 +152,8 @@ jobs:
             done
             test "$ok" = yes && echo "banner loaded on $u" || (echo "banner missing on $u"; exit 1)
           done
+          curl -s "https://rosmarops.com/robots.txt?deploy=${GITHUB_SHA::7}" | grep -q 'Sitemap: https://rosmarops.com/es/sitemap.xml' && echo "robots lists ES sitemap" || (echo "robots.txt lacks the ES sitemap"; exit 1)
+          curl -s "https://rosmarops.com/blog/my-machine-scored-18-of-100/?deploy=${GITHUB_SHA::7}" | grep -q '"@type":"BlogPosting"' && echo "BlogPosting present" || (echo "BlogPosting missing"; exit 1)
           # Nothing from Google may be in the HTML before consent.
           for u in https://rosmarops.com/ https://rosmarops.com/es/ https://rosmarops.com/blog/ https://rosmarops.com/es/blog/; do
             ! curl -s "$u?deploy=${GITHUB_SHA::7}" | grep -q 'googletagmanager.com/gtag' || (echo "Google tag in HTML of $u"; exit 1)
