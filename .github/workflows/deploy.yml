@@ -94,7 +94,7 @@ jobs:
             curl -s "https://rosmarops.com/$f?deploy=${GITHUB_SHA::7}" | cmp -s - "site/$f" && echo "$f matches" || (echo "$f differs from repo"; exit 1)
           done
           for u in https://rosmarops.com/blog/ https://rosmarops.com/es/blog/; do
-            curl -s "$u?deploy=${GITHUB_SHA::7}" | grep -q '/assets/consent/consent.js' && echo "banner loaded on $u" || (echo "banner missing on $u"; exit 1)
+            curl -s "$u?deploy=${GITHUB_SHA::7}" | grep -q 'https://rosmarops.com/assets/consent/consent.js' && echo "banner loaded on $u" || (echo "banner missing on $u"; exit 1)
           done
           # Nothing from Google may be in the HTML before consent.
           for u in https://rosmarops.com/ https://rosmarops.com/es/ https://rosmarops.com/blog/ https://rosmarops.com/es/blog/; do

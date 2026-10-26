@@ -9,11 +9,13 @@ if (!defined('ABSPATH')) {
 }
 
 const ROSMAROPS_CONSENT_VER = '1';
+// Absolute URLs: on the Spanish site WordPress would otherwise prefix /es/.
+const ROSMAROPS_CONSENT_BASE = 'https://rosmarops.com/assets/consent/';
 
 add_action('wp_enqueue_scripts', function () {
-	wp_enqueue_style('rosmarops-cc', '/assets/consent/cookieconsent.css', [], '3.1.0');
-	wp_enqueue_script('rosmarops-cc', '/assets/consent/cookieconsent.umd.js', [], '3.1.0', true);
-	wp_enqueue_script('rosmarops-consent', '/assets/consent/consent.js', ['rosmarops-cc'], ROSMAROPS_CONSENT_VER, true);
+	wp_enqueue_style('rosmarops-cc', ROSMAROPS_CONSENT_BASE . 'cookieconsent.css', [], '3.1.0');
+	wp_enqueue_script('rosmarops-cc', ROSMAROPS_CONSENT_BASE . 'cookieconsent.umd.js', [], '3.1.0', true);
+	wp_enqueue_script('rosmarops-consent', ROSMAROPS_CONSENT_BASE . 'consent.js', ['rosmarops-cc'], ROSMAROPS_CONSENT_VER, true);
 });
 
 add_action('wp_footer', function () {
