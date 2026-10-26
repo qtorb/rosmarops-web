@@ -25,7 +25,7 @@ jobs:
         run: |
           set -eu
           # Only these files are published. Nothing else on the server is touched or deleted.
-          ls -l site/index.html site/es/index.html site/llms.txt site/assets/consent/* wp/mu-plugins/rosmarops-consent.php
+          ls -l site/index.html site/es/index.html site/llms.txt site/assets/consent/* site/assets/brand/* wp/mu-plugins/rosmarops-consent.php
           php -l wp/mu-plugins/rosmarops-consent.php
           ! grep -RIl 'noindex' site/index.html site/es/index.html
 
@@ -70,6 +70,10 @@ jobs:
           put site/assets/consent/cookieconsent.css assets/consent/cookieconsent.css
           put site/assets/consent/consent.js assets/consent/consent.js
           put site/assets/consent/LICENSE-cookieconsent.txt assets/consent/LICENSE-cookieconsent.txt
+          -mkdir assets/brand
+          put site/assets/brand/rosmarops-logo.png assets/brand/rosmarops-logo.png
+          put site/assets/brand/rosmarops-logo@2x.png assets/brand/rosmarops-logo@2x.png
+          put site/assets/brand/rosmarops-logo.svg assets/brand/rosmarops-logo.svg
           -mkdir wp-content/mu-plugins
           put wp/mu-plugins/rosmarops-consent.php wp-content/mu-plugins/rosmarops-consent.php
           BATCH
@@ -90,11 +94,16 @@ jobs:
             echo "$code $u"; test "$code" = "200"
           done
           curl -s "https://rosmarops.com/?deploy=${GITHUB_SHA::7}" | cmp -s - site/index.html && echo "home EN matches" || (echo "home EN differs from repo"; exit 1)
-          for f in assets/consent/cookieconsent.umd.js assets/consent/cookieconsent.css assets/consent/consent.js; do
+          for f in assets/consent/cookieconsent.umd.js assets/consent/cookieconsent.css assets/consent/consent.js assets/brand/rosmarops-logo.png assets/brand/rosmarops-logo@2x.png; do
             curl -s "https://rosmarops.com/$f?deploy=${GITHUB_SHA::7}" | cmp -s - "site/$f" && echo "$f matches" || (echo "$f differs from repo"; exit 1)
           done
           for u in https://rosmarops.com/blog/ https://rosmarops.com/es/blog/; do
-            curl -s "$u?deploy=${GITHUB_SHA::7}" | grep -q 'https://rosmarops.com/assets/consent/consent.js' && echo "banner loaded on $u" || (echo "banner missing on $u"; exit 1)
+            ok=no
+            for i in 1 2 3 4 5 6; do
+              if curl -s "$u?deploy=${GITHUB_SHA::7}-$i" | grep -q 'https://rosmarops.com/assets/consent/consent.js'; then ok=yes; break; fi
+              sleep 10
+            done
+            test "$ok" = yes && echo "banner loaded on $u" || (echo "banner missing on $u"; exit 1)
           done
           # Nothing from Google may be in the HTML before consent.
           for u in https://rosmarops.com/ https://rosmarops.com/es/ https://rosmarops.com/blog/ https://rosmarops.com/es/blog/; do
