@@ -28,40 +28,49 @@ jobs:
           ls -l site/index.html site/es/index.html site/llms.txt
           ! grep -RIl 'noindex' site/index.html site/es/index.html
 
-      - name: Install lftp
-        run: sudo apt-get update -qq && sudo apt-get install -y -qq lftp
+      - name: Install sshpass
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq sshpass
 
       - name: Upload over SFTP
         env:
           SFTP_HOST: ${{ vars.OVH_SFTP_HOST }}
           SFTP_USER: ${{ vars.OVH_SFTP_USER }}
           SFTP_PATH: ${{ vars.OVH_SITE_PATH }}
-          SFTP_PASS: ${{ secrets.OVH_SFTP_PASSWORD }}
+          SSHPASS: ${{ secrets.OVH_SFTP_PASSWORD }}
           SFTP_HOSTKEY: ${{ vars.OVH_SFTP_HOSTKEY }}
         run: |
           set -eu
+          # Trim stray spaces or line breaks pasted into the variables.
+          SFTP_HOST=$(printf %s "$SFTP_HOST" | tr -d '[:space:]')
+          SFTP_USER=$(printf %s "$SFTP_USER" | tr -d '[:space:]')
+          SFTP_PATH=$(printf %s "$SFTP_PATH" | tr -d '[:space:]')
           mkdir -p ~/.ssh
           # Host key pinned in a repository variable, so a spoofed server is refused.
-          # First run: if the variable has no key yet (empty or a placeholder), print the server key and stop, so it can be
-          # checked against OVH's published fingerprint and saved as OVH_SFTP_HOSTKEY.
+          # First run: if the variable has no key yet (empty or a placeholder), print the server key and stop,
+          # so it can be checked and saved as OVH_SFTP_HOSTKEY.
           if ! printf %s "$SFTP_HOSTKEY" | grep -q "ssh-"; then
             ssh-keyscan -t ed25519,rsa "$SFTP_HOST" 2>/dev/null | tee /tmp/hk
             ssh-keygen -lf /tmp/hk
             echo "::error::OVH_SFTP_HOSTKEY has no key yet. Check the fingerprint above and save the key line as that variable."
             exit 1
           fi
-          echo "$SFTP_HOSTKEY" > ~/.ssh/known_hosts
-          lftp -e "
-            set sftp:auto-confirm no;
-            set net:max-retries 2;
-            open -u \"$SFTP_USER\",\"$SFTP_PASS\" sftp://$SFTP_HOST;
-            cd \"$SFTP_PATH\";
-            put site/index.html -o index.html;
-            mkdir -p es;
-            put site/es/index.html -o es/index.html;
-            put site/llms.txt -o llms.txt;
-            bye
-          "
+          printf '%s\n' "$SFTP_HOSTKEY" > ~/.ssh/known_hosts
+          ssh-keygen -lf ~/.ssh/known_hosts
+          # Only these files are uploaded. No delete, no mirror.
+          cat > /tmp/batch <<BATCH
+          cd $SFTP_PATH
+          put site/index.html index.html
+          -mkdir es
+          put site/es/index.html es/index.html
+          put site/llms.txt llms.txt
+          BATCH
+          # The password travels in the SSHPASS environment variable, never on the command line.
+          sshpass -e sftp -o BatchMode=no -b /tmp/batch \
+            -o StrictHostKeyChecking=yes \
+            -o UserKnownHostsFile="$HOME/.ssh/known_hosts" \
+            -o PreferredAuthentications=password,keyboard-interactive \
+            -o PubkeyAuthentication=no \
+            "$SFTP_USER@$SFTP_HOST"
 
       - name: Verify live
         run: |
