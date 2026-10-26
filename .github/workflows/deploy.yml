@@ -42,12 +42,12 @@ jobs:
           set -eu
           mkdir -p ~/.ssh
           # Host key pinned in a repository variable, so a spoofed server is refused.
-          # First run: if the variable is empty, print the server key and stop, so it can be
+          # First run: if the variable has no key yet (empty or a placeholder), print the server key and stop, so it can be
           # checked against OVH's published fingerprint and saved as OVH_SFTP_HOSTKEY.
-          if [ -z "$SFTP_HOSTKEY" ]; then
+          if ! printf %s "$SFTP_HOSTKEY" | grep -q "ssh-"; then
             ssh-keyscan -t ed25519,rsa "$SFTP_HOST" 2>/dev/null | tee /tmp/hk
             ssh-keygen -lf /tmp/hk
-            echo "::error::OVH_SFTP_HOSTKEY is empty. Check the fingerprint above and save the key line as that variable."
+            echo "::error::OVH_SFTP_HOSTKEY has no key yet. Check the fingerprint above and save the key line as that variable."
             exit 1
           fi
           echo "$SFTP_HOSTKEY" > ~/.ssh/known_hosts
