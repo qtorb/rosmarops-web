@@ -28,7 +28,7 @@ jobs:
           ls -l site/index.html site/es/index.html site/llms.txt site/assets/consent/* site/assets/brand/* wp/htaccess-https.txt wp/mu-plugins/rosmarops-consent.php
           php -l wp/mu-plugins/rosmarops-consent.php
           php -l wp/mu-plugins/rosmarops-seo.php
-          ! grep -RIl 'noindex' site/index.html site/es/index.html site/methodology site/faq site/es/metodologia site/es/preguntas-frecuentes
+          ! grep -RIl 'noindex' site/index.html site/es/index.html site/methodology site/faq site/es/metodologia site/es/preguntas-frecuentes site/ca
 
       - name: Install sshpass
         run: sudo apt-get update -qq && sudo apt-get install -y -qq sshpass
@@ -74,6 +74,14 @@ jobs:
           put site/es/metodologia/index.html es/metodologia/index.html
           -mkdir es/preguntas-frecuentes
           put site/es/preguntas-frecuentes/index.html es/preguntas-frecuentes/index.html
+          -mkdir ca
+          put site/ca/index.html ca/index.html
+          -mkdir ca/metodologia
+          put site/ca/metodologia/index.html ca/metodologia/index.html
+          -mkdir ca/preguntes-frequents
+          put site/ca/preguntes-frequents/index.html ca/preguntes-frequents/index.html
+          -mkdir ca/privadesa
+          put site/ca/privadesa/index.html ca/privadesa/index.html
           -mkdir assets
           -mkdir assets/consent
           put site/assets/consent/cookieconsent.umd.js assets/consent/cookieconsent.umd.js
@@ -145,7 +153,7 @@ jobs:
         run: |
           set -eu
           sleep 5
-          for u in https://rosmarops.com/ https://rosmarops.com/es/ https://rosmarops.com/llms.txt https://rosmarops.com/methodology/ https://rosmarops.com/faq/ https://rosmarops.com/es/metodologia/ https://rosmarops.com/es/preguntas-frecuentes/ https://rosmarops.com/sitemap-pages.xml; do
+          for u in https://rosmarops.com/ https://rosmarops.com/es/ https://rosmarops.com/llms.txt https://rosmarops.com/methodology/ https://rosmarops.com/faq/ https://rosmarops.com/es/metodologia/ https://rosmarops.com/es/preguntas-frecuentes/ https://rosmarops.com/ca/ https://rosmarops.com/ca/metodologia/ https://rosmarops.com/ca/preguntes-frequents/ https://rosmarops.com/ca/privadesa/ https://rosmarops.com/sitemap-pages.xml; do
             code=$(curl -s -o /dev/null -w '%{http_code}' "$u?deploy=${GITHUB_SHA::7}")
             echo "$code $u"; test "$code" = "200"
           done

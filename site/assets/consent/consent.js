@@ -10,10 +10,13 @@
   if (!window.CookieConsent) return;
 
   var GA_ID = 'G-6RVHZ8ERGW';
-  var lang = (document.documentElement.lang || 'en').slice(0, 2).toLowerCase() === 'es' ? 'es' : 'en';
-  var privacy = lang === 'es'
-    ? 'https://rosmarops.com/es/privacidad/'
-    : 'https://rosmarops.com/privacy/';
+  var l2 = (document.documentElement.lang || 'en').slice(0, 2).toLowerCase();
+  var lang = (l2 === 'es' || l2 === 'ca') ? l2 : 'en';
+  var privacy = {
+    es: 'https://rosmarops.com/es/privacidad/',
+    ca: 'https://rosmarops.com/ca/privadesa/',
+    en: 'https://rosmarops.com/privacy/'
+  }[lang];
 
   function loadGA() {
     if (window.__rosmaropsGA) return;
@@ -88,6 +91,38 @@
               {
                 title: 'More information',
                 description: '<a href="' + privacy + '">Privacy and cookies</a>'
+              }
+            ]
+          }
+        },
+        ca: {
+          consentModal: {
+            title: 'Galetes d\'analítica',
+            description: 'Aquest web pot fer servir Google Analytics per comptar visites i veure quines pàgines es llegeixen. Només ho fa si ho acceptes. Pots canviar d\'opinió quan vulguis des de «Configura les galetes», al final de la pàgina. <a href="' + privacy + '">Privadesa i galetes</a>',
+            acceptAllBtn: 'Accepta',
+            acceptNecessaryBtn: 'Rebutja',
+            showPreferencesBtn: 'Configura'
+          },
+          preferencesModal: {
+            title: 'Configura les galetes',
+            acceptAllBtn: 'Accepta-les totes',
+            acceptNecessaryBtn: 'Rebutja-les totes',
+            savePreferencesBtn: 'Desa',
+            closeIconLabel: 'Tanca',
+            sections: [
+              {
+                title: 'Necessàries',
+                description: 'Una galeta, cc_cookie, recorda la teva elecció durant sis mesos. Sempre està activa.',
+                linkedCategory: 'necessary'
+              },
+              {
+                title: 'Analítica',
+                description: 'Google Analytics 4, de Google, compta les visites i com es fan servir les pàgines. Posa les galetes _ga. Els senyals de Google i la personalització d\'anuncis estan desactivats.',
+                linkedCategory: 'analytics'
+              },
+              {
+                title: 'Més informació',
+                description: '<a href="' + privacy + '">Privadesa i galetes</a>'
               }
             ]
           }

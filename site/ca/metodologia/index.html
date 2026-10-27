@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Com es calcula la nota d&#x27;exposició</title>
+<meta name="description" content="El mètode complet de la nota d&#x27;exposició de RosmarOps: una nota per agent, franges lligades al semàfor, pesos públics, la fórmula, la cobertura i les versions.">
+<link rel="canonical" href="https://rosmarops.com/ca/metodologia/">
+<link rel="alternate" hreflang="en" href="https://rosmarops.com/methodology/">
+<link rel="alternate" hreflang="es" href="https://rosmarops.com/es/metodologia/">
+<link rel="alternate" hreflang="ca" href="https://rosmarops.com/ca/metodologia/">
+<link rel="alternate" hreflang="x-default" href="https://rosmarops.com/methodology/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="RosmarOps">
+<meta property="og:title" content="Com es calcula la nota d&#x27;exposició">
+<meta property="og:description" content="El mètode complet de la nota d&#x27;exposició de RosmarOps: una nota per agent, franges lligades al semàfor, pesos públics, la fórmula, la cobertura i les versions.">
+<meta property="og:url" content="https://rosmarops.com/ca/metodologia/">
+<meta property="og:locale" content="ca_ES">
+<meta property="og:image" content="https://rosmarops.com/assets/brand/rosmarops-social.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Logotip de RosmarOps">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "@id": "https://rosmarops.com/ca/metodologia/#article", "headline": "Com es calcula la nota d'exposició", "description": "El mètode complet de la nota d'exposició de RosmarOps: una nota per agent, franges lligades al semàfor, pesos públics, la fórmula, la cobertura i les versions.", "inLanguage": "ca", "url": "https://rosmarops.com/ca/metodologia/", "dateModified": "2026-10-27", "version": "index 3", "author": {"@type": "Person", "name": "Albert Garcia Pujadas"}, "publisher": {"@type": "Organization", "@id": "https://rosmarops.com/#org", "name": "RosmarOps", "url": "https://rosmarops.com/", "logo": "https://rosmarops.com/assets/brand/rosmarops-logo@2x.png"}, "isPartOf": {"@id": "https://rosmarops.com/#website"}}</script>
+<link rel="stylesheet" href="/assets/consent/cookieconsent.css?v=3.1.0">
+<link rel="icon" href="/wp-content/uploads/2026/10/image-1.png">
+<style>
+:root{--bg:#F6F5F2;--ink:#1B1A18;--ink2:#3A3833;--muted:#66635D;--line:#E3E0D8;--card:#FFFFFF;--accent:#6F8F78}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+a{color:var(--ink)}a:hover{color:var(--accent)}
+.wrap{max-width:1040px;margin:0 auto;padding:0 16px}
+header .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;padding-top:24px;padding-bottom:24px}
+header img{height:40px;width:auto;display:block}
+nav{display:flex;flex-wrap:wrap;gap:24px;font-size:16px}
+main .wrap{display:flex;flex-direction:column;gap:64px;padding-top:48px;padding-bottom:64px}
+.hero{display:flex;flex-direction:column;gap:20px;max-width:760px}
+h1{margin:0;font-size:clamp(34px,6vw,52px);line-height:1.08;font-weight:700;letter-spacing:-.02em}
+.lead{margin:0;font-size:20px;line-height:1.55;color:var(--ink2)}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:16px}
+h2{margin:0;font-size:14px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:12px;font-size:17px;line-height:1.55}
+.status{border-top:1px solid var(--line);padding-top:32px;display:flex;flex-direction:column;gap:12px;max-width:760px}
+.status p{margin:0;font-size:17px;line-height:1.55}
+footer{border-top:1px solid var(--line)}
+footer .wrap{padding-top:28px;padding-bottom:28px;font-size:15px;color:var(--muted)}
+footer nav{gap:20px;font-size:15px}
+.doc{max-width:760px;display:flex;flex-direction:column;gap:18px;font-size:18px;line-height:1.65}
+.doc h1{font-size:clamp(30px,5vw,44px);line-height:1.12}
+.doc h2{font-size:22px;letter-spacing:0;text-transform:none;color:var(--ink);margin-top:20px}
+.doc p,.doc ul{margin:0}.doc ul{font-size:18px;gap:8px}
+.doc .meta{font-size:15px;color:var(--muted)}
+.doc .formula{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 20px;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:16px;overflow-wrap:anywhere}
+.doc code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:.92em}
+.faq h2{margin-top:24px}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<a href="/ca/"><img src="/assets/brand/rosmarops-logo.png" srcset="/assets/brand/rosmarops-logo.png 1x, /assets/brand/rosmarops-logo@2x.png 2x" width="512" height="131" alt="RosmarOps"></a>
+<nav><a href="/ca/metodologia/">Metodologia</a><a href="/ca/preguntes-frequents/">Preguntes freqüents</a><a href="/methodology/" hreflang="en" lang="en" aria-label="English">EN</a><a href="/es/metodologia/" hreflang="es" lang="es" aria-label="Español">ES</a></nav>
+</div></header>
+
+<main><div class="wrap">
+<article class="doc"><h1>Com es calcula la nota d'exposició</h1>
+<p class="meta">Versió del mètode: índex 3. Darrera actualització: 27 d'octubre de 2026.</p>
+<p>RosmarOps llegeix la configuració dels teus agents d'IA per programar i dibuixa un mapa d'exposició: què pot llegir i canviar cada agent, quines claus té a l'abast i si un agent pot canviar la configuració o les instruccions d'un altre. La nota d'exposició dels teus agents converteix aquest mapa en un número sobre 100. Aquesta pàgina és el mètode sencer. No hi ha res secret.</p>
+<h2>Una nota per agent</h2>
+<p>RosmarOps dona a cada agent que avalua la seva pròpia nota d'exposició, sobre 100. Com més alta, millor.</p>
+<h2>La franja la posa el semàfor</h2>
+<p>La nota mai no contradiu el semàfor de l'agent, perquè el seu pitjor avís fixa la franja i la nota es mou a dins:</p>
+<ul><li>0–49, vermell: exposat.</li><li>50–79, groc: escletxes obertes.</li><li>80–100, verd: contingut.</li></ul>
+<p>Un 79 no és «gairebé bé»: encara té escletxes.</p>
+<h2>Què pesa cada avís</h2>
+<p>Avisos vermells:</p>
+<ul><li>una credencial de privilegi alt que l'agent pot llegir i treure fora: 20;</li><li>poder canviar la configuració d'un altre agent: 15;</li><li>poder canviar la seva: 15;</li><li>una credencial de privilegi alt desada en un repositori git: 20, o 30 si aquest repositori té un remot.</li></ul>
+<p>Avisos grocs:</p>
+<ul><li>una credencial mitjana que pot llegir i treure (o una que RosmarOps no sap classificar), o una d'alta que només pot llegir: 8;</li><li>poder reescriure les instruccions d'un altre agent: 6;</li><li>les seves: 4;</li><li>una credencial mitjana desada a git: 8.</li></ul>
+<p>Si un avís de credencial arriba a qualsevol projecte i no només a un, el seu pes es multiplica per 1,5. Una credencial a git compta a la nota de tots els agents, perquè no depèn de cap. Les credencials mitjanes que un agent pot llegir però no treure no són avisos, però cadascuna suma 2. Les claus de privilegi baix, com les publicables o anònimes, i els valors de plantilla no pesen res.</p>
+<p>Dues coses no canvien el pes. La confiança: quan RosmarOps ha de suposar alguna cosa, ho diu, però una suposició no fa més lleugera l'exposició. I el nombre de còpies: el mateix avís en 27 projectes pesa el mateix que en un, perquè l'abast ja es compta.</p>
+<h2>La fórmula</h2>
+<p>Se sumen els pesos: això és P. Dins de la franja, la nota baixa quan P creix:</p>
+<p class="formula">nota = base de la franja + amplada de la franja × 80 / (80 + P), arrodonit cap avall.</p>
+<p>Les amplades són 49 en vermell, 29 en groc i 20 en verd. Això té tres conseqüències:</p>
+<ul><li>arreglar alguna cosa mai no baixa la nota, i afegir un problema mai no la puja;</li><li>com que s'arrodoneix cap avall, un arranjament petit no sempre canvia la xifra quan en queda molt;</li><li>només hi ha 100 quan no s'ha trobat res.</li></ul>
+<h2>Un exemple sintètic</h2>
+<p>Un agent amb quatre avisos:</p>
+<ul><li>una credencial alta accessible des de qualsevol projecte (30);</li><li>accés d'escriptura a la configuració d'un altre agent (15);</li><li>una credencial mitjana accessible des de qualsevol projecte (12);</li><li>els seus propis fitxers d'instruccions (4).</li></ul>
+<p>P = 61, franja vermella, nota 27. Arreglar només el primer la porta a 35. Arreglar-ho tot, a 100.</p>
+<h2>Quan no hi ha nota</h2>
+<p>Un agent només té nota si RosmarOps ha pogut llegir tot el que necessita per a aquest agent:</p>
+<ul><li>el graf de capacitats s'ha construït i ha passat la validació;</li><li>l'execució no s'ha quedat sense temps en construir-lo;</li><li>cap font de configuració d'aquest agent no ha fallat en llegir-se;</li><li>cap fitxer no ha fallat en llegir-se d'una manera que pugui amagar una credencial.</li></ul>
+<p>Si falla alguna cosa, l'informe diu «Sense nota» i en dona el motiu. Un agent que RosmarOps encara no sap avaluar no rep nota: l'informe el posa com a detectat sense avaluar. Sense cap agent a la màquina, l'informe diu «Sense nota: no s'ha trobat cap agent d'IA», mai 100.</p>
+<h2>Quins arranjaments compten</h2>
+<p>La nota només es mou quan RosmarOps torna a executar-se i llegeix la configuració nova. Un arranjament que treu l'exposició resta tot el seu pes. Un arranjament que redueix un avís de credencial de qualsevol projecte a un de sol manté l'avís, però li treu el ×1,5. Si un ajust retalla l'exposició però, segons la mateixa documentació del fabricant, no la tanca, la nota no es mou. L'informe diu què queda.</p>
+<p>Abans que canviïs res, l'informe et diu quant pujaria la nota si fas el canvi que et proposa avui.</p>
+<h2>Versions i comparacions</h2>
+<p>La fórmula té versió. L'informe desa la versió del mètode al costat de cada nota, amb les versions de les regles de detecció i de la base de coneixement que ha fet servir. Quan canvia el mètode, l'informe separa el que ha canviat a la teva màquina del que ha canviat en el mètode. Quan canvien les regles de detecció o la base de coneixement, diu que la nota no és comparable amb l'anterior. Quan canvien els agents avaluats, o el nombre de projectes baixa més d'un 10 %, diu que les dues execucions no són comparables.</p>
+<p>La nota serveix per comparar-te amb tu mateix, no amb ningú més.</p>
+<h2>Amagar coses no dona millor nota</h2>
+<ul><li>Fer il·legible una font: no dona millor nota; dona «sense nota».</li><li>Treure de la configuració més del 10 % dels teus projectes: l'informe marca que la comparació amb l'execució anterior no és comparable.</li><li>Desinstal·lar un agent: surt de l'informe i la comparació amb l'execució anterior es marca com a no comparable.</li><li>Treure de debò una credencial del disc: el seu avís desapareix i el seu pes surt de la nota.</li></ul>
+<h2>El que no mesura</h2>
+<ul><li>agents que RosmarOps encara no avalua;</li><li>el que fa un agent mentre treballa: només llegeix la configuració en repòs;</li><li>el que fa per dins una eina MCP;</li><li>el magatzem de credencials de Windows.</li></ul>
+<h2>Què significa un 100</h2>
+<p>Un 100 significa: no s'ha trobat exposició en el que s'ha llegit. Mai no significa segur ni protegit.</p>
+<p class="meta">De moment, el programa mostra l'informe en anglès o en castellà; els textos de l'informe citats aquí són traduccions.</p>
+</article>
+</div></main>
+
+<footer><div class="wrap">
+<nav><a href="/ca/metodologia/">Metodologia</a><a href="/ca/preguntes-frequents/">Preguntes freqüents</a><a href="/methodology/" hreflang="en" lang="en" aria-label="English">EN</a><a href="/es/metodologia/" hreflang="es" lang="es" aria-label="Español">ES</a><a href="/ca/privadesa/">Privadesa</a><a href="#" data-cc="show-preferencesModal">Configura les galetes</a></nav>
+</div></footer>
+<script src="/assets/consent/cookieconsent.umd.js?v=3.1.0" defer></script>
+<script src="/assets/consent/consent.js?v=2" defer></script>
+</body>
+</html>
