@@ -19,9 +19,10 @@ add_action('wp_enqueue_scripts', function () {
 });
 
 add_action('wp_footer', function () {
-	$es = strpos(get_locale(), 'es') === 0;
+	$labels = ['es' => 'Configurar cookies', 'ca' => 'Configura les galetes'];
+	$label  = $labels[substr(get_locale(), 0, 2)] ?? 'Cookie settings';
 	echo '<p class="rosmarops-cc-link" style="text-align:center;font-size:14px;margin:16px 0">'
 		. '<a href="#" data-cc="show-preferencesModal">'
-		. esc_html($es ? 'Configurar cookies' : 'Cookie settings')
+		. esc_html($label)
 		. '</a></p>';
 }, 100);

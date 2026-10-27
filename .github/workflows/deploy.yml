@@ -170,6 +170,7 @@ jobs:
             test "$ok" = yes && echo "banner loaded on $u" || (echo "banner missing on $u"; exit 1)
           done
           curl -s "https://rosmarops.com/robots.txt?deploy=${GITHUB_SHA::7}" | grep -q 'Sitemap: https://rosmarops.com/es/sitemap.xml' && echo "robots lists ES sitemap" || (echo "robots.txt lacks the ES sitemap"; exit 1)
+          curl -s "https://rosmarops.com/robots.txt?deploy=${GITHUB_SHA::7}" | grep -q 'Sitemap: https://rosmarops.com/ca/sitemap.xml' && echo "robots lists CA sitemap" || (echo "robots.txt lacks the CA sitemap"; exit 1)
           curl -s "https://rosmarops.com/blog/my-machine-scored-18-of-100/?deploy=${GITHUB_SHA::7}" | grep -q '"@type":"BlogPosting"' && echo "BlogPosting present" || (echo "BlogPosting missing"; exit 1)
           # Nothing from Google may be in the HTML before consent.
           for u in https://rosmarops.com/ https://rosmarops.com/es/ https://rosmarops.com/blog/ https://rosmarops.com/es/blog/; do
