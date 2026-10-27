@@ -4,7 +4,7 @@
 
 Everything is computed on your computer. It doesn't connect to the internet, doesn't send anything to anyone, and doesn't change anything on your machine: it only writes its own reports to its own folder. If you choose to paste its export into an AI in the cloud, that text leaves your computer because you paste it.
 
-Today it evaluates Claude Code and Cursor on Windows. It detects Cline, but doesn't score it yet. It can't be downloaded yet.
+Today it evaluates Claude Code and Cursor on Windows. It detects Cline, GitHub Copilot and Continue, but doesn't score them yet. It can't be downloaded yet.
 
 ## Key terms
 
