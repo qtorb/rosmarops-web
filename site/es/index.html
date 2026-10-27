@@ -51,6 +51,11 @@ footer nav{gap:20px;font-size:15px}
 #lang-hint span{flex:1}
 #lang-hint a{color:#fff;font-weight:600}
 #lang-hint button{background:none;border:0;color:#fff;font-size:20px;line-height:1;cursor:pointer;padding:4px 8px}
+.dl{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px}
+.btn{display:inline-block;background:var(--ink);color:#fff;text-decoration:none;font-size:17px;font-weight:600;line-height:1;padding:16px 24px;border-radius:12px}
+.btn:hover,.btn:focus-visible{background:var(--accent);color:#fff}
+.dl-note{margin:0;font-size:15px;line-height:1.5;color:var(--muted)}
+.dl-note a{color:var(--muted)}
 </style>
 </head>
 <body>
@@ -63,6 +68,7 @@ footer nav{gap:20px;font-size:15px}
 <section class="hero">
 <h1>Qué pueden hacer tus agentes de IA en tu máquina.</h1>
 <p class="lead">RosmarOps lee la configuración de tus agentes de IA para programar (hoy Claude Code y Cursor) y dibuja un mapa de exposición: qué puede leer y cambiar cada agente, qué claves tiene a su alcance y si un agente puede cambiar la configuración o las instrucciones de otro. Todo se calcula en tu ordenador.</p>
+<div class="dl"><a class="btn" href="https://github.com/qtorb/rosmarops/releases/latest">Descargar para Windows</a><p class="dl-note">Gratis y de código abierto (AGPL-3.0). <a href="https://github.com/qtorb/rosmarops#check-the-download">Cómo comprobar que es auténtico</a></p></div>
 </section>
 
 <section class="cards">
@@ -89,7 +95,7 @@ footer nav{gap:20px;font-size:15px}
 <section class="status">
 <h2>En qué punto está</h2>
 <p>Hoy evalúa Claude Code y Cursor en Windows. Detecta Cline, GitHub Copilot y Continue, pero todavía no les pone nota.</p>
-<p>Todavía no se puede descargar. Cuando se publique, podrás comprobar tú mismo que es auténtico.</p>
+<p>Se puede descargar desde GitHub, para Windows. Cada versión trae su huella SHA-256, una atestación de GitHub y una compilación que cualquiera puede reproducir: <a href="https://github.com/qtorb/rosmarops#check-the-download">cómo comprobarlo</a>.</p>
 </section>
 </div></main>
 

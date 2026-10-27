@@ -51,6 +51,11 @@ footer nav{gap:20px;font-size:15px}
 #lang-hint span{flex:1}
 #lang-hint a{color:#fff;font-weight:600}
 #lang-hint button{background:none;border:0;color:#fff;font-size:20px;line-height:1;cursor:pointer;padding:4px 8px}
+.dl{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px}
+.btn{display:inline-block;background:var(--ink);color:#fff;text-decoration:none;font-size:17px;font-weight:600;line-height:1;padding:16px 24px;border-radius:12px}
+.btn:hover,.btn:focus-visible{background:var(--accent);color:#fff}
+.dl-note{margin:0;font-size:15px;line-height:1.5;color:var(--muted)}
+.dl-note a{color:var(--muted)}
 </style>
 </head>
 <body>
@@ -63,6 +68,7 @@ footer nav{gap:20px;font-size:15px}
 <section class="hero">
 <h1>What your AI agents can do on your machine.</h1>
 <p class="lead">RosmarOps reads the configuration of your AI coding agents (today Claude Code and Cursor) and draws an exposure map: what each agent can read and change, which keys it can reach, and whether one agent can change another agent's configuration or instructions. Everything is computed on your computer.</p>
+<div class="dl"><a class="btn" href="https://github.com/qtorb/rosmarops/releases/latest">Download for Windows</a><p class="dl-note">Free and open source (AGPL-3.0). <a href="https://github.com/qtorb/rosmarops#check-the-download">How to check it's authentic</a></p></div>
 </section>
 
 <section class="cards">
@@ -89,7 +95,7 @@ footer nav{gap:20px;font-size:15px}
 <section class="status">
 <h2>Where it stands</h2>
 <p>Today it evaluates Claude Code and Cursor on Windows. It detects Cline, GitHub Copilot and Continue, but doesn't score them yet.</p>
-<p>It can't be downloaded yet. When it's released, you'll be able to check for yourself that it's authentic.</p>
+<p>It can be downloaded from GitHub, for Windows. Each release comes with its SHA-256 checksum, a GitHub attestation and a build anyone can reproduce: <a href="https://github.com/qtorb/rosmarops#check-the-download">how to check it</a>.</p>
 </section>
 </div></main>
 
