@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RosmarOps: frequently asked questions</title>
+<meta name="description" content="Does RosmarOps send data? Does it change anything? Which agents does it evaluate? What does the score mean? Short, direct answers.">
+<link rel="canonical" href="https://rosmarops.com/faq/">
+<link rel="alternate" hreflang="en" href="https://rosmarops.com/faq/">
+<link rel="alternate" hreflang="es" href="https://rosmarops.com/es/preguntas-frecuentes/">
+<link rel="alternate" hreflang="x-default" href="https://rosmarops.com/faq/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="RosmarOps">
+<meta property="og:title" content="RosmarOps: frequently asked questions">
+<meta property="og:description" content="Does RosmarOps send data? Does it change anything? Which agents does it evaluate? What does the score mean? Short, direct answers.">
+<meta property="og:url" content="https://rosmarops.com/faq/">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://rosmarops.com/assets/brand/rosmarops-social.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="RosmarOps logo">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "@id": "https://rosmarops.com/faq/#faq", "inLanguage": "en", "url": "https://rosmarops.com/faq/", "mainEntity": [{"@type": "Question", "name": "Does RosmarOps send my data anywhere?", "acceptedAnswer": {"@type": "Answer", "text": "No. It doesn't connect to the internet and doesn't send anything to anyone, not even if you want it to: it has no feature that sends data. If you choose to paste its export into an AI in the cloud, that text leaves your computer because you paste it."}}, {"@type": "Question", "name": "Does it change anything on my machine?", "acceptedAnswer": {"@type": "Answer", "text": "No. It only writes its own reports to its own folder. RosmarOps suggests; you make the change."}}, {"@type": "Question", "name": "Which agents does it evaluate?", "acceptedAnswer": {"@type": "Answer", "text": "Today it evaluates Claude Code and Cursor on Windows. It detects Cline, GitHub Copilot and Continue, but doesn't score them yet."}}, {"@type": "Question", "name": "What does it actually look at?", "acceptedAnswer": {"@type": "Answer", "text": "The configuration of your AI coding agents, at rest: what each agent can read and change, which keys it can reach, and whether one agent can change another agent's configuration or instructions. It doesn't watch what an agent does while it runs."}}, {"@type": "Question", "name": "What does a low score mean?", "acceptedAnswer": {"@type": "Answer", "text": "That an agent can reach a lot with the permissions it has today. It is an exposure map, not a verdict on whether a machine has been attacked."}}, {"@type": "Question", "name": "What does a score of 100 mean?", "acceptedAnswer": {"@type": "Answer", "text": "No exposure found in what was read. It never means secure, and it never means protected."}}, {"@type": "Question", "name": "Why does it sometimes say \"No score\"?", "acceptedAnswer": {"@type": "Answer", "text": "Because it couldn't read something it needs for that agent, and what wasn't read doesn't count as clean. The report says what failed."}}, {"@type": "Question", "name": "Can I compare my score with someone else's?", "acceptedAnswer": {"@type": "Answer", "text": "No. The score is for comparing yourself with yourself. Machines differ in agents, projects and keys, and the report only compares two runs of your machine when the same agents were evaluated, with the same detection rules, and no more than 10% of the projects dropped out."}}, {"@type": "Question", "name": "How is the score calculated?", "acceptedAnswer": {"@type": "Answer", "text": "With a public, versioned formula. The whole method is on the methodology page."}}, {"@type": "Question", "name": "Can I download it?", "acceptedAnswer": {"@type": "Answer", "text": "Not yet. When it's released, you'll be able to check for yourself that it's authentic."}}, {"@type": "Question", "name": "Does this website track me?", "acceptedAnswer": {"@type": "Answer", "text": "Only if you accept analytics cookies. Then it uses Google Analytics to count visits; if you don't accept, it doesn't load. You can change your choice from \"Cookie settings\" at the bottom of every page. Details in Privacy and cookies."}}], "isPartOf": {"@id": "https://rosmarops.com/#website"}}</script>
+<link rel="stylesheet" href="/assets/consent/cookieconsent.css?v=3.1.0">
+<link rel="icon" href="/wp-content/uploads/2026/10/image-1.png">
+<style>
+:root{--bg:#F6F5F2;--ink:#1B1A18;--ink2:#3A3833;--muted:#66635D;--line:#E3E0D8;--card:#FFFFFF;--accent:#6F8F78}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+a{color:var(--ink)}a:hover{color:var(--accent)}
+.wrap{max-width:1040px;margin:0 auto;padding:0 16px}
+header .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;padding-top:24px;padding-bottom:24px}
+header img{height:40px;width:auto;display:block}
+nav{display:flex;flex-wrap:wrap;gap:24px;font-size:16px}
+main .wrap{display:flex;flex-direction:column;gap:64px;padding-top:48px;padding-bottom:64px}
+.hero{display:flex;flex-direction:column;gap:20px;max-width:760px}
+h1{margin:0;font-size:clamp(34px,6vw,52px);line-height:1.08;font-weight:700;letter-spacing:-.02em}
+.lead{margin:0;font-size:20px;line-height:1.55;color:var(--ink2)}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:16px}
+h2{margin:0;font-size:14px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:12px;font-size:17px;line-height:1.55}
+.status{border-top:1px solid var(--line);padding-top:32px;display:flex;flex-direction:column;gap:12px;max-width:760px}
+.status p{margin:0;font-size:17px;line-height:1.55}
+footer{border-top:1px solid var(--line)}
+footer .wrap{padding-top:28px;padding-bottom:28px;font-size:15px;color:var(--muted)}
+footer nav{gap:20px;font-size:15px}
+.doc{max-width:760px;display:flex;flex-direction:column;gap:18px;font-size:18px;line-height:1.65}
+.doc h1{font-size:clamp(30px,5vw,44px);line-height:1.12}
+.doc h2{font-size:22px;letter-spacing:0;text-transform:none;color:var(--ink);margin-top:20px}
+.doc p,.doc ul{margin:0}.doc ul{font-size:18px;gap:8px}
+.doc .meta{font-size:15px;color:var(--muted)}
+.doc .formula{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 20px;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:16px;overflow-wrap:anywhere}
+.doc code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:.92em}
+.faq h2{margin-top:24px}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<a href="/"><img src="/assets/brand/rosmarops-logo.png" srcset="/assets/brand/rosmarops-logo.png 1x, /assets/brand/rosmarops-logo@2x.png 2x" width="512" height="131" alt="RosmarOps"></a>
+<nav><a href="/blog/">Blog</a><a href="/methodology/">Methodology</a><a href="/faq/">FAQ</a><a href="https://rosmarops.com/es/preguntas-frecuentes/" hreflang="es" lang="es" aria-label="Español">ES</a></nav>
+</div></header>
+
+<main><div class="wrap">
+<article class="doc faq"><h1>RosmarOps: frequently asked questions</h1>
+<h2>Does RosmarOps send my data anywhere?</h2>
+<p>No. It doesn't connect to the internet and doesn't send anything to anyone, not even if you want it to: it has no feature that sends data. If you choose to paste its export into an AI in the cloud, that text leaves your computer because you paste it.</p>
+<h2>Does it change anything on my machine?</h2>
+<p>No. It only writes its own reports to its own folder. RosmarOps suggests; you make the change.</p>
+<h2>Which agents does it evaluate?</h2>
+<p>Today it evaluates Claude Code and Cursor on Windows. It detects Cline, GitHub Copilot and Continue, but doesn't score them yet.</p>
+<h2>What does it actually look at?</h2>
+<p>The configuration of your AI coding agents, at rest: what each agent can read and change, which keys it can reach, and whether one agent can change another agent's configuration or instructions. It doesn't watch what an agent does while it runs.</p>
+<h2>What does a low score mean?</h2>
+<p>That an agent can reach a lot with the permissions it has today. It is an exposure map, not a verdict on whether a machine has been attacked.</p>
+<h2>What does a score of 100 mean?</h2>
+<p>No exposure found in what was read. It never means secure, and it never means protected.</p>
+<h2>Why does it sometimes say "No score"?</h2>
+<p>Because it couldn't read something it needs for that agent, and what wasn't read doesn't count as clean. The report says what failed.</p>
+<h2>Can I compare my score with someone else's?</h2>
+<p>No. The score is for comparing yourself with yourself. Machines differ in agents, projects and keys, and the report only compares two runs of your machine when the same agents were evaluated, with the same detection rules, and no more than 10% of the projects dropped out.</p>
+<h2>How is the score calculated?</h2>
+<p>With a public, versioned formula. The whole method is on <a href="/methodology/">the methodology page</a>.</p>
+<h2>Can I download it?</h2>
+<p>Not yet. When it's released, you'll be able to check for yourself that it's authentic.</p>
+<h2>Does this website track me?</h2>
+<p>Only if you accept analytics cookies. Then it uses Google Analytics to count visits; if you don't accept, it doesn't load. You can change your choice from "Cookie settings" at the bottom of every page. Details in <a href="/privacy/">Privacy and cookies</a>.</p>
+</article>
+</div></main>
+
+<footer><div class="wrap">
+<nav><a href="/blog/">Blog</a><a href="/methodology/">Methodology</a><a href="/faq/">FAQ</a><a href="https://rosmarops.com/es/preguntas-frecuentes/" hreflang="es" lang="es" aria-label="Español">ES</a><a href="/privacy/">Privacy</a><a href="#" data-cc="show-preferencesModal">Cookie settings</a></nav>
+</div></footer>
+<script src="/assets/consent/cookieconsent.umd.js?v=3.1.0" defer></script>
+<script src="/assets/consent/consent.js?v=1" defer></script>
+</body>
+</html>

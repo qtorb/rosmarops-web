@@ -94,5 +94,5 @@ add_filter('robots_txt', function ($output) {
 	if (!is_main_site() || strpos($output, '/es/sitemap.xml') !== false) {
 		return $output;
 	}
-	return rtrim($output) . "\nSitemap: https://rosmarops.com/es/sitemap.xml\n";
+	return rtrim($output) . "\nSitemap: https://rosmarops.com/es/sitemap.xml\nSitemap: https://rosmarops.com/sitemap-pages.xml\n";
 }, 20);

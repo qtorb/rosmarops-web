@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How the Agent Posture Score is calculated</title>
+<meta name="description" content="The full method behind the RosmarOps Agent Posture Score: one score per agent, bands tied to the traffic light, public weights, the formula, coverage rules and versioning.">
+<link rel="canonical" href="https://rosmarops.com/methodology/">
+<link rel="alternate" hreflang="en" href="https://rosmarops.com/methodology/">
+<link rel="alternate" hreflang="es" href="https://rosmarops.com/es/metodologia/">
+<link rel="alternate" hreflang="x-default" href="https://rosmarops.com/methodology/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="RosmarOps">
+<meta property="og:title" content="How the Agent Posture Score is calculated">
+<meta property="og:description" content="The full method behind the RosmarOps Agent Posture Score: one score per agent, bands tied to the traffic light, public weights, the formula, coverage rules and versioning.">
+<meta property="og:url" content="https://rosmarops.com/methodology/">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://rosmarops.com/assets/brand/rosmarops-social.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="RosmarOps logo">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "@id": "https://rosmarops.com/methodology/#article", "headline": "How the Agent Posture Score is calculated", "description": "The full method behind the RosmarOps Agent Posture Score: one score per agent, bands tied to the traffic light, public weights, the formula, coverage rules and versioning.", "inLanguage": "en", "url": "https://rosmarops.com/methodology/", "dateModified": "2026-10-27", "version": "index 3", "author": {"@type": "Person", "name": "Albert Garcia Pujadas"}, "publisher": {"@type": "Organization", "@id": "https://rosmarops.com/#org", "name": "RosmarOps", "url": "https://rosmarops.com/", "logo": "https://rosmarops.com/assets/brand/rosmarops-logo@2x.png"}, "isPartOf": {"@id": "https://rosmarops.com/#website"}}</script>
+<link rel="stylesheet" href="/assets/consent/cookieconsent.css?v=3.1.0">
+<link rel="icon" href="/wp-content/uploads/2026/10/image-1.png">
+<style>
+:root{--bg:#F6F5F2;--ink:#1B1A18;--ink2:#3A3833;--muted:#66635D;--line:#E3E0D8;--card:#FFFFFF;--accent:#6F8F78}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+a{color:var(--ink)}a:hover{color:var(--accent)}
+.wrap{max-width:1040px;margin:0 auto;padding:0 16px}
+header .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;padding-top:24px;padding-bottom:24px}
+header img{height:40px;width:auto;display:block}
+nav{display:flex;flex-wrap:wrap;gap:24px;font-size:16px}
+main .wrap{display:flex;flex-direction:column;gap:64px;padding-top:48px;padding-bottom:64px}
+.hero{display:flex;flex-direction:column;gap:20px;max-width:760px}
+h1{margin:0;font-size:clamp(34px,6vw,52px);line-height:1.08;font-weight:700;letter-spacing:-.02em}
+.lead{margin:0;font-size:20px;line-height:1.55;color:var(--ink2)}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:16px}
+h2{margin:0;font-size:14px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:12px;font-size:17px;line-height:1.55}
+.status{border-top:1px solid var(--line);padding-top:32px;display:flex;flex-direction:column;gap:12px;max-width:760px}
+.status p{margin:0;font-size:17px;line-height:1.55}
+footer{border-top:1px solid var(--line)}
+footer .wrap{padding-top:28px;padding-bottom:28px;font-size:15px;color:var(--muted)}
+footer nav{gap:20px;font-size:15px}
+.doc{max-width:760px;display:flex;flex-direction:column;gap:18px;font-size:18px;line-height:1.65}
+.doc h1{font-size:clamp(30px,5vw,44px);line-height:1.12}
+.doc h2{font-size:22px;letter-spacing:0;text-transform:none;color:var(--ink);margin-top:20px}
+.doc p,.doc ul{margin:0}.doc ul{font-size:18px;gap:8px}
+.doc .meta{font-size:15px;color:var(--muted)}
+.doc .formula{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 20px;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:16px;overflow-wrap:anywhere}
+.doc code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:.92em}
+.faq h2{margin-top:24px}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<a href="/"><img src="/assets/brand/rosmarops-logo.png" srcset="/assets/brand/rosmarops-logo.png 1x, /assets/brand/rosmarops-logo@2x.png 2x" width="512" height="131" alt="RosmarOps"></a>
+<nav><a href="/blog/">Blog</a><a href="/methodology/">Methodology</a><a href="/faq/">FAQ</a><a href="https://rosmarops.com/es/metodologia/" hreflang="es" lang="es" aria-label="Español">ES</a></nav>
+</div></header>
+
+<main><div class="wrap">
+<article class="doc"><h1>How the Agent Posture Score is calculated</h1>
+<p class="meta">Method version: index 3. Last updated: 27 October 2026.</p>
+<p>RosmarOps reads the configuration of your AI coding agents and draws an exposure map: what each agent can read and change, which keys it can reach, and whether one agent can change another agent's configuration or instructions. The Agent Posture Score turns that map into a number out of 100. This page is the whole method. Nothing in it is secret.</p>
+<h2>One score per agent</h2>
+<p>RosmarOps gives each agent it evaluates its own Agent Posture Score, out of 100. Higher is better.</p>
+<h2>The band comes from the traffic light</h2>
+<p>The score never contradicts the agent's own traffic light, because that agent's worst finding sets the band and the score moves inside it:</p>
+<ul><li>0–49, red: Exposed.</li><li>50–79, yellow: Open gaps.</li><li>80–100, green: Contained.</li></ul>
+<p>A 79 is not "nearly fine". It still has gaps.</p>
+<h2>What each finding weighs</h2>
+<p>Red findings:</p>
+<ul><li>a high-privilege credential the agent can read and send out: 20;</li><li>being able to change another agent's configuration: 15;</li><li>being able to change its own configuration: 15;</li><li>a high-privilege credential saved in a git repository: 20, or 30 if that repository has a remote.</li></ul>
+<p>Yellow findings:</p>
+<ul><li>a medium credential it can read and send out (or one RosmarOps can't classify), or a high-privilege one it can only read: 8;</li><li>another agent's instructions it can rewrite: 6;</li><li>its own instructions: 4;</li><li>a medium credential saved in git: 8.</li></ul>
+<p>If a credential finding reaches any project, not just one, its weight is multiplied by 1.5. A credential in git counts in every agent's score, because it doesn't depend on any agent. Medium credentials an agent can read but has no way to send out aren't findings, but each adds 2. Low-privilege keys, such as publishable or anonymous keys, and template values weigh nothing.</p>
+<p>Two things don't change the weight. Confidence doesn't: when RosmarOps has to assume something, it says so, but an assumption doesn't make the exposure lighter. And the number of copies doesn't: the same finding in 27 projects weighs the same as in one, because how far it reaches is already counted.</p>
+<h2>The formula</h2>
+<p>Add up the weights: that's P. Inside the band, the score falls as P grows:</p>
+<p class="formula">score = bottom of the band + width of the band × 80 / (80 + P), rounded down.</p>
+<p>The widths are 49 for red, 29 for yellow and 20 for green. That has three consequences:</p>
+<ul><li>fixing something never lowers the score, and adding a problem never raises it;</li><li>because it's rounded down, a small fix doesn't always change the number when a lot is left;</li><li>100 only happens when nothing was found.</li></ul>
+<h2>A synthetic example</h2>
+<p>An agent with four findings:</p>
+<ul><li>a high-privilege credential reachable from any project (30);</li><li>write access to another agent's configuration (15);</li><li>a medium credential reachable from any project (12);</li><li>its own instruction files (4).</li></ul>
+<p>P is 61, the band is red, and the score is 27. Fixing the first one alone takes it to 35. Fixing everything takes it to 100.</p>
+<h2>When there is no score</h2>
+<p>An agent only gets a score if RosmarOps could read everything it needs for that agent:</p>
+<ul><li>the capability graph was built and validated;</li><li>the run didn't time out while building it;</li><li>none of that agent's configuration sources failed to read;</li><li>no file failed to read in a way that could hide a credential.</li></ul>
+<p>If any of those fails, the report says "No score" and gives the reason. An agent RosmarOps doesn't know how to evaluate yet isn't scored at all: the report lists it as detected, not evaluated yet. With no agents on the machine, the report says "No score: no AI agents found", never 100.</p>
+<h2>Which fixes count</h2>
+<p>The score only moves when RosmarOps runs again and reads the new configuration. A fix that removes the exposure takes its whole weight off the score. A fix that narrows a credential finding from any project to one project keeps the finding but drops the ×1.5. If a setting narrows the exposure but, according to the vendor's own documentation, doesn't close it, the score doesn't move. The report says what is left instead.</p>
+<p>Before you change anything, the report tells you how much the score would rise if you made today's suggested change.</p>
+<h2>Versions and comparisons</h2>
+<p>The formula is versioned. The report keeps the method version next to every score, together with the versions of the detection rules and of the knowledge base it used. When the method changes, the report separates what changed on your machine from what changed in the method. When the detection rules or the knowledge base change, it says the score is not comparable with the previous one. When the agents evaluated change, or the number of projects drops by more than 10%, it says the two runs are not comparable.</p>
+<p>The score is for comparing yourself with yourself, not with anyone else.</p>
+<h2>Hiding things doesn't buy a better score</h2>
+<ul><li>Make a source unreadable: you get no score, not a better one.</li><li>Remove more than 10% of your projects from the configuration: the report marks the comparison with the previous run as not comparable.</li><li>Uninstall an agent: it drops out of the report and the comparison with the previous run is marked not comparable.</li><li>Actually remove a credential from disk: its finding disappears and its weight comes off the score.</li></ul>
+<h2>What it does not measure</h2>
+<ul><li>agents RosmarOps doesn't evaluate yet;</li><li>what an agent does while it runs, since it only reads configuration at rest;</li><li>what an MCP tool does internally;</li><li>the Windows credential store.</li></ul>
+<h2>What a 100 means</h2>
+<p>A 100 means: no exposure found in what was read. It never means secure, and it never means protected.</p>
+</article>
+</div></main>
+
+<footer><div class="wrap">
+<nav><a href="/blog/">Blog</a><a href="/methodology/">Methodology</a><a href="/faq/">FAQ</a><a href="https://rosmarops.com/es/metodologia/" hreflang="es" lang="es" aria-label="Español">ES</a><a href="/privacy/">Privacy</a><a href="#" data-cc="show-preferencesModal">Cookie settings</a></nav>
+</div></footer>
+<script src="/assets/consent/cookieconsent.umd.js?v=3.1.0" defer></script>
+<script src="/assets/consent/consent.js?v=1" defer></script>
+</body>
+</html>

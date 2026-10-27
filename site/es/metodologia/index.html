@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cómo se calcula la nota de exposición</title>
+<meta name="description" content="El método completo de la nota de exposición de RosmarOps: una nota por agente, bandas atadas al semáforo, pesos públicos, la fórmula, la cobertura y las versiones.">
+<link rel="canonical" href="https://rosmarops.com/es/metodologia/">
+<link rel="alternate" hreflang="en" href="https://rosmarops.com/methodology/">
+<link rel="alternate" hreflang="es" href="https://rosmarops.com/es/metodologia/">
+<link rel="alternate" hreflang="x-default" href="https://rosmarops.com/methodology/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="RosmarOps">
+<meta property="og:title" content="Cómo se calcula la nota de exposición">
+<meta property="og:description" content="El método completo de la nota de exposición de RosmarOps: una nota por agente, bandas atadas al semáforo, pesos públicos, la fórmula, la cobertura y las versiones.">
+<meta property="og:url" content="https://rosmarops.com/es/metodologia/">
+<meta property="og:locale" content="es_ES">
+<meta property="og:image" content="https://rosmarops.com/assets/brand/rosmarops-social.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Logo de RosmarOps">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "@id": "https://rosmarops.com/es/metodologia/#article", "headline": "Cómo se calcula la nota de exposición", "description": "El método completo de la nota de exposición de RosmarOps: una nota por agente, bandas atadas al semáforo, pesos públicos, la fórmula, la cobertura y las versiones.", "inLanguage": "es", "url": "https://rosmarops.com/es/metodologia/", "dateModified": "2026-10-27", "version": "index 3", "author": {"@type": "Person", "name": "Albert Garcia Pujadas"}, "publisher": {"@type": "Organization", "@id": "https://rosmarops.com/#org", "name": "RosmarOps", "url": "https://rosmarops.com/", "logo": "https://rosmarops.com/assets/brand/rosmarops-logo@2x.png"}, "isPartOf": {"@id": "https://rosmarops.com/#website"}}</script>
+<link rel="stylesheet" href="/assets/consent/cookieconsent.css?v=3.1.0">
+<link rel="icon" href="/wp-content/uploads/2026/10/image-1.png">
+<style>
+:root{--bg:#F6F5F2;--ink:#1B1A18;--ink2:#3A3833;--muted:#66635D;--line:#E3E0D8;--card:#FFFFFF;--accent:#6F8F78}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+a{color:var(--ink)}a:hover{color:var(--accent)}
+.wrap{max-width:1040px;margin:0 auto;padding:0 16px}
+header .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;padding-top:24px;padding-bottom:24px}
+header img{height:40px;width:auto;display:block}
+nav{display:flex;flex-wrap:wrap;gap:24px;font-size:16px}
+main .wrap{display:flex;flex-direction:column;gap:64px;padding-top:48px;padding-bottom:64px}
+.hero{display:flex;flex-direction:column;gap:20px;max-width:760px}
+h1{margin:0;font-size:clamp(34px,6vw,52px);line-height:1.08;font-weight:700;letter-spacing:-.02em}
+.lead{margin:0;font-size:20px;line-height:1.55;color:var(--ink2)}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:16px}
+h2{margin:0;font-size:14px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:12px;font-size:17px;line-height:1.55}
+.status{border-top:1px solid var(--line);padding-top:32px;display:flex;flex-direction:column;gap:12px;max-width:760px}
+.status p{margin:0;font-size:17px;line-height:1.55}
+footer{border-top:1px solid var(--line)}
+footer .wrap{padding-top:28px;padding-bottom:28px;font-size:15px;color:var(--muted)}
+footer nav{gap:20px;font-size:15px}
+.doc{max-width:760px;display:flex;flex-direction:column;gap:18px;font-size:18px;line-height:1.65}
+.doc h1{font-size:clamp(30px,5vw,44px);line-height:1.12}
+.doc h2{font-size:22px;letter-spacing:0;text-transform:none;color:var(--ink);margin-top:20px}
+.doc p,.doc ul{margin:0}.doc ul{font-size:18px;gap:8px}
+.doc .meta{font-size:15px;color:var(--muted)}
+.doc .formula{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 20px;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:16px;overflow-wrap:anywhere}
+.doc code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:.92em}
+.faq h2{margin-top:24px}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<a href="/es/"><img src="/assets/brand/rosmarops-logo.png" srcset="/assets/brand/rosmarops-logo.png 1x, /assets/brand/rosmarops-logo@2x.png 2x" width="512" height="131" alt="RosmarOps"></a>
+<nav><a href="/es/blog/">Blog</a><a href="/es/metodologia/">Metodología</a><a href="/es/preguntas-frecuentes/">Preguntas</a><a href="https://rosmarops.com/methodology/" hreflang="en" lang="en" aria-label="English">EN</a></nav>
+</div></header>
+
+<main><div class="wrap">
+<article class="doc"><h1>Cómo se calcula la nota de exposición</h1>
+<p class="meta">Versión del método: índice 3. Última actualización: 27 de octubre de 2026.</p>
+<p>RosmarOps lee la configuración de tus agentes de IA para programar y dibuja un mapa de exposición: qué puede leer y cambiar cada agente, qué claves tiene a su alcance y si un agente puede cambiar la configuración o las instrucciones de otro. La nota de exposición de tus agentes convierte ese mapa en un número sobre 100. Esta página es el método entero. No hay nada secreto.</p>
+<h2>Una nota por agente</h2>
+<p>RosmarOps da a cada agente que evalúa su propia nota de exposición, sobre 100. Más alto es mejor.</p>
+<h2>La banda la pone el semáforo</h2>
+<p>La nota nunca contradice al semáforo del agente, porque su peor aviso fija la banda y la nota se mueve dentro:</p>
+<ul><li>0–49, rojo: expuesto.</li><li>50–79, amarillo: huecos abiertos.</li><li>80–100, verde: contenido.</li></ul>
+<p>Un 79 no es «casi bien»: sigue teniendo huecos.</p>
+<h2>Qué pesa cada aviso</h2>
+<p>Avisos rojos:</p>
+<ul><li>una credencial de privilegio alto que el agente puede leer y sacar fuera: 20;</li><li>poder cambiar la configuración de otro agente: 15;</li><li>poder cambiar la suya: 15;</li><li>una credencial de privilegio alto guardada en un repositorio git: 20, o 30 si ese repositorio tiene un remoto.</li></ul>
+<p>Avisos amarillos:</p>
+<ul><li>una credencial media que puede leer y sacar (o una que RosmarOps no sabe clasificar), o una alta que solo puede leer: 8;</li><li>poder reescribir las instrucciones de otro agente: 6;</li><li>las suyas: 4;</li><li>una credencial media guardada en git: 8.</li></ul>
+<p>Si un aviso de credencial alcanza a cualquier proyecto y no solo a uno, su peso se multiplica por 1,5. Una credencial en git cuenta en la nota de todos los agentes, porque no depende de ninguno. Las credenciales medias que un agente puede leer pero no sacar no son avisos, pero cada una suma 2. Las claves de privilegio bajo, como las publicables o anónimas, y los valores de plantilla no pesan nada.</p>
+<p>Dos cosas no cambian el peso. La confianza: cuando RosmarOps tiene que suponer algo, lo dice, pero una suposición no hace más ligera la exposición. Y el número de copias: el mismo aviso en 27 proyectos pesa lo mismo que en uno, porque el alcance ya se cuenta.</p>
+<h2>La fórmula</h2>
+<p>Se suman los pesos: eso es P. Dentro de la banda, la nota baja al crecer P:</p>
+<p class="formula">nota = suelo de la banda + anchura de la banda × 80 / (80 + P), redondeado hacia abajo.</p>
+<p>Las anchuras son 49 en rojo, 29 en amarillo y 20 en verde. Eso tiene tres consecuencias:</p>
+<ul><li>arreglar algo nunca baja la nota, y añadir un problema nunca la sube;</li><li>como se redondea hacia abajo, un arreglo pequeño no siempre cambia la cifra cuando queda mucho;</li><li>solo hay 100 cuando no se encontró nada.</li></ul>
+<h2>Un ejemplo sintético</h2>
+<p>Un agente con cuatro avisos:</p>
+<ul><li>una credencial alta alcanzable desde cualquier proyecto (30);</li><li>acceso de escritura a la configuración de otro agente (15);</li><li>una credencial media alcanzable desde cualquier proyecto (12);</li><li>sus propios ficheros de instrucciones (4).</li></ul>
+<p>P = 61, banda roja, nota 27. Arreglar solo el primero la lleva a 35. Arreglarlo todo, a 100.</p>
+<h2>Cuándo no hay nota</h2>
+<p>Un agente solo tiene nota si RosmarOps pudo leer todo lo que necesita para ese agente:</p>
+<ul><li>el grafo de capacidades se construyó y pasó la validación;</li><li>la ejecución no se quedó sin tiempo al construirlo;</li><li>ninguna fuente de configuración de ese agente falló al leerse;</li><li>ningún fichero falló al leerse de una forma que pueda esconder una credencial.</li></ul>
+<p>Si falla algo, el informe dice «Sin nota» y da el motivo. Un agente que RosmarOps aún no sabe evaluar no recibe nota: el informe lo pone como detectado sin evaluar. Sin ningún agente en la máquina, el informe dice «Sin nota: no se encontró ningún agente de IA», nunca 100.</p>
+<h2>Qué arreglos cuentan</h2>
+<p>La nota solo se mueve cuando RosmarOps vuelve a ejecutarse y lee la configuración nueva. Un arreglo que quita la exposición resta todo su peso. Un arreglo que reduce un aviso de credencial de cualquier proyecto a uno solo mantiene el aviso, pero le quita el ×1,5. Si un ajuste recorta la exposición pero, según la propia documentación del fabricante, no la cierra, la nota no se mueve. El informe dice qué queda.</p>
+<p>Antes de que cambies nada, el informe te dice cuánto subiría la nota si haces el cambio que te propone hoy.</p>
+<h2>Versiones y comparaciones</h2>
+<p>La fórmula tiene versión. El informe guarda la versión del método junto a cada nota, con las versiones de las reglas de detección y de la base de conocimiento que usó. Cuando cambia el método, el informe separa lo que cambió en tu máquina de lo que cambió en el método. Cuando cambian las reglas de detección o la base de conocimiento, dice que la nota no es comparable con la anterior. Cuando cambian los agentes evaluados, o el número de proyectos baja más de un 10 %, dice que las dos ejecuciones no son comparables.</p>
+<p>La nota sirve para compararte contigo mismo, no con nadie más.</p>
+<h2>Esconder cosas no da mejor nota</h2>
+<ul><li>Hacer ilegible una fuente: no da mejor nota; da «sin nota».</li><li>Quitar de la configuración más del 10 % de tus proyectos: el informe marca que la comparación con la ejecución anterior no es comparable.</li><li>Desinstalar un agente: sale del informe y la comparación con la ejecución anterior se marca como no comparable.</li><li>Sacar de verdad una credencial del disco: su aviso desaparece y su peso sale de la nota.</li></ul>
+<h2>Lo que no mide</h2>
+<ul><li>agentes que RosmarOps aún no evalúa;</li><li>lo que hace un agente mientras trabaja: solo lee la configuración en reposo;</li><li>lo que hace por dentro una herramienta MCP;</li><li>el almacén de credenciales de Windows.</li></ul>
+<h2>Qué significa un 100</h2>
+<p>Un 100 significa: no se encontró exposición en lo que se leyó. Nunca significa seguro ni protegido.</p>
+</article>
+</div></main>
+
+<footer><div class="wrap">
+<nav><a href="/es/blog/">Blog</a><a href="/es/metodologia/">Metodología</a><a href="/es/preguntas-frecuentes/">Preguntas</a><a href="https://rosmarops.com/methodology/" hreflang="en" lang="en" aria-label="English">EN</a><a href="/es/privacidad/">Privacidad</a><a href="#" data-cc="show-preferencesModal">Configurar cookies</a></nav>
+</div></footer>
+<script src="/assets/consent/cookieconsent.umd.js?v=3.1.0" defer></script>
+<script src="/assets/consent/consent.js?v=1" defer></script>
+</body>
+</html>
