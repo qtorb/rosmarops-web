@@ -28,7 +28,9 @@
     "who_decides": "another_model",
     "since_version": "2.1.283",
     "note": {
-      "en": "Built-in starting permission mode for interactive sessions; in auto mode a model, not the user, decides what would otherwise be asked."
+      "en": "Built-in starting permission mode for interactive sessions; in auto mode a model, not the user, decides what would otherwise be asked.",
+      "es": "Modo de permisos inicial integrado para las sesiones interactivas; en modo auto, lo que si no se preguntaría lo decide un modelo, no el usuario.",
+      "ca": "Mode de permisos inicial integrat per a les sessions interactives; en mode auto, el que, si no, es preguntaria ho decideix un model, no l'usuari."
     },
     "source": {
       "url": "https://code.claude.com/docs/en/permission-modes",
@@ -65,7 +67,9 @@
       "scope": "read_only_commands",
       "default": "allow",
       "note": {
-        "en": "Built-in read-only shell commands run on any path unless permissions.blockReadsOutsideWorkingDirectories is set."
+        "en": "Built-in read-only shell commands run on any path unless permissions.blockReadsOutsideWorkingDirectories is set.",
+        "es": "Las órdenes de shell de solo lectura integradas se ejecutan en cualquier ruta salvo que esté activado permissions.blockReadsOutsideWorkingDirectories.",
+        "ca": "Les ordres de shell de només lectura integrades s'executen a qualsevol ruta tret que estigui activat permissions.blockReadsOutsideWorkingDirectories."
       },
       "source": {
         "url": "https://code.claude.com/docs/en/permissions",
@@ -101,7 +105,9 @@
       "scope": "protected_paths",
       "default": "ask",
       "note": {
-        "en": "Writes to protected paths are asked even in modes that otherwise allow edits."
+        "en": "Writes to protected paths are asked even in modes that otherwise allow edits.",
+        "es": "Las escrituras en rutas protegidas se preguntan incluso en los modos que permiten editar.",
+        "ca": "Les escriptures a rutes protegides es pregunten fins i tot en els modes que permeten editar."
       },
       "source": {
         "url": "https://code.claude.com/docs/en/permission-modes#protected-paths",
@@ -115,7 +121,9 @@
       "scope": "preapproved_domains",
       "default": "allow",
       "note": {
-        "en": "Web fetches to a built-in list of documentation domains."
+        "en": "Web fetches to a built-in list of documentation domains.",
+        "es": "Consultas web a una lista integrada de dominios de documentación.",
+        "ca": "Consultes web a una llista integrada de dominis de documentació."
       },
       "source": {
         "url": "https://code.claude.com/docs/en/permissions",
@@ -142,7 +150,9 @@
       "path_windows": "%USERPROFILE%\\.claude\\settings.json",
       "secrets": "sometimes_plaintext",
       "note": {
-        "en": "The env block can hold keys."
+        "en": "The env block can hold keys.",
+        "es": "El bloque env puede contener claves.",
+        "ca": "El bloc env pot contenir claus."
       },
       "source": {
         "url": "https://code.claude.com/docs/en/settings",
@@ -189,7 +199,9 @@
       "path_windows": "%USERPROFILE%\\.claude.json",
       "secrets": "sometimes_plaintext",
       "note": {
-        "en": "MCP env and headers blocks can hold keys."
+        "en": "MCP env and headers blocks can hold keys.",
+        "es": "Los bloques env y headers de MCP pueden contener claves.",
+        "ca": "Els blocs env i headers de MCP poden contenir claus."
       },
       "source": {
         "url": "https://code.claude.com/docs/en/settings",

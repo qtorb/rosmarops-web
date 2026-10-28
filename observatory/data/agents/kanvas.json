@@ -39,7 +39,9 @@
       "path_windows": "<project>\\kanvas.json",
       "secrets": "none",
       "note": {
-        "en": "The task board that agents read and change."
+        "en": "The task board that agents read and change.",
+        "es": "El tablero de tareas que los agentes leen y cambian.",
+        "ca": "El tauler de tasques que els agents llegeixen i canvien."
       },
       "source": {
         "url": "https://github.com/XMihura/Kanvas#readme",
@@ -53,7 +55,9 @@
       "path_windows": "<project>\\.agents\\skills\\kanvas\\ and <project>\\.claude\\skills\\kanvas\\SKILL.md",
       "secrets": "none",
       "note": {
-        "en": "Agent skill with its own copy of kanvas.py, which agents run."
+        "en": "Agent skill with its own copy of kanvas.py, which agents run.",
+        "es": "Skill de agente con su propia copia de kanvas.py, que los agentes ejecutan.",
+        "ca": "Skill d'agent amb la seva pròpia còpia de kanvas.py, que els agents executen."
       },
       "source": {
         "url": "https://github.com/XMihura/Kanvas#readme",
@@ -67,7 +71,9 @@
       "path_windows": "%LOCALAPPDATA%\\Kanvas\\boards.json",
       "secrets": "none",
       "note": {
-        "en": "Open boards and whether they are open to other devices over Tailscale."
+        "en": "Open boards and whether they are open to other devices over Tailscale.",
+        "es": "Tableros abiertos y si están abiertos a otros dispositivos por Tailscale.",
+        "ca": "Taulers oberts i si estan oberts a altres dispositius per Tailscale."
       },
       "source": {
         "url": "https://github.com/XMihura/Kanvas#readme",
