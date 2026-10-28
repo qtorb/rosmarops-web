@@ -591,7 +591,7 @@ def build_agent(lang, t, a):
             "</tr>"
             for c in a["capabilities"]
         )
-        cols = "<colgroup>" + "".join(f'<col style="width:{w}%">' for w in (18, 22, 15, 33, 12)) + "</colgroup>"
+        cols = "<colgroup>" + "".join(f'<col style="width:{w}%">' for w in (16, 20, 13, 33, 18)) + "</colgroup>"
         caps_html = f'''<section id="capabilities" aria-labelledby="caps-h">
 <h2 id="caps-h">{t("agent.caps_h2")}</h2>
 <p class="note">{t("agent.caps_note")}</p>
@@ -613,7 +613,7 @@ def build_agent(lang, t, a):
             "</tr>"
             for s in a["storage"]
         )
-        cols = "<colgroup>" + "".join(f'<col style="width:{w}%">' for w in (18, 30, 16, 24, 12)) + "</colgroup>"
+        cols = "<colgroup>" + "".join(f'<col style="width:{w}%">' for w in (16, 27, 14, 25, 18)) + "</colgroup>"
         storage_html = f'''<section id="storage" aria-labelledby="storage-h">
 <h2 id="storage-h">{t("agent.storage_h2")}</h2>
 <p class="note">{t("agent.storage_note")}</p>
