@@ -18,6 +18,7 @@
   "site.footer.cookies": "Cookie settings",
   "site.download_url": "https://github.com/qtorb/rosmarops/releases/latest",
   "site.logo_alt": "RosmarOps",
+  "site.observatory_brand": "RosmarOps Observatory",
 
   "index.title": "AI coding agents on your computer: what each one can do · RosmarOps Observatory",
   "index.description": "A dated record of security changes in AI coding agents that keep settings or keys on your computer. Every fact with its date, version and source.",

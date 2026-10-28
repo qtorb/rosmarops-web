@@ -18,6 +18,7 @@
   "site.footer.cookies": "Configura les galetes",
   "site.download_url": "https://github.com/qtorb/rosmarops/releases/latest",
   "site.logo_alt": "RosmarOps",
+  "site.observatory_brand": "RosmarOps Observatory",
 
   "index.title": "Agents d'IA per programar al teu ordinador: què pot fer cadascun · Observatori RosmarOps",
   "index.description": "Registre datat dels canvis de seguretat dels agents d'IA per programar que guarden ajustos o claus al teu ordinador. Cada dada, amb data, versió i font.",

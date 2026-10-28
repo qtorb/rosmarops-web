@@ -18,6 +18,7 @@
   "site.footer.cookies": "Configurar cookies",
   "site.download_url": "https://github.com/qtorb/rosmarops/releases/latest",
   "site.logo_alt": "RosmarOps",
+  "site.observatory_brand": "RosmarOps Observatory",
 
   "index.title": "Agentes de IA para programar en tu ordenador: qué puede hacer cada uno · Observatorio RosmarOps",
   "index.description": "Registro fechado de los cambios de seguridad de los agentes de IA para programar que guardan ajustes o claves en tu ordenador, con fecha, versión y fuente.",

@@ -16,7 +16,7 @@
 <meta property="og:description" content="A dated record of security changes in AI coding agents that keep settings or keys on your computer. Every fact with its date, version and source.">
 <meta property="og:url" content="https://rosmarops.com/observatory/">
 <meta property="og:locale" content="en_GB">
-<meta property="og:image" content="https://rosmarops.com/assets/brand/rosmarops-social.png">
+<meta property="og:image" content="https://rosmarops.com/assets/brand/observatory/observatory-social.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
@@ -68,7 +68,10 @@ tr:last-child td,tr:last-child th{border-bottom:0}
 .trio div{display:flex;flex-direction:column;gap:8px}
 .trio p{margin:0;font-size:16px;line-height:1.55;color:var(--ink2)}
 .disclaimer{margin:0;font-size:14px;line-height:1.5;color:var(--muted)}
-.crumbs{margin:0;font-size:14px;color:var(--muted)}
+.crumbs{margin:0;font-size:14px;color:var(--muted);display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.obs-brand{display:flex;align-items:center;gap:16px;margin:0 0 20px;font-size:22px;font-weight:700;letter-spacing:-.01em;line-height:1.2;color:var(--ink)}
+.obs-brand img{display:block;width:64px;height:64px;flex:none}
+.crumbs img{display:block;width:24px;height:24px;flex:none}
 .layout{display:flex;flex-wrap:wrap;gap:40px;align-items:flex-start}
 .toc{flex:1 1 200px;display:flex;flex-direction:column;gap:8px;font-size:15px}
 .toc p{margin:0 0 4px;font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
@@ -85,7 +88,8 @@ td code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:14p
 footer{border-top:1px solid var(--line)}
 footer .wrap{padding-top:28px;padding-bottom:28px;font-size:15px;color:var(--muted)}
 footer nav{gap:20px;font-size:15px}
-@media (max-width:700px){nav{gap:16px}main .wrap{gap:40px;padding-top:32px}.lead{font-size:18px}
+@media (max-width:700px){.obs-brand{gap:12px;margin-bottom:16px;font-size:20px}.obs-brand img{width:48px;height:48px}
+nav{gap:16px}main .wrap{gap:40px;padding-top:32px}.lead{font-size:18px}
 table{min-width:0;table-layout:auto}colgroup,thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 table,tbody,tr,tbody th,td{display:block}
 tbody tr{padding:16px;border-bottom:1px solid var(--line)}tbody tr:last-child{border-bottom:0}
@@ -103,6 +107,7 @@ td:empty{display:none}}
 
 <main><div class="wrap">
 <section class="hero">
+<p class="obs-brand"><img src="/assets/brand/observatory/observatory-mark.svg" width="64" height="64" alt="">RosmarOps Observatory</p>
 <p class="eyebrow">Observatory · reviewed on 28 October 2026</p>
 <h1>What each AI coding agent can do on your computer</h1>
 <p class="lead">We follow the security changes of each agent: permissions, approval modes, sandbox, MCP servers and where it keeps your keys. Every fact carries its date, version and source. No one pays to appear here.</p>
