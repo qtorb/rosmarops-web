@@ -82,6 +82,7 @@ tr:last-child td,tr:last-child th{border-bottom:0}
 .pagemeta{margin:0;font-size:15px;color:var(--muted)}
 .panel{padding:20px;display:flex;flex-direction:column;gap:12px}
 .panel p{margin:0;font-size:16px;line-height:1.55}
+.summary p:not(.eyebrow){font-size:17px}
 .plain li,td,.panel p{overflow-wrap:anywhere}
 td.keep{overflow-wrap:normal;word-break:normal;hyphens:none}
 td code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:14px;overflow-wrap:anywhere}
@@ -115,6 +116,7 @@ td:empty{display:none}}
 <p class="crumbs"><img src="/assets/brand/observatory/observatory-mark.svg" width="24" height="24" alt=""><a href="/observatory/">Observatory</a> › Claude Code</p>
 <h1>Claude Code on Windows: what it can do on your computer</h1>
 <p class="pagemeta">Anthropic · CLI, IDE extension · Reviewed on 28 October 2026</p>
+<div class="box panel summary"><p class="eyebrow">In short</p><p>As of 28 October 2026, according to its documentation, Claude Code starts in the <code>auto</code> mode (since Claude Code 2.1.283): another AI model decides what would otherwise be asked.</p><p>By default, without asking, it can read files in the folders it works in, run read-only commands and fetch pages from a built-in list of documentation sites.</p><p>It keeps its configuration in 8 kinds of files on Windows; in 5 of them keys can be stored in plain text.</p></div>
 </section>
 <section id="mode" class="box panel" aria-labelledby="mode-h">
 <h2 id="mode-h">Mode it starts in</h2>
