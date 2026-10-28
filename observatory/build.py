@@ -311,7 +311,9 @@ def page(lang, t, *, path, title, description, alternates, jsonld, body, og_type
     head += [ld(j) for j in jsonld]
     head += [
         '<link rel="stylesheet" href="/assets/consent/cookieconsent.css?v=3.1.0">',
-        '<link rel="icon" href="/wp-content/uploads/2026/10/image-1.png">',
+        '<link rel="icon" href="/assets/brand/observatory/observatory-favicon.ico" sizes="48x48">',
+        '<link rel="icon" href="/assets/brand/observatory/observatory-favicon.svg" type="image/svg+xml">',
+        '<link rel="apple-touch-icon" href="/assets/brand/observatory/observatory-apple-touch-180.png">',
         f"<style>\n{CSS}\n</style>",
         "</head>",
         "<body>",

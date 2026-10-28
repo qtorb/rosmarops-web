@@ -97,6 +97,12 @@ jobs:
           put site/assets/brand/rosmarops-logo@2x.png assets/brand/rosmarops-logo@2x.png
           put site/assets/brand/rosmarops-logo.svg assets/brand/rosmarops-logo.svg
           put site/assets/brand/rosmarops-social.png assets/brand/rosmarops-social.png
+          -mkdir assets/brand/observatory
+          put site/assets/brand/observatory/observatory-favicon.ico assets/brand/observatory/observatory-favicon.ico
+          put site/assets/brand/observatory/observatory-favicon.svg assets/brand/observatory/observatory-favicon.svg
+          put site/assets/brand/observatory/observatory-apple-touch-180.png assets/brand/observatory/observatory-apple-touch-180.png
+          put site/assets/brand/observatory/observatory-mark.svg assets/brand/observatory/observatory-mark.svg
+          put site/assets/brand/observatory/observatory-mark-512.png assets/brand/observatory/observatory-mark-512.png
           -mkdir wp-content/mu-plugins
           put wp/mu-plugins/rosmarops-consent.php wp-content/mu-plugins/rosmarops-consent.php
           put wp/mu-plugins/rosmarops-seo.php wp-content/mu-plugins/rosmarops-seo.php
@@ -181,6 +187,9 @@ jobs:
           done
           curl -s "https://rosmarops.com/?deploy=${GITHUB_SHA::7}" | cmp -s - site/index.html && echo "home EN matches" || (echo "home EN differs from repo"; exit 1)
           for f in observatory/index.html es/observatorio/index.html ca/observatori/index.html observatory/data.json; do
+            curl -s "https://rosmarops.com/$f?deploy=${GITHUB_SHA::7}" | cmp -s - "site/$f" && echo "$f matches" || (echo "$f differs from repo"; exit 1)
+          done
+          for f in assets/brand/observatory/observatory-favicon.ico assets/brand/observatory/observatory-favicon.svg assets/brand/observatory/observatory-apple-touch-180.png; do
             curl -s "https://rosmarops.com/$f?deploy=${GITHUB_SHA::7}" | cmp -s - "site/$f" && echo "$f matches" || (echo "$f differs from repo"; exit 1)
           done
           for f in assets/consent/cookieconsent.umd.js assets/consent/cookieconsent.css assets/consent/consent.js assets/brand/rosmarops-logo.png assets/brand/rosmarops-logo@2x.png assets/brand/rosmarops-social.png; do
