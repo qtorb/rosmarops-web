@@ -4,7 +4,7 @@
 
 Everything is computed on your computer. It doesn't connect to the internet, doesn't send anything to anyone, and doesn't change anything on your machine: it only writes its own reports to its own folder. If you choose to paste its export into an AI in the cloud, that text leaves your computer because you paste it.
 
-Today it evaluates Claude Code and Cursor on Windows. It detects Cline, GitHub Copilot and Continue, but doesn't score them yet. Download (Windows): https://github.com/qtorb/rosmarops/releases/latest. How to check it's authentic: https://github.com/qtorb/rosmarops#check-the-download. Source code: https://github.com/qtorb/rosmarops (AGPL-3.0).
+Today it evaluates Claude Code and Cursor on Windows. It detects Cline, GitHub Copilot, Continue, Codex, Antigravity, Hermes Agent and Claude Desktop, but doesn't score them yet. Download (Windows): https://github.com/qtorb/rosmarops/releases/latest. How to check it's authentic: https://github.com/qtorb/rosmarops#check-the-download. Source code: https://github.com/qtorb/rosmarops (AGPL-3.0).
 
 ## Key terms
 
