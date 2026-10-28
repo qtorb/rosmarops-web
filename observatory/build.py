@@ -114,7 +114,16 @@ class Markup(str):
 
 
 def has_page(a):
-    return bool(a["changes"]) or bool(a["ratings"])
+    return any(a.get(k) for k in ("changes", "ratings", "capabilities", "storage", "default_mode"))
+
+
+# Agent pages are generated for review whenever there is content, but stay noindex,
+# unlinked and out of the deploy until their id is listed here (after product advisor verification).
+PUBLISHED_AGENT_PAGES = set()
+
+
+def is_published(a):
+    return has_page(a) and a["agent"]["id"] in PUBLISHED_AGENT_PAGES
 
 
 def agent_path(lang, aid):
@@ -209,6 +218,9 @@ tr:last-child td,tr:last-child th{border-bottom:0}
 .pagemeta{margin:0;font-size:15px;color:var(--muted)}
 .panel{padding:20px;display:flex;flex-direction:column;gap:12px}
 .panel p{margin:0;font-size:16px;line-height:1.55}
+.plain li,td,.panel p{overflow-wrap:anywhere}
+td code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:14px;overflow-wrap:anywhere}
+.panel code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace}
 .plain{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px;font-size:16px;line-height:1.5}
 footer{border-top:1px solid var(--line)}
 footer .wrap{padding-top:28px;padding-bottom:28px;font-size:15px;color:var(--muted)}
@@ -219,7 +231,8 @@ table,tbody,tr,tbody th,td{display:block}
 tbody tr{padding:16px;border-bottom:1px solid var(--line)}tbody tr:last-child{border-bottom:0}
 tbody th{padding:0 0 8px;border:0;font-size:18px}
 td{padding:4px 0;border:0;display:grid;grid-template-columns:minmax(110px,40%) 1fr;gap:12px;font-size:15px}
-td::before{content:attr(data-label);font-size:13px;color:var(--muted)}}
+td::before{content:attr(data-label);font-size:13px;color:var(--muted)}
+td:empty{display:none}}
 """.strip()
 
 
@@ -338,7 +351,7 @@ def change_item(t, lang, a, c, with_agent):
     src_label = t("agent.source_official") if c["source"]["official"] else t("agent.source")
     verified = t("agent.verified", date=t.date(c["verified"]["at"]), how=t.text("how." + c["verified"]["how"]))
     name_link = ""
-    if with_agent and has_page(a):
+    if with_agent and is_published(a):
         name_link = f' <a href="{agent_path(lang, ag["id"])}">{esc(ag["name"])}</a> ·'
     return (
         "<li>"
@@ -354,7 +367,7 @@ def item_list(lang, items):
     return [
         dict(
             {"@type": "ListItem", "position": i + 1, "item": software_app(a)},
-            **({"url": BASE + agent_path(lang, a["agent"]["id"])} if has_page(a) else {}),
+            **({"url": BASE + agent_path(lang, a["agent"]["id"])} if is_published(a) else {}),
         )
         for i, a in enumerate(items)
     ]
@@ -382,7 +395,7 @@ def build_index(lang, t, agents):
     def row(a):
         ag = a["agent"]
         name = esc(ag["name"])
-        if has_page(a):
+        if is_published(a):
             name = f'<a href="{agent_path(lang, ag["id"])}">{name}</a>'
         lc = latest_change(a)
         last = (
@@ -507,6 +520,70 @@ def build_agent(lang, t, a):
     if lv:
         meta += " · " + t("agent.latest_version", version=lv)
 
+    note_lang = "" if lang == "en" else ' lang="en"'
+
+    def src_link(src):
+        label = t("agent.source_official") if src["official"] else t("agent.source")
+        return f'<a href="{esc(src["url"])}" rel="noopener">{label}</a>'
+
+    mode_html = ""
+    dm = a.get("default_mode")
+    if dm:
+        lines = [f'<p>{t("agent.mode_name", mode=Markup("<code>" + esc(dm["name"]) + "</code>"))}</p>',
+                 f'<p>{t("agent.mode_who", who=t.text("who." + dm["who_decides"]))}</p>']
+        if dm.get("since_version"):
+            lines.append(f'<p>{t("agent.mode_since", version=dm["since_version"])}</p>')
+        if dm.get("note"):
+            lines.append(f'<p class="note"{note_lang}>{esc(dm["note"])}</p>')
+        lines.append(f'<p class="note">{src_link(dm["source"])} · {t("agent.accessed", date=t.date(dm["source"]["accessed_at"]))}</p>')
+        mode_html = f'''<section id="mode" class="box panel" aria-labelledby="mode-h">
+<h2 id="mode-h">{t("agent.mode_h2")}</h2>
+{"".join(lines)}
+</section>'''
+
+    caps_html = ""
+    if a.get("capabilities"):
+        rows = "".join(
+            "<tr>"
+            f'<th scope="row">{t("action." + c["action"])}</th>'
+            f'<td data-label="{t("agent.th_scope")}">{t("scope." + c["scope"])}</td>'
+            f'<td data-label="{t("agent.th_default")}">{t("default." + c["default"])}</td>'
+            f'<td data-label="{t("agent.th_note")}"{note_lang}>{esc(c.get("note", ""))}</td>'
+            f'<td data-label="{t("agent.th_source")}">{src_link(c["source"])}</td>'
+            "</tr>"
+            for c in a["capabilities"]
+        )
+        cols = "<colgroup>" + "".join(f'<col style="width:{w}%">' for w in (18, 22, 15, 33, 12)) + "</colgroup>"
+        caps_html = f'''<section id="capabilities" aria-labelledby="caps-h">
+<h2 id="caps-h">{t("agent.caps_h2")}</h2>
+<p class="note">{t("agent.caps_note")}</p>
+<div class="box tablebox"><table>{cols}
+<thead><tr><th scope="col">{t("agent.th_action")}</th><th scope="col">{t("agent.th_scope")}</th><th scope="col">{t("agent.th_default")}</th><th scope="col">{t("agent.th_note")}</th><th scope="col">{t("agent.th_source")}</th></tr></thead>
+<tbody>{rows}</tbody></table></div>
+<p class="note">{t("agent.caps_ask_note")}</p>
+</section>'''
+
+    storage_html = ""
+    if a.get("storage"):
+        rows = "".join(
+            "<tr>"
+            f'<th scope="row">{t("storage." + s["kind"])}</th>'
+            f'<td data-label="{t("agent.th_path")}"><code>{esc(s["path_windows"])}</code></td>'
+            f'<td data-label="{t("agent.th_keys")}">{t("secrets." + s["secrets"])}</td>'
+            f'<td data-label="{t("agent.th_note")}"{note_lang}>{esc(s.get("note", ""))}</td>'
+            f'<td data-label="{t("agent.th_source")}">{src_link(s["source"])}</td>'
+            "</tr>"
+            for s in a["storage"]
+        )
+        cols = "<colgroup>" + "".join(f'<col style="width:{w}%">' for w in (18, 30, 16, 24, 12)) + "</colgroup>"
+        storage_html = f'''<section id="storage" aria-labelledby="storage-h">
+<h2 id="storage-h">{t("agent.storage_h2")}</h2>
+<p class="note">{t("agent.storage_note")}</p>
+<div class="box tablebox"><table>{cols}
+<thead><tr><th scope="col">{t("agent.th_what")}</th><th scope="col">{t("agent.th_path")}</th><th scope="col">{t("agent.th_keys")}</th><th scope="col">{t("agent.th_note")}</th><th scope="col">{t("agent.th_source")}</th></tr></thead>
+<tbody>{rows}</tbody></table></div>
+</section>'''
+
     changes = sorted(a["changes"], key=lambda c: (c["date"], c["id"]), reverse=True)
     history = (
         '<ol class="changes box">' + "".join(change_item(t, lang, a, c, False) for c in changes) + "</ol>"
@@ -528,13 +605,23 @@ def build_agent(lang, t, a):
         sources.setdefault(c["source"]["url"], c["source"])
     for v in a["versions"]:
         sources.setdefault(v["source"]["url"], v["source"])
+    for x in [a.get("default_mode")] + a.get("capabilities", []) + a.get("storage", []):
+        if x:
+            sources.setdefault(x["source"]["url"], x["source"])
     src_items = "".join(
         f'<li><a href="{esc(u)}" rel="noopener">{esc(u)}</a> · {t("agent.accessed", date=t.date(s["accessed_at"]))}</li>'
         for u, s in sorted(sources.items())
     )
     src_items += f'<li><a href="{JSON_BASE}{ag["id"]}.json">{t("agent.json_link")}</a></li>'
 
-    toc_items = [("#rosmarops", "agent.rosmarops_h2"), ("#history", "agent.history_h2")]
+    toc_items = []
+    if mode_html:
+        toc_items.append(("#mode", "agent.mode_h2"))
+    if caps_html:
+        toc_items.append(("#capabilities", "agent.caps_h2"))
+    if storage_html:
+        toc_items.append(("#storage", "agent.storage_h2"))
+    toc_items += [("#rosmarops", "agent.rosmarops_h2"), ("#history", "agent.history_h2")]
     if versions_html:
         toc_items.append(("#versions", "agent.versions_h2"))
     toc_items += [("#sources", "agent.sources_h2"), ("#reply", "agent.reply_h2")]
@@ -548,7 +635,9 @@ def build_agent(lang, t, a):
 <h1>{t("agent.h1", agent=ag["name"])}</h1>
 <p class="pagemeta">{meta}</p>
 </section>
-
+{mode_html}
+{caps_html}
+{storage_html}
 <section id="rosmarops" class="box panel" aria-labelledby="rosmarops-h">
 <h2 id="rosmarops-h">{t("agent.rosmarops_h2")}</h2>
 <p>{rosm}</p>
@@ -603,7 +692,7 @@ def build_agent(lang, t, a):
             ],
         },
     ]
-    write(path, page(lang, t, path=path, title=title, description=desc, alternates=alternates, jsonld=jsonld, body=body, og_type="article"))
+    write(path, page(lang, t, path=path, title=title, description=desc, alternates=alternates, jsonld=jsonld, body=body, og_type="article", noindex=not is_published(a)))
 
 
 # ---------------------------------------------------------------- data files
