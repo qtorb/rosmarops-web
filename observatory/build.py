@@ -248,6 +248,7 @@ tr:last-child td,tr:last-child th{border-bottom:0}
 .pagemeta{margin:0;font-size:15px;color:var(--muted)}
 .panel{padding:20px;display:flex;flex-direction:column;gap:12px}
 .panel p{margin:0;font-size:16px;line-height:1.55}
+.summary p:not(.eyebrow){font-size:17px}
 .plain li,td,.panel p{overflow-wrap:anywhere}
 td.keep{overflow-wrap:normal;word-break:normal;hyphens:none}
 td code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:14px;overflow-wrap:anywhere}
@@ -579,6 +580,30 @@ def build_agent(lang, t, a):
         label = t("agent.source_official") if src["official"] else t("agent.source_rosmarops")
         return f'<a href="{esc(src["url"])}" rel="noopener">{label}</a>'
 
+    # «In short»: dated, citable sentences built only from verified data (GEO unit, decision §2.4).
+    summary = []
+    tool = "agent_tooling" in ag["kinds"]
+    st_items = a.get("storage", [])
+    k = sum(1 for x in st_items if x["secrets"] in ("plaintext", "sometimes_plaintext"))
+    dm0 = a.get("default_mode")
+    if dm0:
+        since = t.text("summary.since", agent=ag["name"], version=dm0["since_version"]) if dm0.get("since_version") else ""
+        summary.append(t("summary.mode", date=t.date(ag["reviewed_at"]), agent=ag["name"], mode=Markup("<code>" + esc(dm0["name"]) + "</code>"), since=since, who=t.text("summary.who." + dm0["who_decides"])))
+    allow = [c for c in a.get("capabilities", []) if c["default"] == "allow"]
+    if allow:
+        items = t.raw("summary.item_sep").join(t.text("summary.item", action=t.text("action." + c["action"]).lower(), scope=t.text("scope." + c["scope"]).lower()) for c in allow)
+        summary.append(t("summary.allow", items=items))
+    if st_items:
+        if tool and not dm0:
+            key = "summary.storage_tool" if k else "summary.storage_tool_nokeys"
+            summary.append(t(key, date=t.date(ag["reviewed_at"]), agent=ag["name"], n=str(len(st_items)), k=str(k)))
+        else:
+            key = "summary.storage" if k else "summary.storage_nokeys"
+            summary.append(t(key, n=str(len(st_items)), k=str(k)))
+    summary_html = ""
+    if summary:
+        summary_html = '<div class="box panel summary"><p class="eyebrow">' + t("summary.h") + "</p>" + "".join(f"<p>{x}</p>" for x in summary) + "</div>"
+
     mode_html = ""
     dm = a.get("default_mode")
     if dm:
@@ -688,6 +713,7 @@ def build_agent(lang, t, a):
 <p class="crumbs"><img src="/assets/brand/observatory/observatory-mark.svg" width="24" height="24" alt=""><a href="{INDEX_PATH[lang]}">{t("site.nav.observatory")}</a> › {esc(ag["name"])}</p>
 <h1>{t("agent.h1" + sfx, agent=ag["name"])}</h1>
 <p class="pagemeta">{meta}</p>
+{summary_html}
 </section>
 {mode_html}
 {caps_html}
