@@ -16,7 +16,7 @@
   "site.footer.privacy": "Privacy",
   "site.footer.privacy_url": "/privacy/",
   "site.footer.cookies": "Cookie settings",
-  "site.download_url": "https://github.com/qtorb/rosmarops/releases/latest",
+  "site.download_url": "/download",
   "site.logo_alt": "RosmarOps",
   "site.observatory_brand": "RosmarOps Observatory",
 

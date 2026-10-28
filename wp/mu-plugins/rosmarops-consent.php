@@ -8,7 +8,7 @@ if (!defined('ABSPATH')) {
 	exit;
 }
 
-const ROSMAROPS_CONSENT_VER = '2';
+const ROSMAROPS_CONSENT_VER = '3';
 // Absolute URLs: on the Spanish site WordPress would otherwise prefix /es/.
 const ROSMAROPS_CONSENT_BASE = 'https://rosmarops.com/assets/consent/';
 

@@ -345,7 +345,7 @@ def page(lang, t, *, path, title, description, alternates, jsonld, body, og_type
     )
     tail = [
         '<script src="/assets/consent/cookieconsent.umd.js?v=3.1.0" defer></script>',
-        '<script src="/assets/consent/consent.js?v=2" defer></script>',
+        '<script src="/assets/consent/consent.js?v=3" defer></script>',
         "</body>",
         "</html>",
         "",
@@ -731,7 +731,7 @@ def build_agent(lang, t, a):
 <section id="rosmarops" class="box panel" aria-labelledby="rosmarops-h">
 <h2 id="rosmarops-h">{t("agent.rosmarops_h2" + sfx)}</h2>
 <p>{rosm}</p>
-<div class="actions"><a class="btn primary" href="{esc(t.text("site.download_url"))}" target="_blank" rel="noopener">{t("agent.cta_download")}</a></div>
+<div class="actions"><a class="btn primary" href="{esc(t.text("site.download_url") + "?from=observatory-" + ag["id"])}" target="_blank" rel="noopener">{t("agent.cta_download")}</a></div>
 </section>
 
 <section id="history" aria-labelledby="history-h">

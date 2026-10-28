@@ -30,6 +30,7 @@ jobs:
           ls -l site/index.html site/es/index.html site/llms.txt site/assets/consent/* site/assets/brand/* wp/htaccess-https.txt wp/mu-plugins/rosmarops-consent.php
           php -l wp/mu-plugins/rosmarops-consent.php
           php -l wp/mu-plugins/rosmarops-seo.php
+          php -l wp/mu-plugins/rosmarops-downloads.php
           ! grep -RIl 'noindex' site/index.html site/es/index.html site/methodology site/faq site/es/metodologia site/es/preguntas-frecuentes site/ca/index.html site/ca/metodologia site/ca/preguntes-frequents site/ca/privadesa site/observatory/index.html site/es/observatorio/index.html site/ca/observatori/index.html
           # Observatory: only the three index pages and the JSON files are published (GTM-11). Agent pages wait for verification.
           ls site/observatory/index.html site/es/observatorio/index.html site/ca/observatori/index.html site/observatory/*.json
@@ -108,6 +109,7 @@ jobs:
           -mkdir wp-content/mu-plugins
           put wp/mu-plugins/rosmarops-consent.php wp-content/mu-plugins/rosmarops-consent.php
           put wp/mu-plugins/rosmarops-seo.php wp-content/mu-plugins/rosmarops-seo.php
+          put wp/mu-plugins/rosmarops-downloads.php wp-content/mu-plugins/rosmarops-downloads.php
           BATCH
           # Observatory index pages, data files and published agent pages.
           {
@@ -208,6 +210,12 @@ jobs:
           curl -s "https://rosmarops.com/robots.txt?deploy=${GITHUB_SHA::7}" | grep -q 'Sitemap: https://rosmarops.com/es/sitemap.xml' && echo "robots lists ES sitemap" || (echo "robots.txt lacks the ES sitemap"; exit 1)
           curl -s "https://rosmarops.com/robots.txt?deploy=${GITHUB_SHA::7}" | grep -q 'Sitemap: https://rosmarops.com/ca/sitemap.xml' && echo "robots lists CA sitemap" || (echo "robots.txt lacks the CA sitemap"; exit 1)
           curl -s "https://rosmarops.com/blog/my-machine-scored-18-of-100/?deploy=${GITHUB_SHA::7}" | grep -q '"@type":"BlogPosting"' && echo "BlogPosting present" || (echo "BlogPosting missing"; exit 1)
+          # Download counter (GTM-18): HEAD is redirected but never counted, so these checks add nothing to the counts.
+          for u in /download /es/descargar /ca/descarregar; do
+            h=$(curl -sI "https://rosmarops.com$u?from=home" | tr -d '\r')
+            echo "$h" | grep -q '^HTTP/[0-9.]* 302' && echo "$h" | grep -qi '^location: https://github.com/qtorb/rosmarops/releases/latest$' && echo "$h" | grep -qi '^cache-control: no-store' && echo "$u redirects" || (echo "$u does not redirect to the latest release"; exit 1)
+          done
+          curl -s "https://rosmarops.com/wp-json/rosmarops/v1/downloads?deploy=${GITHUB_SHA::7}" | python3 -c 'import json,sys; d=json.load(sys.stdin); assert set(d)=={"generated_at","rows"} and isinstance(d["rows"],list); print("downloads endpoint ok,", len(d["rows"]), "rows")'
           # Nothing from Google may be in the HTML before consent.
           for u in https://rosmarops.com/ https://rosmarops.com/es/ https://rosmarops.com/blog/ https://rosmarops.com/es/blog/; do
             ! curl -s "$u?deploy=${GITHUB_SHA::7}" | grep -q 'googletagmanager.com/gtag' || (echo "Google tag in HTML of $u"; exit 1)
