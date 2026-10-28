@@ -1,8 +1,8 @@
-name: Observatory (branch build, no deploy)
+name: Observatory (data, generator and output checks)
 
 on:
   push:
-    branches: [observatory]
+    branches: [observatory, main]
     paths: ["observatory/**", "site/observatory/**", "site/es/observatorio/**", "site/ca/observatori/**", ".github/workflows/observatory.yml"]
   pull_request:
     paths: ["observatory/**", ".github/workflows/observatory.yml"]
@@ -49,14 +49,18 @@ jobs:
           git status --porcelain -- site/observatory site/es/observatorio site/ca/observatori
           test -z "$(git status --porcelain -- site/observatory site/es/observatorio site/ca/observatori)" || { echo "::error::site/ is out of date: run python3 observatory/build.py and commit"; exit 1; }
 
-      - name: Branch rules hold in the output
+      - name: Publication rules hold in the output
         run: |
           set -eu
-          for f in $(find site/observatory site/es/observatorio site/ca/observatori -name index.html); do
-            grep -q '<meta name="robots" content="noindex">' "$f" || { echo "::error file=$f::missing noindex"; exit 1; }
+          for f in site/observatory/index.html site/es/observatorio/index.html site/ca/observatori/index.html; do
+            ! grep -q 'name="robots" content="noindex"' "$f" || { echo "::error file=$f::index page must be indexable"; exit 1; }
           done
-          ! grep -n "observator" site/llms.txt || { echo "::error::llms.txt mentions the observatory"; exit 1; }
-          echo "noindex on every page; not in llms.txt"
+          for f in $(find site/observatory site/es/observatorio site/ca/observatori -mindepth 2 -name index.html); do
+            grep -q '<meta name="robots" content="noindex">' "$f" || { echo "::error file=$f::agent page must stay noindex until verified"; exit 1; }
+          done
+          grep -q "https://rosmarops.com/observatory/" site/llms.txt
+          grep -q "<loc>https://rosmarops.com/observatory/</loc>" site/sitemap-pages.xml
+          echo "index pages indexable; agent pages (if any) noindex; listed in llms.txt and the sitemap"
 
       - name: Agent page template renders (synthetic fixture)
         run: |

@@ -32,8 +32,8 @@ I18N = ROOT / "observatory" / "i18n"
 SITE = ROOT / "site"
 BASE = "https://rosmarops.com"
 
-# Branch rule (GTM-08 §4): no page is indexable until Albert signs publication.
-NOINDEX = True
+# Index pages: indexable since GTM-11 (2026-10-28). Agent pages stay noindex until verified (see AGENT_PAGES_NOINDEX).
+NOINDEX = False
 
 LANGS = ["en", "es", "ca"]
 INDEX_PATH = {"en": "/observatory/", "es": "/es/observatorio/", "ca": "/ca/observatori/"}
@@ -238,7 +238,7 @@ def nav_links(t, lang, alternates, current_obs=True):
     return "".join(parts)
 
 
-def page(lang, t, *, path, title, description, alternates, jsonld, body, og_type="website"):
+def page(lang, t, *, path, title, description, alternates, jsonld, body, og_type="website", noindex=None):
     url = BASE + path
     head = [
         "<!doctype html>",
@@ -249,7 +249,7 @@ def page(lang, t, *, path, title, description, alternates, jsonld, body, og_type
         f"<title>{esc(title)}</title>",
         f'<meta name="description" content="{esc(description)}">',
     ]
-    if NOINDEX:
+    if NOINDEX if noindex is None else noindex:
         head.append('<meta name="robots" content="noindex">')
     head.append(f'<link rel="canonical" href="{url}">')
     for l in LANGS:
@@ -608,6 +608,27 @@ def build_agent(lang, t, a):
 
 # ---------------------------------------------------------------- data files
 
+SITEMAP = "sitemap-pages.xml"
+SM_START, SM_END = "  <!-- observatory:start -->", "  <!-- observatory:end -->"
+
+
+def build_sitemap(agents):
+    """Keep the observatory index entries in site/sitemap-pages.xml, with the real lastmod."""
+    f = SITE / SITEMAP
+    if not f.exists():
+        return
+    lastmod = max(date_modified(a) for a in agents)
+    alts = "".join(f'<xhtml:link rel="alternate" hreflang="{l}" href="{BASE}{INDEX_PATH[l]}"/>' for l in LANGS)
+    alts += f'<xhtml:link rel="alternate" hreflang="x-default" href="{BASE}{INDEX_PATH["en"]}"/>'
+    lines = [SM_START] + [f"  <url><loc>{BASE}{INDEX_PATH[l]}</loc><lastmod>{lastmod}</lastmod>{alts}</url>" for l in LANGS] + [SM_END]
+    xml = f.read_text(encoding="utf-8")
+    if SM_START in xml:
+        xml = xml[: xml.index(SM_START)] + "\n".join(lines) + xml[xml.index(SM_END) + len(SM_END):]
+    else:
+        xml = xml.replace("</urlset>", "\n".join(lines) + "\n</urlset>")
+    f.write_text(xml, encoding="utf-8")
+
+
 def build_data(agents):
     for a in agents:
         write(JSON_BASE + a["agent"]["id"] + ".json", json.dumps(a, ensure_ascii=False, indent=2) + "\n")
@@ -626,6 +647,7 @@ def main():
     for p in INDEX_PATH.values():
         shutil.rmtree(SITE / p.strip("/"), ignore_errors=True)
     build_data(agents)
+    build_sitemap(agents)
     pages = 0
     for lang in LANGS:
         t = T(cats[lang])
