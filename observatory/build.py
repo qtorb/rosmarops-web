@@ -122,8 +122,35 @@ def has_page(a):
 PUBLISHED_AGENT_PAGES = set()
 
 
+def texts(a):
+    """Every prose object in an agent file (schema v1.3: {en, es, ca})."""
+    out = []
+    for x in [a.get("default_mode")] + a.get("capabilities", []) + a.get("storage", []):
+        if x and "note" in x:
+            out.append(x["note"])
+    for c in a["changes"]:
+        out += [c["before"], c["after"]]
+        if "correction" in c:
+            out.append(c["correction"]["reason"])
+    return out
+
+
+def translated(a):
+    return all(isinstance(t, dict) and all(t.get(l) for l in LANGS) for t in texts(a))
+
+
 def is_published(a):
-    return has_page(a) and a["agent"]["id"] in PUBLISHED_AGENT_PAGES
+    # Never in any language until every text has en, es and ca (schema v1.3 rule).
+    return has_page(a) and translated(a) and a["agent"]["id"] in PUBLISHED_AGENT_PAGES
+
+
+def loc(text, lang):
+    """(value, lang attribute) for a prose field; falls back to EN, marked, only on unpublished review pages."""
+    if isinstance(text, str):
+        return text, ("" if lang == "en" else ' lang="en"')
+    if text.get(lang):
+        return text[lang], ""
+    return text["en"], ' lang="en"'
 
 
 def agent_path(lang, aid):
@@ -347,8 +374,10 @@ def change_item(t, lang, a, c, with_agent):
     else:
         meta = t("agent.change_meta_noversion", date=t.date(c["date"]), category=cat)
     if "correction" in c:
-        meta += " · " + t("agent.corrected", date=t.date(c["correction"]["at"]), reason=c["correction"]["reason"])
-    src_label = t("agent.source_official") if c["source"]["official"] else t("agent.source")
+        meta += " · " + t("agent.corrected", date=t.date(c["correction"]["at"]), reason=loc(c["correction"]["reason"], lang)[0])
+    src_label = t("agent.source_official") if c["source"]["official"] else t("agent.source_rosmarops")
+    before, bl = loc(c["before"], lang)
+    after, al = loc(c["after"], lang)
     verified = t("agent.verified", date=t.date(c["verified"]["at"]), how=t.text("how." + c["verified"]["how"]))
     name_link = ""
     if with_agent and is_published(a):
@@ -356,8 +385,8 @@ def change_item(t, lang, a, c, with_agent):
     return (
         "<li>"
         f'<p class="meta">{meta}</p>'
-        f'<p><strong>{t("agent.before")}</strong> {esc(c["before"])}</p>'
-        f'<p><strong>{t("agent.after")}</strong> {esc(c["after"])}</p>'
+        f'<p><strong>{t("agent.before")}</strong> <span{bl}>{esc(before)}</span></p>'
+        f'<p><strong>{t("agent.after")}</strong> <span{al}>{esc(after)}</span></p>'
         f'<p class="meta">{verified}{name_link} <a href="{esc(c["source"]["url"])}" rel="noopener">{src_label}</a></p>'
         "</li>"
     )
@@ -520,10 +549,18 @@ def build_agent(lang, t, a):
     if lv:
         meta += " · " + t("agent.latest_version", version=lv)
 
-    note_lang = "" if lang == "en" else ' lang="en"'
+    def note(x):
+        if not x.get("note"):
+            return "", ""
+        v, attr = loc(x["note"], lang)
+        return esc(v), attr
+
+    def note_cell(x):
+        v, attr = note(x)
+        return f'<td data-label="{t("agent.th_note")}"{attr}>{v}</td>'
 
     def src_link(src):
-        label = t("agent.source_official") if src["official"] else t("agent.source")
+        label = t("agent.source_official") if src["official"] else t("agent.source_rosmarops")
         return f'<a href="{esc(src["url"])}" rel="noopener">{label}</a>'
 
     mode_html = ""
@@ -532,9 +569,10 @@ def build_agent(lang, t, a):
         lines = [f'<p>{t("agent.mode_name", mode=Markup("<code>" + esc(dm["name"]) + "</code>"))}</p>',
                  f'<p>{t("agent.mode_who", who=t.text("who." + dm["who_decides"]))}</p>']
         if dm.get("since_version"):
-            lines.append(f'<p>{t("agent.mode_since", version=dm["since_version"])}</p>')
+            lines.append(f'<p>{t("agent.mode_since", agent=ag["name"], version=dm["since_version"])}</p>')
         if dm.get("note"):
-            lines.append(f'<p class="note"{note_lang}>{esc(dm["note"])}</p>')
+            v, attr = note(dm)
+            lines.append(f'<p class="note"{attr}>{v}</p>')
         lines.append(f'<p class="note">{src_link(dm["source"])} · {t("agent.accessed", date=t.date(dm["source"]["accessed_at"]))}</p>')
         mode_html = f'''<section id="mode" class="box panel" aria-labelledby="mode-h">
 <h2 id="mode-h">{t("agent.mode_h2")}</h2>
@@ -548,7 +586,7 @@ def build_agent(lang, t, a):
             f'<th scope="row">{t("action." + c["action"])}</th>'
             f'<td data-label="{t("agent.th_scope")}">{t("scope." + c["scope"])}</td>'
             f'<td data-label="{t("agent.th_default")}">{t("default." + c["default"])}</td>'
-            f'<td data-label="{t("agent.th_note")}"{note_lang}>{esc(c.get("note", ""))}</td>'
+            f'{note_cell(c)}'
             f'<td data-label="{t("agent.th_source")}">{src_link(c["source"])}</td>'
             "</tr>"
             for c in a["capabilities"]
@@ -570,7 +608,7 @@ def build_agent(lang, t, a):
             f'<th scope="row">{t("storage." + s["kind"])}</th>'
             f'<td data-label="{t("agent.th_path")}"><code>{esc(s["path_windows"])}</code></td>'
             f'<td data-label="{t("agent.th_keys")}">{t("secrets." + s["secrets"])}</td>'
-            f'<td data-label="{t("agent.th_note")}"{note_lang}>{esc(s.get("note", ""))}</td>'
+            f'{note_cell(s)}'
             f'<td data-label="{t("agent.th_source")}">{src_link(s["source"])}</td>'
             "</tr>"
             for s in a["storage"]
@@ -595,7 +633,7 @@ def build_agent(lang, t, a):
     if a["versions"]:
         items = "".join(
             f'<li>{t("agent.version_line", version=v["version"], date=t.date(v["released_at"]))} · '
-            f'<a href="{esc(v["source"]["url"])}" rel="noopener">{t("agent.source_official") if v["source"]["official"] else t("agent.source")}</a></li>'
+            f'<a href="{esc(v["source"]["url"])}" rel="noopener">{t("agent.source_official") if v["source"]["official"] else t("agent.source_rosmarops")}</a></li>'
             for v in sorted(a["versions"], key=lambda v: (v["released_at"], v["version"]), reverse=True)
         )
         versions_html = f'<section id="versions" aria-labelledby="versions-h"><h2 id="versions-h">{t("agent.versions_h2")}</h2><ul class="plain">{items}</ul></section>'

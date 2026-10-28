@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://rosmarops.com/schemas/observatory.v1.schema.json",
-  "title": "RosmarOps observatory, one agent file (v1.2: kinds gains agent_tooling; optional default_mode, capabilities and storage)",
+  "title": "RosmarOps observatory, one agent file (v1.3: prose fields are {en, es, ca} objects; v1.2: kinds gains agent_tooling; v1.1: optional default_mode, capabilities and storage)",
   "description": "One file per agent: data/observatory/agents/<id>.json. No user-facing prose beyond short technical sentences; every fact carries its source and date. Never data from users' machines.",
   "type": "object",
   "additionalProperties": false,
@@ -175,14 +175,10 @@
             ]
           },
           "before": {
-            "type": "string",
-            "minLength": 1,
-            "maxLength": 280
+            "$ref": "#/$defs/text"
           },
           "after": {
-            "type": "string",
-            "minLength": 1,
-            "maxLength": 280
+            "$ref": "#/$defs/text"
           },
           "source": {
             "$ref": "#/$defs/source"
@@ -234,9 +230,7 @@
                 "format": "date"
               },
               "reason": {
-                "type": "string",
-                "minLength": 1,
-                "maxLength": 280
+                "$ref": "#/$defs/text"
               }
             }
           }
@@ -369,8 +363,7 @@
           "maxLength": 40
         },
         "note": {
-          "type": "string",
-          "maxLength": 200
+          "$ref": "#/$defs/text"
         },
         "source": {
           "$ref": "#/$defs/source"
@@ -426,8 +419,7 @@
             ]
           },
           "note": {
-            "type": "string",
-            "maxLength": 200
+            "$ref": "#/$defs/text"
           },
           "source": {
             "$ref": "#/$defs/source"
@@ -483,8 +475,7 @@
             ]
           },
           "note": {
-            "type": "string",
-            "maxLength": 200
+            "$ref": "#/$defs/text"
           },
           "source": {
             "$ref": "#/$defs/source"
@@ -526,6 +517,31 @@
         "open",
         "not_observed"
       ]
+    },
+    "text": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "en"
+      ],
+      "properties": {
+        "en": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 280
+        },
+        "es": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 280
+        },
+        "ca": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 280
+        }
+      },
+      "description": "Short prose. EN is the source; ES and CA are translations signed by Albert. A page is published only when every text on it has all three."
     }
   }
 }

@@ -30,7 +30,9 @@
         "name": "auto",
         "who_decides": "another_model",
         "since_version": "2.1.283",
-        "note": "Built-in starting permission mode for interactive sessions; in auto mode a model, not the user, decides what would otherwise be asked.",
+        "note": {
+          "en": "Built-in starting permission mode for interactive sessions; in auto mode a model, not the user, decides what would otherwise be asked."
+        },
         "source": {
           "url": "https://code.claude.com/docs/en/permission-modes",
           "official": true,
@@ -65,7 +67,9 @@
           "action": "execute_commands",
           "scope": "read_only_commands",
           "default": "allow",
-          "note": "Built-in read-only shell commands run on any path unless permissions.blockReadsOutsideWorkingDirectories is set.",
+          "note": {
+            "en": "Built-in read-only shell commands run on any path unless permissions.blockReadsOutsideWorkingDirectories is set."
+          },
           "source": {
             "url": "https://code.claude.com/docs/en/permissions",
             "official": true,
@@ -99,7 +103,9 @@
           "action": "write_files",
           "scope": "protected_paths",
           "default": "ask",
-          "note": "Writes to protected paths are asked even in modes that otherwise allow edits.",
+          "note": {
+            "en": "Writes to protected paths are asked even in modes that otherwise allow edits."
+          },
           "source": {
             "url": "https://code.claude.com/docs/en/permission-modes#protected-paths",
             "official": true,
@@ -111,7 +117,9 @@
           "action": "network",
           "scope": "preapproved_domains",
           "default": "allow",
-          "note": "Web fetches to a built-in list of documentation domains.",
+          "note": {
+            "en": "Web fetches to a built-in list of documentation domains."
+          },
           "source": {
             "url": "https://code.claude.com/docs/en/permissions",
             "official": true,
@@ -136,10 +144,12 @@
           "kind": "user_settings",
           "path_windows": "%USERPROFILE%\\.claude\\settings.json",
           "secrets": "sometimes_plaintext",
-          "note": "The env block can hold keys.",
+          "note": {
+            "en": "The env block can hold keys."
+          },
           "source": {
-            "url": "https://github.com/qtorb/rosmarops/blob/v0.3.0/adapters/windows/claude_settings.go",
-            "official": false,
+            "url": "https://code.claude.com/docs/en/settings",
+            "official": true,
             "accessed_at": "2026-10-28"
           }
         },
@@ -149,8 +159,8 @@
           "path_windows": "<project>\\.claude\\settings.json",
           "secrets": "sometimes_plaintext",
           "source": {
-            "url": "https://github.com/qtorb/rosmarops/blob/v0.3.0/adapters/windows/claude_settings.go",
-            "official": false,
+            "url": "https://code.claude.com/docs/en/settings",
+            "official": true,
             "accessed_at": "2026-10-28"
           }
         },
@@ -160,8 +170,8 @@
           "path_windows": "<project>\\.claude\\settings.local.json",
           "secrets": "sometimes_plaintext",
           "source": {
-            "url": "https://github.com/qtorb/rosmarops/blob/v0.3.0/adapters/windows/claude_settings.go",
-            "official": false,
+            "url": "https://code.claude.com/docs/en/settings",
+            "official": true,
             "accessed_at": "2026-10-28"
           }
         },
@@ -181,10 +191,12 @@
           "kind": "mcp_user",
           "path_windows": "%USERPROFILE%\\.claude.json",
           "secrets": "sometimes_plaintext",
-          "note": "MCP env and headers blocks can hold keys.",
+          "note": {
+            "en": "MCP env and headers blocks can hold keys."
+          },
           "source": {
-            "url": "https://github.com/qtorb/rosmarops/blob/v0.3.0/adapters/windows/mcp.go",
-            "official": false,
+            "url": "https://code.claude.com/docs/en/settings",
+            "official": true,
             "accessed_at": "2026-10-28"
           }
         },
@@ -250,7 +262,9 @@
       "default_mode": {
         "name": "auto_review",
         "who_decides": "another_model",
-        "note": "Documented as the recommended default since Cursor 3.6; the mode in use is not readable from disk, so this is assumed.",
+        "note": {
+          "en": "Documented as the recommended default since Cursor 3.6; the mode in use is not readable from disk, so this is assumed."
+        },
         "source": {
           "url": "https://cursor.com/docs/agent/security/run-modes.md",
           "official": true,
@@ -274,7 +288,9 @@
           "action": "read_files",
           "scope": "ignored_credential_files",
           "default": "deny",
-          "note": "Default ignore patterns that cover credential files, for the file tools only.",
+          "note": {
+            "en": "Default ignore patterns that cover credential files, for the file tools only."
+          },
           "source": {
             "url": "https://cursor.com/docs/reference/ignore-file",
             "official": true,
@@ -286,7 +302,9 @@
           "action": "read_files",
           "scope": "whole_system",
           "default": "allow",
-          "note": "The sandboxed shell's read boundary defaults to the whole system.",
+          "note": {
+            "en": "The sandboxed shell's read boundary defaults to the whole system."
+          },
           "source": {
             "url": "https://cursor.com/docs/reference/sandbox.md",
             "official": true,
@@ -298,7 +316,9 @@
           "action": "write_files",
           "scope": "working_directories",
           "default": "allow",
-          "note": "Except configuration files.",
+          "note": {
+            "en": "Except configuration files."
+          },
           "source": {
             "url": "https://cursor.com/docs/agent/security.md",
             "official": true,
@@ -343,7 +363,9 @@
           "action": "network",
           "scope": "any_destination",
           "default": "ask",
-          "note": "With documented exceptions.",
+          "note": {
+            "en": "With documented exceptions."
+          },
           "source": {
             "url": "https://cursor.com/docs/agent/security.md",
             "official": true,
@@ -357,7 +379,9 @@
           "kind": "mcp_user",
           "path_windows": "%USERPROFILE%\\.cursor\\mcp.json",
           "secrets": "sometimes_plaintext",
-          "note": "MCP env and headers blocks can hold keys.",
+          "note": {
+            "en": "MCP env and headers blocks can hold keys."
+          },
           "source": {
             "url": "https://github.com/qtorb/rosmarops/blob/v0.3.0/adapters/windows/mcp.go",
             "official": false,
@@ -381,8 +405,8 @@
           "path_windows": "%USERPROFILE%\\.cursor\\permissions.json, <project>\\.cursor\\permissions.json",
           "secrets": "none",
           "source": {
-            "url": "https://github.com/qtorb/rosmarops/blob/v0.3.0/adapters/windows/cursor.go",
-            "official": false,
+            "url": "https://cursor.com/docs/reference/permissions",
+            "official": true,
             "accessed_at": "2026-10-28"
           }
         },
@@ -642,7 +666,9 @@
           "kind": "project_settings",
           "path_windows": "<project>\\kanvas.json",
           "secrets": "none",
-          "note": "The task board that agents read and change.",
+          "note": {
+            "en": "The task board that agents read and change."
+          },
           "source": {
             "url": "https://github.com/XMihura/Kanvas#readme",
             "official": true,
@@ -654,7 +680,9 @@
           "kind": "instructions",
           "path_windows": "<project>\\.agents\\skills\\kanvas\\ and <project>\\.claude\\skills\\kanvas\\SKILL.md",
           "secrets": "none",
-          "note": "Agent skill with its own copy of kanvas.py, which agents run.",
+          "note": {
+            "en": "Agent skill with its own copy of kanvas.py, which agents run."
+          },
           "source": {
             "url": "https://github.com/XMihura/Kanvas#readme",
             "official": true,
@@ -666,7 +694,9 @@
           "kind": "user_settings",
           "path_windows": "%LOCALAPPDATA%\\Kanvas\\boards.json",
           "secrets": "none",
-          "note": "Open boards and whether they are open to other devices over Tailscale.",
+          "note": {
+            "en": "Open boards and whether they are open to other devices over Tailscale."
+          },
           "source": {
             "url": "https://github.com/XMihura/Kanvas#readme",
             "official": true,
