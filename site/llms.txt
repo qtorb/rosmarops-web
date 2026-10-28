@@ -25,6 +25,7 @@ Today it evaluates Claude Code and Cursor on Windows. It detects Cline, GitHub C
 <!-- observatory agents:start -->
 - [Claude Code on Windows: what it can do on your computer](https://rosmarops.com/observatory/claude-code/): observatory page, with its data at https://rosmarops.com/observatory/claude-code.json
 - [Cursor on Windows: what it can do on your computer](https://rosmarops.com/observatory/cursor/): observatory page, with its data at https://rosmarops.com/observatory/cursor.json
+- [Hermes Agent on Windows: what it can do on your computer](https://rosmarops.com/observatory/hermes-agent/): observatory page, with its data at https://rosmarops.com/observatory/hermes-agent.json
 - [Kanvas on Windows: what it leaves on your computer](https://rosmarops.com/observatory/kanvas/): observatory page, with its data at https://rosmarops.com/observatory/kanvas.json
 <!-- observatory agents:end -->
 - [About RosmarOps](https://rosmarops.com/blog/about/): where RosmarOps comes from and how to read its blog
