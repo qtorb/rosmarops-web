@@ -3,7 +3,7 @@
   "agent": {
     "id": "kanvas",
     "name": "Kanvas",
-    "vendor": "XMihura (open source, MIT)",
+    "vendor": "XMihura",
     "kinds": [
       "agent_tooling",
       "cli"

@@ -60,7 +60,7 @@
   "agent.rosmarops_h2": "Qué hace RosmarOps con este agente",
   "agent.rosmarops_evaluated": "Evaluado desde RosmarOps {version}: RosmarOps lee su configuración en tu ordenador, sin red, y le pone una nota de exposición.",
   "agent.rosmarops_detected": "Detectado desde RosmarOps {version}: RosmarOps lo encuentra en tu ordenador, pero todavía no le pone nota.",
-  "agent.rosmarops_not_supported": "RosmarOps todavía no lee este agente.",
+  "agent.rosmarops_not_supported": "RosmarOps todavía no lo lee.",
   "agent.cta_download": "Revisa el tuyo: descarga RosmarOps",
   "agent.history_h2": "Historial de cambios de seguridad",
   "agent.history_note": "Solo cambios que afectan a lo que puede hacer en tu ordenador. Nada se borra: las correcciones quedan anotadas.",
