@@ -20,7 +20,7 @@
   "site.logo_alt": "RosmarOps",
 
   "index.title": "AI coding agents on your computer: what each one can do · RosmarOps Observatory",
-  "index.description": "A dated record of the security changes in AI coding agents that keep configuration, permissions or keys on your computer: approval modes, sandbox, MCP and where keys are stored. Every fact with its date, version and source.",
+  "index.description": "A dated record of security changes in AI coding agents that keep settings or keys on your computer. Every fact with its date, version and source.",
   "index.eyebrow": "Observatory · reviewed on {date}",
   "index.h1": "What each AI coding agent can do on your computer",
   "index.lead": "We follow the security changes of each agent: permissions, approval modes, sandbox, MCP servers and where it keeps your keys. Every fact carries its date, version and source. No one pays to appear here.",

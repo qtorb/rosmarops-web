@@ -20,7 +20,7 @@
   "site.logo_alt": "RosmarOps",
 
   "index.title": "Agents d'IA per programar al teu ordinador: què pot fer cadascun · Observatori RosmarOps",
-  "index.description": "Registre datat dels canvis de seguretat dels agents d'IA per programar que deixen configuració, permisos o claus al teu ordinador: modes d'aprovació, sandbox, MCP i on guarden les claus. Cada dada amb la seva data, versió i font.",
+  "index.description": "Registre datat dels canvis de seguretat dels agents d'IA per programar que guarden ajustos o claus al teu ordinador. Cada dada, amb data, versió i font.",
   "index.eyebrow": "Observatori · revisat el {date}",
   "index.h1": "Què pot fer al teu ordinador cada agent d'IA per programar",
   "index.lead": "Seguim els canvis de seguretat de cada agent: permisos, modes d'aprovació, sandbox, servidors MCP i on guarda les teves claus. Cada dada porta data, versió i font. Ningú no paga per aparèixer aquí.",
