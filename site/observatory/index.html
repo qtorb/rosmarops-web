@@ -23,6 +23,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","@id":"https://rosmarops.com/observatory/#dataset","name":"RosmarOps Observatory","description":"A dated record of the security changes in AI coding agents that keep configuration, permissions or keys on your computer: approval modes, sandbox, MCP and where keys are stored. Every fact with its date, version and source.","url":"https://rosmarops.com/observatory/","inLanguage":"en","dateModified":"2026-10-28","isAccessibleForFree":true,"creator":{"@type":"Organization","@id":"https://rosmarops.com/#org","name":"RosmarOps","url":"https://rosmarops.com/"},"distribution":[{"@type":"DataDownload","encodingFormat":"application/json","contentUrl":"https://rosmarops.com/observatory/data.json"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"Agents","numberOfItems":9,"itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"SoftwareApplication","name":"Claude Code","applicationCategory":"DeveloperApplication","operatingSystem":"Windows, macOS, Linux","author":{"@type":"Organization","name":"Anthropic"}}},{"@type":"ListItem","position":2,"item":{"@type":"SoftwareApplication","name":"Cursor","applicationCategory":"DeveloperApplication","operatingSystem":"Windows, macOS, Linux","author":{"@type":"Organization","name":"Anysphere"}}},{"@type":"ListItem","position":3,"item":{"@type":"SoftwareApplication","name":"Antigravity","applicationCategory":"DeveloperApplication","operatingSystem":"Windows, macOS, Linux","author":{"@type":"Organization","name":"Google"}}},{"@type":"ListItem","position":4,"item":{"@type":"SoftwareApplication","name":"Claude Desktop","applicationCategory":"DeveloperApplication","operatingSystem":"Windows, macOS","author":{"@type":"Organization","name":"Anthropic"}}},{"@type":"ListItem","position":5,"item":{"@type":"SoftwareApplication","name":"Codex","applicationCategory":"DeveloperApplication","operatingSystem":"Windows, macOS, Linux, Web","author":{"@type":"Organization","name":"OpenAI"}}},{"@type":"ListItem","position":6,"item":{"@type":"SoftwareApplication","name":"Hermes Agent","applicationCategory":"DeveloperApplication","operatingSystem":"Windows, macOS, Linux","author":{"@type":"Organization","name":"Nous Research"}}},{"@type":"ListItem","position":7,"item":{"@type":"SoftwareApplication","name":"Cline","applicationCategory":"DeveloperApplication","operatingSystem":"Windows, macOS, Linux","author":{"@type":"Organization","name":"Cline"}}},{"@type":"ListItem","position":8,"item":{"@type":"SoftwareApplication","name":"Continue","applicationCategory":"DeveloperApplication","operatingSystem":"Windows, macOS, Linux","author":{"@type":"Organization","name":"Continue"}}},{"@type":"ListItem","position":9,"item":{"@type":"SoftwareApplication","name":"GitHub Copilot","applicationCategory":"DeveloperApplication","operatingSystem":"Windows, macOS, Linux, Web","author":{"@type":"Organization","name":"GitHub"}}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"Agent coordination tools","numberOfItems":1,"itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"SoftwareApplication","name":"Kanvas","applicationCategory":"DeveloperApplication","operatingSystem":"Windows, macOS, Linux","author":{"@type":"Organization","name":"XMihura (open source, MIT)"}}}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"RosmarOps","item":"https://rosmarops.com/"},{"@type":"ListItem","position":2,"name":"Observatory","item":"https://rosmarops.com/observatory/"}]}</script>
 <link rel="stylesheet" href="/assets/consent/cookieconsent.css?v=3.1.0">
 <link rel="icon" href="/wp-content/uploads/2026/10/image-1.png">
@@ -51,7 +52,7 @@ h3{margin:0;font-size:18px}
 .note{margin:0;font-size:15px;line-height:1.55;color:var(--muted)}
 .box{background:var(--card);border:1px solid var(--line);border-radius:12px}
 .tablebox{overflow-x:auto}
-table{width:100%;border-collapse:collapse;font-size:16px;min-width:760px}
+table{width:100%;border-collapse:collapse;font-size:16px;min-width:760px;table-layout:fixed}
 thead th{text-align:left;font-size:13px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);padding:14px 16px;border-bottom:1px solid var(--line)}
 tbody th{text-align:left;font-weight:700;padding:14px 16px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.45}
 td{padding:14px 16px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.45}
@@ -80,7 +81,7 @@ footer{border-top:1px solid var(--line)}
 footer .wrap{padding-top:28px;padding-bottom:28px;font-size:15px;color:var(--muted)}
 footer nav{gap:20px;font-size:15px}
 @media (max-width:700px){nav{gap:16px}main .wrap{gap:40px;padding-top:32px}.lead{font-size:18px}
-table{min-width:0}thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+table{min-width:0;table-layout:auto}colgroup,thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 table,tbody,tr,tbody th,td{display:block}
 tbody tr{padding:16px;border-bottom:1px solid var(--line)}tbody tr:last-child{border-bottom:0}
 tbody th{padding:0 0 8px;border:0;font-size:18px}
@@ -106,7 +107,7 @@ td::before{content:attr(data-label);font-size:13px;color:var(--muted)}}
 <h2 id="agents">Agents</h2>
 <p class="note">Only agents that leave configuration, permissions or keys on your computer. Agents that run only in the cloud are left out.</p>
 <div class="box tablebox"><table>
-<thead><tr><th scope="col">Agent</th><th scope="col">Vendor</th><th scope="col">Type</th><th scope="col">Platforms</th><th scope="col">In RosmarOps</th><th scope="col">Last security change</th></tr></thead>
+<colgroup><col style="width:15%"><col style="width:15%"><col style="width:21%"><col style="width:17%"><col style="width:16%"><col style="width:16%"></colgroup><thead><tr><th scope="col">Agent</th><th scope="col">Vendor</th><th scope="col">Type</th><th scope="col">Platforms</th><th scope="col">In RosmarOps</th><th scope="col">Last security change</th></tr></thead>
 <tbody>
 <tr><th scope="row">Claude Code</th><td data-label="Vendor">Anthropic</td><td data-label="Type">CLI, IDE extension</td><td data-label="Platforms">Windows, macOS, Linux</td><td data-label="In RosmarOps">Evaluated since RosmarOps 0.1.0</td><td data-label="Last security change">None recorded yet</td></tr>
 <tr><th scope="row">Cursor</th><td data-label="Vendor">Anysphere</td><td data-label="Type">IDE</td><td data-label="Platforms">Windows, macOS, Linux</td><td data-label="In RosmarOps">Evaluated since RosmarOps 0.1.0</td><td data-label="Last security change">None recorded yet</td></tr>
@@ -121,6 +122,17 @@ td::before{content:attr(data-label);font-size:13px;color:var(--muted)}}
 </table></div>
 <p class="note">Evaluated: RosmarOps gives it an Agent Posture Score on your computer. Detected: RosmarOps finds it on your computer but doesn&#x27;t score it yet.</p>
 <p class="note">Only agents with content of their own have a page. The rest are listed here without a link until they have one.</p>
+</section>
+
+<section aria-labelledby="tools">
+<h2 id="tools">Agent coordination tools</h2>
+<p class="note">Not agents: tools your agents use, which leave instructions, scripts or settings on your computer.</p>
+<div class="box tablebox"><table>
+<colgroup><col style="width:15%"><col style="width:15%"><col style="width:21%"><col style="width:17%"><col style="width:16%"><col style="width:16%"></colgroup><thead><tr><th scope="col">Tool</th><th scope="col">Vendor</th><th scope="col">Type</th><th scope="col">Platforms</th><th scope="col">In RosmarOps</th><th scope="col">Last security change</th></tr></thead>
+<tbody>
+<tr><th scope="row">Kanvas</th><td data-label="Vendor">XMihura (open source, MIT)</td><td data-label="Type">Agent coordination tool, CLI</td><td data-label="Platforms">Windows, macOS, Linux</td><td data-label="In RosmarOps">Not read yet</td><td data-label="Last security change">None recorded yet</td></tr>
+</tbody>
+</table></div>
 </section>
 
 <section aria-labelledby="changes">

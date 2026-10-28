@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "agent": {
+    "id": "kanvas",
+    "name": "Kanvas",
+    "vendor": "XMihura (open source, MIT)",
+    "kinds": [
+      "agent_tooling",
+      "cli"
+    ],
+    "platforms": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "local_footprint": "yes",
+    "rosmarops": {
+      "status": "not_supported"
+    },
+    "reviewed_at": "2026-10-28"
+  },
+  "versions": [
+    {
+      "version": "0.4.0",
+      "released_at": "2026-10-27",
+      "source": {
+        "url": "https://github.com/XMihura/Kanvas/blob/main/CHANGELOG.md",
+        "official": true,
+        "accessed_at": "2026-10-28"
+      }
+    }
+  ],
+  "changes": [],
+  "ratings": [],
+  "storage": [
+    {
+      "id": "sto-board",
+      "kind": "project_settings",
+      "path_windows": "<project>\\kanvas.json",
+      "secrets": "none",
+      "note": "The task board that agents read and change.",
+      "source": {
+        "url": "https://github.com/XMihura/Kanvas#readme",
+        "official": true,
+        "accessed_at": "2026-10-28"
+      }
+    },
+    {
+      "id": "sto-skill",
+      "kind": "instructions",
+      "path_windows": "<project>\\.agents\\skills\\kanvas\\ and <project>\\.claude\\skills\\kanvas\\SKILL.md",
+      "secrets": "none",
+      "note": "Agent skill with its own copy of kanvas.py, which agents run.",
+      "source": {
+        "url": "https://github.com/XMihura/Kanvas#readme",
+        "official": true,
+        "accessed_at": "2026-10-28"
+      }
+    },
+    {
+      "id": "sto-boards-state",
+      "kind": "user_settings",
+      "path_windows": "%LOCALAPPDATA%\\Kanvas\\boards.json",
+      "secrets": "none",
+      "note": "Open boards and whether they are open to other devices over Tailscale.",
+      "source": {
+        "url": "https://github.com/XMihura/Kanvas#readme",
+        "official": true,
+        "accessed_at": "2026-10-28"
+      }
+    }
+  ]
+}

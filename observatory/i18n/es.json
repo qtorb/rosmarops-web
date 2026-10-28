@@ -29,6 +29,7 @@
   "index.agents_h2": "Agentes",
   "index.agents_scope": "Solo agentes que dejan configuración, permisos o claves en tu ordenador. Los que solo funcionan en la nube quedan fuera.",
   "index.th_agent": "Agente",
+  "index.th_tool": "Herramienta",
   "index.th_vendor": "Fabricante",
   "index.th_type": "Tipo",
   "index.th_platforms": "Plataformas",
@@ -46,6 +47,8 @@
   "index.data_h3": "Los datos son abiertos",
   "index.data_p": "Todo lo que ves en esta página está en JSON, con su fuente y su fecha.",
   "index.data_link": "Conjunto de datos (JSON)",
+  "index.tooling_h2": "Herramientas de coordinación de agentes",
+  "index.tooling_note": "No son agentes: herramientas que usan tus agentes y que dejan instrucciones, scripts o ajustes en tu ordenador.",
   "index.breadcrumb_home": "RosmarOps",
 
   "agent.title": "Seguridad y permisos de {agent}: cambios observados · Observatorio RosmarOps",
@@ -90,6 +93,7 @@
   "kind.ide_extension": "Extensión de IDE",
   "kind.desktop_app": "Aplicación de escritorio",
   "kind.cloud": "Nube",
+  "kind.agent_tooling": "Herramienta de coordinación de agentes",
 
   "platform.windows": "Windows",
   "platform.macos": "macOS",
@@ -98,7 +102,7 @@
 
   "status.evaluated": "Evaluado desde RosmarOps {version}",
   "status.detected": "Detectado desde RosmarOps {version}",
-  "status.not_supported": "No se lee",
+  "status.not_supported": "No se lee todavía",
 
   "category.permissions": "Permisos",
   "category.approval_mode": "Modo de aprobación",

@@ -185,7 +185,7 @@ h3{margin:0;font-size:18px}
 .note{margin:0;font-size:15px;line-height:1.55;color:var(--muted)}
 .box{background:var(--card);border:1px solid var(--line);border-radius:12px}
 .tablebox{overflow-x:auto}
-table{width:100%;border-collapse:collapse;font-size:16px;min-width:760px}
+table{width:100%;border-collapse:collapse;font-size:16px;min-width:760px;table-layout:fixed}
 thead th{text-align:left;font-size:13px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);padding:14px 16px;border-bottom:1px solid var(--line)}
 tbody th{text-align:left;font-weight:700;padding:14px 16px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.45}
 td{padding:14px 16px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.45}
@@ -214,7 +214,7 @@ footer{border-top:1px solid var(--line)}
 footer .wrap{padding-top:28px;padding-bottom:28px;font-size:15px;color:var(--muted)}
 footer nav{gap:20px;font-size:15px}
 @media (max-width:700px){nav{gap:16px}main .wrap{gap:40px;padding-top:32px}.lead{font-size:18px}
-table{min-width:0}thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+table{min-width:0;table-layout:auto}colgroup,thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 table,tbody,tr,tbody th,td{display:block}
 tbody tr{padding:16px;border-bottom:1px solid var(--line)}tbody tr:last-child{border-bottom:0}
 tbody th{padding:0 0 8px;border:0;font-size:18px}
@@ -350,6 +350,16 @@ def change_item(t, lang, a, c, with_agent):
     )
 
 
+def item_list(lang, items):
+    return [
+        dict(
+            {"@type": "ListItem", "position": i + 1, "item": software_app(a)},
+            **({"url": BASE + agent_path(lang, a["agent"]["id"])} if has_page(a) else {}),
+        )
+        for i, a in enumerate(items)
+    ]
+
+
 def build_index(lang, t, agents):
     path = INDEX_PATH[lang]
     reviewed = max(a["agent"]["reviewed_at"] for a in agents)
@@ -357,8 +367,19 @@ def build_index(lang, t, agents):
     title = t.text("index.title")
     desc = t.text("index.description")
 
-    rows = []
-    for a in agents:
+    def is_tool(a):
+        return "agent_tooling" in a["agent"]["kinds"]
+
+    def table(items, first_col):
+        cols = "<colgroup>" + "".join(f'<col style="width:{w}%">' for w in (15, 15, 21, 17, 16, 16)) + "</colgroup>"
+        head = cols + (
+            f'<thead><tr><th scope="col">{t(first_col)}</th><th scope="col">{t("index.th_vendor")}</th>'
+            f'<th scope="col">{t("index.th_type")}</th><th scope="col">{t("index.th_platforms")}</th>'
+            f'<th scope="col">{t("index.th_rosmarops")}</th><th scope="col">{t("index.th_last_change")}</th></tr></thead>'
+        )
+        return f'<div class="box tablebox"><table>\n{head}\n<tbody>\n' + "\n".join(row(a) for a in items) + "\n</tbody>\n</table></div>"
+
+    def row(a):
         ag = a["agent"]
         name = esc(ag["name"])
         if has_page(a):
@@ -367,7 +388,7 @@ def build_index(lang, t, agents):
         last = (
             f'{esc(t.date(lc["date"]))} · {esc(t.text("category." + lc["category"]))}' if lc else t("index.no_change")
         )
-        rows.append(
+        return (
             "<tr>"
             f'<th scope="row">{name}</th>'
             f'<td data-label="{t("index.th_vendor")}">{esc(ag["vendor"])}</td>'
@@ -377,6 +398,18 @@ def build_index(lang, t, agents):
             f'<td data-label="{t("index.th_last_change")}">{last}</td>'
             "</tr>"
         )
+
+    agent_list = [a for a in agents if not is_tool(a)]
+    tool_list = [a for a in agents if is_tool(a)]
+    tools_section = ""
+    if tool_list:
+        tools_section = f"""
+
+<section aria-labelledby="tools">
+<h2 id="tools">{t("index.tooling_h2")}</h2>
+<p class="note">{t("index.tooling_note")}</p>
+{table(tool_list, "index.th_tool")}
+</section>"""
 
     all_changes = sorted(
         ((c, a) for a in agents for c in a["changes"]), key=lambda x: (x[0]["date"], x[0]["id"]), reverse=True
@@ -396,15 +429,10 @@ def build_index(lang, t, agents):
 <section aria-labelledby="agents">
 <h2 id="agents">{t("index.agents_h2")}</h2>
 <p class="note">{t("index.agents_scope")}</p>
-<div class="box tablebox"><table>
-<thead><tr><th scope="col">{t("index.th_agent")}</th><th scope="col">{t("index.th_vendor")}</th><th scope="col">{t("index.th_type")}</th><th scope="col">{t("index.th_platforms")}</th><th scope="col">{t("index.th_rosmarops")}</th><th scope="col">{t("index.th_last_change")}</th></tr></thead>
-<tbody>
-{chr(10).join(rows)}
-</tbody>
-</table></div>
+{table(agent_list, "index.th_agent")}
 <p class="note">{t("index.status_note")}</p>
 <p class="note">{t("index.pages_note")}</p>
-</section>
+</section>{tools_section}
 
 <section aria-labelledby="changes">
 <h2 id="changes">{t("index.changes_h2")}</h2>
@@ -440,14 +468,8 @@ def build_index(lang, t, agents):
             "@context": "https://schema.org",
             "@type": "ItemList",
             "name": t.text("index.agents_h2"),
-            "numberOfItems": len(agents),
-            "itemListElement": [
-                dict(
-                    {"@type": "ListItem", "position": i + 1, "item": software_app(a)},
-                    **({"url": BASE + agent_path(lang, a["agent"]["id"])} if has_page(a) else {}),
-                )
-                for i, a in enumerate(agents)
-            ],
+            "numberOfItems": len(agent_list),
+            "itemListElement": item_list(lang, agent_list),
         },
         {
             "@context": "https://schema.org",
@@ -458,6 +480,14 @@ def build_index(lang, t, agents):
             ],
         },
     ]
+    if tool_list:
+        jsonld.insert(2, {
+            "@context": "https://schema.org",
+            "@type": "ItemList",
+            "name": t.text("index.tooling_h2"),
+            "numberOfItems": len(tool_list),
+            "itemListElement": item_list(lang, tool_list),
+        })
     write(path, page(lang, t, path=path, title=title, description=desc, alternates=INDEX_PATH, jsonld=jsonld, body=body))
 
 

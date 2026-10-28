@@ -1,34 +1,108 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://rosmarops.com/schemas/observatory.v1.schema.json",
-  "title": "RosmarOps observatory, one agent file (v1)",
+  "title": "RosmarOps observatory, one agent file (v1.2: kinds gains agent_tooling; optional default_mode, capabilities and storage)",
   "description": "One file per agent: data/observatory/agents/<id>.json. No user-facing prose beyond short technical sentences; every fact carries its source and date. Never data from users' machines.",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schema_version", "agent", "versions", "changes", "ratings"],
+  "required": [
+    "schema_version",
+    "agent",
+    "versions",
+    "changes",
+    "ratings"
+  ],
   "properties": {
-    "schema_version": { "const": 1 },
+    "schema_version": {
+      "const": 1
+    },
     "agent": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["id", "name", "vendor", "kinds", "platforms", "local_footprint", "rosmarops", "reviewed_at"],
+      "required": [
+        "id",
+        "name",
+        "vendor",
+        "kinds",
+        "platforms",
+        "local_footprint",
+        "rosmarops",
+        "reviewed_at"
+      ],
       "properties": {
-        "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]{1,40}$" },
-        "name": { "type": "string", "minLength": 1, "maxLength": 60 },
-        "vendor": { "type": "string", "minLength": 1, "maxLength": 60 },
-        "kinds": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "enum": ["cli", "ide", "ide_extension", "desktop_app", "cloud"] } },
-        "platforms": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "enum": ["windows", "macos", "linux", "web"] } },
-        "local_footprint": { "enum": ["yes", "partial", "no"] },
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9-]{1,40}$"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 60
+        },
+        "vendor": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 60
+        },
+        "kinds": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "cli",
+              "ide",
+              "ide_extension",
+              "desktop_app",
+              "cloud",
+              "agent_tooling"
+            ]
+          }
+        },
+        "platforms": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "windows",
+              "macos",
+              "linux",
+              "web"
+            ]
+          }
+        },
+        "local_footprint": {
+          "enum": [
+            "yes",
+            "partial",
+            "no"
+          ]
+        },
         "rosmarops": {
           "type": "object",
           "additionalProperties": false,
-          "required": ["status"],
+          "required": [
+            "status"
+          ],
           "properties": {
-            "status": { "enum": ["evaluated", "detected", "not_supported"] },
-            "since_version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" }
+            "status": {
+              "enum": [
+                "evaluated",
+                "detected",
+                "not_supported"
+              ]
+            },
+            "since_version": {
+              "type": "string",
+              "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+            }
           }
         },
-        "reviewed_at": { "type": "string", "format": "date" }
+        "reviewed_at": {
+          "type": "string",
+          "format": "date"
+        }
       }
     },
     "versions": {
@@ -36,11 +110,24 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["version", "released_at", "source"],
+        "required": [
+          "version",
+          "released_at",
+          "source"
+        ],
         "properties": {
-          "version": { "type": "string", "minLength": 1, "maxLength": 40 },
-          "released_at": { "type": "string", "format": "date" },
-          "source": { "$ref": "#/$defs/source" }
+          "version": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 40
+          },
+          "released_at": {
+            "type": "string",
+            "format": "date"
+          },
+          "source": {
+            "$ref": "#/$defs/source"
+          }
         }
       }
     },
@@ -49,33 +136,108 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["id", "date", "category", "before", "after", "source", "verified", "rosmarops_impact"],
+        "required": [
+          "id",
+          "date",
+          "category",
+          "before",
+          "after",
+          "source",
+          "verified",
+          "rosmarops_impact"
+        ],
         "properties": {
-          "id": { "type": "string", "pattern": "^chg-[a-z0-9-]{1,60}$" },
-          "version": { "type": "string", "maxLength": 40 },
-          "date": { "type": "string", "format": "date" },
-          "category": { "enum": ["permissions", "approval_mode", "sandbox", "default_value", "config_path_or_format", "mcp", "hooks", "instructions", "credentials", "telemetry", "data_destination"] },
-          "before": { "type": "string", "minLength": 1, "maxLength": 280 },
-          "after": { "type": "string", "minLength": 1, "maxLength": 280 },
-          "source": { "$ref": "#/$defs/source" },
+          "id": {
+            "type": "string",
+            "pattern": "^chg-[a-z0-9-]{1,60}$"
+          },
+          "version": {
+            "type": "string",
+            "maxLength": 40
+          },
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "category": {
+            "enum": [
+              "permissions",
+              "approval_mode",
+              "sandbox",
+              "default_value",
+              "config_path_or_format",
+              "mcp",
+              "hooks",
+              "instructions",
+              "credentials",
+              "telemetry",
+              "data_destination"
+            ]
+          },
+          "before": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 280
+          },
+          "after": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 280
+          },
+          "source": {
+            "$ref": "#/$defs/source"
+          },
           "verified": {
             "type": "object",
             "additionalProperties": false,
-            "required": ["by", "at", "how"],
+            "required": [
+              "by",
+              "at",
+              "how"
+            ],
             "properties": {
-              "by": { "enum": ["advisor"] },
-              "at": { "type": "string", "format": "date" },
-              "how": { "enum": ["official_doc", "official_changelog", "lab_observation"] }
+              "by": {
+                "enum": [
+                  "advisor"
+                ]
+              },
+              "at": {
+                "type": "string",
+                "format": "date"
+              },
+              "how": {
+                "enum": [
+                  "official_doc",
+                  "official_changelog",
+                  "lab_observation"
+                ]
+              }
             }
           },
-          "rosmarops_impact": { "enum": ["none", "knowledge", "rule"] },
+          "rosmarops_impact": {
+            "enum": [
+              "none",
+              "knowledge",
+              "rule"
+            ]
+          },
           "correction": {
             "type": "object",
             "additionalProperties": false,
-            "required": ["at", "reason"],
+            "required": [
+              "at",
+              "reason"
+            ],
             "properties": {
-              "at": { "type": "string", "format": "date" },
-              "reason": { "type": "string", "minLength": 1, "maxLength": 280 }
+              "at": {
+                "type": "string",
+                "format": "date"
+              },
+              "reason": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 280
+              }
             }
           }
         }
@@ -87,30 +249,245 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["version", "series", "method_version", "measured_at", "lab_run", "installer_sha256", "artifacts_sha256", "grade", "dimensions"],
+        "required": [
+          "version",
+          "series",
+          "method_version",
+          "measured_at",
+          "lab_run",
+          "installer_sha256",
+          "artifacts_sha256",
+          "grade",
+          "dimensions"
+        ],
         "properties": {
-          "version": { "type": "string", "maxLength": 40 },
-          "series": { "enum": ["factory", "hardened"] },
-          "method_version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+$" },
-          "measured_at": { "type": "string", "format": "date" },
-          "lab_run": { "type": "string", "format": "uri" },
-          "installer_sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
-          "artifacts_sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
-          "grade": { "enum": ["A", "B", "C", "D", "E"] },
-          "composite": { "type": "number", "minimum": 0, "maximum": 100 },
+          "version": {
+            "type": "string",
+            "maxLength": 40
+          },
+          "series": {
+            "enum": [
+              "factory",
+              "hardened"
+            ]
+          },
+          "method_version": {
+            "type": "string",
+            "pattern": "^[0-9]+\\.[0-9]+$"
+          },
+          "measured_at": {
+            "type": "string",
+            "format": "date"
+          },
+          "lab_run": {
+            "type": "string",
+            "format": "uri"
+          },
+          "installer_sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "artifacts_sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "grade": {
+            "enum": [
+              "A",
+              "B",
+              "C",
+              "D",
+              "E"
+            ]
+          },
+          "composite": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100
+          },
           "dimensions": {
             "type": "object",
             "additionalProperties": false,
-            "required": ["read_without_asking", "execute_and_write", "who_approves", "network_and_mcp", "credentials", "cross_agent", "user_controls"],
+            "required": [
+              "read_without_asking",
+              "execute_and_write",
+              "who_approves",
+              "network_and_mcp",
+              "credentials",
+              "cross_agent",
+              "user_controls"
+            ],
             "properties": {
-              "read_without_asking": { "$ref": "#/$defs/band" },
-              "execute_and_write": { "$ref": "#/$defs/band" },
-              "who_approves": { "$ref": "#/$defs/band" },
-              "network_and_mcp": { "$ref": "#/$defs/band" },
-              "credentials": { "$ref": "#/$defs/band" },
-              "cross_agent": { "$ref": "#/$defs/band" },
-              "user_controls": { "$ref": "#/$defs/band" }
+              "read_without_asking": {
+                "$ref": "#/$defs/band"
+              },
+              "execute_and_write": {
+                "$ref": "#/$defs/band"
+              },
+              "who_approves": {
+                "$ref": "#/$defs/band"
+              },
+              "network_and_mcp": {
+                "$ref": "#/$defs/band"
+              },
+              "credentials": {
+                "$ref": "#/$defs/band"
+              },
+              "cross_agent": {
+                "$ref": "#/$defs/band"
+              },
+              "user_controls": {
+                "$ref": "#/$defs/band"
+              }
             }
+          }
+        }
+      }
+    },
+    "default_mode": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "who_decides",
+        "source"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "pattern": "^[a-z0-9_]{1,40}$"
+        },
+        "who_decides": {
+          "enum": [
+            "user",
+            "another_model",
+            "nobody"
+          ]
+        },
+        "since_version": {
+          "type": "string",
+          "maxLength": 40
+        },
+        "note": {
+          "type": "string",
+          "maxLength": 200
+        },
+        "source": {
+          "$ref": "#/$defs/source"
+        }
+      }
+    },
+    "capabilities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "action",
+          "scope",
+          "default",
+          "source"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^cap-[a-z0-9-]{1,60}$"
+          },
+          "action": {
+            "enum": [
+              "read_files",
+              "write_files",
+              "execute_commands",
+              "network",
+              "use_mcp_tools"
+            ]
+          },
+          "scope": {
+            "enum": [
+              "working_directories",
+              "outside_working_directories",
+              "any_path",
+              "whole_system",
+              "protected_paths",
+              "ignored_credential_files",
+              "read_only_commands",
+              "all_commands",
+              "preapproved_domains",
+              "any_destination",
+              "all_mcp_tools"
+            ]
+          },
+          "default": {
+            "enum": [
+              "allow",
+              "ask",
+              "deny"
+            ]
+          },
+          "note": {
+            "type": "string",
+            "maxLength": 200
+          },
+          "source": {
+            "$ref": "#/$defs/source"
+          }
+        }
+      }
+    },
+    "storage": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "kind",
+          "path_windows",
+          "secrets",
+          "source"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^sto-[a-z0-9-]{1,60}$"
+          },
+          "kind": {
+            "enum": [
+              "user_settings",
+              "project_settings",
+              "local_settings",
+              "managed_settings",
+              "mcp_user",
+              "mcp_project",
+              "mcp_managed",
+              "permissions",
+              "sandbox",
+              "cli_config",
+              "hooks_managed",
+              "instructions",
+              "account_credentials"
+            ]
+          },
+          "path_windows": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 160
+          },
+          "secrets": {
+            "enum": [
+              "none",
+              "sometimes_plaintext",
+              "plaintext",
+              "unknown"
+            ]
+          },
+          "note": {
+            "type": "string",
+            "maxLength": 200
+          },
+          "source": {
+            "$ref": "#/$defs/source"
           }
         }
       }
@@ -120,13 +497,35 @@
     "source": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["url", "official", "accessed_at"],
+      "required": [
+        "url",
+        "official",
+        "accessed_at"
+      ],
       "properties": {
-        "url": { "type": "string", "format": "uri", "pattern": "^https://" },
-        "official": { "type": "boolean" },
-        "accessed_at": { "type": "string", "format": "date" }
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://"
+        },
+        "official": {
+          "type": "boolean"
+        },
+        "accessed_at": {
+          "type": "string",
+          "format": "date"
+        }
       }
     },
-    "band": { "enum": ["restricted", "contained", "partial", "broad", "open", "not_observed"] }
+    "band": {
+      "enum": [
+        "restricted",
+        "contained",
+        "partial",
+        "broad",
+        "open",
+        "not_observed"
+      ]
+    }
   }
 }

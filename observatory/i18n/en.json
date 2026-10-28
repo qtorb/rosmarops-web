@@ -29,6 +29,7 @@
   "index.agents_h2": "Agents",
   "index.agents_scope": "Only agents that leave configuration, permissions or keys on your computer. Agents that run only in the cloud are left out.",
   "index.th_agent": "Agent",
+  "index.th_tool": "Tool",
   "index.th_vendor": "Vendor",
   "index.th_type": "Type",
   "index.th_platforms": "Platforms",
@@ -46,6 +47,8 @@
   "index.data_h3": "The data is open",
   "index.data_p": "Everything on this page is in JSON, with its source and its date.",
   "index.data_link": "Dataset (JSON)",
+  "index.tooling_h2": "Agent coordination tools",
+  "index.tooling_note": "Not agents: tools your agents use, which leave instructions, scripts or settings on your computer.",
   "index.breadcrumb_home": "RosmarOps",
 
   "agent.title": "{agent} security and permissions: observed changes · RosmarOps Observatory",
@@ -90,6 +93,7 @@
   "kind.ide_extension": "IDE extension",
   "kind.desktop_app": "Desktop app",
   "kind.cloud": "Cloud",
+  "kind.agent_tooling": "Agent coordination tool",
 
   "platform.windows": "Windows",
   "platform.macos": "macOS",
@@ -98,7 +102,7 @@
 
   "status.evaluated": "Evaluated since RosmarOps {version}",
   "status.detected": "Detected since RosmarOps {version}",
-  "status.not_supported": "Not read",
+  "status.not_supported": "Not read yet",
 
   "category.permissions": "Permissions",
   "category.approval_mode": "Approval mode",

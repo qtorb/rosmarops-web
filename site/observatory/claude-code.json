@@ -22,5 +22,201 @@
   },
   "versions": [],
   "changes": [],
-  "ratings": []
+  "ratings": [],
+  "default_mode": {
+    "name": "auto",
+    "who_decides": "another_model",
+    "since_version": "2.1.283",
+    "note": "Built-in starting permission mode for interactive sessions; in auto mode a model, not the user, decides what would otherwise be asked.",
+    "source": {
+      "url": "https://code.claude.com/docs/en/permission-modes",
+      "official": true,
+      "accessed_at": "2026-10-24"
+    }
+  },
+  "capabilities": [
+    {
+      "id": "cap-read-working-dirs",
+      "action": "read_files",
+      "scope": "working_directories",
+      "default": "allow",
+      "source": {
+        "url": "https://code.claude.com/docs/en/permissions",
+        "official": true,
+        "accessed_at": "2026-10-23"
+      }
+    },
+    {
+      "id": "cap-read-outside",
+      "action": "read_files",
+      "scope": "outside_working_directories",
+      "default": "ask",
+      "source": {
+        "url": "https://code.claude.com/docs/en/permissions",
+        "official": true,
+        "accessed_at": "2026-10-23"
+      }
+    },
+    {
+      "id": "cap-readonly-commands",
+      "action": "execute_commands",
+      "scope": "read_only_commands",
+      "default": "allow",
+      "note": "Built-in read-only shell commands run on any path unless permissions.blockReadsOutsideWorkingDirectories is set.",
+      "source": {
+        "url": "https://code.claude.com/docs/en/permissions",
+        "official": true,
+        "accessed_at": "2026-10-23"
+      }
+    },
+    {
+      "id": "cap-commands",
+      "action": "execute_commands",
+      "scope": "all_commands",
+      "default": "ask",
+      "source": {
+        "url": "https://code.claude.com/docs/en/permissions",
+        "official": true,
+        "accessed_at": "2026-10-23"
+      }
+    },
+    {
+      "id": "cap-edit",
+      "action": "write_files",
+      "scope": "any_path",
+      "default": "ask",
+      "source": {
+        "url": "https://code.claude.com/docs/en/permissions",
+        "official": true,
+        "accessed_at": "2026-10-23"
+      }
+    },
+    {
+      "id": "cap-protected-paths",
+      "action": "write_files",
+      "scope": "protected_paths",
+      "default": "ask",
+      "note": "Writes to protected paths are asked even in modes that otherwise allow edits.",
+      "source": {
+        "url": "https://code.claude.com/docs/en/permission-modes#protected-paths",
+        "official": true,
+        "accessed_at": "2026-10-24"
+      }
+    },
+    {
+      "id": "cap-web-preapproved",
+      "action": "network",
+      "scope": "preapproved_domains",
+      "default": "allow",
+      "note": "Web fetches to a built-in list of documentation domains.",
+      "source": {
+        "url": "https://code.claude.com/docs/en/permissions",
+        "official": true,
+        "accessed_at": "2026-10-23"
+      }
+    },
+    {
+      "id": "cap-web",
+      "action": "network",
+      "scope": "any_destination",
+      "default": "ask",
+      "source": {
+        "url": "https://code.claude.com/docs/en/permissions",
+        "official": true,
+        "accessed_at": "2026-10-23"
+      }
+    }
+  ],
+  "storage": [
+    {
+      "id": "sto-user-settings",
+      "kind": "user_settings",
+      "path_windows": "%USERPROFILE%\\.claude\\settings.json",
+      "secrets": "sometimes_plaintext",
+      "note": "The env block can hold keys.",
+      "source": {
+        "url": "https://github.com/qtorb/rosmarops/blob/v0.3.0/adapters/windows/claude_settings.go",
+        "official": false,
+        "accessed_at": "2026-10-28"
+      }
+    },
+    {
+      "id": "sto-project-settings",
+      "kind": "project_settings",
+      "path_windows": "<project>\\.claude\\settings.json",
+      "secrets": "sometimes_plaintext",
+      "source": {
+        "url": "https://github.com/qtorb/rosmarops/blob/v0.3.0/adapters/windows/claude_settings.go",
+        "official": false,
+        "accessed_at": "2026-10-28"
+      }
+    },
+    {
+      "id": "sto-local-settings",
+      "kind": "local_settings",
+      "path_windows": "<project>\\.claude\\settings.local.json",
+      "secrets": "sometimes_plaintext",
+      "source": {
+        "url": "https://github.com/qtorb/rosmarops/blob/v0.3.0/adapters/windows/claude_settings.go",
+        "official": false,
+        "accessed_at": "2026-10-28"
+      }
+    },
+    {
+      "id": "sto-managed-settings",
+      "kind": "managed_settings",
+      "path_windows": "C:\\Program Files\\ClaudeCode\\managed-settings.json",
+      "secrets": "unknown",
+      "source": {
+        "url": "https://github.com/qtorb/rosmarops/blob/v0.3.0/adapters/windows/platform.go",
+        "official": false,
+        "accessed_at": "2026-10-28"
+      }
+    },
+    {
+      "id": "sto-mcp-user",
+      "kind": "mcp_user",
+      "path_windows": "%USERPROFILE%\\.claude.json",
+      "secrets": "sometimes_plaintext",
+      "note": "MCP env and headers blocks can hold keys.",
+      "source": {
+        "url": "https://github.com/qtorb/rosmarops/blob/v0.3.0/adapters/windows/mcp.go",
+        "official": false,
+        "accessed_at": "2026-10-28"
+      }
+    },
+    {
+      "id": "sto-mcp-project",
+      "kind": "mcp_project",
+      "path_windows": "<project>\\.mcp.json",
+      "secrets": "sometimes_plaintext",
+      "source": {
+        "url": "https://github.com/qtorb/rosmarops/blob/v0.3.0/adapters/windows/mcp.go",
+        "official": false,
+        "accessed_at": "2026-10-28"
+      }
+    },
+    {
+      "id": "sto-mcp-managed",
+      "kind": "mcp_managed",
+      "path_windows": "C:\\Program Files\\ClaudeCode\\managed-mcp.json",
+      "secrets": "unknown",
+      "source": {
+        "url": "https://github.com/qtorb/rosmarops/blob/v0.3.0/adapters/windows/claude_settings.go",
+        "official": false,
+        "accessed_at": "2026-10-28"
+      }
+    },
+    {
+      "id": "sto-instructions",
+      "kind": "instructions",
+      "path_windows": "<project>\\CLAUDE.md, %USERPROFILE%\\.claude\\CLAUDE.md",
+      "secrets": "none",
+      "source": {
+        "url": "https://github.com/qtorb/rosmarops/blob/v0.3.0/adapters/windows/instructions.go",
+        "official": false,
+        "accessed_at": "2026-10-28"
+      }
+    }
+  ]
 }
