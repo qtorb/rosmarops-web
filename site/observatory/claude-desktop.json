@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "agent": {
+    "id": "claude-desktop",
+    "name": "Claude Desktop",
+    "vendor": "Anthropic",
+    "kinds": [
+      "desktop_app"
+    ],
+    "platforms": [
+      "windows",
+      "macos"
+    ],
+    "local_footprint": "yes",
+    "rosmarops": {
+      "status": "detected",
+      "since_version": "0.3.0"
+    },
+    "reviewed_at": "2026-10-28"
+  },
+  "versions": [],
+  "changes": [],
+  "ratings": []
+}

@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "agent": {
+    "id": "claude-code",
+    "name": "Claude Code",
+    "vendor": "Anthropic",
+    "kinds": [
+      "cli",
+      "ide_extension"
+    ],
+    "platforms": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "local_footprint": "yes",
+    "rosmarops": {
+      "status": "evaluated",
+      "since_version": "0.1.0"
+    },
+    "reviewed_at": "2026-10-28"
+  },
+  "versions": [],
+  "changes": [],
+  "ratings": []
+}

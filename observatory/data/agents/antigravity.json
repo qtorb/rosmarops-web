@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "agent": {
+    "id": "antigravity",
+    "name": "Antigravity",
+    "vendor": "Google",
+    "kinds": [
+      "ide",
+      "cli"
+    ],
+    "platforms": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "local_footprint": "yes",
+    "rosmarops": {
+      "status": "detected",
+      "since_version": "0.3.0"
+    },
+    "reviewed_at": "2026-10-28"
+  },
+  "versions": [],
+  "changes": [],
+  "ratings": []
+}

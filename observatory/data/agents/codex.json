@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "agent": {
+    "id": "codex",
+    "name": "Codex",
+    "vendor": "OpenAI",
+    "kinds": [
+      "cli",
+      "ide_extension",
+      "desktop_app",
+      "cloud"
+    ],
+    "platforms": [
+      "windows",
+      "macos",
+      "linux",
+      "web"
+    ],
+    "local_footprint": "yes",
+    "rosmarops": {
+      "status": "detected",
+      "since_version": "0.3.0"
+    },
+    "reviewed_at": "2026-10-28"
+  },
+  "versions": [],
+  "changes": [],
+  "ratings": []
+}

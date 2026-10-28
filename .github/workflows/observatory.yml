@@ -1,0 +1,67 @@
+name: Observatory (branch build, no deploy)
+
+on:
+  push:
+    branches: [observatory]
+    paths: ["observatory/**", "site/observatory/**", "site/es/observatorio/**", "site/ca/observatori/**", ".github/workflows/observatory.yml"]
+  pull_request:
+    paths: ["observatory/**", ".github/workflows/observatory.yml"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install the validator (CI only)
+        run: pip install "jsonschema[format-nongpl]==4.23.0"
+
+      - name: Validate the agent files against observatory.v1
+        run: |
+          python - <<'EOF'
+          import glob, json, sys
+          from jsonschema import Draft202012Validator, FormatChecker
+          schema = json.load(open("observatory/schema/observatory.v1.schema.json"))
+          Draft202012Validator.check_schema(schema)
+          v = Draft202012Validator(schema, format_checker=FormatChecker())
+          files = sorted(glob.glob("observatory/data/agents/*.json")) + sorted(glob.glob("observatory/tests/fixture/*.json"))
+          bad = 0
+          for f in files:
+              errors = sorted(v.iter_errors(json.load(open(f))), key=lambda e: list(e.path))
+              for e in errors:
+                  print(f"::error file={f}::{'/'.join(map(str, e.path)) or '(root)'}: {e.message}")
+              bad += bool(errors)
+              print(("FAIL " if errors else "ok   ") + f)
+          sys.exit(1 if bad else 0)
+          EOF
+
+      - name: Generated pages are up to date
+        run: |
+          python observatory/build.py
+          git status --porcelain -- site/observatory site/es/observatorio site/ca/observatori
+          test -z "$(git status --porcelain -- site/observatory site/es/observatorio site/ca/observatori)" || { echo "::error::site/ is out of date: run python3 observatory/build.py and commit"; exit 1; }
+
+      - name: Branch rules hold in the output
+        run: |
+          set -eu
+          for f in $(find site/observatory site/es/observatorio site/ca/observatori -name index.html); do
+            grep -q '<meta name="robots" content="noindex">' "$f" || { echo "::error file=$f::missing noindex"; exit 1; }
+          done
+          ! grep -n "observator" site/llms.txt || { echo "::error::llms.txt mentions the observatory"; exit 1; }
+          echo "noindex on every page; not in llms.txt"
+
+      - name: Agent page template renders (synthetic fixture)
+        run: |
+          python observatory/build.py --data observatory/tests/fixture --out "$RUNNER_TEMP/obs"
+          for l in observatory es/observatorio ca/observatori; do
+            test -f "$RUNNER_TEMP/obs/$l/example-agent/index.html"
+            grep -q '"@type":"TechArticle"' "$RUNNER_TEMP/obs/$l/example-agent/index.html"
+          done

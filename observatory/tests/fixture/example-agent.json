@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "agent": {
+    "id": "example-agent",
+    "name": "Example Agent",
+    "vendor": "Example Vendor",
+    "kinds": [
+      "cli"
+    ],
+    "platforms": [
+      "windows"
+    ],
+    "local_footprint": "yes",
+    "rosmarops": {
+      "status": "detected",
+      "since_version": "0.3.0"
+    },
+    "reviewed_at": "2026-10-28"
+  },
+  "versions": [
+    {
+      "version": "1.2.0",
+      "released_at": "2026-10-20",
+      "source": {
+        "url": "https://example.com/changelog",
+        "official": true,
+        "accessed_at": "2026-10-28"
+      }
+    }
+  ],
+  "changes": [
+    {
+      "id": "chg-example-default-mode",
+      "version": "1.2.0",
+      "date": "2026-10-20",
+      "category": "default_value",
+      "before": "Synthetic test entry: the default mode asked before running commands.",
+      "after": "Synthetic test entry: the default mode runs commands without asking.",
+      "source": {
+        "url": "https://example.com/changelog",
+        "official": true,
+        "accessed_at": "2026-10-28"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-10-28",
+        "how": "official_changelog"
+      },
+      "rosmarops_impact": "knowledge"
+    },
+    {
+      "id": "chg-example-mcp-path",
+      "date": "2026-10-10",
+      "category": "config_path_or_format",
+      "before": "Synthetic test entry: MCP servers in config.json.",
+      "after": "Synthetic test entry: MCP servers in mcp.json.",
+      "source": {
+        "url": "https://example.com/docs",
+        "official": true,
+        "accessed_at": "2026-10-28"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-10-28",
+        "how": "official_doc"
+      },
+      "rosmarops_impact": "none",
+      "correction": {
+        "at": "2026-10-27",
+        "reason": "Synthetic test entry: the date was wrong."
+      }
+    }
+  ],
+  "ratings": []
+}

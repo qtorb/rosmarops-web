@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agents d&#x27;IA per programar al teu ordinador: què pot fer cadascun · Observatori RosmarOps</title>
+<meta name="description" content="Registre datat dels canvis de seguretat dels agents d&#x27;IA per programar que deixen configuració, permisos o claus al teu ordinador: modes d&#x27;aprovació, sandbox, MCP i on guarden les claus. Cada dada amb la seva data, versió i font.">
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://rosmarops.com/ca/observatori/">
+<link rel="alternate" hreflang="en" href="https://rosmarops.com/observatory/">
+<link rel="alternate" hreflang="es" href="https://rosmarops.com/es/observatorio/">
+<link rel="alternate" hreflang="ca" href="https://rosmarops.com/ca/observatori/">
+<link rel="alternate" hreflang="x-default" href="https://rosmarops.com/observatory/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="RosmarOps">
+<meta property="og:title" content="Agents d&#x27;IA per programar al teu ordinador: què pot fer cadascun · Observatori RosmarOps">
+<meta property="og:description" content="Registre datat dels canvis de seguretat dels agents d&#x27;IA per programar que deixen configuració, permisos o claus al teu ordinador: modes d&#x27;aprovació, sandbox, MCP i on guarden les claus. Cada dada amb la seva data, versió i font.">
+<meta property="og:url" content="https://rosmarops.com/ca/observatori/">
+<meta property="og:locale" content="ca_ES">
+<meta property="og:image" content="https://rosmarops.com/assets/brand/rosmarops-social.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","@id":"https://rosmarops.com/observatory/#dataset","name":"Observatori RosmarOps","description":"Registre datat dels canvis de seguretat dels agents d'IA per programar que deixen configuració, permisos o claus al teu ordinador: modes d'aprovació, sandbox, MCP i on guarden les claus. Cada dada amb la seva data, versió i font.","url":"https://rosmarops.com/ca/observatori/","inLanguage":"ca","dateModified":"2026-10-28","isAccessibleForFree":true,"creator":{"@type":"Organization","@id":"https://rosmarops.com/#org","name":"RosmarOps","url":"https://rosmarops.com/"},"distribution":[{"@type":"DataDownload","encodingFormat":"application/json","contentUrl":"https://rosmarops.com/observatory/data.json"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"Agents","numberOfItems":9,"itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"SoftwareApplication","name":"Claude Code","applicationCategory":"DeveloperApplication","operatingSystem":"Windows, macOS, Linux","author":{"@type":"Organization","name":"Anthropic"}}},{"@type":"ListItem","position":2,"item":{"@type":"SoftwareApplication","name":"Cursor","applicationCategory":"DeveloperApplication","operatingSystem":"Windows, macOS, Linux","author":{"@type":"Organization","name":"Anysphere"}}},{"@type":"ListItem","position":3,"item":{"@type":"SoftwareApplication","name":"Antigravity","applicationCategory":"DeveloperApplication","operatingSystem":"Windows, macOS, Linux","author":{"@type":"Organization","name":"Google"}}},{"@type":"ListItem","position":4,"item":{"@type":"SoftwareApplication","name":"Claude Desktop","applicationCategory":"DeveloperApplication","operatingSystem":"Windows, macOS","author":{"@type":"Organization","name":"Anthropic"}}},{"@type":"ListItem","position":5,"item":{"@type":"SoftwareApplication","name":"Codex","applicationCategory":"DeveloperApplication","operatingSystem":"Windows, macOS, Linux, Web","author":{"@type":"Organization","name":"OpenAI"}}},{"@type":"ListItem","position":6,"item":{"@type":"SoftwareApplication","name":"Hermes Agent","applicationCategory":"DeveloperApplication","operatingSystem":"Windows, macOS, Linux","author":{"@type":"Organization","name":"Nous Research"}}},{"@type":"ListItem","position":7,"item":{"@type":"SoftwareApplication","name":"Cline","applicationCategory":"DeveloperApplication","operatingSystem":"Windows, macOS, Linux","author":{"@type":"Organization","name":"Cline"}}},{"@type":"ListItem","position":8,"item":{"@type":"SoftwareApplication","name":"Continue","applicationCategory":"DeveloperApplication","operatingSystem":"Windows, macOS, Linux","author":{"@type":"Organization","name":"Continue"}}},{"@type":"ListItem","position":9,"item":{"@type":"SoftwareApplication","name":"GitHub Copilot","applicationCategory":"DeveloperApplication","operatingSystem":"Windows, macOS, Linux, Web","author":{"@type":"Organization","name":"GitHub"}}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"RosmarOps","item":"https://rosmarops.com/ca/"},{"@type":"ListItem","position":2,"name":"Observatori","item":"https://rosmarops.com/ca/observatori/"}]}</script>
+<link rel="stylesheet" href="/assets/consent/cookieconsent.css?v=3.1.0">
+<link rel="icon" href="/wp-content/uploads/2026/10/image-1.png">
+<style>
+:root{--bg:#F6F5F2;--ink:#1B1A18;--ink2:#3A3833;--muted:#66635D;--line:#E3E0D8;--card:#FFFFFF;--accent:#6F8F78}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+a{color:var(--ink)}a:hover{color:var(--accent)}
+.wrap{max-width:1040px;margin:0 auto;padding:0 16px}
+header .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;padding-top:24px;padding-bottom:24px}
+header img{height:40px;width:auto;display:block}
+nav{display:flex;flex-wrap:wrap;gap:24px;font-size:16px}
+nav a[aria-current]{font-weight:700;text-decoration:none}
+main .wrap{display:flex;flex-direction:column;gap:56px;padding-top:48px;padding-bottom:64px}
+.hero{display:flex;flex-direction:column;gap:20px;max-width:760px}
+.eyebrow{margin:0;font-size:14px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+h1{margin:0;font-size:clamp(34px,6vw,52px);line-height:1.08;font-weight:700;letter-spacing:-.02em}
+.lead{margin:0;font-size:20px;line-height:1.55;color:var(--ink2)}
+.actions{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-flex;align-items:center;min-height:44px;padding:0 20px;border-radius:8px;font-size:16px;text-decoration:none;border:1px solid var(--ink)}
+.btn.primary{background:var(--ink);color:#FFFFFF}.btn.primary:hover{background:var(--ink2);color:#FFFFFF}
+.btn.secondary{background:transparent;color:var(--ink)}
+section{display:flex;flex-direction:column;gap:16px}
+h2{margin:0;font-size:26px;line-height:1.2}
+h3{margin:0;font-size:18px}
+.note{margin:0;font-size:15px;line-height:1.55;color:var(--muted)}
+.box{background:var(--card);border:1px solid var(--line);border-radius:12px}
+.tablebox{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:16px;min-width:760px}
+thead th{text-align:left;font-size:13px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);padding:14px 16px;border-bottom:1px solid var(--line)}
+tbody th{text-align:left;font-weight:700;padding:14px 16px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.45}
+td{padding:14px 16px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.45}
+tr:last-child td,tr:last-child th{border-bottom:0}
+.changes{list-style:none;margin:0;padding:0}
+.changes li{padding:16px;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:6px;line-height:1.5}
+.changes li:last-child{border-bottom:0}
+.changes .meta{margin:0;font-size:14px;color:var(--muted)}
+.changes p{margin:0}
+.empty{margin:0;padding:20px;font-size:16px;line-height:1.55;color:var(--ink2)}
+.trio{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;padding:24px}
+.trio div{display:flex;flex-direction:column;gap:8px}
+.trio p{margin:0;font-size:16px;line-height:1.55;color:var(--ink2)}
+.disclaimer{margin:0;font-size:14px;line-height:1.5;color:var(--muted)}
+.crumbs{margin:0;font-size:14px;color:var(--muted)}
+.layout{display:flex;flex-wrap:wrap;gap:40px;align-items:flex-start}
+.toc{flex:1 1 200px;display:flex;flex-direction:column;gap:8px;font-size:15px}
+.toc p{margin:0 0 4px;font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.article{flex:999 1 600px;min-width:0;display:flex;flex-direction:column;gap:40px}
+.article h1{font-size:clamp(30px,5vw,44px);line-height:1.12}
+.pagemeta{margin:0;font-size:15px;color:var(--muted)}
+.panel{padding:20px;display:flex;flex-direction:column;gap:12px}
+.panel p{margin:0;font-size:16px;line-height:1.55}
+.plain{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px;font-size:16px;line-height:1.5}
+footer{border-top:1px solid var(--line)}
+footer .wrap{padding-top:28px;padding-bottom:28px;font-size:15px;color:var(--muted)}
+footer nav{gap:20px;font-size:15px}
+@media (max-width:700px){nav{gap:16px}main .wrap{gap:40px;padding-top:32px}.lead{font-size:18px}
+table{min-width:0}thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+table,tbody,tr,tbody th,td{display:block}
+tbody tr{padding:16px;border-bottom:1px solid var(--line)}tbody tr:last-child{border-bottom:0}
+tbody th{padding:0 0 8px;border:0;font-size:18px}
+td{padding:4px 0;border:0;display:grid;grid-template-columns:minmax(110px,40%) 1fr;gap:12px;font-size:15px}
+td::before{content:attr(data-label);font-size:13px;color:var(--muted)}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<a href="/ca/"><img src="/assets/brand/rosmarops-logo.png" srcset="/assets/brand/rosmarops-logo.png 1x, /assets/brand/rosmarops-logo@2x.png 2x" width="512" height="131" alt="RosmarOps"></a>
+<nav><a href="/ca/blog/">Bloc</a><a href="/ca/blog/que-es-rosmarops/">Quant a</a><a href="/ca/observatori/" aria-current="page">Observatori</a><a href="/ca/metodologia/">Metodologia</a><a href="/ca/preguntes-frequents/">Preguntes</a><a href="/observatory/" hreflang="en" lang="en" aria-label="English">EN</a><a href="/es/observatorio/" hreflang="es" lang="es" aria-label="Español">ES</a></nav>
+</div></header>
+
+<main><div class="wrap">
+<section class="hero">
+<p class="eyebrow">Observatori · revisat el 28 d&#x27;octubre de 2026</p>
+<h1>Què pot fer al teu ordinador cada agent d&#x27;IA per programar</h1>
+<p class="lead">Seguim els canvis de seguretat de cada agent: permisos, modes d&#x27;aprovació, sandbox, servidors MCP i on guarda les teves claus. Cada dada porta data, versió i font. Ningú no paga per aparèixer aquí.</p>
+<div class="actions"><a class="btn primary" href="#method">Com treballem</a><a class="btn secondary" href="/observatory/data.json">Descarrega les dades (JSON)</a></div>
+</section>
+
+<section aria-labelledby="agents">
+<h2 id="agents">Agents</h2>
+<p class="note">Només agents que deixen configuració, permisos o claus al teu ordinador. Els que només funcionen al núvol en queden fora.</p>
+<div class="box tablebox"><table>
+<thead><tr><th scope="col">Agent</th><th scope="col">Fabricant</th><th scope="col">Tipus</th><th scope="col">Plataformes</th><th scope="col">A RosmarOps</th><th scope="col">Últim canvi de seguretat</th></tr></thead>
+<tbody>
+<tr><th scope="row">Claude Code</th><td data-label="Fabricant">Anthropic</td><td data-label="Tipus">CLI, Extensió d&#x27;IDE</td><td data-label="Plataformes">Windows, macOS, Linux</td><td data-label="A RosmarOps">Avaluat des de la 0.1.0</td><td data-label="Últim canvi de seguretat">Cap de registrat encara</td></tr>
+<tr><th scope="row">Cursor</th><td data-label="Fabricant">Anysphere</td><td data-label="Tipus">IDE</td><td data-label="Plataformes">Windows, macOS, Linux</td><td data-label="A RosmarOps">Avaluat des de la 0.1.0</td><td data-label="Últim canvi de seguretat">Cap de registrat encara</td></tr>
+<tr><th scope="row">Antigravity</th><td data-label="Fabricant">Google</td><td data-label="Tipus">IDE, CLI</td><td data-label="Plataformes">Windows, macOS, Linux</td><td data-label="A RosmarOps">Detectat des de la 0.3.0</td><td data-label="Últim canvi de seguretat">Cap de registrat encara</td></tr>
+<tr><th scope="row">Claude Desktop</th><td data-label="Fabricant">Anthropic</td><td data-label="Tipus">Aplicació d&#x27;escriptori</td><td data-label="Plataformes">Windows, macOS</td><td data-label="A RosmarOps">Detectat des de la 0.3.0</td><td data-label="Últim canvi de seguretat">Cap de registrat encara</td></tr>
+<tr><th scope="row">Codex</th><td data-label="Fabricant">OpenAI</td><td data-label="Tipus">CLI, Extensió d&#x27;IDE, Aplicació d&#x27;escriptori, Núvol</td><td data-label="Plataformes">Windows, macOS, Linux, Web</td><td data-label="A RosmarOps">Detectat des de la 0.3.0</td><td data-label="Últim canvi de seguretat">Cap de registrat encara</td></tr>
+<tr><th scope="row">Hermes Agent</th><td data-label="Fabricant">Nous Research</td><td data-label="Tipus">CLI</td><td data-label="Plataformes">Windows, macOS, Linux</td><td data-label="A RosmarOps">Detectat des de la 0.3.0</td><td data-label="Últim canvi de seguretat">Cap de registrat encara</td></tr>
+<tr><th scope="row">Cline</th><td data-label="Fabricant">Cline</td><td data-label="Tipus">Extensió d&#x27;IDE</td><td data-label="Plataformes">Windows, macOS, Linux</td><td data-label="A RosmarOps">Detectat des de la 0.1.0</td><td data-label="Últim canvi de seguretat">Cap de registrat encara</td></tr>
+<tr><th scope="row">Continue</th><td data-label="Fabricant">Continue</td><td data-label="Tipus">Extensió d&#x27;IDE</td><td data-label="Plataformes">Windows, macOS, Linux</td><td data-label="A RosmarOps">Detectat des de la 0.1.0</td><td data-label="Últim canvi de seguretat">Cap de registrat encara</td></tr>
+<tr><th scope="row">GitHub Copilot</th><td data-label="Fabricant">GitHub</td><td data-label="Tipus">Extensió d&#x27;IDE, Núvol</td><td data-label="Plataformes">Windows, macOS, Linux, Web</td><td data-label="A RosmarOps">Detectat des de la 0.1.0</td><td data-label="Últim canvi de seguretat">Cap de registrat encara</td></tr>
+</tbody>
+</table></div>
+<p class="note">Avaluat: RosmarOps li posa una nota d&#x27;exposició al teu ordinador. Detectat: RosmarOps el troba al teu ordinador, però encara no li posa nota.</p>
+<p class="note">Només els agents amb contingut propi tenen pàgina. La resta surten aquí sense enllaç fins que en tinguin.</p>
+</section>
+
+<section aria-labelledby="changes">
+<h2 id="changes">Últims canvis de seguretat</h2>
+<p class="empty box">Encara no hi ha canvis de seguretat registrats. Cadascun sortirà aquí amb la seva data, la seva versió i la seva font oficial.</p>
+</section>
+
+<section id="method" class="box trio" aria-label="Com treballem">
+<div><h3>Com treballem</h3><p>Cada dada porta la seva font i la data en què es va comprovar, i es revisa a mà abans de publicar-se. No s&#x27;esborra res: les correccions queden anotades.</p></div>
+<div><h3>Independència</h3><p>Ningú no paga per aparèixer. Cada fabricant té dret de rèplica, que es publica al costat de la seva pàgina sense canviar-la.</p></div>
+<div><h3>Les dades són obertes</h3><p>Tot el que veus en aquesta pàgina és en JSON, amb la seva font i la seva data.</p><a href="/observatory/data.json">Conjunt de dades (JSON)</a></div>
+</section>
+
+<p class="disclaimer">Observació de configuració en entorn controlat; no és una garantia de seguretat ni assessorament.</p>
+</div></main>
+
+<footer><div class="wrap">
+<nav><a href="/ca/blog/">Bloc</a><a href="/ca/blog/que-es-rosmarops/">Quant a</a><a href="/ca/observatori/" aria-current="page">Observatori</a><a href="/ca/metodologia/">Metodologia</a><a href="/ca/preguntes-frequents/">Preguntes</a><a href="/observatory/" hreflang="en" lang="en" aria-label="English">EN</a><a href="/es/observatorio/" hreflang="es" lang="es" aria-label="Español">ES</a><a href="/ca/privadesa/">Privadesa</a><a href="#" data-cc="show-preferencesModal">Configura les galetes</a></nav>
+</div></footer>
+<script src="/assets/consent/cookieconsent.umd.js?v=3.1.0" defer></script>
+<script src="/assets/consent/consent.js?v=2" defer></script>
+</body>
+</html>
