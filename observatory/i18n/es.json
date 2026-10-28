@@ -20,7 +20,7 @@
   "site.logo_alt": "RosmarOps",
 
   "index.title": "Agentes de IA para programar en tu ordenador: qué puede hacer cada uno · Observatorio RosmarOps",
-  "index.description": "Registro fechado de los cambios de seguridad de los agentes de IA para programar que guardan ajustes o claves en tu ordenador. Cada dato, con fecha, versión y fuente.",
+  "index.description": "Registro fechado de los cambios de seguridad de los agentes de IA para programar que guardan ajustes o claves en tu ordenador, con fecha, versión y fuente.",
   "index.eyebrow": "Observatorio · revisado el {date}",
   "index.h1": "Qué puede hacer en tu ordenador cada agente de IA para programar",
   "index.lead": "Seguimos los cambios de seguridad de cada agente: permisos, modos de aprobación, sandbox, servidores MCP y dónde guarda tus claves. Cada dato lleva fecha, versión y fuente. Nadie paga por aparecer aquí.",

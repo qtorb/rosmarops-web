@@ -99,7 +99,7 @@ jobs:
           put wp/mu-plugins/rosmarops-consent.php wp-content/mu-plugins/rosmarops-consent.php
           put wp/mu-plugins/rosmarops-seo.php wp-content/mu-plugins/rosmarops-seo.php
           BATCH
-          # Observatory index pages and data files (no agent pages).
+          # Observatory index pages, data files and published agent pages.
           {
             echo "-mkdir observatory"
             echo "put site/observatory/index.html observatory/index.html"
@@ -108,6 +108,14 @@ jobs:
             echo "put site/es/observatorio/index.html es/observatorio/index.html"
             echo "-mkdir ca/observatori"
             echo "put site/ca/observatori/index.html ca/observatori/index.html"
+            # Agent pages: only the published ones (no noindex).
+            for f in $(find site/observatory site/es/observatorio site/ca/observatori -mindepth 2 -name index.html); do
+              if ! grep -q '<meta name="robots" content="noindex">' "$f"; then
+                d=$(dirname "${f#site/}")
+                echo "-mkdir $d"
+                echo "put $f $d/index.html"
+              fi
+            done
           } >> /tmp/batch
           # The password travels in the SSHPASS environment variable, never on the command line.
           sshpass -e sftp -o BatchMode=no -b /tmp/batch \
@@ -165,7 +173,7 @@ jobs:
         run: |
           set -eu
           sleep 5
-          for u in https://rosmarops.com/ https://rosmarops.com/es/ https://rosmarops.com/llms.txt https://rosmarops.com/methodology/ https://rosmarops.com/faq/ https://rosmarops.com/es/metodologia/ https://rosmarops.com/es/preguntas-frecuentes/ https://rosmarops.com/ca/ https://rosmarops.com/ca/metodologia/ https://rosmarops.com/ca/preguntes-frequents/ https://rosmarops.com/ca/privadesa/ https://rosmarops.com/sitemap-pages.xml https://rosmarops.com/observatory/ https://rosmarops.com/es/observatorio/ https://rosmarops.com/ca/observatori/ https://rosmarops.com/observatory/data.json; do
+          for u in https://rosmarops.com/ https://rosmarops.com/es/ https://rosmarops.com/llms.txt https://rosmarops.com/methodology/ https://rosmarops.com/faq/ https://rosmarops.com/es/metodologia/ https://rosmarops.com/es/preguntas-frecuentes/ https://rosmarops.com/ca/ https://rosmarops.com/ca/metodologia/ https://rosmarops.com/ca/preguntes-frequents/ https://rosmarops.com/ca/privadesa/ https://rosmarops.com/sitemap-pages.xml https://rosmarops.com/observatory/ https://rosmarops.com/es/observatorio/ https://rosmarops.com/ca/observatori/ https://rosmarops.com/observatory/data.json https://rosmarops.com/observatory/claude-code/ https://rosmarops.com/es/observatorio/cursor/ https://rosmarops.com/ca/observatori/kanvas/; do
             code=$(curl -s -o /dev/null -w '%{http_code}' "$u?deploy=${GITHUB_SHA::7}")
             echo "$code $u"; test "$code" = "200"
           done

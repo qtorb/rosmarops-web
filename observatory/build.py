@@ -119,7 +119,7 @@ def has_page(a):
 
 # Agent pages are generated for review whenever there is content, but stay noindex,
 # unlinked and out of the deploy until their id is listed here (after product advisor verification).
-PUBLISHED_AGENT_PAGES = set()
+PUBLISHED_AGENT_PAGES = {"claude-code", "cursor", "kanvas"}  # verified by the product advisor, ES/CA signed by Albert (2026-10-28)
 
 
 def texts(a):
@@ -750,13 +750,49 @@ def build_sitemap(agents):
     lastmod = max(date_modified(a) for a in agents)
     alts = "".join(f'<xhtml:link rel="alternate" hreflang="{l}" href="{BASE}{INDEX_PATH[l]}"/>' for l in LANGS)
     alts += f'<xhtml:link rel="alternate" hreflang="x-default" href="{BASE}{INDEX_PATH["en"]}"/>'
-    lines = [SM_START] + [f"  <url><loc>{BASE}{INDEX_PATH[l]}</loc><lastmod>{lastmod}</lastmod>{alts}</url>" for l in LANGS] + [SM_END]
+    lines = [SM_START] + [f"  <url><loc>{BASE}{INDEX_PATH[l]}</loc><lastmod>{lastmod}</lastmod>{alts}</url>" for l in LANGS]
+    for a in agents:
+        if not is_published(a):
+            continue
+        aid = a["agent"]["id"]
+        aalts = "".join(f'<xhtml:link rel="alternate" hreflang="{l}" href="{BASE}{agent_path(l, aid)}"/>' for l in LANGS)
+        aalts += f'<xhtml:link rel="alternate" hreflang="x-default" href="{BASE}{agent_path("en", aid)}"/>'
+        lines += [f"  <url><loc>{BASE}{agent_path(l, aid)}</loc><lastmod>{date_modified(a)}</lastmod>{aalts}</url>" for l in LANGS]
+    lines += [SM_END]
     xml = f.read_text(encoding="utf-8")
     if SM_START in xml:
         xml = xml[: xml.index(SM_START)] + "\n".join(lines) + xml[xml.index(SM_END) + len(SM_END):]
     else:
         xml = xml.replace("</urlset>", "\n".join(lines) + "\n</urlset>")
     f.write_text(xml, encoding="utf-8")
+
+
+LLMS = "llms.txt"
+LL_START, LL_END = "<!-- observatory agents:start -->", "<!-- observatory agents:end -->"
+
+
+def build_llms(agents, t_en):
+    """Keep one llms.txt line per published agent page, between markers, after the observatory line."""
+    f = SITE / LLMS
+    if not f.exists():
+        return
+    txt = f.read_text(encoding="utf-8")
+    lines = [LL_START]
+    for a in agents:
+        if is_published(a):
+            ag = a["agent"]
+            h1 = t_en.text("agent.h1_tool" if "agent_tooling" in ag["kinds"] else "agent.h1", agent=ag["name"])
+            lines.append(f"- [{h1}]({BASE}{agent_path('en', ag['id'])}): observatory page, with its data at {BASE}{JSON_BASE}{ag['id']}.json")
+    lines.append(LL_END)
+    block = "\n".join(lines)
+    if LL_START in txt:
+        txt = txt[: txt.index(LL_START)] + block + txt[txt.index(LL_END) + len(LL_END):]
+    else:
+        anchor = "- Observatory: what each AI coding agent can do on your computer"
+        i = txt.index(anchor)
+        j = txt.index("\n", i)
+        txt = txt[: j + 1] + block + "\n" + txt[j + 1:]
+    f.write_text(txt, encoding="utf-8")
 
 
 def build_data(agents):
@@ -778,6 +814,7 @@ def main():
         shutil.rmtree(SITE / p.strip("/"), ignore_errors=True)
     build_data(agents)
     build_sitemap(agents)
+    build_llms(agents, T(cats["en"]))
     pages = 0
     for lang in LANGS:
         t = T(cats[lang])

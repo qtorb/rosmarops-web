@@ -22,6 +22,11 @@ Today it evaluates Claude Code and Cursor on Windows. It detects Cline, GitHub C
 - [Metodología (español)](https://rosmarops.com/es/metodologia/) and [preguntas frecuentes (español)](https://rosmarops.com/es/preguntas-frecuentes/)
 - [RosmarOps (català)](https://rosmarops.com/ca/), [metodologia](https://rosmarops.com/ca/metodologia/) and [preguntes freqüents](https://rosmarops.com/ca/preguntes-frequents/)
 - Observatory: what each AI coding agent can do on your computer, with dated, sourced data: https://rosmarops.com/observatory/
+<!-- observatory agents:start -->
+- [Claude Code on Windows: what it can do on your computer](https://rosmarops.com/observatory/claude-code/): observatory page, with its data at https://rosmarops.com/observatory/claude-code.json
+- [Cursor on Windows: what it can do on your computer](https://rosmarops.com/observatory/cursor/): observatory page, with its data at https://rosmarops.com/observatory/cursor.json
+- [Kanvas on Windows: what it leaves on your computer](https://rosmarops.com/observatory/kanvas/): observatory page, with its data at https://rosmarops.com/observatory/kanvas.json
+<!-- observatory agents:end -->
 - [About RosmarOps](https://rosmarops.com/blog/about/): where RosmarOps comes from and how to read its blog
 - [Qué es RosmarOps (español)](https://rosmarops.com/es/blog/que-es-rosmarops/): the same page in Spanish
 - [My machine scored 18/100](https://rosmarops.com/blog/my-machine-scored-18-of-100/): first run of RosmarOps on the founder's machine
