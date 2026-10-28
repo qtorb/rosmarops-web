@@ -1,7 +1,7 @@
 {
   "_meta": {
     "purpose": "ES and CA translations of the prose fields (note) in claude-code.json, cursor.json and kanvas.json at rosmarops-vigil @ fe82acf, for Albert's signature. The product advisor loads them into the data files (schema v1.3 {en, es, ca}). Not read by the generator.",
-    "status": "proposed by the GTM advisor, 2026-10-28; pending Albert's signature"
+    "status": "signed by Albert, 2026-10-28"
   },
   "claude-code": {
     "default_mode": {
