@@ -283,7 +283,7 @@ def nav_links(t, lang, alternates, current_obs=True):
     return "".join(parts)
 
 
-def page(lang, t, *, path, title, description, alternates, jsonld, body, og_type="website", noindex=None):
+def page(lang, t, *, path, title, description, alternates, jsonld, body, og_type="website", noindex=None, published=None, modified=None):
     url = BASE + path
     head = [
         "<!doctype html>",
@@ -311,7 +311,13 @@ def page(lang, t, *, path, title, description, alternates, jsonld, body, og_type
         '<meta property="og:image:width" content="1200">',
         '<meta property="og:image:height" content="630">',
         '<meta name="twitter:card" content="summary_large_image">',
+        '<meta name="author" content="RosmarOps">',
     ]
+    if published:
+        head.append(f'<meta property="article:published_time" content="{published}">')
+    if modified:
+        head.append(f'<meta property="article:modified_time" content="{modified}">')
+        head.append(f'<meta property="og:updated_time" content="{modified}">')
     head += [ld(j) for j in jsonld]
     head += [
         '<link rel="stylesheet" href="/assets/consent/cookieconsent.css?v=3.1.0">',
@@ -538,7 +544,7 @@ def build_index(lang, t, agents):
             "numberOfItems": len(tool_list),
             "itemListElement": item_list(lang, tool_list),
         })
-    write(path, page(lang, t, path=path, title=title, description=desc, alternates=INDEX_PATH, jsonld=jsonld, body=body))
+    write(path, page(lang, t, path=path, title=title, description=desc, alternates=INDEX_PATH, jsonld=jsonld, body=body, modified=modified))
 
 
 # ---------------------------------------------------------------- agent page
@@ -740,7 +746,7 @@ def build_agent(lang, t, a):
             ],
         },
     ]
-    write(path, page(lang, t, path=path, title=title, description=desc, alternates=alternates, jsonld=jsonld, body=body, og_type="article", noindex=not is_published(a)))
+    write(path, page(lang, t, path=path, title=title, description=desc, alternates=alternates, jsonld=jsonld, body=body, og_type="article", noindex=not is_published(a), published=published, modified=date_modified(a)))
 
 
 # ---------------------------------------------------------------- data files
