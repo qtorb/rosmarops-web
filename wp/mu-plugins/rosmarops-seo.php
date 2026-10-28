@@ -112,6 +112,47 @@ add_action('wp_head', function () {
 	echo '<script type="application/ld+json">' . wp_json_encode($data, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . "</script>\n";
 }, 20);
 
+// AboutPage + Person structured data on the About pages (EN about, ES/CA que-es-rosmarops).
+add_action('wp_head', function () {
+	if (!is_page(['about', 'que-es-rosmarops'])) {
+		return;
+	}
+	$p    = get_queried_object();
+	$url  = get_permalink($p);
+	$data = [
+		'@context' => 'https://schema.org',
+		'@graph'   => [
+			[
+				'@type'        => 'AboutPage',
+				'@id'          => $url . '#page',
+				'url'          => $url,
+				'name'         => wp_strip_all_tags(get_the_title($p)),
+				'inLanguage'   => rosmarops_lang(),
+				'dateModified' => get_the_modified_date('c', $p),
+				'about'        => ['@id' => 'https://rosmarops.com/#org'],
+				'mainEntity'   => ['@id' => 'https://rosmarops.com/#org'],
+			],
+			[
+				'@type'   => 'Organization',
+				'@id'     => 'https://rosmarops.com/#org',
+				'name'    => 'RosmarOps',
+				'url'     => 'https://rosmarops.com/',
+				'logo'    => 'https://rosmarops.com/assets/brand/rosmarops-logo@2x.png',
+				'founder' => ['@id' => 'https://rosmarops.com/#founder'],
+				'sameAs'  => ['https://github.com/qtorb/rosmarops', 'https://x.com/RosmarOps'],
+			],
+			[
+				'@type'  => 'Person',
+				'@id'    => 'https://rosmarops.com/#founder',
+				'name'   => 'Albert Garcia Pujadas',
+				'url'    => 'https://www.qtorb.com/',
+				'sameAs' => ['https://www.qtorb.com/', 'https://www.linkedin.com/in/albertgpujadas/', 'https://x.com/qtorb'],
+			],
+		],
+	];
+	echo '<script type="application/ld+json">' . wp_json_encode($data, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . "</script>\n";
+}, 20);
+
 // The SEO Framework fields, writable over the REST API by editors, so titles and
 // descriptions can be set without the editor screen.
 add_action('init', function () {
