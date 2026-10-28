@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://rosmarops.com/schemas/observatory.v1.schema.json",
-  "title": "RosmarOps observatory, one agent file (v1.4: optional default_mode.basis and capabilities[].via; v1.3: prose fields are {en, es, ca} objects; v1.2: kinds gains agent_tooling; v1.1: optional default_mode, capabilities and storage)",
+  "title": "RosmarOps observatory, one agent file (v1.5: change category agent_scope; v1.4: optional default_mode.basis and capabilities[].via; v1.3: prose fields are {en, es, ca} objects; v1.2: kinds gains agent_tooling; v1.1: optional default_mode, capabilities and storage)",
   "description": "One file per agent: data/observatory/agents/<id>.json. No user-facing prose beyond short technical sentences; every fact carries its source and date. Never data from users' machines.",
   "type": "object",
   "additionalProperties": false,
@@ -171,7 +171,8 @@
               "instructions",
               "credentials",
               "telemetry",
-              "data_destination"
+              "data_destination",
+              "agent_scope"
             ]
           },
           "before": {
