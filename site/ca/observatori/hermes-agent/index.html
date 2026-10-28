@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hermes Agent a Windows: què pot fer al teu ordinador · Observatori RosmarOps</title>
+<meta name="description" content="Què pot fer de sèrie Hermes Agent, de Nous Research, al teu ordinador, on guarda la seva configuració i les seves claus, i els seus canvis de seguretat datats, cadascun amb la seva font. Revisat el 28 d&#x27;octubre de 2026.">
+<link rel="canonical" href="https://rosmarops.com/ca/observatori/hermes-agent/">
+<link rel="alternate" hreflang="en" href="https://rosmarops.com/observatory/hermes-agent/">
+<link rel="alternate" hreflang="es" href="https://rosmarops.com/es/observatorio/hermes-agent/">
+<link rel="alternate" hreflang="ca" href="https://rosmarops.com/ca/observatori/hermes-agent/">
+<link rel="alternate" hreflang="x-default" href="https://rosmarops.com/observatory/hermes-agent/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="RosmarOps">
+<meta property="og:title" content="Hermes Agent a Windows: què pot fer al teu ordinador · Observatori RosmarOps">
+<meta property="og:description" content="Què pot fer de sèrie Hermes Agent, de Nous Research, al teu ordinador, on guarda la seva configuració i les seves claus, i els seus canvis de seguretat datats, cadascun amb la seva font. Revisat el 28 d&#x27;octubre de 2026.">
+<meta property="og:url" content="https://rosmarops.com/ca/observatori/hermes-agent/">
+<meta property="og:locale" content="ca_ES">
+<meta property="og:image" content="https://rosmarops.com/assets/brand/observatory/observatory-social.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="author" content="RosmarOps">
+<meta property="article:published_time" content="2026-10-28">
+<meta property="article:modified_time" content="2026-10-28">
+<meta property="og:updated_time" content="2026-10-28">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","@id":"https://rosmarops.com/ca/observatori/hermes-agent/#article","headline":"Hermes Agent a Windows: què pot fer al teu ordinador","description":"Què pot fer de sèrie Hermes Agent, de Nous Research, al teu ordinador, on guarda la seva configuració i les seves claus, i els seus canvis de seguretat datats, cadascun amb la seva font. Revisat el 28 d'octubre de 2026.","inLanguage":"ca","datePublished":"2026-10-28","dateModified":"2026-10-28","mainEntityOfPage":"https://rosmarops.com/ca/observatori/hermes-agent/","about":{"@type":"SoftwareApplication","name":"Hermes Agent","applicationCategory":"DeveloperApplication","operatingSystem":"Windows, macOS, Linux","author":{"@type":"Organization","name":"Nous Research"}},"publisher":{"@type":"Organization","@id":"https://rosmarops.com/#org","name":"RosmarOps","url":"https://rosmarops.com/"},"isBasedOn":"https://rosmarops.com/observatory/hermes-agent.json"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"RosmarOps","item":"https://rosmarops.com/ca/"},{"@type":"ListItem","position":2,"name":"Observatori","item":"https://rosmarops.com/ca/observatori/"},{"@type":"ListItem","position":3,"name":"Hermes Agent","item":"https://rosmarops.com/ca/observatori/hermes-agent/"}]}</script>
+<link rel="stylesheet" href="/assets/consent/cookieconsent.css?v=3.1.0">
+<link rel="icon" href="/assets/brand/observatory/observatory-favicon.ico" sizes="48x48">
+<link rel="icon" href="/assets/brand/observatory/observatory-favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/brand/observatory/observatory-apple-touch-180.png">
+<style>
+:root{--bg:#F6F5F2;--ink:#1B1A18;--ink2:#3A3833;--muted:#66635D;--line:#E3E0D8;--card:#FFFFFF;--accent:#6F8F78}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+a{color:var(--ink)}a:hover{color:var(--accent)}
+.wrap{max-width:1040px;margin:0 auto;padding:0 16px}
+header .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;padding-top:24px;padding-bottom:24px}
+header img{height:40px;width:auto;display:block}
+nav{display:flex;flex-wrap:wrap;gap:24px;font-size:16px}
+nav a[aria-current]{font-weight:700;text-decoration:none}
+main .wrap{display:flex;flex-direction:column;gap:56px;padding-top:48px;padding-bottom:64px}
+.hero{display:flex;flex-direction:column;gap:20px;max-width:760px}
+.eyebrow{margin:0;font-size:14px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+h1{margin:0;font-size:clamp(34px,6vw,52px);line-height:1.08;font-weight:700;letter-spacing:-.02em}
+.lead{margin:0;font-size:20px;line-height:1.55;color:var(--ink2)}
+.actions{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-flex;align-items:center;min-height:44px;padding:0 20px;border-radius:8px;font-size:16px;text-decoration:none;border:1px solid var(--ink)}
+.btn.primary{background:var(--ink);color:#FFFFFF}.btn.primary:hover{background:var(--ink2);color:#FFFFFF}
+.btn.secondary{background:transparent;color:var(--ink)}
+section{display:flex;flex-direction:column;gap:16px}
+h2{margin:0;font-size:26px;line-height:1.2}
+h3{margin:0;font-size:18px}
+.note{margin:0;font-size:15px;line-height:1.55;color:var(--muted)}
+.box{background:var(--card);border:1px solid var(--line);border-radius:12px}
+.tablebox{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:16px;min-width:760px;table-layout:fixed}
+thead th{text-align:left;font-size:13px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);padding:14px 16px;border-bottom:1px solid var(--line)}
+tbody th{text-align:left;font-weight:700;padding:14px 16px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.45}
+td{padding:14px 16px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.45}
+tr:last-child td,tr:last-child th{border-bottom:0}
+.changes{list-style:none;margin:0;padding:0}
+.changes li{padding:16px;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:6px;line-height:1.5}
+.changes li:last-child{border-bottom:0}
+.changes .meta{margin:0;font-size:14px;color:var(--muted)}
+.changes p{margin:0}
+.empty{margin:0;padding:20px;font-size:16px;line-height:1.55;color:var(--ink2)}
+.trio{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;padding:24px}
+.trio div{display:flex;flex-direction:column;gap:8px}
+.trio p{margin:0;font-size:16px;line-height:1.55;color:var(--ink2)}
+.disclaimer{margin:0;font-size:14px;line-height:1.5;color:var(--muted)}
+.crumbs{margin:0;font-size:14px;color:var(--muted);display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.obs-brand{display:flex;align-items:center;gap:16px;margin:0 0 20px;font-size:22px;font-weight:700;letter-spacing:-.01em;line-height:1.2;color:var(--ink)}
+.obs-brand img{display:block;width:64px;height:64px;flex:none}
+.crumbs img{display:block;width:24px;height:24px;flex:none}
+.layout{display:flex;flex-wrap:wrap;gap:40px;align-items:flex-start}
+.toc{flex:1 1 200px;display:flex;flex-direction:column;gap:8px;font-size:15px}
+.toc p{margin:0 0 4px;font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.article{flex:999 1 600px;min-width:0;display:flex;flex-direction:column;gap:40px}
+.article h1{font-size:clamp(30px,5vw,44px);line-height:1.12}
+.pagemeta{margin:0;font-size:15px;color:var(--muted)}
+.panel{padding:20px;display:flex;flex-direction:column;gap:12px}
+.panel p{margin:0;font-size:16px;line-height:1.55}
+.summary p:not(.eyebrow){font-size:17px}
+.plain li,td,.panel p{overflow-wrap:anywhere}
+td.keep{overflow-wrap:normal;word-break:normal;hyphens:none}
+td code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:14px;overflow-wrap:anywhere}
+.panel code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace}
+.plain{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px;font-size:16px;line-height:1.5}
+footer{border-top:1px solid var(--line)}
+footer .wrap{padding-top:28px;padding-bottom:28px;font-size:15px;color:var(--muted)}
+footer nav{gap:20px;font-size:15px}
+@media (max-width:700px){.obs-brand{gap:12px;margin-bottom:16px;font-size:20px}.obs-brand img{width:48px;height:48px}
+nav{gap:16px}main .wrap{gap:40px;padding-top:32px}.lead{font-size:18px}
+table{min-width:0;table-layout:auto}colgroup,thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+table,tbody,tr,tbody th,td{display:block}
+tbody tr{padding:16px;border-bottom:1px solid var(--line)}tbody tr:last-child{border-bottom:0}
+tbody th{padding:0 0 8px;border:0;font-size:18px}
+td{padding:4px 0;border:0;display:grid;grid-template-columns:minmax(110px,40%) 1fr;gap:12px;font-size:15px}
+td::before{content:attr(data-label);font-size:13px;color:var(--muted)}
+td:empty{display:none}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<a href="/ca/"><img src="/assets/brand/rosmarops-logo.png" srcset="/assets/brand/rosmarops-logo.png 1x, /assets/brand/rosmarops-logo@2x.png 2x" width="512" height="131" alt="RosmarOps"></a>
+<nav><a href="/ca/blog/">Bloc</a><a href="/ca/blog/que-es-rosmarops/">Quant a</a><a href="/ca/observatori/" aria-current="page">Observatori</a><a href="/ca/metodologia/">Metodologia</a><a href="/ca/preguntes-frequents/">Preguntes</a><a href="/observatory/hermes-agent/" hreflang="en" lang="en" aria-label="English">EN</a><a href="/es/observatorio/hermes-agent/" hreflang="es" lang="es" aria-label="Español">ES</a></nav>
+</div></header>
+
+<main><div class="wrap">
+<div class="layout">
+<nav class="toc" aria-label="En aquesta pàgina"><p>En aquesta pàgina</p><a href="#mode">Mode amb què arrenca</a><a href="#capabilities">Què pot fer de sèrie</a><a href="#storage">On guarda configuració i claus</a><a href="#rosmarops">Què fa RosmarOps amb aquest agent</a><a href="#history">Historial de canvis de seguretat</a><a href="#versions">Versions observades</a><a href="#sources">Fonts i dades</a><a href="#reply">Rèplica del fabricant</a></nav>
+<article class="article">
+<section>
+<p class="crumbs"><img src="/assets/brand/observatory/observatory-mark.svg" width="24" height="24" alt=""><a href="/ca/observatori/">Observatori</a> › Hermes Agent</p>
+<h1>Hermes Agent a Windows: què pot fer al teu ordinador</h1>
+<p class="pagemeta">Nous Research · CLI · Revisat el 28 d&#x27;octubre de 2026 · Última versió observada: 0.22.5</p>
+<div class="box panel summary"><p class="eyebrow">En resum</p><p>A 28 d&#x27;octubre de 2026, segons la seva documentació, Hermes Agent arrenca en el mode <code>smart</code>: el que, si no, se&#x27;t preguntaria ho decideix un altre model d&#x27;IA.</p><p>De sèrie, sense preguntar, pot llegir fitxers a qualsevol lloc amb les seves eines de fitxers, llegir qualsevol fitxer de l&#x27;ordinador des del seu shell, editar fitxers a qualsevol lloc amb les seves eines de fitxers, executar ordres al seu shell, connectar-se a qualsevol adreça web, fer servir totes les eines dels seus servidors MCP, agafar en préstec els inicis de sessió d&#x27;altres agents si no en té un de propi i reescriure els fitxers de credencials d&#x27;aquests agents en renovar un inici de sessió prestat.</p><p>A Windows, guarda la seva configuració en 5 tipus de fitxers; en 4 d&#x27;ells hi pot haver claus en clar.</p></div>
+</section>
+<section id="mode" class="box panel" aria-labelledby="mode-h">
+<h2 id="mode-h">Mode amb què arrenca</h2>
+<p>Mode inicial: <code>smart</code></p><p>Qui decideix el que, si no, se&#x27;t preguntaria: un altre model d&#x27;IA.</p><p class="note">Les ordres que encaixen amb un patró perillós passen a un model auxiliar que les aprova, les denega o et pregunta. Les altres s&#x27;executen sense preguntar en qualsevol mode, també en manual.</p><p class="note"><a href="https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/website/docs/user-guide/security.md#L57" rel="noopener">Font oficial</a> · consultada el 28 d&#x27;octubre de 2026</p>
+</section>
+<section id="capabilities" aria-labelledby="caps-h">
+<h2 id="caps-h">Què pot fer de sèrie</h2>
+<p class="note">Segons la documentació o el codi font del fabricant, abans que canviïs cap ajust.</p>
+<div class="box tablebox"><table><colgroup><col style="width:15%"><col style="width:19%"><col style="width:15%"><col style="width:33%"><col style="width:18%"></colgroup>
+<thead><tr><th scope="col">Acció</th><th scope="col">On</th><th scope="col">De sèrie</th><th scope="col">Nota</th><th scope="col">Font</th></tr></thead>
+<tbody><tr><th scope="row">Llegir fitxers</th><td data-label="On">Qualsevol ruta</td><td class="keep" data-label="De sèrie">Sense preguntar</td><td data-label="Nota">Només rebutja els magatzems de credencials del mateix Hermes i els fitxers .env.</td><td data-label="Font"><a href="https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/agent/file_safety.py#L335-L414" rel="noopener">Font oficial</a></td></tr><tr><th scope="row">Llegir fitxers</th><td data-label="On">Tot el sistema</td><td class="keep" data-label="De sèrie">Sense preguntar</td><td data-label="Nota">Sense entorn aïllat de sèrie: el terminal s&#x27;executa al teu ordinador.</td><td data-label="Font"><a href="https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/hermes_cli/config_defaults.py#L297-L298" rel="noopener">Font oficial</a></td></tr><tr><th scope="row">Editar fitxers</th><td data-label="On">Qualsevol ruta</td><td class="keep" data-label="De sèrie">Sense preguntar</td><td data-label="Nota">Bloqueja les rutes del sistema, les claus SSH, el config.yaml d&#x27;Hermes i els fitxers de credencials habituals.</td><td data-label="Font"><a href="https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/tools/file_tools_write_guards.py#L166-L179" rel="noopener">Font oficial</a></td></tr><tr><th scope="row">Editar fitxers</th><td data-label="On">Rutes protegides</td><td class="keep" data-label="De sèrie">Pregunta abans</td><td data-label="Nota">AGENTS.md, CLAUDE.md, SOUL.md, .cursorrules i els fitxers .hermes, a qualsevol carpeta, fins i tot amb --yolo.</td><td data-label="Font"><a href="https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/tools/file_tools_write_guards.py#L189-L262" rel="noopener">Font oficial</a></td></tr><tr><th scope="row">Executar ordres</th><td data-label="On">Totes les ordres</td><td class="keep" data-label="De sèrie">Sense preguntar</td><td data-label="Nota">Les ordres que encaixen amb uns 110 patrons perillosos passen abans pel model auxiliar.</td><td data-label="Font"><a href="https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/tools/approval.py#L1165-L1194" rel="noopener">Font oficial</a></td></tr><tr><th scope="row">Connectar-se a internet</th><td data-label="On">Qualsevol destinació</td><td class="keep" data-label="De sèrie">Sense preguntar</td><td data-label="Nota">Sense clau de cerca, les cerques van als nivells gratuïts d&#x27;Exa, Parallel, Firecrawl i Keenable. Bloqueja les adreces privades.</td><td data-label="Font"><a href="https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/hermes_cli/config_defaults.py#L396-L401" rel="noopener">Font oficial</a></td></tr><tr><th scope="row">Fer servir eines MCP</th><td data-label="On">Totes les eines MCP</td><td class="keep" data-label="De sèrie">Sense preguntar</td><td data-label="Nota">Un servidor sense ajust de confiança té confiança total.</td><td data-label="Font"><a href="https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/tools/mcp_tool.py#L519-L533" rel="noopener">Font oficial</a></td></tr><tr><th scope="row">Llegir fitxers</th><td data-label="On">Credencials d&#x27;altres agents</td><td class="keep" data-label="De sèrie">Sense preguntar</td><td data-label="Nota">Si Hermes no té inici de sessió propi, agafa en préstec els de Claude Code i Codex dels seus fitxers de credencials.</td><td data-label="Font"><a href="https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/hermes_cli/config_defaults.py#L1768-L1774" rel="noopener">Font oficial</a></td></tr><tr><th scope="row">Editar fitxers</th><td data-label="On">Credencials d&#x27;altres agents</td><td class="keep" data-label="De sèrie">Sense preguntar</td><td data-label="Nota">En renovar un inici de sessió prestat de Claude Code, escriu al fitxer de credencials de Claude Code; els dos programes es poden deixar sense sessió l&#x27;un a l&#x27;altre.</td><td data-label="Font"><a href="https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/agent/anthropic_credentials.py#L544-L565" rel="noopener">Font oficial</a></td></tr></tbody></table></div>
+<p class="note">«Pregunta abans»: l&#x27;acció necessita aprovació. Qui la dona depèn del mode amb què arrenca.</p>
+</section>
+<section id="storage" aria-labelledby="storage-h">
+<h2 id="storage-h">On guarda configuració i claus</h2>
+<p class="note">Rutes a Windows. &lt;project&gt; és la carpeta de cada projecte.</p>
+<div class="box tablebox"><table><colgroup><col style="width:16%"><col style="width:27%"><col style="width:14%"><col style="width:25%"><col style="width:18%"></colgroup>
+<thead><tr><th scope="col">Què</th><th scope="col">Ruta a Windows</th><th scope="col">Claus</th><th scope="col">Nota</th><th scope="col">Font</th></tr></thead>
+<tbody><tr><th scope="row">Ajustos d&#x27;usuari</th><td data-label="Ruta a Windows"><code>%LOCALAPPDATA%\hermes\config.yaml</code></td><td data-label="Claus">Pot guardar claus en clar</td><td data-label="Nota">També hi desa els servidors MCP.</td><td data-label="Font"><a href="https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/cli-config.yaml.example" rel="noopener">Font oficial</a></td></tr><tr><th scope="row">Credencials del compte</th><td data-label="Ruta a Windows"><code>%LOCALAPPDATA%\hermes\.env</code></td><td data-label="Claus">Claus en clar</td><td data-label="Nota"></td><td data-label="Font"><a href="https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/hermes_constants.py" rel="noopener">Font oficial</a></td></tr><tr><th scope="row">Credencials del compte</th><td data-label="Ruta a Windows"><code>%LOCALAPPDATA%\hermes\auth.json</code></td><td data-label="Claus">Claus en clar</td><td data-label="Nota"></td><td data-label="Font"><a href="https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/hermes_cli/auth.py" rel="noopener">Font oficial</a></td></tr><tr><th scope="row">Credencials del compte</th><td data-label="Ruta a Windows"><code>%LOCALAPPDATA%\hermes\mcp-tokens\</code></td><td data-label="Claus">Claus en clar</td><td data-label="Nota"></td><td data-label="Font"><a href="https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/tools/mcp_oauth.py" rel="noopener">Font oficial</a></td></tr><tr><th scope="row">Instruccions</th><td data-label="Ruta a Windows"><code>%LOCALAPPDATA%\hermes\SOUL.md</code></td><td data-label="Claus">Sense claus</td><td data-label="Nota"></td><td data-label="Font"><a href="https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/agent/prompt_builder.py" rel="noopener">Font oficial</a></td></tr></tbody></table></div>
+</section>
+<section id="rosmarops" class="box panel" aria-labelledby="rosmarops-h">
+<h2 id="rosmarops-h">Què fa RosmarOps amb aquest agent</h2>
+<p>Detectat des de RosmarOps 0.3.0: RosmarOps el troba al teu ordinador, però encara no li posa nota.</p>
+<div class="actions"><a class="btn primary" href="https://github.com/qtorb/rosmarops/releases/latest" target="_blank" rel="noopener">Revisa el teu: descarrega RosmarOps</a></div>
+</section>
+
+<section id="history" aria-labelledby="history-h">
+<h2 id="history-h">Historial de canvis de seguretat</h2>
+<p class="note">Només canvis que afecten el que pot fer al teu ordinador. No s&#x27;esborra res: les correccions queden anotades.</p>
+<p class="empty box">Encara no hi ha canvis de seguretat registrats.</p>
+</section>
+<section id="versions" aria-labelledby="versions-h"><h2 id="versions-h">Versions observades</h2><ul class="plain"><li>0.22.5 · publicada el 22 d&#x27;octubre de 2026 · <a href="https://github.com/NousResearch/hermes-agent/releases/tag/v0.22.5" rel="noopener">Font oficial</a></li></ul></section>
+<section id="sources" aria-labelledby="sources-h">
+<h2 id="sources-h">Fonts i dades</h2>
+<ul class="plain"><li><a href="https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/agent/anthropic_credentials.py#L544-L565" rel="noopener">https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/agent/anthropic_credentials.py#L544-L565</a> · consultada el 28 d&#x27;octubre de 2026</li><li><a href="https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/agent/file_safety.py#L335-L414" rel="noopener">https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/agent/file_safety.py#L335-L414</a> · consultada el 28 d&#x27;octubre de 2026</li><li><a href="https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/agent/prompt_builder.py" rel="noopener">https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/agent/prompt_builder.py</a> · consultada el 28 d&#x27;octubre de 2026</li><li><a href="https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/cli-config.yaml.example" rel="noopener">https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/cli-config.yaml.example</a> · consultada el 28 d&#x27;octubre de 2026</li><li><a href="https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/hermes_cli/auth.py" rel="noopener">https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/hermes_cli/auth.py</a> · consultada el 28 d&#x27;octubre de 2026</li><li><a href="https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/hermes_cli/config_defaults.py#L1768-L1774" rel="noopener">https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/hermes_cli/config_defaults.py#L1768-L1774</a> · consultada el 28 d&#x27;octubre de 2026</li><li><a href="https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/hermes_cli/config_defaults.py#L297-L298" rel="noopener">https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/hermes_cli/config_defaults.py#L297-L298</a> · consultada el 28 d&#x27;octubre de 2026</li><li><a href="https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/hermes_cli/config_defaults.py#L396-L401" rel="noopener">https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/hermes_cli/config_defaults.py#L396-L401</a> · consultada el 28 d&#x27;octubre de 2026</li><li><a href="https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/hermes_constants.py" rel="noopener">https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/hermes_constants.py</a> · consultada el 28 d&#x27;octubre de 2026</li><li><a href="https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/tools/approval.py#L1165-L1194" rel="noopener">https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/tools/approval.py#L1165-L1194</a> · consultada el 28 d&#x27;octubre de 2026</li><li><a href="https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/tools/file_tools_write_guards.py#L166-L179" rel="noopener">https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/tools/file_tools_write_guards.py#L166-L179</a> · consultada el 28 d&#x27;octubre de 2026</li><li><a href="https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/tools/file_tools_write_guards.py#L189-L262" rel="noopener">https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/tools/file_tools_write_guards.py#L189-L262</a> · consultada el 28 d&#x27;octubre de 2026</li><li><a href="https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/tools/mcp_oauth.py" rel="noopener">https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/tools/mcp_oauth.py</a> · consultada el 28 d&#x27;octubre de 2026</li><li><a href="https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/tools/mcp_tool.py#L519-L533" rel="noopener">https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/tools/mcp_tool.py#L519-L533</a> · consultada el 28 d&#x27;octubre de 2026</li><li><a href="https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/website/docs/user-guide/security.md#L57" rel="noopener">https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/website/docs/user-guide/security.md#L57</a> · consultada el 28 d&#x27;octubre de 2026</li><li><a href="https://github.com/NousResearch/hermes-agent/releases/tag/v0.22.5" rel="noopener">https://github.com/NousResearch/hermes-agent/releases/tag/v0.22.5</a> · consultada el 28 d&#x27;octubre de 2026</li><li><a href="/observatory/hermes-agent.json">Aquesta pàgina en JSON</a></li></ul>
+</section>
+
+<section id="reply" aria-labelledby="reply-h">
+<h2 id="reply-h">Rèplica del fabricant</h2>
+<p class="note">No se n&#x27;ha rebut cap. Si el fabricant n&#x27;envia una, es publica aquí, signada i datada, sense canviar res del que hi ha a dalt.</p>
+<p class="note">Veus un error de fet? Avisa&#x27;ns, amb la font: <a href="mailto:legal@rosmarops.com">legal@rosmarops.com</a></p>
+</section>
+
+<p class="disclaimer">Llegit de la documentació i el codi font del fabricant, cada dada amb la seva data i la seva font. No és una garantia de seguretat ni un consell.</p>
+</article>
+</div>
+</div></main>
+
+<footer><div class="wrap">
+<nav><a href="/ca/blog/">Bloc</a><a href="/ca/blog/que-es-rosmarops/">Quant a</a><a href="/ca/observatori/" aria-current="page">Observatori</a><a href="/ca/metodologia/">Metodologia</a><a href="/ca/preguntes-frequents/">Preguntes</a><a href="/observatory/hermes-agent/" hreflang="en" lang="en" aria-label="English">EN</a><a href="/es/observatorio/hermes-agent/" hreflang="es" lang="es" aria-label="Español">ES</a><a href="/ca/privadesa/">Privadesa</a><a href="#" data-cc="show-preferencesModal">Configura les galetes</a></nav>
+</div></footer>
+<script src="/assets/consent/cookieconsent.umd.js?v=3.1.0" defer></script>
+<script src="/assets/consent/consent.js?v=2" defer></script>
+</body>
+</html>

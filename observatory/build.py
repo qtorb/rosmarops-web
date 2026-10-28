@@ -119,7 +119,7 @@ def has_page(a):
 
 # Agent pages are generated for review whenever there is content, but stay noindex,
 # unlinked and out of the deploy until their id is listed here (after product advisor verification).
-PUBLISHED_AGENT_PAGES = {"claude-code", "cursor", "kanvas"}  # verified by the product advisor, ES/CA signed by Albert (2026-10-28)
+PUBLISHED_AGENT_PAGES = {"claude-code", "cursor", "kanvas", "hermes-agent"}  # verified by the product advisor, ES/CA signed by Albert (2026-10-28)
 
 
 def texts(a):
@@ -751,7 +751,7 @@ def build_agent(lang, t, a):
 <p class="note">{t("agent.report_error")} <a href="mailto:{esc(t.text("agent.report_email"))}">{t("agent.report_email")}</a></p>
 </section>
 
-<p class="disclaimer">{t("common.disclaimer")}</p>
+<p class="disclaimer">{t("agent.disclaimer")}</p>
 </article>
 </div>"""
 

@@ -241,6 +241,22 @@
         "official": false,
         "accessed_at": "2026-10-28"
       }
+    },
+    {
+      "id": "sto-credentials",
+      "kind": "account_credentials",
+      "path_windows": "%USERPROFILE%\\.claude\\.credentials.json",
+      "secrets": "plaintext",
+      "note": {
+        "en": "The login from /login; protected only by your user profile's access controls.",
+        "es": "El inicio de sesión de /login; solo lo protegen los permisos de tu perfil de usuario.",
+        "ca": "L'inici de sessió de /login; només el protegeixen els permisos del teu perfil d'usuari."
+      },
+      "source": {
+        "url": "https://code.claude.com/docs/en/authentication",
+        "official": true,
+        "accessed_at": "2026-10-28"
+      }
     }
   ]
 }

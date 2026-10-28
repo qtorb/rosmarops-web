@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hermes Agent on Windows: what it can do on your computer · RosmarOps Observatory</title>
+<meta name="description" content="What Hermes Agent, by Nous Research, can do on your computer by default, where it keeps its configuration and keys, and its dated security changes, each with its source. Reviewed on 28 October 2026.">
+<link rel="canonical" href="https://rosmarops.com/observatory/hermes-agent/">
+<link rel="alternate" hreflang="en" href="https://rosmarops.com/observatory/hermes-agent/">
+<link rel="alternate" hreflang="es" href="https://rosmarops.com/es/observatorio/hermes-agent/">
+<link rel="alternate" hreflang="ca" href="https://rosmarops.com/ca/observatori/hermes-agent/">
+<link rel="alternate" hreflang="x-default" href="https://rosmarops.com/observatory/hermes-agent/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="RosmarOps">
+<meta property="og:title" content="Hermes Agent on Windows: what it can do on your computer · RosmarOps Observatory">
+<meta property="og:description" content="What Hermes Agent, by Nous Research, can do on your computer by default, where it keeps its configuration and keys, and its dated security changes, each with its source. Reviewed on 28 October 2026.">
+<meta property="og:url" content="https://rosmarops.com/observatory/hermes-agent/">
+<meta property="og:locale" content="en_GB">
+<meta property="og:image" content="https://rosmarops.com/assets/brand/observatory/observatory-social.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="author" content="RosmarOps">
+<meta property="article:published_time" content="2026-10-28">
+<meta property="article:modified_time" content="2026-10-28">
+<meta property="og:updated_time" content="2026-10-28">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","@id":"https://rosmarops.com/observatory/hermes-agent/#article","headline":"Hermes Agent on Windows: what it can do on your computer","description":"What Hermes Agent, by Nous Research, can do on your computer by default, where it keeps its configuration and keys, and its dated security changes, each with its source. Reviewed on 28 October 2026.","inLanguage":"en","datePublished":"2026-10-28","dateModified":"2026-10-28","mainEntityOfPage":"https://rosmarops.com/observatory/hermes-agent/","about":{"@type":"SoftwareApplication","name":"Hermes Agent","applicationCategory":"DeveloperApplication","operatingSystem":"Windows, macOS, Linux","author":{"@type":"Organization","name":"Nous Research"}},"publisher":{"@type":"Organization","@id":"https://rosmarops.com/#org","name":"RosmarOps","url":"https://rosmarops.com/"},"isBasedOn":"https://rosmarops.com/observatory/hermes-agent.json"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"RosmarOps","item":"https://rosmarops.com/"},{"@type":"ListItem","position":2,"name":"Observatory","item":"https://rosmarops.com/observatory/"},{"@type":"ListItem","position":3,"name":"Hermes Agent","item":"https://rosmarops.com/observatory/hermes-agent/"}]}</script>
+<link rel="stylesheet" href="/assets/consent/cookieconsent.css?v=3.1.0">
+<link rel="icon" href="/assets/brand/observatory/observatory-favicon.ico" sizes="48x48">
+<link rel="icon" href="/assets/brand/observatory/observatory-favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/brand/observatory/observatory-apple-touch-180.png">
+<style>
+:root{--bg:#F6F5F2;--ink:#1B1A18;--ink2:#3A3833;--muted:#66635D;--line:#E3E0D8;--card:#FFFFFF;--accent:#6F8F78}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+a{color:var(--ink)}a:hover{color:var(--accent)}
+.wrap{max-width:1040px;margin:0 auto;padding:0 16px}
+header .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;padding-top:24px;padding-bottom:24px}
+header img{height:40px;width:auto;display:block}
+nav{display:flex;flex-wrap:wrap;gap:24px;font-size:16px}
+nav a[aria-current]{font-weight:700;text-decoration:none}
+main .wrap{display:flex;flex-direction:column;gap:56px;padding-top:48px;padding-bottom:64px}
+.hero{display:flex;flex-direction:column;gap:20px;max-width:760px}
+.eyebrow{margin:0;font-size:14px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+h1{margin:0;font-size:clamp(34px,6vw,52px);line-height:1.08;font-weight:700;letter-spacing:-.02em}
+.lead{margin:0;font-size:20px;line-height:1.55;color:var(--ink2)}
+.actions{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-flex;align-items:center;min-height:44px;padding:0 20px;border-radius:8px;font-size:16px;text-decoration:none;border:1px solid var(--ink)}
+.btn.primary{background:var(--ink);color:#FFFFFF}.btn.primary:hover{background:var(--ink2);color:#FFFFFF}
+.btn.secondary{background:transparent;color:var(--ink)}
+section{display:flex;flex-direction:column;gap:16px}
+h2{margin:0;font-size:26px;line-height:1.2}
+h3{margin:0;font-size:18px}
+.note{margin:0;font-size:15px;line-height:1.55;color:var(--muted)}
+.box{background:var(--card);border:1px solid var(--line);border-radius:12px}
+.tablebox{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:16px;min-width:760px;table-layout:fixed}
+thead th{text-align:left;font-size:13px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);padding:14px 16px;border-bottom:1px solid var(--line)}
+tbody th{text-align:left;font-weight:700;padding:14px 16px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.45}
+td{padding:14px 16px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.45}
+tr:last-child td,tr:last-child th{border-bottom:0}
+.changes{list-style:none;margin:0;padding:0}
+.changes li{padding:16px;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:6px;line-height:1.5}
+.changes li:last-child{border-bottom:0}
+.changes .meta{margin:0;font-size:14px;color:var(--muted)}
+.changes p{margin:0}
+.empty{margin:0;padding:20px;font-size:16px;line-height:1.55;color:var(--ink2)}
+.trio{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;padding:24px}
+.trio div{display:flex;flex-direction:column;gap:8px}
+.trio p{margin:0;font-size:16px;line-height:1.55;color:var(--ink2)}
+.disclaimer{margin:0;font-size:14px;line-height:1.5;color:var(--muted)}
+.crumbs{margin:0;font-size:14px;color:var(--muted);display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.obs-brand{display:flex;align-items:center;gap:16px;margin:0 0 20px;font-size:22px;font-weight:700;letter-spacing:-.01em;line-height:1.2;color:var(--ink)}
+.obs-brand img{display:block;width:64px;height:64px;flex:none}
+.crumbs img{display:block;width:24px;height:24px;flex:none}
+.layout{display:flex;flex-wrap:wrap;gap:40px;align-items:flex-start}
+.toc{flex:1 1 200px;display:flex;flex-direction:column;gap:8px;font-size:15px}
+.toc p{margin:0 0 4px;font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.article{flex:999 1 600px;min-width:0;display:flex;flex-direction:column;gap:40px}
+.article h1{font-size:clamp(30px,5vw,44px);line-height:1.12}
+.pagemeta{margin:0;font-size:15px;color:var(--muted)}
+.panel{padding:20px;display:flex;flex-direction:column;gap:12px}
+.panel p{margin:0;font-size:16px;line-height:1.55}
+.summary p:not(.eyebrow){font-size:17px}
+.plain li,td,.panel p{overflow-wrap:anywhere}
+td.keep{overflow-wrap:normal;word-break:normal;hyphens:none}
+td code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:14px;overflow-wrap:anywhere}
+.panel code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace}
+.plain{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px;font-size:16px;line-height:1.5}
+footer{border-top:1px solid var(--line)}
+footer .wrap{padding-top:28px;padding-bottom:28px;font-size:15px;color:var(--muted)}
+footer nav{gap:20px;font-size:15px}
+@media (max-width:700px){.obs-brand{gap:12px;margin-bottom:16px;font-size:20px}.obs-brand img{width:48px;height:48px}
+nav{gap:16px}main .wrap{gap:40px;padding-top:32px}.lead{font-size:18px}
+table{min-width:0;table-layout:auto}colgroup,thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+table,tbody,tr,tbody th,td{display:block}
+tbody tr{padding:16px;border-bottom:1px solid var(--line)}tbody tr:last-child{border-bottom:0}
+tbody th{padding:0 0 8px;border:0;font-size:18px}
+td{padding:4px 0;border:0;display:grid;grid-template-columns:minmax(110px,40%) 1fr;gap:12px;font-size:15px}
+td::before{content:attr(data-label);font-size:13px;color:var(--muted)}
+td:empty{display:none}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<a href="/"><img src="/assets/brand/rosmarops-logo.png" srcset="/assets/brand/rosmarops-logo.png 1x, /assets/brand/rosmarops-logo@2x.png 2x" width="512" height="131" alt="RosmarOps"></a>
+<nav><a href="/blog/">Blog</a><a href="/blog/about/">About</a><a href="/observatory/" aria-current="page">Observatory</a><a href="/methodology/">Methodology</a><a href="/faq/">FAQ</a><a href="/es/observatorio/hermes-agent/" hreflang="es" lang="es" aria-label="Español">ES</a><a href="/ca/observatori/hermes-agent/" hreflang="ca" lang="ca" aria-label="Català">CA</a></nav>
+</div></header>
+
+<main><div class="wrap">
+<div class="layout">
+<nav class="toc" aria-label="On this page"><p>On this page</p><a href="#mode">Mode it starts in</a><a href="#capabilities">What it can do by default</a><a href="#storage">Where it keeps configuration and keys</a><a href="#rosmarops">What RosmarOps does with this agent</a><a href="#history">Security change history</a><a href="#versions">Versions observed</a><a href="#sources">Sources and data</a><a href="#reply">Vendor&#x27;s reply</a></nav>
+<article class="article">
+<section>
+<p class="crumbs"><img src="/assets/brand/observatory/observatory-mark.svg" width="24" height="24" alt=""><a href="/observatory/">Observatory</a> › Hermes Agent</p>
+<h1>Hermes Agent on Windows: what it can do on your computer</h1>
+<p class="pagemeta">Nous Research · CLI · Reviewed on 28 October 2026 · Latest version observed: 0.22.5</p>
+<div class="box panel summary"><p class="eyebrow">In short</p><p>As of 28 October 2026, according to its documentation, Hermes Agent starts in the <code>smart</code> mode: another AI model decides what would otherwise be asked.</p><p>By default, without asking, it can read files anywhere with its file tools, read any file on the computer from its shell, edit files anywhere with its file tools, run commands in its shell, reach any web address, use every tool of its MCP servers, borrow other agents&#x27; logins when it has none of its own and rewrite those agents&#x27; credential files when it refreshes a borrowed login.</p><p>It keeps its configuration in 5 kinds of files on Windows; in 4 of them keys can be stored in plain text.</p></div>
+</section>
+<section id="mode" class="box panel" aria-labelledby="mode-h">
+<h2 id="mode-h">Mode it starts in</h2>
+<p>Starting mode: <code>smart</code></p><p>Who decides what would otherwise be asked: another AI model.</p><p class="note">Commands that match a dangerous pattern go to an auxiliary model that approves, denies or asks you. Other commands run without asking in every mode, manual included.</p><p class="note"><a href="https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/website/docs/user-guide/security.md#L57" rel="noopener">Official source</a> · accessed on 28 October 2026</p>
+</section>
+<section id="capabilities" aria-labelledby="caps-h">
+<h2 id="caps-h">What it can do by default</h2>
+<p class="note">According to the vendor&#x27;s documentation or source code, before you change any setting.</p>
+<div class="box tablebox"><table><colgroup><col style="width:15%"><col style="width:19%"><col style="width:15%"><col style="width:33%"><col style="width:18%"></colgroup>
+<thead><tr><th scope="col">Action</th><th scope="col">Where</th><th scope="col">By default</th><th scope="col">Note</th><th scope="col">Source</th></tr></thead>
+<tbody><tr><th scope="row">Read files</th><td data-label="Where">Any path</td><td class="keep" data-label="By default">Without asking</td><td data-label="Note">Only Hermes&#x27; own credential stores and .env files are refused.</td><td data-label="Source"><a href="https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/agent/file_safety.py#L335-L414" rel="noopener">Official source</a></td></tr><tr><th scope="row">Read files</th><td data-label="Where">The whole system</td><td class="keep" data-label="By default">Without asking</td><td data-label="Note">No sandbox by default: the shell runs on your computer.</td><td data-label="Source"><a href="https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/hermes_cli/config_defaults.py#L297-L298" rel="noopener">Official source</a></td></tr><tr><th scope="row">Edit files</th><td data-label="Where">Any path</td><td class="keep" data-label="By default">Without asking</td><td data-label="Note">System paths, SSH keys, Hermes&#x27; config.yaml and common credential files are blocked.</td><td data-label="Source"><a href="https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/tools/file_tools_write_guards.py#L166-L179" rel="noopener">Official source</a></td></tr><tr><th scope="row">Edit files</th><td data-label="Where">Protected paths</td><td class="keep" data-label="By default">Asks first</td><td data-label="Note">AGENTS.md, CLAUDE.md, SOUL.md, .cursorrules and .hermes files, in any folder, even with --yolo.</td><td data-label="Source"><a href="https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/tools/file_tools_write_guards.py#L189-L262" rel="noopener">Official source</a></td></tr><tr><th scope="row">Run commands</th><td data-label="Where">All commands</td><td class="keep" data-label="By default">Without asking</td><td data-label="Note">Commands matching about 110 dangerous patterns go to the auxiliary model first.</td><td data-label="Source"><a href="https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/tools/approval.py#L1165-L1194" rel="noopener">Official source</a></td></tr><tr><th scope="row">Connect to the internet</th><td data-label="Where">Any destination</td><td class="keep" data-label="By default">Without asking</td><td data-label="Note">Without a search key, searches go to the free tiers of Exa, Parallel, Firecrawl and Keenable. Private addresses are blocked.</td><td data-label="Source"><a href="https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/hermes_cli/config_defaults.py#L396-L401" rel="noopener">Official source</a></td></tr><tr><th scope="row">Use MCP tools</th><td data-label="Where">All MCP tools</td><td class="keep" data-label="By default">Without asking</td><td data-label="Note">A server without a trust setting is fully trusted.</td><td data-label="Source"><a href="https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/tools/mcp_tool.py#L519-L533" rel="noopener">Official source</a></td></tr><tr><th scope="row">Read files</th><td data-label="Where">Other agents&#x27; credentials</td><td class="keep" data-label="By default">Without asking</td><td data-label="Note">When Hermes has no login of its own, it borrows the Claude Code and Codex logins from their credential files.</td><td data-label="Source"><a href="https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/hermes_cli/config_defaults.py#L1768-L1774" rel="noopener">Official source</a></td></tr><tr><th scope="row">Edit files</th><td data-label="Where">Other agents&#x27; credentials</td><td class="keep" data-label="By default">Without asking</td><td data-label="Note">When it refreshes a borrowed Claude Code login it writes Claude Code&#x27;s credential file; the two programs can log each other out.</td><td data-label="Source"><a href="https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/agent/anthropic_credentials.py#L544-L565" rel="noopener">Official source</a></td></tr></tbody></table></div>
+<p class="note">«Asks first»: the action needs approval. Who gives it depends on the mode it starts in.</p>
+</section>
+<section id="storage" aria-labelledby="storage-h">
+<h2 id="storage-h">Where it keeps configuration and keys</h2>
+<p class="note">Paths on Windows. &lt;project&gt; is the folder of each project.</p>
+<div class="box tablebox"><table><colgroup><col style="width:16%"><col style="width:27%"><col style="width:14%"><col style="width:25%"><col style="width:18%"></colgroup>
+<thead><tr><th scope="col">What</th><th scope="col">Path on Windows</th><th scope="col">Keys</th><th scope="col">Note</th><th scope="col">Source</th></tr></thead>
+<tbody><tr><th scope="row">User settings</th><td data-label="Path on Windows"><code>%LOCALAPPDATA%\hermes\config.yaml</code></td><td data-label="Keys">Can hold keys in plain text</td><td data-label="Note">Also holds the MCP servers.</td><td data-label="Source"><a href="https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/cli-config.yaml.example" rel="noopener">Official source</a></td></tr><tr><th scope="row">Account credentials</th><td data-label="Path on Windows"><code>%LOCALAPPDATA%\hermes\.env</code></td><td data-label="Keys">Keys in plain text</td><td data-label="Note"></td><td data-label="Source"><a href="https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/hermes_constants.py" rel="noopener">Official source</a></td></tr><tr><th scope="row">Account credentials</th><td data-label="Path on Windows"><code>%LOCALAPPDATA%\hermes\auth.json</code></td><td data-label="Keys">Keys in plain text</td><td data-label="Note"></td><td data-label="Source"><a href="https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/hermes_cli/auth.py" rel="noopener">Official source</a></td></tr><tr><th scope="row">Account credentials</th><td data-label="Path on Windows"><code>%LOCALAPPDATA%\hermes\mcp-tokens\</code></td><td data-label="Keys">Keys in plain text</td><td data-label="Note"></td><td data-label="Source"><a href="https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/tools/mcp_oauth.py" rel="noopener">Official source</a></td></tr><tr><th scope="row">Instructions</th><td data-label="Path on Windows"><code>%LOCALAPPDATA%\hermes\SOUL.md</code></td><td data-label="Keys">No keys</td><td data-label="Note"></td><td data-label="Source"><a href="https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/agent/prompt_builder.py" rel="noopener">Official source</a></td></tr></tbody></table></div>
+</section>
+<section id="rosmarops" class="box panel" aria-labelledby="rosmarops-h">
+<h2 id="rosmarops-h">What RosmarOps does with this agent</h2>
+<p>Detected since RosmarOps 0.3.0: RosmarOps finds it on your computer but doesn&#x27;t score it yet.</p>
+<div class="actions"><a class="btn primary" href="https://github.com/qtorb/rosmarops/releases/latest" target="_blank" rel="noopener">Check yours: download RosmarOps</a></div>
+</section>
+
+<section id="history" aria-labelledby="history-h">
+<h2 id="history-h">Security change history</h2>
+<p class="note">Only changes that affect what it can do on your computer. Nothing is deleted: corrections stay on record.</p>
+<p class="empty box">No security changes recorded yet.</p>
+</section>
+<section id="versions" aria-labelledby="versions-h"><h2 id="versions-h">Versions observed</h2><ul class="plain"><li>0.22.5 · released on 22 October 2026 · <a href="https://github.com/NousResearch/hermes-agent/releases/tag/v0.22.5" rel="noopener">Official source</a></li></ul></section>
+<section id="sources" aria-labelledby="sources-h">
+<h2 id="sources-h">Sources and data</h2>
+<ul class="plain"><li><a href="https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/agent/anthropic_credentials.py#L544-L565" rel="noopener">https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/agent/anthropic_credentials.py#L544-L565</a> · accessed on 28 October 2026</li><li><a href="https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/agent/file_safety.py#L335-L414" rel="noopener">https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/agent/file_safety.py#L335-L414</a> · accessed on 28 October 2026</li><li><a href="https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/agent/prompt_builder.py" rel="noopener">https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/agent/prompt_builder.py</a> · accessed on 28 October 2026</li><li><a href="https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/cli-config.yaml.example" rel="noopener">https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/cli-config.yaml.example</a> · accessed on 28 October 2026</li><li><a href="https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/hermes_cli/auth.py" rel="noopener">https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/hermes_cli/auth.py</a> · accessed on 28 October 2026</li><li><a href="https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/hermes_cli/config_defaults.py#L1768-L1774" rel="noopener">https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/hermes_cli/config_defaults.py#L1768-L1774</a> · accessed on 28 October 2026</li><li><a href="https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/hermes_cli/config_defaults.py#L297-L298" rel="noopener">https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/hermes_cli/config_defaults.py#L297-L298</a> · accessed on 28 October 2026</li><li><a href="https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/hermes_cli/config_defaults.py#L396-L401" rel="noopener">https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/hermes_cli/config_defaults.py#L396-L401</a> · accessed on 28 October 2026</li><li><a href="https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/hermes_constants.py" rel="noopener">https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/hermes_constants.py</a> · accessed on 28 October 2026</li><li><a href="https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/tools/approval.py#L1165-L1194" rel="noopener">https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/tools/approval.py#L1165-L1194</a> · accessed on 28 October 2026</li><li><a href="https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/tools/file_tools_write_guards.py#L166-L179" rel="noopener">https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/tools/file_tools_write_guards.py#L166-L179</a> · accessed on 28 October 2026</li><li><a href="https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/tools/file_tools_write_guards.py#L189-L262" rel="noopener">https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/tools/file_tools_write_guards.py#L189-L262</a> · accessed on 28 October 2026</li><li><a href="https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/tools/mcp_oauth.py" rel="noopener">https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/tools/mcp_oauth.py</a> · accessed on 28 October 2026</li><li><a href="https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/tools/mcp_tool.py#L519-L533" rel="noopener">https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/tools/mcp_tool.py#L519-L533</a> · accessed on 28 October 2026</li><li><a href="https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/website/docs/user-guide/security.md#L57" rel="noopener">https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/website/docs/user-guide/security.md#L57</a> · accessed on 28 October 2026</li><li><a href="https://github.com/NousResearch/hermes-agent/releases/tag/v0.22.5" rel="noopener">https://github.com/NousResearch/hermes-agent/releases/tag/v0.22.5</a> · accessed on 28 October 2026</li><li><a href="/observatory/hermes-agent.json">This page as JSON</a></li></ul>
+</section>
+
+<section id="reply" aria-labelledby="reply-h">
+<h2 id="reply-h">Vendor&#x27;s reply</h2>
+<p class="note">None received. If the vendor sends one, it is published here, signed and dated, without changing anything above.</p>
+<p class="note">See a factual error? Tell us, with the source: <a href="mailto:legal@rosmarops.com">legal@rosmarops.com</a></p>
+</section>
+
+<p class="disclaimer">Read from the vendor&#x27;s documentation and source code, each fact with its date and source. Not a security guarantee or advice.</p>
+</article>
+</div>
+</div></main>
+
+<footer><div class="wrap">
+<nav><a href="/blog/">Blog</a><a href="/blog/about/">About</a><a href="/observatory/" aria-current="page">Observatory</a><a href="/methodology/">Methodology</a><a href="/faq/">FAQ</a><a href="/es/observatorio/hermes-agent/" hreflang="es" lang="es" aria-label="Español">ES</a><a href="/ca/observatori/hermes-agent/" hreflang="ca" lang="ca" aria-label="Català">CA</a><a href="/privacy/">Privacy</a><a href="#" data-cc="show-preferencesModal">Cookie settings</a></nav>
+</div></footer>
+<script src="/assets/consent/cookieconsent.umd.js?v=3.1.0" defer></script>
+<script src="/assets/consent/consent.js?v=2" defer></script>
+</body>
+</html>
