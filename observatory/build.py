@@ -246,6 +246,7 @@ tr:last-child td,tr:last-child th{border-bottom:0}
 .panel{padding:20px;display:flex;flex-direction:column;gap:12px}
 .panel p{margin:0;font-size:16px;line-height:1.55}
 .plain li,td,.panel p{overflow-wrap:anywhere}
+td.keep{overflow-wrap:normal;word-break:normal;hyphens:none}
 td code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:14px;overflow-wrap:anywhere}
 .panel code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace}
 .plain{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px;font-size:16px;line-height:1.5}
@@ -540,8 +541,10 @@ def build_agent(lang, t, a):
     path = agent_path(lang, ag["id"])
     alternates = {l: agent_path(l, ag["id"]) for l in LANGS}
     reviewed = t.date(ag["reviewed_at"])
-    title = t.text("agent.title", agent=ag["name"])
-    desc = t.text("agent.description", agent=ag["name"], vendor=ag["vendor"], date=reviewed)
+    tool = "agent_tooling" in ag["kinds"]
+    sfx = "_tool" if tool else ""
+    title = t.text("agent.title" + sfx, agent=ag["name"])
+    desc = t.text("agent.description" + sfx, agent=ag["name"], vendor=ag["vendor"], date=reviewed)
     st = ag["rosmarops"]
     rosm = t("agent.rosmarops_" + st["status"], version=st.get("since_version", ""))
     lv = latest_version(a)
@@ -585,13 +588,13 @@ def build_agent(lang, t, a):
             "<tr>"
             f'<th scope="row">{t("action." + c["action"])}</th>'
             f'<td data-label="{t("agent.th_scope")}">{t("scope." + c["scope"])}</td>'
-            f'<td data-label="{t("agent.th_default")}">{t("default." + c["default"])}</td>'
+            f'<td class="keep" data-label="{t("agent.th_default")}">{t("default." + c["default"])}</td>'
             f'{note_cell(c)}'
             f'<td data-label="{t("agent.th_source")}">{src_link(c["source"])}</td>'
             "</tr>"
             for c in a["capabilities"]
         )
-        cols = "<colgroup>" + "".join(f'<col style="width:{w}%">' for w in (16, 20, 13, 33, 18)) + "</colgroup>"
+        cols = "<colgroup>" + "".join(f'<col style="width:{w}%">' for w in (15, 19, 15, 33, 18)) + "</colgroup>"
         caps_html = f'''<section id="capabilities" aria-labelledby="caps-h">
 <h2 id="caps-h">{t("agent.caps_h2")}</h2>
 <p class="note">{t("agent.caps_note")}</p>
@@ -659,7 +662,7 @@ def build_agent(lang, t, a):
         toc_items.append(("#capabilities", "agent.caps_h2"))
     if storage_html:
         toc_items.append(("#storage", "agent.storage_h2"))
-    toc_items += [("#rosmarops", "agent.rosmarops_h2"), ("#history", "agent.history_h2")]
+    toc_items += [("#rosmarops", "agent.rosmarops_h2" + sfx), ("#history", "agent.history_h2")]
     if versions_html:
         toc_items.append(("#versions", "agent.versions_h2"))
     toc_items += [("#sources", "agent.sources_h2"), ("#reply", "agent.reply_h2")]
@@ -670,14 +673,14 @@ def build_agent(lang, t, a):
 <article class="article">
 <section>
 <p class="crumbs"><a href="{INDEX_PATH[lang]}">{t("site.nav.observatory")}</a> › {esc(ag["name"])}</p>
-<h1>{t("agent.h1", agent=ag["name"])}</h1>
+<h1>{t("agent.h1" + sfx, agent=ag["name"])}</h1>
 <p class="pagemeta">{meta}</p>
 </section>
 {mode_html}
 {caps_html}
 {storage_html}
 <section id="rosmarops" class="box panel" aria-labelledby="rosmarops-h">
-<h2 id="rosmarops-h">{t("agent.rosmarops_h2")}</h2>
+<h2 id="rosmarops-h">{t("agent.rosmarops_h2" + sfx)}</h2>
 <p>{rosm}</p>
 <div class="actions"><a class="btn primary" href="{esc(t.text("site.download_url"))}" target="_blank" rel="noopener">{t("agent.cta_download")}</a></div>
 </section>
@@ -710,7 +713,7 @@ def build_agent(lang, t, a):
             "@context": "https://schema.org",
             "@type": "TechArticle",
             "@id": url + "#article",
-            "headline": t.text("agent.h1", agent=ag["name"]),
+            "headline": t.text("agent.h1" + sfx, agent=ag["name"]),
             "description": desc,
             "inLanguage": lang,
             "datePublished": published,

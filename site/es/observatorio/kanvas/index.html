@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Kanvas en Windows: qué puede hacer en tu ordenador · Observatorio RosmarOps</title>
-<meta name="description" content="Qué puede hacer de serie Kanvas, de XMihura, en tu ordenador, dónde guarda su configuración y sus claves, y sus cambios de seguridad fechados, cada uno con su fuente. Revisado el 28 de octubre de 2026.">
+<title>Kanvas en Windows: qué deja en tu ordenador · Observatorio RosmarOps</title>
+<meta name="description" content="Qué deja Kanvas, de XMihura, en tu ordenador, dónde y si guarda claves, cada cosa con su fuente. Revisado el 28 de octubre de 2026.">
 <meta name="robots" content="noindex">
 <link rel="canonical" href="https://rosmarops.com/es/observatorio/kanvas/">
 <link rel="alternate" hreflang="en" href="https://rosmarops.com/observatory/kanvas/">
@@ -13,15 +13,15 @@
 <link rel="alternate" hreflang="x-default" href="https://rosmarops.com/observatory/kanvas/">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="RosmarOps">
-<meta property="og:title" content="Kanvas en Windows: qué puede hacer en tu ordenador · Observatorio RosmarOps">
-<meta property="og:description" content="Qué puede hacer de serie Kanvas, de XMihura, en tu ordenador, dónde guarda su configuración y sus claves, y sus cambios de seguridad fechados, cada uno con su fuente. Revisado el 28 de octubre de 2026.">
+<meta property="og:title" content="Kanvas en Windows: qué deja en tu ordenador · Observatorio RosmarOps">
+<meta property="og:description" content="Qué deja Kanvas, de XMihura, en tu ordenador, dónde y si guarda claves, cada cosa con su fuente. Revisado el 28 de octubre de 2026.">
 <meta property="og:url" content="https://rosmarops.com/es/observatorio/kanvas/">
 <meta property="og:locale" content="es_ES">
 <meta property="og:image" content="https://rosmarops.com/assets/brand/rosmarops-social.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","@id":"https://rosmarops.com/es/observatorio/kanvas/#article","headline":"Kanvas en Windows: qué puede hacer en tu ordenador","description":"Qué puede hacer de serie Kanvas, de XMihura, en tu ordenador, dónde guarda su configuración y sus claves, y sus cambios de seguridad fechados, cada uno con su fuente. Revisado el 28 de octubre de 2026.","inLanguage":"es","datePublished":"2026-10-28","dateModified":"2026-10-28","mainEntityOfPage":"https://rosmarops.com/es/observatorio/kanvas/","about":{"@type":"SoftwareApplication","name":"Kanvas","applicationCategory":"DeveloperApplication","operatingSystem":"Windows, macOS, Linux","author":{"@type":"Organization","name":"XMihura"}},"publisher":{"@type":"Organization","@id":"https://rosmarops.com/#org","name":"RosmarOps","url":"https://rosmarops.com/"},"isBasedOn":"https://rosmarops.com/observatory/kanvas.json"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","@id":"https://rosmarops.com/es/observatorio/kanvas/#article","headline":"Kanvas en Windows: qué deja en tu ordenador","description":"Qué deja Kanvas, de XMihura, en tu ordenador, dónde y si guarda claves, cada cosa con su fuente. Revisado el 28 de octubre de 2026.","inLanguage":"es","datePublished":"2026-10-28","dateModified":"2026-10-28","mainEntityOfPage":"https://rosmarops.com/es/observatorio/kanvas/","about":{"@type":"SoftwareApplication","name":"Kanvas","applicationCategory":"DeveloperApplication","operatingSystem":"Windows, macOS, Linux","author":{"@type":"Organization","name":"XMihura"}},"publisher":{"@type":"Organization","@id":"https://rosmarops.com/#org","name":"RosmarOps","url":"https://rosmarops.com/"},"isBasedOn":"https://rosmarops.com/observatory/kanvas.json"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"RosmarOps","item":"https://rosmarops.com/es/"},{"@type":"ListItem","position":2,"name":"Observatorio","item":"https://rosmarops.com/es/observatorio/"},{"@type":"ListItem","position":3,"name":"Kanvas","item":"https://rosmarops.com/es/observatorio/kanvas/"}]}</script>
 <link rel="stylesheet" href="/assets/consent/cookieconsent.css?v=3.1.0">
 <link rel="icon" href="/wp-content/uploads/2026/10/image-1.png">
@@ -75,6 +75,7 @@ tr:last-child td,tr:last-child th{border-bottom:0}
 .panel{padding:20px;display:flex;flex-direction:column;gap:12px}
 .panel p{margin:0;font-size:16px;line-height:1.55}
 .plain li,td,.panel p{overflow-wrap:anywhere}
+td.keep{overflow-wrap:normal;word-break:normal;hyphens:none}
 td code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:14px;overflow-wrap:anywhere}
 .panel code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace}
 .plain{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px;font-size:16px;line-height:1.5}
@@ -99,11 +100,11 @@ td:empty{display:none}}
 
 <main><div class="wrap">
 <div class="layout">
-<nav class="toc" aria-label="En esta página"><p>En esta página</p><a href="#storage">Dónde guarda configuración y claves</a><a href="#rosmarops">Qué hace RosmarOps con este agente</a><a href="#history">Historial de cambios de seguridad</a><a href="#versions">Versiones observadas</a><a href="#sources">Fuentes y datos</a><a href="#reply">Réplica del fabricante</a></nav>
+<nav class="toc" aria-label="En esta página"><p>En esta página</p><a href="#storage">Dónde guarda configuración y claves</a><a href="#rosmarops">Qué hace RosmarOps con esta herramienta</a><a href="#history">Historial de cambios de seguridad</a><a href="#versions">Versiones observadas</a><a href="#sources">Fuentes y datos</a><a href="#reply">Réplica del fabricante</a></nav>
 <article class="article">
 <section>
 <p class="crumbs"><a href="/es/observatorio/">Observatorio</a> › Kanvas</p>
-<h1>Kanvas en Windows: qué puede hacer en tu ordenador</h1>
+<h1>Kanvas en Windows: qué deja en tu ordenador</h1>
 <p class="pagemeta">XMihura · Herramienta de coordinación de agentes, CLI · Revisado el 28 de octubre de 2026 · Última versión observada: 0.4.0</p>
 </section>
 
@@ -116,7 +117,7 @@ td:empty{display:none}}
 <tbody><tr><th scope="row">Ajustes del proyecto</th><td data-label="Ruta en Windows"><code>&lt;project&gt;\kanvas.json</code></td><td data-label="Claves">Sin claves</td><td data-label="Nota">El tablero de tareas que los agentes leen y cambian.</td><td data-label="Fuente"><a href="https://github.com/XMihura/Kanvas#readme" rel="noopener">Fuente oficial</a></td></tr><tr><th scope="row">Instrucciones</th><td data-label="Ruta en Windows"><code>&lt;project&gt;\.agents\skills\kanvas\ and &lt;project&gt;\.claude\skills\kanvas\SKILL.md</code></td><td data-label="Claves">Sin claves</td><td data-label="Nota">Skill de agente con su propia copia de kanvas.py, que los agentes ejecutan.</td><td data-label="Fuente"><a href="https://github.com/XMihura/Kanvas#readme" rel="noopener">Fuente oficial</a></td></tr><tr><th scope="row">Ajustes de usuario</th><td data-label="Ruta en Windows"><code>%LOCALAPPDATA%\Kanvas\boards.json</code></td><td data-label="Claves">Sin claves</td><td data-label="Nota">Tableros abiertos y si están abiertos a otros dispositivos por Tailscale.</td><td data-label="Fuente"><a href="https://github.com/XMihura/Kanvas#readme" rel="noopener">Fuente oficial</a></td></tr></tbody></table></div>
 </section>
 <section id="rosmarops" class="box panel" aria-labelledby="rosmarops-h">
-<h2 id="rosmarops-h">Qué hace RosmarOps con este agente</h2>
+<h2 id="rosmarops-h">Qué hace RosmarOps con esta herramienta</h2>
 <p>RosmarOps todavía no lo lee.</p>
 <div class="actions"><a class="btn primary" href="https://github.com/qtorb/rosmarops/releases/latest" target="_blank" rel="noopener">Revisa el tuyo: descarga RosmarOps</a></div>
 </section>
