@@ -112,6 +112,35 @@ add_action('wp_head', function () {
 	echo '<script type="application/ld+json">' . wp_json_encode($data, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . "</script>\n";
 }, 20);
 
+// The SEO Framework fields, writable over the REST API by editors, so titles and
+// descriptions can be set without the editor screen.
+add_action('init', function () {
+	foreach (['post', 'page'] as $type) {
+		foreach (['_genesis_title', '_genesis_description', '_tsf_title_no_blogname'] as $key) {
+			register_post_meta($type, $key, [
+				'type'          => 'string',
+				'single'        => true,
+				'show_in_rest'  => true,
+				'auth_callback' => function () {
+					return current_user_can('edit_posts');
+				},
+			]);
+		}
+	}
+}, 20);
+
+// The posts page (/blog/, /ca/blog/) prints no heading in GeneratePress: give it its H1.
+add_action('generate_before_main_content', function () {
+	if (!is_home() || is_front_page()) {
+		return;
+	}
+	$id = (int) get_option('page_for_posts');
+	if (!$id) {
+		return;
+	}
+	printf('<header class="page-header"><h1 class="page-title">%s</h1></header>', esc_html(get_the_title($id)));
+});
+
 // robots.txt (served by the main site): also announce the Spanish and Catalan sitemaps.
 add_filter('robots_txt', function ($output) {
 	if (!is_main_site() || strpos($output, '/es/sitemap.xml') !== false) {

@@ -25,3 +25,10 @@ Today it evaluates Claude Code and Cursor on Windows. It detects Cline, GitHub C
 - [About RosmarOps](https://rosmarops.com/blog/about/): where RosmarOps comes from and how to read its blog
 - [Qué es RosmarOps (español)](https://rosmarops.com/es/blog/que-es-rosmarops/): the same page in Spanish
 - [My machine scored 18/100](https://rosmarops.com/blog/my-machine-scored-18-of-100/): first run of RosmarOps on the founder's machine
+- [How the Agent Posture Score works](https://rosmarops.com/blog/how-the-agent-posture-score-works/): the weights and formula, with a synthetic example
+- [RosmarOps 0.3.0](https://rosmarops.com/blog/rosmarops-0-3-0/): detects Codex, Antigravity, Hermes Agent and Claude Desktop, and the keys they keep in plain files
+- [RosmarOps 0.4.0](https://rosmarops.com/blog/rosmarops-0-4-0/): records where each MCP server sends data and warns when that changes
+- [Before you tell your agent "install X from this repo"](https://rosmarops.com/blog/before-you-tell-your-agent-to-install-it/): what an agent-installed tool leaves on your computer, with Kanvas as the example
+- [Observatory data (JSON)](https://rosmarops.com/observatory/data.json): every agent record, with its source and date
+- [RosmarOps program: privacy policy](https://rosmarops.com/privacy/app/): what the program reads, writes and sends (nothing)
+- [Blog en català](https://rosmarops.com/ca/blog/) and [blog en español](https://rosmarops.com/es/blog/)
