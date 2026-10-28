@@ -1,7 +1,7 @@
 {
   "_meta": {
     "lang": "es",
-    "status": "borrador — traducción de en.json; pendiente de verificación del advisor de producto y de la firma de Albert"
+    "status": "verificado por el advisor de producto (2026-10-28); traducción firmada por Albert (2026-10-28)"
   },
   "site.home_url": "/es/",
   "site.nav.blog": "Blog",

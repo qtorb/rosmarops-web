@@ -1,7 +1,7 @@
 {
   "_meta": {
     "lang": "ca",
-    "status": "esborrany — traducció d'en.json; pendent de la verificació de l'advisor de producte i de la signatura d'Albert"
+    "status": "verificat per l'advisor de producte (2026-10-28); traducció signada per Albert (2026-10-28)"
   },
   "site.home_url": "/ca/",
   "site.nav.blog": "Bloc",
