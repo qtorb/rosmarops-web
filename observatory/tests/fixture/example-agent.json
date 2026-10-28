@@ -34,8 +34,16 @@
       "version": "1.2.0",
       "date": "2026-10-20",
       "category": "default_value",
-      "before": "Synthetic test entry: the default mode asked before running commands.",
-      "after": "Synthetic test entry: the default mode runs commands without asking.",
+      "before": {
+        "en": "Synthetic test entry: the default mode asked before running commands.",
+        "es": "Synthetic test entry: the default mode asked before running commands.",
+        "ca": "Synthetic test entry: the default mode asked before running commands."
+      },
+      "after": {
+        "en": "Synthetic test entry: the default mode runs commands without asking.",
+        "es": "Synthetic test entry: the default mode runs commands without asking.",
+        "ca": "Synthetic test entry: the default mode runs commands without asking."
+      },
       "source": {
         "url": "https://example.com/changelog",
         "official": true,
@@ -52,8 +60,16 @@
       "id": "chg-example-mcp-path",
       "date": "2026-10-10",
       "category": "config_path_or_format",
-      "before": "Synthetic test entry: MCP servers in config.json.",
-      "after": "Synthetic test entry: MCP servers in mcp.json.",
+      "before": {
+        "en": "Synthetic test entry: MCP servers in config.json.",
+        "es": "Synthetic test entry: MCP servers in config.json.",
+        "ca": "Synthetic test entry: MCP servers in config.json."
+      },
+      "after": {
+        "en": "Synthetic test entry: MCP servers in mcp.json.",
+        "es": "Synthetic test entry: MCP servers in mcp.json.",
+        "ca": "Synthetic test entry: MCP servers in mcp.json."
+      },
       "source": {
         "url": "https://example.com/docs",
         "official": true,
@@ -67,7 +83,11 @@
       "rosmarops_impact": "none",
       "correction": {
         "at": "2026-10-27",
-        "reason": "Synthetic test entry: the date was wrong."
+        "reason": {
+          "en": "Synthetic test entry: the date was wrong.",
+          "es": "Synthetic test entry: the date was wrong.",
+          "ca": "Synthetic test entry: the date was wrong."
+        }
       }
     }
   ],

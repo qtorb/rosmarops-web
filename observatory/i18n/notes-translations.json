@@ -1,0 +1,87 @@
+{
+  "_meta": {
+    "purpose": "ES and CA translations of the prose fields (note) in claude-code.json, cursor.json and kanvas.json at rosmarops-vigil @ fe82acf, for Albert's signature. The product advisor loads them into the data files (schema v1.3 {en, es, ca}). Not read by the generator.",
+    "status": "proposed by the GTM advisor, 2026-10-28; pending Albert's signature"
+  },
+  "claude-code": {
+    "default_mode": {
+      "en": "Built-in starting permission mode for interactive sessions; in auto mode a model, not the user, decides what would otherwise be asked.",
+      "es": "Modo de permisos inicial integrado para las sesiones interactivas; en modo auto, lo que si no se preguntaría lo decide un modelo, no el usuario.",
+      "ca": "Mode de permisos inicial integrat per a les sessions interactives; en mode auto, el que, si no, es preguntaria ho decideix un model, no l'usuari."
+    },
+    "cap-readonly-commands": {
+      "en": "Built-in read-only shell commands run on any path unless permissions.blockReadsOutsideWorkingDirectories is set.",
+      "es": "Las órdenes de shell de solo lectura integradas se ejecutan en cualquier ruta salvo que esté activado permissions.blockReadsOutsideWorkingDirectories.",
+      "ca": "Les ordres de shell de només lectura integrades s'executen a qualsevol ruta tret que estigui activat permissions.blockReadsOutsideWorkingDirectories."
+    },
+    "cap-protected-paths": {
+      "en": "Writes to protected paths are asked even in modes that otherwise allow edits.",
+      "es": "Las escrituras en rutas protegidas se preguntan incluso en los modos que permiten editar.",
+      "ca": "Les escriptures a rutes protegides es pregunten fins i tot en els modes que permeten editar."
+    },
+    "cap-web-preapproved": {
+      "en": "Web fetches to a built-in list of documentation domains.",
+      "es": "Consultas web a una lista integrada de dominios de documentación.",
+      "ca": "Consultes web a una llista integrada de dominis de documentació."
+    },
+    "sto-user-settings": {
+      "en": "The env block can hold keys.",
+      "es": "El bloque env puede contener claves.",
+      "ca": "El bloc env pot contenir claus."
+    },
+    "sto-mcp-user": {
+      "en": "MCP env and headers blocks can hold keys.",
+      "es": "Los bloques env y headers de MCP pueden contener claves.",
+      "ca": "Els blocs env i headers de MCP poden contenir claus."
+    }
+  },
+  "cursor": {
+    "default_mode": {
+      "en": "Documented as the recommended default since Cursor 3.6; the mode in use is not readable from disk, so this is assumed.",
+      "es": "Documentado como el valor por defecto recomendado desde Cursor 3.6; el modo en uso no se puede leer del disco, así que es una suposición.",
+      "ca": "Documentat com el valor per defecte recomanat des de Cursor 3.6; el mode en ús no es pot llegir del disc, així que és una suposició."
+    },
+    "cap-read-ignored": {
+      "en": "Default ignore patterns that cover credential files, for the file tools only.",
+      "es": "Patrones de exclusión por defecto que cubren ficheros de credenciales, solo para las herramientas de ficheros.",
+      "ca": "Patrons d'exclusió per defecte que cobreixen fitxers de credencials, només per a les eines de fitxers."
+    },
+    "cap-sandbox-read": {
+      "en": "The sandboxed shell's read boundary defaults to the whole system.",
+      "es": "El límite de lectura del shell en sandbox es, por defecto, todo el sistema.",
+      "ca": "El límit de lectura del shell en sandbox és, per defecte, tot el sistema."
+    },
+    "cap-write-workspace": {
+      "en": "Except configuration files.",
+      "es": "Salvo los ficheros de configuración.",
+      "ca": "Excepte els fitxers de configuració."
+    },
+    "cap-network": {
+      "en": "With documented exceptions.",
+      "es": "Con excepciones documentadas.",
+      "ca": "Amb excepcions documentades."
+    },
+    "sto-mcp-user": {
+      "en": "MCP env and headers blocks can hold keys.",
+      "es": "Los bloques env y headers de MCP pueden contener claves.",
+      "ca": "Els blocs env i headers de MCP poden contenir claus."
+    }
+  },
+  "kanvas": {
+    "sto-board": {
+      "en": "The task board that agents read and change.",
+      "es": "El tablero de tareas que los agentes leen y cambian.",
+      "ca": "El tauler de tasques que els agents llegeixen i canvien."
+    },
+    "sto-skill": {
+      "en": "Agent skill with its own copy of kanvas.py, which agents run.",
+      "es": "Skill de agente con su propia copia de kanvas.py, que los agentes ejecutan.",
+      "ca": "Skill d'agent amb la seva pròpia còpia de kanvas.py, que els agents executen."
+    },
+    "sto-boards-state": {
+      "en": "Open boards and whether they are open to other devices over Tailscale.",
+      "es": "Tableros abiertos y si están abiertos a otros dispositivos por Tailscale.",
+      "ca": "Taulers oberts i si estan oberts a altres dispositius per Tailscale."
+    }
+  }
+}

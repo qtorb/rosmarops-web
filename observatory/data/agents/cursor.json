@@ -25,7 +25,9 @@
   "default_mode": {
     "name": "auto_review",
     "who_decides": "another_model",
-    "note": "Documented as the recommended default since Cursor 3.6; the mode in use is not readable from disk, so this is assumed.",
+    "note": {
+      "en": "Documented as the recommended default since Cursor 3.6; the mode in use is not readable from disk, so this is assumed."
+    },
     "source": {
       "url": "https://cursor.com/docs/agent/security/run-modes.md",
       "official": true,
@@ -49,7 +51,9 @@
       "action": "read_files",
       "scope": "ignored_credential_files",
       "default": "deny",
-      "note": "Default ignore patterns that cover credential files, for the file tools only.",
+      "note": {
+        "en": "Default ignore patterns that cover credential files, for the file tools only."
+      },
       "source": {
         "url": "https://cursor.com/docs/reference/ignore-file",
         "official": true,
@@ -61,7 +65,9 @@
       "action": "read_files",
       "scope": "whole_system",
       "default": "allow",
-      "note": "The sandboxed shell's read boundary defaults to the whole system.",
+      "note": {
+        "en": "The sandboxed shell's read boundary defaults to the whole system."
+      },
       "source": {
         "url": "https://cursor.com/docs/reference/sandbox.md",
         "official": true,
@@ -73,7 +79,9 @@
       "action": "write_files",
       "scope": "working_directories",
       "default": "allow",
-      "note": "Except configuration files.",
+      "note": {
+        "en": "Except configuration files."
+      },
       "source": {
         "url": "https://cursor.com/docs/agent/security.md",
         "official": true,
@@ -118,7 +126,9 @@
       "action": "network",
       "scope": "any_destination",
       "default": "ask",
-      "note": "With documented exceptions.",
+      "note": {
+        "en": "With documented exceptions."
+      },
       "source": {
         "url": "https://cursor.com/docs/agent/security.md",
         "official": true,
@@ -132,7 +142,9 @@
       "kind": "mcp_user",
       "path_windows": "%USERPROFILE%\\.cursor\\mcp.json",
       "secrets": "sometimes_plaintext",
-      "note": "MCP env and headers blocks can hold keys.",
+      "note": {
+        "en": "MCP env and headers blocks can hold keys."
+      },
       "source": {
         "url": "https://github.com/qtorb/rosmarops/blob/v0.3.0/adapters/windows/mcp.go",
         "official": false,
@@ -156,8 +168,8 @@
       "path_windows": "%USERPROFILE%\\.cursor\\permissions.json, <project>\\.cursor\\permissions.json",
       "secrets": "none",
       "source": {
-        "url": "https://github.com/qtorb/rosmarops/blob/v0.3.0/adapters/windows/cursor.go",
-        "official": false,
+        "url": "https://cursor.com/docs/reference/permissions",
+        "official": true,
         "accessed_at": "2026-10-28"
       }
     },

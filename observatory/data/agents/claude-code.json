@@ -27,7 +27,9 @@
     "name": "auto",
     "who_decides": "another_model",
     "since_version": "2.1.283",
-    "note": "Built-in starting permission mode for interactive sessions; in auto mode a model, not the user, decides what would otherwise be asked.",
+    "note": {
+      "en": "Built-in starting permission mode for interactive sessions; in auto mode a model, not the user, decides what would otherwise be asked."
+    },
     "source": {
       "url": "https://code.claude.com/docs/en/permission-modes",
       "official": true,
@@ -62,7 +64,9 @@
       "action": "execute_commands",
       "scope": "read_only_commands",
       "default": "allow",
-      "note": "Built-in read-only shell commands run on any path unless permissions.blockReadsOutsideWorkingDirectories is set.",
+      "note": {
+        "en": "Built-in read-only shell commands run on any path unless permissions.blockReadsOutsideWorkingDirectories is set."
+      },
       "source": {
         "url": "https://code.claude.com/docs/en/permissions",
         "official": true,
@@ -96,7 +100,9 @@
       "action": "write_files",
       "scope": "protected_paths",
       "default": "ask",
-      "note": "Writes to protected paths are asked even in modes that otherwise allow edits.",
+      "note": {
+        "en": "Writes to protected paths are asked even in modes that otherwise allow edits."
+      },
       "source": {
         "url": "https://code.claude.com/docs/en/permission-modes#protected-paths",
         "official": true,
@@ -108,7 +114,9 @@
       "action": "network",
       "scope": "preapproved_domains",
       "default": "allow",
-      "note": "Web fetches to a built-in list of documentation domains.",
+      "note": {
+        "en": "Web fetches to a built-in list of documentation domains."
+      },
       "source": {
         "url": "https://code.claude.com/docs/en/permissions",
         "official": true,
@@ -133,10 +141,12 @@
       "kind": "user_settings",
       "path_windows": "%USERPROFILE%\\.claude\\settings.json",
       "secrets": "sometimes_plaintext",
-      "note": "The env block can hold keys.",
+      "note": {
+        "en": "The env block can hold keys."
+      },
       "source": {
-        "url": "https://github.com/qtorb/rosmarops/blob/v0.3.0/adapters/windows/claude_settings.go",
-        "official": false,
+        "url": "https://code.claude.com/docs/en/settings",
+        "official": true,
         "accessed_at": "2026-10-28"
       }
     },
@@ -146,8 +156,8 @@
       "path_windows": "<project>\\.claude\\settings.json",
       "secrets": "sometimes_plaintext",
       "source": {
-        "url": "https://github.com/qtorb/rosmarops/blob/v0.3.0/adapters/windows/claude_settings.go",
-        "official": false,
+        "url": "https://code.claude.com/docs/en/settings",
+        "official": true,
         "accessed_at": "2026-10-28"
       }
     },
@@ -157,8 +167,8 @@
       "path_windows": "<project>\\.claude\\settings.local.json",
       "secrets": "sometimes_plaintext",
       "source": {
-        "url": "https://github.com/qtorb/rosmarops/blob/v0.3.0/adapters/windows/claude_settings.go",
-        "official": false,
+        "url": "https://code.claude.com/docs/en/settings",
+        "official": true,
         "accessed_at": "2026-10-28"
       }
     },
@@ -178,10 +188,12 @@
       "kind": "mcp_user",
       "path_windows": "%USERPROFILE%\\.claude.json",
       "secrets": "sometimes_plaintext",
-      "note": "MCP env and headers blocks can hold keys.",
+      "note": {
+        "en": "MCP env and headers blocks can hold keys."
+      },
       "source": {
-        "url": "https://github.com/qtorb/rosmarops/blob/v0.3.0/adapters/windows/mcp.go",
-        "official": false,
+        "url": "https://code.claude.com/docs/en/settings",
+        "official": true,
         "accessed_at": "2026-10-28"
       }
     },
