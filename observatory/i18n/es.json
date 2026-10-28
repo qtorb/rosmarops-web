@@ -97,7 +97,7 @@
   "who.another_model": "otro modelo de IA",
   "who.nobody": "nadie",
   "agent.caps_h2": "Qué puede hacer de serie",
-  "agent.caps_note": "Según la documentación del fabricante, antes de que cambies ningún ajuste.",
+  "agent.caps_note": "Según la documentación o el código fuente del fabricante, antes de que cambies ningún ajuste.",
   "agent.th_action": "Acción",
   "agent.th_scope": "Dónde",
   "agent.th_default": "De serie",
@@ -173,6 +173,7 @@
   "summary.who.another_model": "lo que si no se te preguntaría lo decide otro modelo de IA",
   "summary.who.nobody": "no se pregunta a nadie",
 
+  "agent.disclaimer": "Leído de la documentación y el código fuente del fabricante, cada dato con su fecha y su fuente. No es una garantía de seguridad ni un consejo.",
   "common.disclaimer": "Observación de configuración en entorno controlado; no es una garantía de seguridad ni asesoramiento.",
   "common.date": "{day} de {month} de {year}",
   "common.months": ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"],

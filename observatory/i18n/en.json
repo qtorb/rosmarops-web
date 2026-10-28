@@ -97,7 +97,7 @@
   "who.another_model": "another AI model",
   "who.nobody": "nobody",
   "agent.caps_h2": "What it can do by default",
-  "agent.caps_note": "According to the vendor's documentation, before you change any setting.",
+  "agent.caps_note": "According to the vendor's documentation or source code, before you change any setting.",
   "agent.th_action": "Action",
   "agent.th_scope": "Where",
   "agent.th_default": "By default",
@@ -173,6 +173,7 @@
   "summary.who.another_model": "another AI model decides what would otherwise be asked",
   "summary.who.nobody": "nobody is asked",
 
+  "agent.disclaimer": "Read from the vendor's documentation and source code, each fact with its date and source. Not a security guarantee or advice.",
   "common.disclaimer": "Observation of configuration in a controlled environment; not a security guarantee or advice.",
   "common.date": "{day} {month} {year}",
   "common.months": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],

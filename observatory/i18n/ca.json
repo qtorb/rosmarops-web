@@ -97,7 +97,7 @@
   "who.another_model": "un altre model d'IA",
   "who.nobody": "ningú",
   "agent.caps_h2": "Què pot fer de sèrie",
-  "agent.caps_note": "Segons la documentació del fabricant, abans que canviïs cap ajust.",
+  "agent.caps_note": "Segons la documentació o el codi font del fabricant, abans que canviïs cap ajust.",
   "agent.th_action": "Acció",
   "agent.th_scope": "On",
   "agent.th_default": "De sèrie",
@@ -173,6 +173,7 @@
   "summary.who.another_model": "el que, si no, se't preguntaria ho decideix un altre model d'IA",
   "summary.who.nobody": "no es pregunta a ningú",
 
+  "agent.disclaimer": "Llegit de la documentació i el codi font del fabricant, cada dada amb la seva data i la seva font. No és una garantia de seguretat ni un consell.",
   "common.disclaimer": "Observació de configuració en entorn controlat; no és una garantia de seguretat ni assessorament.",
   "common.date": "{day} {month} de {year}",
   "common.months": ["de gener", "de febrer", "de març", "d'abril", "de maig", "de juny", "de juliol", "d'agost", "de setembre", "d'octubre", "de novembre", "de desembre"],
