@@ -46,6 +46,27 @@
     if (CookieConsent.acceptedCategory('analytics')) loadGA();
   }
 
+  // download_click (GTM-18): only when GA is loaded, i.e. analytics accepted.
+  // The server-side download counter does not depend on this.
+  var DOWNLOAD_ROUTES = { '/download': 'en', '/es/descargar': 'es', '/ca/descarregar': 'ca' };
+  document.addEventListener('click', function (e) {
+    if (!window.__rosmaropsGA || typeof window.gtag !== 'function') return;
+    if (!CookieConsent.acceptedCategory('analytics')) return;
+    var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
+    if (!a) return;
+    var u;
+    try { u = new URL(a.href, location.href); } catch (err) { return; }
+    if (u.host !== location.host) return;
+    var path = u.pathname.replace(/\/+$/, '');
+    var dlLang = DOWNLOAD_ROUTES[path];
+    if (!dlLang) return;
+    window.gtag('event', 'download_click', {
+      from: u.searchParams.get('from') || 'other',
+      lang: dlLang,
+      transport_type: 'beacon'
+    });
+  }, true);
+
   CookieConsent.run({
     cookie: { name: 'cc_cookie', path: '/', expiresAfterDays: 182, sameSite: 'Lax' },
     guiOptions: {
