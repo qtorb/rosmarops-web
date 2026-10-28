@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://rosmarops.com/schemas/observatory.v1.schema.json",
-  "title": "RosmarOps observatory, one agent file (v1.3: prose fields are {en, es, ca} objects; v1.2: kinds gains agent_tooling; v1.1: optional default_mode, capabilities and storage)",
+  "title": "RosmarOps observatory, one agent file (v1.4: optional default_mode.basis and capabilities[].via; v1.3: prose fields are {en, es, ca} objects; v1.2: kinds gains agent_tooling; v1.1: optional default_mode, capabilities and storage)",
   "description": "One file per agent: data/observatory/agents/<id>.json. No user-facing prose beyond short technical sentences; every fact carries its source and date. Never data from users' machines.",
   "type": "object",
   "additionalProperties": false,
@@ -367,6 +367,13 @@
         },
         "source": {
           "$ref": "#/$defs/source"
+        },
+        "basis": {
+          "enum": [
+            "documented_default",
+            "documented_recommendation"
+          ],
+          "description": "documented_default: the docs state how the agent starts. documented_recommendation: the docs only recommend it and the mode in use cannot be read from disk (assumed). Absent means documented_default."
         }
       }
     },
@@ -423,6 +430,14 @@
           },
           "source": {
             "$ref": "#/$defs/source"
+          },
+          "via": {
+            "enum": [
+              "tools",
+              "shell",
+              "sandboxed_shell"
+            ],
+            "description": "How the agent does it: its own tools, its shell, or its shell inside the sandbox. Optional."
           }
         }
       }

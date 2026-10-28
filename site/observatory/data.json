@@ -283,7 +283,8 @@
           "url": "https://cursor.com/docs/agent/security/run-modes.md",
           "official": true,
           "accessed_at": "2026-10-25"
-        }
+        },
+        "basis": "documented_recommendation"
       },
       "capabilities": [
         {
@@ -327,7 +328,8 @@
             "url": "https://cursor.com/docs/reference/sandbox.md",
             "official": true,
             "accessed_at": "2026-10-25"
-          }
+          },
+          "via": "sandboxed_shell"
         },
         {
           "id": "cap-write-workspace",

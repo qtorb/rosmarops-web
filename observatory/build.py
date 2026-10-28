@@ -588,17 +588,27 @@ def build_agent(lang, t, a):
     dm0 = a.get("default_mode")
     if dm0:
         since = t.text("summary.since", agent=ag["name"], version=dm0["since_version"]) if dm0.get("since_version") else ""
-        summary.append(t("summary.mode", date=t.date(ag["reviewed_at"]), agent=ag["name"], mode=Markup("<code>" + esc(dm0["name"]) + "</code>"), since=since, who=t.text("summary.who." + dm0["who_decides"])))
+        basis = dm0.get("basis", "documented_default")
+        summary.append(t("summary.mode." + basis, date=t.date(ag["reviewed_at"]), agent=ag["name"], mode=Markup("<code>" + esc(dm0["name"]) + "</code>"), since=since, who=t.text("summary.who." + dm0["who_decides"])))
     allow = [c for c in a.get("capabilities", []) if c["default"] == "allow"]
     if allow:
-        items = t.raw("summary.item_sep").join(t.text("summary.item", action=t.text("action." + c["action"]).lower(), scope=t.text("scope." + c["scope"]).lower()) for c in allow)
-        summary.append(t("summary.allow", items=items))
+        frags = []
+        for c in allow:
+            base = "summary.cap." + c["action"] + "." + c["scope"]
+            cand = ([base + "." + c["via"]] if c.get("via") else []) + [base]
+            hit = next((x for x in cand if x in t.c), None)
+            if hit is None:
+                sys.exit(f"{ag['id']}: no «In short» fragment for allow capability {c.get('id')!r} (looked up {', '.join(cand)})")
+            frags.append(t.text(hit))
+        lst = frags[0] if len(frags) == 1 else t.raw("common.list_sep").join(frags[:-1]) + t.raw("summary.list_and") + frags[-1]
+        summary.append(t("summary.allow", list=lst))
     if st_items:
         if tool and not dm0:
-            key = "summary.storage_tool" if k else "summary.storage_tool_nokeys"
-            summary.append(t(key, date=t.date(ag["reviewed_at"]), agent=ag["name"], n=str(len(st_items)), k=str(k)))
+            if k:
+                sys.exit(f"{ag['id']}: agent tooling with keys has no «In short» template")
+            summary.append(t("summary.tooling", date=t.date(ag["reviewed_at"]), agent=ag["name"], n=str(len(st_items))))
         else:
-            key = "summary.storage" if k else "summary.storage_nokeys"
+            key = "summary.storage" if k else "summary.storage_none"
             summary.append(t(key, n=str(len(st_items)), k=str(k)))
     summary_html = ""
     if summary:
