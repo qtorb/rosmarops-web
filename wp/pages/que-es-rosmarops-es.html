@@ -1,0 +1,159 @@
+<!-- wp:paragraph -->
+<p>RosmarOps muestra qué pueden hacer los agentes de IA para programar que tienes en tu ordenador: qué puede leer y cambiar cada uno, qué claves tiene a su alcance, adónde envían datos sus servidores MCP y si un agente puede cambiar la configuración o las instrucciones de otro. Todo se calcula en tu ordenador. Lo hace Albert Garcia Pujadas.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Qué es hoy</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Un programa gratuito para Windows, de código abierto con licencia AGPL-3.0, que se descarga desde GitHub (<a href="https://github.com/qtorb/rosmarops/releases/latest">última versión</a>). Lee la configuración que tus agentes dejan en el disco y te da un informe con un semáforo, «Si solo haces una cosa hoy» y una nota de exposición sobre 100 para cada agente que evalúa.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Hoy evalúa Claude Code y Cursor. Detecta Cline, GitHub Copilot, Continue, Codex, Antigravity, Hermes Agent y Claude Desktop, pero todavía no les pone nota. Más en la <a href="https://rosmarops.com/es/">portada</a>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Lo que nunca hace</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Nunca se conecta a internet. El programa no tiene código de red, ni siquiera para buscar actualizaciones.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Nunca envía telemetría: ni anónima ni voluntaria.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Nunca cambia tus ficheros, ajustes, claves ni agentes. El informe te dice qué cambiar; el cambio lo haces tú.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Nunca muestra una clave entera: solo sus cuatro primeros y cuatro últimos caracteres.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Solo escribe en su propia carpeta (~/.rosmarops/) y en la carpeta de informes que elijas.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>No hace falta que te fíes de nuestra palabra. El <a href="https://github.com/qtorb/rosmarops/blob/master/docs/trust-model.md">modelo de confianza</a> lista cada afirmación y cómo comprobarla. Cada versión trae una atestación de GitHub del commit y el proceso que la compilaron, y compilar esa misma versión desde su código, con la versión de Go y la orden que documentamos, da el mismo programa.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Lo que todavía no hace</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>El programa no está firmado con un certificado de firma de código, así que Windows puede avisarte la primera vez que lo abras.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>No se ha publicado ninguna revisión de seguridad independiente.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Lee la configuración en reposo. No ve lo que hace un agente mientras trabaja, los ajustes que solo viven dentro de una aplicación o en los servidores del fabricante, ni lo que se configura solo en una sesión de terminal. Lo que no pudo leer aparece en el informe y nunca cuenta como limpio.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Solo funciona en Windows.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Qué publicamos</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><a href="https://rosmarops.com/es/observatorio/">El Observatorio</a>: qué puede hacer de serie cada agente de IA para programar en tu ordenador, dónde guarda su configuración y sus claves, y sus cambios de seguridad, cada dato con su fecha y su fuente. Nadie paga por aparecer.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="https://rosmarops.com/es/metodologia/">La metodología</a>: cómo se calcula la nota de exposición y qué no mide.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Este blog: las novedades del producto, en castellano, <a href="https://rosmarops.com/blog/">inglés</a> y <a href="https://rosmarops.com/ca/blog/">catalán</a>.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">De dónde venimos</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>RosmarOps empezó en marzo de 2025 como un blog de investigación alrededor de una pregunta: qué puede hacer un sistema de IA que no esperas, y quién decide lo que lee. Ha publicado más de cien artículos en cuatro líneas:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><a href="https://rosmarops.com/es/blog/seo-adversarial/">SEO adversarial</a> y <a href="https://rosmarops.com/es/blog/ai-seo/">AI SEO</a>: cómo se manipula lo que buscadores y asistentes leen, citan y recomiendan.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="https://rosmarops.com/es/blog/guerra-de-la-informacion-iw/">Guerra de la información</a>: cómo la IA abarata la desinformación y las operaciones de influencia.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="https://rosmarops.com/es/blog/ciberseguridad-en-ia/">Ciberseguridad en IA</a>: ataques a modelos, envenenamiento de datos y prompt injection.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="https://rosmarops.com/es/blog/agentes-autonomia/">Agentes y autonomía</a>: qué cambia cuando la IA deja de responder y empieza a actuar.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>Desde marzo de 2026 el blog se fue centrando en los agentes, porque con los agentes de IA para programar esa pregunta llegó al ordenador de quien construye: un agente lee ficheros, ejecuta órdenes y edita código con tus permisos. De ahí salió el producto. Para ver cómo llegamos ahí:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><a href="https://rosmarops.com/es/blog/el-agente-que-no-sabe-con-quien-habla/">El agente que no sabe con quién habla</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="https://rosmarops.com/es/blog/la-capa-de-inferencia-cuando-aprobar-ya-no-es-lo-mismo-que-decidir/">La capa de inferencia: cuando aprobar ya no es lo mismo que decidir</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="https://rosmarops.com/es/blog/mcp-seguridad-agentes-cadena-suministro-confianza/">MCP no es un plugin: la nueva cadena de suministro de confianza de los agentes</a></li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Quién hay detrás</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>RosmarOps lo hace Albert Garcia Pujadas, que lleva más de 30 años en digital, tecnología y marketing y construye con agentes de IA a diario. Escribe en <a href="https://www.qtorb.com/">qtorb.com</a> y está en <a href="https://www.linkedin.com/in/albertgpujadas/">LinkedIn</a>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Contacto general: <a href="mailto:info@rosmarops.com">info@rosmarops.com</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Para corregir un dato del Observatorio: <a href="mailto:legal@rosmarops.com">legal@rosmarops.com</a>, con la fuente.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Para avisar de un problema de seguridad, o de algo que contradiga el modelo de confianza: en privado por GitHub, como explica la <a href="https://github.com/qtorb/rosmarops/blob/master/SECURITY.md">política de seguridad</a>.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Cómo leer este blog</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Los artículos siguen publicados tal como se escribieron: son el archivo de esa investigación y reflejan su momento. Desde octubre de 2026, aquí se publican también las novedades del producto, en castellano; en inglés, en el <a href="https://rosmarops.com/blog/">blog en inglés</a>.</p>
+<!-- /wp:paragraph -->
