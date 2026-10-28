@@ -70,6 +70,7 @@ jobs:
           put site/es/index.html es/index.html
           put site/llms.txt llms.txt
           put site/sitemap-pages.xml sitemap-pages.xml
+          put site/24a8c2078ff9b0ee590acf6cd5901e32.txt 24a8c2078ff9b0ee590acf6cd5901e32.txt
           -mkdir methodology
           put site/methodology/index.html methodology/index.html
           -mkdir faq
@@ -211,3 +212,14 @@ jobs:
           for u in https://rosmarops.com/ https://rosmarops.com/es/ https://rosmarops.com/blog/ https://rosmarops.com/es/blog/; do
             ! curl -s "$u?deploy=${GITHUB_SHA::7}" | grep -q 'googletagmanager.com/gtag' || (echo "Google tag in HTML of $u"; exit 1)
           done
+
+      - name: Tell Bing and other IndexNow engines what changed (best effort)
+        continue-on-error: true
+        run: |
+          set -eu
+          # Public key by design: https://www.indexnow.org/documentation. Only page addresses are sent.
+          KEY=24a8c2078ff9b0ee590acf6cd5901e32
+          urls=$( { echo https://rosmarops.com/; echo https://rosmarops.com/es/; echo https://rosmarops.com/ca/; echo https://rosmarops.com/llms.txt; grep -o '<loc>[^<]*</loc>' site/sitemap-pages.xml | sed 's/<[^>]*>//g'; } | sort -u | python3 -c 'import json,sys; print(json.dumps([l.strip() for l in sys.stdin if l.strip()]))' )
+          body=$(printf '{"host":"rosmarops.com","key":"%s","keyLocation":"https://rosmarops.com/%s.txt","urlList":%s}' "$KEY" "$KEY" "$urls")
+          code=$(curl -s -o /tmp/indexnow.out -w '%{http_code}' -X POST https://api.indexnow.org/indexnow -H 'Content-Type: application/json; charset=utf-8' --data "$body")
+          echo "IndexNow: HTTP $code for $(printf %s "$urls" | python3 -c 'import json,sys;print(len(json.load(sys.stdin)))') URLs"
