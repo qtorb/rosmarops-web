@@ -1,0 +1,159 @@
+<!-- wp:paragraph -->
+<p>RosmarOps shows what the AI coding agents on your computer can do: what each one can read and change, which keys it can reach, where its MCP servers send data, and whether one agent can change another agent’s configuration or instructions. Everything is computed on your computer. It is made by Albert Garcia Pujadas.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">What it is today</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>A free program for Windows, open source under the AGPL-3.0 licence, that you download from GitHub (<a href="https://github.com/qtorb/rosmarops/releases/latest">latest release</a>). It reads the configuration your agents leave on disk and gives you a report with a traffic light, «If you do only one thing today», and an Agent Posture Score out of 100 for each agent it evaluates.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Today it evaluates Claude Code and Cursor. It detects Cline, GitHub Copilot, Continue, Codex, Antigravity, Hermes Agent and Claude Desktop, but doesn’t score them yet. More on the <a href="https://rosmarops.com/">home page</a>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">What it never does</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>It never connects to the internet. The program contains no networking code, not even to check for updates.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>It never sends telemetry: not anonymous, not opt-in.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>It never changes your files, settings, keys or agents. The report tells you what to change; you make the change.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>It never shows a key in full: only its first and last four characters.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>It only writes in its own folder (~/.rosmarops/) and in the reports folder you choose.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>You don’t have to take our word for it. The <a href="https://github.com/qtorb/rosmarops/blob/master/docs/trust-model.md">trust model</a> lists every claim and how to check it. Each release comes with a GitHub attestation of the commit and workflow that built it, and building the same version from its source, with the Go version and command we document, gives the same program.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">What it doesn’t do yet</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>The program isn’t signed with a code-signing certificate, so Windows may warn you the first time you open it.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>No independent security review has been published.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>It reads configuration at rest. It doesn’t see what an agent does while it runs, settings kept only inside an app or on a vendor’s servers, or anything set only in one terminal session. What it couldn’t read is listed in the report and never counts as clean.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>It runs only on Windows.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">What we publish</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><a href="https://rosmarops.com/observatory/">The Observatory</a>: what each AI coding agent can do on your computer by default, where it keeps its configuration and keys, and its security changes, each fact with its date and source. No one pays to appear.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="https://rosmarops.com/methodology/">The methodology</a>: how the Agent Posture Score is calculated, and what it does not measure.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>This blog: product news, in English, <a href="https://rosmarops.com/es/blog/">Spanish</a> and <a href="https://rosmarops.com/ca/blog/">Catalan</a>.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Where it comes from</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>RosmarOps began in March 2025 as a research blog, in Spanish, around one question: what can an AI system do that you don’t expect, and who decides what it reads. It has published more than a hundred articles along four lines:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><a href="https://rosmarops.com/es/blog/seo-adversarial/">Adversarial SEO</a> and <a href="https://rosmarops.com/es/blog/ai-seo/">AI SEO</a>: how what search engines and assistants read, cite and recommend gets manipulated.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="https://rosmarops.com/es/blog/guerra-de-la-informacion-iw/">Information warfare</a>: how AI makes disinformation and influence operations cheaper.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="https://rosmarops.com/es/blog/ciberseguridad-en-ia/">AI security</a>: attacks on models, data poisoning and prompt injection.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="https://rosmarops.com/es/blog/agentes-autonomia/">Agents and autonomy</a>: what changes when AI stops answering and starts acting.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>From March 2026 the blog focused more and more on agents, because with AI coding agents that question reached the computer of the people who build: an agent reads files, runs commands and edits code with your permissions. The product came out of that. To see how we got there (in Spanish):</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><a href="https://rosmarops.com/es/blog/el-agente-que-no-sabe-con-quien-habla/">El agente que no sabe con quién habla</a> (The agent that doesn’t know who it’s talking to)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="https://rosmarops.com/es/blog/la-capa-de-inferencia-cuando-aprobar-ya-no-es-lo-mismo-que-decidir/">La capa de inferencia</a> (The inference layer: when approving is no longer the same as deciding)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="https://rosmarops.com/es/blog/mcp-seguridad-agentes-cadena-suministro-confianza/">MCP no es un plugin</a> (MCP is not a plugin: agents’ new chain of trust)</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Who is behind it</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>RosmarOps is made by Albert Garcia Pujadas, who has worked in digital, technology and marketing for more than 30 years and builds with AI agents every day. He writes at <a href="https://www.qtorb.com/">qtorb.com</a> and is on <a href="https://www.linkedin.com/in/albertgpujadas/">LinkedIn</a>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>General contact: <a href="mailto:info@rosmarops.com">info@rosmarops.com</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>To correct a fact in the Observatory: <a href="mailto:legal@rosmarops.com">legal@rosmarops.com</a>, with the source.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>To report a security problem, or anything that contradicts the trust model: privately through GitHub, as the <a href="https://github.com/qtorb/rosmarops/blob/master/SECURITY.md">security policy</a> explains.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">How to read this blog</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>The Spanish articles stay published as they were written: they are the archive of that research and reflect their moment. Product news is published <a href="https://rosmarops.com/blog/">here, on the RosmarOps blog</a>, and in Spanish on the <a href="https://rosmarops.com/es/blog/">Spanish blog</a>. The first post: <a href="https://rosmarops.com/blog/my-machine-scored-18-of-100/">I audited my own AI agents. My machine scored 18/100.</a></p>
+<!-- /wp:paragraph -->
