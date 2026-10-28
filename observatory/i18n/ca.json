@@ -173,8 +173,7 @@
   "summary.who.another_model": "el que, si no, se't preguntaria ho decideix un altre model d'IA",
   "summary.who.nobody": "no es pregunta a ningú",
 
-  "agent.disclaimer": "Llegit de la documentació i el codi font del fabricant, cada dada amb la seva data i la seva font. No és una garantia de seguretat ni un consell.",
-  "common.disclaimer": "Observació de configuració en entorn controlat; no és una garantia de seguretat ni assessorament.",
+  "common.disclaimer": "Llegit de la documentació i el codi font del fabricant, cada dada amb la seva data i la seva font. No és una garantia de seguretat ni un consell.",
   "common.date": "{day} {month} de {year}",
   "common.months": ["de gener", "de febrer", "de març", "d'abril", "de maig", "de juny", "de juliol", "d'agost", "de setembre", "d'octubre", "de novembre", "de desembre"],
   "common.list_sep": ", ",

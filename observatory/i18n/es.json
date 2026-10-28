@@ -173,8 +173,7 @@
   "summary.who.another_model": "lo que si no se te preguntaría lo decide otro modelo de IA",
   "summary.who.nobody": "no se pregunta a nadie",
 
-  "agent.disclaimer": "Leído de la documentación y el código fuente del fabricante, cada dato con su fecha y su fuente. No es una garantía de seguridad ni un consejo.",
-  "common.disclaimer": "Observación de configuración en entorno controlado; no es una garantía de seguridad ni asesoramiento.",
+  "common.disclaimer": "Leído de la documentación y el código fuente del fabricante, cada dato con su fecha y su fuente. No es una garantía de seguridad ni un consejo.",
   "common.date": "{day} de {month} de {year}",
   "common.months": ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"],
   "common.list_sep": ", ",

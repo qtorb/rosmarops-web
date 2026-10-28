@@ -751,7 +751,7 @@ def build_agent(lang, t, a):
 <p class="note">{t("agent.report_error")} <a href="mailto:{esc(t.text("agent.report_email"))}">{t("agent.report_email")}</a></p>
 </section>
 
-<p class="disclaimer">{t("agent.disclaimer")}</p>
+<p class="disclaimer">{t("common.disclaimer")}</p>
 </article>
 </div>"""
 

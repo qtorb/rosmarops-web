@@ -173,8 +173,7 @@
   "summary.who.another_model": "another AI model decides what would otherwise be asked",
   "summary.who.nobody": "nobody is asked",
 
-  "agent.disclaimer": "Read from the vendor's documentation and source code, each fact with its date and source. Not a security guarantee or advice.",
-  "common.disclaimer": "Observation of configuration in a controlled environment; not a security guarantee or advice.",
+  "common.disclaimer": "Read from the vendor's documentation and source code, each fact with its date and source. Not a security guarantee or advice.",
   "common.date": "{day} {month} {year}",
   "common.months": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
   "common.list_sep": ", ",
