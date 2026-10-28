@@ -3,7 +3,9 @@ name: Deploy to OVH
 on:
   push:
     branches: [main]
-    paths: ["site/**", "wp/**", "observatory/**", ".github/workflows/deploy.yml"]
+    # Only what is published triggers a deploy: generated pages land in site/, so observatory/ (data,
+    # catalogs, translations) does not trigger one by itself.
+    paths: ["site/**", "wp/**", ".github/workflows/deploy.yml"]
   workflow_dispatch:
 
 permissions:
