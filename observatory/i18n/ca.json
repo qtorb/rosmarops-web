@@ -196,6 +196,7 @@
   "category.credentials": "Credencials",
   "category.telemetry": "Telemetria",
   "category.data_destination": "On s'envien les dades",
+  "category.agent_scope": "Fins on arriba",
 
   "how.official_doc": "la documentació oficial",
   "how.official_changelog": "el registre de canvis oficial",

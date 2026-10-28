@@ -196,6 +196,7 @@
   "category.credentials": "Credentials",
   "category.telemetry": "Telemetry",
   "category.data_destination": "Where data is sent",
+  "category.agent_scope": "What it can reach",
 
   "how.official_doc": "the official documentation",
   "how.official_changelog": "the official changelog",
