@@ -1,6 +1,6 @@
 # RosmarOps
 
-> RosmarOps reads the configuration of the AI coding agents on your Windows computer (macOS in preview) (today Claude Code and Cursor) and draws an exposure map: what each agent can read and change, which keys it can reach, and whether one agent can change another agent's configuration or instructions.
+> RosmarOps reads the configuration of the AI coding agents on your Windows computer (today Claude Code and Cursor; macOS in preview) and draws an exposure map: what each agent can read and change, which keys it can reach, and whether one agent can change another agent's configuration or instructions.
 
 Everything is computed on your computer. It doesn't connect to the internet, doesn't send anything to anyone, and doesn't change anything on your machine: it only writes its own reports to its own folder. If you choose to paste its export into an AI in the cloud, that text leaves your computer because you paste it.
 
