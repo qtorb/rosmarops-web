@@ -35,7 +35,7 @@ jobs:
           php -l wp/mu-plugins/rosmarops-downloads.php
           php -l wp/mu-plugins/rosmarops-daily.php
           ls -l wp/daily/shell-en.html wp/daily/shell-es.html wp/daily/shell-ca.html wp/daily/i18n.json
-          ! grep -RIl 'noindex' site/index.html site/es/index.html site/methodology site/faq site/es/metodologia site/es/preguntas-frecuentes site/ca/index.html site/ca/metodologia site/ca/preguntes-frequents site/ca/privadesa site/observatory/index.html site/es/observatorio/index.html site/ca/observatori/index.html
+          ! grep -RIl 'noindex' site/index.html site/es/index.html site/methodology site/faq site/es/metodologia site/es/preguntas-frecuentes site/ca/index.html site/ca/metodologia site/ca/preguntes-frequents site/ca/privadesa site/macos site/es/macos site/ca/macos site/observatory/index.html site/es/observatorio/index.html site/ca/observatori/index.html
           # Observatory: only the three index pages and the JSON files are published (GTM-11). Agent pages wait for verification.
           ls site/observatory/index.html site/es/observatorio/index.html site/ca/observatori/index.html site/observatory/*.json
 
@@ -92,6 +92,12 @@ jobs:
           put site/ca/preguntes-frequents/index.html ca/preguntes-frequents/index.html
           -mkdir ca/privadesa
           put site/ca/privadesa/index.html ca/privadesa/index.html
+          -mkdir macos
+          put site/macos/index.html macos/index.html
+          -mkdir es/macos
+          put site/es/macos/index.html es/macos/index.html
+          -mkdir ca/macos
+          put site/ca/macos/index.html ca/macos/index.html
           -mkdir assets
           -mkdir assets/consent
           put site/assets/consent/cookieconsent.umd.js assets/consent/cookieconsent.umd.js
@@ -241,7 +247,7 @@ jobs:
         run: |
           set -eu
           sleep 5
-          for u in https://rosmarops.com/ https://rosmarops.com/es/ https://rosmarops.com/llms.txt https://rosmarops.com/methodology/ https://rosmarops.com/faq/ https://rosmarops.com/es/metodologia/ https://rosmarops.com/es/preguntas-frecuentes/ https://rosmarops.com/ca/ https://rosmarops.com/ca/metodologia/ https://rosmarops.com/ca/preguntes-frequents/ https://rosmarops.com/ca/privadesa/ https://rosmarops.com/sitemap-pages.xml https://rosmarops.com/observatory/ https://rosmarops.com/es/observatorio/ https://rosmarops.com/ca/observatori/ https://rosmarops.com/observatory/data.json https://rosmarops.com/observatory/claude-code/ https://rosmarops.com/es/observatorio/cursor/ https://rosmarops.com/ca/observatori/kanvas/; do
+          for u in https://rosmarops.com/ https://rosmarops.com/es/ https://rosmarops.com/llms.txt https://rosmarops.com/methodology/ https://rosmarops.com/faq/ https://rosmarops.com/es/metodologia/ https://rosmarops.com/es/preguntas-frecuentes/ https://rosmarops.com/ca/ https://rosmarops.com/ca/metodologia/ https://rosmarops.com/ca/preguntes-frequents/ https://rosmarops.com/ca/privadesa/ https://rosmarops.com/sitemap-pages.xml https://rosmarops.com/observatory/ https://rosmarops.com/es/observatorio/ https://rosmarops.com/ca/observatori/ https://rosmarops.com/observatory/data.json https://rosmarops.com/observatory/claude-code/ https://rosmarops.com/es/observatorio/cursor/ https://rosmarops.com/ca/observatori/kanvas/ https://rosmarops.com/macos/ https://rosmarops.com/es/macos/ https://rosmarops.com/ca/macos/; do
             code=$(curl -s -o /dev/null -w '%{http_code}' "$u?deploy=${GITHUB_SHA::7}")
             echo "$code $u"; test "$code" = "200"
           done
@@ -271,6 +277,9 @@ jobs:
             h=$(curl -sI "https://rosmarops.com$u?from=home" | tr -d '\r')
             echo "$h" | grep -q '^HTTP/[0-9.]* 302' && echo "$h" | grep -qi '^location: https://github.com/qtorb/rosmarops/releases/latest$' && echo "$h" | grep -qi '^cache-control: no-store' && echo "$u redirects" || (echo "$u does not redirect to the latest release"; exit 1)
           done
+          # Direct download (2026-10-29 decision): ?os=windows goes to the .exe of the latest release.
+          h=$(curl -sI "https://rosmarops.com/download?from=home&os=windows" | tr -d '\r')
+          echo "$h" | grep -q '^HTTP/[0-9.]* 302' && echo "$h" | grep -qi '^location: https://github.com/qtorb/rosmarops/releases/latest/download/rosmarops.exe$' && echo "$h" | grep -qi '^cache-control: no-store' && echo "/download?os=windows redirects to the .exe" || (echo "/download?os=windows does not redirect to the .exe"; exit 1)
           curl -s "https://rosmarops.com/wp-json/rosmarops/v1/downloads?deploy=${GITHUB_SHA::7}" | python3 -c 'import json,sys; d=json.load(sys.stdin); assert set(d)=={"generated_at","rows"} and isinstance(d["rows"],list); print("downloads endpoint ok,", len(d["rows"]), "rows")'
           # Daily synopsis (GTM-23): index pages, RSS and the slash redirect, served by the rosmarops-daily mu-plugin.
           check_page() {
