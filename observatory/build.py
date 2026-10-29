@@ -41,6 +41,12 @@ OG_LOCALE = {"en": "en_GB", "es": "es_ES", "ca": "ca_ES"}
 LANG_NAME = {"en": "English", "es": "Español", "ca": "Català"}
 JSON_BASE = "/observatory/"
 
+# Daily synopsis (GTM-23): pages rendered by wp/mu-plugins/rosmarops-daily.php from these shells.
+DAILY_PATH = {"en": "/observatory/daily/", "es": "/es/observatorio/diario/", "ca": "/ca/observatori/diari/"}
+DAILY_DIR = ROOT / "wp" / "daily"
+DAILY_KEYS = ["common.date", "common.months", "site.observatory_brand",
+              "daily.title", "daily.lead", "daily.empty", "daily.checked_h2", "daily.index_h1", "daily.rss_title", "daily.disclaimer"]
+
 
 # ---------------------------------------------------------------- inputs
 
@@ -284,7 +290,7 @@ def nav_links(t, lang, alternates, current_obs=True):
     return "".join(parts)
 
 
-def page(lang, t, *, path, title, description, alternates, jsonld, body, og_type="website", noindex=None, published=None, modified=None):
+def page(lang, t, *, path, title, description, alternates, jsonld, body, og_type="website", noindex=None, published=None, modified=None, extra_head=None):
     url = BASE + path
     head = [
         "<!doctype html>",
@@ -320,6 +326,7 @@ def page(lang, t, *, path, title, description, alternates, jsonld, body, og_type
         head.append(f'<meta property="article:modified_time" content="{modified}">')
         head.append(f'<meta property="og:updated_time" content="{modified}">')
     head += [ld(j) for j in jsonld]
+    head += list(extra_head or [])
     head += [
         '<link rel="stylesheet" href="/assets/consent/cookieconsent.css?v=3.1.0">',
         '<link rel="icon" href="/assets/brand/observatory/observatory-favicon.ico" sizes="48x48">',
@@ -800,6 +807,9 @@ def build_sitemap(agents):
     alts = "".join(f'<xhtml:link rel="alternate" hreflang="{l}" href="{BASE}{INDEX_PATH[l]}"/>' for l in LANGS)
     alts += f'<xhtml:link rel="alternate" hreflang="x-default" href="{BASE}{INDEX_PATH["en"]}"/>'
     lines = [SM_START] + [f"  <url><loc>{BASE}{INDEX_PATH[l]}</loc><lastmod>{lastmod}</lastmod>{alts}</url>" for l in LANGS]
+    dalts = "".join(f'<xhtml:link rel="alternate" hreflang="{l}" href="{BASE}{DAILY_PATH[l]}"/>' for l in LANGS)
+    dalts += f'<xhtml:link rel="alternate" hreflang="x-default" href="{BASE}{DAILY_PATH["en"]}"/>'
+    lines += [f"  <url><loc>{BASE}{DAILY_PATH[l]}</loc>{dalts}</url>" for l in LANGS]
     for a in agents:
         if not is_published(a):
             continue
@@ -844,6 +854,24 @@ def build_llms(agents, t_en):
     f.write_text(txt, encoding="utf-8")
 
 
+def build_daily_shells(cats):
+    """Page shells and texts for the daily synopsis mu-plugin (GTM-23). Only @@MARKERS@@ are filled in PHP."""
+    DAILY_DIR.mkdir(parents=True, exist_ok=True)
+    alternates = {"en": "@@ALT_EN@@", "es": "@@ALT_ES@@", "ca": "@@ALT_CA@@"}
+    for lang in LANGS:
+        t = T(cats[lang])
+        html_ = page(lang, t, path="@@PATH@@", title="@@TITLE@@", description="@@DESCRIPTION@@",
+                     alternates=alternates, jsonld=[], body="@@BODY@@", noindex=False,
+                     extra_head=['<link rel="alternate" type="application/rss+xml" title="@@RSS_TITLE@@" href="@@RSS_PATH@@">'])
+        for m in ["@@TITLE@@", "@@DESCRIPTION@@", "@@PATH@@", "@@ALT_EN@@", "@@ALT_ES@@", "@@ALT_CA@@", "@@BODY@@", "@@RSS_TITLE@@", "@@RSS_PATH@@"]:
+            if m not in html_:
+                sys.exit(f"daily shell {lang}: marker {m} missing after escaping")
+        (DAILY_DIR / f"shell-{lang}.html").write_text(html_, encoding="utf-8")
+    texts = {l: {k: cats[l][k] for k in DAILY_KEYS} for l in LANGS}
+    texts["_paths"] = DAILY_PATH
+    (DAILY_DIR / "i18n.json").write_text(json.dumps(texts, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
 def build_data(agents):
     for a in agents:
         write(JSON_BASE + a["agent"]["id"] + ".json", json.dumps(a, ensure_ascii=False, indent=2) + "\n")
@@ -856,6 +884,7 @@ def main():
     ap.add_argument("--data", type=Path, default=DATA, help="folder with the agent JSON files")
     ap.add_argument("--out", type=Path, default=SITE, help="output root (default: site/)")
     args = ap.parse_args()
+    default_out = args.out == SITE
     DATA, SITE = args.data, args.out
     cats = load_catalogs()
     agents = load_agents()
@@ -864,6 +893,8 @@ def main():
     build_data(agents)
     build_sitemap(agents)
     build_llms(agents, T(cats["en"]))
+    if default_out:
+        build_daily_shells(cats)
     pages = 0
     for lang in LANGS:
         t = T(cats[lang])

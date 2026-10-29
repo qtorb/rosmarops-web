@@ -209,5 +209,13 @@
 
   "how.official_doc": "la documentació oficial",
   "how.official_changelog": "el registre de canvis oficial",
-  "how.lab_observation": "una observació al nostre laboratori"
+  "how.lab_observation": "una observació al nostre laboratori",
+
+  "daily.title": "Seguretat dels agents avui: {date}",
+  "daily.lead": "Què ha canviat en la seguretat dels agents d'IA de programació que seguim des de l'última revisió, segons les seves fonts oficials i registres públics. Fins a cinc canvis al dia, una línia per canvi, amb la seva font. També hi surten els dies sense canvis.",
+  "daily.empty": "No hem trobat canvis de seguretat en les fonts revisades.",
+  "daily.checked_h2": "Què hem revisat",
+  "daily.index_h1": "La seguretat dels agents, dia a dia",
+  "daily.rss_title": "Observatori de RosmarOps: la seguretat dels agents avui",
+  "daily.disclaimer": "Segons les fonts oficials dels fabricants i registres públics, cada línia amb la seva data i la seva font. No és una garantia de seguretat ni un consell."
 }

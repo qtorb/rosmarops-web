@@ -209,5 +209,13 @@
 
   "how.official_doc": "la documentación oficial",
   "how.official_changelog": "el registro de cambios oficial",
-  "how.lab_observation": "una observación en nuestro laboratorio"
+  "how.lab_observation": "una observación en nuestro laboratorio",
+
+  "daily.title": "Seguridad de los agentes hoy: {date}",
+  "daily.lead": "Qué ha cambiado en la seguridad de los agentes de IA de programación que seguimos desde la última revisión, según sus fuentes oficiales y registros públicos. Hasta cinco cambios al día, una línea por cambio, con su fuente. También aparecen los días sin cambios.",
+  "daily.empty": "No hemos encontrado cambios de seguridad en las fuentes revisadas.",
+  "daily.checked_h2": "Qué hemos revisado",
+  "daily.index_h1": "La seguridad de los agentes, día a día",
+  "daily.rss_title": "Observatorio de RosmarOps: la seguridad de los agentes hoy",
+  "daily.disclaimer": "Según las fuentes oficiales de los fabricantes y registros públicos, cada línea con su fecha y su fuente. No es una garantía de seguridad ni un consejo."
 }

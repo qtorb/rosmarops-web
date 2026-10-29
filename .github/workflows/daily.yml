@@ -1,0 +1,91 @@
+name: Daily synopsis (checks and alerts)
+
+# GTM-23 §7. Checks each daily file pushed to observatory/daily/ and, at 09:30 Madrid, that today's file exists.
+# Alerts go only to albert@rosmarops.com through Postmark. This workflow uploads nothing and has no OVH credentials:
+# the rosmarops-daily mu-plugin fetches the files from this public repository.
+
+on:
+  push:
+    branches: [main]
+    paths: ["observatory/daily/*.json"]
+  schedule:
+    - cron: "30 8 * * *" # 09:30 in Madrid in winter (CET); 10:30 in summer (CEST)
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: daily
+  cancel-in-progress: false
+
+jobs:
+  daily:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install the validator
+        run: pip install "jsonschema[format-nongpl]==4.23.0"
+
+      - name: Decide alerts
+        id: decide
+        env:
+          ALERT_DIR: ${{ runner.temp }}/alerts
+          EVENT: ${{ github.event_name }}
+          BEFORE: ${{ github.event.before }}
+        run: |
+          set -eu
+          if [ "$EVENT" = push ]; then
+            if [ -n "$BEFORE" ] && git cat-file -e "$BEFORE" 2>/dev/null; then
+              files=$(git diff --name-only --diff-filter=AM "$BEFORE" HEAD -- 'observatory/daily/*.json')
+            else
+              files=$(git diff --name-only --diff-filter=AM HEAD~1 HEAD -- 'observatory/daily/*.json')
+            fi
+            echo "changed: $files"
+            n=0
+            if [ -n "$files" ]; then n=$(python observatory/daily_alert.py push $files); fi
+          else
+            today=$(TZ=Europe/Madrid date +%F)
+            if [ -f "observatory/daily/$today.json" ]; then
+              echo "observatory/daily/$today.json exists"; n=0
+            else
+              n=$(python observatory/daily_alert.py missing "$today")
+            fi
+          fi
+          echo "alerts: $n"
+          echo "count=$n" >> "$GITHUB_OUTPUT"
+
+      - name: Send alerts to Albert (Postmark)
+        if: steps.decide.outputs.count != '0'
+        env:
+          POSTMARK_SERVER_TOKEN: ${{ secrets.POSTMARK_SERVER_TOKEN }}
+          ALERT_DIR: ${{ runner.temp }}/alerts
+        run: |
+          set -eu
+          test -n "$POSTMARK_SERVER_TOKEN" || { echo "::error::POSTMARK_SERVER_TOKEN is not set; alerts not sent"; ls "$ALERT_DIR"; exit 1; }
+          for f in "$ALERT_DIR"/*.json; do
+            python - "$f" <<'EOF'
+          import json, sys
+          m = json.load(open(sys.argv[1]))
+          assert m["To"] == "albert@rosmarops.com", "unexpected recipient"
+          EOF
+            code=$(curl -s -o /tmp/pm.out -w '%{http_code}' -X POST https://api.postmarkapp.com/email \
+              -H "Accept: application/json" -H "Content-Type: application/json" \
+              -H "X-Postmark-Server-Token: $POSTMARK_SERVER_TOKEN" --data @"$f")
+            echo "Postmark: HTTP $code for $(basename "$f")"
+            test "$code" = 200 || { cat /tmp/pm.out; exit 1; }
+          done
+
+      - name: Fail the run when a pushed file is invalid
+        if: github.event_name == 'push'
+        run: |
+          set -eu
+          files=$(ls observatory/daily/*.json 2>/dev/null || true)
+          if [ -n "$files" ]; then python observatory/daily_check.py $files; fi
