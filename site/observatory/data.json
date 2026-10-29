@@ -282,7 +282,7 @@
           "status": "evaluated",
           "since_version": "0.1.0"
         },
-        "reviewed_at": "2026-10-28"
+        "reviewed_at": "2026-10-29"
       },
       "versions": [],
       "changes": [],
@@ -291,14 +291,14 @@
         "name": "auto_review",
         "who_decides": "another_model",
         "note": {
-          "en": "Documented as the recommended default since Cursor 3.6; the mode in use is not readable from disk, so this is assumed.",
-          "es": "Documentado como el valor por defecto recomendado desde Cursor 3.6; el modo en uso no se puede leer del disco, así que es una suposición.",
-          "ca": "Documentat com el valor per defecte recomanat des de Cursor 3.6; el mode en ús no es pot llegir del disc, així que és una suposició."
+          "en": "Documented as the recommended default since Cursor 3.6; the mode in use is not readable from disk, so it is assumed. Cursor warns: \"Auto-review is not a security boundary\"; the classifier can allow a call you would have blocked.",
+          "es": "Documentado como valor por defecto recomendado desde Cursor 3.6; el modo en uso no se lee del disco, así que se supone. Cursor advierte: \"Auto-review is not a security boundary\"; el clasificador puede permitir una llamada que habrías bloqueado.",
+          "ca": "Documentat com a valor per defecte recomanat des de Cursor 3.6; el mode en ús no es llegeix del disc, així que se suposa. Cursor adverteix: \"Auto-review is not a security boundary\"; el classificador pot permetre una crida que hauries bloquejat."
         },
         "source": {
           "url": "https://cursor.com/docs/agent/security/run-modes.md",
           "official": true,
-          "accessed_at": "2026-10-25"
+          "accessed_at": "2026-10-29"
         },
         "basis": "documented_recommendation"
       },
@@ -312,6 +312,22 @@
             "url": "https://cursor.com/docs/agent/security.md",
             "official": true,
             "accessed_at": "2026-10-25"
+          }
+        },
+        {
+          "id": "cap-read-outside",
+          "action": "read_files",
+          "scope": "outside_working_directories",
+          "default": "allow",
+          "note": {
+            "en": "Read Access setting (Cursor 3.23 or later). Its default, System, reads outside the workspace without approval, with its file tools and in the sandboxed terminal. With Workspace it asks first, except for paths on its Read Allowlist.",
+            "es": "Ajuste Read Access (Cursor 3.23 o posterior). Por defecto, System lee fuera del espacio de trabajo sin aprobación, con sus herramientas de ficheros y en el terminal en sandbox. Con Workspace pregunta antes, salvo en las rutas de su Read Allowlist.",
+            "ca": "Ajust Read Access (Cursor 3.23 o posterior). Per defecte, System llegeix fora de l'espai de treball sense aprovació, amb les eines de fitxers i al terminal en sandbox. Amb Workspace pregunta abans, excepte a les rutes de la seva Read Allowlist."
+          },
+          "source": {
+            "url": "https://cursor.com/docs/agent/security/run-modes.md",
+            "official": true,
+            "accessed_at": "2026-10-29"
           }
         },
         {
@@ -795,14 +811,14 @@
           "scope": "other_agents_credentials",
           "default": "allow",
           "note": {
-            "en": "When Hermes has no login of its own, it borrows the Claude Code and Codex logins from their credential files.",
-            "es": "Si Hermes no tiene inicio de sesión propio, toma prestados los de Claude Code y Codex de sus ficheros de credenciales.",
-            "ca": "Si Hermes no té inici de sessió propi, agafa en préstec els de Claude Code i Codex dels seus fitxers de credencials."
+            "en": "With no login of its own, Hermes borrows the Claude Code and Codex logins from %USERPROFILE%\\.claude\\.credentials.json and %USERPROFILE%\\.codex\\auth.json (or CLAUDE_CONFIG_DIR, CODEX_HOME). On by default; auth.adopt_external_logins: false turns it off.",
+            "es": "Sin sesión propia, Hermes toma prestadas las de Claude Code y Codex de %USERPROFILE%\\.claude\\.credentials.json y %USERPROFILE%\\.codex\\auth.json (o CLAUDE_CONFIG_DIR, CODEX_HOME). Activado por defecto; auth.adopt_external_logins: false lo desactiva.",
+            "ca": "Sense sessió pròpia, Hermes agafa en préstec les de Claude Code i Codex de %USERPROFILE%\\.claude\\.credentials.json i %USERPROFILE%\\.codex\\auth.json (o CLAUDE_CONFIG_DIR, CODEX_HOME). Activat per defecte; auth.adopt_external_logins: false el desactiva."
           },
           "source": {
             "url": "https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/hermes_cli/config_defaults.py#L1768-L1774",
             "official": true,
-            "accessed_at": "2026-10-28"
+            "accessed_at": "2026-10-29"
           }
         },
         {

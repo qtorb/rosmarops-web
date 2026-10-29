@@ -156,6 +156,7 @@
   "summary.storage_none": "En Windows, guarda su configuración en {n} tipos de ficheros, ninguno con claves.",
   "summary.tooling": "A {date}, {agent} deja {n} tipos de ficheros en tu ordenador, ninguno con claves.",
   "summary.cap.read_files.working_directories": "leer ficheros de las carpetas en las que trabaja",
+  "summary.cap.read_files.outside_working_directories": "leer ficheros fuera de las carpetas en las que trabaja",
   "summary.cap.read_files.whole_system.sandboxed_shell": "leer cualquier fichero del ordenador desde su shell en sandbox",
   "summary.cap.write_files.working_directories": "editar ficheros de las carpetas en las que trabaja",
   "summary.cap.execute_commands.read_only_commands": "ejecutar órdenes de solo lectura",
