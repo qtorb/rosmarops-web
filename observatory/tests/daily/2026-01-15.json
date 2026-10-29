@@ -1,0 +1,37 @@
+{
+  "date": "2026-01-15",
+  "reviewed_at": "2026-01-15T07:20:00Z",
+  "status": "published",
+  "items": [
+    {
+      "source_url": "https://osv.dev/vulnerability/MAL-2026-1",
+      "source_date": "2026-01-14",
+      "subject": "example-mcp-package",
+      "identifier": "MAL-2026-1",
+      "text": {
+        "en": "On 14 January 2026 the npm package example-mcp-package 1.0.2 was listed as malicious in OSV as MAL-2026-1.",
+        "es": "El 14 de enero de 2026 el paquete de npm example-mcp-package 1.0.2 se registró como malicioso en OSV como MAL-2026-1.",
+        "ca": "El 14 de gener de 2026 el paquet de npm example-mcp-package 1.0.2 es va registrar com a maliciós a OSV com a MAL-2026-1."
+      }
+    },
+    {
+      "source_url": "https://github.com/example/example-agent/releases/tag/v2.4.0",
+      "source_date": "2026-01-14",
+      "subject": "Example Agent",
+      "identifier": null,
+      "text": {
+        "en": "Example Agent 2.4.0, released on 14 January 2026, asks before running commands outside the project folder.",
+        "es": "Example Agent 2.4.0, publicado el 14 de enero de 2026, pregunta antes de ejecutar órdenes fuera de la carpeta del proyecto.",
+        "ca": "Example Agent 2.4.0, publicat el 14 de gener de 2026, pregunta abans d'executar ordres fora de la carpeta del projecte."
+      }
+    }
+  ],
+  "checked": [
+    {"name": "Example Agent releases", "url": "https://github.com/example/example-agent/releases", "latest_seen": "2.4.0", "latest_date": "2026-01-14"},
+    {"name": "OSV malicious packages (npm)", "url": "https://osv.dev/list?ecosystem=npm", "latest_seen": "", "latest_date": null}
+  ],
+  "held": [
+    {"text_en": "A third-party blog says Example Agent leaks data.", "source_url": "https://blog.example.net/post", "rule": 1, "reason": "source is not official"}
+  ],
+  "summary_ref": "docs/observatorio/2026-01-15.md"
+}
