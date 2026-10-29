@@ -68,7 +68,7 @@ footer nav{gap:20px;font-size:15px}
 <main><div class="wrap">
 <section class="hero">
 <h1>What your AI agents can do on your machine.</h1>
-<p class="lead">RosmarOps reads the configuration of your AI coding agents (today Claude Code and Cursor) and draws an exposure map: what each agent can read and change, which keys it can reach, and whether one agent can change another agent's configuration or instructions. Everything is computed on your computer.</p>
+<p class="lead">An AI agent works with your permissions: it can read your files, run programs and reach the keys of the services you have connected. RosmarOps shows how far each agent on your computer reaches, and whether one can change what another one does: an exposure map, computed on your computer. Today it scores Claude Code and Cursor.</p>
 <div class="dl"><a class="btn" href="/download?from=home&amp;os=windows" target="_blank" rel="nofollow noopener">Download for Windows</a><a class="btn" href="/macos/">Download for Mac (preview)</a><p class="dl-note">Free and open source (AGPL-3.0). <a href="https://github.com/qtorb/rosmarops#check-the-download" target="_blank" rel="noopener">How to check it's authentic</a></p></div>
 </section>
 
@@ -84,10 +84,10 @@ footer nav{gap:20px;font-size:15px}
 <div class="card">
 <h2>What you get</h2>
 <ul>
-<li>A traffic light.</li>
+<li>A traffic light for each agent it scores: red, yellow or green.</li>
 <li>"If you do only one thing today": the exact file and change, and how much your score would rise if you make it.</li>
-<li>The Agent Posture Score: out of 100, one per agent, calculated with a versioned formula; when the formula changes, the report says so.</li>
-<li>What wasn't read doesn't count as clean.</li>
+<li>The Agent Posture Score: from 0 to 100 for each agent it scores, where higher is better. It measures how much the agent can reach with the permissions it has today, with a public formula; when the formula changes, the report says so.</li>
+<li>What wasn't read doesn't count as clean: if it couldn't read something, the report says so instead of hiding it.</li>
 <li>RosmarOps suggests; you make the change.</li>
 </ul>
 </div>
@@ -95,7 +95,7 @@ footer nav{gap:20px;font-size:15px}
 
 <section class="status">
 <h2>Where it stands</h2>
-<p>Today it evaluates Claude Code and Cursor on Windows. It detects Cline, GitHub Copilot, Continue, Codex, Antigravity, Hermes Agent and Claude Desktop, but doesn't score them yet.</p>
+<p>Today it scores Claude Code and Cursor on Windows. On Windows you open it with a double click, and the report appears in your browser within a few minutes. It also finds Cline, GitHub Copilot, Continue, Codex, Antigravity, Hermes Agent and Claude Desktop, but doesn't score them yet.</p>
 <p>It can be downloaded from GitHub, for Windows, and for macOS in preview. Each release comes with its SHA-256 checksum, a GitHub attestation and a build anyone can reproduce: <a href="https://github.com/qtorb/rosmarops#check-the-download" target="_blank" rel="noopener">how to check it</a>.</p>
 </section>
 </div></main>
