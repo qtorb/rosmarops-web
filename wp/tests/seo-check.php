@@ -18,7 +18,7 @@ function check($cond, $msg) { if (!$cond) { fwrite(STDERR, "FAIL $msg\n"); exit(
 
 $wp = "User-agent: *\nDisallow: /wp-admin/\nAllow: /wp-admin/admin-ajax.php\n\nSitemap: https://rosmarops.com/sitemap.xml\n";
 $r = rosmarops_robots_txt($wp);
-check(strpos($r, "User-agent: *\nDisallow: /download\nDisallow: /es/descargar\nDisallow: /ca/descarregar\nDisallow: /wp-admin/") !== false, 'robots: download routes disallowed under User-agent: *');
+check(strpos($r, "User-agent: *\nDisallow: /download\nDisallow: /es/descargar\nDisallow: /ca/descarregar\nDisallow: /sample-report/sample-report\nDisallow: /wp-admin/") !== false, 'robots: download routes disallowed under User-agent: *');
 check(substr_count($r, 'Sitemap: https://rosmarops.com/es/sitemap.xml') === 1 && strpos($r, 'Sitemap: https://rosmarops.com/sitemap-pages.xml') !== false, 'robots: sitemaps announced once');
 check(rosmarops_robots_txt($r) === $r, 'robots: idempotent');
 

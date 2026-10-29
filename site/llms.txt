@@ -1,6 +1,6 @@
 # RosmarOps
 
-> RosmarOps reads the configuration of the AI coding agents on your Windows computer (today Claude Code and Cursor; macOS in preview) and draws an exposure map: what each agent can read and change, which keys it can reach, and whether one agent can change another agent's configuration or instructions.
+> RosmarOps reads the configuration of the AI coding agents on your Windows computer (today Claude Code, Cursor and Hermes Agent; macOS in preview) and draws an exposure map: what each agent can read and change, which keys it can reach, and whether one agent can change another agent's configuration or instructions.
 
 Everything is computed on your computer. It doesn't connect to the internet, doesn't send anything to anyone, and doesn't change anything on your machine: it only writes its own reports to its own folder. If you choose to paste its export into an AI in the cloud, that text leaves your computer because you paste it.
 
@@ -24,9 +24,9 @@ Today it evaluates Claude Code and Cursor on Windows. It detects Cline, GitHub C
 - Observatory: what each AI coding agent can do on your computer, with dated, sourced data: https://rosmarops.com/observatory/
 - [Observatorio (español)](https://rosmarops.com/es/observatorio/) and [observatori (català)](https://rosmarops.com/ca/observatori/)
 <!-- observatory agents:start -->
+- [Hermes Agent on Windows: what it can do on your computer](https://rosmarops.com/observatory/hermes-agent/): observatory page, with its data at https://rosmarops.com/observatory/hermes-agent.json
 - [Claude Code on Windows: what it can do on your computer](https://rosmarops.com/observatory/claude-code/): observatory page, with its data at https://rosmarops.com/observatory/claude-code.json
 - [Cursor on Windows: what it can do on your computer](https://rosmarops.com/observatory/cursor/): observatory page, with its data at https://rosmarops.com/observatory/cursor.json
-- [Hermes Agent on Windows: what it can do on your computer](https://rosmarops.com/observatory/hermes-agent/): observatory page, with its data at https://rosmarops.com/observatory/hermes-agent.json
 - [Kanvas on Windows: what it leaves on your computer](https://rosmarops.com/observatory/kanvas/): observatory page, with its data at https://rosmarops.com/observatory/kanvas.json
 <!-- observatory agents:end -->
 - [About RosmarOps](https://rosmarops.com/blog/about/): where RosmarOps comes from and how to read its blog
