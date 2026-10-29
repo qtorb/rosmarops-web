@@ -29,7 +29,7 @@ jobs:
         run: |
           set -eu
           # Only these files are published. Nothing else on the server is touched or deleted.
-          ls -l site/index.html site/es/index.html site/llms.txt site/assets/consent/* site/assets/brand/* wp/htaccess-https.txt wp/mu-plugins/rosmarops-consent.php
+          ls -l site/index.html site/es/index.html site/llms.txt site/assets/consent/* site/assets/brand/* wp/htaccess-https.txt wp/htaccess-slash.txt wp/mu-plugins/rosmarops-consent.php
           php -l wp/mu-plugins/rosmarops-consent.php
           php -l wp/mu-plugins/rosmarops-seo.php
           php -l wp/mu-plugins/rosmarops-downloads.php
@@ -191,6 +191,52 @@ jobs:
             exit 1
           fi
 
+      - name: Folder slash in .htaccess (once, with automatic rollback)
+        env:
+          SFTP_HOST: ${{ vars.OVH_SFTP_HOST }}
+          SFTP_USER: ${{ vars.OVH_SFTP_USER }}
+          SFTP_PATH: ${{ vars.OVH_SITE_PATH }}
+          SSHPASS: ${{ secrets.OVH_SFTP_PASSWORD }}
+        run: |
+          set -eu
+          SFTP_HOST=$(printf %s "$SFTP_HOST" | tr -d '[:space:]')
+          SFTP_USER=$(printf %s "$SFTP_USER" | tr -d '[:space:]')
+          SFTP_PATH=$(printf %s "$SFTP_PATH" | tr -d '[:space:]')
+          sftp_run() {
+            sshpass -e sftp -o BatchMode=no -b "$1" \
+              -o StrictHostKeyChecking=yes \
+              -o UserKnownHostsFile="$HOME/.ssh/known_hosts" \
+              -o PreferredAuthentications=password,keyboard-interactive \
+              -o PubkeyAuthentication=no \
+              "$SFTP_USER@$SFTP_HOST"
+          }
+          printf 'cd %s\nget .htaccess /tmp/ht.current\n' "$SFTP_PATH" > /tmp/b1
+          sftp_run /tmp/b1
+          # The file's content is never printed: the repository and its logs are public.
+          if grep -q 'BEGIN RosmarOps SLASH' /tmp/ht.current; then
+            echo "Slash block already present; nothing to do."
+            exit 0
+          fi
+          { cat wp/htaccess-slash.txt; echo; cat /tmp/ht.current; } > /tmp/ht.new
+          printf 'cd %s\nput /tmp/ht.current .htaccess.pre-slash\nput /tmp/ht.new .htaccess\n' "$SFTP_PATH" > /tmp/b2
+          sftp_run /tmp/b2
+          sleep 5
+          ok=yes
+          for u in https://rosmarops.com/ https://rosmarops.com/es/ https://rosmarops.com/blog/ https://rosmarops.com/es/blog/ https://rosmarops.com/wp-login.php; do
+            code=$(curl -s -o /dev/null -w '%{http_code}' "$u")
+            echo "$code $u"; [ "$code" = "200" ] || ok=no
+          done
+          loc=$(curl -s -o /dev/null -w '%{http_code} %{redirect_url}' "http://rosmarops.com/blog/?x=1")
+          echo "http -> $loc"; [ "$loc" = "301 https://rosmarops.com/blog/?x=1" ] || ok=no
+          loc=$(curl -s -o /dev/null -w '%{http_code} %{redirect_url}' "https://rosmarops.com/faq")
+          echo "slash -> $loc"; [ "$loc" = "301 https://rosmarops.com/faq/" ] || ok=no
+          if [ "$ok" != yes ]; then
+            printf 'cd %s\nput /tmp/ht.current .htaccess\n' "$SFTP_PATH" > /tmp/b3
+            sftp_run /tmp/b3
+            echo "::error::Slash redirect check failed; the previous .htaccess was restored."
+            exit 1
+          fi
+
       - name: Verify live
         run: |
           set -eu
@@ -238,6 +284,10 @@ jobs:
           echo "$h" | grep -q '^HTTP/[0-9.]* 200' && echo "$h" | grep -qi '^content-type: application/rss+xml' && echo "daily feed ok" || (echo "daily feed missing"; exit 1)
           h=$(curl -sI "https://rosmarops.com/observatory/daily" | tr -d '\r')
           echo "$h" | grep -q '^HTTP/[0-9.]* 301' && echo "$h" | grep -qi '^location: https://rosmarops.com/observatory/daily/$' && echo "daily slash redirect ok" || (echo "daily slash redirect wrong"; exit 1)
+          # GTM-21: linked founder on the homes, llms.txt entries, download routes out of robots.
+          curl -s "https://rosmarops.com/ca/?deploy=${GITHUB_SHA::7}" | grep -q '"@id": "https://rosmarops.com/#founder"' && echo "CA founder ok" || (echo "CA home lacks #founder"; exit 1)
+          curl -s "https://rosmarops.com/llms.txt?deploy=${GITHUB_SHA::7}" | grep -q '/blog/rosmarops-is-out/' && echo "llms.txt ok" || (echo "llms.txt lacks the launch post"; exit 1)
+          curl -s "https://rosmarops.com/robots.txt?deploy=${GITHUB_SHA::7}" | grep -q '^Disallow: /download$' && echo "robots disallows /download" || (echo "robots.txt lacks Disallow: /download"; exit 1)
           # Nothing from Google may be in the HTML before consent.
           for u in https://rosmarops.com/ https://rosmarops.com/es/ https://rosmarops.com/blog/ https://rosmarops.com/es/blog/; do
             ! curl -s "$u?deploy=${GITHUB_SHA::7}" | grep -q 'googletagmanager.com/gtag' || (echo "Google tag in HTML of $u"; exit 1)

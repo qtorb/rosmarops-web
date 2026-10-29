@@ -738,7 +738,7 @@ def build_agent(lang, t, a):
 <section id="rosmarops" class="box panel" aria-labelledby="rosmarops-h">
 <h2 id="rosmarops-h">{t("agent.rosmarops_h2" + sfx)}</h2>
 <p>{rosm}</p>
-<div class="actions"><a class="btn primary" href="{esc(t.text("site.download_url") + "?from=observatory-" + ag["id"])}" target="_blank" rel="noopener">{t("agent.cta_download")}</a></div>
+<div class="actions"><a class="btn primary" href="{esc(t.text("site.download_url") + ("?from=observatory-" + ag["id"] if is_published(a) else ""))}" target="_blank" rel="nofollow noopener">{t("agent.cta_download")}</a></div>
 </section>
 
 <section id="history" aria-labelledby="history-h">
