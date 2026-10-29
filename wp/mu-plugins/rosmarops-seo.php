@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: RosmarOps SEO
- * Description: hreflang between the EN, ES and CA versions of a post or page, BlogPosting structured data on posts, and the Spanish and Catalan sitemaps in robots.txt. Versioned in qtorb/rosmarops-web; do not edit on the server.
+ * Description: hreflang between the EN, ES and CA versions of a post or page, BlogPosting structured data on posts, the Spanish and Catalan sitemaps and the download routes (Disallow) in robots.txt; IndexNow ping on publish. Versioned in qtorb/rosmarops-web; do not edit on the server.
  */
 
 if (!defined('ABSPATH')) {
@@ -76,6 +76,20 @@ add_action('wp_head', function () {
 	}
 }, 5);
 
+// The founder, the same Person as on the homes and the About pages (#founder).
+function rosmarops_author($name) {
+	if ($name !== 'Albert Garcia Pujadas') {
+		return ['@type' => 'Person', 'name' => $name];
+	}
+	return [
+		'@type'  => 'Person',
+		'@id'    => 'https://rosmarops.com/#founder',
+		'name'   => 'Albert Garcia Pujadas',
+		'url'    => 'https://www.qtorb.com/',
+		'sameAs' => ['https://www.qtorb.com/', 'https://www.linkedin.com/in/albertgpujadas/', 'https://x.com/qtorb'],
+	];
+}
+
 // BlogPosting structured data on single posts.
 add_action('wp_head', function () {
 	if (!is_singular('post')) {
@@ -93,10 +107,7 @@ add_action('wp_head', function () {
 		'dateModified'     => get_the_modified_date('c', $p),
 		'inLanguage'       => rosmarops_lang(),
 		'mainEntityOfPage' => $url,
-		'author'           => [
-			'@type' => 'Person',
-			'name'  => get_the_author_meta('display_name', $p->post_author),
-		],
+		'author'           => rosmarops_author(get_the_author_meta('display_name', $p->post_author)),
 		'publisher'        => [
 			'@type' => 'Organization',
 			'@id'   => 'https://rosmarops.com/#org',
@@ -182,10 +193,42 @@ add_action('generate_before_main_content', function () {
 	printf('<header class="page-header"><h1 class="page-title">%s</h1></header>', esc_html(get_the_title($id)));
 });
 
-// robots.txt (served by the main site): also announce the Spanish and Catalan sitemaps.
-add_filter('robots_txt', function ($output) {
+// robots.txt (served by the main site): the download routes are not for crawlers (they would be counted as
+// downloads, GTM-18), and the Spanish, Catalan and static-page sitemaps are announced.
+function rosmarops_robots_txt($output) {
 	if (!is_main_site() || strpos($output, '/es/sitemap.xml') !== false) {
 		return $output;
 	}
+	$disallow = "Disallow: /download\nDisallow: /es/descargar\nDisallow: /ca/descarregar\n";
+	if (preg_match('/^User-agent: \*\R/m', $output)) {
+		$output = preg_replace('/^(User-agent: \*\R)/m', '$1' . $disallow, $output, 1);
+	} else {
+		$output = "User-agent: *\n" . $disallow . "\n" . $output;
+	}
 	return rtrim($output) . "\nSitemap: https://rosmarops.com/es/sitemap.xml\nSitemap: https://rosmarops.com/ca/sitemap.xml\nSitemap: https://rosmarops.com/sitemap-pages.xml\n";
-}, 20);
+}
+add_filter('robots_txt', 'rosmarops_robots_txt', 20);
+
+// IndexNow (GTM-21): tell Bing and the other IndexNow engines when a post or page is published or updated.
+// Only the published address is sent. Same public key as the static deploy.
+const ROSMAROPS_INDEXNOW_KEY = '24a8c2078ff9b0ee590acf6cd5901e32';
+function rosmarops_indexnow($new_status, $old_status, $post) {
+	if ($new_status !== 'publish' || !in_array($post->post_type, ['post', 'page'], true)) {
+		return;
+	}
+	if (wp_is_post_revision($post) || wp_is_post_autosave($post)) {
+		return;
+	}
+	wp_remote_post('https://api.indexnow.org/indexnow', [
+		'blocking' => false,
+		'timeout'  => 5,
+		'headers'  => ['Content-Type' => 'application/json; charset=utf-8'],
+		'body'     => wp_json_encode([
+			'host'        => 'rosmarops.com',
+			'key'         => ROSMAROPS_INDEXNOW_KEY,
+			'keyLocation' => 'https://rosmarops.com/' . ROSMAROPS_INDEXNOW_KEY . '.txt',
+			'urlList'     => [get_permalink($post)],
+		]),
+	]);
+}
+add_action('transition_post_status', 'rosmarops_indexnow', 10, 3);
