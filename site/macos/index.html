@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RosmarOps for macOS (preview)</title>
+<meta name="description" content="The macOS version is a preview. The report lists what it does not check yet on macOS; none of that counts as clean. It is not signed or notarised by Apple yet, so the first time it needs two commands in Terminal.">
+<link rel="canonical" href="https://rosmarops.com/macos/">
+<link rel="alternate" hreflang="en" href="https://rosmarops.com/macos/">
+<link rel="alternate" hreflang="es" href="https://rosmarops.com/es/macos/">
+<link rel="alternate" hreflang="ca" href="https://rosmarops.com/ca/macos/">
+<link rel="alternate" hreflang="x-default" href="https://rosmarops.com/macos/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="RosmarOps">
+<meta property="og:title" content="RosmarOps for macOS (preview)">
+<meta property="og:description" content="The macOS version is a preview. The report lists what it does not check yet on macOS; none of that counts as clean. It is not signed or notarised by Apple yet, so the first time it needs two commands in Terminal.">
+<meta property="og:url" content="https://rosmarops.com/macos/">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://rosmarops.com/assets/brand/rosmarops-social.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="RosmarOps logo">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="/assets/consent/cookieconsent.css?v=3.1.0">
+<link rel="icon" href="/wp-content/uploads/2026/10/image-1.png">
+<style>
+:root{--bg:#F6F5F2;--ink:#1B1A18;--ink2:#3A3833;--muted:#66635D;--line:#E3E0D8;--card:#FFFFFF;--accent:#6F8F78}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+a{color:var(--ink)}a:hover{color:var(--accent)}
+.wrap{max-width:1040px;margin:0 auto;padding:0 16px}
+header .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;padding-top:24px;padding-bottom:24px}
+header img{height:40px;width:auto;display:block}
+nav{display:flex;flex-wrap:wrap;gap:24px;font-size:16px}
+main .wrap{display:flex;flex-direction:column;gap:64px;padding-top:48px;padding-bottom:64px}
+.hero{display:flex;flex-direction:column;gap:20px;max-width:760px}
+h1{margin:0;font-size:clamp(34px,6vw,52px);line-height:1.08;font-weight:700;letter-spacing:-.02em}
+.lead{margin:0;font-size:20px;line-height:1.55;color:var(--ink2)}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:16px}
+h2{margin:0;font-size:14px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:12px;font-size:17px;line-height:1.55}
+.status{border-top:1px solid var(--line);padding-top:32px;display:flex;flex-direction:column;gap:12px;max-width:760px}
+.status p{margin:0;font-size:17px;line-height:1.55}
+footer{border-top:1px solid var(--line)}
+footer .wrap{padding-top:28px;padding-bottom:28px;font-size:15px;color:var(--muted)}
+footer nav{gap:20px;font-size:15px}
+.doc{max-width:760px;display:flex;flex-direction:column;gap:18px;font-size:18px;line-height:1.65}
+.doc h1{font-size:clamp(30px,5vw,44px);line-height:1.12}
+.doc h2{font-size:22px;letter-spacing:0;text-transform:none;color:var(--ink);margin-top:20px}
+.doc p,.doc ul{margin:0}.doc ul{font-size:18px;gap:8px}
+.doc .meta{font-size:15px;color:var(--muted)}
+.doc .formula{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 20px;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:16px;overflow-wrap:anywhere}
+.doc code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:.92em}
+.faq h2{margin-top:24px}
+.dl{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px}
+.btn{display:inline-block;background:var(--ink);color:#fff;text-decoration:none;font-size:17px;font-weight:600;line-height:1;padding:16px 24px;border-radius:12px}
+.btn:hover,.btn:focus-visible{background:var(--accent);color:#fff}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<a href="/"><img src="/assets/brand/rosmarops-logo.png" srcset="/assets/brand/rosmarops-logo.png 1x, /assets/brand/rosmarops-logo@2x.png 2x" width="512" height="131" alt="RosmarOps"></a>
+<nav><a href="/blog/">Blog</a><a href="/blog/about/">About</a><a href="/observatory/">Observatory</a><a href="/methodology/">Methodology</a><a href="/faq/">FAQ</a><a href="/es/macos/" hreflang="es" lang="es" aria-label="Español">ES</a><a href="/ca/macos/" hreflang="ca" lang="ca" aria-label="Català">CA</a></nav>
+</div></header>
+
+<main><div class="wrap">
+<article class="doc"><h1>RosmarOps for macOS (preview)</h1>
+<p class="lead">The macOS version is a preview. The report lists what it does not check yet on macOS; none of that counts as clean. It is not signed or notarised by Apple yet, so the first time it needs two commands in Terminal.</p>
+<p>Download the file for your Mac:</p>
+<div class="dl"><a class="btn" href="/download?from=macos-page&amp;os=mac-arm" target="_blank" rel="nofollow noopener">Apple silicon (M1, M2, M3, M4)</a><a class="btn" href="/download?from=macos-page&amp;os=mac-intel" target="_blank" rel="nofollow noopener">Intel</a></div>
+<p class="meta">Not sure which Mac you have? Apple menu &gt; About This Mac: "Chip" means Apple silicon, "Processor" means Intel.</p>
+<p>In Terminal, in the folder where you saved it. For Intel, use rosmarops-macos-intel instead:</p>
+<div class="formula"><code>cd ~/Downloads</code><br>
+<code>chmod +x rosmarops-macos-apple-silicon</code><br>
+<code>xattr -d com.apple.quarantine rosmarops-macos-apple-silicon</code><br>
+<code>./rosmarops-macos-apple-silicon</code></div>
+<p>The report opens in your browser when it finishes.</p>
+<p>To check the download, see "<a href="https://github.com/qtorb/rosmarops#check-the-download" target="_blank" rel="noopener">Check the download</a>" in the README.</p>
+<p class="meta">It only reads. It never changes anything and never connects to the network.</p>
+</article>
+</div></main>
+
+<footer><div class="wrap">
+<nav><a href="/blog/">Blog</a><a href="/blog/about/">About</a><a href="/observatory/">Observatory</a><a href="/methodology/">Methodology</a><a href="/faq/">FAQ</a><a href="/es/macos/" hreflang="es" lang="es" aria-label="Español">ES</a><a href="/ca/macos/" hreflang="ca" lang="ca" aria-label="Català">CA</a><a href="/privacy/">Privacy</a><a href="#" data-cc="show-preferencesModal">Cookie settings</a></nav>
+</div></footer>
+<script src="/assets/consent/cookieconsent.umd.js?v=3.1.0" defer></script>
+<script src="/assets/consent/consent.js?v=3" defer></script>
+</body>
+</html>

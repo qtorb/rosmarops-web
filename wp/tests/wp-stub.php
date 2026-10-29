@@ -15,7 +15,7 @@ class WP_REST_Response {
 	public function header($k, $v) { $this->headers[$k] = $v; }
 }
 class StubWpdb {
-	public $base_prefix; private $db; private $suppress = false;
+	public $base_prefix; public $last_error = ''; private $db; private $suppress = false;
 	public function __construct($prefix) {
 		$this->base_prefix = $prefix;
 		$this->db = new mysqli('127.0.0.1', getenv('DB_USER') ?: 'root', getenv('DB_PASS') ?: '', getenv('DB_NAME') ?: 'wptest');
@@ -25,8 +25,8 @@ class StubWpdb {
 		return preg_replace_callback('/%s/', function () use (&$i, $a) { return "'" . $this->db->real_escape_string((string) $a[$i++]) . "'"; }, $q);
 	}
 	public function suppress_errors($s = true) { $old = $this->suppress; $this->suppress = $s; return $old; }
-	public function query($q) { try { $r = $this->db->query($q); } catch (Throwable $e) { return false; } return $r === false ? false : ($r === true ? $this->db->affected_rows : $r->num_rows); }
-	public function get_results($q, $o) { try { $r = $this->db->query($q); } catch (Throwable $e) { return null; } return $r ? $r->fetch_all(MYSQLI_ASSOC) : null; }
+	public function query($q) { $this->last_error = ''; try { $r = $this->db->query($q); } catch (Throwable $e) { $this->last_error = $e->getMessage(); return false; } return $r === false ? false : ($r === true ? $this->db->affected_rows : $r->num_rows); }
+	public function get_results($q, $o) { $this->last_error = ''; try { $r = $this->db->query($q); } catch (Throwable $e) { $this->last_error = $e->getMessage(); return []; } return $r ? $r->fetch_all(MYSQLI_ASSOC) : []; } // like WordPress: [] on error, last_error set
 	public function get_charset_collate() { return 'DEFAULT CHARSET=utf8mb4'; }
 	public function raw() { return $this->db; }
 }
