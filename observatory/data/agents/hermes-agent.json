@@ -17,7 +17,7 @@
       "status": "detected",
       "since_version": "0.3.0"
     },
-    "reviewed_at": "2026-10-28"
+    "reviewed_at": "2026-10-29"
   },
   "versions": [
     {
@@ -188,9 +188,9 @@
       "scope": "other_agents_credentials",
       "default": "allow",
       "note": {
-        "en": "When it refreshes a borrowed Claude Code login it writes Claude Code's credential file; the two programs can log each other out.",
-        "es": "Al renovar un inicio de sesión prestado de Claude Code, escribe en el fichero de credenciales de Claude Code; los dos programas pueden dejarse sin sesión el uno al otro.",
-        "ca": "En renovar un inici de sessió prestat de Claude Code, escriu al fitxer de credencials de Claude Code; els dos programes es poden deixar sense sessió l'un a l'altre."
+        "en": "When it refreshes a borrowed Claude Code login, it writes %USERPROFILE%\\.claude\\.credentials.json (or the file in CLAUDE_CONFIG_DIR); the two programs can log each other out. auth.adopt_external_logins: false in config.yaml stops the borrowing.",
+        "es": "Al renovar un inicio de sesión prestado de Claude Code, escribe en %USERPROFILE%\\.claude\\.credentials.json (o el de CLAUDE_CONFIG_DIR); los dos programas pueden dejarse sin sesión el uno al otro. auth.adopt_external_logins: false en config.yaml detiene el préstamo.",
+        "ca": "En renovar un inici de sessió prestat de Claude Code, escriu a %USERPROFILE%\\.claude\\.credentials.json (o el de CLAUDE_CONFIG_DIR); els dos programes es poden deixar sense sessió l'un a l'altre. auth.adopt_external_logins: false a config.yaml atura el préstec."
       },
       "source": {
         "url": "https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/agent/anthropic_credentials.py#L544-L565",
@@ -206,9 +206,9 @@
       "path_windows": "%LOCALAPPDATA%\\hermes\\config.yaml",
       "secrets": "sometimes_plaintext",
       "note": {
-        "en": "Also holds the MCP servers.",
-        "es": "También guarda los servidores MCP.",
-        "ca": "També hi desa els servidors MCP."
+        "en": "Also holds the MCP servers. If HERMES_HOME is set, Hermes uses that folder instead of %LOCALAPPDATA%\\hermes.",
+        "es": "También guarda los servidores MCP. Si se define HERMES_HOME, Hermes usa esa carpeta en lugar de %LOCALAPPDATA%\\hermes.",
+        "ca": "També hi desa els servidors MCP. Si es defineix HERMES_HOME, Hermes fa servir aquesta carpeta en lloc de %LOCALAPPDATA%\\hermes."
       },
       "source": {
         "url": "https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/cli-config.yaml.example",
@@ -225,6 +225,11 @@
         "url": "https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/hermes_constants.py",
         "official": true,
         "accessed_at": "2026-10-28"
+      },
+      "note": {
+        "en": "If HERMES_HOME is set, Hermes uses that folder instead of %LOCALAPPDATA%\\hermes.",
+        "es": "Si se define HERMES_HOME, Hermes usa esa carpeta en lugar de %LOCALAPPDATA%\\hermes.",
+        "ca": "Si es defineix HERMES_HOME, Hermes fa servir aquesta carpeta en lloc de %LOCALAPPDATA%\\hermes."
       }
     },
     {
@@ -236,6 +241,11 @@
         "url": "https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/hermes_cli/auth.py",
         "official": true,
         "accessed_at": "2026-10-28"
+      },
+      "note": {
+        "en": "If HERMES_HOME is set, Hermes uses that folder instead of %LOCALAPPDATA%\\hermes.",
+        "es": "Si se define HERMES_HOME, Hermes usa esa carpeta en lugar de %LOCALAPPDATA%\\hermes.",
+        "ca": "Si es defineix HERMES_HOME, Hermes fa servir aquesta carpeta en lloc de %LOCALAPPDATA%\\hermes."
       }
     },
     {
@@ -247,6 +257,11 @@
         "url": "https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/tools/mcp_oauth.py",
         "official": true,
         "accessed_at": "2026-10-28"
+      },
+      "note": {
+        "en": "If HERMES_HOME is set, Hermes uses that folder instead of %LOCALAPPDATA%\\hermes.",
+        "es": "Si se define HERMES_HOME, Hermes usa esa carpeta en lugar de %LOCALAPPDATA%\\hermes.",
+        "ca": "Si es defineix HERMES_HOME, Hermes fa servir aquesta carpeta en lloc de %LOCALAPPDATA%\\hermes."
       }
     },
     {
@@ -258,6 +273,11 @@
         "url": "https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/agent/prompt_builder.py",
         "official": true,
         "accessed_at": "2026-10-28"
+      },
+      "note": {
+        "en": "If HERMES_HOME is set, Hermes uses that folder instead of %LOCALAPPDATA%\\hermes.",
+        "es": "Si se define HERMES_HOME, Hermes usa esa carpeta en lugar de %LOCALAPPDATA%\\hermes.",
+        "ca": "Si es defineix HERMES_HOME, Hermes fa servir aquesta carpeta en lloc de %LOCALAPPDATA%\\hermes."
       }
     }
   ]
