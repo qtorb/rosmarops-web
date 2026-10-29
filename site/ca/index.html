@@ -21,7 +21,7 @@
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Logotip de RosmarOps">
 <meta name="twitter:card" content="summary_large_image">
-<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://rosmarops.com/#org", "name": "RosmarOps", "url": "https://rosmarops.com/", "logo": "https://rosmarops.com/assets/brand/rosmarops-logo@2x.png", "founder": {"@type": "Person", "@id": "https://rosmarops.com/#founder", "name": "Albert Garcia Pujadas", "url": "https://www.qtorb.com/", "sameAs": ["https://www.qtorb.com/", "https://www.linkedin.com/in/albertgpujadas/", "https://x.com/qtorb"]}, "sameAs": ["https://github.com/qtorb/rosmarops", "https://x.com/RosmarOps"]}, {"@type": "WebSite", "@id": "https://rosmarops.com/#website", "name": "RosmarOps", "url": "https://rosmarops.com/", "publisher": {"@id": "https://rosmarops.com/#org"}, "inLanguage": ["en", "es", "ca"]}, {"@type": "WebPage", "@id": "https://rosmarops.com/ca/#page", "url": "https://rosmarops.com/ca/", "name": "RosmarOps — mapa d'exposició dels teus agents d'IA", "description": "RosmarOps llegeix la configuració dels teus agents d'IA per programar (avui Claude Code i Cursor) i dibuixa un mapa d'exposició: què pot llegir i canviar cada agent, quines claus té a l'abast i si un agent pot canviar la configuració o les instruccions d'un altre. Tot es calcula al teu ordinador.", "inLanguage": "ca", "isPartOf": {"@id": "https://rosmarops.com/#website"}}, {"@type": "SoftwareApplication", "@id": "https://rosmarops.com/#app", "name": "RosmarOps", "url": "https://rosmarops.com/", "description": "RosmarOps dibuixa un mapa del que poden fer els teus agents d'IA al teu ordinador: què llegeixen i canvien, i quines claus abasten. Local i sense xarxa.", "inLanguage": "ca", "applicationCategory": "SecurityApplication", "operatingSystem": "Windows, macOS", "isAccessibleForFree": true, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"}, "license": "https://www.gnu.org/licenses/agpl-3.0.html", "downloadUrl": "https://github.com/qtorb/rosmarops/releases/latest", "sameAs": ["https://github.com/qtorb/rosmarops"], "publisher": {"@id": "https://rosmarops.com/#org"}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://rosmarops.com/#org", "name": "RosmarOps", "url": "https://rosmarops.com/", "logo": "https://rosmarops.com/assets/brand/rosmarops-logo@2x.png", "founder": {"@type": "Person", "@id": "https://rosmarops.com/#founder", "name": "Albert Garcia Pujadas", "url": "https://www.qtorb.com/", "sameAs": ["https://www.qtorb.com/", "https://www.linkedin.com/in/albertgpujadas/", "https://x.com/qtorb"]}, "sameAs": ["https://github.com/qtorb/rosmarops", "https://x.com/RosmarOps"]}, {"@type": "WebSite", "@id": "https://rosmarops.com/#website", "name": "RosmarOps", "url": "https://rosmarops.com/", "publisher": {"@id": "https://rosmarops.com/#org"}, "inLanguage": ["en", "es", "ca"]}, {"@type": "WebPage", "@id": "https://rosmarops.com/ca/#page", "url": "https://rosmarops.com/ca/", "name": "RosmarOps — mapa d'exposició dels teus agents d'IA", "description": "RosmarOps llegeix la configuració dels teus agents d'IA per programar (avui Claude Code, Cursor i Hermes Agent) i dibuixa un mapa d'exposició: què pot llegir i canviar cada agent, quines claus té a l'abast i si un agent pot canviar la configuració o les instruccions d'un altre. Tot es calcula al teu ordinador.", "inLanguage": "ca", "isPartOf": {"@id": "https://rosmarops.com/#website"}}, {"@type": "SoftwareApplication", "@id": "https://rosmarops.com/#app", "name": "RosmarOps", "url": "https://rosmarops.com/", "description": "RosmarOps dibuixa un mapa del que poden fer els teus agents d'IA al teu ordinador: què llegeixen i canvien, i quines claus abasten. Local i sense xarxa.", "inLanguage": "ca", "applicationCategory": "SecurityApplication", "operatingSystem": "Windows, macOS", "isAccessibleForFree": true, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"}, "license": "https://www.gnu.org/licenses/agpl-3.0.html", "downloadUrl": "https://github.com/qtorb/rosmarops/releases/latest", "sameAs": ["https://github.com/qtorb/rosmarops"], "publisher": {"@id": "https://rosmarops.com/#org"}}]}</script>
 <link rel="stylesheet" href="/assets/consent/cookieconsent.css?v=3.1.0">
 <link rel="icon" href="/wp-content/uploads/2026/10/image-1.png">
 <style>
@@ -51,6 +51,11 @@ footer nav{gap:20px;font-size:15px}
 .btn:hover,.btn:focus-visible{background:var(--accent);color:#fff}
 .dl-note{margin:0;font-size:15px;line-height:1.5;color:var(--muted)}
 .dl-note a{color:var(--muted)}
+.sample p{margin:12px 0 0;max-width:760px;font-size:17px;font-weight:400;line-height:1.55;color:var(--ink)}
+.sample figure{margin:20px 0 0}
+.sample img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:12px;background:var(--card)}
+.sample figcaption{margin-top:12px;font-size:15px;line-height:1.5;color:var(--muted)}
+.sample figcaption a{color:var(--muted)}
 </style>
 </head>
 <body>
@@ -62,8 +67,14 @@ footer nav{gap:20px;font-size:15px}
 <main><div class="wrap">
 <section class="hero">
 <h1>Què poden fer els teus agents d'IA a la teva màquina.</h1>
-<p class="lead">Un agent d'IA treballa amb els teus permisos: pot llegir els teus fitxers, executar programes i arribar a les claus dels serveis que tens connectats. RosmarOps t'ensenya fins on arriba cada agent del teu ordinador, i si un pot canviar el que fa un altre: un mapa d'exposició, calculat al teu ordinador. Avui posa nota a Claude Code i Cursor.</p>
+<p class="lead">Un agent d'IA treballa amb els teus permisos: pot llegir els teus fitxers, executar programes i arribar a les claus dels serveis que tens connectats. RosmarOps t'ensenya fins on arriba cada agent del teu ordinador, i si un pot canviar el que fa un altre: un mapa d'exposició, calculat al teu ordinador. Avui posa nota a Claude Code, Cursor i Hermes Agent.</p>
 <div class="dl"><a class="btn" href="/ca/descarregar?from=home&amp;os=windows" target="_blank" rel="nofollow noopener">Descarrega per a Windows</a><a class="btn" href="/ca/macos/">Descarrega per a Mac (vista prèvia)</a><p class="dl-note">Gratuït i de codi obert (AGPL-3.0). <a href="https://github.com/qtorb/rosmarops#check-the-download" target="_blank" rel="noopener">Com comprovar que és autèntic</a></p></div>
+</section>
+
+<section class="sample">
+<h2>Un informe d&#x27;exemple</h2>
+<p>Això és el que t&#x27;ensenya RosmarOps, en un ordinador inventat: la nota de cada agent que avalua, el primer que cal arreglar i quant puja la nota si ho arregles, i tota la resta, el més urgent primer.</p>
+<figure><a href="/ca/informe-dexemple/"><picture><source media="(max-width: 699px)" srcset="/assets/sample/sample-mobile.es.png 1x, /assets/sample/sample-mobile.es@2x.png 2x" width="390" height="1201"><img src="/assets/sample/sample-desktop.es.png" srcset="/assets/sample/sample-desktop.es.png 1x, /assets/sample/sample-desktop.es@2x.png 2x" width="1280" height="1056" alt="Informe d&#x27;exemple de RosmarOps en un ordinador inventat: la nota de cada agent, el primer que cal fer i la resta de troballes." loading="lazy" decoding="async"></picture></a><figcaption>Fet amb dades d&#x27;exemple: l&#x27;ordinador, l&#x27;usuari, els projectes i les claus són inventats. <a href="/sample-report/sample-report.es.html">Veure l&#x27;informe complet</a></figcaption></figure>
 </section>
 
 <section class="cards">
@@ -89,7 +100,7 @@ footer nav{gap:20px;font-size:15px}
 
 <section class="status">
 <h2>En quin punt és</h2>
-<p>Avui posa nota a Claude Code i Cursor a Windows. A Windows s'obre amb doble clic, i l'informe apareix al teu navegador en uns minuts. També troba Cline, GitHub Copilot, Continue, Codex, Antigravity, Hermes Agent i Claude Desktop, però encara no els posa nota.</p>
+<p>Avui posa nota a Claude Code, Cursor i Hermes Agent a Windows. A Windows s'obre amb doble clic, i l'informe apareix al teu navegador en uns minuts. També troba Cline, GitHub Copilot, Continue, Codex, Antigravity i Claude Desktop, però encara no els posa nota.</p>
 <p>Es pot descarregar des de GitHub, per a Windows i, en vista prèvia, per a macOS. Cada versió porta la seva empremta SHA-256, una atestació de GitHub i una compilació que qualsevol pot reproduir: <a href="https://github.com/qtorb/rosmarops#check-the-download" target="_blank" rel="noopener">com comprovar-ho</a>.</p>
 <p>De moment, el programa mostra l'informe en anglès o en castellà.</p>
 </section>

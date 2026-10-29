@@ -22,7 +22,7 @@
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="RosmarOps logo">
 <meta name="twitter:card" content="summary_large_image">
-<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://rosmarops.com/#org", "name": "RosmarOps", "url": "https://rosmarops.com/", "logo": "https://rosmarops.com/assets/brand/rosmarops-logo@2x.png", "founder": {"@type": "Person", "@id": "https://rosmarops.com/#founder", "name": "Albert Garcia Pujadas", "url": "https://www.qtorb.com/", "sameAs": ["https://www.qtorb.com/", "https://www.linkedin.com/in/albertgpujadas/", "https://x.com/qtorb"]}, "sameAs": ["https://github.com/qtorb/rosmarops", "https://x.com/RosmarOps"]}, {"@type": "WebSite", "@id": "https://rosmarops.com/#website", "name": "RosmarOps", "url": "https://rosmarops.com/", "publisher": {"@id": "https://rosmarops.com/#org"}, "inLanguage": ["en", "es", "ca"]}, {"@type": "WebPage", "@id": "https://rosmarops.com/#page", "url": "https://rosmarops.com/", "name": "RosmarOps — an exposure map of your AI agents", "description": "RosmarOps reads the configuration of your AI coding agents (today Claude Code and Cursor) and draws an exposure map: what each agent can read and change, which keys it can reach, and whether one agent can change another agent's configuration or instructions. Everything is computed on your computer.", "inLanguage": "en", "isPartOf": {"@id": "https://rosmarops.com/#website"}}, {"@type": "SoftwareApplication", "@id": "https://rosmarops.com/#app", "name": "RosmarOps", "url": "https://rosmarops.com/", "description": "RosmarOps maps what your AI coding agents can do on your computer: what they read and change, and which keys they reach. Local, read-only, no network.", "inLanguage": "en", "applicationCategory": "SecurityApplication", "operatingSystem": "Windows, macOS", "isAccessibleForFree": true, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"}, "license": "https://www.gnu.org/licenses/agpl-3.0.html", "downloadUrl": "https://github.com/qtorb/rosmarops/releases/latest", "sameAs": ["https://github.com/qtorb/rosmarops"], "publisher": {"@id": "https://rosmarops.com/#org"}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://rosmarops.com/#org", "name": "RosmarOps", "url": "https://rosmarops.com/", "logo": "https://rosmarops.com/assets/brand/rosmarops-logo@2x.png", "founder": {"@type": "Person", "@id": "https://rosmarops.com/#founder", "name": "Albert Garcia Pujadas", "url": "https://www.qtorb.com/", "sameAs": ["https://www.qtorb.com/", "https://www.linkedin.com/in/albertgpujadas/", "https://x.com/qtorb"]}, "sameAs": ["https://github.com/qtorb/rosmarops", "https://x.com/RosmarOps"]}, {"@type": "WebSite", "@id": "https://rosmarops.com/#website", "name": "RosmarOps", "url": "https://rosmarops.com/", "publisher": {"@id": "https://rosmarops.com/#org"}, "inLanguage": ["en", "es", "ca"]}, {"@type": "WebPage", "@id": "https://rosmarops.com/#page", "url": "https://rosmarops.com/", "name": "RosmarOps — an exposure map of your AI agents", "description": "RosmarOps reads the configuration of your AI coding agents (today Claude Code, Cursor and Hermes Agent) and draws an exposure map: what each agent can read and change, which keys it can reach, and whether one agent can change another agent's configuration or instructions. Everything is computed on your computer.", "inLanguage": "en", "isPartOf": {"@id": "https://rosmarops.com/#website"}}, {"@type": "SoftwareApplication", "@id": "https://rosmarops.com/#app", "name": "RosmarOps", "url": "https://rosmarops.com/", "description": "RosmarOps maps what your AI coding agents can do on your computer: what they read and change, and which keys they reach. Local, read-only, no network.", "inLanguage": "en", "applicationCategory": "SecurityApplication", "operatingSystem": "Windows, macOS", "isAccessibleForFree": true, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"}, "license": "https://www.gnu.org/licenses/agpl-3.0.html", "downloadUrl": "https://github.com/qtorb/rosmarops/releases/latest", "sameAs": ["https://github.com/qtorb/rosmarops"], "publisher": {"@id": "https://rosmarops.com/#org"}}]}</script>
 <link rel="stylesheet" href="/assets/consent/cookieconsent.css?v=3.1.0">
 <link rel="icon" href="/wp-content/uploads/2026/10/image-1.png">
 <style>
@@ -57,6 +57,11 @@ footer nav{gap:20px;font-size:15px}
 .btn:hover,.btn:focus-visible{background:var(--accent);color:#fff}
 .dl-note{margin:0;font-size:15px;line-height:1.5;color:var(--muted)}
 .dl-note a{color:var(--muted)}
+.sample p{margin:12px 0 0;max-width:760px;font-size:17px;font-weight:400;line-height:1.55;color:var(--ink)}
+.sample figure{margin:20px 0 0}
+.sample img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:12px;background:var(--card)}
+.sample figcaption{margin-top:12px;font-size:15px;line-height:1.5;color:var(--muted)}
+.sample figcaption a{color:var(--muted)}
 </style>
 </head>
 <body>
@@ -68,8 +73,14 @@ footer nav{gap:20px;font-size:15px}
 <main><div class="wrap">
 <section class="hero">
 <h1>What your AI agents can do on your machine.</h1>
-<p class="lead">An AI agent works with your permissions: it can read your files, run programs and reach the keys of the services you have connected. RosmarOps shows how far each agent on your computer reaches, and whether one can change what another one does: an exposure map, computed on your computer. Today it scores Claude Code and Cursor.</p>
+<p class="lead">An AI agent works with your permissions: it can read your files, run programs and reach the keys of the services you have connected. RosmarOps shows how far each agent on your computer reaches, and whether one can change what another one does: an exposure map, computed on your computer. Today it scores Claude Code, Cursor and Hermes Agent.</p>
 <div class="dl"><a class="btn" href="/download?from=home&amp;os=windows" target="_blank" rel="nofollow noopener">Download for Windows</a><a class="btn" href="/macos/">Download for Mac (preview)</a><p class="dl-note">Free and open source (AGPL-3.0). <a href="https://github.com/qtorb/rosmarops#check-the-download" target="_blank" rel="noopener">How to check it's authentic</a></p></div>
+</section>
+
+<section class="sample">
+<h2>A sample report</h2>
+<p>This is what RosmarOps shows you, on an invented computer: the score of each agent it evaluates, the first thing to fix and how much the score rises if you fix it, and everything else, urgent first.</p>
+<figure><a href="/sample-report/"><picture><source media="(max-width: 699px)" srcset="/assets/sample/sample-mobile.en.png 1x, /assets/sample/sample-mobile.en@2x.png 2x" width="390" height="1125"><img src="/assets/sample/sample-desktop.en.png" srcset="/assets/sample/sample-desktop.en.png 1x, /assets/sample/sample-desktop.en@2x.png 2x" width="1280" height="1052" alt="RosmarOps sample report on an invented computer: each agent&#x27;s score, the first thing to do and the remaining findings." loading="lazy" decoding="async"></picture></a><figcaption>Made with example data: the computer, the user, the projects and the keys are invented. <a href="/sample-report/sample-report.en.html">See the full report</a></figcaption></figure>
 </section>
 
 <section class="cards">
@@ -95,7 +106,7 @@ footer nav{gap:20px;font-size:15px}
 
 <section class="status">
 <h2>Where it stands</h2>
-<p>Today it scores Claude Code and Cursor on Windows. On Windows you open it with a double click, and the report appears in your browser within a few minutes. It also finds Cline, GitHub Copilot, Continue, Codex, Antigravity, Hermes Agent and Claude Desktop, but doesn't score them yet.</p>
+<p>Today it scores Claude Code, Cursor and Hermes Agent on Windows. On Windows you open it with a double click, and the report appears in your browser within a few minutes. It also finds Cline, GitHub Copilot, Continue, Codex, Antigravity and Claude Desktop, but doesn't score them yet.</p>
 <p>It can be downloaded from GitHub, for Windows, and for macOS in preview. Each release comes with its SHA-256 checksum, a GitHub attestation and a build anyone can reproduce: <a href="https://github.com/qtorb/rosmarops#check-the-download" target="_blank" rel="noopener">how to check it</a>.</p>
 </section>
 </div></main>

@@ -4,6 +4,290 @@
     {
       "schema_version": 1,
       "agent": {
+        "id": "hermes-agent",
+        "name": "Hermes Agent",
+        "vendor": "Nous Research",
+        "kinds": [
+          "cli"
+        ],
+        "platforms": [
+          "windows",
+          "macos",
+          "linux"
+        ],
+        "local_footprint": "yes",
+        "rosmarops": {
+          "status": "evaluated",
+          "since_version": "0.5.2"
+        },
+        "reviewed_at": "2026-10-29"
+      },
+      "versions": [
+        {
+          "version": "0.22.5",
+          "released_at": "2026-10-22",
+          "source": {
+            "url": "https://github.com/NousResearch/hermes-agent/releases/tag/v0.22.5",
+            "official": true,
+            "accessed_at": "2026-10-28"
+          }
+        }
+      ],
+      "changes": [],
+      "ratings": [],
+      "default_mode": {
+        "name": "smart",
+        "who_decides": "another_model",
+        "basis": "documented_default",
+        "note": {
+          "en": "Commands that match a dangerous pattern go to an auxiliary model that approves, denies or asks you. Other commands run without asking in every mode, manual included.",
+          "es": "Las órdenes que encajan con un patrón peligroso pasan a un modelo auxiliar que las aprueba, las deniega o te pregunta. Las demás se ejecutan sin preguntar en cualquier modo, también en manual.",
+          "ca": "Les ordres que encaixen amb un patró perillós passen a un model auxiliar que les aprova, les denega o et pregunta. Les altres s'executen sense preguntar en qualsevol mode, també en manual."
+        },
+        "source": {
+          "url": "https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/website/docs/user-guide/security.md#L57",
+          "official": true,
+          "accessed_at": "2026-10-28"
+        }
+      },
+      "capabilities": [
+        {
+          "id": "cap-read-tools",
+          "action": "read_files",
+          "scope": "any_path",
+          "default": "allow",
+          "via": "tools",
+          "note": {
+            "en": "Only Hermes' own credential stores and .env files are refused.",
+            "es": "Solo rechaza los almacenes de credenciales del propio Hermes y los ficheros .env.",
+            "ca": "Només rebutja els magatzems de credencials del mateix Hermes i els fitxers .env."
+          },
+          "source": {
+            "url": "https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/agent/file_safety.py#L335-L414",
+            "official": true,
+            "accessed_at": "2026-10-28"
+          }
+        },
+        {
+          "id": "cap-read-shell",
+          "action": "read_files",
+          "scope": "whole_system",
+          "default": "allow",
+          "via": "shell",
+          "note": {
+            "en": "No sandbox by default: the shell runs on your computer.",
+            "es": "Sin entorno aislado de serie: el terminal se ejecuta en tu ordenador.",
+            "ca": "Sense entorn aïllat de sèrie: el terminal s'executa al teu ordinador."
+          },
+          "source": {
+            "url": "https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/hermes_cli/config_defaults.py#L297-L298",
+            "official": true,
+            "accessed_at": "2026-10-28"
+          }
+        },
+        {
+          "id": "cap-write-tools",
+          "action": "write_files",
+          "scope": "any_path",
+          "default": "allow",
+          "via": "tools",
+          "note": {
+            "en": "System paths, SSH keys, Hermes' config.yaml and common credential files are blocked.",
+            "es": "Bloquea las rutas del sistema, las claves SSH, el config.yaml de Hermes y los ficheros de credenciales habituales.",
+            "ca": "Bloqueja les rutes del sistema, les claus SSH, el config.yaml d'Hermes i els fitxers de credencials habituals."
+          },
+          "source": {
+            "url": "https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/tools/file_tools_write_guards.py#L166-L179",
+            "official": true,
+            "accessed_at": "2026-10-28"
+          }
+        },
+        {
+          "id": "cap-write-instructions",
+          "action": "write_files",
+          "scope": "protected_paths",
+          "default": "ask",
+          "via": "tools",
+          "note": {
+            "en": "AGENTS.md, CLAUDE.md, SOUL.md, .cursorrules and .hermes files, in any folder, even with --yolo.",
+            "es": "AGENTS.md, CLAUDE.md, SOUL.md, .cursorrules y los ficheros .hermes, en cualquier carpeta, incluso con --yolo.",
+            "ca": "AGENTS.md, CLAUDE.md, SOUL.md, .cursorrules i els fitxers .hermes, a qualsevol carpeta, fins i tot amb --yolo."
+          },
+          "source": {
+            "url": "https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/tools/file_tools_write_guards.py#L189-L262",
+            "official": true,
+            "accessed_at": "2026-10-28"
+          }
+        },
+        {
+          "id": "cap-exec",
+          "action": "execute_commands",
+          "scope": "all_commands",
+          "default": "allow",
+          "via": "shell",
+          "note": {
+            "en": "Commands matching about 110 dangerous patterns go to the auxiliary model first.",
+            "es": "Las órdenes que encajan con unos 110 patrones peligrosos pasan antes por el modelo auxiliar.",
+            "ca": "Les ordres que encaixen amb uns 110 patrons perillosos passen abans pel model auxiliar."
+          },
+          "source": {
+            "url": "https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/tools/approval.py#L1165-L1194",
+            "official": true,
+            "accessed_at": "2026-10-28"
+          }
+        },
+        {
+          "id": "cap-network",
+          "action": "network",
+          "scope": "any_destination",
+          "default": "allow",
+          "via": "tools",
+          "note": {
+            "en": "Without a search key, searches go to the free tiers of Exa, Parallel, Firecrawl and Keenable. Private addresses are blocked.",
+            "es": "Sin clave de búsqueda, las búsquedas van a los niveles gratuitos de Exa, Parallel, Firecrawl y Keenable. Bloquea las direcciones privadas.",
+            "ca": "Sense clau de cerca, les cerques van als nivells gratuïts d'Exa, Parallel, Firecrawl i Keenable. Bloqueja les adreces privades."
+          },
+          "source": {
+            "url": "https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/hermes_cli/config_defaults.py#L396-L401",
+            "official": true,
+            "accessed_at": "2026-10-28"
+          }
+        },
+        {
+          "id": "cap-mcp",
+          "action": "use_mcp_tools",
+          "scope": "all_mcp_tools",
+          "default": "allow",
+          "note": {
+            "en": "A server without a trust setting is fully trusted.",
+            "es": "Un servidor sin ajuste de confianza tiene confianza total.",
+            "ca": "Un servidor sense ajust de confiança té confiança total."
+          },
+          "source": {
+            "url": "https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/tools/mcp_tool.py#L519-L533",
+            "official": true,
+            "accessed_at": "2026-10-28"
+          }
+        },
+        {
+          "id": "cap-read-other-agents",
+          "action": "read_files",
+          "scope": "other_agents_credentials",
+          "default": "allow",
+          "note": {
+            "en": "With no login of its own, Hermes borrows the Claude Code and Codex logins from %USERPROFILE%\\.claude\\.credentials.json and %USERPROFILE%\\.codex\\auth.json (or CLAUDE_CONFIG_DIR, CODEX_HOME). On by default; auth.adopt_external_logins: false turns it off.",
+            "es": "Sin sesión propia, Hermes toma prestadas las de Claude Code y Codex de %USERPROFILE%\\.claude\\.credentials.json y %USERPROFILE%\\.codex\\auth.json (o CLAUDE_CONFIG_DIR, CODEX_HOME). Activado por defecto; auth.adopt_external_logins: false lo desactiva.",
+            "ca": "Sense sessió pròpia, Hermes agafa en préstec les de Claude Code i Codex de %USERPROFILE%\\.claude\\.credentials.json i %USERPROFILE%\\.codex\\auth.json (o CLAUDE_CONFIG_DIR, CODEX_HOME). Activat per defecte; auth.adopt_external_logins: false el desactiva."
+          },
+          "source": {
+            "url": "https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/hermes_cli/config_defaults.py#L1768-L1774",
+            "official": true,
+            "accessed_at": "2026-10-29"
+          }
+        },
+        {
+          "id": "cap-write-other-agents",
+          "action": "write_files",
+          "scope": "other_agents_credentials",
+          "default": "allow",
+          "note": {
+            "en": "When it refreshes a borrowed Claude Code login, it writes %USERPROFILE%\\.claude\\.credentials.json (or the file in CLAUDE_CONFIG_DIR); the two programs can log each other out. auth.adopt_external_logins: false in config.yaml stops the borrowing.",
+            "es": "Al renovar un inicio de sesión prestado de Claude Code, escribe en %USERPROFILE%\\.claude\\.credentials.json (o el de CLAUDE_CONFIG_DIR); los dos programas pueden dejarse sin sesión el uno al otro. auth.adopt_external_logins: false en config.yaml detiene el préstamo.",
+            "ca": "En renovar un inici de sessió prestat de Claude Code, escriu a %USERPROFILE%\\.claude\\.credentials.json (o el de CLAUDE_CONFIG_DIR); els dos programes es poden deixar sense sessió l'un a l'altre. auth.adopt_external_logins: false a config.yaml atura el préstec."
+          },
+          "source": {
+            "url": "https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/agent/anthropic_credentials.py#L544-L565",
+            "official": true,
+            "accessed_at": "2026-10-28"
+          }
+        }
+      ],
+      "storage": [
+        {
+          "id": "sto-config",
+          "kind": "user_settings",
+          "path_windows": "%LOCALAPPDATA%\\hermes\\config.yaml",
+          "secrets": "sometimes_plaintext",
+          "note": {
+            "en": "Also holds the MCP servers. If HERMES_HOME is set, Hermes uses that folder instead of %LOCALAPPDATA%\\hermes.",
+            "es": "También guarda los servidores MCP. Si se define HERMES_HOME, Hermes usa esa carpeta en lugar de %LOCALAPPDATA%\\hermes.",
+            "ca": "També hi desa els servidors MCP. Si es defineix HERMES_HOME, Hermes fa servir aquesta carpeta en lloc de %LOCALAPPDATA%\\hermes."
+          },
+          "source": {
+            "url": "https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/cli-config.yaml.example",
+            "official": true,
+            "accessed_at": "2026-10-28"
+          }
+        },
+        {
+          "id": "sto-env",
+          "kind": "account_credentials",
+          "path_windows": "%LOCALAPPDATA%\\hermes\\.env",
+          "secrets": "plaintext",
+          "source": {
+            "url": "https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/hermes_constants.py",
+            "official": true,
+            "accessed_at": "2026-10-28"
+          },
+          "note": {
+            "en": "If HERMES_HOME is set, Hermes uses that folder instead of %LOCALAPPDATA%\\hermes.",
+            "es": "Si se define HERMES_HOME, Hermes usa esa carpeta en lugar de %LOCALAPPDATA%\\hermes.",
+            "ca": "Si es defineix HERMES_HOME, Hermes fa servir aquesta carpeta en lloc de %LOCALAPPDATA%\\hermes."
+          }
+        },
+        {
+          "id": "sto-auth",
+          "kind": "account_credentials",
+          "path_windows": "%LOCALAPPDATA%\\hermes\\auth.json",
+          "secrets": "plaintext",
+          "source": {
+            "url": "https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/hermes_cli/auth.py",
+            "official": true,
+            "accessed_at": "2026-10-28"
+          },
+          "note": {
+            "en": "If HERMES_HOME is set, Hermes uses that folder instead of %LOCALAPPDATA%\\hermes.",
+            "es": "Si se define HERMES_HOME, Hermes usa esa carpeta en lugar de %LOCALAPPDATA%\\hermes.",
+            "ca": "Si es defineix HERMES_HOME, Hermes fa servir aquesta carpeta en lloc de %LOCALAPPDATA%\\hermes."
+          }
+        },
+        {
+          "id": "sto-mcp-tokens",
+          "kind": "account_credentials",
+          "path_windows": "%LOCALAPPDATA%\\hermes\\mcp-tokens\\",
+          "secrets": "plaintext",
+          "source": {
+            "url": "https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/tools/mcp_oauth.py",
+            "official": true,
+            "accessed_at": "2026-10-28"
+          },
+          "note": {
+            "en": "If HERMES_HOME is set, Hermes uses that folder instead of %LOCALAPPDATA%\\hermes.",
+            "es": "Si se define HERMES_HOME, Hermes usa esa carpeta en lugar de %LOCALAPPDATA%\\hermes.",
+            "ca": "Si es defineix HERMES_HOME, Hermes fa servir aquesta carpeta en lloc de %LOCALAPPDATA%\\hermes."
+          }
+        },
+        {
+          "id": "sto-instructions",
+          "kind": "instructions",
+          "path_windows": "%LOCALAPPDATA%\\hermes\\SOUL.md",
+          "secrets": "none",
+          "source": {
+            "url": "https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/agent/prompt_builder.py",
+            "official": true,
+            "accessed_at": "2026-10-28"
+          },
+          "note": {
+            "en": "If HERMES_HOME is set, Hermes uses that folder instead of %LOCALAPPDATA%\\hermes.",
+            "es": "Si se define HERMES_HOME, Hermes usa esa carpeta en lugar de %LOCALAPPDATA%\\hermes.",
+            "ca": "Si es defineix HERMES_HOME, Hermes fa servir aquesta carpeta en lloc de %LOCALAPPDATA%\\hermes."
+          }
+        }
+      ]
+    },
+    {
+      "schema_version": 1,
+      "agent": {
         "id": "claude-code",
         "name": "Claude Code",
         "vendor": "Anthropic",
@@ -636,290 +920,6 @@
       "versions": [],
       "changes": [],
       "ratings": []
-    },
-    {
-      "schema_version": 1,
-      "agent": {
-        "id": "hermes-agent",
-        "name": "Hermes Agent",
-        "vendor": "Nous Research",
-        "kinds": [
-          "cli"
-        ],
-        "platforms": [
-          "windows",
-          "macos",
-          "linux"
-        ],
-        "local_footprint": "yes",
-        "rosmarops": {
-          "status": "detected",
-          "since_version": "0.3.0"
-        },
-        "reviewed_at": "2026-10-29"
-      },
-      "versions": [
-        {
-          "version": "0.22.5",
-          "released_at": "2026-10-22",
-          "source": {
-            "url": "https://github.com/NousResearch/hermes-agent/releases/tag/v0.22.5",
-            "official": true,
-            "accessed_at": "2026-10-28"
-          }
-        }
-      ],
-      "changes": [],
-      "ratings": [],
-      "default_mode": {
-        "name": "smart",
-        "who_decides": "another_model",
-        "basis": "documented_default",
-        "note": {
-          "en": "Commands that match a dangerous pattern go to an auxiliary model that approves, denies or asks you. Other commands run without asking in every mode, manual included.",
-          "es": "Las órdenes que encajan con un patrón peligroso pasan a un modelo auxiliar que las aprueba, las deniega o te pregunta. Las demás se ejecutan sin preguntar en cualquier modo, también en manual.",
-          "ca": "Les ordres que encaixen amb un patró perillós passen a un model auxiliar que les aprova, les denega o et pregunta. Les altres s'executen sense preguntar en qualsevol mode, també en manual."
-        },
-        "source": {
-          "url": "https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/website/docs/user-guide/security.md#L57",
-          "official": true,
-          "accessed_at": "2026-10-28"
-        }
-      },
-      "capabilities": [
-        {
-          "id": "cap-read-tools",
-          "action": "read_files",
-          "scope": "any_path",
-          "default": "allow",
-          "via": "tools",
-          "note": {
-            "en": "Only Hermes' own credential stores and .env files are refused.",
-            "es": "Solo rechaza los almacenes de credenciales del propio Hermes y los ficheros .env.",
-            "ca": "Només rebutja els magatzems de credencials del mateix Hermes i els fitxers .env."
-          },
-          "source": {
-            "url": "https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/agent/file_safety.py#L335-L414",
-            "official": true,
-            "accessed_at": "2026-10-28"
-          }
-        },
-        {
-          "id": "cap-read-shell",
-          "action": "read_files",
-          "scope": "whole_system",
-          "default": "allow",
-          "via": "shell",
-          "note": {
-            "en": "No sandbox by default: the shell runs on your computer.",
-            "es": "Sin entorno aislado de serie: el terminal se ejecuta en tu ordenador.",
-            "ca": "Sense entorn aïllat de sèrie: el terminal s'executa al teu ordinador."
-          },
-          "source": {
-            "url": "https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/hermes_cli/config_defaults.py#L297-L298",
-            "official": true,
-            "accessed_at": "2026-10-28"
-          }
-        },
-        {
-          "id": "cap-write-tools",
-          "action": "write_files",
-          "scope": "any_path",
-          "default": "allow",
-          "via": "tools",
-          "note": {
-            "en": "System paths, SSH keys, Hermes' config.yaml and common credential files are blocked.",
-            "es": "Bloquea las rutas del sistema, las claves SSH, el config.yaml de Hermes y los ficheros de credenciales habituales.",
-            "ca": "Bloqueja les rutes del sistema, les claus SSH, el config.yaml d'Hermes i els fitxers de credencials habituals."
-          },
-          "source": {
-            "url": "https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/tools/file_tools_write_guards.py#L166-L179",
-            "official": true,
-            "accessed_at": "2026-10-28"
-          }
-        },
-        {
-          "id": "cap-write-instructions",
-          "action": "write_files",
-          "scope": "protected_paths",
-          "default": "ask",
-          "via": "tools",
-          "note": {
-            "en": "AGENTS.md, CLAUDE.md, SOUL.md, .cursorrules and .hermes files, in any folder, even with --yolo.",
-            "es": "AGENTS.md, CLAUDE.md, SOUL.md, .cursorrules y los ficheros .hermes, en cualquier carpeta, incluso con --yolo.",
-            "ca": "AGENTS.md, CLAUDE.md, SOUL.md, .cursorrules i els fitxers .hermes, a qualsevol carpeta, fins i tot amb --yolo."
-          },
-          "source": {
-            "url": "https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/tools/file_tools_write_guards.py#L189-L262",
-            "official": true,
-            "accessed_at": "2026-10-28"
-          }
-        },
-        {
-          "id": "cap-exec",
-          "action": "execute_commands",
-          "scope": "all_commands",
-          "default": "allow",
-          "via": "shell",
-          "note": {
-            "en": "Commands matching about 110 dangerous patterns go to the auxiliary model first.",
-            "es": "Las órdenes que encajan con unos 110 patrones peligrosos pasan antes por el modelo auxiliar.",
-            "ca": "Les ordres que encaixen amb uns 110 patrons perillosos passen abans pel model auxiliar."
-          },
-          "source": {
-            "url": "https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/tools/approval.py#L1165-L1194",
-            "official": true,
-            "accessed_at": "2026-10-28"
-          }
-        },
-        {
-          "id": "cap-network",
-          "action": "network",
-          "scope": "any_destination",
-          "default": "allow",
-          "via": "tools",
-          "note": {
-            "en": "Without a search key, searches go to the free tiers of Exa, Parallel, Firecrawl and Keenable. Private addresses are blocked.",
-            "es": "Sin clave de búsqueda, las búsquedas van a los niveles gratuitos de Exa, Parallel, Firecrawl y Keenable. Bloquea las direcciones privadas.",
-            "ca": "Sense clau de cerca, les cerques van als nivells gratuïts d'Exa, Parallel, Firecrawl i Keenable. Bloqueja les adreces privades."
-          },
-          "source": {
-            "url": "https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/hermes_cli/config_defaults.py#L396-L401",
-            "official": true,
-            "accessed_at": "2026-10-28"
-          }
-        },
-        {
-          "id": "cap-mcp",
-          "action": "use_mcp_tools",
-          "scope": "all_mcp_tools",
-          "default": "allow",
-          "note": {
-            "en": "A server without a trust setting is fully trusted.",
-            "es": "Un servidor sin ajuste de confianza tiene confianza total.",
-            "ca": "Un servidor sense ajust de confiança té confiança total."
-          },
-          "source": {
-            "url": "https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/tools/mcp_tool.py#L519-L533",
-            "official": true,
-            "accessed_at": "2026-10-28"
-          }
-        },
-        {
-          "id": "cap-read-other-agents",
-          "action": "read_files",
-          "scope": "other_agents_credentials",
-          "default": "allow",
-          "note": {
-            "en": "With no login of its own, Hermes borrows the Claude Code and Codex logins from %USERPROFILE%\\.claude\\.credentials.json and %USERPROFILE%\\.codex\\auth.json (or CLAUDE_CONFIG_DIR, CODEX_HOME). On by default; auth.adopt_external_logins: false turns it off.",
-            "es": "Sin sesión propia, Hermes toma prestadas las de Claude Code y Codex de %USERPROFILE%\\.claude\\.credentials.json y %USERPROFILE%\\.codex\\auth.json (o CLAUDE_CONFIG_DIR, CODEX_HOME). Activado por defecto; auth.adopt_external_logins: false lo desactiva.",
-            "ca": "Sense sessió pròpia, Hermes agafa en préstec les de Claude Code i Codex de %USERPROFILE%\\.claude\\.credentials.json i %USERPROFILE%\\.codex\\auth.json (o CLAUDE_CONFIG_DIR, CODEX_HOME). Activat per defecte; auth.adopt_external_logins: false el desactiva."
-          },
-          "source": {
-            "url": "https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/hermes_cli/config_defaults.py#L1768-L1774",
-            "official": true,
-            "accessed_at": "2026-10-29"
-          }
-        },
-        {
-          "id": "cap-write-other-agents",
-          "action": "write_files",
-          "scope": "other_agents_credentials",
-          "default": "allow",
-          "note": {
-            "en": "When it refreshes a borrowed Claude Code login, it writes %USERPROFILE%\\.claude\\.credentials.json (or the file in CLAUDE_CONFIG_DIR); the two programs can log each other out. auth.adopt_external_logins: false in config.yaml stops the borrowing.",
-            "es": "Al renovar un inicio de sesión prestado de Claude Code, escribe en %USERPROFILE%\\.claude\\.credentials.json (o el de CLAUDE_CONFIG_DIR); los dos programas pueden dejarse sin sesión el uno al otro. auth.adopt_external_logins: false en config.yaml detiene el préstamo.",
-            "ca": "En renovar un inici de sessió prestat de Claude Code, escriu a %USERPROFILE%\\.claude\\.credentials.json (o el de CLAUDE_CONFIG_DIR); els dos programes es poden deixar sense sessió l'un a l'altre. auth.adopt_external_logins: false a config.yaml atura el préstec."
-          },
-          "source": {
-            "url": "https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/agent/anthropic_credentials.py#L544-L565",
-            "official": true,
-            "accessed_at": "2026-10-28"
-          }
-        }
-      ],
-      "storage": [
-        {
-          "id": "sto-config",
-          "kind": "user_settings",
-          "path_windows": "%LOCALAPPDATA%\\hermes\\config.yaml",
-          "secrets": "sometimes_plaintext",
-          "note": {
-            "en": "Also holds the MCP servers. If HERMES_HOME is set, Hermes uses that folder instead of %LOCALAPPDATA%\\hermes.",
-            "es": "También guarda los servidores MCP. Si se define HERMES_HOME, Hermes usa esa carpeta en lugar de %LOCALAPPDATA%\\hermes.",
-            "ca": "També hi desa els servidors MCP. Si es defineix HERMES_HOME, Hermes fa servir aquesta carpeta en lloc de %LOCALAPPDATA%\\hermes."
-          },
-          "source": {
-            "url": "https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/cli-config.yaml.example",
-            "official": true,
-            "accessed_at": "2026-10-28"
-          }
-        },
-        {
-          "id": "sto-env",
-          "kind": "account_credentials",
-          "path_windows": "%LOCALAPPDATA%\\hermes\\.env",
-          "secrets": "plaintext",
-          "source": {
-            "url": "https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/hermes_constants.py",
-            "official": true,
-            "accessed_at": "2026-10-28"
-          },
-          "note": {
-            "en": "If HERMES_HOME is set, Hermes uses that folder instead of %LOCALAPPDATA%\\hermes.",
-            "es": "Si se define HERMES_HOME, Hermes usa esa carpeta en lugar de %LOCALAPPDATA%\\hermes.",
-            "ca": "Si es defineix HERMES_HOME, Hermes fa servir aquesta carpeta en lloc de %LOCALAPPDATA%\\hermes."
-          }
-        },
-        {
-          "id": "sto-auth",
-          "kind": "account_credentials",
-          "path_windows": "%LOCALAPPDATA%\\hermes\\auth.json",
-          "secrets": "plaintext",
-          "source": {
-            "url": "https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/hermes_cli/auth.py",
-            "official": true,
-            "accessed_at": "2026-10-28"
-          },
-          "note": {
-            "en": "If HERMES_HOME is set, Hermes uses that folder instead of %LOCALAPPDATA%\\hermes.",
-            "es": "Si se define HERMES_HOME, Hermes usa esa carpeta en lugar de %LOCALAPPDATA%\\hermes.",
-            "ca": "Si es defineix HERMES_HOME, Hermes fa servir aquesta carpeta en lloc de %LOCALAPPDATA%\\hermes."
-          }
-        },
-        {
-          "id": "sto-mcp-tokens",
-          "kind": "account_credentials",
-          "path_windows": "%LOCALAPPDATA%\\hermes\\mcp-tokens\\",
-          "secrets": "plaintext",
-          "source": {
-            "url": "https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/tools/mcp_oauth.py",
-            "official": true,
-            "accessed_at": "2026-10-28"
-          },
-          "note": {
-            "en": "If HERMES_HOME is set, Hermes uses that folder instead of %LOCALAPPDATA%\\hermes.",
-            "es": "Si se define HERMES_HOME, Hermes usa esa carpeta en lugar de %LOCALAPPDATA%\\hermes.",
-            "ca": "Si es defineix HERMES_HOME, Hermes fa servir aquesta carpeta en lloc de %LOCALAPPDATA%\\hermes."
-          }
-        },
-        {
-          "id": "sto-instructions",
-          "kind": "instructions",
-          "path_windows": "%LOCALAPPDATA%\\hermes\\SOUL.md",
-          "secrets": "none",
-          "source": {
-            "url": "https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/agent/prompt_builder.py",
-            "official": true,
-            "accessed_at": "2026-10-28"
-          },
-          "note": {
-            "en": "If HERMES_HOME is set, Hermes uses that folder instead of %LOCALAPPDATA%\\hermes.",
-            "es": "Si se define HERMES_HOME, Hermes usa esa carpeta en lugar de %LOCALAPPDATA%\\hermes.",
-            "ca": "Si es defineix HERMES_HOME, Hermes fa servir aquesta carpeta en lloc de %LOCALAPPDATA%\\hermes."
-          }
-        }
-      ]
     },
     {
       "schema_version": 1,

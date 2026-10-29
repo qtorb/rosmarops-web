@@ -194,12 +194,12 @@ add_action('generate_before_main_content', function () {
 });
 
 // robots.txt (served by the main site): the download routes are not for crawlers (they would be counted as
-// downloads, GTM-18), and the Spanish, Catalan and static-page sitemaps are announced.
+// downloads, GTM-18), nor are the raw sample reports (their pages are; decision 2026-10-29), and the Spanish, Catalan and static-page sitemaps are announced.
 function rosmarops_robots_txt($output) {
 	if (!is_main_site() || strpos($output, '/es/sitemap.xml') !== false) {
 		return $output;
 	}
-	$disallow = "Disallow: /download\nDisallow: /es/descargar\nDisallow: /ca/descarregar\n";
+	$disallow = "Disallow: /download\nDisallow: /es/descargar\nDisallow: /ca/descarregar\nDisallow: /sample-report/sample-report\n";
 	if (preg_match('/^User-agent: \*\R/m', $output)) {
 		$output = preg_replace('/^(User-agent: \*\R)/m', '$1' . $disallow, $output, 1);
 	} else {
