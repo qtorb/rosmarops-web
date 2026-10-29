@@ -22,6 +22,7 @@ Today it evaluates Claude Code and Cursor on Windows. It detects Cline, GitHub C
 - [Metodología (español)](https://rosmarops.com/es/metodologia/) and [preguntas frecuentes (español)](https://rosmarops.com/es/preguntas-frecuentes/)
 - [RosmarOps (català)](https://rosmarops.com/ca/), [metodologia](https://rosmarops.com/ca/metodologia/) and [preguntes freqüents](https://rosmarops.com/ca/preguntes-frequents/)
 - Observatory: what each AI coding agent can do on your computer, with dated, sourced data: https://rosmarops.com/observatory/
+- [Observatorio (español)](https://rosmarops.com/es/observatorio/) and [observatori (català)](https://rosmarops.com/ca/observatori/)
 <!-- observatory agents:start -->
 - [Claude Code on Windows: what it can do on your computer](https://rosmarops.com/observatory/claude-code/): observatory page, with its data at https://rosmarops.com/observatory/claude-code.json
 - [Cursor on Windows: what it can do on your computer](https://rosmarops.com/observatory/cursor/): observatory page, with its data at https://rosmarops.com/observatory/cursor.json
@@ -30,6 +31,7 @@ Today it evaluates Claude Code and Cursor on Windows. It detects Cline, GitHub C
 <!-- observatory agents:end -->
 - [About RosmarOps](https://rosmarops.com/blog/about/): where RosmarOps comes from and how to read its blog
 - [Qué es RosmarOps (español)](https://rosmarops.com/es/blog/que-es-rosmarops/): the same page in Spanish
+- [RosmarOps is out](https://rosmarops.com/blog/rosmarops-is-out/): the launch post
 - [My machine scored 18/100](https://rosmarops.com/blog/my-machine-scored-18-of-100/): first run of RosmarOps on the founder's machine
 - [How the Agent Posture Score works](https://rosmarops.com/blog/how-the-agent-posture-score-works/): the weights and formula, with a synthetic example
 - [RosmarOps 0.3.0](https://rosmarops.com/blog/rosmarops-0-3-0/): detects Codex, Antigravity, Hermes Agent and Claude Desktop, and the keys they keep in plain files
