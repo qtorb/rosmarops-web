@@ -209,5 +209,13 @@
 
   "how.official_doc": "the official documentation",
   "how.official_changelog": "the official changelog",
-  "how.lab_observation": "an observation in our lab"
+  "how.lab_observation": "an observation in our lab",
+
+  "daily.title": "Agent security today: {date}",
+  "daily.lead": "What changed in the security of the AI coding agents we follow since the last check, from their official sources and public registries. Up to five changes a day, one line each, with its source. Days without changes are listed too.",
+  "daily.empty": "No security changes found in the sources we checked.",
+  "daily.checked_h2": "What we checked",
+  "daily.index_h1": "Agent security, day by day",
+  "daily.rss_title": "RosmarOps Observatory: agent security today",
+  "daily.disclaimer": "From the vendors' official sources and public registries, each line with its date and source. Not a security guarantee or advice."
 }
