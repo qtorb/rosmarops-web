@@ -5,6 +5,8 @@ on:
     branches: [main]
     # Only what is published triggers a deploy: generated pages land in site/, so observatory/ (data,
     # catalogs, translations) does not trigger one by itself.
+    # observatory/daily/*.json (GTM-23) is outside these paths on purpose: the daily synopsis never asks for a deploy;
+    # the rosmarops-daily mu-plugin fetches it from the public repository.
     paths: ["site/**", "wp/**", ".github/workflows/deploy.yml"]
   workflow_dispatch:
 
@@ -31,6 +33,8 @@ jobs:
           php -l wp/mu-plugins/rosmarops-consent.php
           php -l wp/mu-plugins/rosmarops-seo.php
           php -l wp/mu-plugins/rosmarops-downloads.php
+          php -l wp/mu-plugins/rosmarops-daily.php
+          ls -l wp/daily/shell-en.html wp/daily/shell-es.html wp/daily/shell-ca.html wp/daily/i18n.json
           ! grep -RIl 'noindex' site/index.html site/es/index.html site/methodology site/faq site/es/metodologia site/es/preguntas-frecuentes site/ca/index.html site/ca/metodologia site/ca/preguntes-frequents site/ca/privadesa site/observatory/index.html site/es/observatorio/index.html site/ca/observatori/index.html
           # Observatory: only the three index pages and the JSON files are published (GTM-11). Agent pages wait for verification.
           ls site/observatory/index.html site/es/observatorio/index.html site/ca/observatori/index.html site/observatory/*.json
@@ -110,6 +114,12 @@ jobs:
           put wp/mu-plugins/rosmarops-consent.php wp-content/mu-plugins/rosmarops-consent.php
           put wp/mu-plugins/rosmarops-seo.php wp-content/mu-plugins/rosmarops-seo.php
           put wp/mu-plugins/rosmarops-downloads.php wp-content/mu-plugins/rosmarops-downloads.php
+          -mkdir wp-content/mu-plugins/rosmarops-daily
+          put wp/daily/shell-en.html wp-content/mu-plugins/rosmarops-daily/shell-en.html
+          put wp/daily/shell-es.html wp-content/mu-plugins/rosmarops-daily/shell-es.html
+          put wp/daily/shell-ca.html wp-content/mu-plugins/rosmarops-daily/shell-ca.html
+          put wp/daily/i18n.json wp-content/mu-plugins/rosmarops-daily/i18n.json
+          put wp/mu-plugins/rosmarops-daily.php wp-content/mu-plugins/rosmarops-daily.php
           BATCH
           # Observatory index pages, data files and published agent pages.
           {
@@ -216,6 +226,18 @@ jobs:
             echo "$h" | grep -q '^HTTP/[0-9.]* 302' && echo "$h" | grep -qi '^location: https://github.com/qtorb/rosmarops/releases/latest$' && echo "$h" | grep -qi '^cache-control: no-store' && echo "$u redirects" || (echo "$u does not redirect to the latest release"; exit 1)
           done
           curl -s "https://rosmarops.com/wp-json/rosmarops/v1/downloads?deploy=${GITHUB_SHA::7}" | python3 -c 'import json,sys; d=json.load(sys.stdin); assert set(d)=={"generated_at","rows"} and isinstance(d["rows"],list); print("downloads endpoint ok,", len(d["rows"]), "rows")'
+          # Daily synopsis (GTM-23): index pages, RSS and the slash redirect, served by the rosmarops-daily mu-plugin.
+          check_page() {
+            out=$(curl -s -w '\n%{http_code}' "https://rosmarops.com$1?deploy=${GITHUB_SHA::7}")
+            test "$(printf %s "$out" | tail -n1)" = 200 && printf %s "$out" | grep -qF "$2" && echo "$1 ok" || (echo "$1 missing or without «$2»"; exit 1)
+          }
+          check_page /observatory/daily/ "Agent security, day by day"
+          check_page /es/observatorio/diario/ "La seguridad de los agentes, día a día"
+          check_page /ca/observatori/diari/ "La seguretat dels agents, dia a dia"
+          h=$(curl -sI "https://rosmarops.com/observatory/daily/feed.xml?deploy=${GITHUB_SHA::7}" | tr -d '\r')
+          echo "$h" | grep -q '^HTTP/[0-9.]* 200' && echo "$h" | grep -qi '^content-type: application/rss+xml' && echo "daily feed ok" || (echo "daily feed missing"; exit 1)
+          h=$(curl -sI "https://rosmarops.com/observatory/daily" | tr -d '\r')
+          echo "$h" | grep -q '^HTTP/[0-9.]* 301' && echo "$h" | grep -qi '^location: https://rosmarops.com/observatory/daily/$' && echo "daily slash redirect ok" || (echo "daily slash redirect wrong"; exit 1)
           # Nothing from Google may be in the HTML before consent.
           for u in https://rosmarops.com/ https://rosmarops.com/es/ https://rosmarops.com/blog/ https://rosmarops.com/es/blog/; do
             ! curl -s "$u?deploy=${GITHUB_SHA::7}" | grep -q 'googletagmanager.com/gtag' || (echo "Google tag in HTML of $u"; exit 1)
