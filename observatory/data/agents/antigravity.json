@@ -18,9 +18,64 @@
       "status": "detected",
       "since_version": "0.3.0"
     },
-    "reviewed_at": "2026-10-28"
+    "reviewed_at": "2026-10-29"
   },
   "versions": [],
-  "changes": [],
+  "changes": [
+    {
+      "id": "chg-antigravity-auto-subagents-risky-only",
+      "version": "2.27.0",
+      "date": "2026-10-26",
+      "category": "approval_mode",
+      "before": {
+        "en": "In auto mode, subagents and custom agents asked for approval for every command that ran outside the sandbox. The changelog treats this as a fault.",
+        "es": "En modo auto, los subagentes y los agentes personalizados pedían aprobación para cada orden que se ejecutaba fuera del sandbox. El registro de cambios lo trata como un fallo.",
+        "ca": "En mode auto, els subagents i els agents personalitzats demanaven aprovació per a cada ordre que s'executava fora del sandbox. El registre de canvis ho tracta com un error."
+      },
+      "after": {
+        "en": "In auto mode, subagents and custom agents ask for approval only for commands outside the sandbox that are judged risky.",
+        "es": "En modo auto, los subagentes y los agentes personalizados piden aprobación solo para las órdenes fuera del sandbox que se consideran arriesgadas.",
+        "ca": "En mode auto, els subagents i els agents personalitzats demanen aprovació només per a les ordres fora del sandbox que es consideren arriscades."
+      },
+      "source": {
+        "url": "https://antigravity.google/docs/changelog?tab=ide",
+        "official": true,
+        "accessed_at": "2026-10-29"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-10-29",
+        "how": "official_changelog"
+      },
+      "rosmarops_impact": "knowledge"
+    },
+    {
+      "id": "chg-antigravity-always-allow-saved",
+      "version": "2.28.0",
+      "date": "2026-10-27",
+      "category": "permissions",
+      "before": {
+        "en": "Choosing «Always allow» outside a project was not saved, and subagents asked again about commands or websites already approved that way.",
+        "es": "Elegir «Always allow» fuera de un proyecto no se guardaba, y los subagentes volvían a preguntar por órdenes o webs ya aprobadas así.",
+        "ca": "Triar «Always allow» fora d'un projecte no es desava, i els subagents tornaven a preguntar per ordres o webs ja aprovades així."
+      },
+      "after": {
+        "en": "«Always allow» outside a project is saved, and subagents reuse what was already approved with it.",
+        "es": "«Always allow» fuera de un proyecto se guarda, y los subagentes reutilizan lo que ya se aprobó así.",
+        "ca": "«Always allow» fora d'un projecte es desa, i els subagents reutilitzen el que ja s'ha aprovat així."
+      },
+      "source": {
+        "url": "https://antigravity.google/docs/changelog?tab=ide",
+        "official": true,
+        "accessed_at": "2026-10-29"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-10-29",
+        "how": "official_changelog"
+      },
+      "rosmarops_impact": "knowledge"
+    }
+  ],
   "ratings": []
 }

@@ -18,7 +18,7 @@
       "status": "evaluated",
       "since_version": "0.1.0"
     },
-    "reviewed_at": "2026-10-28"
+    "reviewed_at": "2026-10-29"
   },
   "versions": [],
   "changes": [],
@@ -150,9 +150,9 @@
       "path_windows": "%USERPROFILE%\\.claude\\settings.json",
       "secrets": "sometimes_plaintext",
       "note": {
-        "en": "The env block can hold keys.",
-        "es": "El bloque env puede contener claves.",
-        "ca": "El bloc env pot contenir claus."
+        "en": "The env block can hold keys. With CLAUDE_CONFIG_DIR set, Claude Code keeps this file, its session history and its plugins in that folder instead.",
+        "es": "El bloque env puede contener claves. Si se define CLAUDE_CONFIG_DIR, Claude Code guarda este fichero, su historial de sesiones y sus plugins en esa carpeta.",
+        "ca": "El bloc env pot contenir claus. Si es defineix CLAUDE_CONFIG_DIR, Claude Code desa aquest fitxer, el seu historial de sessions i els seus plugins en aquesta carpeta."
       },
       "source": {
         "url": "https://code.claude.com/docs/en/settings",

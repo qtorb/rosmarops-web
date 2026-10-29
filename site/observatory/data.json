@@ -21,7 +21,7 @@
           "status": "evaluated",
           "since_version": "0.1.0"
         },
-        "reviewed_at": "2026-10-28"
+        "reviewed_at": "2026-10-29"
       },
       "versions": [],
       "changes": [],
@@ -153,9 +153,9 @@
           "path_windows": "%USERPROFILE%\\.claude\\settings.json",
           "secrets": "sometimes_plaintext",
           "note": {
-            "en": "The env block can hold keys.",
-            "es": "El bloque env puede contener claves.",
-            "ca": "El bloc env pot contenir claus."
+            "en": "The env block can hold keys. With CLAUDE_CONFIG_DIR set, Claude Code keeps this file, its session history and its plugins in that folder instead.",
+            "es": "El bloque env puede contener claves. Si se define CLAUDE_CONFIG_DIR, Claude Code guarda este fichero, su historial de sesiones y sus plugins en esa carpeta.",
+            "ca": "El bloc env pot contenir claus. Si es defineix CLAUDE_CONFIG_DIR, Claude Code desa aquest fitxer, el seu historial de sessions i els seus plugins en aquesta carpeta."
           },
           "source": {
             "url": "https://code.claude.com/docs/en/settings",
@@ -507,10 +507,65 @@
           "status": "detected",
           "since_version": "0.3.0"
         },
-        "reviewed_at": "2026-10-28"
+        "reviewed_at": "2026-10-29"
       },
       "versions": [],
-      "changes": [],
+      "changes": [
+        {
+          "id": "chg-antigravity-auto-subagents-risky-only",
+          "version": "2.27.0",
+          "date": "2026-10-26",
+          "category": "approval_mode",
+          "before": {
+            "en": "In auto mode, subagents and custom agents asked for approval for every command that ran outside the sandbox. The changelog treats this as a fault.",
+            "es": "En modo auto, los subagentes y los agentes personalizados pedían aprobación para cada orden que se ejecutaba fuera del sandbox. El registro de cambios lo trata como un fallo.",
+            "ca": "En mode auto, els subagents i els agents personalitzats demanaven aprovació per a cada ordre que s'executava fora del sandbox. El registre de canvis ho tracta com un error."
+          },
+          "after": {
+            "en": "In auto mode, subagents and custom agents ask for approval only for commands outside the sandbox that are judged risky.",
+            "es": "En modo auto, los subagentes y los agentes personalizados piden aprobación solo para las órdenes fuera del sandbox que se consideran arriesgadas.",
+            "ca": "En mode auto, els subagents i els agents personalitzats demanen aprovació només per a les ordres fora del sandbox que es consideren arriscades."
+          },
+          "source": {
+            "url": "https://antigravity.google/docs/changelog?tab=ide",
+            "official": true,
+            "accessed_at": "2026-10-29"
+          },
+          "verified": {
+            "by": "advisor",
+            "at": "2026-10-29",
+            "how": "official_changelog"
+          },
+          "rosmarops_impact": "knowledge"
+        },
+        {
+          "id": "chg-antigravity-always-allow-saved",
+          "version": "2.28.0",
+          "date": "2026-10-27",
+          "category": "permissions",
+          "before": {
+            "en": "Choosing «Always allow» outside a project was not saved, and subagents asked again about commands or websites already approved that way.",
+            "es": "Elegir «Always allow» fuera de un proyecto no se guardaba, y los subagentes volvían a preguntar por órdenes o webs ya aprobadas así.",
+            "ca": "Triar «Always allow» fora d'un projecte no es desava, i els subagents tornaven a preguntar per ordres o webs ja aprovades així."
+          },
+          "after": {
+            "en": "«Always allow» outside a project is saved, and subagents reuse what was already approved with it.",
+            "es": "«Always allow» fuera de un proyecto se guarda, y los subagentes reutilizan lo que ya se aprobó así.",
+            "ca": "«Always allow» fora d'un projecte es desa, i els subagents reutilitzen el que ja s'ha aprovat així."
+          },
+          "source": {
+            "url": "https://antigravity.google/docs/changelog?tab=ide",
+            "official": true,
+            "accessed_at": "2026-10-29"
+          },
+          "verified": {
+            "by": "advisor",
+            "at": "2026-10-29",
+            "how": "official_changelog"
+          },
+          "rosmarops_impact": "knowledge"
+        }
+      ],
       "ratings": []
     },
     {
@@ -585,7 +640,7 @@
           "status": "detected",
           "since_version": "0.3.0"
         },
-        "reviewed_at": "2026-10-28"
+        "reviewed_at": "2026-10-29"
       },
       "versions": [
         {
@@ -756,9 +811,9 @@
           "scope": "other_agents_credentials",
           "default": "allow",
           "note": {
-            "en": "When it refreshes a borrowed Claude Code login it writes Claude Code's credential file; the two programs can log each other out.",
-            "es": "Al renovar un inicio de sesión prestado de Claude Code, escribe en el fichero de credenciales de Claude Code; los dos programas pueden dejarse sin sesión el uno al otro.",
-            "ca": "En renovar un inici de sessió prestat de Claude Code, escriu al fitxer de credencials de Claude Code; els dos programes es poden deixar sense sessió l'un a l'altre."
+            "en": "When it refreshes a borrowed Claude Code login, it writes %USERPROFILE%\\.claude\\.credentials.json (or the file in CLAUDE_CONFIG_DIR); the two programs can log each other out. auth.adopt_external_logins: false in config.yaml stops the borrowing.",
+            "es": "Al renovar un inicio de sesión prestado de Claude Code, escribe en %USERPROFILE%\\.claude\\.credentials.json (o el de CLAUDE_CONFIG_DIR); los dos programas pueden dejarse sin sesión el uno al otro. auth.adopt_external_logins: false en config.yaml detiene el préstamo.",
+            "ca": "En renovar un inici de sessió prestat de Claude Code, escriu a %USERPROFILE%\\.claude\\.credentials.json (o el de CLAUDE_CONFIG_DIR); els dos programes es poden deixar sense sessió l'un a l'altre. auth.adopt_external_logins: false a config.yaml atura el préstec."
           },
           "source": {
             "url": "https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/agent/anthropic_credentials.py#L544-L565",
@@ -774,9 +829,9 @@
           "path_windows": "%LOCALAPPDATA%\\hermes\\config.yaml",
           "secrets": "sometimes_plaintext",
           "note": {
-            "en": "Also holds the MCP servers.",
-            "es": "También guarda los servidores MCP.",
-            "ca": "També hi desa els servidors MCP."
+            "en": "Also holds the MCP servers. If HERMES_HOME is set, Hermes uses that folder instead of %LOCALAPPDATA%\\hermes.",
+            "es": "También guarda los servidores MCP. Si se define HERMES_HOME, Hermes usa esa carpeta en lugar de %LOCALAPPDATA%\\hermes.",
+            "ca": "També hi desa els servidors MCP. Si es defineix HERMES_HOME, Hermes fa servir aquesta carpeta en lloc de %LOCALAPPDATA%\\hermes."
           },
           "source": {
             "url": "https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/cli-config.yaml.example",
@@ -793,6 +848,11 @@
             "url": "https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/hermes_constants.py",
             "official": true,
             "accessed_at": "2026-10-28"
+          },
+          "note": {
+            "en": "If HERMES_HOME is set, Hermes uses that folder instead of %LOCALAPPDATA%\\hermes.",
+            "es": "Si se define HERMES_HOME, Hermes usa esa carpeta en lugar de %LOCALAPPDATA%\\hermes.",
+            "ca": "Si es defineix HERMES_HOME, Hermes fa servir aquesta carpeta en lloc de %LOCALAPPDATA%\\hermes."
           }
         },
         {
@@ -804,6 +864,11 @@
             "url": "https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/hermes_cli/auth.py",
             "official": true,
             "accessed_at": "2026-10-28"
+          },
+          "note": {
+            "en": "If HERMES_HOME is set, Hermes uses that folder instead of %LOCALAPPDATA%\\hermes.",
+            "es": "Si se define HERMES_HOME, Hermes usa esa carpeta en lugar de %LOCALAPPDATA%\\hermes.",
+            "ca": "Si es defineix HERMES_HOME, Hermes fa servir aquesta carpeta en lloc de %LOCALAPPDATA%\\hermes."
           }
         },
         {
@@ -815,6 +880,11 @@
             "url": "https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/tools/mcp_oauth.py",
             "official": true,
             "accessed_at": "2026-10-28"
+          },
+          "note": {
+            "en": "If HERMES_HOME is set, Hermes uses that folder instead of %LOCALAPPDATA%\\hermes.",
+            "es": "Si se define HERMES_HOME, Hermes usa esa carpeta en lugar de %LOCALAPPDATA%\\hermes.",
+            "ca": "Si es defineix HERMES_HOME, Hermes fa servir aquesta carpeta en lloc de %LOCALAPPDATA%\\hermes."
           }
         },
         {
@@ -826,6 +896,11 @@
             "url": "https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/agent/prompt_builder.py",
             "official": true,
             "accessed_at": "2026-10-28"
+          },
+          "note": {
+            "en": "If HERMES_HOME is set, Hermes uses that folder instead of %LOCALAPPDATA%\\hermes.",
+            "es": "Si se define HERMES_HOME, Hermes usa esa carpeta en lugar de %LOCALAPPDATA%\\hermes.",
+            "ca": "Si es defineix HERMES_HOME, Hermes fa servir aquesta carpeta en lloc de %LOCALAPPDATA%\\hermes."
           }
         }
       ]
@@ -901,7 +976,7 @@
           "status": "detected",
           "since_version": "0.1.0"
         },
-        "reviewed_at": "2026-10-28"
+        "reviewed_at": "2026-10-29"
       },
       "versions": [],
       "changes": [
@@ -979,6 +1054,32 @@
           "verified": {
             "by": "advisor",
             "at": "2026-10-28",
+            "how": "official_changelog"
+          },
+          "rosmarops_impact": "none"
+        },
+        {
+          "id": "chg-copilot-server-to-server-auth",
+          "date": "2026-10-27",
+          "category": "credentials",
+          "before": {
+            "en": "No announced way for a GitHub App to use Copilot for an organization without a signed-in user.",
+            "es": "No se había anunciado ninguna forma de que una GitHub App usara Copilot para una organización sin un usuario conectado.",
+            "ca": "No s'havia anunciat cap manera que una GitHub App fes servir Copilot per a una organització sense un usuari connectat."
+          },
+          "after": {
+            "en": "A GitHub App installed on an organization can request Copilot without a signed-in user, with a short-lived installation token and the read-only «Copilot Requests» permission. Public preview; usage is billed to the organization.",
+            "es": "Una GitHub App instalada en una organización puede pedir Copilot sin un usuario conectado, con un token de instalación de corta duración y el permiso de solo lectura «Copilot Requests». En vista previa pública; el uso se factura a la organización.",
+            "ca": "Una GitHub App instal·lada en una organització pot demanar Copilot sense un usuari connectat, amb un token d'instal·lació de curta durada i el permís de només lectura «Copilot Requests». En vista prèvia pública; l'ús es factura a l'organització."
+          },
+          "source": {
+            "url": "https://github.blog/changelog/2026-10-27-github-copilot-supports-server-to-server-authentication",
+            "official": true,
+            "accessed_at": "2026-10-29"
+          },
+          "verified": {
+            "by": "advisor",
+            "at": "2026-10-29",
             "how": "official_changelog"
           },
           "rosmarops_impact": "none"

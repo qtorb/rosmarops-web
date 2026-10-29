@@ -19,7 +19,7 @@
       "status": "detected",
       "since_version": "0.1.0"
     },
-    "reviewed_at": "2026-10-28"
+    "reviewed_at": "2026-10-29"
   },
   "versions": [],
   "changes": [
@@ -97,6 +97,32 @@
       "verified": {
         "by": "advisor",
         "at": "2026-10-28",
+        "how": "official_changelog"
+      },
+      "rosmarops_impact": "none"
+    },
+    {
+      "id": "chg-copilot-server-to-server-auth",
+      "date": "2026-10-27",
+      "category": "credentials",
+      "before": {
+        "en": "No announced way for a GitHub App to use Copilot for an organization without a signed-in user.",
+        "es": "No se había anunciado ninguna forma de que una GitHub App usara Copilot para una organización sin un usuario conectado.",
+        "ca": "No s'havia anunciat cap manera que una GitHub App fes servir Copilot per a una organització sense un usuari connectat."
+      },
+      "after": {
+        "en": "A GitHub App installed on an organization can request Copilot without a signed-in user, with a short-lived installation token and the read-only «Copilot Requests» permission. Public preview; usage is billed to the organization.",
+        "es": "Una GitHub App instalada en una organización puede pedir Copilot sin un usuario conectado, con un token de instalación de corta duración y el permiso de solo lectura «Copilot Requests». En vista previa pública; el uso se factura a la organización.",
+        "ca": "Una GitHub App instal·lada en una organització pot demanar Copilot sense un usuari connectat, amb un token d'instal·lació de curta durada i el permís de només lectura «Copilot Requests». En vista prèvia pública; l'ús es factura a l'organització."
+      },
+      "source": {
+        "url": "https://github.blog/changelog/2026-10-27-github-copilot-supports-server-to-server-authentication",
+        "official": true,
+        "accessed_at": "2026-10-29"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-10-29",
         "how": "official_changelog"
       },
       "rosmarops_impact": "none"
