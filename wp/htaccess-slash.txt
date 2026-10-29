@@ -1,0 +1,11 @@
+# BEGIN RosmarOps SLASH
+# Versioned in qtorb/rosmarops-web (wp/htaccess-slash.txt). Prepended once by the deploy (GTM-21).
+# Folders without the final slash go to the same address with it, on https and without a port
+# (Apache's own redirect added ":443").
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteCond %{REQUEST_URI} !/$
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^(.*)$ https://rosmarops.com/$1/ [R=301,L]
+</IfModule>
+# END RosmarOps SLASH
