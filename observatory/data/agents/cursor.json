@@ -17,7 +17,7 @@
       "status": "evaluated",
       "since_version": "0.1.0"
     },
-    "reviewed_at": "2026-10-28"
+    "reviewed_at": "2026-10-29"
   },
   "versions": [],
   "changes": [],
@@ -26,14 +26,14 @@
     "name": "auto_review",
     "who_decides": "another_model",
     "note": {
-      "en": "Documented as the recommended default since Cursor 3.6; the mode in use is not readable from disk, so this is assumed.",
-      "es": "Documentado como el valor por defecto recomendado desde Cursor 3.6; el modo en uso no se puede leer del disco, así que es una suposición.",
-      "ca": "Documentat com el valor per defecte recomanat des de Cursor 3.6; el mode en ús no es pot llegir del disc, així que és una suposició."
+      "en": "Documented as the recommended default since Cursor 3.6; the mode in use is not readable from disk, so it is assumed. Cursor warns: \"Auto-review is not a security boundary\"; the classifier can allow a call you would have blocked.",
+      "es": "Documentado como valor por defecto recomendado desde Cursor 3.6; el modo en uso no se lee del disco, así que se supone. Cursor advierte: \"Auto-review is not a security boundary\"; el clasificador puede permitir una llamada que habrías bloqueado.",
+      "ca": "Documentat com a valor per defecte recomanat des de Cursor 3.6; el mode en ús no es llegeix del disc, així que se suposa. Cursor adverteix: \"Auto-review is not a security boundary\"; el classificador pot permetre una crida que hauries bloquejat."
     },
     "source": {
       "url": "https://cursor.com/docs/agent/security/run-modes.md",
       "official": true,
-      "accessed_at": "2026-10-25"
+      "accessed_at": "2026-10-29"
     },
     "basis": "documented_recommendation"
   },
@@ -47,6 +47,22 @@
         "url": "https://cursor.com/docs/agent/security.md",
         "official": true,
         "accessed_at": "2026-10-25"
+      }
+    },
+    {
+      "id": "cap-read-outside",
+      "action": "read_files",
+      "scope": "outside_working_directories",
+      "default": "allow",
+      "note": {
+        "en": "Read Access setting (Cursor 3.23 or later). Its default, System, reads outside the workspace without approval, with its file tools and in the sandboxed terminal. With Workspace it asks first, except for paths on its Read Allowlist.",
+        "es": "Ajuste Read Access (Cursor 3.23 o posterior). Por defecto, System lee fuera del espacio de trabajo sin aprobación, con sus herramientas de ficheros y en el terminal en sandbox. Con Workspace pregunta antes, salvo en las rutas de su Read Allowlist.",
+        "ca": "Ajust Read Access (Cursor 3.23 o posterior). Per defecte, System llegeix fora de l'espai de treball sense aprovació, amb les eines de fitxers i al terminal en sandbox. Amb Workspace pregunta abans, excepte a les rutes de la seva Read Allowlist."
+      },
+      "source": {
+        "url": "https://cursor.com/docs/agent/security/run-modes.md",
+        "official": true,
+        "accessed_at": "2026-10-29"
       }
     },
     {

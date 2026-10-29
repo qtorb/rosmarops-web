@@ -156,6 +156,7 @@
   "summary.storage_none": "It keeps its configuration in {n} kinds of files on Windows, none of them with keys.",
   "summary.tooling": "As of {date}, {agent} leaves {n} kinds of files on your computer, none of them with keys.",
   "summary.cap.read_files.working_directories": "read files in the folders it works in",
+  "summary.cap.read_files.outside_working_directories": "read files outside the folders it works in",
   "summary.cap.read_files.whole_system.sandboxed_shell": "read any file on the computer from its sandboxed shell",
   "summary.cap.write_files.working_directories": "edit files in the folders it works in",
   "summary.cap.execute_commands.read_only_commands": "run read-only commands",
