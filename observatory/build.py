@@ -83,6 +83,18 @@ def load_agents():
     return sorted(agents, key=key)
 
 
+def load_candidates():
+    """GTM-57: observatory/data/candidates.json, [{name, vendor, reason}] in the signed order. Missing file: none."""
+    f = DATA.parent / "candidates.json"
+    if not f.exists():
+        return []
+    items = json.loads(f.read_text(encoding="utf-8"))
+    for i, c in enumerate(items):
+        if set(c) != {"name", "vendor", "reason"} or not c["name"] or not c["vendor"] or c["reason"] not in ("next_batch", "no_source"):
+            sys.exit(f"candidates.json item {i}: needs non-empty name and vendor and reason next_batch or no_source")
+    return items
+
+
 # ---------------------------------------------------------------- helpers
 
 def esc(s):
@@ -193,7 +205,7 @@ def ld(obj):
 
 def software_app(a):
     ag = a["agent"]
-    os_names = {"windows": "Windows", "macos": "macOS", "linux": "Linux", "web": "Web"}
+    os_names = {"windows": "Windows", "macos": "macOS", "linux": "Linux", "web": "Web", "python": "Python"}
     return {
         "@type": "SoftwareApplication",
         "name": ag["name"],
@@ -241,7 +253,7 @@ tr:last-child td,tr:last-child th{border-bottom:0}
 .changes .meta{margin:0;font-size:14px;color:var(--muted)}
 .changes p{margin:0}
 .empty{margin:0;padding:20px;font-size:16px;line-height:1.55;color:var(--ink2)}
-.trio{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;padding:24px}
+.trio{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;padding:24px}
 .trio div{display:flex;flex-direction:column;gap:8px}
 .trio p{margin:0;font-size:16px;line-height:1.55;color:var(--ink2)}
 .disclaimer{margin:0;font-size:14px;line-height:1.5;color:var(--muted)}
@@ -266,7 +278,7 @@ td code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:14p
 footer{border-top:1px solid var(--line)}
 footer .wrap{padding-top:28px;padding-bottom:28px;font-size:15px;color:var(--muted)}
 footer nav{gap:20px;font-size:15px}
-@media (max-width:700px){.obs-brand{gap:12px;margin-bottom:16px;font-size:20px}.obs-brand img{width:48px;height:48px}
+@media (max-width:700px){.trio{grid-template-columns:1fr}.obs-brand{gap:12px;margin-bottom:16px;font-size:20px}.obs-brand img{width:48px;height:48px}
 nav{gap:16px}main .wrap{gap:40px;padding-top:32px}.lead{font-size:18px}
 table{min-width:0;table-layout:auto}colgroup,thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 table,tbody,tr,tbody th,td{display:block}
@@ -426,26 +438,33 @@ def item_list(lang, items):
     ]
 
 
-def build_index(lang, t, agents):
+def build_index(lang, t, agents, candidates):
     path = INDEX_PATH[lang]
     reviewed = max(a["agent"]["reviewed_at"] for a in agents)
     modified = max(date_modified(a) for a in agents)
     title = t.text("index.title")
     desc = t.text("index.description")
 
-    def is_tool(a):
-        return "agent_tooling" in a["agent"]["kinds"]
+    # GTM-57: three families. Frameworks: kinds has framework or agent_tooling. In the cloud and personal:
+    # local_footprint "no" or kinds has personal_agent. On your computer: the rest.
+    def family(a):
+        ag = a["agent"]
+        if "framework" in ag["kinds"] or "agent_tooling" in ag["kinds"]:
+            return "tooling"
+        if ag["local_footprint"] == "no" or "personal_agent" in ag["kinds"]:
+            return "cloud"
+        return "local"
 
-    def table(items, first_col):
+    def table(items, first_col, followed=False):
         cols = "<colgroup>" + "".join(f'<col style="width:{w}%">' for w in (15, 15, 21, 17, 16, 16)) + "</colgroup>"
         head = cols + (
             f'<thead><tr><th scope="col">{t(first_col)}</th><th scope="col">{t("index.th_vendor")}</th>'
             f'<th scope="col">{t("index.th_type")}</th><th scope="col">{t("index.th_platforms")}</th>'
             f'<th scope="col">{t("index.th_rosmarops")}</th><th scope="col">{t("index.th_last_change")}</th></tr></thead>'
         )
-        return f'<div class="box tablebox"><table>\n{head}\n<tbody>\n' + "\n".join(row(a) for a in items) + "\n</tbody>\n</table></div>"
+        return f'<div class="box tablebox"><table>\n{head}\n<tbody>\n' + "\n".join(row(a, followed) for a in items) + "\n</tbody>\n</table></div>"
 
-    def row(a):
+    def row(a, followed=False):
         ag = a["agent"]
         name = esc(ag["name"])
         if is_published(a):
@@ -460,13 +479,14 @@ def build_index(lang, t, agents):
             f'<td data-label="{t("index.th_vendor")}">{esc(ag["vendor"])}</td>'
             f'<td data-label="{t("index.th_type")}">{esc(kinds_text(t, a))}</td>'
             f'<td data-label="{t("index.th_platforms")}">{esc(platforms_text(t, a))}</td>'
-            f'<td data-label="{t("index.th_rosmarops")}">{esc(status_text(t, a))}</td>'
+            f'<td data-label="{t("index.th_rosmarops")}">{t("status.followed") if followed else esc(status_text(t, a))}</td>'
             f'<td data-label="{t("index.th_last_change")}">{last}</td>'
             "</tr>"
         )
 
-    agent_list = [a for a in agents if not is_tool(a)]
-    tool_list = [a for a in agents if is_tool(a)]
+    agent_list = [a for a in agents if family(a) == "local"]
+    tool_list = [a for a in agents if family(a) == "tooling"]
+    cloud_list = [a for a in agents if family(a) == "cloud"]
     tools_section = ""
     if tool_list:
         tools_section = f"""
@@ -474,8 +494,30 @@ def build_index(lang, t, agents):
 <section aria-labelledby="tools">
 <h2 id="tools">{t("index.tooling_h2")}</h2>
 <p class="note">{t("index.tooling_note")}</p>
-{table(tool_list, "index.th_tool")}
+{table(tool_list, "index.th_tool", followed=True)}
 </section>"""
+    cloud_section = ""
+    if cloud_list:
+        cloud_section = f"""
+
+<section aria-labelledby="cloud">
+<h2 id="cloud">{t("index.cloud_h2")}</h2>
+<p class="note">{t("index.cloud_note")}</p>
+{table(cloud_list, "index.th_agent", followed=True)}
+</section>"""
+    candidates_section = ""
+    if candidates:
+        cand_items = "".join(
+            f'<li>{esc(c["name"])} · {esc(c["vendor"])} · {t("candidate." + c["reason"])}</li>' for c in candidates
+        )
+        candidates_section = f"""
+
+<section aria-labelledby="candidates">
+<h2 id="candidates">{t("index.candidates_h2")}</h2>
+<p class="note">{t("index.candidates_note")}</p>
+<ul class="changes box">{cand_items}</ul>
+</section>"""
+    criteria = "".join(f"<li>{t('index.criteria_' + str(i))}</li>" for i in range(1, 5))
 
     all_changes = sorted(
         ((c, a) for a in agents for c in a["changes"]), key=lambda x: (x[0]["date"], x[0]["id"]), reverse=True
@@ -503,16 +545,17 @@ def build_index(lang, t, agents):
 {table(agent_list, "index.th_agent")}
 <p class="note">{t("index.status_note")}</p>
 <p class="note">{t("index.pages_note")}</p>
-</section>{tools_section}
+</section>{tools_section}{cloud_section}
 
 <section aria-labelledby="changes">
 <h2 id="changes">{t("index.changes_h2")}</h2>
 {changes}
 <p class="note">{t("index.changes_daily", link=daily_link)}</p>
-</section>
+</section>{candidates_section}
 
 <section id="method" class="box trio" aria-label="{t("index.method_h3")}">
 <div><h3>{t("index.method_h3")}</h3><p>{t("index.method_p")}</p></div>
+<div><h3>{t("index.criteria_h3")}</h3><p>{t("index.criteria_intro")}</p><ol>{criteria}</ol><p>{t("index.criteria_after")}</p></div>
 <div><h3>{t("index.independence_h3")}</h3><p>{t("index.independence_p")}</p></div>
 <div><h3>{t("index.data_h3")}</h3><p>{t("index.data_p")}</p><a href="{JSON_BASE}data.json">{t("index.data_link")}</a></div>
 </section>
@@ -552,6 +595,14 @@ def build_index(lang, t, agents):
             ],
         },
     ]
+    if cloud_list:
+        jsonld.insert(2, {
+            "@context": "https://schema.org",
+            "@type": "ItemList",
+            "name": t.text("index.cloud_h2"),
+            "numberOfItems": len(cloud_list),
+            "itemListElement": item_list(lang, cloud_list),
+        })
     if tool_list:
         jsonld.insert(2, {
             "@context": "https://schema.org",
@@ -896,6 +947,7 @@ def main():
     DATA, SITE = args.data, args.out
     cats = load_catalogs()
     agents = load_agents()
+    candidates = load_candidates()
     for p in INDEX_PATH.values():
         shutil.rmtree(SITE / p.strip("/"), ignore_errors=True)
     build_data(agents)
@@ -906,7 +958,7 @@ def main():
     pages = 0
     for lang in LANGS:
         t = T(cats[lang])
-        build_index(lang, t, agents)
+        build_index(lang, t, agents, candidates)
         pages += 1
         for a in agents:
             if has_page(a):

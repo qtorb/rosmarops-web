@@ -1107,6 +1107,122 @@
     {
       "schema_version": 1,
       "agent": {
+        "id": "autogen",
+        "name": "AutoGen",
+        "vendor": "Microsoft",
+        "kinds": [
+          "framework"
+        ],
+        "platforms": [
+          "windows",
+          "macos",
+          "linux"
+        ],
+        "local_footprint": "yes",
+        "rosmarops": {
+          "status": "not_supported"
+        },
+        "reviewed_at": "2026-10-30"
+      },
+      "versions": [],
+      "changes": [],
+      "ratings": []
+    },
+    {
+      "schema_version": 1,
+      "agent": {
+        "id": "codex-cloud",
+        "name": "Codex cloud",
+        "vendor": "OpenAI",
+        "kinds": [
+          "cloud"
+        ],
+        "platforms": [
+          "web"
+        ],
+        "local_footprint": "no",
+        "rosmarops": {
+          "status": "not_supported"
+        },
+        "reviewed_at": "2026-10-30"
+      },
+      "versions": [],
+      "changes": [],
+      "ratings": []
+    },
+    {
+      "schema_version": 1,
+      "agent": {
+        "id": "crewai",
+        "name": "CrewAI",
+        "vendor": "CrewAI",
+        "kinds": [
+          "framework"
+        ],
+        "platforms": [
+          "windows",
+          "macos",
+          "linux"
+        ],
+        "local_footprint": "yes",
+        "rosmarops": {
+          "status": "not_supported"
+        },
+        "reviewed_at": "2026-10-30"
+      },
+      "versions": [],
+      "changes": [],
+      "ratings": []
+    },
+    {
+      "schema_version": 1,
+      "agent": {
+        "id": "devin",
+        "name": "Devin",
+        "vendor": "Cognition",
+        "kinds": [
+          "cloud"
+        ],
+        "platforms": [
+          "web"
+        ],
+        "local_footprint": "no",
+        "rosmarops": {
+          "status": "not_supported"
+        },
+        "reviewed_at": "2026-10-30"
+      },
+      "versions": [],
+      "changes": [],
+      "ratings": []
+    },
+    {
+      "schema_version": 1,
+      "agent": {
+        "id": "devin-desktop",
+        "name": "Devin Desktop",
+        "vendor": "Cognition",
+        "kinds": [
+          "ide"
+        ],
+        "platforms": [
+          "windows",
+          "macos",
+          "linux"
+        ],
+        "local_footprint": "yes",
+        "rosmarops": {
+          "status": "not_supported"
+        },
+        "reviewed_at": "2026-10-30"
+      },
+      "versions": [],
+      "changes": [],
+      "ratings": []
+    },
+    {
+      "schema_version": 1,
+      "agent": {
         "id": "gemini-cli",
         "name": "Gemini CLI",
         "vendor": "Google",
@@ -1135,6 +1251,53 @@
           }
         }
       ],
+      "changes": [],
+      "ratings": []
+    },
+    {
+      "schema_version": 1,
+      "agent": {
+        "id": "copilot-coding-agent",
+        "name": "GitHub Copilot coding agent",
+        "vendor": "GitHub",
+        "kinds": [
+          "cloud"
+        ],
+        "platforms": [
+          "web"
+        ],
+        "local_footprint": "no",
+        "rosmarops": {
+          "status": "not_supported"
+        },
+        "reviewed_at": "2026-10-30"
+      },
+      "versions": [],
+      "changes": [],
+      "ratings": []
+    },
+    {
+      "schema_version": 1,
+      "agent": {
+        "id": "goose",
+        "name": "Goose",
+        "vendor": "Agentic AI Foundation",
+        "kinds": [
+          "cli",
+          "desktop_app"
+        ],
+        "platforms": [
+          "windows",
+          "macos",
+          "linux"
+        ],
+        "local_footprint": "yes",
+        "rosmarops": {
+          "status": "not_supported"
+        },
+        "reviewed_at": "2026-10-30"
+      },
+      "versions": [],
       "changes": [],
       "ratings": []
     },
@@ -1222,6 +1385,103 @@
           }
         }
       ]
+    },
+    {
+      "schema_version": 1,
+      "agent": {
+        "id": "kiro",
+        "name": "Kiro",
+        "vendor": "AWS",
+        "kinds": [
+          "ide",
+          "cli"
+        ],
+        "platforms": [
+          "windows",
+          "macos",
+          "linux"
+        ],
+        "local_footprint": "yes",
+        "rosmarops": {
+          "status": "not_supported"
+        },
+        "reviewed_at": "2026-10-30"
+      },
+      "versions": [],
+      "changes": [],
+      "ratings": []
+    },
+    {
+      "schema_version": 1,
+      "agent": {
+        "id": "langgraph",
+        "name": "LangGraph",
+        "vendor": "LangChain",
+        "kinds": [
+          "framework"
+        ],
+        "platforms": [
+          "python"
+        ],
+        "local_footprint": "yes",
+        "rosmarops": {
+          "status": "not_supported"
+        },
+        "reviewed_at": "2026-10-30"
+      },
+      "versions": [],
+      "changes": [],
+      "ratings": []
+    },
+    {
+      "schema_version": 1,
+      "agent": {
+        "id": "openclaw",
+        "name": "OpenClaw",
+        "vendor": "OpenClaw Foundation",
+        "kinds": [
+          "personal_agent"
+        ],
+        "platforms": [
+          "windows",
+          "macos",
+          "linux"
+        ],
+        "local_footprint": "yes",
+        "rosmarops": {
+          "status": "not_supported"
+        },
+        "reviewed_at": "2026-10-30"
+      },
+      "versions": [],
+      "changes": [],
+      "ratings": []
+    },
+    {
+      "schema_version": 1,
+      "agent": {
+        "id": "opencode",
+        "name": "OpenCode",
+        "vendor": "Anomaly",
+        "kinds": [
+          "cli",
+          "desktop_app",
+          "ide_extension"
+        ],
+        "platforms": [
+          "windows",
+          "macos",
+          "linux"
+        ],
+        "local_footprint": "yes",
+        "rosmarops": {
+          "status": "not_supported"
+        },
+        "reviewed_at": "2026-10-30"
+      },
+      "versions": [],
+      "changes": [],
+      "ratings": []
     }
   ]
 }
