@@ -21,7 +21,7 @@
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Logo de RosmarOps">
 <meta name="twitter:card" content="summary_large_image">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "@id": "https://rosmarops.com/es/metodologia/#article", "headline": "Cómo se calcula la nota de exposición", "description": "El método completo de la nota de exposición de RosmarOps: una nota por agente, bandas atadas al semáforo, pesos públicos, la fórmula, la cobertura y las versiones.", "inLanguage": "es", "url": "https://rosmarops.com/es/metodologia/", "dateModified": "2026-10-27", "version": "index 3", "author": {"@type": "Person", "name": "Albert Garcia Pujadas"}, "publisher": {"@type": "Organization", "@id": "https://rosmarops.com/#org", "name": "RosmarOps", "url": "https://rosmarops.com/", "logo": "https://rosmarops.com/assets/brand/rosmarops-logo@2x.png"}, "isPartOf": {"@id": "https://rosmarops.com/#website"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "@id": "https://rosmarops.com/es/metodologia/#article", "headline": "Cómo se calcula la nota de exposición", "description": "El método completo de la nota de exposición de RosmarOps: una nota por agente, bandas atadas al semáforo, pesos públicos, la fórmula, la cobertura y las versiones.", "inLanguage": "es", "url": "https://rosmarops.com/es/metodologia/", "dateModified": "2026-10-30", "version": "index 3", "author": {"@type": "Person", "name": "Albert Garcia Pujadas"}, "publisher": {"@type": "Organization", "@id": "https://rosmarops.com/#org", "name": "RosmarOps", "url": "https://rosmarops.com/", "logo": "https://rosmarops.com/assets/brand/rosmarops-logo@2x.png"}, "isPartOf": {"@id": "https://rosmarops.com/#website"}}</script>
 <link rel="stylesheet" href="/assets/consent/cookieconsent.css?v=3.1.0">
 <link rel="icon" href="/wp-content/uploads/2026/10/image-1.png">
 <style>
@@ -64,10 +64,12 @@ footer nav{gap:20px;font-size:15px}
 
 <main><div class="wrap">
 <article class="doc"><h1>Cómo se calcula la nota de exposición</h1>
-<p class="meta">Versión del método: índice 3. Última actualización: 27 de octubre de 2026.</p>
+<p class="meta">Versión del método: índice 3. Última actualización: 30 de octubre de 2026.</p>
 <p>RosmarOps lee la configuración de tus agentes de IA para programar y dibuja un mapa de exposición: qué puede leer y cambiar cada agente, qué claves tiene a su alcance y si un agente puede cambiar la configuración o las instrucciones de otro. La nota de exposición de tus agentes convierte ese mapa en un número sobre 100. Esta página es el método entero. No hay nada secreto.</p>
 <h2>Una nota por agente</h2>
 <p>RosmarOps da a cada agente que evalúa su propia nota de exposición, sobre 100. Más alto es mejor.</p>
+<h2>Qué agentes reciben nota</h2>
+<p>Hoy evalúa Claude Code, Cursor y Hermes Agent (desde RosmarOps 0.5.2) en Windows. Detecta Cline, GitHub Copilot, Continue, Codex, Antigravity y Claude Desktop, pero todavía no les pone nota: el informe los pone como detectados sin evaluar.</p>
 <h2>La banda la pone el semáforo</h2>
 <p>La nota nunca contradice al semáforo del agente, porque su peor aviso fija la banda y la nota se mueve dentro:</p>
 <ul><li>0–49, rojo: expuesto.</li><li>50–79, amarillo: huecos abiertos.</li><li>80–100, verde: contenido.</li></ul>
