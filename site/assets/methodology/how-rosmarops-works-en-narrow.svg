@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 358 839" width="358" height="839" role="img" font-family="system-ui,-apple-system,&quot;Segoe UI&quot;,sans-serif">
+<title>How RosmarOps works</title>
+<rect width="358" height="839" rx="16" fill="#F6F5F2"/>
+<rect x="16" y="16" width="326" height="169" rx="12" fill="#FFFFFF" stroke="#E3E0D8"/>
+<circle cx="46" cy="46" r="14" fill="#1B1A18"/>
+<text x="46" y="51" font-size="14" font-weight="700" fill="#FFFFFF" text-anchor="middle">1</text>
+<text x="70" y="52" font-size="18" font-weight="700" fill="#1B1A18">Reads</text>
+<text x="32" y="86.0" font-size="14" font-weight="400" fill="#3A3833">It looks at the settings of the AI</text>
+<text x="32" y="106.3" font-size="14" font-weight="400" fill="#3A3833">agents on your computer: assistants</text>
+<text x="32" y="126.6" font-size="14" font-weight="400" fill="#3A3833">like Claude Code or Cursor that can act</text>
+<text x="32" y="146.9" font-size="14" font-weight="400" fill="#3A3833">for you. It only looks; it changes</text>
+<text x="32" y="167.2" font-size="14" font-weight="400" fill="#3A3833">nothing.</text>
+<path d="M179.0 189 v14 m-6 -6 l6 6 l6 -6" fill="none" stroke="#66635D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="16" y="209" width="326" height="149" rx="12" fill="#FFFFFF" stroke="#E3E0D8"/>
+<circle cx="46" cy="239" r="14" fill="#1B1A18"/>
+<text x="46" y="244" font-size="14" font-weight="700" fill="#FFFFFF" text-anchor="middle">2</text>
+<text x="70" y="245" font-size="18" font-weight="700" fill="#1B1A18">Checks</text>
+<text x="32" y="279.0" font-size="14" font-weight="400" fill="#3A3833">It works out what each agent is allowed</text>
+<text x="32" y="299.3" font-size="14" font-weight="400" fill="#3A3833">to do: open your files, use your</text>
+<text x="32" y="319.6" font-size="14" font-weight="400" fill="#3A3833">passwords and access keys, or change</text>
+<text x="32" y="339.9" font-size="14" font-weight="400" fill="#3A3833">another agent's settings.</text>
+<path d="M179.0 362 v14 m-6 -6 l6 6 l6 -6" fill="none" stroke="#66635D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="16" y="382" width="326" height="187" rx="12" fill="#FFFFFF" stroke="#E3E0D8"/>
+<circle cx="46" cy="412" r="14" fill="#1B1A18"/>
+<text x="46" y="417" font-size="14" font-weight="700" fill="#FFFFFF" text-anchor="middle">3</text>
+<text x="70" y="418" font-size="18" font-weight="700" fill="#1B1A18">Scores</text>
+<text x="32" y="452.0" font-size="14" font-weight="400" fill="#3A3833">Each agent gets a score out of 100.</text>
+<text x="32" y="472.3" font-size="14" font-weight="400" fill="#3A3833">Red: it can reach a lot. Green: little</text>
+<text x="32" y="492.6" font-size="14" font-weight="400" fill="#3A3833">or nothing was found. The rules are</text>
+<text x="32" y="512.9" font-size="14" font-weight="400" fill="#3A3833">public.</text>
+<rect x="32.0" y="526.9" width="96.0" height="24" rx="4" fill="#FDECE7"/>
+<text x="80.0" y="543.4" font-size="11" font-weight="600" fill="#94200B" text-anchor="middle">0–49</text>
+<rect x="130.0" y="526.9" width="96.0" height="24" rx="4" fill="#FDF5DF"/>
+<text x="178.0" y="543.4" font-size="11" font-weight="600" fill="#6B4700" text-anchor="middle">50–79</text>
+<rect x="228.0" y="526.9" width="96.0" height="24" rx="4" fill="#E8F5EE"/>
+<text x="276.0" y="543.4" font-size="11" font-weight="600" fill="#1A5532" text-anchor="middle">80–100</text>
+<path d="M179.0 573 v14 m-6 -6 l6 6 l6 -6" fill="none" stroke="#66635D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="16" y="593" width="326" height="129" rx="12" fill="#FFFFFF" stroke="#E3E0D8"/>
+<circle cx="46" cy="623" r="14" fill="#1B1A18"/>
+<text x="46" y="628" font-size="14" font-weight="700" fill="#FFFFFF" text-anchor="middle">4</text>
+<text x="70" y="629" font-size="18" font-weight="700" fill="#1B1A18">Explains</text>
+<text x="32" y="663.0" font-size="14" font-weight="400" fill="#3A3833">You get a report on your computer: what</text>
+<text x="32" y="683.3" font-size="14" font-weight="400" fill="#3A3833">it found, in plain words, and what to</text>
+<text x="32" y="703.6" font-size="14" font-weight="400" fill="#3A3833">change. You decide and make the change.</text>
+<rect x="16" y="738" width="326" height="85" rx="12" fill="#1B1A18"/>
+<text x="32" y="766.0" font-size="14" font-weight="600" fill="#FFFFFF">Everything stays on your computer.</text>
+<text x="32" y="786.3" font-size="14" font-weight="600" fill="#FFFFFF">RosmarOps doesn't connect to the</text>
+<text x="32" y="806.6" font-size="14" font-weight="600" fill="#FFFFFF">internet and sends nothing.</text>
+</svg>

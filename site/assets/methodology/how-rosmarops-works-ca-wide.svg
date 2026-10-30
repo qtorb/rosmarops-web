@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 363" width="760" height="363" role="img" font-family="system-ui,-apple-system,&quot;Segoe UI&quot;,sans-serif">
+<title>Com funciona RosmarOps</title>
+<rect width="760" height="363" rx="16" fill="#F6F5F2"/>
+<rect x="16.0" y="16" width="164.0" height="271" rx="12" fill="#FFFFFF" stroke="#E3E0D8"/>
+<circle cx="46.0" cy="46" r="14" fill="#1B1A18"/>
+<text x="46.0" y="51" font-size="14" font-weight="700" fill="#FFFFFF" text-anchor="middle">1</text>
+<text x="70.0" y="52" font-size="18" font-weight="700" fill="#1B1A18">Llegeix</text>
+<text x="32.0" y="86.0" font-size="14" font-weight="400" fill="#3A3833">Mira la</text>
+<text x="32.0" y="106.3" font-size="14" font-weight="400" fill="#3A3833">configuració dels</text>
+<text x="32.0" y="126.6" font-size="14" font-weight="400" fill="#3A3833">agents d'IA del</text>
+<text x="32.0" y="146.9" font-size="14" font-weight="400" fill="#3A3833">teu ordinador:</text>
+<text x="32.0" y="167.2" font-size="14" font-weight="400" fill="#3A3833">assistents com</text>
+<text x="32.0" y="187.5" font-size="14" font-weight="400" fill="#3A3833">Claude Code o</text>
+<text x="32.0" y="207.8" font-size="14" font-weight="400" fill="#3A3833">Cursor que poden</text>
+<text x="32.0" y="228.1" font-size="14" font-weight="400" fill="#3A3833">actuar per tu.</text>
+<text x="32.0" y="248.4" font-size="14" font-weight="400" fill="#3A3833">Només mira; no</text>
+<text x="32.0" y="268.7" font-size="14" font-weight="400" fill="#3A3833">canvia res.</text>
+<path d="M184.0 151.3 h14 m-6 -6 l6 6 l-6 6" fill="none" stroke="#66635D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="204.0" y="16" width="164.0" height="271" rx="12" fill="#FFFFFF" stroke="#E3E0D8"/>
+<circle cx="234.0" cy="46" r="14" fill="#1B1A18"/>
+<text x="234.0" y="51" font-size="14" font-weight="700" fill="#FFFFFF" text-anchor="middle">2</text>
+<text x="258.0" y="52" font-size="18" font-weight="700" fill="#1B1A18">Analitza</text>
+<text x="220.0" y="86.0" font-size="14" font-weight="400" fill="#3A3833">Esbrina què pot</text>
+<text x="220.0" y="106.3" font-size="14" font-weight="400" fill="#3A3833">fer cada agent:</text>
+<text x="220.0" y="126.6" font-size="14" font-weight="400" fill="#3A3833">obrir els teus</text>
+<text x="220.0" y="146.9" font-size="14" font-weight="400" fill="#3A3833">fitxers, fer</text>
+<text x="220.0" y="167.2" font-size="14" font-weight="400" fill="#3A3833">servir les teves</text>
+<text x="220.0" y="187.5" font-size="14" font-weight="400" fill="#3A3833">contrasenyes i</text>
+<text x="220.0" y="207.8" font-size="14" font-weight="400" fill="#3A3833">claus d'accés o</text>
+<text x="220.0" y="228.1" font-size="14" font-weight="400" fill="#3A3833">canviar la</text>
+<text x="220.0" y="248.4" font-size="14" font-weight="400" fill="#3A3833">configuració d'un</text>
+<text x="220.0" y="268.7" font-size="14" font-weight="400" fill="#3A3833">altre agent.</text>
+<path d="M372.0 151.3 h14 m-6 -6 l6 6 l-6 6" fill="none" stroke="#66635D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="392.0" y="16" width="164.0" height="271" rx="12" fill="#FFFFFF" stroke="#E3E0D8"/>
+<circle cx="422.0" cy="46" r="14" fill="#1B1A18"/>
+<text x="422.0" y="51" font-size="14" font-weight="700" fill="#FFFFFF" text-anchor="middle">3</text>
+<text x="446.0" y="52" font-size="18" font-weight="700" fill="#1B1A18">Puntua</text>
+<text x="408.0" y="86.0" font-size="14" font-weight="400" fill="#3A3833">Cada agent rep</text>
+<text x="408.0" y="106.3" font-size="14" font-weight="400" fill="#3A3833">una nota sobre</text>
+<text x="408.0" y="126.6" font-size="14" font-weight="400" fill="#3A3833">100. Vermell: pot</text>
+<text x="408.0" y="146.9" font-size="14" font-weight="400" fill="#3A3833">arribar a molt.</text>
+<text x="408.0" y="167.2" font-size="14" font-weight="400" fill="#3A3833">Verd: s'ha trobat</text>
+<text x="408.0" y="187.5" font-size="14" font-weight="400" fill="#3A3833">poc o res. Les</text>
+<text x="408.0" y="207.8" font-size="14" font-weight="400" fill="#3A3833">regles són</text>
+<text x="408.0" y="228.1" font-size="14" font-weight="400" fill="#3A3833">públiques.</text>
+<rect x="408.0" y="242.1" width="42.0" height="24" rx="4" fill="#FDECE7"/>
+<text x="429.0" y="258.6" font-size="11" font-weight="600" fill="#94200B" text-anchor="middle">0–49</text>
+<rect x="452.0" y="242.1" width="42.0" height="24" rx="4" fill="#FDF5DF"/>
+<text x="473.0" y="258.6" font-size="11" font-weight="600" fill="#6B4700" text-anchor="middle">50–79</text>
+<rect x="496.0" y="242.1" width="42.0" height="24" rx="4" fill="#E8F5EE"/>
+<text x="517.0" y="258.6" font-size="11" font-weight="600" fill="#1A5532" text-anchor="middle">80–100</text>
+<path d="M560.0 151.3 h14 m-6 -6 l6 6 l-6 6" fill="none" stroke="#66635D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="580.0" y="16" width="164.0" height="271" rx="12" fill="#FFFFFF" stroke="#E3E0D8"/>
+<circle cx="610.0" cy="46" r="14" fill="#1B1A18"/>
+<text x="610.0" y="51" font-size="14" font-weight="700" fill="#FFFFFF" text-anchor="middle">4</text>
+<text x="634.0" y="52" font-size="18" font-weight="700" fill="#1B1A18">Explica</text>
+<text x="596.0" y="86.0" font-size="14" font-weight="400" fill="#3A3833">Reps un informe</text>
+<text x="596.0" y="106.3" font-size="14" font-weight="400" fill="#3A3833">al teu ordinador:</text>
+<text x="596.0" y="126.6" font-size="14" font-weight="400" fill="#3A3833">què ha trobat, en</text>
+<text x="596.0" y="146.9" font-size="14" font-weight="400" fill="#3A3833">paraules clares,</text>
+<text x="596.0" y="167.2" font-size="14" font-weight="400" fill="#3A3833">i què cal</text>
+<text x="596.0" y="187.5" font-size="14" font-weight="400" fill="#3A3833">canviar. Tu</text>
+<text x="596.0" y="207.8" font-size="14" font-weight="400" fill="#3A3833">decideixes i fas</text>
+<text x="596.0" y="228.1" font-size="14" font-weight="400" fill="#3A3833">el canvi.</text>
+<rect x="16" y="303" width="728" height="44" rx="12" fill="#1B1A18"/>
+<text x="32" y="331.0" font-size="14" font-weight="600" fill="#FFFFFF">Tot es queda al teu ordinador. RosmarOps no es connecta a internet i no envia res.</text>
+</svg>
