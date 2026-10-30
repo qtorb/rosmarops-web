@@ -1,0 +1,131 @@
+{
+  "date": "2026-10-30",
+  "reviewed_at": "2026-10-30T08:54:36Z",
+  "status": "incomplete",
+  "items": [],
+  "checked": [
+    {
+      "name": "F1 Claude Code",
+      "url": "https://code.claude.com/docs/en/changelog",
+      "latest_seen": "2.1.314",
+      "latest_date": "2026-10-30"
+    },
+    {
+      "name": "F2 Cursor",
+      "url": "https://cursor.com/changelog",
+      "latest_seen": "CLI v2026.10.22",
+      "latest_date": "2026-10-20"
+    },
+    {
+      "name": "F3 OpenAI Codex (not opened)",
+      "url": "https://github.com/openai/codex/releases",
+      "latest_seen": "rust-v0.166.0",
+      "latest_date": "2026-10-29"
+    },
+    {
+      "name": "F4 Google Antigravity",
+      "url": "https://antigravity.google/docs/changelog",
+      "latest_seen": "CLI 1.4.10",
+      "latest_date": "2026-10-29"
+    },
+    {
+      "name": "F5 Hermes Agent",
+      "url": "https://github.com/NousResearch/hermes-agent/releases",
+      "latest_seen": "v0.22.5",
+      "latest_date": "2026-10-23"
+    },
+    {
+      "name": "F6 GitHub Copilot",
+      "url": "https://github.blog/changelog/",
+      "latest_seen": "",
+      "latest_date": "2026-10-28"
+    },
+    {
+      "name": "F7 Cline",
+      "url": "https://github.com/cline/cline/releases",
+      "latest_seen": "v4.1.26",
+      "latest_date": "2026-10-25"
+    },
+    {
+      "name": "F8 Continue",
+      "url": "https://github.com/continuedev/continue/releases",
+      "latest_seen": "v2.1.0-vscode",
+      "latest_date": "2026-06-18"
+    },
+    {
+      "name": "F9 Kanvas",
+      "url": "https://github.com/XMihura/Kanvas/blob/main/CHANGELOG.md",
+      "latest_seen": "v0.4.0",
+      "latest_date": "2026-10-27"
+    },
+    {
+      "name": "F10 OpenSSF malicious-packages",
+      "url": "https://github.com/ossf/malicious-packages",
+      "latest_seen": "",
+      "latest_date": null
+    },
+    {
+      "name": "F11 Gemini CLI",
+      "url": "https://github.com/google-gemini/gemini-cli/releases",
+      "latest_seen": "v0.66.0",
+      "latest_date": "2026-10-27"
+    },
+    {
+      "name": "F12 GitHub Copilot CLI",
+      "url": "https://github.com/github/copilot-cli/blob/main/changelog.md",
+      "latest_seen": "1.0.105",
+      "latest_date": "2026-10-27"
+    },
+    {
+      "name": "F13 Claude desktop",
+      "url": "https://support.claude.com/en/articles/12138966-release-notes",
+      "latest_seen": "",
+      "latest_date": "2026-10-21"
+    },
+    {
+      "name": "F14 OSV npm and PyPI",
+      "url": "https://osv.dev/list?ecosystem=npm",
+      "latest_seen": "",
+      "latest_date": null
+    },
+    {
+      "name": "F15 NVD",
+      "url": "https://nvd.nist.gov/vuln/search",
+      "latest_seen": "",
+      "latest_date": null
+    }
+  ],
+  "held": [
+    {
+      "text_en": "",
+      "source_url": "",
+      "rule": 10,
+      "reason": "Summary for 2026-10-30 reports an incomplete fixed-source review (14/15; F3 OpenAI Codex not opened). R10: status incomplete, no further checks."
+    },
+    {
+      "text_en": "Claude Code 2.1.314 adds permissions.blockWritesOutsideWorkingDirectories",
+      "source_url": "https://code.claude.com/docs/en/changelog",
+      "rule": 10,
+      "reason": "Not checked: the day's summary starts with «Revisión de fuentes fijas: INCOMPLETA» (F3 not opened), so the synopsis is incomplete."
+    },
+    {
+      "text_en": "Antigravity CLI 1.4.9: approving a Google site no longer covers Gmail, Docs, Drive, Accounts, Cloud Console",
+      "source_url": "https://antigravity.google/docs/changelog",
+      "rule": 10,
+      "reason": "Not checked: the day's summary starts with «Revisión de fuentes fijas: INCOMPLETA» (F3 not opened), so the synopsis is incomplete."
+    },
+    {
+      "text_en": "OSV lists litellm 1.107.0 (PyPI) in MAL-2026-2144",
+      "source_url": "https://osv.dev/vulnerability/MAL-2026-2144",
+      "rule": 10,
+      "reason": "Not checked: the day's summary starts with «Revisión de fuentes fijas: INCOMPLETA» (F3 not opened), so the synopsis is incomplete."
+    },
+    {
+      "text_en": "CVE-2026-119025 affects npm open 7.2.0 to before 11.0.0 on Windows and WSL",
+      "source_url": "https://nvd.nist.gov/vuln/detail/CVE-2026-119025",
+      "rule": 10,
+      "reason": "Not checked: the day's summary starts with «Revisión de fuentes fijas: INCOMPLETA» (F3 not opened), so the synopsis is incomplete."
+    }
+  ],
+  "summary_ref": "docs/observatorio/2026-10-30.md"
+}
