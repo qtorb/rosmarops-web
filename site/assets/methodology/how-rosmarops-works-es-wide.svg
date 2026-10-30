@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 381" width="760" height="381" role="img" font-family="system-ui,-apple-system,&quot;Segoe UI&quot;,sans-serif">
+<title>Cómo funciona RosmarOps</title>
+<rect width="760" height="381" rx="16" fill="#F6F5F2"/>
+<rect x="16.0" y="16" width="164.0" height="288" rx="12" fill="#FFFFFF" stroke="#E3E0D8"/>
+<circle cx="46.0" cy="46" r="14" fill="#1B1A18"/>
+<text x="46.0" y="51" font-size="14" font-weight="700" fill="#FFFFFF" text-anchor="middle">1</text>
+<text x="70.0" y="52" font-size="18" font-weight="700" fill="#1B1A18">Lee</text>
+<text x="32.0" y="86.0" font-size="14" font-weight="400" fill="#3A3833">Mira la</text>
+<text x="32.0" y="106.3" font-size="14" font-weight="400" fill="#3A3833">configuración de</text>
+<text x="32.0" y="126.6" font-size="14" font-weight="400" fill="#3A3833">los agentes de IA</text>
+<text x="32.0" y="146.9" font-size="14" font-weight="400" fill="#3A3833">de tu ordenador:</text>
+<text x="32.0" y="167.2" font-size="14" font-weight="400" fill="#3A3833">asistentes como</text>
+<text x="32.0" y="187.5" font-size="14" font-weight="400" fill="#3A3833">Claude Code o</text>
+<text x="32.0" y="207.8" font-size="14" font-weight="400" fill="#3A3833">Cursor que pueden</text>
+<text x="32.0" y="228.1" font-size="14" font-weight="400" fill="#3A3833">actuar por ti.</text>
+<text x="32.0" y="248.4" font-size="14" font-weight="400" fill="#3A3833">Solo mira; no</text>
+<text x="32.0" y="268.7" font-size="14" font-weight="400" fill="#3A3833">cambia nada.</text>
+<path d="M184.0 160.2 h14 m-6 -6 l6 6 l-6 6" fill="none" stroke="#66635D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="204.0" y="16" width="164.0" height="288" rx="12" fill="#FFFFFF" stroke="#E3E0D8"/>
+<circle cx="234.0" cy="46" r="14" fill="#1B1A18"/>
+<text x="234.0" y="51" font-size="14" font-weight="700" fill="#FFFFFF" text-anchor="middle">2</text>
+<text x="258.0" y="52" font-size="18" font-weight="700" fill="#1B1A18">Analiza</text>
+<text x="220.0" y="86.0" font-size="14" font-weight="400" fill="#3A3833">Averigua qué</text>
+<text x="220.0" y="106.3" font-size="14" font-weight="400" fill="#3A3833">puede hacer cada</text>
+<text x="220.0" y="126.6" font-size="14" font-weight="400" fill="#3A3833">agente: abrir tus</text>
+<text x="220.0" y="146.9" font-size="14" font-weight="400" fill="#3A3833">archivos, usar</text>
+<text x="220.0" y="167.2" font-size="14" font-weight="400" fill="#3A3833">tus contraseñas y</text>
+<text x="220.0" y="187.5" font-size="14" font-weight="400" fill="#3A3833">claves de acceso</text>
+<text x="220.0" y="207.8" font-size="14" font-weight="400" fill="#3A3833">o cambiar la</text>
+<text x="220.0" y="228.1" font-size="14" font-weight="400" fill="#3A3833">configuración de</text>
+<text x="220.0" y="248.4" font-size="14" font-weight="400" fill="#3A3833">otro agente.</text>
+<path d="M372.0 160.2 h14 m-6 -6 l6 6 l-6 6" fill="none" stroke="#66635D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="392.0" y="16" width="164.0" height="288" rx="12" fill="#FFFFFF" stroke="#E3E0D8"/>
+<circle cx="422.0" cy="46" r="14" fill="#1B1A18"/>
+<text x="422.0" y="51" font-size="14" font-weight="700" fill="#FFFFFF" text-anchor="middle">3</text>
+<text x="446.0" y="52" font-size="18" font-weight="700" fill="#1B1A18">Puntúa</text>
+<text x="408.0" y="86.0" font-size="14" font-weight="400" fill="#3A3833">Cada agente</text>
+<text x="408.0" y="106.3" font-size="14" font-weight="400" fill="#3A3833">recibe una nota</text>
+<text x="408.0" y="126.6" font-size="14" font-weight="400" fill="#3A3833">sobre 100. Rojo:</text>
+<text x="408.0" y="146.9" font-size="14" font-weight="400" fill="#3A3833">puede llegar a</text>
+<text x="408.0" y="167.2" font-size="14" font-weight="400" fill="#3A3833">mucho. Verde: se</text>
+<text x="408.0" y="187.5" font-size="14" font-weight="400" fill="#3A3833">ha encontrado</text>
+<text x="408.0" y="207.8" font-size="14" font-weight="400" fill="#3A3833">poco o nada. Las</text>
+<text x="408.0" y="228.1" font-size="14" font-weight="400" fill="#3A3833">reglas son</text>
+<text x="408.0" y="248.4" font-size="14" font-weight="400" fill="#3A3833">públicas.</text>
+<rect x="408.0" y="262.4" width="42.0" height="24" rx="4" fill="#FDECE7"/>
+<text x="429.0" y="278.9" font-size="11" font-weight="600" fill="#94200B" text-anchor="middle">0–49</text>
+<rect x="452.0" y="262.4" width="42.0" height="24" rx="4" fill="#FDF5DF"/>
+<text x="473.0" y="278.9" font-size="11" font-weight="600" fill="#6B4700" text-anchor="middle">50–79</text>
+<rect x="496.0" y="262.4" width="42.0" height="24" rx="4" fill="#E8F5EE"/>
+<text x="517.0" y="278.9" font-size="11" font-weight="600" fill="#1A5532" text-anchor="middle">80–100</text>
+<path d="M560.0 160.2 h14 m-6 -6 l6 6 l-6 6" fill="none" stroke="#66635D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="580.0" y="16" width="164.0" height="288" rx="12" fill="#FFFFFF" stroke="#E3E0D8"/>
+<circle cx="610.0" cy="46" r="14" fill="#1B1A18"/>
+<text x="610.0" y="51" font-size="14" font-weight="700" fill="#FFFFFF" text-anchor="middle">4</text>
+<text x="634.0" y="52" font-size="18" font-weight="700" fill="#1B1A18">Explica</text>
+<text x="596.0" y="86.0" font-size="14" font-weight="400" fill="#3A3833">Recibes un</text>
+<text x="596.0" y="106.3" font-size="14" font-weight="400" fill="#3A3833">informe en tu</text>
+<text x="596.0" y="126.6" font-size="14" font-weight="400" fill="#3A3833">ordenador: qué ha</text>
+<text x="596.0" y="146.9" font-size="14" font-weight="400" fill="#3A3833">encontrado, en</text>
+<text x="596.0" y="167.2" font-size="14" font-weight="400" fill="#3A3833">palabras claras,</text>
+<text x="596.0" y="187.5" font-size="14" font-weight="400" fill="#3A3833">y qué cambiar. Tú</text>
+<text x="596.0" y="207.8" font-size="14" font-weight="400" fill="#3A3833">decides y haces</text>
+<text x="596.0" y="228.1" font-size="14" font-weight="400" fill="#3A3833">el cambio.</text>
+<rect x="16" y="320" width="728" height="44" rx="12" fill="#1B1A18"/>
+<text x="32" y="348.0" font-size="14" font-weight="600" fill="#FFFFFF">Todo se queda en tu ordenador. RosmarOps no se conecta a internet y no envía nada.</text>
+</svg>
