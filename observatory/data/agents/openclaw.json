@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "agent": {
+    "id": "openclaw",
+    "name": "OpenClaw",
+    "vendor": "OpenClaw Foundation",
+    "kinds": [
+      "personal_agent"
+    ],
+    "platforms": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "local_footprint": "yes",
+    "rosmarops": {
+      "status": "not_supported"
+    },
+    "reviewed_at": "2026-10-30"
+  },
+  "versions": [],
+  "changes": [],
+  "ratings": []
+}
