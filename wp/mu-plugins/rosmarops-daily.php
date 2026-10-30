@@ -88,7 +88,11 @@ function rosmarops_daily_keys_exact($o, $keys) {
 
 /** True if $d is a valid daily file for $date; otherwise a string with the first error. */
 function rosmarops_daily_validate($d, $date) {
-	if (!rosmarops_daily_keys_exact($d, ['date', 'reviewed_at', 'status', 'items', 'checked', 'held', 'summary_ref'])) {
+	$keys = ['date', 'reviewed_at', 'status', 'items', 'checked', 'held', 'summary_ref'];
+	if (is_array($d) && array_key_exists('not_checked', $d)) {
+		$keys[] = 'not_checked';
+	}
+	if (!rosmarops_daily_keys_exact($d, $keys)) {
 		return 'top-level keys';
 	}
 	if ($d['date'] !== $date || !rosmarops_daily_is_day($d['date'])) {
@@ -103,7 +107,7 @@ function rosmarops_daily_validate($d, $date) {
 	if (!is_array($d['items']) || !array_is_list($d['items']) || count($d['items']) > 5) {
 		return 'items';
 	}
-	if (($d['status'] === 'published') !== (count($d['items']) > 0)) {
+	if (($d['status'] === 'published' && count($d['items']) === 0) || ($d['status'] === 'no_changes' && count($d['items']) > 0)) {
 		return 'items for status';
 	}
 	foreach ($d['items'] as $it) {
@@ -125,7 +129,8 @@ function rosmarops_daily_validate($d, $date) {
 			}
 		}
 	}
-	if (!is_array($d['checked']) || !array_is_list($d['checked']) || count($d['checked']) < 1 || count($d['checked']) > 40) {
+	if (!is_array($d['checked']) || !array_is_list($d['checked']) || count($d['checked']) > 40
+		|| ($d['status'] !== 'incomplete' && count($d['checked']) < 1)) {
 		return 'checked';
 	}
 	foreach ($d['checked'] as $c) {
@@ -136,6 +141,19 @@ function rosmarops_daily_validate($d, $date) {
 			return 'checked entry';
 		}
 	}
+	if (array_key_exists('not_checked', $d)) {
+		if (!is_array($d['not_checked']) || !array_is_list($d['not_checked']) || count($d['not_checked']) > 40) {
+			return 'not_checked';
+		}
+		foreach ($d['not_checked'] as $n) {
+			if (!rosmarops_daily_is_str($n, 1, 80)) {
+				return 'not_checked entry';
+			}
+		}
+	}
+	if ($d['status'] === 'incomplete' && (!array_key_exists('not_checked', $d) || count($d['not_checked']) < 1)) {
+		return 'not_checked for status';
+	}
 	if (!is_array($d['held']) || !array_is_list($d['held'])) {
 		return 'held';
 	}
@@ -145,18 +163,15 @@ function rosmarops_daily_validate($d, $date) {
 	return true;
 }
 
-/** Store a decoded daily file if valid and not incomplete. Returns true when stored. */
+/** Store a decoded daily file if valid. Returns true when stored. */
 function rosmarops_daily_store($d, $date) {
 	$ok = rosmarops_daily_validate($d, $date);
 	if ($ok !== true) {
 		error_log("rosmarops-daily: $date rejected ($ok)");
 		return false;
 	}
-	if ($d['status'] === 'incomplete') {
-		return false;
-	}
 	// Only what the pages use is kept; `held` stays in the repository.
-	$keep = ['date' => $d['date'], 'reviewed_at' => $d['reviewed_at'], 'status' => $d['status'], 'items' => $d['items'], 'checked' => $d['checked']];
+	$keep = ['date' => $d['date'], 'reviewed_at' => $d['reviewed_at'], 'status' => $d['status'], 'items' => $d['items'], 'checked' => $d['checked'], 'not_checked' => $d['not_checked'] ?? []];
 	rosmarops_daily_set('rosmarops_daily_' . $date, $keep);
 	$dates = (array) rosmarops_daily_get('rosmarops_daily_dates', []);
 	$dates[] = $date;
@@ -231,7 +246,7 @@ function rosmarops_daily_hero($lang, $h1) {
 
 function rosmarops_daily_day_body($lang, $d) {
 	$out = rosmarops_daily_hero($lang, rosmarops_daily_title($lang, $d['date']));
-	if ($d['status'] === 'published') {
+	if (count($d['items']) > 0) {
 		$out .= '<ol class="changes box">';
 		foreach ($d['items'] as $it) {
 			$meta = rosmarops_daily_date($lang, $it['source_date']) . ' · ' . $it['subject'] . ($it['identifier'] ? ' · ' . $it['identifier'] : '');
@@ -240,7 +255,10 @@ function rosmarops_daily_day_body($lang, $d) {
 				. '<p class="meta"><a href="' . rosmarops_daily_e($it['source_url']) . '" rel="noopener">' . rosmarops_daily_e(rosmarops_daily_host($it['source_url'])) . '</a></p></li>';
 		}
 		$out .= "</ol>\n";
-	} else {
+	}
+	if ($d['status'] === 'incomplete') {
+		$out .= '<p class="empty box">' . rosmarops_daily_e(rosmarops_daily_partial($lang, $d)) . "</p>\n";
+	} elseif (count($d['items']) === 0) {
 		$out .= '<p class="empty box">' . rosmarops_daily_e(rosmarops_daily_t($lang, 'daily.empty')) . "</p>\n";
 	}
 	$out .= '<h2 id="checked">' . rosmarops_daily_e(rosmarops_daily_t($lang, 'daily.checked_h2')) . "</h2>\n";
@@ -260,8 +278,19 @@ function rosmarops_daily_day_body($lang, $d) {
 	return $out;
 }
 
+/** The incomplete-day sentence (GTM-48): partial with items, partial_empty without, none_checked when nothing was checked. */
+function rosmarops_daily_partial($lang, $d) {
+	$n = count($d['checked']);
+	$nc = (array) ($d['not_checked'] ?? []);
+	$key = count($d['items']) > 0 ? 'daily.partial' : ($n > 0 ? 'daily.partial_empty' : 'daily.none_checked');
+	return strtr(rosmarops_daily_t($lang, $key), ['{n}' => (string) $n, '{total}' => (string) ($n + count($nc)), '{names}' => implode(', ', $nc)]);
+}
+
 function rosmarops_daily_first_line($lang, $d) {
-	return $d['status'] === 'published' ? $d['items'][0]['text'][$lang] : rosmarops_daily_t($lang, 'daily.empty');
+	if (count($d['items']) > 0) {
+		return $d['items'][0]['text'][$lang];
+	}
+	return $d['status'] === 'incomplete' ? rosmarops_daily_partial($lang, $d) : rosmarops_daily_t($lang, 'daily.empty');
 }
 
 function rosmarops_daily_index_body($lang, $days) {
@@ -300,9 +329,9 @@ function rosmarops_daily_feed($lang, $days) {
 		. '<language>' . $lang . '</language>';
 	foreach ($days as $d) {
 		$url = $base . ROSMAROPS_DAILY_PREFIX[$lang] . $d['date'] . '/';
-		$desc = $d['status'] === 'published'
+		$desc = count($d['items']) > 0
 			? implode(' · ', array_map(fn($it) => $it['text'][$lang], $d['items']))
-			: rosmarops_daily_t($lang, 'daily.empty');
+			: ($d['status'] === 'incomplete' ? rosmarops_daily_partial($lang, $d) : rosmarops_daily_t($lang, 'daily.empty'));
 		$out .= '<item><title>' . $x(rosmarops_daily_title($lang, $d['date'])) . '</title>'
 			. '<link>' . $x($url) . '</link><guid isPermaLink="true">' . $x($url) . '</guid>'
 			. '<pubDate>' . $x(gmdate('D, d M Y H:i:s', strtotime($d['reviewed_at'])) . ' +0000') . '</pubDate>'

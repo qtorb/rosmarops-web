@@ -218,5 +218,8 @@
   "daily.checked_h2": "What we checked",
   "daily.index_h1": "Agent security, day by day",
   "daily.rss_title": "RosmarOps Observatory: agent security today",
-  "daily.disclaimer": "From the vendors' official sources and public registries, each line with its date and source. Not a security guarantee or advice."
+  "daily.disclaimer": "From the vendors' official sources and public registries, each line with its date and source. Not a security guarantee or advice.",
+  "daily.partial": "Checked today: {n} of {total} sources. Not checked: {names}.",
+  "daily.partial_empty": "No changes found in the {n} sources checked today. Not checked: {names}.",
+  "daily.none_checked": "The review could not check any source today."
 }

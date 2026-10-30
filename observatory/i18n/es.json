@@ -218,5 +218,8 @@
   "daily.checked_h2": "Qué hemos revisado",
   "daily.index_h1": "La seguridad de los agentes, día a día",
   "daily.rss_title": "Observatorio de RosmarOps: la seguridad de los agentes hoy",
-  "daily.disclaimer": "Según las fuentes oficiales de los fabricantes y registros públicos, cada línea con su fecha y su fuente. No es una garantía de seguridad ni un consejo."
+  "daily.disclaimer": "Según las fuentes oficiales de los fabricantes y registros públicos, cada línea con su fecha y su fuente. No es una garantía de seguridad ni un consejo.",
+  "daily.partial": "Hoy hemos revisado {n} de {total} fuentes. Sin revisar: {names}.",
+  "daily.partial_empty": "No hemos encontrado cambios en las {n} fuentes revisadas hoy. Sin revisar: {names}.",
+  "daily.none_checked": "Hoy la revisión no ha podido comprobar ninguna fuente."
 }

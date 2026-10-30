@@ -37,7 +37,7 @@ class Alert(unittest.TestCase):
 
     def test_incomplete(self):
         d = copy.deepcopy(self.d)
-        d.update(status="incomplete", items=[])
+        d.update(status="incomplete", items=[], not_checked=["F3 OpenAI Codex"])
         self.assertIn("revisión incompleta", self.msgs(d)[0]["Subject"])
 
     def test_invalid(self):

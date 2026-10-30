@@ -45,7 +45,8 @@ JSON_BASE = "/observatory/"
 DAILY_PATH = {"en": "/observatory/daily/", "es": "/es/observatorio/diario/", "ca": "/ca/observatori/diari/"}
 DAILY_DIR = ROOT / "wp" / "daily"
 DAILY_KEYS = ["common.date", "common.months", "site.observatory_brand",
-              "daily.title", "daily.lead", "daily.empty", "daily.checked_h2", "daily.index_h1", "daily.rss_title", "daily.disclaimer"]
+              "daily.title", "daily.lead", "daily.empty", "daily.checked_h2", "daily.index_h1", "daily.rss_title", "daily.disclaimer",
+              "daily.partial", "daily.partial_empty", "daily.none_checked"]
 
 
 # ---------------------------------------------------------------- inputs
