@@ -86,7 +86,7 @@
   "agent.rosmarops_not_supported": "RosmarOps doesn't read it yet.",
   "agent.cta_download": "Check yours: download RosmarOps",
   "agent.history_h2": "Security change history",
-  "agent.history_note": "Only changes that affect what it can do on your computer. Nothing is deleted: corrections stay on record.",
+  "agent.history_note": "Only changes that affect what it can do on your computer or with your accounts. Nothing is deleted: corrections stay on record.",
   "agent.history_empty": "No security changes recorded yet.",
   "agent.change_meta": "{date} · version {version} · {category}",
   "agent.change_meta_noversion": "{date} · {category}",
