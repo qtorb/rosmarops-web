@@ -191,12 +191,51 @@ class Daily(unittest.TestCase):
     def test_reject_wrong_date(self):
         self.rejected(lambda d: None, date="2026-01-14")
 
-    def test_incomplete_not_stored(self):
+    def test_incomplete_without_not_checked_rejected(self):
         d = copy.deepcopy(self.valid)
         d.update(date="2026-01-20", status="incomplete", items=[], summary_ref="docs/observatorio/2026-01-20.md")
         self.assertEqual(self.store_day(d), "not stored")
         st, _, _ = self.get("/observatory/daily/2026-01-20/")
         self.assertEqual(st, 404)
+        d["not_checked"] = []
+        self.assertEqual(self.store_day(d), "not stored")
+
+    # ---- incomplete days are published too (GTM-48). Dates before 2026-01-15, so the index and feed tests keep their order.
+
+    def incomplete_day(self, date, items, checked, not_checked):
+        d = copy.deepcopy(self.valid)
+        d.update(date=date, status="incomplete", summary_ref=f"docs/observatorio/{date}.md", not_checked=not_checked)
+        d["items"] = d["items"][:items]
+        d["checked"] = d["checked"][:checked]
+        self.assertEqual(self.store_day(d), "stored")
+        return d
+
+    def test_incomplete_with_items(self):
+        d = self.incomplete_day("2026-01-10", 1, 2, ["F3 OpenAI Codex"])
+        st, _, body = self.get("/observatory/daily/2026-01-10/")
+        self.assertEqual(st, 200)
+        self.assertIn('<ol class="changes box">', body)
+        self.assertIn(d["items"][0]["text"]["en"].replace("'", "&#039;"), body)
+        self.assertIn('<p class="empty box">Checked today: 2 of 3 sources. Not checked: F3 OpenAI Codex.</p>', body)
+        self.assertNotIn("No security changes found", body)
+
+    def test_incomplete_without_items(self):
+        self.incomplete_day("2026-01-11", 0, 2, ["F3 OpenAI Codex", "F15 NVD"])
+        st, _, body = self.get("/es/observatorio/diario/2026-01-11/")
+        self.assertEqual(st, 200)
+        self.assertNotIn('<ol class="changes box">', body)
+        self.assertIn('<p class="empty box">No hemos encontrado cambios en las 2 fuentes revisadas hoy. Sin revisar: F3 OpenAI Codex, F15 NVD.</p>', body)
+        st, _, body = self.get("/es/observatorio/diario/")
+        self.assertIn("No hemos encontrado cambios en las 2 fuentes revisadas hoy. Sin revisar: F3 OpenAI Codex, F15 NVD.", body)
+
+    def test_incomplete_nothing_checked(self):
+        self.incomplete_day("2026-01-12", 0, 0, ["F1 Claude Code"])
+        st, _, body = self.get("/ca/observatori/diari/2026-01-12/")
+        self.assertEqual(st, 200)
+        self.assertIn('<p class="empty box">Avui la revisió no ha pogut comprovar cap font.</p>', body)
+        st, _, body = self.get("/ca/observatori/diari/feed.xml")
+        descs = [i.findtext("description") for i in ET.fromstring(body).findall("channel/item")]
+        self.assertIn("Avui la revisió no ha pogut comprovar cap font.", descs)
 
 
 if __name__ == "__main__":

@@ -141,6 +141,8 @@ def check(path):
             errs += url_errors(c["url"], f"checked/{i}/url")
     if data.get("status") == "no_changes" and any(isinstance(h, dict) and h.get("rule") == 10 for h in data.get("held") or []):
         errs.append("status no_changes but the review is incomplete (held item with rule 10)")
+    if data.get("status") == "incomplete" and not (isinstance(data.get("not_checked"), list) and data["not_checked"]):
+        errs.append("status incomplete needs not_checked with at least one source")
     return errs
 
 

@@ -218,5 +218,8 @@
   "daily.checked_h2": "Què hem revisat",
   "daily.index_h1": "La seguretat dels agents, dia a dia",
   "daily.rss_title": "Observatori de RosmarOps: la seguretat dels agents avui",
-  "daily.disclaimer": "Segons les fonts oficials dels fabricants i registres públics, cada línia amb la seva data i la seva font. No és una garantia de seguretat ni un consell."
+  "daily.disclaimer": "Segons les fonts oficials dels fabricants i registres públics, cada línia amb la seva data i la seva font. No és una garantia de seguretat ni un consell.",
+  "daily.partial": "Avui hem revisat {n} de {total} fonts. Sense revisar: {names}.",
+  "daily.partial_empty": "No hem trobat canvis a les {n} fonts revisades avui. Sense revisar: {names}.",
+  "daily.none_checked": "Avui la revisió no ha pogut comprovar cap font."
 }

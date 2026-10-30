@@ -103,6 +103,31 @@ class DailyCheck(unittest.TestCase):
             d["held"].append({"text_en": "", "source_url": "", "rule": 10, "reason": "osv.dev did not open"})
         self.broken(m, "review is incomplete")
 
+    # GTM-48: an incomplete day is published too, with what was checked and what was not.
+    def test_incomplete_with_items(self):
+        d = copy.deepcopy(self.d)
+        d.update(status="incomplete", not_checked=["F3 OpenAI Codex"])
+        self.assertEqual(run(d), [])
+
+    def test_incomplete_without_items(self):
+        d = copy.deepcopy(self.d)
+        d.update(status="incomplete", items=[], not_checked=["F3 OpenAI Codex", "F15 NVD"])
+        self.assertEqual(run(d), [])
+
+    def test_incomplete_nothing_checked(self):
+        d = copy.deepcopy(self.d)
+        d.update(status="incomplete", items=[], checked=[], not_checked=["F1 Claude Code"])
+        self.assertEqual(run(d), [])
+
+    def test_incomplete_needs_not_checked(self):
+        self.broken(lambda d: d.update(status="incomplete", items=[], not_checked=[]), "status incomplete needs not_checked")
+
+    def test_incomplete_without_not_checked_key(self):
+        self.broken(lambda d: d.update(status="incomplete", items=[]), "status incomplete needs not_checked")
+
+    def test_published_needs_checked(self):
+        self.broken(lambda d: d.update(checked=[]), "schema: checked")
+
 
 if __name__ == "__main__":
     unittest.main()
