@@ -5,6 +5,7 @@
     "name": "GitHub Copilot",
     "vendor": "GitHub",
     "kinds": [
+      "cli",
       "ide_extension",
       "cloud"
     ],

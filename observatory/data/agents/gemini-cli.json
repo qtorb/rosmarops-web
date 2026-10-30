@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "agent": {
+    "id": "gemini-cli",
+    "name": "Gemini CLI",
+    "vendor": "Google",
+    "kinds": [
+      "cli"
+    ],
+    "platforms": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "local_footprint": "yes",
+    "rosmarops": {
+      "status": "not_supported"
+    },
+    "reviewed_at": "2026-10-30"
+  },
+  "versions": [
+    {
+      "version": "0.66.0",
+      "released_at": "2026-10-27",
+      "source": {
+        "url": "https://github.com/google-gemini/gemini-cli/releases/tag/v0.66.0",
+        "official": true,
+        "accessed_at": "2026-10-30"
+      }
+    }
+  ],
+  "changes": [],
+  "ratings": []
+}

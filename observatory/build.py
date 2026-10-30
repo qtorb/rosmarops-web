@@ -44,6 +44,8 @@ JSON_BASE = "/observatory/"
 # Daily synopsis (GTM-23): pages rendered by wp/mu-plugins/rosmarops-daily.php from these shells.
 DAILY_PATH = {"en": "/observatory/daily/", "es": "/es/observatorio/diario/", "ca": "/ca/observatori/diari/"}
 DAILY_DIR = ROOT / "wp" / "daily"
+# Cloud access review page (GTM-51), linked from the index (GTM-53).
+CLOUD_PATH = {"en": "/cloud-access/", "es": "/es/acceso-en-la-nube/", "ca": "/ca/acces-al-nuvol/"}
 DAILY_KEYS = ["common.date", "common.months", "site.observatory_brand",
               "daily.title", "daily.lead", "daily.empty", "daily.checked_h2", "daily.index_h1", "daily.rss_title", "daily.disclaimer",
               "daily.partial", "daily.partial_empty", "daily.none_checked"]
@@ -483,17 +485,21 @@ def build_index(lang, t, agents):
     else:
         changes = f'<p class="empty box">{t("index.changes_empty")}</p>'
 
+    daily_link = Markup(f'<a href="{DAILY_PATH[lang]}">{t("index.daily_link")}</a>')
+    cloud_link = Markup(f'<a href="{CLOUD_PATH[lang]}">{t("index.cloud_link")}</a>')
+
     body = f"""<section class="hero">
 <p class="obs-brand"><img src="/assets/brand/observatory/observatory-mark.svg" width="64" height="64" alt="">{t("site.observatory_brand")}</p>
-<p class="eyebrow">{t("index.eyebrow", date=t.date(reviewed))}</p>
+<p class="eyebrow">{t("index.eyebrow")}</p>
 <h1>{t("index.h1")}</h1>
 <p class="lead">{t("index.lead")}</p>
-<div class="actions"><a class="btn primary" href="#method">{t("index.cta_method")}</a><a class="btn secondary" href="{JSON_BASE}data.json">{t("index.cta_data")}</a></div>
+<p class="note">{t("index.daily_line", link=daily_link)}</p>
+<div class="actions"><a class="btn primary" href="{DAILY_PATH[lang]}">{t("index.cta_daily")}</a><a class="btn secondary" href="#method">{t("index.cta_method")}</a><a class="btn secondary" href="{JSON_BASE}data.json">{t("index.cta_data")}</a></div>
 </section>
 
 <section aria-labelledby="agents">
 <h2 id="agents">{t("index.agents_h2")}</h2>
-<p class="note">{t("index.agents_scope")}</p>
+<p class="note">{t("index.agents_scope", link=cloud_link)}</p>
 {table(agent_list, "index.th_agent")}
 <p class="note">{t("index.status_note")}</p>
 <p class="note">{t("index.pages_note")}</p>
@@ -502,6 +508,7 @@ def build_index(lang, t, agents):
 <section aria-labelledby="changes">
 <h2 id="changes">{t("index.changes_h2")}</h2>
 {changes}
+<p class="note">{t("index.changes_daily", link=daily_link)}</p>
 </section>
 
 <section id="method" class="box trio" aria-label="{t("index.method_h3")}">
