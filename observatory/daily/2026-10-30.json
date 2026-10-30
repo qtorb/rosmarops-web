@@ -5,95 +5,92 @@
   "items": [],
   "checked": [
     {
-      "name": "F1 Claude Code",
+      "name": "Claude Code",
       "url": "https://code.claude.com/docs/en/changelog",
       "latest_seen": "2.1.314",
       "latest_date": "2026-10-30"
     },
     {
-      "name": "F2 Cursor",
+      "name": "Cursor",
       "url": "https://cursor.com/changelog",
       "latest_seen": "CLI v2026.10.22",
       "latest_date": "2026-10-20"
     },
     {
-      "name": "F3 OpenAI Codex (not opened)",
-      "url": "https://github.com/openai/codex/releases",
-      "latest_seen": "rust-v0.166.0",
-      "latest_date": "2026-10-29"
-    },
-    {
-      "name": "F4 Google Antigravity",
+      "name": "Google Antigravity",
       "url": "https://antigravity.google/docs/changelog",
       "latest_seen": "CLI 1.4.10",
       "latest_date": "2026-10-29"
     },
     {
-      "name": "F5 Hermes Agent",
+      "name": "Hermes Agent",
       "url": "https://github.com/NousResearch/hermes-agent/releases",
       "latest_seen": "v0.22.5",
       "latest_date": "2026-10-23"
     },
     {
-      "name": "F6 GitHub Copilot",
+      "name": "GitHub Copilot",
       "url": "https://github.blog/changelog/",
       "latest_seen": "",
       "latest_date": "2026-10-28"
     },
     {
-      "name": "F7 Cline",
+      "name": "Cline",
       "url": "https://github.com/cline/cline/releases",
       "latest_seen": "v4.1.26",
       "latest_date": "2026-10-25"
     },
     {
-      "name": "F8 Continue",
+      "name": "Continue",
       "url": "https://github.com/continuedev/continue/releases",
       "latest_seen": "v2.1.0-vscode",
       "latest_date": "2026-06-18"
     },
     {
-      "name": "F9 Kanvas",
+      "name": "Kanvas",
       "url": "https://github.com/XMihura/Kanvas/blob/main/CHANGELOG.md",
       "latest_seen": "v0.4.0",
       "latest_date": "2026-10-27"
     },
     {
-      "name": "F10 OpenSSF malicious-packages",
+      "name": "OpenSSF malicious-packages",
       "url": "https://github.com/ossf/malicious-packages",
       "latest_seen": "",
       "latest_date": null
     },
     {
-      "name": "F11 Gemini CLI",
+      "name": "Gemini CLI",
       "url": "https://github.com/google-gemini/gemini-cli/releases",
       "latest_seen": "v0.66.0",
       "latest_date": "2026-10-27"
     },
     {
-      "name": "F12 GitHub Copilot CLI",
+      "name": "GitHub Copilot CLI",
       "url": "https://github.com/github/copilot-cli/blob/main/changelog.md",
       "latest_seen": "1.0.105",
       "latest_date": "2026-10-27"
     },
     {
-      "name": "F13 Claude desktop",
+      "name": "Claude desktop",
       "url": "https://support.claude.com/en/articles/12138966-release-notes",
       "latest_seen": "",
       "latest_date": "2026-10-21"
     },
     {
-      "name": "F14 OSV npm and PyPI",
+      "name": "OSV npm and PyPI",
       "url": "https://osv.dev/list?ecosystem=npm",
       "latest_seen": "",
       "latest_date": null
     },
     {
-      "name": "F15 NVD",
+      "name": "NVD",
       "url": "https://nvd.nist.gov/vuln/search",
       "latest_seen": "",
       "latest_date": null
     }
+  ],
+  "not_checked": [
+    "OpenAI Codex"
   ],
   "held": [
     {
