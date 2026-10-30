@@ -28,6 +28,7 @@ Today it evaluates Claude Code, Cursor and Hermes Agent on Windows. It detects C
 - [Claude Code on Windows: what it can do on your computer](https://rosmarops.com/observatory/claude-code/): observatory page, with its data at https://rosmarops.com/observatory/claude-code.json
 - [Cursor on Windows: what it can do on your computer](https://rosmarops.com/observatory/cursor/): observatory page, with its data at https://rosmarops.com/observatory/cursor.json
 - [Antigravity on Windows: what it can do on your computer](https://rosmarops.com/observatory/antigravity/): observatory page, with its data at https://rosmarops.com/observatory/antigravity.json
+- [GitHub Copilot on Windows: what it can do on your computer](https://rosmarops.com/observatory/github-copilot/): observatory page, with its data at https://rosmarops.com/observatory/github-copilot.json
 - [Kanvas on Windows: what it leaves on your computer](https://rosmarops.com/observatory/kanvas/): observatory page, with its data at https://rosmarops.com/observatory/kanvas.json
 <!-- observatory agents:end -->
 - [About RosmarOps](https://rosmarops.com/blog/about/): where RosmarOps comes from and how to read its blog

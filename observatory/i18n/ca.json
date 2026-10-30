@@ -73,7 +73,7 @@
   "agent.rosmarops_not_supported": "RosmarOps encara no el llegeix.",
   "agent.cta_download": "Revisa el teu: descarrega RosmarOps",
   "agent.history_h2": "Historial de canvis de seguretat",
-  "agent.history_note": "Només canvis que afecten el que pot fer al teu ordinador. No s'esborra res: les correccions queden anotades.",
+  "agent.history_note": "Només canvis que afecten el que pot fer al teu ordinador o amb els teus comptes. No s'esborra res: les correccions queden anotades.",
   "agent.history_empty": "Encara no hi ha canvis de seguretat registrats.",
   "agent.change_meta": "{date} · versió {version} · {category}",
   "agent.change_meta_noversion": "{date} · {category}",
