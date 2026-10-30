@@ -192,6 +192,7 @@
   "summary.who.user": "te pregunta a ti antes de lo que necesita permiso",
   "summary.who.another_model": "lo que normalmente necesitaría tu permiso lo aprueba o lo bloquea otro modelo de IA, no tú",
   "summary.who.nobody": "no pregunta a nadie",
+  "summary.who.rule": "una regla que pones tú decide qué puede hacer sin preguntarte",
 
   "common.disclaimer": "Leído de la documentación y el código fuente del fabricante, cada dato con su fecha y su fuente. No es una garantía de seguridad ni un consejo.",
   "common.date": "{day} de {month} de {year}",
@@ -211,6 +212,7 @@
   "platform.macos": "macOS",
   "platform.linux": "Linux",
   "platform.web": "Web",
+  "platform.python": "Donde funcione Python",
 
   "status.evaluated": "Evaluado desde RosmarOps {version}",
   "status.detected": "Detectado desde RosmarOps {version}",

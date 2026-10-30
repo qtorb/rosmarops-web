@@ -1279,6 +1279,31 @@
     {
       "schema_version": 1,
       "agent": {
+        "id": "goose",
+        "name": "Goose",
+        "vendor": "Agentic AI Foundation",
+        "kinds": [
+          "cli",
+          "desktop_app"
+        ],
+        "platforms": [
+          "windows",
+          "macos",
+          "linux"
+        ],
+        "local_footprint": "yes",
+        "rosmarops": {
+          "status": "not_supported"
+        },
+        "reviewed_at": "2026-10-30"
+      },
+      "versions": [],
+      "changes": [],
+      "ratings": []
+    },
+    {
+      "schema_version": 1,
+      "agent": {
         "id": "kanvas",
         "name": "Kanvas",
         "vendor": "XMihura",
@@ -1375,6 +1400,28 @@
           "windows",
           "macos",
           "linux"
+        ],
+        "local_footprint": "yes",
+        "rosmarops": {
+          "status": "not_supported"
+        },
+        "reviewed_at": "2026-10-30"
+      },
+      "versions": [],
+      "changes": [],
+      "ratings": []
+    },
+    {
+      "schema_version": 1,
+      "agent": {
+        "id": "langgraph",
+        "name": "LangGraph",
+        "vendor": "LangChain",
+        "kinds": [
+          "framework"
+        ],
+        "platforms": [
+          "python"
         ],
         "local_footprint": "yes",
         "rosmarops": {

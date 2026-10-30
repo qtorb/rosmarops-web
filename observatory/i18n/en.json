@@ -192,6 +192,7 @@
   "summary.who.user": "it asks you before what needs permission",
   "summary.who.another_model": "what would otherwise need your permission is approved or blocked by another AI model, not by you",
   "summary.who.nobody": "it asks no one",
+  "summary.who.rule": "a rule you set decides what it can do without asking you",
 
   "common.disclaimer": "Read from the vendor's documentation and source code, each fact with its date and source. Not a security guarantee or advice.",
   "common.date": "{day} {month} {year}",
@@ -211,6 +212,7 @@
   "platform.macos": "macOS",
   "platform.linux": "Linux",
   "platform.web": "Web",
+  "platform.python": "Anywhere Python runs",
 
   "status.evaluated": "Evaluated since RosmarOps {version}",
   "status.detected": "Detected since RosmarOps {version}",

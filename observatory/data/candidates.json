@@ -25,9 +25,9 @@
     "reason": "next_batch"
   },
   {
-    "name": "ChatGPT Atlas",
-    "vendor": "OpenAI",
-    "reason": "no_source"
+    "name": "Microsoft Agent Framework",
+    "vendor": "Microsoft",
+    "reason": "next_batch"
   },
   {
     "name": "Comet",

@@ -192,6 +192,7 @@
   "summary.who.user": "et pregunta a tu abans del que necessita permís",
   "summary.who.another_model": "el que normalment necessitaria el teu permís ho aprova o ho bloqueja un altre model d'IA, no tu",
   "summary.who.nobody": "no pregunta a ningú",
+  "summary.who.rule": "una regla que poses tu decideix què pot fer sense preguntar-te",
 
   "common.disclaimer": "Llegit de la documentació i el codi font del fabricant, cada dada amb la seva data i la seva font. No és una garantia de seguretat ni un consell.",
   "common.date": "{day} {month} de {year}",
@@ -211,6 +212,7 @@
   "platform.macos": "macOS",
   "platform.linux": "Linux",
   "platform.web": "Web",
+  "platform.python": "On funcioni Python",
 
   "status.evaluated": "Avaluat des de RosmarOps {version}",
   "status.detected": "Detectat des de RosmarOps {version}",
