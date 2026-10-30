@@ -1,0 +1,47 @@
+{
+  "date": "2026-10-30",
+  "reviewed_at": "2026-10-30T07:31:10Z",
+  "status": "incomplete",
+  "items": [],
+  "checked": [
+    {
+      "name": "Resumen interno del Observatorio",
+      "url": "https://github.com/qtorb/rosmarops-vigil/tree/master/docs/observatorio",
+      "latest_seen": "",
+      "latest_date": null
+    }
+  ],
+  "held": [
+    {
+      "text_en": "",
+      "source_url": "",
+      "rule": 10,
+      "reason": "Review incomplete: no listed source could be opened today (fetch permission not granted in the unattended run)."
+    },
+    {
+      "text_en": "Codex 0.166.0 approval and MCP changes",
+      "source_url": "https://github.com/openai/codex/releases/tag/rust-v0.166.0",
+      "rule": 1,
+      "reason": "Official release page could not be opened today; summary cites a third-party aggregator only."
+    },
+    {
+      "text_en": "Antigravity CLI 1.4.9 approval changes",
+      "source_url": "https://antigravity.google/docs/changelog",
+      "rule": 1,
+      "reason": "Official changelog could not be opened today; summary cites a third-party site only."
+    },
+    {
+      "text_en": "Embedded-browser bugs in five assistants",
+      "source_url": "https://www.theregister.com/security/2026/10/29/researchers-find-bugs-in-5-ai-developer-tools-with-openai-and-microsoft-flaws-still-unpatched/5306508",
+      "rule": 1,
+      "reason": "Press and third-party research blog, not an official source or registry; also names companies in a flaw context (R5)."
+    },
+    {
+      "text_en": "@atlisp/mcp MAL-2026-4365",
+      "source_url": "https://osv.dev/vulnerability/MAL-2026-4365",
+      "rule": 1,
+      "reason": "OSV record could not be opened today; summary also reports it as withdrawn, status unclear."
+    }
+  ],
+  "summary_ref": "docs/observatorio/2026-10-30.md"
+}
