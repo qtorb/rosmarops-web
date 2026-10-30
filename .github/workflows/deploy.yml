@@ -35,7 +35,7 @@ jobs:
           php -l wp/mu-plugins/rosmarops-downloads.php
           php -l wp/mu-plugins/rosmarops-daily.php
           ls -l wp/daily/shell-en.html wp/daily/shell-es.html wp/daily/shell-ca.html wp/daily/i18n.json
-          ! grep -RIl 'noindex' site/index.html site/es/index.html site/methodology site/faq site/es/metodologia site/es/preguntas-frecuentes site/ca/index.html site/ca/metodologia site/ca/preguntes-frequents site/ca/privadesa site/macos site/es/macos site/ca/macos site/sample-report/index.html site/es/informe-de-ejemplo site/ca/informe-dexemple site/observatory/index.html site/es/observatorio/index.html site/ca/observatori/index.html
+          ! grep -RIl 'noindex' site/index.html site/es/index.html site/methodology site/faq site/es/metodologia site/es/preguntas-frecuentes site/ca/index.html site/ca/metodologia site/ca/preguntes-frequents site/cloud-access site/es/acceso-en-la-nube site/ca/acces-al-nuvol site/ca/privadesa site/macos site/es/macos site/ca/macos site/sample-report/index.html site/es/informe-de-ejemplo site/ca/informe-dexemple site/observatory/index.html site/es/observatorio/index.html site/ca/observatori/index.html
           # Observatory: only the three index pages and the JSON files are published (GTM-11). Agent pages wait for verification.
           ls site/observatory/index.html site/es/observatorio/index.html site/ca/observatori/index.html site/observatory/*.json
 
@@ -80,16 +80,22 @@ jobs:
           put site/methodology/index.html methodology/index.html
           -mkdir faq
           put site/faq/index.html faq/index.html
+          -mkdir cloud-access
+          put site/cloud-access/index.html cloud-access/index.html
           -mkdir es/metodologia
           put site/es/metodologia/index.html es/metodologia/index.html
           -mkdir es/preguntas-frecuentes
           put site/es/preguntas-frecuentes/index.html es/preguntas-frecuentes/index.html
+          -mkdir es/acceso-en-la-nube
+          put site/es/acceso-en-la-nube/index.html es/acceso-en-la-nube/index.html
           -mkdir ca
           put site/ca/index.html ca/index.html
           -mkdir ca/metodologia
           put site/ca/metodologia/index.html ca/metodologia/index.html
           -mkdir ca/preguntes-frequents
           put site/ca/preguntes-frequents/index.html ca/preguntes-frequents/index.html
+          -mkdir ca/acces-al-nuvol
+          put site/ca/acces-al-nuvol/index.html ca/acces-al-nuvol/index.html
           -mkdir ca/privadesa
           put site/ca/privadesa/index.html ca/privadesa/index.html
           -mkdir macos
@@ -253,6 +259,12 @@ jobs:
           echo "http -> $loc"; [ "$loc" = "301 https://rosmarops.com/blog/?x=1" ] || ok=no
           loc=$(curl -s -o /dev/null -w '%{http_code} %{redirect_url}' "https://rosmarops.com/faq")
           echo "slash -> $loc"; [ "$loc" = "301 https://rosmarops.com/faq/" ] || ok=no
+          loc=$(curl -s -o /dev/null -w '%{http_code} %{redirect_url}' "https://rosmarops.com/cloud-access")
+          echo "slash -> $loc"; [ "$loc" = "301 https://rosmarops.com/cloud-access/" ] || ok=no
+          loc=$(curl -s -o /dev/null -w '%{http_code} %{redirect_url}' "https://rosmarops.com/es/acceso-en-la-nube")
+          echo "slash -> $loc"; [ "$loc" = "301 https://rosmarops.com/es/acceso-en-la-nube/" ] || ok=no
+          loc=$(curl -s -o /dev/null -w '%{http_code} %{redirect_url}' "https://rosmarops.com/ca/acces-al-nuvol")
+          echo "slash -> $loc"; [ "$loc" = "301 https://rosmarops.com/ca/acces-al-nuvol/" ] || ok=no
           if [ "$ok" != yes ]; then
             printf 'cd %s\nput /tmp/ht.current .htaccess\n' "$SFTP_PATH" > /tmp/b3
             sftp_run /tmp/b3
@@ -264,7 +276,7 @@ jobs:
         run: |
           set -eu
           sleep 5
-          for u in https://rosmarops.com/ https://rosmarops.com/es/ https://rosmarops.com/llms.txt https://rosmarops.com/methodology/ https://rosmarops.com/faq/ https://rosmarops.com/es/metodologia/ https://rosmarops.com/es/preguntas-frecuentes/ https://rosmarops.com/ca/ https://rosmarops.com/ca/metodologia/ https://rosmarops.com/ca/preguntes-frequents/ https://rosmarops.com/ca/privadesa/ https://rosmarops.com/sitemap-pages.xml https://rosmarops.com/observatory/ https://rosmarops.com/es/observatorio/ https://rosmarops.com/ca/observatori/ https://rosmarops.com/observatory/data.json https://rosmarops.com/observatory/claude-code/ https://rosmarops.com/es/observatorio/cursor/ https://rosmarops.com/ca/observatori/kanvas/ https://rosmarops.com/macos/ https://rosmarops.com/es/macos/ https://rosmarops.com/ca/macos/ https://rosmarops.com/sample-report/ https://rosmarops.com/es/informe-de-ejemplo/ https://rosmarops.com/ca/informe-dexemple/ https://rosmarops.com/sample-report/sample-report.en.html https://rosmarops.com/sample-report/sample-report.es.html; do
+          for u in https://rosmarops.com/ https://rosmarops.com/es/ https://rosmarops.com/llms.txt https://rosmarops.com/methodology/ https://rosmarops.com/faq/ https://rosmarops.com/es/metodologia/ https://rosmarops.com/es/preguntas-frecuentes/ https://rosmarops.com/ca/ https://rosmarops.com/ca/metodologia/ https://rosmarops.com/ca/preguntes-frequents/ https://rosmarops.com/ca/privadesa/ https://rosmarops.com/sitemap-pages.xml https://rosmarops.com/observatory/ https://rosmarops.com/es/observatorio/ https://rosmarops.com/ca/observatori/ https://rosmarops.com/observatory/data.json https://rosmarops.com/observatory/claude-code/ https://rosmarops.com/es/observatorio/cursor/ https://rosmarops.com/ca/observatori/kanvas/ https://rosmarops.com/macos/ https://rosmarops.com/es/macos/ https://rosmarops.com/ca/macos/ https://rosmarops.com/sample-report/ https://rosmarops.com/es/informe-de-ejemplo/ https://rosmarops.com/ca/informe-dexemple/ https://rosmarops.com/sample-report/sample-report.en.html https://rosmarops.com/sample-report/sample-report.es.html https://rosmarops.com/cloud-access/ https://rosmarops.com/es/acceso-en-la-nube/ https://rosmarops.com/ca/acces-al-nuvol/; do
             code=$(curl -s -o /dev/null -w '%{http_code}' "$u?deploy=${GITHUB_SHA::7}")
             echo "$code $u"; test "$code" = "200"
           done
