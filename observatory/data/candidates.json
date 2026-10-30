@@ -1,0 +1,72 @@
+[
+  {
+    "name": "Kilo Code",
+    "vendor": "Kilo Code",
+    "reason": "next_batch"
+  },
+  {
+    "name": "Amp",
+    "vendor": "Amp",
+    "reason": "next_batch"
+  },
+  {
+    "name": "Qwen Code",
+    "vendor": "Alibaba Cloud",
+    "reason": "next_batch"
+  },
+  {
+    "name": "Warp",
+    "vendor": "Warp",
+    "reason": "next_batch"
+  },
+  {
+    "name": "Junie",
+    "vendor": "JetBrains",
+    "reason": "next_batch"
+  },
+  {
+    "name": "ChatGPT Atlas",
+    "vendor": "OpenAI",
+    "reason": "no_source"
+  },
+  {
+    "name": "Comet",
+    "vendor": "Perplexity",
+    "reason": "no_source"
+  },
+  {
+    "name": "Manus",
+    "vendor": "Manus AI",
+    "reason": "no_source"
+  },
+  {
+    "name": "Open Interpreter",
+    "vendor": "Open Interpreter",
+    "reason": "no_source"
+  },
+  {
+    "name": "OpenHands",
+    "vendor": "OpenHands",
+    "reason": "no_source"
+  },
+  {
+    "name": "Aider",
+    "vendor": "Aider AI LLC",
+    "reason": "no_source"
+  },
+  {
+    "name": "Pi Coder",
+    "vendor": "Earendil Works",
+    "reason": "no_source"
+  },
+  {
+    "name": "Trae",
+    "vendor": "ByteDance",
+    "reason": "no_source"
+  },
+  {
+    "name": "Mistral Vibe",
+    "vendor": "Mistral AI",
+    "reason": "no_source"
+  }
+]
