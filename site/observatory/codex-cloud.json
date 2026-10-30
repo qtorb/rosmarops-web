@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "agent": {
+    "id": "codex-cloud",
+    "name": "Codex cloud",
+    "vendor": "OpenAI",
+    "kinds": [
+      "cloud"
+    ],
+    "platforms": [
+      "web"
+    ],
+    "local_footprint": "no",
+    "rosmarops": {
+      "status": "not_supported"
+    },
+    "reviewed_at": "2026-10-30"
+  },
+  "versions": [],
+  "changes": [],
+  "ratings": []
+}

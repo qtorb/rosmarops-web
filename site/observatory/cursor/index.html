@@ -66,7 +66,7 @@ tr:last-child td,tr:last-child th{border-bottom:0}
 .changes .meta{margin:0;font-size:14px;color:var(--muted)}
 .changes p{margin:0}
 .empty{margin:0;padding:20px;font-size:16px;line-height:1.55;color:var(--ink2)}
-.trio{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;padding:24px}
+.trio{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;padding:24px}
 .trio div{display:flex;flex-direction:column;gap:8px}
 .trio p{margin:0;font-size:16px;line-height:1.55;color:var(--ink2)}
 .disclaimer{margin:0;font-size:14px;line-height:1.5;color:var(--muted)}
@@ -91,7 +91,7 @@ td code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:14p
 footer{border-top:1px solid var(--line)}
 footer .wrap{padding-top:28px;padding-bottom:28px;font-size:15px;color:var(--muted)}
 footer nav{gap:20px;font-size:15px}
-@media (max-width:700px){.obs-brand{gap:12px;margin-bottom:16px;font-size:20px}.obs-brand img{width:48px;height:48px}
+@media (max-width:700px){.trio{grid-template-columns:1fr}.obs-brand{gap:12px;margin-bottom:16px;font-size:20px}.obs-brand img{width:48px;height:48px}
 nav{gap:16px}main .wrap{gap:40px;padding-top:32px}.lead{font-size:18px}
 table{min-width:0;table-layout:auto}colgroup,thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 table,tbody,tr,tbody th,td{display:block}

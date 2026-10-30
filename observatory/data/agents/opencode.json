@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "agent": {
+    "id": "opencode",
+    "name": "OpenCode",
+    "vendor": "Anomaly",
+    "kinds": [
+      "cli",
+      "desktop_app",
+      "ide_extension"
+    ],
+    "platforms": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "local_footprint": "yes",
+    "rosmarops": {
+      "status": "not_supported"
+    },
+    "reviewed_at": "2026-10-30"
+  },
+  "versions": [],
+  "changes": [],
+  "ratings": []
+}
