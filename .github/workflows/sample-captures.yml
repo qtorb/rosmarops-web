@@ -1,0 +1,98 @@
+name: Sample report captures
+
+# GTM-45 (signed by Albert, 30-10 09:09). Once a day, if qtorb/rosmarops has a new latest release with the sample
+# reports, copies them to site/sample-report/, regenerates the eight captures in site/assets/sample/, updates the
+# height attributes in the six pages that show them, records the tag in site/sample-report/VERSION, commits to main
+# and asks for a deploy (which waits for Albert's approval in the production environment, as always).
+
+on:
+  schedule:
+    - cron: "23 9 * * *"
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: sample-captures
+  cancel-in-progress: false
+
+jobs:
+  captures:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Latest release
+        id: rel
+        run: |
+          set -eu
+          tag=$(gh api repos/qtorb/rosmarops/releases/latest --jq .tag_name)
+          current=$(tr -d '[:space:]' < site/sample-report/VERSION)
+          echo "latest: $tag, site: $current"
+          if [ "$tag" = "$current" ]; then
+            echo "No new release"
+            echo "new=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          assets=$(gh api "repos/qtorb/rosmarops/releases/tags/$tag" --jq '.assets[].name')
+          if ! echo "$assets" | grep -qx 'sample-report.en.html' || ! echo "$assets" | grep -qx 'sample-report.es.html'; then
+            echo "::warning::Release $tag has no sample-report.en.html and sample-report.es.html; nothing to do"
+            echo "new=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          echo "new=true" >> "$GITHUB_OUTPUT"
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+
+      - name: Download the sample reports
+        if: steps.rel.outputs.new == 'true'
+        env:
+          TAG: ${{ steps.rel.outputs.tag }}
+        run: |
+          set -eu
+          dir="$RUNNER_TEMP/sample-report"
+          mkdir -p "$dir"
+          gh release download "$TAG" -R qtorb/rosmarops -p 'sample-report.*.html' -D "$dir"
+          cp "$dir/sample-report.en.html" "$dir/sample-report.es.html" site/sample-report/
+
+      - name: Install Playwright, Chromium and optipng
+        if: steps.rel.outputs.new == 'true'
+        run: |
+          set -eu
+          npm install --no-save playwright@1.63.0
+          npx playwright install --with-deps chromium
+          sudo apt-get install -y optipng
+
+      - name: Captures and sizes
+        if: steps.rel.outputs.new == 'true'
+        run: |
+          set -eu
+          node tools/sample-captures/cap.js "$RUNNER_TEMP/sample-report" site/assets/sample
+          optipng -o4 site/assets/sample/sample-desktop.en.png site/assets/sample/sample-desktop.en@2x.png \
+            site/assets/sample/sample-desktop.es.png site/assets/sample/sample-desktop.es@2x.png \
+            site/assets/sample/sample-mobile.en.png site/assets/sample/sample-mobile.en@2x.png \
+            site/assets/sample/sample-mobile.es.png site/assets/sample/sample-mobile.es@2x.png
+          python3 tools/sample-captures/update_sizes.py
+
+      - name: Record the tag, commit and push
+        if: steps.rel.outputs.new == 'true'
+        env:
+          TAG: ${{ steps.rel.outputs.tag }}
+        run: |
+          set -eu
+          echo "$TAG" > site/sample-report/VERSION
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add site/sample-report/VERSION site/sample-report/sample-report.en.html site/sample-report/sample-report.es.html \
+            site/assets/sample/ site/index.html site/sample-report/index.html site/es/index.html \
+            site/es/informe-de-ejemplo/index.html site/ca/index.html site/ca/informe-dexemple/index.html
+          git commit -m "Sample report and captures for $TAG (automatic)"
+          git push origin HEAD:main
+
+      - name: Ask for a deploy (waits for Albert's approval)
+        if: steps.rel.outputs.new == 'true'
+        run: gh workflow run deploy.yml --ref main
