@@ -1,0 +1,187 @@
+{
+  "date": "2026-10-31",
+  "reviewed_at": "2026-10-31T07:17:16Z",
+  "status": "published",
+  "items": [
+    {
+      "source_url": "https://nvd.nist.gov/vuln/detail/CVE-2026-62863",
+      "source_date": "2026-10-30",
+      "subject": "MoLing (MCP server)",
+      "identifier": "CVE-2026-62863",
+      "text": {
+        "en": "CVE-2026-62863, published in NVD on 30 October 2026, affects MoLing, an MCP server, before version 0.5.0: in SSE mode its endpoints accept requests without authentication.",
+        "es": "CVE-2026-62863, publicado en NVD el 30 de octubre de 2026, afecta a MoLing, servidor MCP, en versiones anteriores a la 0.5.0: en modo SSE sus endpoints aceptan peticiones sin autenticar.",
+        "ca": "CVE-2026-62863, publicat a NVD el 30 d'octubre de 2026, afecta MoLing, servidor MCP, en versions anteriors a la 0.5.0: en mode SSE els seus endpoints accepten peticions sense autenticació."
+      }
+    },
+    {
+      "source_url": "https://nvd.nist.gov/vuln/detail/CVE-2026-61789",
+      "source_date": "2026-10-30",
+      "subject": "DBHub (MCP server)",
+      "identifier": "CVE-2026-61789",
+      "text": {
+        "en": "CVE-2026-61789, published in NVD on 30 October 2026, affects DBHub, an MCP server, before version 0.22.6: its read-only check can be bypassed on MySQL and MariaDB.",
+        "es": "CVE-2026-61789, publicado en NVD el 30 de octubre de 2026, afecta a DBHub, servidor MCP, en versiones anteriores a la 0.22.6: su comprobación de solo lectura puede saltarse en MySQL y MariaDB.",
+        "ca": "CVE-2026-61789, publicat a NVD el 30 d'octubre de 2026, afecta DBHub, servidor MCP, en versions anteriors a la 0.22.6: la seva comprovació de només lectura es pot saltar a MySQL i MariaDB."
+      }
+    },
+    {
+      "source_url": "https://code.claude.com/docs/en/changelog",
+      "source_date": "2026-10-31",
+      "subject": "Claude Code",
+      "identifier": null,
+      "text": {
+        "en": "Claude Code 2.1.316, dated 31 October 2026: server-managed settings for Team and Enterprise logins now apply without an approval prompt, according to its changelog.",
+        "es": "Claude Code 2.1.316, del 31 de octubre de 2026: los ajustes gestionados por servidor para cuentas Team y Enterprise se aplican ahora sin aviso de aprobación, según su changelog.",
+        "ca": "Claude Code 2.1.316, del 31 d'octubre de 2026: els ajustos gestionats pel servidor per a comptes Team i Enterprise ara s'apliquen sense avís d'aprovació, segons el seu changelog."
+      }
+    },
+    {
+      "source_url": "https://code.claude.com/docs/en/changelog",
+      "source_date": "2026-10-31",
+      "subject": "Claude Code",
+      "identifier": null,
+      "text": {
+        "en": "Claude Code 2.1.316, dated 31 October 2026, fixes PowerShell hooks that did not block on exit code 2 when the command started with a type cast.",
+        "es": "Claude Code 2.1.316, del 31 de octubre de 2026, corrige hooks de PowerShell que no bloqueaban con código de salida 2 cuando el comando empezaba por una conversión de tipo.",
+        "ca": "Claude Code 2.1.316, del 31 d'octubre de 2026, corregeix hooks de PowerShell que no bloquejaven amb codi de sortida 2 quan l'ordre començava amb una conversió de tipus."
+      }
+    },
+    {
+      "source_url": "https://code.claude.com/docs/en/changelog",
+      "source_date": "2026-10-31",
+      "subject": "Claude Code",
+      "identifier": null,
+      "text": {
+        "en": "Claude Code 2.1.316, dated 31 October 2026, fixes restricted sessions that uploaded files from outside the working directories when a Read allow rule covered them.",
+        "es": "Claude Code 2.1.316, del 31 de octubre de 2026, corrige sesiones restringidas que subían ficheros de fuera de los directorios de trabajo si una regla Read de permiso los cubría.",
+        "ca": "Claude Code 2.1.316, del 31 d'octubre de 2026, corregeix sessions restringides que pujaven fitxers de fora dels directoris de treball si una regla Read de permís els cobria."
+      }
+    }
+  ],
+  "checked": [
+    {
+      "name": "Claude Code",
+      "url": "https://code.claude.com/docs/en/changelog",
+      "latest_seen": "2.1.316",
+      "latest_date": "2026-10-31"
+    },
+    {
+      "name": "Cursor",
+      "url": "https://cursor.com/changelog",
+      "latest_seen": "CLI v2026.10.22",
+      "latest_date": "2026-10-20"
+    },
+    {
+      "name": "OpenAI Codex",
+      "url": "https://github.com/openai/codex/releases",
+      "latest_seen": "rust-v0.166.0",
+      "latest_date": "2026-10-29"
+    },
+    {
+      "name": "Google Antigravity",
+      "url": "https://antigravity.google/docs/changelog",
+      "latest_seen": "App 2.28.2",
+      "latest_date": "2026-10-29"
+    },
+    {
+      "name": "Hermes Agent",
+      "url": "https://github.com/NousResearch/hermes-agent/releases",
+      "latest_seen": "v0.22.5",
+      "latest_date": "2026-10-23"
+    },
+    {
+      "name": "GitHub Copilot",
+      "url": "https://github.blog/changelog/",
+      "latest_seen": "",
+      "latest_date": "2026-10-28"
+    },
+    {
+      "name": "Cline",
+      "url": "https://github.com/cline/cline/releases",
+      "latest_seen": "v4.1.26",
+      "latest_date": "2026-10-25"
+    },
+    {
+      "name": "Continue",
+      "url": "https://github.com/continuedev/continue/releases",
+      "latest_seen": "v2.1.0-vscode",
+      "latest_date": "2026-06-18"
+    },
+    {
+      "name": "Kanvas",
+      "url": "https://github.com/XMihura/Kanvas/blob/main/CHANGELOG.md",
+      "latest_seen": "v0.4.0",
+      "latest_date": "2026-10-27"
+    },
+    {
+      "name": "OpenSSF malicious-packages",
+      "url": "https://github.com/ossf/malicious-packages",
+      "latest_seen": "",
+      "latest_date": null
+    },
+    {
+      "name": "Gemini CLI",
+      "url": "https://github.com/google-gemini/gemini-cli/releases",
+      "latest_seen": "v0.66.0",
+      "latest_date": "2026-10-27"
+    },
+    {
+      "name": "GitHub Copilot CLI",
+      "url": "https://github.com/github/copilot-cli/blob/main/changelog.md",
+      "latest_seen": "1.0.105",
+      "latest_date": "2026-10-27"
+    },
+    {
+      "name": "Claude desktop",
+      "url": "https://support.claude.com/en/articles/12138966-release-notes",
+      "latest_seen": "",
+      "latest_date": "2026-10-21"
+    },
+    {
+      "name": "OSV npm and PyPI",
+      "url": "https://osv.dev/list?ecosystem=npm",
+      "latest_seen": "",
+      "latest_date": null
+    },
+    {
+      "name": "NVD",
+      "url": "https://nvd.nist.gov/vuln/search",
+      "latest_seen": "",
+      "latest_date": null
+    }
+  ],
+  "held": [
+    {
+      "text_en": "Antigravity App 2.28.2: the agent can suggest Marketplace plugins in the conversation",
+      "source_url": "https://antigravity.google/docs/changelog",
+      "rule": 12,
+      "reason": "Source dated 2026-10-29, earlier than the last published daily (2026-10-30)."
+    },
+    {
+      "text_en": "GHSA-fq6x-j3g6-xx83 affects npm @rog0x/mcp-docker-tools up to 1.0.1",
+      "source_url": "https://osv.dev/vulnerability/GHSA-fq6x-j3g6-xx83",
+      "rule": 12,
+      "reason": "Source dated 2026-10-23, earlier than the last published daily (2026-10-30)."
+    },
+    {
+      "text_en": "CVE-2026-119287 affects @zuke/core before 1.51.0 in MCP registry mode",
+      "source_url": "https://nvd.nist.gov/vuln/detail/CVE-2026-119287",
+      "rule": 11,
+      "reason": "Not an agent in data/observatory/agents nor an MCP server, package or extension those agents use."
+    },
+    {
+      "text_en": "CVE-2026-62331 affects praktor before 0.9.1",
+      "source_url": "https://nvd.nist.gov/vuln/detail/CVE-2026-62331",
+      "rule": 11,
+      "reason": "praktor is an orchestrator that runs Claude Code, not a package, extension or MCP server the tracked agents use."
+    },
+    {
+      "text_en": "Claude Code 2.1.316: an autoMode.allow list without $defaults no longer removes the built-in rule on scheduled-task prompts",
+      "source_url": "https://code.claude.com/docs/en/changelog",
+      "rule": 9,
+      "reason": "fuera por tope"
+    }
+  ],
+  "summary_ref": "docs/observatorio/2026-10-31.md"
+}
