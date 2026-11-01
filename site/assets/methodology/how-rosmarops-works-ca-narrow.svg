@@ -43,7 +43,6 @@
 <text x="32" y="683.6" font-size="14" font-weight="400" fill="#3A3833">cal canviar. Tu decideixes i fas el</text>
 <text x="32" y="703.9" font-size="14" font-weight="400" fill="#3A3833">canvi.</text>
 <rect x="16" y="738" width="326" height="85" rx="12" fill="#1B1A18"/>
-<text x="32" y="766.0" font-size="14" font-weight="600" fill="#FFFFFF">Tot es queda al teu ordinador.</text>
-<text x="32" y="786.3" font-size="14" font-weight="600" fill="#FFFFFF">RosmarOps no es connecta a internet i</text>
-<text x="32" y="806.6" font-size="14" font-weight="600" fill="#FFFFFF">no envia res.</text>
+<text x="32" y="766.0" font-size="14" font-weight="600" fill="#FFFFFF">Res no surt dels teus dispositius</text>
+<text x="32" y="786.3" font-size="14" font-weight="600" fill="#FFFFFF">sense que tu ho aprovis abans.</text>
 </svg>

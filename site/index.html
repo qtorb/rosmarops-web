@@ -26,7 +26,7 @@
 <link rel="stylesheet" href="/assets/consent/cookieconsent.css?v=3.1.0">
 <link rel="icon" href="/wp-content/uploads/2026/10/image-1.png">
 <style>
-:root{--bg:#F6F5F2;--ink:#1B1A18;--ink2:#3A3833;--muted:#66635D;--line:#E3E0D8;--card:#FFFFFF;--accent:#6F8F78}
+:root{--bg:#F6F5F2;--ink:#1B1A18;--ink2:#3A3833;--muted:#66635D;--line:#E3E0D8;--card:#FFFFFF;--accent:#6F8F78;--brand:#2346B8;--on-brand:#FFFFFF;--sage:#3F5E49;--sage-tint:#E7EFE9}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
 a{color:var(--ink)}a:hover{color:var(--accent)}
@@ -38,12 +38,8 @@ main .wrap{display:flex;flex-direction:column;gap:64px;padding-top:48px;padding-
 .hero{display:flex;flex-direction:column;gap:20px;max-width:760px}
 h1{margin:0;font-size:clamp(34px,6vw,52px);line-height:1.08;font-weight:700;letter-spacing:-.02em}
 .lead{margin:0;font-size:20px;line-height:1.55;color:var(--ink2)}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:16px}
 h2{margin:0;font-size:14px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
 ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:12px;font-size:17px;line-height:1.55}
-.status{border-top:1px solid var(--line);padding-top:32px;display:flex;flex-direction:column;gap:12px;max-width:760px}
-.status p{margin:0;font-size:17px;line-height:1.55}
 footer{border-top:1px solid var(--line)}
 footer .wrap{padding-top:28px;padding-bottom:28px;font-size:15px;color:var(--muted)}
 footer nav{gap:20px;font-size:15px}
@@ -65,19 +61,62 @@ footer nav{gap:20px;font-size:15px}
 .sample img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:12px;background:var(--card)}
 .sample figcaption{margin-top:12px;font-size:15px;line-height:1.5;color:var(--muted)}
 .sample figcaption a{color:var(--muted)}
+.h-sec{margin:0;font-size:30px;line-height:1.2;font-weight:700;letter-spacing:-.01em;text-wrap:balance;color:var(--ink)}
+.sec{display:flex;flex-direction:column;gap:20px}
+.btn-sec{display:inline-block;background:transparent;color:var(--ink);border:1px solid var(--ink);text-decoration:none;font-size:17px;font-weight:600;line-height:1;padding:15px 23px;border-radius:12px}
+.btn-sec:hover,.btn-sec:focus-visible{border-color:var(--accent);color:var(--accent)}
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin:0;padding:0;list-style:none}
+.steps li{display:flex;flex-direction:column;gap:8px}
+.steps .k{width:32px;height:32px;border-radius:999px;background:var(--ink);color:#fff;font-size:15px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.steps b{font-size:18px;line-height:1.3}
+.steps span:last-child{font-size:15px;line-height:1.5;color:var(--ink2)}
+.space{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:32px;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:32px;align-items:center}
+.space .txt{display:flex;flex-direction:column;gap:14px;min-width:0}
+.pill{align-self:flex-start;font-size:12px;font-weight:700;color:var(--sage);background:var(--sage-tint);padding:4px 10px;border-radius:999px}
+.space p{margin:0;font-size:17px;line-height:1.55;color:var(--ink2)}
+.btn-space{display:inline-block;background:var(--brand);color:var(--on-brand);text-decoration:none;font-size:17px;font-weight:600;line-height:1;padding:16px 24px;border-radius:12px}
+.btn-space:hover,.btn-space:focus-visible{background:var(--ink)}
+.space-note{font-size:15px;color:var(--muted)}
+.pcs{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--bg);margin:0;padding:0;list-style:none}
+.pcs li{display:flex;justify-content:space-between;gap:12px;padding:12px 14px;border-top:1px solid var(--line);font-size:15px}
+.pcs li:first-child{border-top:0}
+.pcs b{font-variant-numeric:tabular-nums}
+.pcs .r{color:#94200B}
+.pcs .y{color:#6B4700}
+.pcs .g{color:#1A5532}
+.trust{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin:0;padding:0;list-style:none}
+.trust li{border-top:2px solid var(--ink);padding-top:14px;display:flex;flex-direction:column;gap:6px}
+.trust b{font-size:18px;line-height:1.3}
+.trust span{font-size:15px;line-height:1.5;color:var(--ink2)}
+.agents{display:flex;flex-direction:column;gap:14px}
+.agents .row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.agents .lab{font-size:15px;font-weight:700;min-width:120px}
+.chip{font-size:15px;padding:6px 12px;border-radius:999px;border:1px solid var(--line);background:var(--card)}
+.chip.on{border-color:var(--ink);background:var(--card);color:var(--ink);font-weight:700}
+.band{position:relative;overflow:hidden;background:var(--ink);color:#fff;border-radius:16px;padding:40px 200px 40px 32px;display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between}
+.band .h-sec{color:#fff}
+.band .btn{background:#fff;color:var(--ink)}
+.band .btn:hover,.band .btn:focus-visible{background:var(--accent);color:#fff}
+.band a.lk{color:#fff;font-size:15px}
+.band .h-sec,.band .dl{position:relative;z-index:1}
+.band .sprig{position:absolute;right:32px;top:50%;transform:translateY(-50%);height:150px;width:auto;pointer-events:none}
+.space-link{font-weight:600;border-radius:10px;padding:8px 14px;text-decoration:none;color:var(--brand);border:1px solid var(--brand)}
+.more-link{font-size:15px;color:var(--brand)}
+@media (max-width:699px){.h-sec{font-size:24px}.steps,.trust{grid-template-columns:1fr;gap:16px}.space{grid-template-columns:1fr;padding:22px;gap:22px}.agents .lab{min-width:0;width:100%}.band{padding:28px 22px 96px}.band .sprig{height:96px;right:12px;top:auto;bottom:10px;transform:none}}
+:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
 </style>
 </head>
 <body>
 <header><div class="wrap">
 <a href="/"><img src="/assets/brand/rosmarops-logo.png" srcset="/assets/brand/rosmarops-logo.png 1x, /assets/brand/rosmarops-logo@2x.png 2x" width="512" height="131" alt="RosmarOps"></a>
-<nav><a href="/blog/">Blog</a><a href="/blog/about/">About</a><a href="/observatory/">Observatory</a><a href="/es/" hreflang="es" lang="es" aria-label="Español">ES</a><a href="/ca/" hreflang="ca" lang="ca" aria-label="Català">CA</a></nav>
+<nav><a href="/blog/">Blog</a><a href="/blog/about/">About</a><a href="/observatory/">Observatory</a><a class="space-link" href="https://app.rosmarops.com/space">Your space</a><a href="/es/" hreflang="es" lang="es" aria-label="Español">ES</a><a href="/ca/" hreflang="ca" lang="ca" aria-label="Català">CA</a></nav>
 </div></header>
 
 <main><div class="wrap">
 <section class="hero">
 <h1>What your AI agents can do on your machine.</h1>
-<p class="lead">An AI agent works with your permissions: it can read your files, run programs and reach the keys of the services you have connected. RosmarOps shows how far each agent on your computer reaches, and whether one can change what another one does: an exposure map, computed on your computer. Today it scores Claude Code, Cursor and Hermes Agent.</p>
-<div class="dl"><a class="btn" href="/download?from=home&amp;os=windows" target="_blank" rel="nofollow noopener">Download for Windows</a><a class="btn" href="/macos/">Download for Mac (preview)</a><p class="dl-note">Free and open source (AGPL-3.0). <a href="https://github.com/qtorb/rosmarops#check-the-download" target="_blank" rel="noopener">How to check it's authentic</a></p></div>
+<p class="lead">RosmarOps shows how far each AI agent on your computer reaches, and what to change first.</p>
+<div class="dl"><a class="btn" href="/download?from=home&amp;os=windows" target="_blank" rel="nofollow noopener">Download for Windows</a><a class="btn-sec" href="/macos/">Download for Mac (preview)</a><p class="dl-note">Free and open source (AGPL-3.0). <a href="https://github.com/qtorb/rosmarops#check-the-download" target="_blank" rel="noopener">How to check it's authentic</a></p></div>
 </section>
 
 <section class="sample">
@@ -87,32 +126,44 @@ footer nav{gap:20px;font-size:15px}
 <a class="btn-o" href="/sample-report/sample-report.en.html" target="_blank" rel="noopener">See the full report</a>
 </section>
 
-<section class="cards">
-<div class="card">
-<h2>What it doesn't do</h2>
-<ul>
-<li>It doesn't connect to the internet.</li>
-<li>It doesn't send anything to anyone, not even if you want it to: it has no feature that sends data.</li>
-<li>It doesn't change anything on your machine; it only writes its own reports to its own folder.</li>
-</ul>
-</div>
-<div class="card">
-<h2>What you get</h2>
-<ul>
-<li>A traffic light for each agent it scores: red, yellow or green.</li>
-<li>"If you do only one thing today": the exact file and change, and how much your score would rise if you make it.</li>
-<li>The Agent Posture Score: from 0 to 100 for each agent it scores, where higher is better. It measures how much the agent can reach with the permissions it has today, with a public formula; when the formula changes, the report says so.</li>
-<li>What wasn't read doesn't count as clean: if it couldn't read something, the report says so instead of hiding it.</li>
-<li>RosmarOps suggests; you make the change.</li>
-</ul>
-</div>
+<section class="sec">
+<h2 class="h-sec">How it works</h2>
+<ol class="steps"><li><span class="k">1</span><b>Download and open it</b><span>Double-click. Nothing to install and no account needed.</span></li><li><span class="k">2</span><b>It reads your setup</b><span>It checks, on your computer, what your AI agents can do. It takes a few minutes.</span></li><li><span class="k">3</span><b>It tells you what to change</b><span>A score per agent and the first thing to fix, with the exact change.</span></li></ol>
 </section>
 
-<section class="status">
-<h2>Where it stands</h2>
-<p>Today it scores Claude Code, Cursor and Hermes Agent on Windows. On Windows you open it with a double click, and the report appears in your browser within a few minutes. It also finds Cline, GitHub Copilot, Continue, Codex, Antigravity and Claude Desktop, but doesn't score them yet.</p>
-<p>It can be downloaded from GitHub, for Windows, and for macOS in preview. Each release comes with its SHA-256 checksum, a GitHub attestation and a build anyone can reproduce: <a href="https://github.com/qtorb/rosmarops#check-the-download" target="_blank" rel="noopener">how to check it</a>.</p>
+<section class="space" id="space">
+<div class="txt">
+<span class="pill">Open beta</span>
+<h2 class="h-sec">All your computers in one place</h2>
+<p>Connect each computer and see their results together, in your browser. They travel encrypted, only if you approve it, and you can disconnect at any time. Free during the beta.</p>
+<div><a class="btn-space" href="https://app.rosmarops.com/space">Create your free space</a></div>
+<span class="space-note">Already have RosmarOps? Open it and press «Connect».</span>
+</div>
+<ul class="pcs" aria-label="Example"><li><span>Work laptop</span><b class="r">42</b></li><li><span>Home computer</span><b class="y">68</b></li><li><span>Mac Mini</span><b class="g">91</b></li></ul>
 </section>
+
+<section class="sec">
+<h2 class="h-sec">Why trust it</h2>
+<ul class="trust"><li><b>Nothing leaves your devices unless you approve it first</b><span>Without your permission it connects to nothing. If you connect your space, it sends only your results, encrypted.</span></li><li><b>It only reads</b><span>It never changes your files or your agents. It tells you what to change and you do it.</span></li><li><b>Open source, and you can check it</b><span>Every release comes with its checksum and a GitHub attestation.</span></li></ul>
+<a class="more-link" href="https://github.com/qtorb/rosmarops/blob/master/docs/trust-model.md">Every promise and how to check it</a>
+</section>
+
+<section class="sec">
+<h2 class="h-sec">Which agents it checks today</h2>
+<div class="agents">
+<div class="row"><span class="lab">Scores</span><span class="chip on">Claude Code</span><span class="chip on">Cursor</span><span class="chip on">Hermes Agent</span></div>
+<div class="row"><span class="lab">Detects</span><span class="chip">Cline</span><span class="chip">GitHub Copilot</span><span class="chip">Continue</span><span class="chip">Codex</span><span class="chip">Antigravity</span><span class="chip">Claude Desktop</span></div>
+</div>
+<a class="more-link" href="/observatory/">How their defaults change, release by release: Observatory</a>
+</section>
+
+<section class="band">
+<img class="sprig" src="/assets/brand/rosmarops-sprig-on-dark.svg" alt="" width="127" height="150">
+<h2 class="h-sec">Start on your computer</h2>
+<div class="dl"><a class="btn" href="/download?from=home-band&amp;os=windows" target="_blank" rel="nofollow noopener">Download for Windows</a><a class="lk" href="/macos/">Download for Mac (preview)</a></div>
+</section>
+
+
 </div></main>
 
 <footer><div class="wrap">

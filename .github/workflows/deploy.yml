@@ -122,6 +122,7 @@ jobs:
           put site/assets/brand/rosmarops-logo.png assets/brand/rosmarops-logo.png
           put site/assets/brand/rosmarops-logo@2x.png assets/brand/rosmarops-logo@2x.png
           put site/assets/brand/rosmarops-logo.svg assets/brand/rosmarops-logo.svg
+          put site/assets/brand/rosmarops-sprig-on-dark.svg assets/brand/rosmarops-sprig-on-dark.svg
           put site/assets/brand/rosmarops-social.png assets/brand/rosmarops-social.png
           -mkdir assets/sample
           put site/assets/sample/sample-desktop.en.png assets/sample/sample-desktop.en.png

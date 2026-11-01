@@ -63,5 +63,5 @@
 <text x="596.0" y="207.8" font-size="14" font-weight="400" fill="#3A3833">decideixes i fas</text>
 <text x="596.0" y="228.1" font-size="14" font-weight="400" fill="#3A3833">el canvi.</text>
 <rect x="16" y="303" width="728" height="44" rx="12" fill="#1B1A18"/>
-<text x="32" y="331.0" font-size="14" font-weight="600" fill="#FFFFFF">Tot es queda al teu ordinador. RosmarOps no es connecta a internet i no envia res.</text>
+<text x="32" y="331.0" font-size="14" font-weight="600" fill="#FFFFFF">Res no surt dels teus dispositius sense que tu ho aprovis abans.</text>
 </svg>
