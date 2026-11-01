@@ -143,5 +143,17 @@ class DailyCheck(unittest.TestCase):
         self.broken(lambda d: d.update(checked=[]), "schema: checked")
 
 
+class HostListsInSync(unittest.TestCase):
+    """GTM-70: the checker and the WordPress plugin that renders the daily must allow the same hosts."""
+
+    def test_same_hosts_as_the_mu_plugin(self):
+        import re
+        php = (ROOT / "wp" / "mu-plugins" / "rosmarops-daily.php").read_text(encoding="utf-8")
+        m = re.search(r"const ROSMAROPS_DAILY_HOSTS\s*=\s*\[(.*?)\];", php, re.S)
+        self.assertIsNotNone(m, "ROSMAROPS_DAILY_HOSTS not found in rosmarops-daily.php")
+        php_hosts = re.findall(r"'([^']+)'", m.group(1))
+        self.assertEqual(sorted(php_hosts), sorted(daily_check.ALLOWED_HOSTS))
+
+
 if __name__ == "__main__":
     unittest.main()
