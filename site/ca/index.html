@@ -25,7 +25,7 @@
 <link rel="stylesheet" href="/assets/consent/cookieconsent.css?v=3.1.0">
 <link rel="icon" href="/wp-content/uploads/2026/10/image-1.png">
 <style>
-:root{--bg:#F6F5F2;--ink:#1B1A18;--ink2:#3A3833;--muted:#66635D;--line:#E3E0D8;--card:#FFFFFF;--accent:#6F8F78}
+:root{--bg:#F6F5F2;--ink:#1B1A18;--ink2:#3A3833;--muted:#66635D;--line:#E3E0D8;--card:#FFFFFF;--accent:#6F8F78;--accent-strong:#3F5E49}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
 a{color:var(--ink)}a:hover{color:var(--accent)}
@@ -37,12 +37,8 @@ main .wrap{display:flex;flex-direction:column;gap:64px;padding-top:48px;padding-
 .hero{display:flex;flex-direction:column;gap:20px;max-width:760px}
 h1{margin:0;font-size:clamp(34px,6vw,52px);line-height:1.08;font-weight:700;letter-spacing:-.02em}
 .lead{margin:0;font-size:20px;line-height:1.55;color:var(--ink2)}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:16px}
 h2{margin:0;font-size:14px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
 ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:12px;font-size:17px;line-height:1.55}
-.status{border-top:1px solid var(--line);padding-top:32px;display:flex;flex-direction:column;gap:12px;max-width:760px}
-.status p{margin:0;font-size:17px;line-height:1.55}
 footer{border-top:1px solid var(--line)}
 footer .wrap{padding-top:28px;padding-bottom:28px;font-size:15px;color:var(--muted)}
 footer nav{gap:20px;font-size:15px}
@@ -59,19 +55,59 @@ footer nav{gap:20px;font-size:15px}
 .sample img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:12px;background:var(--card)}
 .sample figcaption{margin-top:12px;font-size:15px;line-height:1.5;color:var(--muted)}
 .sample figcaption a{color:var(--muted)}
+.h-sec{margin:0;font-size:30px;line-height:1.2;font-weight:700;letter-spacing:-.01em;text-wrap:balance;color:var(--ink)}
+.sec{display:flex;flex-direction:column;gap:20px}
+.btn-sec{display:inline-block;background:transparent;color:var(--ink);border:1px solid var(--ink);text-decoration:none;font-size:17px;font-weight:600;line-height:1;padding:15px 23px;border-radius:12px}
+.btn-sec:hover,.btn-sec:focus-visible{border-color:var(--accent);color:var(--accent)}
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin:0;padding:0;list-style:none}
+.steps li{display:flex;flex-direction:column;gap:8px}
+.steps .k{width:32px;height:32px;border-radius:999px;background:var(--ink);color:#fff;font-size:15px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.steps b{font-size:18px;line-height:1.3}
+.steps span:last-child{font-size:15px;line-height:1.5;color:var(--ink2)}
+.space{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:32px;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:32px;align-items:center}
+.space .txt{display:flex;flex-direction:column;gap:14px;min-width:0}
+.pill{align-self:flex-start;font-size:12px;font-weight:700;color:var(--accent-strong);background:#E7EFE9;padding:4px 10px;border-radius:999px}
+.space p{margin:0;font-size:17px;line-height:1.55;color:var(--ink2)}
+.btn-space{display:inline-block;background:var(--accent-strong);color:#fff;text-decoration:none;font-size:17px;font-weight:600;line-height:1;padding:16px 24px;border-radius:12px}
+.btn-space:hover,.btn-space:focus-visible{background:var(--ink)}
+.space-note{font-size:15px;color:var(--muted)}
+.pcs{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--bg);margin:0;padding:0;list-style:none}
+.pcs li{display:flex;justify-content:space-between;gap:12px;padding:12px 14px;border-top:1px solid var(--line);font-size:15px}
+.pcs li:first-child{border-top:0}
+.pcs b{font-variant-numeric:tabular-nums}
+.pcs .r{color:#94200B}
+.pcs .y{color:#6B4700}
+.pcs .g{color:#1A5532}
+.trust{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin:0;padding:0;list-style:none}
+.trust li{border-top:2px solid var(--ink);padding-top:14px;display:flex;flex-direction:column;gap:6px}
+.trust b{font-size:18px;line-height:1.3}
+.trust span{font-size:15px;line-height:1.5;color:var(--ink2)}
+.agents{display:flex;flex-direction:column;gap:14px}
+.agents .row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.agents .lab{font-size:15px;font-weight:700;min-width:120px}
+.chip{font-size:15px;padding:6px 12px;border-radius:999px;border:1px solid var(--line);background:var(--card)}
+.chip.on{border-color:var(--accent-strong);background:#E7EFE9;color:var(--accent-strong);font-weight:700}
+.band{background:var(--ink);color:#fff;border-radius:16px;padding:40px 32px;display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between}
+.band .h-sec{color:#fff}
+.band .btn{background:#fff;color:var(--ink)}
+.band .btn:hover,.band .btn:focus-visible{background:var(--accent);color:#fff}
+.band a.lk{color:#fff;font-size:15px}
+.space-link{font-weight:600;border:1px solid var(--ink);border-radius:10px;padding:8px 14px;text-decoration:none}
+.more-link{font-size:15px}
+@media (max-width:699px){.h-sec{font-size:24px}.steps,.trust{grid-template-columns:1fr;gap:16px}.space{grid-template-columns:1fr;padding:22px;gap:22px}.agents .lab{min-width:0;width:100%}.band{padding:28px 22px}}
 </style>
 </head>
 <body>
 <header><div class="wrap">
 <a href="/ca/"><img src="/assets/brand/rosmarops-logo.png" srcset="/assets/brand/rosmarops-logo.png 1x, /assets/brand/rosmarops-logo@2x.png 2x" width="512" height="131" alt="RosmarOps"></a>
-<nav><a href="/ca/blog/">Bloc</a><a href="/ca/blog/que-es-rosmarops/">Quant a</a><a href="/ca/observatori/">Observatori</a><a href="/" hreflang="en" lang="en" aria-label="English">EN</a><a href="/es/" hreflang="es" lang="es" aria-label="Español">ES</a></nav>
+<nav><a href="/ca/blog/">Bloc</a><a href="/ca/blog/que-es-rosmarops/">Quant a</a><a href="/ca/observatori/">Observatori</a><a class="space-link" href="https://app.rosmarops.com/space">El teu espai</a><a href="/" hreflang="en" lang="en" aria-label="English">EN</a><a href="/es/" hreflang="es" lang="es" aria-label="Español">ES</a></nav>
 </div></header>
 
 <main><div class="wrap">
 <section class="hero">
 <h1>Què poden fer els teus agents d'IA a la teva màquina.</h1>
-<p class="lead">Un agent d'IA treballa amb els teus permisos: pot llegir els teus fitxers, executar programes i arribar a les claus dels serveis que tens connectats. RosmarOps t'ensenya fins on arriba cada agent del teu ordinador, i si un pot canviar el que fa un altre: un mapa d'exposició, calculat al teu ordinador. Avui posa nota a Claude Code, Cursor i Hermes Agent.</p>
-<div class="dl"><a class="btn" href="/ca/descarregar?from=home&amp;os=windows" target="_blank" rel="nofollow noopener">Descarrega per a Windows</a><a class="btn" href="/ca/macos/">Descarrega per a Mac (vista prèvia)</a><p class="dl-note">Gratuït i de codi obert (AGPL-3.0). <a href="https://github.com/qtorb/rosmarops#check-the-download" target="_blank" rel="noopener">Com comprovar que és autèntic</a></p></div>
+<p class="lead">RosmarOps et mostra fins on arriba cada agent d&#x27;IA del teu ordinador, i què cal canviar primer.</p>
+<div class="dl"><a class="btn" href="/ca/descarregar?from=home&amp;os=windows" target="_blank" rel="nofollow noopener">Descarrega per a Windows</a><a class="btn-sec" href="/ca/macos/">Descarrega per a Mac (vista prèvia)</a><p class="dl-note">Gratuït i de codi obert (AGPL-3.0). <a href="https://github.com/qtorb/rosmarops#check-the-download" target="_blank" rel="noopener">Com comprovar que és autèntic</a></p></div>
 </section>
 
 <section class="sample">
@@ -81,33 +117,43 @@ footer nav{gap:20px;font-size:15px}
 <a class="btn-o" href="/sample-report/sample-report.es.html" target="_blank" rel="noopener">Veure l&#x27;informe complet</a>
 </section>
 
-<section class="cards">
-<div class="card">
-<h2>El que no fa</h2>
-<ul>
-<li>No envia res sense que tu ho aprovis abans.</li>
-<li>Mai no envia les teves claus, fitxers ni configuració: si el connectes al teu espai, només hi van els teus resultats, xifrats.</li>
-<li>No canvia res de la teva màquina; només escriu els seus propis informes a la seva carpeta.</li>
-</ul>
-</div>
-<div class="card">
-<h2>El que t'ofereix</h2>
-<ul>
-<li>Un semàfor per a cada agent al qual posa nota: vermell, groc o verd.</li>
-<li>«Si només fas una cosa avui»: el fitxer i el canvi exactes, i quant pujaria la teva nota si el fas.</li>
-<li>La nota d'exposició: de 0 a 100 per a cada agent al qual posa nota, i com més alta, millor. Mesura fins on pot arribar l'agent amb els permisos que té avui, amb una fórmula pública; quan la fórmula canvia, l'informe ho diu.</li>
-<li>El que no s'ha llegit no compta com a net: si no ha pogut llegir alguna cosa, l'informe ho diu en lloc d'amagar-ho.</li>
-<li>RosmarOps proposa; el canvi el fas tu.</li>
-</ul>
-</div>
+<section class="sec">
+<h2 class="h-sec">Com funciona</h2>
+<ol class="steps"><li><span class="k">1</span><b>Descarrega&#x27;l i obre&#x27;l</b><span>Doble clic. No cal instal·lar res ni crear compte.</span></li><li><span class="k">2</span><b>Llegeix la teva configuració</b><span>Revisa al teu ordinador què poden fer els teus agents d&#x27;IA. Triga uns minuts.</span></li><li><span class="k">3</span><b>Et diu què canviar</b><span>Una nota per agent i el primer que cal arreglar, amb el canvi exacte.</span></li></ol>
 </section>
 
-<section class="status">
-<h2>En quin punt és</h2>
-<p>Avui posa nota a Claude Code, Cursor i Hermes Agent a Windows. A Windows s'obre amb doble clic, i l'informe apareix al teu navegador en uns minuts. També troba Cline, GitHub Copilot, Continue, Codex, Antigravity i Claude Desktop, però encara no els posa nota.</p>
-<p>Es pot descarregar des de GitHub, per a Windows i, en vista prèvia, per a macOS. Cada versió porta la seva empremta SHA-256, una atestació de GitHub i una compilació que qualsevol pot reproduir: <a href="https://github.com/qtorb/rosmarops#check-the-download" target="_blank" rel="noopener">com comprovar-ho</a>.</p>
-<p>De moment, el programa mostra l'informe en anglès o en castellà.</p>
+<section class="space" id="space">
+<div class="txt">
+<span class="pill">Beta oberta</span>
+<h2 class="h-sec">Tots els teus ordinadors en un sol lloc</h2>
+<p>Connecta cada ordinador i mira&#x27;n els resultats junts, al navegador. Viatgen xifrats, només si tu ho aproves, i pots desconnectar quan vulguis. Gratis durant la beta.</p>
+<div><a class="btn-space" href="https://app.rosmarops.com/space">Crea el teu espai gratis</a></div>
+<span class="space-note">Ja tens RosmarOps? Obre&#x27;l i prem «Connectar».</span>
+</div>
+<ul class="pcs" aria-label="Exemple"><li><span>Portàtil de la feina</span><b class="r">42</b></li><li><span>Ordinador de casa</span><b class="y">68</b></li><li><span>Mac Mini</span><b class="g">91</b></li></ul>
 </section>
+
+<section class="sec">
+<h2 class="h-sec">Per què fiar-te&#x27;n</h2>
+<ul class="trust"><li><b>Res no surt dels teus dispositius sense que tu ho aprovis abans</b><span>Sense el teu permís no es connecta a res. Si connectes el teu espai, només envia els teus resultats, xifrats.</span></li><li><b>Només llegeix</b><span>Mai no canvia els teus fitxers ni els teus agents. Et diu què canviar i ho fas tu.</span></li><li><b>Codi obert i comprovable</b><span>Cada versió porta la suma de control i l&#x27;atestació de GitHub.</span></li></ul>
+<a class="more-link" href="https://github.com/qtorb/rosmarops/blob/master/docs/trust-model.md">Cada promesa i com comprovar-la</a>
+</section>
+
+<section class="sec">
+<h2 class="h-sec">Quins agents avalua avui</h2>
+<div class="agents">
+<div class="row"><span class="lab">Posa nota</span><span class="chip on">Claude Code</span><span class="chip on">Cursor</span><span class="chip on">Hermes Agent</span></div>
+<div class="row"><span class="lab">Detecta</span><span class="chip">Cline</span><span class="chip">GitHub Copilot</span><span class="chip">Continue</span><span class="chip">Codex</span><span class="chip">Antigravity</span><span class="chip">Claude Desktop</span></div>
+</div>
+<a class="more-link" href="/ca/observatori/">Com canvien de sèrie, versió a versió: Observatori</a>
+</section>
+
+<section class="band">
+<h2 class="h-sec">Comença al teu ordinador</h2>
+<div class="dl"><a class="btn" href="/ca/descarregar?from=home-band&amp;os=windows" target="_blank" rel="nofollow noopener">Descarrega per a Windows</a><a class="lk" href="/ca/macos/">Descarrega per a Mac (vista prèvia)</a></div>
+</section>
+
+
 </div></main>
 
 <footer><div class="wrap">
