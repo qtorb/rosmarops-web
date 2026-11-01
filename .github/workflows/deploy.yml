@@ -132,6 +132,14 @@ jobs:
           put site/assets/sample/sample-mobile.en@2x.png assets/sample/sample-mobile.en@2x.png
           put site/assets/sample/sample-mobile.es.png assets/sample/sample-mobile.es.png
           put site/assets/sample/sample-mobile.es@2x.png assets/sample/sample-mobile.es@2x.png
+          put site/assets/sample/sample-thumb.en.png assets/sample/sample-thumb.en.png
+          put site/assets/sample/sample-thumb.en@2x.png assets/sample/sample-thumb.en@2x.png
+          put site/assets/sample/sample-thumb.es.png assets/sample/sample-thumb.es.png
+          put site/assets/sample/sample-thumb.es@2x.png assets/sample/sample-thumb.es@2x.png
+          put site/assets/sample/sample-thumb-mobile.en.png assets/sample/sample-thumb-mobile.en.png
+          put site/assets/sample/sample-thumb-mobile.en@2x.png assets/sample/sample-thumb-mobile.en@2x.png
+          put site/assets/sample/sample-thumb-mobile.es.png assets/sample/sample-thumb-mobile.es.png
+          put site/assets/sample/sample-thumb-mobile.es@2x.png assets/sample/sample-thumb-mobile.es@2x.png
           -mkdir assets/methodology
           put site/assets/methodology/how-rosmarops-works-en-wide.svg assets/methodology/how-rosmarops-works-en-wide.svg
           put site/assets/methodology/how-rosmarops-works-en-narrow.svg assets/methodology/how-rosmarops-works-en-narrow.svg
