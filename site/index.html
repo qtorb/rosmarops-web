@@ -61,7 +61,7 @@ footer nav{gap:20px;font-size:15px}
 .sample img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:12px;background:var(--card)}
 .sample figcaption{margin-top:12px;font-size:15px;line-height:1.5;color:var(--muted)}
 .sample figcaption a{color:var(--muted)}
-.h-sec{margin:0;font-size:30px;line-height:1.2;font-weight:700;letter-spacing:-.01em;text-wrap:balance;color:var(--ink)}
+.h-sec{margin:0;font-size:30px;line-height:1.2;font-weight:700;letter-spacing:-.01em;text-wrap:balance;color:var(--ink);text-transform:none}
 .sec{display:flex;flex-direction:column;gap:20px}
 .btn-sec{display:inline-block;background:transparent;color:var(--ink);border:1px solid var(--ink);text-decoration:none;font-size:17px;font-weight:600;line-height:1;padding:15px 23px;border-radius:12px}
 .btn-sec:hover,.btn-sec:focus-visible{border-color:var(--accent);color:var(--accent)}
@@ -78,6 +78,7 @@ footer nav{gap:20px;font-size:15px}
 .btn-space:hover,.btn-space:focus-visible{background:var(--ink)}
 .space-note{font-size:15px;color:var(--muted)}
 .pcs{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--bg);margin:0;padding:0;list-style:none}
+.pcs{gap:0}
 .pcs li{display:flex;justify-content:space-between;gap:12px;padding:12px 14px;border-top:1px solid var(--line);font-size:15px}
 .pcs li:first-child{border-top:0}
 .pcs b{font-variant-numeric:tabular-nums}
@@ -102,7 +103,7 @@ footer nav{gap:20px;font-size:15px}
 .band .sprig{position:absolute;right:32px;top:50%;transform:translateY(-50%);height:150px;width:auto;pointer-events:none}
 .space-link{font-weight:600;border-radius:10px;padding:8px 14px;text-decoration:none;color:var(--brand);border:1px solid var(--brand)}
 .more-link{font-size:15px;color:var(--brand)}
-@media (max-width:699px){.h-sec{font-size:24px}.steps,.trust{grid-template-columns:1fr;gap:16px}.space{grid-template-columns:1fr;padding:22px;gap:22px}.agents .lab{min-width:0;width:100%}.band{padding:28px 22px 96px}.band .sprig{height:96px;right:12px;top:auto;bottom:10px;transform:none}}
+@media (max-width:699px){.h-sec{font-size:24px}.steps,.trust{grid-template-columns:1fr;gap:16px}.space{grid-template-columns:1fr;padding:22px;gap:22px}.agents .lab{min-width:0;width:100%}.band{padding:28px 22px 120px}.band .sprig{height:96px;right:12px;top:auto;bottom:12px;transform:none}}
 :focus-visible{outline:2px solid var(--brand);outline-offset:2px}
 </style>
 </head>
