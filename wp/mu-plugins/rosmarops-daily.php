@@ -14,6 +14,7 @@ const ROSMAROPS_DAILY_HOSTS = [
 	'anthropic.com', 'claude.com', 'cursor.com', 'openai.com', 'github.com', 'github.blog',
 	'antigravity.google', 'nousresearch.com', 'cline.bot', 'continue.dev', 'osv.dev',
 	'nvd.nist.gov', 'npmjs.com', 'pypi.org',
+	'kiro.dev', 'devin.ai', 'visualstudio.com', 'cisa.gov',
 ];
 const ROSMAROPS_DAILY_PREFIX = ['en' => '/observatory/daily/', 'es' => '/es/observatorio/diario/', 'ca' => '/ca/observatori/diari/'];
 const ROSMAROPS_DAILY_FEED_ITEMS = 30;
