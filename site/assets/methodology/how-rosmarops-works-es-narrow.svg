@@ -44,7 +44,6 @@
 <text x="32" y="703.6" font-size="14" font-weight="400" fill="#3A3833">qué cambiar. Tú decides y haces el</text>
 <text x="32" y="723.9" font-size="14" font-weight="400" fill="#3A3833">cambio.</text>
 <rect x="16" y="758" width="326" height="85" rx="12" fill="#1B1A18"/>
-<text x="32" y="786.0" font-size="14" font-weight="600" fill="#FFFFFF">Todo se queda en tu ordenador.</text>
-<text x="32" y="806.3" font-size="14" font-weight="600" fill="#FFFFFF">RosmarOps no se conecta a internet y no</text>
-<text x="32" y="826.6" font-size="14" font-weight="600" fill="#FFFFFF">envía nada.</text>
+<text x="32" y="786.0" font-size="14" font-weight="600" fill="#FFFFFF">Nada sale de tus dispositivos</text>
+<text x="32" y="806.3" font-size="14" font-weight="600" fill="#FFFFFF">sin que tú lo apruebes antes.</text>
 </svg>

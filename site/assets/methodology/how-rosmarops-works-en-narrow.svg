@@ -43,7 +43,6 @@
 <text x="32" y="683.3" font-size="14" font-weight="400" fill="#3A3833">it found, in plain words, and what to</text>
 <text x="32" y="703.6" font-size="14" font-weight="400" fill="#3A3833">change. You decide and make the change.</text>
 <rect x="16" y="738" width="326" height="85" rx="12" fill="#1B1A18"/>
-<text x="32" y="766.0" font-size="14" font-weight="600" fill="#FFFFFF">Everything stays on your computer.</text>
-<text x="32" y="786.3" font-size="14" font-weight="600" fill="#FFFFFF">RosmarOps doesn't connect to the</text>
-<text x="32" y="806.6" font-size="14" font-weight="600" fill="#FFFFFF">internet and sends nothing.</text>
+<text x="32" y="766.0" font-size="14" font-weight="600" fill="#FFFFFF">Nothing leaves your devices</text>
+<text x="32" y="786.3" font-size="14" font-weight="600" fill="#FFFFFF">unless you approve it first.</text>
 </svg>
