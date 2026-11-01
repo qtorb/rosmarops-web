@@ -18,7 +18,24 @@
     en: 'https://rosmarops.com/privacy/'
   }[lang];
 
+  // Albert's own visits are not counted (requested by Albert, 01-11): opening any page once with
+  // ?rosmarops_internal=1 marks this browser, and GA never loads in it; ?rosmarops_internal=0 removes the mark.
+  // The mark is one localStorage key on this origin, never sent anywhere.
+  var INTERNAL_KEY = 'rosmarops_internal';
+  function isInternal() {
+    try {
+      var p = new URLSearchParams(location.search).get(INTERNAL_KEY);
+      if (p === '1') localStorage.setItem(INTERNAL_KEY, '1');
+      else if (p === '0') localStorage.removeItem(INTERNAL_KEY);
+      return localStorage.getItem(INTERNAL_KEY) === '1';
+    } catch (err) {
+      return false;
+    }
+  }
+  var internal = isInternal();
+
   function loadGA() {
+    if (internal) return;
     if (window.__rosmaropsGA) return;
     window.__rosmaropsGA = true;
     window.dataLayer = window.dataLayer || [];
