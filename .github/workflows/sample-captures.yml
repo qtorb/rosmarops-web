@@ -2,8 +2,11 @@ name: Sample report captures
 
 # GTM-45 (signed by Albert, 30-10 09:09). Once a day, if qtorb/rosmarops has a new latest release with the sample
 # reports, copies them to site/sample-report/, regenerates the eight captures in site/assets/sample/, updates the
-# height attributes in the six pages that show them, records the tag in site/sample-report/VERSION, commits to main
-# and asks for a deploy (which waits for Albert's approval in the production environment, as always).
+# height attributes in the six pages that show them and records the tag in site/sample-report/VERSION.
+# GTM-64 (signed by Albert, 01-11 15:50): it no longer writes to main. It pushes the result to the branch
+# sample-report-<tag> and opens a PR with the 1280 and 390 px captures in its description; Albert merges it after
+# looking at them, and the merge asks for the deploy as any other change to site/. If the branch already exists,
+# nothing is done again. If the PR cannot be opened, the run fails and prints the link to open it by hand.
 
 on:
   schedule:
@@ -11,7 +14,7 @@ on:
 
 permissions:
   contents: write
-  actions: write
+  pull-requests: write
 
 concurrency:
   group: sample-captures
@@ -42,6 +45,11 @@ jobs:
           assets=$(gh api "repos/qtorb/rosmarops/releases/tags/$tag" --jq '.assets[].name')
           if ! echo "$assets" | grep -qx 'sample-report.en.html' || ! echo "$assets" | grep -qx 'sample-report.es.html'; then
             echo "::warning::Release $tag has no sample-report.en.html and sample-report.es.html; nothing to do"
+            echo "new=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          if git ls-remote --exit-code --heads origin "sample-report-$tag" >/dev/null; then
+            echo "Branch sample-report-$tag already exists: its PR is waiting for Albert; nothing to do"
             echo "new=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
@@ -78,21 +86,36 @@ jobs:
             site/assets/sample/sample-mobile.es.png site/assets/sample/sample-mobile.es@2x.png
           python3 tools/sample-captures/update_sizes.py
 
-      - name: Record the tag, commit and push
+      - name: Record the tag, push a branch and open a PR (Albert merges it)
         if: steps.rel.outputs.new == 'true'
         env:
           TAG: ${{ steps.rel.outputs.tag }}
         run: |
           set -eu
+          branch="sample-report-$TAG"
           echo "$TAG" > site/sample-report/VERSION
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$branch"
           git add site/sample-report/VERSION site/sample-report/sample-report.en.html site/sample-report/sample-report.es.html \
             site/assets/sample/ site/index.html site/sample-report/index.html site/es/index.html \
             site/es/informe-de-ejemplo/index.html site/ca/index.html site/ca/informe-dexemple/index.html
-          git commit -m "Sample report and captures for $TAG (automatic)"
-          git push origin HEAD:main
-
-      - name: Ask for a deploy (waits for Albert's approval)
-        if: steps.rel.outputs.new == 'true'
-        run: gh workflow run deploy.yml --ref main
+          git commit -m "Sample report and captures for $TAG (automatic, for review)"
+          git push origin "$branch"
+          raw="https://github.com/${GITHUB_REPOSITORY}/raw/$branch/site/assets/sample"
+          {
+            echo "New sample report from the release $TAG of qtorb/rosmarops, with its captures. Look at them before merging: merging asks for the deploy, which waits for Albert's approval."
+            echo
+            echo "1280 px (EN, ES):"
+            echo
+            echo "![1280 px EN]($raw/sample-desktop.en.png)"
+            echo "![1280 px ES]($raw/sample-desktop.es.png)"
+            echo
+            echo "390 px (EN, ES):"
+            echo
+            echo "![390 px EN]($raw/sample-mobile.en.png) ![390 px ES]($raw/sample-mobile.es.png)"
+          } > "$RUNNER_TEMP/pr.md"
+          if ! gh pr create --base main --head "$branch" --title "Sample report and captures for $TAG" --body-file "$RUNNER_TEMP/pr.md"; then
+            echo "::error::Could not open the PR. Open it by hand: https://github.com/${GITHUB_REPOSITORY}/compare/main...$branch"
+            exit 1
+          fi
