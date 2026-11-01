@@ -1,0 +1,258 @@
+{
+  "generated_at": "2026-11-01T07:47:10Z",
+  "repo": {
+    "stargazers_count": 0,
+    "subscribers_count": 0,
+    "forks_count": 0,
+    "open_issues_count": 2
+  },
+  "open_pulls": 2,
+  "releases": [
+    {
+      "tag_name": "v0.6.2",
+      "published_at": "2026-11-01T00:14:04Z",
+      "draft": false,
+      "assets": [
+        {
+          "name": "rosmarops-macos-apple-silicon",
+          "download_count": 1
+        },
+        {
+          "name": "rosmarops-macos-intel",
+          "download_count": 1
+        },
+        {
+          "name": "rosmarops.exe",
+          "download_count": 1
+        },
+        {
+          "name": "sample-report.en.html",
+          "download_count": 2
+        },
+        {
+          "name": "sample-report.es.html",
+          "download_count": 1
+        },
+        {
+          "name": "SHA256SUMS.txt",
+          "download_count": 2
+        }
+      ]
+    },
+    {
+      "tag_name": "v0.6.1",
+      "published_at": "2026-10-31T15:39:25Z",
+      "draft": false,
+      "assets": [
+        {
+          "name": "rosmarops-macos-apple-silicon",
+          "download_count": 1
+        },
+        {
+          "name": "rosmarops-macos-intel",
+          "download_count": 1
+        },
+        {
+          "name": "rosmarops.exe",
+          "download_count": 6
+        },
+        {
+          "name": "sample-report.en.html",
+          "download_count": 2
+        },
+        {
+          "name": "sample-report.es.html",
+          "download_count": 2
+        },
+        {
+          "name": "SHA256SUMS.txt",
+          "download_count": 2
+        }
+      ]
+    },
+    {
+      "tag_name": "v0.6.0",
+      "published_at": "2026-10-30T22:28:39Z",
+      "draft": false,
+      "assets": [
+        {
+          "name": "rosmarops-macos-apple-silicon",
+          "download_count": 1
+        },
+        {
+          "name": "rosmarops-macos-intel",
+          "download_count": 3
+        },
+        {
+          "name": "rosmarops.exe",
+          "download_count": 1
+        },
+        {
+          "name": "sample-report.en.html",
+          "download_count": 2
+        },
+        {
+          "name": "sample-report.es.html",
+          "download_count": 2
+        },
+        {
+          "name": "SHA256SUMS.txt",
+          "download_count": 2
+        }
+      ]
+    },
+    {
+      "tag_name": "v0.5.2",
+      "published_at": "2026-10-29T17:52:58Z",
+      "draft": false,
+      "assets": [
+        {
+          "name": "rosmarops-macos-apple-silicon",
+          "download_count": 5
+        },
+        {
+          "name": "rosmarops-macos-intel",
+          "download_count": 5
+        },
+        {
+          "name": "rosmarops.exe",
+          "download_count": 3
+        },
+        {
+          "name": "sample-report.en.html",
+          "download_count": 7
+        },
+        {
+          "name": "sample-report.es.html",
+          "download_count": 7
+        },
+        {
+          "name": "SHA256SUMS.txt",
+          "download_count": 4
+        }
+      ]
+    },
+    {
+      "tag_name": "v0.5.1",
+      "published_at": "2026-10-29T16:25:02Z",
+      "draft": false,
+      "assets": [
+        {
+          "name": "rosmarops-macos-apple-silicon",
+          "download_count": 7
+        },
+        {
+          "name": "rosmarops-macos-intel",
+          "download_count": 6
+        },
+        {
+          "name": "rosmarops.exe",
+          "download_count": 8
+        },
+        {
+          "name": "SHA256SUMS.txt",
+          "download_count": 3
+        }
+      ]
+    },
+    {
+      "tag_name": "v0.5.0",
+      "published_at": "2026-10-29T09:47:15Z",
+      "draft": false,
+      "assets": [
+        {
+          "name": "rosmarops-darwin-amd64",
+          "download_count": 4
+        },
+        {
+          "name": "rosmarops-darwin-arm64",
+          "download_count": 3
+        },
+        {
+          "name": "rosmarops.exe",
+          "download_count": 4
+        },
+        {
+          "name": "SHA256SUMS.txt",
+          "download_count": 3
+        }
+      ]
+    },
+    {
+      "tag_name": "v0.4.0",
+      "published_at": "2026-10-28T09:16:54Z",
+      "draft": false,
+      "assets": [
+        {
+          "name": "rosmarops.exe",
+          "download_count": 3
+        },
+        {
+          "name": "SHA256SUMS.txt",
+          "download_count": 4
+        }
+      ]
+    },
+    {
+      "tag_name": "v0.3.0",
+      "published_at": "2026-10-28T05:29:58Z",
+      "draft": false,
+      "assets": [
+        {
+          "name": "rosmarops.exe",
+          "download_count": 14
+        },
+        {
+          "name": "SHA256SUMS.txt",
+          "download_count": 4
+        }
+      ]
+    },
+    {
+      "tag_name": "v0.2.0",
+      "published_at": "2026-10-27T11:46:38Z",
+      "draft": false,
+      "assets": [
+        {
+          "name": "rosmarops.exe",
+          "download_count": 2
+        },
+        {
+          "name": "SHA256SUMS.txt",
+          "download_count": 3
+        }
+      ]
+    },
+    {
+      "tag_name": "v0.1.0",
+      "published_at": "2026-10-27T11:04:14Z",
+      "draft": false,
+      "assets": [
+        {
+          "name": "rosmarops-windows-amd64.zip",
+          "download_count": 3
+        },
+        {
+          "name": "SHA256SUMS.txt",
+          "download_count": 2
+        }
+      ]
+    },
+    {
+      "tag_name": "v0.1.0-rc1",
+      "published_at": "2026-10-27T10:21:59Z",
+      "draft": false,
+      "assets": [
+        {
+          "name": "rosmarops-windows-amd64.zip",
+          "download_count": 4
+        },
+        {
+          "name": "SHA256SUMS.txt",
+          "download_count": 3
+        }
+      ]
+    }
+  ],
+  "latest_tag": "v0.6.2"
+}
