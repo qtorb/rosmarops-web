@@ -1,0 +1,45 @@
+name: GitHub stats (daily)
+
+# GTM-61 (signed by Albert, 01-11 08:40). The app.rosmarops.com panel read the GitHub API without credentials from the
+# OVH shared hosting, where the per-IP limit runs out and the read failed almost daily (31-10 and 01-11). From now on
+# GitHub Actions reads the public figures of qtorb/rosmarops once a day with this workflow's own GITHUB_TOKEN and
+# writes observatory/github-stats.json to main; the panel picks up that public file. If any of the four reads does
+# not return 200, the run fails and writes nothing. observatory/ is outside deploy.yml's paths: no deploy is asked for.
+
+on:
+  schedule:
+    - cron: "10 6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily
+  cancel-in-progress: false
+
+jobs:
+  stats:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: main
+
+      - name: Read the public figures and write the file
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -eu
+          python3 observatory/github_stats.py "$RUNNER_TEMP/github-stats.json"
+          python3 observatory/github_stats.py --check "$RUNNER_TEMP/github-stats.json"
+          cp "$RUNNER_TEMP/github-stats.json" observatory/github-stats.json
+
+      - name: Commit to main
+        run: |
+          set -eu
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add observatory/github-stats.json
+          git commit -m "github-stats: $(date -u +%F)"
+          git push origin HEAD:main
