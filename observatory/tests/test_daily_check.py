@@ -125,6 +125,20 @@ class DailyCheck(unittest.TestCase):
     def test_incomplete_without_not_checked_key(self):
         self.broken(lambda d: d.update(status="incomplete", items=[]), "status incomplete needs not_checked")
 
+    # GTM-70: the four hosts of the 28-source review are allowed; any other host still fails.
+    def test_new_hosts_allowed(self):
+        d = copy.deepcopy(self.d)
+        d["checked"] = d["checked"] + [
+            {"name": "Kiro", "url": "https://kiro.dev/changelog/", "latest_seen": "", "latest_date": None},
+            {"name": "Devin", "url": "https://docs.devin.ai/release-notes", "latest_seen": "", "latest_date": None},
+            {"name": "VS Code", "url": "https://code.visualstudio.com/updates", "latest_seen": "", "latest_date": None},
+            {"name": "CISA KEV", "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog", "latest_seen": "", "latest_date": None},
+        ]
+        self.assertEqual(run(d), [])
+
+    def test_unlisted_host_in_checked(self):
+        self.broken(lambda d: d["checked"].append({"name": "Other", "url": "https://example.org/changelog", "latest_seen": "", "latest_date": None}), "is not in the allowed list")
+
     def test_published_needs_checked(self):
         self.broken(lambda d: d.update(checked=[]), "schema: checked")
 

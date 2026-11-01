@@ -35,6 +35,7 @@ ALLOWED_HOSTS = [
     "anthropic.com", "claude.com", "cursor.com", "openai.com", "github.com", "github.blog",
     "antigravity.google", "nousresearch.com", "cline.bot", "continue.dev", "osv.dev",
     "nvd.nist.gov", "npmjs.com", "pypi.org",
+    "kiro.dev", "devin.ai", "visualstudio.com", "cisa.gov",
 ]
 ID_RE = re.compile(r"MAL-\d{4}-\d+|GHSA(?:-[23456789cfghjmpqrvwx]{4}){3}|CVE-\d{4}-\d{4,}")
 VERSION_RE = re.compile(r"\d+(?:\.\d+)+")
