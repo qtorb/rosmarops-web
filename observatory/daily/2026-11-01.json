@@ -1,0 +1,113 @@
+{
+  "date": "2026-11-01",
+  "reviewed_at": "2026-11-01T07:16:22Z",
+  "status": "no_changes",
+  "items": [],
+  "checked": [
+    {
+      "name": "Claude Code",
+      "url": "https://code.claude.com/docs/en/changelog",
+      "latest_seen": "2.1.316",
+      "latest_date": "2026-10-31"
+    },
+    {
+      "name": "Cursor",
+      "url": "https://cursor.com/changelog",
+      "latest_seen": "CLI v2026.10.22",
+      "latest_date": "2026-10-20"
+    },
+    {
+      "name": "OpenAI Codex",
+      "url": "https://github.com/openai/codex/releases",
+      "latest_seen": "rust-v0.166.0",
+      "latest_date": "2026-10-29"
+    },
+    {
+      "name": "Google Antigravity",
+      "url": "https://antigravity.google/docs/changelog",
+      "latest_seen": "App 2.28.2",
+      "latest_date": "2026-10-29"
+    },
+    {
+      "name": "Hermes Agent",
+      "url": "https://github.com/NousResearch/hermes-agent/releases",
+      "latest_seen": "v0.22.5",
+      "latest_date": "2026-10-23"
+    },
+    {
+      "name": "GitHub Copilot",
+      "url": "https://github.blog/changelog/",
+      "latest_seen": "",
+      "latest_date": "2026-10-28"
+    },
+    {
+      "name": "Cline",
+      "url": "https://github.com/cline/cline/releases",
+      "latest_seen": "v4.1.26",
+      "latest_date": "2026-10-25"
+    },
+    {
+      "name": "Continue",
+      "url": "https://github.com/continuedev/continue/releases",
+      "latest_seen": "v2.1.0-vscode",
+      "latest_date": "2026-06-18"
+    },
+    {
+      "name": "Kanvas",
+      "url": "https://github.com/XMihura/Kanvas/blob/main/CHANGELOG.md",
+      "latest_seen": "v0.4.0",
+      "latest_date": "2026-10-27"
+    },
+    {
+      "name": "OpenSSF malicious-packages",
+      "url": "https://github.com/ossf/malicious-packages",
+      "latest_seen": "",
+      "latest_date": null
+    },
+    {
+      "name": "Gemini CLI",
+      "url": "https://github.com/google-gemini/gemini-cli/releases",
+      "latest_seen": "v0.66.0",
+      "latest_date": "2026-10-27"
+    },
+    {
+      "name": "GitHub Copilot CLI",
+      "url": "https://github.com/github/copilot-cli/blob/main/changelog.md",
+      "latest_seen": "1.0.105",
+      "latest_date": "2026-10-27"
+    },
+    {
+      "name": "Claude desktop",
+      "url": "https://support.claude.com/en/articles/12138966-release-notes",
+      "latest_seen": "",
+      "latest_date": "2026-10-21"
+    },
+    {
+      "name": "OSV npm and PyPI",
+      "url": "https://osv.dev/list?ecosystem=npm",
+      "latest_seen": "",
+      "latest_date": null
+    },
+    {
+      "name": "NVD",
+      "url": "https://nvd.nist.gov/vuln/search",
+      "latest_seen": "",
+      "latest_date": null
+    }
+  ],
+  "held": [
+    {
+      "text_en": "MAL-2026-18425 lists npm package local-commander-agent 0.3.52 as malicious",
+      "source_url": "https://osv.dev/vulnerability/MAL-2026-18425",
+      "rule": 11,
+      "reason": "The OSV record does not tie local-commander-agent to any tracked agent; it is not an MCP server, package or extension those agents use."
+    },
+    {
+      "text_en": "MAL-2026-18427 lists PyPI package skills-analyzer 0.1.0 to 0.1.2 as malicious, via dependency is-it-ai",
+      "source_url": "https://osv.dev/vulnerability/MAL-2026-18427",
+      "rule": 11,
+      "reason": "The OSV record does not tie skills-analyzer or is-it-ai to any tracked agent; a name with \"skills\" is not use by those agents."
+    }
+  ],
+  "summary_ref": "docs/observatorio/2026-11-01.md"
+}
