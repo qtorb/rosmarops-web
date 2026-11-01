@@ -59,6 +59,9 @@ footer nav{gap:20px;font-size:15px}
 .dl-note a{color:var(--muted)}
 .sample p{margin:12px 0 0;max-width:760px;font-size:17px;font-weight:400;line-height:1.55;color:var(--ink)}
 .sample figure{margin:20px 0 0}
+.sample figure{max-width:560px}
+.btn-o{display:inline-block;margin-top:16px;padding:12px 18px;border:1px solid var(--ink);border-radius:12px;background:transparent;color:var(--ink);font-size:15px;font-weight:600;line-height:1;text-decoration:none}
+.btn-o:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
 .sample img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:12px;background:var(--card)}
 .sample figcaption{margin-top:12px;font-size:15px;line-height:1.5;color:var(--muted)}
 .sample figcaption a{color:var(--muted)}
@@ -80,7 +83,8 @@ footer nav{gap:20px;font-size:15px}
 <section class="sample">
 <h2>Un informe de ejemplo</h2>
 <p>Esto es lo que te enseña RosmarOps, en un ordenador inventado: la nota de cada agente que evalúa, lo primero que hay que arreglar y cuánto sube la nota si lo arreglas, y todo lo demás, lo urgente primero.</p>
-<figure><a href="/es/informe-de-ejemplo/"><picture><source media="(max-width: 699px)" srcset="/assets/sample/sample-mobile.es.png 1x, /assets/sample/sample-mobile.es@2x.png 2x" width="390" height="1269"><img src="/assets/sample/sample-desktop.es.png" srcset="/assets/sample/sample-desktop.es.png 1x, /assets/sample/sample-desktop.es@2x.png 2x" width="1000" height="1100" alt="Informe de ejemplo de RosmarOps en un ordenador inventado: la nota de cada agente, lo primero que hay que hacer y los demás hallazgos." loading="lazy" decoding="async"></picture></a><figcaption>Hecho con datos de ejemplo: el ordenador, el usuario, los proyectos y las claves son inventados. <a href="/sample-report/sample-report.es.html">Ver el informe completo</a></figcaption></figure>
+<figure><a href="/sample-report/sample-report.es.html" target="_blank" rel="noopener"><picture><source media="(max-width: 699px)" srcset="/assets/sample/sample-thumb-mobile.es.png 1x, /assets/sample/sample-thumb-mobile.es@2x.png 2x" width="390" height="640"><img src="/assets/sample/sample-thumb.es.png" srcset="/assets/sample/sample-thumb.es.png 1x, /assets/sample/sample-thumb.es@2x.png 2x" width="1000" height="640" alt="Informe de ejemplo de RosmarOps en un ordenador inventado: la nota de cada agente, lo primero que hay que hacer y los demás hallazgos." loading="lazy" decoding="async"></picture></a><figcaption>Hecho con datos de ejemplo: el ordenador, el usuario, los proyectos y las claves son inventados. <a href="/sample-report/sample-report.es.html">Ver el informe completo</a></figcaption></figure>
+<a class="btn-o" href="/sample-report/sample-report.es.html" target="_blank" rel="noopener">Ver el informe completo</a>
 </section>
 
 <section class="cards">

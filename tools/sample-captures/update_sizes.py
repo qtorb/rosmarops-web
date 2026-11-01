@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Update the height attributes of the sample report captures (GTM-45).
 
-Reads the height of the four 1x PNG in site/assets/sample/ and, in the six pages that show them, replaces only
+Reads the height of the four 1x PNG in site/assets/sample/ and, in the three sample report pages that show them, replaces only
 the height attribute of the <source> whose srcset contains sample-mobile.<l>.png and of the <img> whose src is
 /assets/sample/sample-desktop.<l>.png. If any page does not have exactly one match of each, exits with an error
 without writing anything. Standard library only.
@@ -14,12 +14,10 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 ASSETS = ROOT / "site" / "assets" / "sample"
+# GTM-66: the three home pages show fixed-size thumbnails (thumbs.py), so only the sample report pages are listed.
 PAGES = [
-    ("site/index.html", "en"),
     ("site/sample-report/index.html", "en"),
-    ("site/es/index.html", "es"),
     ("site/es/informe-de-ejemplo/index.html", "es"),
-    ("site/ca/index.html", "es"),
     ("site/ca/informe-dexemple/index.html", "es"),
 ]
 

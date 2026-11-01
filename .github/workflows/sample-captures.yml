@@ -2,7 +2,8 @@ name: Sample report captures
 
 # GTM-45 (signed by Albert, 30-10 09:09). Once a day, if qtorb/rosmarops has a new latest release with the sample
 # reports, copies them to site/sample-report/, regenerates the eight captures in site/assets/sample/, updates the
-# height attributes in the six pages that show them and records the tag in site/sample-report/VERSION.
+# height attributes in the three sample report pages, cuts the eight home thumbnails (GTM-66) and records the tag
+# in site/sample-report/VERSION.
 # GTM-64 (signed by Albert, 01-11 15:50): it no longer writes to main. It pushes the result to the branch
 # sample-report-<tag> and opens a PR with the 1280 and 390 px captures in its description; Albert merges it after
 # looking at them, and the merge asks for the deploy as any other change to site/. If the branch already exists,
@@ -85,6 +86,10 @@ jobs:
             site/assets/sample/sample-mobile.en.png site/assets/sample/sample-mobile.en@2x.png \
             site/assets/sample/sample-mobile.es.png site/assets/sample/sample-mobile.es@2x.png
           python3 tools/sample-captures/update_sizes.py
+          # GTM-66: the eight home thumbnails, cut from these captures.
+          pip install "pillow==12.3.0"
+          python3 tools/sample-captures/thumbs.py
+          optipng -o4 site/assets/sample/sample-thumb*.png
 
       - name: Record the tag, push a branch and open a PR (Albert merges it)
         if: steps.rel.outputs.new == 'true'
