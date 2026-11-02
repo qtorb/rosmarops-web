@@ -58,7 +58,7 @@
   "index.independence_h3": "Independence",
   "index.independence_p": "No one pays to appear. Each vendor has a right of reply, published on its page without changing what we report.",
   "index.data_h3": "The data is open",
-  "index.data_p": "Everything on this page is in JSON, with its source and its date.",
+  "index.data_p": "Everything on this page is in JSON, with its source and its date. You can reuse it under the CC BY 4.0 licence, citing RosmarOps.",
   "index.data_link": "Dataset (JSON)",
   "index.tooling_h2": "Frameworks for building agents",
   "index.tooling_note": "Not agents on their own: pieces developers use to build agents inside their projects. The Observatory follows their security changes.",
