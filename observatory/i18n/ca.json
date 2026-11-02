@@ -58,7 +58,7 @@
   "index.independence_h3": "Independència",
   "index.independence_p": "Ningú no paga per aparèixer. Cada fabricant té dret de rèplica, que es publica a la seva pàgina sense canviar el que expliquem.",
   "index.data_h3": "Les dades són obertes",
-  "index.data_p": "Tot el que veus en aquesta pàgina és en JSON, amb la seva font i la seva data.",
+  "index.data_p": "Tot el que veus en aquesta pàgina és en JSON, amb la seva font i la seva data. Pots reutilitzar-lo amb llicència CC BY 4.0, citant RosmarOps.",
   "index.data_link": "Conjunt de dades (JSON)",
   "index.tooling_h2": "Frameworks per construir agents",
   "index.tooling_note": "No són agents per si sols: peces amb què es construeixen agents dins de cada projecte. L'observatori en segueix els canvis de seguretat.",

@@ -574,6 +574,7 @@ def build_index(lang, t, agents, candidates):
             "inLanguage": lang,
             "dateModified": modified,
             "isAccessibleForFree": True,
+            "license": "https://creativecommons.org/licenses/by/4.0/",
             "creator": {"@type": "Organization", "@id": "https://rosmarops.com/#org", "name": "RosmarOps", "url": "https://rosmarops.com/"},
             "distribution": [
                 {"@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": BASE + JSON_BASE + "data.json"}
