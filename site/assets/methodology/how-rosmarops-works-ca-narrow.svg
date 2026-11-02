@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 358 839" width="358" height="839" role="img" font-family="system-ui,-apple-system,&quot;Segoe UI&quot;,sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 358 818.7" width="358" height="818.7" role="img" font-family="system-ui,-apple-system,&quot;Segoe UI&quot;,sans-serif">
 <title>Com funciona RosmarOps</title>
-<rect width="358" height="839" rx="16" fill="#F6F5F2"/>
+<rect width="358" height="818.7" rx="16" fill="#F6F5F2"/>
 <rect x="16" y="16" width="326" height="149" rx="12" fill="#FFFFFF" stroke="#E3E0D8"/>
 <circle cx="46" cy="46" r="14" fill="#1B1A18"/>
 <text x="46" y="51" font-size="14" font-weight="700" fill="#FFFFFF" text-anchor="middle">1</text>
@@ -42,7 +42,7 @@
 <text x="32" y="663.3" font-size="14" font-weight="400" fill="#3A3833">ha trobat, en paraules clares, i què</text>
 <text x="32" y="683.6" font-size="14" font-weight="400" fill="#3A3833">cal canviar. Tu decideixes i fas el</text>
 <text x="32" y="703.9" font-size="14" font-weight="400" fill="#3A3833">canvi.</text>
-<rect x="16" y="738" width="326" height="85" rx="12" fill="#1B1A18"/>
+<rect x="16" y="738" width="326" height="64.7" rx="12" fill="#1B1A18"/>
 <text x="32" y="766.0" font-size="14" font-weight="600" fill="#FFFFFF">Res no surt dels teus dispositius</text>
 <text x="32" y="786.3" font-size="14" font-weight="600" fill="#FFFFFF">sense que tu ho aprovis abans.</text>
 </svg>
