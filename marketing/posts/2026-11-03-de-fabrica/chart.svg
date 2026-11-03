@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" font-family="system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif">
+<rect width="1200" height="675" fill="#F6F5F2"/>
+<text x="48" y="78" font-size="36" font-weight="700" fill="#1B1A18">Qué deja hacer cada agente sin preguntarte, de fábrica</text>
+<text x="347.4" y="132" font-size="16" font-weight="600" fill="#66635D" text-anchor="middle">Lee tus ficheros</text>
+<text x="526.2" y="132" font-size="16" font-weight="600" fill="#66635D" text-anchor="middle">Escribe ficheros</text>
+<text x="705.0" y="132" font-size="16" font-weight="600" fill="#66635D" text-anchor="middle">Ejecuta comandos</text>
+<text x="883.8" y="132" font-size="16" font-weight="600" fill="#66635D" text-anchor="middle">Saca datos fuera</text>
+<text x="1062.6" y="132" font-size="16" font-weight="600" fill="#66635D" text-anchor="middle">Usa herramientas MCP</text>
+<line x1="48" y1="150" x2="1152" y2="150" stroke="#E3E0D8" stroke-width="1.5"/>
+<text x="48" y="223.0" font-size="26" font-weight="700" fill="#1B1A18">Claude Code</text>
+<rect x="266.0" y="162" width="162.8" height="104" rx="10" fill="#FDECE7"/>
+<text x="347.4" y="210.0" font-size="21" font-weight="700" fill="#94200B" text-anchor="middle">sin preguntar</text>
+<text x="347.4" y="234.0" font-size="15" fill="#1B1A18" text-anchor="middle">carpetas de trabajo</text>
+<rect x="444.8" y="162" width="162.8" height="104" rx="10" fill="#FDF5DF"/>
+<text x="526.2" y="210.0" font-size="21" font-weight="700" fill="#6B4700" text-anchor="middle">pregunta</text>
+<text x="526.2" y="234.0" font-size="15" fill="#1B1A18" text-anchor="middle">cualquier ruta</text>
+<rect x="623.6" y="162" width="162.8" height="104" rx="10" fill="#FDECE7"/>
+<text x="705.0" y="204.0" font-size="21" font-weight="700" fill="#94200B" text-anchor="middle">sin preguntar</text>
+<text x="705.0" y="228.0" font-size="15" fill="#1B1A18" text-anchor="middle">órdenes de solo</text>
+<text x="705.0" y="246.0" font-size="15" fill="#1B1A18" text-anchor="middle">lectura</text>
+<rect x="802.4" y="162" width="162.8" height="104" rx="10" fill="#FDECE7"/>
+<text x="883.8" y="198.0" font-size="21" font-weight="700" fill="#94200B" text-anchor="middle">sin preguntar</text>
+<text x="883.8" y="222.0" font-size="15" fill="#1B1A18" text-anchor="middle">webs de documentación</text>
+<text x="883.8" y="240.0" font-size="15" fill="#1B1A18" text-anchor="middle">preaprobadas por el</text>
+<text x="883.8" y="258.0" font-size="15" fill="#1B1A18" text-anchor="middle">fabricante</text>
+<rect x="981.2" y="162" width="162.8" height="104" rx="10" fill="#EFEDE8"/>
+<text x="1062.6" y="210.0" font-size="21" font-weight="700" fill="#4F4C46" text-anchor="middle">sin dato</text>
+<text x="1062.6" y="234.0" font-size="15" fill="#1B1A18" text-anchor="middle">aún no evaluado</text>
+<line x1="48" y1="278" x2="1152" y2="278" stroke="#E3E0D8" stroke-width="1.5"/>
+<text x="48" y="351.0" font-size="26" font-weight="700" fill="#1B1A18">Cursor</text>
+<rect x="266.0" y="290" width="162.8" height="104" rx="10" fill="#FDECE7"/>
+<text x="347.4" y="338.0" font-size="21" font-weight="700" fill="#94200B" text-anchor="middle">sin preguntar</text>
+<text x="347.4" y="362.0" font-size="15" fill="#1B1A18" text-anchor="middle">todo el ordenador</text>
+<rect x="444.8" y="290" width="162.8" height="104" rx="10" fill="#FDECE7"/>
+<text x="526.2" y="338.0" font-size="21" font-weight="700" fill="#94200B" text-anchor="middle">sin preguntar</text>
+<text x="526.2" y="362.0" font-size="15" fill="#1B1A18" text-anchor="middle">carpetas de trabajo</text>
+<rect x="623.6" y="290" width="162.8" height="104" rx="10" fill="#FDF5DF"/>
+<text x="705.0" y="338.0" font-size="21" font-weight="700" fill="#6B4700" text-anchor="middle">pregunta</text>
+<text x="705.0" y="362.0" font-size="15" fill="#1B1A18" text-anchor="middle">todas las órdenes</text>
+<rect x="802.4" y="290" width="162.8" height="104" rx="10" fill="#FDF5DF"/>
+<text x="883.8" y="338.0" font-size="21" font-weight="700" fill="#6B4700" text-anchor="middle">pregunta</text>
+<text x="883.8" y="362.0" font-size="15" fill="#1B1A18" text-anchor="middle">cualquier web</text>
+<rect x="981.2" y="290" width="162.8" height="104" rx="10" fill="#FDF5DF"/>
+<text x="1062.6" y="332.0" font-size="21" font-weight="700" fill="#6B4700" text-anchor="middle">pregunta</text>
+<text x="1062.6" y="356.0" font-size="15" fill="#1B1A18" text-anchor="middle">todas las herramientas</text>
+<text x="1062.6" y="374.0" font-size="15" fill="#1B1A18" text-anchor="middle">MCP</text>
+<line x1="48" y1="406" x2="1152" y2="406" stroke="#E3E0D8" stroke-width="1.5"/>
+<text x="48" y="479.0" font-size="26" font-weight="700" fill="#1B1A18">Hermes Agent</text>
+<rect x="266.0" y="418" width="162.8" height="104" rx="10" fill="#FDECE7"/>
+<text x="347.4" y="466.0" font-size="21" font-weight="700" fill="#94200B" text-anchor="middle">sin preguntar</text>
+<text x="347.4" y="490.0" font-size="15" fill="#1B1A18" text-anchor="middle">todo el ordenador</text>
+<rect x="444.8" y="418" width="162.8" height="104" rx="10" fill="#FDECE7"/>
+<text x="526.2" y="466.0" font-size="21" font-weight="700" fill="#94200B" text-anchor="middle">sin preguntar</text>
+<text x="526.2" y="490.0" font-size="15" fill="#1B1A18" text-anchor="middle">cualquier ruta</text>
+<rect x="623.6" y="418" width="162.8" height="104" rx="10" fill="#FDECE7"/>
+<text x="705.0" y="466.0" font-size="21" font-weight="700" fill="#94200B" text-anchor="middle">sin preguntar</text>
+<text x="705.0" y="490.0" font-size="15" fill="#1B1A18" text-anchor="middle">todas las órdenes</text>
+<rect x="802.4" y="418" width="162.8" height="104" rx="10" fill="#FDECE7"/>
+<text x="883.8" y="466.0" font-size="21" font-weight="700" fill="#94200B" text-anchor="middle">sin preguntar</text>
+<text x="883.8" y="490.0" font-size="15" fill="#1B1A18" text-anchor="middle">cualquier web</text>
+<rect x="981.2" y="418" width="162.8" height="104" rx="10" fill="#FDECE7"/>
+<text x="1062.6" y="460.0" font-size="21" font-weight="700" fill="#94200B" text-anchor="middle">sin preguntar</text>
+<text x="1062.6" y="484.0" font-size="15" fill="#1B1A18" text-anchor="middle">todas las herramientas</text>
+<text x="1062.6" y="502.0" font-size="15" fill="#1B1A18" text-anchor="middle">MCP</text>
+<line x1="48" y1="534" x2="1152" y2="534" stroke="#E3E0D8" stroke-width="1.5"/>
+<text x="48" y="613" font-size="15" fill="#66635D">En los tres, lo que «pregunta» lo decide primero otro modelo de IA; a ti solo te llega en algunos casos.</text>
+<text x="48" y="635" font-size="15" fill="#66635D">Fuente: documentación oficial de cada agente · rosmarops.com/es/metodologia/</text>
+</svg>
