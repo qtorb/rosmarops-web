@@ -510,12 +510,19 @@
           ]
         },
         "products": [
-          "MCP"
+          "MCP",
+          "Langflow",
+          "n8n",
+          "Ray",
+          "Dify",
+          "Flowise",
+          "Ollama",
+          "LangChain"
         ]
       },
       "public_url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "fragile": false,
-      "notes": "Entries added since L whose vendorProject or product is Anthropic, OpenAI, GitHub, Google, Microsoft (VS Code), Cursor or MCP servers."
+      "notes": "Entries added since L whose vendorProject is Anthropic, OpenAI, GitHub, Google or Cursor, VS Code from Microsoft, or whose product names MCP, Langflow, n8n, Ray, Dify, Flowise, Ollama or LangChain."
     }
   ]
 }
