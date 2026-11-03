@@ -1,6 +1,6 @@
 name: Observatory collector (daily)
 
-# GTM-75 (signed by Albert, 03-11 12:16). Reads the fixed sources F1-F28 listed in observatory/sources.json without a
+# GTM-75 (signed by Albert, 03-11 12:16). Reads the fixed sources F1-F29 listed in observatory/sources.json without a
 # model and writes observatory/raw/<date>.json (Madrid date) to main. Test phase: it runs alongside the current
 # scheduled tasks and nothing reads its output yet. If fewer than 20 sources open, the run ends red after committing
 # the file, so the failure shows in Actions. observatory/ is outside deploy.yml's paths, and a push made with this
@@ -67,7 +67,7 @@ jobs:
           git pull --rebase origin main
           git push origin HEAD:main
 
-      - name: At least 20 of 28 sources opened
+      - name: At least 20 sources opened
         run: |
           set -eu
           python - "observatory/raw/${{ steps.collect.outputs.date }}.json" <<'EOF'

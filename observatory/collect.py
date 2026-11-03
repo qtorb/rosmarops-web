@@ -621,6 +621,38 @@ def read_nvd(src, since, terms):
     return res
 
 
+VERSION_HEADING = re.compile(r"##\s+v?(\d+(?:\.\d+){1,3})")
+PREVIOUS = {}  # source id -> latest version in the newest earlier raw file that has the source, set by collect()
+
+
+def read_changelog_versions(src, since, terms):
+    """A changelog page with versions and no dates (F29 Muse Code, GTM-77).
+
+    The highest '## N.N.N' heading is the latest version. If it differs from the one in the newest earlier raw file
+    that has this source, it is new and dated today (date_is_detection); the first time, it is only noted."""
+    r = src["read"]
+    res = blank(src, "curl")
+    res["date_is_detection"] = True
+    try:
+        lines = page_lines(http_get(r["url"]))
+    except ReadError as e:
+        res["reason"] = str(e)
+        return res
+    heads = [(i, m.group(1)) for i, ln in enumerate(lines) if (m := VERSION_HEADING.fullmatch(ln))]
+    if not heads:
+        res["reason"] = "no version headings found in the page"
+        return res
+    i, top = max(heads, key=lambda h: version_key(h[1]))
+    res.update(opened=True, latest=top, latest_date=today())
+    prev = PREVIOUS.get(src["id"])
+    if prev and prev != top:
+        end = next((j for j, _ in heads if j > i), len(lines))
+        text = trim(" ".join(lines[i + 1:end]))
+        res["new"] = [{"date": today(), "version": top, "text": text}]
+        res["ids"] = sorted(set(ADVISORY.findall(text)))
+    return res
+
+
 def kev_match(v, r):
     vendor, product = v.get("vendorProject", ""), v.get("product", "")
     if vendor in r["vendors"]:
@@ -652,7 +684,7 @@ def read_kev(src, since, terms):
 
 
 METHODS = {"changelog-web": read_changelog_web, "git-tags": read_git_tags, "ossf": read_ossf, "osv-csv": read_osv,
-           "nvd": read_nvd, "kev": read_kev}
+           "nvd": read_nvd, "kev": read_kev, "changelog-versions": read_changelog_versions}
 
 
 def collect_source(src, since, terms):
@@ -675,6 +707,21 @@ def last_raw_date(raw_dir, day):
     return dates[-1] if dates else (datetime.date.fromisoformat(day) - datetime.timedelta(days=7)).isoformat()
 
 
+def previous_versions(raw_dir, day):
+    """{source id: latest} from the newest raw file before `day` that has each source."""
+    out = {}
+    for p in sorted(Path(raw_dir).glob("*.json"), reverse=True):
+        if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", p.stem) or p.stem >= day:
+            continue
+        try:
+            for s in json.loads(p.read_text(encoding="utf-8")).get("sources", []):
+                if s.get("latest") and s.get("id") not in out:
+                    out[s["id"]] = s["latest"]
+        except (ValueError, AttributeError):
+            continue
+    return out
+
+
 def collect(sources_file=SOURCES, raw_dir=RAW_DIR, now=None, progress=None):
     now = now or datetime.datetime.now(datetime.timezone.utc)
     global TODAY
@@ -684,6 +731,8 @@ def collect(sources_file=SOURCES, raw_dir=RAW_DIR, now=None, progress=None):
     cfg = json.loads(Path(sources_file).read_text(encoding="utf-8"))
     terms = [t.lower() for t in cfg["scope_terms"]]
     since = last_raw_date(raw_dir, TODAY)
+    PREVIOUS.clear()
+    PREVIOUS.update(previous_versions(raw_dir, TODAY))
     out = []
     for s in cfg["sources"]:
         t0 = time.monotonic()
