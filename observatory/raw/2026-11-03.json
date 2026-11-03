@@ -1,6 +1,6 @@
 {
   "date": "2026-11-03",
-  "collected_at": "2026-11-03T13:35:40Z",
+  "collected_at": "2026-11-03T18:39:26Z",
   "sources": [
     {
       "id": "F1",
@@ -185,662 +185,12 @@
     },
     {
       "id": "F10",
-      "opened": true,
-      "reason": null,
+      "opened": false,
+      "reason": "git log --format= --raw --no-abbrev --diff-filter=AM refs/remotes/origin/main --not ef9c7b18cfcf3d7694c85f07a08c057eeadddec3: Command '['git', '-c', 'core.hooksPath=/dev/null', '-c', 'protocol.file.allow=never', '-c', 'http.userAgent=RosmarOps-Observatory/1 (+https://rosmarops.com)', 'log', '--forma",
       "latest": null,
-      "latest_date": "2026-11-03",
-      "new": [
-        {
-          "date": "2026-10-28",
-          "version": null,
-          "text": "MAL-0000-ghsa-malware-2a3a3ee38efcdb6e @atlisp/mcp: Malware in @atlisp/mcp"
-        },
-        {
-          "date": "2026-11-02",
-          "version": null,
-          "text": "MAL-0000-ghsa-malware-c4f509ad1b4b7cd4 @bigdevin55/calculator-install-demo: Malware in @bigdevin55/calculator-install-demo"
-        },
-        {
-          "date": "2026-11-02",
-          "version": null,
-          "text": "MAL-0000-ghsa-malware-47b31798da27fd69 @bigdevin55/calculator-install-hook: Malware in @bigdevin55/calculator-install-hook"
-        },
-        {
-          "date": "2026-10-29",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-20c31530d82900d0 @decoopus/claude-setup: No installer-harm behavior observed in @decoopus/claude-setup@1.0.7"
-        },
-        {
-          "date": "2026-10-29",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-477d83bf58b21f95 @decoopus/claude-setup: Claude Desktop reconfigured to route API traffic and user API key through anthropic-lookalike gateway"
-        },
-        {
-          "date": "2026-10-29",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-4fc1df1e808600d2 @decoopus/claude-setup: Claude Desktop setup CLI routes Anthropic API keys and prompt traffic to lookalike domain api-anthropic.help"
-        },
-        {
-          "date": "2026-10-29",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-60a6f5b287b9fe35 @decoopus/claude-setup: @decoopus/claude-setup reconfigures Claude Desktop to route traffic and API keys through Anthropic-typosquat domain api-anthropic.help"
-        },
-        {
-          "date": "2026-10-29",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-64cee7777c5ac02f @decoopus/claude-setup: CLI reconfigures Claude Desktop to route all AI traffic through an Anthropic-lookalike gateway"
-        },
-        {
-          "date": "2026-10-29",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-76684a796f492891 @decoopus/claude-setup: Claude Desktop configuration hijack to lookalike Anthropic gateway (api-anthropic.help)"
-        },
-        {
-          "date": "2026-10-29",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-b5d20ab525fdd687 @decoopus/claude-setup: @decoopus/claude-setup reconfigures Claude Desktop to route API traffic and user-supplied Anthropic API key through lookalike gateway api-anthropic.help"
-        },
-        {
-          "date": "2026-10-29",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-c2f431ce3ff86a31 @decoopus/claude-setup: Reroutes Claude Desktop API key and inference traffic to Anthropic-lookalike gateway"
-        },
-        {
-          "date": "2026-10-29",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-d46ba00abd2866eb @decoopus/claude-setup: @decoopus/claude-setup redirects Claude Desktop inference and API keys to typosquat gateway api-anthropic.help"
-        },
-        {
-          "date": "2026-10-29",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-db89b84ec7a5a4ea @decoopus/claude-setup: Claude Desktop setup CLI reroutes inference traffic and API keys to brand-impersonating gateway api-anthropic.help"
-        },
-        {
-          "date": "2026-10-29",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-f7e155559d26176a @decoopus/claude-setup: @decoopus/claude-setup redirects Claude Desktop traffic and API keys to a lookalike Anthropic gateway"
-        },
-        {
-          "date": "2026-11-02",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-808d25733e867c0c @ifasn/md-doc-mcp: md-doc-mcp performs cloud-metadata reconnaissance and exfiltrates results to a hardcoded bare-IP host"
-        },
-        {
-          "date": "2026-11-02",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-d37d60d7e1b4af36 @ifasn/md-doc-mcp: md-doc-mcp probes cloud metadata endpoints and beacons results to hardcoded remote"
-        },
-        {
-          "date": "2026-11-02",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-e0bb69de5181a0d9 @ifasn/md-doc-mcp: md-doc-mcp probes cloud metadata services and beacons results to a hardcoded bare-IP endpoint"
-        },
-        {
-          "date": "2026-11-02",
-          "version": null,
-          "text": "MAL-2026-18486 @ifasn/md-doc-mcp: Malicious code in @ifasn/md-doc-mcp (npm)"
-        },
-        {
-          "date": "2026-11-02",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-0ef8bc86c819e2e0 @ifasn/mdd-doc-mcp: Cloud instance-metadata reconnaissance beacons to hardcoded bare-IP host on load"
-        },
-        {
-          "date": "2026-11-02",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-1d8295dd6d1f932a @ifasn/mdd-doc-mcp: @ifasn/mdd-doc-mcp harvests Alibaba Cloud instance credentials and resolves an off-registry HTTP dependency from a bare IP"
-        },
-        {
-          "date": "2026-11-02",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-667635d5f1caab0b @ifasn/mdd-doc-mcp: @ifasn/mdd-doc-mcp performs cloud IMDS reconnaissance and exfiltrates results to a hardcoded bare-IP endpoint on load"
-        },
-        {
-          "date": "2026-11-02",
-          "version": null,
-          "text": "MAL-2026-18487 @ifasn/mdd-doc-mcp: Malicious code in @ifasn/mdd-doc-mcp (npm)"
-        },
-        {
-          "date": "2026-11-02",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-405cdeb444a83f5b @ifasn/mmd-doc-mcp: Package probes Alibaba Cloud instance metadata on load, mismatched with advertised Markdown MCP purpose"
-        },
-        {
-          "date": "2026-11-02",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-e3b58b8adeff2784 @ifasn/mmd-doc-mcp: @ifasn/mmd-doc-mcp probes cloud IMDS endpoints and exfiltrates provider fingerprint to hardcoded bare-IP host"
-        },
-        {
-          "date": "2026-11-02",
-          "version": null,
-          "text": "MAL-2026-18488 @ifasn/mmd-doc-mcp: Malicious code in @ifasn/mmd-doc-mcp (npm)"
-        },
-        {
-          "date": "2026-11-02",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-00e9e090da5207e0 @ifasn/mmdd-doc-mcp: Markdown MCP package performs cloud metadata and host reconnaissance and reads installer secrets on load"
-        },
-        {
-          "date": "2026-11-02",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-134b408ae3c9b75f @ifasn/mmdd-doc-mcp: mmdd-doc-mcp probes Alibaba Cloud IMDS and beacons results to hardcoded attacker IP"
-        },
-        {
-          "date": "2026-11-02",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-1766bd7f233a3ba2 @ifasn/mmdd-doc-mcp: @ifasn/mmdd-doc-mcp harvests host secrets and cloud metadata on MCP server startup"
-        },
-        {
-          "date": "2026-11-02",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-17e5c38a039ae01c @ifasn/mmdd-doc-mcp: Covert Alibaba Cloud RAM credential harvesting disguised as a Markdown MCP server"
-        },
-        {
-          "date": "2026-11-02",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-2999c5d0dd2a35fe @ifasn/mmdd-doc-mcp: Markdown MCP server probes Alibaba Cloud IMDS for instance RAM credentials on startup"
-        },
-        {
-          "date": "2026-11-02",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-2bc47781fce0924a @ifasn/mmdd-doc-mcp: @ifasn/mmdd-doc-mcp performs Alibaba Cloud IMDS credential probe and beacons to hardcoded bare-IP C2 on startup"
-        },
-        {
-          "date": "2026-11-02",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-2fd806537ea00c81 @ifasn/mmdd-doc-mcp: Aliyun IMDS credential probe and external beacon on MCP server startup"
-        },
-        {
-          "date": "2026-11-02",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-3098acbe44e80ad3 @ifasn/mmdd-doc-mcp: Obfuscated Alibaba Cloud IMDS credential probe on startup in Markdown MCP package"
-        },
-        {
-          "date": "2026-11-02",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-567db56a574896ab @ifasn/mmdd-doc-mcp: Covert Alibaba Cloud IMDS reconnaissance in Markdown toolkit package"
-        },
-        {
-          "date": "2026-11-02",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-69c49355c8e32d2c @ifasn/mmdd-doc-mcp: Covert Alibaba Cloud IMDS and container reconnaissance in Markdown MCP package"
-        },
-        {
-          "date": "2026-11-02",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-6d88c8191553a540 @ifasn/mmdd-doc-mcp: MCP markdown package probes cloud instance metadata and exfiltrates results to hardcoded IP"
-        },
-        {
-          "date": "2026-11-02",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-7f8d552bb28ae986 @ifasn/mmdd-doc-mcp: Alibaba Cloud instance metadata harvesting disguised as markdown MCP tool"
-        },
-        {
-          "date": "2026-11-02",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-9dafe071e7822c47 @ifasn/mmdd-doc-mcp: Auto-executed host-secret and cloud-credential harvesting in @ifasn/mmdd-doc-mcp"
-        },
-        {
-          "date": "2026-11-02",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-aae5bba340b14529 @ifasn/mmdd-doc-mcp: Markdown MCP package covertly harvests Alibaba Cloud instance metadata and user-data on startup"
-        },
-        {
-          "date": "2026-11-02",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-b60c6fc375909417 @ifasn/mmdd-doc-mcp: MCP server performs covert Alibaba Cloud metadata and container-escape reconnaissance on startup"
-        },
-        {
-          "date": "2026-11-02",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-df4004eb0f6cbdb9 @ifasn/mmdd-doc-mcp: Markdown MCP package ships Alibaba Cloud / Kubernetes credential-reconnaissance toolchain"
-        },
-        {
-          "date": "2026-11-02",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-f00189c1838ba969 @ifasn/mmdd-doc-mcp: Markdown MCP package exfiltrates Alibaba Cloud instance metadata and user-data on startup"
-        },
-        {
-          "date": "2026-11-02",
-          "version": null,
-          "text": "MAL-2026-18489 @ifasn/mmdd-doc-mcp: Malicious code in @ifasn/mmdd-doc-mcp (npm)"
-        },
-        {
-          "date": "2026-10-29",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-07db0f79773c0790 agentenact: No installer-harm indicators observed in agentenact@0.2.0"
-        },
-        {
-          "date": "2026-10-27",
-          "version": null,
-          "text": "MAL-0000-ghsa-malware-069f1dacd0464661 agentenact: Malware in agentenact"
-        },
-        {
-          "date": "2026-10-27",
-          "version": null,
-          "text": "MAL-2026-18346 agentenact: Malicious code in agentenact (npm)"
-        },
-        {
-          "date": "2026-10-30",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-2a9e88d3e76e19bc agentic-awesome-skills: Skills collection with benign tool and endpoint references"
-        },
-        {
-          "date": "2026-10-30",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-4356ccc5aff5a46d agentic-awesome-skills: Skills collection with benign network/CLI helpers"
-        },
-        {
-          "date": "2026-10-30",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-bce718f3dabec30c agentic-awesome-skills: Skills bundle with assorted install/network helper scripts"
-        },
-        {
-          "date": "2026-10-29",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-0b5a143886cc66cf api-anthropic: No installer-harm behavior observed in api-anthropic@0.1.0"
-        },
-        {
-          "date": "2026-10-29",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-19164d6b4b781d02 api-anthropic: api-anthropic hijacks Claude Code to route prompts and auth token through an Anthropic-impersonating proxy"
-        },
-        {
-          "date": "2026-10-29",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-50d22f4491327818 api-anthropic: api-anthropic CLI redirects Claude Code traffic and API tokens to author-controlled gateway api-anthropic.help"
-        },
-        {
-          "date": "2026-10-29",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-5ddb7023b6761d90 api-anthropic: No installer-harm behavior observed in api-anthropic@0.1.1"
-        },
-        {
-          "date": "2026-10-29",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-8bc38b611790247a api-anthropic: api-anthropic hijacks Claude Code configuration to route credentials and prompts through brand-impersonating proxy"
-        },
-        {
-          "date": "2026-10-29",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-da6ded6ef7316224 api-anthropic: api-anthropic redirects Claude Code to lookalike gateway api-anthropic.help and harvests Anthropic API keys"
-        },
-        {
-          "date": "2026-10-29",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-087b9fd6203d2981 claude-desktop-setup: claude-desktop-setup reroutes Claude Desktop prompts and API key to lookalike gateway api-anthropic.help"
-        },
-        {
-          "date": "2026-10-29",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-1b8163e760d1467e claude-desktop-setup: claude-desktop-setup redirects Claude Desktop traffic and API key to lookalike domain api-anthropic.help"
-        },
-        {
-          "date": "2026-10-29",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-2926a67217e5731f claude-desktop-setup: claude-desktop-setup reroutes Claude Desktop inference to lookalike domain api-anthropic.help"
-        },
-        {
-          "date": "2026-10-29",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-2a4c78f62f2dc1d9 claude-desktop-setup: claude-desktop-setup reconfigures Claude Desktop to route prompts and API keys to anthropic-lookalike gateway"
-        },
-        {
-          "date": "2026-10-29",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-39f6903d77c98a8e claude-desktop-setup: claude-desktop-setup reroutes Claude Desktop API traffic and API keys to lookalike domain api-anthropic.help"
-        },
-        {
-          "date": "2026-10-29",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-74ee6c93cc90cc1e claude-desktop-setup: claude-desktop-setup reroutes Claude Desktop to lookalike domain api-anthropic.help and exfiltrates Anthropic API key"
-        },
-        {
-          "date": "2026-10-29",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-988fd06bf995b077 claude-desktop-setup: CLI configures Claude Desktop to route Anthropic API traffic and keys through lookalike domain api-anthropic.help"
-        },
-        {
-          "date": "2026-10-29",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-a3cbc81e32e7ef2e claude-desktop-setup: claude-desktop-setup reroutes Claude Desktop traffic and user's Anthropic API key to look-alike domain api-anthropic.help"
-        },
-        {
-          "date": "2026-10-29",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-b2f20ed6e8bf3d15 claude-desktop-setup: claude-desktop-setup reconfigures Claude Desktop to route prompts and API key to anthropic.com lookalike"
-        },
-        {
-          "date": "2026-10-29",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-bb4ecc175ca6f124 claude-desktop-setup: claude-desktop-setup reconfigures Claude Desktop to route prompts and API keys to attacker-controlled lookalike domain api-anthropic.help"
-        },
-        {
-          "date": "2026-10-29",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-c8bd0d707f60a5a0 claude-desktop-setup: claude-desktop-setup reroutes Claude Desktop traffic and API keys to a typosquat Anthropic gateway"
-        },
-        {
-          "date": "2026-10-29",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-cd16300d464a4ef2 claude-desktop-setup: claude-desktop-setup reconfigures Claude Desktop to route API keys and prompts through typosquat gateway api-anthropic.help"
-        },
-        {
-          "date": "2026-10-29",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-df2e62a3f7124a4e claude-desktop-setup: claude-desktop-setup reconfigures Claude Desktop to route API traffic and keys through lookalike domain api-anthropic.help"
-        },
-        {
-          "date": "2026-10-29",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-ea01d3c239acb6ec claude-desktop-setup: claude-desktop-setup reconfigures Claude Desktop to route all inference through look-alike domain api-anthropic.help"
-        },
-        {
-          "date": "2026-10-29",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-1dc5704d4c9ccb90 codex-setup: No installer-harm behavior observed in codex-setup@1.0.1"
-        },
-        {
-          "date": "2026-10-29",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-aaa549fa19e7e633 codex-setup: No installer-harm behavior observed in codex-setup@1.0.0"
-        },
-        {
-          "date": "2026-10-29",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-d8443bc4eedb8fb3 codex-setup: No installer-harm behavior observed in codex-setup@1.0.2"
-        },
-        {
-          "date": "2026-10-29",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-e573e4212ef5b4d6 codex-setup: No installer-harm behavior observed in codex-setup@1.0.3"
-        },
-        {
-          "date": "2026-10-29",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-ae799a3444c808e1 ctf-agent: No installer-harm behavior observed in ctf-agent@0.1.0"
-        },
-        {
-          "date": "2026-10-29",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-56b34e8766d76b6b gemini-computer-use: gemini-computer-use pipes remote script from Tailscale funnel to shell and installs a gateway-driven bash backdoor"
-        },
-        {
-          "date": "2026-10-29",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-82132c993bf6c637 gemini-computer-use: No installer-harm behavior observed in gemini-computer-use@0.4.5"
-        },
-        {
-          "date": "2026-10-31",
-          "version": null,
-          "text": "MAL-0000-ghsa-malware-bddef1c4c8e802c4 local-commander-agent: Malware in local-commander-agent"
-        },
-        {
-          "date": "2026-10-29",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-0029ec54bda52537 opencode-skills-collection: Skills collection with benign install/verify scripts"
-        },
-        {
-          "date": "2026-10-29",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-0a8991af13903dc2 opencode-skills-collection: Bundled skill scripts invoke curl/ping with no evidence of installer harm"
-        },
-        {
-          "date": "2026-10-29",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-0da45f9abc383cb7 opencode-skills-collection: Skills collection bundling third-party scripts; no installer-attack behavior observed"
-        },
-        {
-          "date": "2026-10-29",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-0ef3ce32c66764fd opencode-skills-collection: Skills collection with bundled helper scripts using curl/ping"
-        },
-        {
-          "date": "2026-10-29",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-0f6060bf9b062de8 opencode-skills-collection: Collection of bundled developer skills with benign network utilities"
-        },
-        {
-          "date": "2026-10-29",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-154334b82c927a19 opencode-skills-collection: Bundled skills invoke external network utilities but no installer-side exfiltration observed"
-        },
-        {
-          "date": "2026-10-30",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-21910c571efff594 opencode-skills-collection: Skills collection with bundled helper scripts; static matches are weak keyword co-occurrences"
-        },
-        {
-          "date": "2026-10-29",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-2805226ddecf9303 opencode-skills-collection: Bundled skill scripts contain benign network and shell utilities"
-        },
-        {
-          "date": "2026-10-29",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-3ae0d7d01d6afaae opencode-skills-collection: Skills collection bundling scripts with curl/ping usage; no traced installer harm"
-        },
-        {
-          "date": "2026-10-29",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-4b370ecef32f75c3 opencode-skills-collection: Skills collection bundling third-party install scripts and HTTP tooling"
-        },
-        {
-          "date": "2026-10-29",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-51a4eccc4d08f6fd opencode-skills-collection: Skills collection bundling third-party scripts; no installer-side attack behavior observed"
-        },
-        {
-          "date": "2026-10-29",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-5b3fc933b0130a8a opencode-skills-collection: Bundled skill scripts invoke curl/ping with no install-time execution path"
-        },
-        {
-          "date": "2026-10-29",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-6fc59e1e0fe7b6cf opencode-skills-collection: Skills collection bundles scripts that fetch from documented vendor endpoints"
-        },
-        {
-          "date": "2026-10-29",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-87fb5656dcf33893 opencode-skills-collection: Bundled skills collection with routine network commands in utility scripts"
-        },
-        {
-          "date": "2026-10-29",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-959d4111548af2c6 opencode-skills-collection: Collection of bundled skill scripts with routine network and install commands"
-        },
-        {
-          "date": "2026-10-29",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-a0cc548c85008df9 opencode-skills-collection: Bundled skill scripts contain benign network/CLI usage"
-        },
-        {
-          "date": "2026-10-29",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-ad4663af5b87079e opencode-skills-collection: Bundled skill scripts include network/curl usage without confirmed installer-harm payload"
-        },
-        {
-          "date": "2026-10-29",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-b0135fc94540220b opencode-skills-collection: Skills collection bundling scraper and verification scripts; no installer-side attack surface traced"
-        },
-        {
-          "date": "2026-10-29",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-cf2b098c0145a47b opencode-skills-collection: Skills collection bundling third-party install and verify scripts"
-        },
-        {
-          "date": "2026-10-30",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-d0ecfdc36fc27457 opencode-skills-collection: Skills collection with benign curl/ping references in bundled scripts"
-        },
-        {
-          "date": "2026-10-29",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-d974034cdfef3f7b opencode-skills-collection: Bundled skill scripts perform routine network calls; no installer-side attack observed"
-        },
-        {
-          "date": "2026-10-29",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-ea84433517366e47 opencode-skills-collection: Skills collection bundling third-party scripts with network fetches"
-        },
-        {
-          "date": "2026-10-29",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-f04ac946536f534c opencode-skills-collection: Bundled skill scripts with routine network calls"
-        },
-        {
-          "date": "2026-10-29",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-6c3ad90106c904f1 skillward: Defensive linter rules cataloging malicious indicators as inert data"
-        },
-        {
-          "date": "2026-10-29",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-6c7bb80d99fd671e skillward: Static-analysis ruleset cataloging IOCs as inert data"
-        },
-        {
-          "date": "2026-10-31",
-          "version": null,
-          "text": "MAL-0000-kam193-415c95c384a9901b skills-analyzer: Malicious code in skills-analyzer (PyPI)"
-        },
-        {
-          "date": "2026-10-31",
-          "version": null,
-          "text": "MAL-0000-kam193-ad55bf608a0d98ad skills-analyzer: Malicious code in skills-analyzer (PyPI)"
-        },
-        {
-          "date": "2026-10-31",
-          "version": null,
-          "text": "MAL-2026-18427 skills-analyzer: Malicious code in skills-analyzer (PyPI)"
-        },
-        {
-          "date": "2026-10-29",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-177a91975e11b9b3 zagents-message-bus: Dependency-confusion canary package beacons to webhook.site"
-        },
-        {
-          "date": "2026-10-29",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-51b99fe5927b864b zagents-message-bus: No installer-harm behavior observed in zagents-message-bus 1.0.5"
-        },
-        {
-          "date": "2026-10-29",
-          "version": null,
-          "text": "MAL-0000-amazon-inspector-d36fb2daa7def049 zagents-message-bus: zagents-message-bus 1.0.10: no concrete installer-harm signals observed"
-        }
-      ],
-      "ids": [
-        "MAL-0000-amazon-inspector-0029ec54bda52537",
-        "MAL-0000-amazon-inspector-00e9e090da5207e0",
-        "MAL-0000-amazon-inspector-07db0f79773c0790",
-        "MAL-0000-amazon-inspector-087b9fd6203d2981",
-        "MAL-0000-amazon-inspector-0a8991af13903dc2",
-        "MAL-0000-amazon-inspector-0b5a143886cc66cf",
-        "MAL-0000-amazon-inspector-0da45f9abc383cb7",
-        "MAL-0000-amazon-inspector-0ef3ce32c66764fd",
-        "MAL-0000-amazon-inspector-0ef8bc86c819e2e0",
-        "MAL-0000-amazon-inspector-0f6060bf9b062de8",
-        "MAL-0000-amazon-inspector-134b408ae3c9b75f",
-        "MAL-0000-amazon-inspector-154334b82c927a19",
-        "MAL-0000-amazon-inspector-1766bd7f233a3ba2",
-        "MAL-0000-amazon-inspector-177a91975e11b9b3",
-        "MAL-0000-amazon-inspector-17e5c38a039ae01c",
-        "MAL-0000-amazon-inspector-19164d6b4b781d02",
-        "MAL-0000-amazon-inspector-1b8163e760d1467e",
-        "MAL-0000-amazon-inspector-1d8295dd6d1f932a",
-        "MAL-0000-amazon-inspector-1dc5704d4c9ccb90",
-        "MAL-0000-amazon-inspector-20c31530d82900d0",
-        "MAL-0000-amazon-inspector-21910c571efff594",
-        "MAL-0000-amazon-inspector-2805226ddecf9303",
-        "MAL-0000-amazon-inspector-2926a67217e5731f",
-        "MAL-0000-amazon-inspector-2999c5d0dd2a35fe",
-        "MAL-0000-amazon-inspector-2a4c78f62f2dc1d9",
-        "MAL-0000-amazon-inspector-2a9e88d3e76e19bc",
-        "MAL-0000-amazon-inspector-2bc47781fce0924a",
-        "MAL-0000-amazon-inspector-2fd806537ea00c81",
-        "MAL-0000-amazon-inspector-3098acbe44e80ad3",
-        "MAL-0000-amazon-inspector-39f6903d77c98a8e",
-        "MAL-0000-amazon-inspector-3ae0d7d01d6afaae",
-        "MAL-0000-amazon-inspector-405cdeb444a83f5b",
-        "MAL-0000-amazon-inspector-4356ccc5aff5a46d",
-        "MAL-0000-amazon-inspector-477d83bf58b21f95",
-        "MAL-0000-amazon-inspector-4b370ecef32f75c3",
-        "MAL-0000-amazon-inspector-4fc1df1e808600d2",
-        "MAL-0000-amazon-inspector-50d22f4491327818",
-        "MAL-0000-amazon-inspector-51a4eccc4d08f6fd",
-        "MAL-0000-amazon-inspector-51b99fe5927b864b",
-        "MAL-0000-amazon-inspector-567db56a574896ab",
-        "MAL-0000-amazon-inspector-56b34e8766d76b6b",
-        "MAL-0000-amazon-inspector-5b3fc933b0130a8a",
-        "MAL-0000-amazon-inspector-5ddb7023b6761d90",
-        "MAL-0000-amazon-inspector-60a6f5b287b9fe35",
-        "MAL-0000-amazon-inspector-64cee7777c5ac02f",
-        "MAL-0000-amazon-inspector-667635d5f1caab0b",
-        "MAL-0000-amazon-inspector-69c49355c8e32d2c",
-        "MAL-0000-amazon-inspector-6c3ad90106c904f1",
-        "MAL-0000-amazon-inspector-6c7bb80d99fd671e",
-        "MAL-0000-amazon-inspector-6d88c8191553a540",
-        "MAL-0000-amazon-inspector-6fc59e1e0fe7b6cf",
-        "MAL-0000-amazon-inspector-74ee6c93cc90cc1e",
-        "MAL-0000-amazon-inspector-76684a796f492891",
-        "MAL-0000-amazon-inspector-7f8d552bb28ae986",
-        "MAL-0000-amazon-inspector-808d25733e867c0c",
-        "MAL-0000-amazon-inspector-82132c993bf6c637",
-        "MAL-0000-amazon-inspector-87fb5656dcf33893",
-        "MAL-0000-amazon-inspector-8bc38b611790247a",
-        "MAL-0000-amazon-inspector-959d4111548af2c6",
-        "MAL-0000-amazon-inspector-988fd06bf995b077",
-        "MAL-0000-amazon-inspector-9dafe071e7822c47",
-        "MAL-0000-amazon-inspector-a0cc548c85008df9",
-        "MAL-0000-amazon-inspector-a3cbc81e32e7ef2e",
-        "MAL-0000-amazon-inspector-aaa549fa19e7e633",
-        "MAL-0000-amazon-inspector-aae5bba340b14529",
-        "MAL-0000-amazon-inspector-ad4663af5b87079e",
-        "MAL-0000-amazon-inspector-ae799a3444c808e1",
-        "MAL-0000-amazon-inspector-b0135fc94540220b",
-        "MAL-0000-amazon-inspector-b2f20ed6e8bf3d15",
-        "MAL-0000-amazon-inspector-b5d20ab525fdd687",
-        "MAL-0000-amazon-inspector-b60c6fc375909417",
-        "MAL-0000-amazon-inspector-bb4ecc175ca6f124",
-        "MAL-0000-amazon-inspector-bce718f3dabec30c",
-        "MAL-0000-amazon-inspector-c2f431ce3ff86a31",
-        "MAL-0000-amazon-inspector-c8bd0d707f60a5a0",
-        "MAL-0000-amazon-inspector-cd16300d464a4ef2",
-        "MAL-0000-amazon-inspector-cf2b098c0145a47b",
-        "MAL-0000-amazon-inspector-d0ecfdc36fc27457",
-        "MAL-0000-amazon-inspector-d36fb2daa7def049",
-        "MAL-0000-amazon-inspector-d37d60d7e1b4af36",
-        "MAL-0000-amazon-inspector-d46ba00abd2866eb",
-        "MAL-0000-amazon-inspector-d8443bc4eedb8fb3",
-        "MAL-0000-amazon-inspector-d974034cdfef3f7b",
-        "MAL-0000-amazon-inspector-da6ded6ef7316224",
-        "MAL-0000-amazon-inspector-db89b84ec7a5a4ea",
-        "MAL-0000-amazon-inspector-df2e62a3f7124a4e",
-        "MAL-0000-amazon-inspector-df4004eb0f6cbdb9",
-        "MAL-0000-amazon-inspector-e0bb69de5181a0d9",
-        "MAL-0000-amazon-inspector-e3b58b8adeff2784",
-        "MAL-0000-amazon-inspector-e573e4212ef5b4d6",
-        "MAL-0000-amazon-inspector-ea01d3c239acb6ec",
-        "MAL-0000-amazon-inspector-ea84433517366e47",
-        "MAL-0000-amazon-inspector-f00189c1838ba969",
-        "MAL-0000-amazon-inspector-f04ac946536f534c",
-        "MAL-0000-amazon-inspector-f7e155559d26176a",
-        "MAL-0000-ghsa-malware-069f1dacd0464661",
-        "MAL-0000-ghsa-malware-2a3a3ee38efcdb6e",
-        "MAL-0000-ghsa-malware-47b31798da27fd69",
-        "MAL-0000-ghsa-malware-bddef1c4c8e802c4",
-        "MAL-0000-ghsa-malware-c4f509ad1b4b7cd4",
-        "MAL-0000-kam193-415c95c384a9901b",
-        "MAL-0000-kam193-ad55bf608a0d98ad",
-        "MAL-2026-18346",
-        "MAL-2026-18427",
-        "MAL-2026-18486",
-        "MAL-2026-18487",
-        "MAL-2026-18488",
-        "MAL-2026-18489"
-      ],
+      "latest_date": null,
+      "new": [],
+      "ids": [],
       "read_with": "git"
     },
     {
@@ -1033,6 +383,11 @@
           "date": "2026-11-03",
           "version": null,
           "text": "CVE-2026-121458 [MCP]: Instatic before 0.0.21 contains a missing authorization vulnerability in its AI/MCP content read tools that allows low-privileged authenticated users with ai.chat and content.edit.own capabilities to access data rows belonging to other users by calling content_get_document and content_list_documents without the object-level authorization checks enforced by the normal HTTP API. Attackers can use the MCP interface to retrieve private or unpublished draft content and enumerate rows from the posts system table, resulting in cross-user data disclosure."
+        },
+        {
+          "date": "2026-11-03",
+          "version": null,
+          "text": "CVE-2026-121419 [MCP]: SurrealDB from 3.1.0 before 3.3.0 contains an improper authentication vulnerability where the MCP BoundSubject fingerprint uses the access method name instead of per-user identity for JWT/Bearer access. Attackers with a valid low-privilege token for the same access method and a victim's mcp-session-id can hijack the session and execute MCP tools with the victim's roles and permissions."
         },
         {
           "date": "2026-11-03",
@@ -1318,6 +673,7 @@
         "CVE-2026-120450",
         "CVE-2026-120492",
         "CVE-2026-120630",
+        "CVE-2026-121419",
         "CVE-2026-121458",
         "CVE-2026-59176",
         "CVE-2026-61542",
@@ -1591,9 +947,14 @@
       "id": "F24",
       "opened": true,
       "reason": null,
-      "latest": "1.15.34",
-      "latest_date": "2026-11-01",
+      "latest": "1.15.35",
+      "latest_date": "2026-11-03",
       "new": [
+        {
+          "date": "2026-11-03",
+          "version": "1.15.35",
+          "text": "## What's Changed ### Documentation - Update litellm model catalog for v1.15.35 - Add snapshot and changelog for v1.15.34 ## Contributors @github-actions[bot], @joaomdmoura, @lorenzejay"
+        },
         {
           "date": "2026-11-01",
           "version": "1.15.34",
@@ -1677,8 +1038,19 @@
         "CVE-2026-111497"
       ],
       "read_with": "curl"
+    },
+    {
+      "id": "F29",
+      "opened": true,
+      "reason": null,
+      "latest": "1.4.13",
+      "latest_date": "2026-11-03",
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "date_is_detection": true
     }
   ],
   "opened": 28,
-  "total": 28
+  "total": 29
 }
