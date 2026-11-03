@@ -424,6 +424,71 @@ class Gtm76Sources(Base):
         self.assertEqual(r["latest_date"], "2026-01-13")
 
 
+# ---------------------------------------------------------------------------- changelog-versions (F29, GTM-77)
+
+MUSE_URL = "https://dev.meta.ai/docs/muse-code/changelog"
+MUSE_PAGE = """<html><body><nav>Changelog</nav><h1>Changelog</h1><p>What's new, improved, and fixed in each release.</p>
+<h2 id="v1-4-13"><a href="#v1-4-13"><span>1.4.13</span></a></h2>
+<h3>New</h3><ul><li>Permission profiles extending :ask-me now enforce filesystem deny rules</li></ul>
+<h3>Improvements</h3><ul><li>muse usage shows your allowance</li></ul>
+<h3>Fixes</h3><ul><li>Fixed CVE-2026-4242 in the MCP bridge</li></ul>
+<h3>Performance</h3><ul><li>Faster startup</li></ul>
+<h2 id="v1-4-12"><span>1.4.12</span></h2>
+<h3>New</h3><ul><li>Older feature</li></ul>
+</body></html>"""
+
+
+class ChangelogVersions(Base):
+    def run_f29(self, previous, page=MUSE_PAGE):
+        with mock.patch.dict(collect.PREVIOUS, previous, clear=True), self.web({MUSE_URL: page}):
+            return collect.read_changelog_versions(src("F29"), L, TERMS)
+
+    def test_first_time_only_notes_the_version(self):
+        r = self.run_f29({})
+        self.assertTrue(r["opened"])
+        self.assertEqual((r["latest"], r["latest_date"], r["new"], r["ids"]), ("1.4.13", TODAY, [], []))
+        self.assertIs(r["date_is_detection"], True)
+
+    def test_nothing_new(self):
+        r = self.run_f29({"F29": "1.4.13"})
+        self.assertEqual((r["latest"], r["new"]), ("1.4.13", []))
+
+    def test_new_version_with_its_notes(self):
+        r = self.run_f29({"F29": "1.4.12"})
+        self.assertEqual(len(r["new"]), 1)
+        e = r["new"][0]
+        self.assertEqual((e["date"], e["version"]), (TODAY, "1.4.13"))
+        for part in ("New", "deny rules", "Improvements", "Fixes", "Performance", "Faster startup"):
+            self.assertIn(part, e["text"])
+        self.assertNotIn("Older feature", e["text"])
+        self.assertEqual(r["ids"], ["CVE-2026-4242"])
+
+    def test_highest_version_wins_wherever_it_is(self):
+        page = MUSE_PAGE.replace("<span>1.4.12</span>", "<span>1.10.0</span>")
+        r = self.run_f29({"F29": "1.4.13"}, page)
+        self.assertEqual(r["latest"], "1.10.0")
+        self.assertIn("Older feature", r["new"][0]["text"])
+
+    def test_text_trimmed_to_600(self):
+        r = self.run_f29({"F29": "1.4.12"}, MUSE_PAGE.replace("Faster startup", "x " * 700))
+        self.assertLessEqual(len(r["new"][0]["text"]), 600)
+
+    def test_page_without_versions_or_unreachable(self):
+        self.assertFalse(self.run_f29({}, "<html><body><h1>Changelog</h1></body></html>")["opened"])
+        with mock.patch.dict(collect.PREVIOUS, {}, clear=True), self.web({}):
+            r = collect.read_changelog_versions(src("F29"), L, TERMS)
+        self.assertFalse(r["opened"])
+        self.assertIn("404", r["reason"])
+
+    def test_previous_version_comes_from_the_newest_raw_file_with_f29(self):
+        with tempfile.TemporaryDirectory() as d:
+            Path(d, "2026-01-12.json").write_text(json.dumps({"sources": [{"id": "F29", "latest": "1.4.11"}]}), encoding="utf-8")
+            Path(d, "2026-01-13.json").write_text(json.dumps({"sources": [{"id": "F1", "latest": "2.1.0"}]}), encoding="utf-8")
+            Path(d, "2026-01-15.json").write_text(json.dumps({"sources": [{"id": "F29", "latest": "9.9.9"}]}), encoding="utf-8")
+            prev = collect.previous_versions(d, "2026-01-15")
+        self.assertEqual(prev, {"F29": "1.4.11", "F1": "2.1.0"})
+
+
 # ------------------------------------------------------------------------------------------------------ ossf
 
 def mal(rid, name, published):
@@ -602,8 +667,8 @@ class WholeRun(Base):
                 out = collect.collect(raw_dir=d, now=datetime.datetime(2026, 1, 15, 5, 30, tzinfo=datetime.timezone.utc))
         self.assertEqual(set(seen), {"2026-01-12"})
         self.assertEqual((out["date"], out["collected_at"], out["opened"], out["total"]),
-                         ("2026-01-15", "2026-01-15T05:30:00Z", 27, 28))
-        self.assertEqual([s["id"] for s in out["sources"]], [f"F{i}" for i in range(1, 29)])
+                         ("2026-01-15", "2026-01-15T05:30:00Z", 28, 29))
+        self.assertEqual([s["id"] for s in out["sources"]], [f"F{i}" for i in range(1, 30)])
         validate(self, out)
 
     def test_l_defaults_to_seven_days(self):
@@ -623,6 +688,15 @@ class WholeRun(Base):
         self.assertFalse(r["opened"])
         self.assertIn("collector error", r["reason"])
 
+    def test_date_is_detection_in_schema(self):
+        base = collect.blank(src("F1"), "curl") | {"opened": True}
+        out = {"date": "2026-01-15", "collected_at": "2026-01-15T05:30:00Z", "opened": 29, "total": 29,
+               "sources": [dict(base, id=f"F{i}") for i in range(1, 30)]}
+        out["sources"][28]["date_is_detection"] = True
+        self.assertEqual(errors(out), [])
+        out["sources"][28]["date_is_detection"] = "yes"
+        self.assertTrue(errors(out))
+
     def test_broken_output_fails_schema(self):
         out = {"date": "2026-01-15", "collected_at": "2026-01-15T05:30:00Z", "sources": [], "opened": 0, "total": 28}
         self.assertTrue(errors(out))
@@ -636,15 +710,19 @@ class SourcesFile(unittest.TestCase):
         daily = json.loads((ROOT / "observatory" / "daily" / "2026-11-03.json").read_text(encoding="utf-8"))
         checked = {c["name"]: c["url"] for c in daily["checked"]}
         ids = [s["id"] for s in SOURCES["sources"]]
-        self.assertEqual(ids, [f"F{i}" for i in range(1, 29)])
+        self.assertEqual(ids, [f"F{i}" for i in range(1, 30)])
         for s in SOURCES["sources"]:
             self.assertEqual(set(s), {"id", "name", "scope", "method", "read", "public_url", "fragile", "notes"}, s["id"])
             self.assertIn(s["method"], collect.METHODS, s["id"])
             self.assertEqual(s["fragile"], s["id"] in ("F8", "F19"), s["id"])
             self.assertNotIn("raw.githubusercontent.com", s["public_url"], s["id"])
-            if s["name"] != "Hermes Agent":
+            if s["name"] not in ("Hermes Agent", "Muse Code"):
                 self.assertEqual(s["public_url"], checked[s["name"]], s["id"])
-        self.assertEqual(len(SOURCES["scope_terms"]), 21)
+        self.assertEqual(len(SOURCES["scope_terms"]), 22)
+        self.assertIn("muse", SOURCES["scope_terms"])
+        f29 = SOURCES["sources"][28]
+        self.assertEqual((f29["name"], f29["method"], f29["fragile"]), ("Muse Code", "changelog-versions", False))
+        self.assertEqual(f29["public_url"], f29["read"]["url"])
 
 
 def errors(data):
