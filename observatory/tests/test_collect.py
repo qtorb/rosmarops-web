@@ -8,6 +8,7 @@ Run from the repository root:  python3 -m unittest observatory/tests/test_collec
 
 import copy
 import datetime
+import io
 import json
 import sys
 import tempfile
@@ -30,16 +31,48 @@ def src(sid):
     return copy.deepcopy(next(s for s in SOURCES["sources"] if s["id"] == sid))
 
 
+class _Resp:
+    status = 200
+
+    def __init__(self, body):
+        self.body = body
+
+    def read(self):
+        return self.body
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, *a):
+        return False
+
+
 class Base(unittest.TestCase):
     def setUp(self):
         self.pauses = []
         patches = [
             mock.patch.object(collect, "sleep", self.pauses.append),
             mock.patch.object(collect, "TODAY", TODAY),
+            mock.patch.object(collect, "_releases", {}),
+            mock.patch.object(collect, "API_ERRORS", []),
         ]
+        self.api_requests = []
+        self.releases = {}  # repo "owner/name" -> {tag: body}; anything else answers like an empty release list
+        p = mock.patch("urllib.request.urlopen", side_effect=self.fake_api)
+        patches.append(p)
         for p in patches:
             p.start()
             self.addCleanup(p.stop)
+
+    def fake_api(self, req, timeout):
+        url = req.full_url
+        if not url.startswith("https://api.github.com/repos/"):
+            raise AssertionError(f"unexpected network call: {url}")
+        repo = url.split("/repos/", 1)[1].split("/releases", 1)[0]
+        if callable(self.releases.get(repo)):
+            raise self.releases[repo]()  # a fresh error per attempt, as the network would give
+        self.api_requests.append(req)
+        return _Resp(json.dumps([{"tag_name": k, "body": v} for k, v in self.releases.get(repo, {}).items()]).encode())
 
     def web(self, pages):
         """Serve http_get from a dict url -> body (or an Exception to raise)."""
@@ -289,6 +322,106 @@ class GitTags(Base):
     def test_version_order_is_like_sort_v(self):
         self.assertEqual(sorted(["v1.10.0", "v1.9.2", "v1.10.0-vscode", "v2.0.0"], key=collect.version_key)[-1], "v2.0.0")
         self.assertEqual(sorted(["2025-11-25", "2026-07-28", "2025-03-26"], key=collect.version_key)[-1], "2026-07-28")
+
+
+# ------------------------------------------------------------------------------------- GTM-76: notes, F5, F13, F21
+
+class GithubApiNotes(Base):
+    def run_src(self, s, by_repo, info, pages):
+        a, b = self.tags(by_repo, info)
+        with a, b, self.web(pages):
+            return collect.read_git_tags(s, L, TERMS)
+
+    def test_release_body_comes_first(self):
+        self.releases["cline/cline"] = {"v4.2.0": "## What's changed\n- MCP marketplace approvals"}
+        with mock.patch.dict(collect.os.environ, {"GH_TOKEN": "t0ken"}):
+            r = self.run_src(src("F7"), {CLINE: ["v4.2.0"]}, {(CLINE, "v4.2.0"): ("2026-01-14", "")}, {})  # no raw served
+        self.assertTrue(r["opened"])
+        self.assertIn("MCP marketplace approvals", r["new"][0]["text"])
+        req = self.api_requests[0]
+        self.assertEqual(req.full_url, "https://api.github.com/repos/cline/cline/releases?per_page=10")
+        self.assertEqual(req.get_header("Accept"), "application/vnd.github+json")
+        self.assertEqual(req.get_header("Authorization"), "Bearer t0ken")
+        self.assertEqual(req.get_header("User-agent"), collect.UA)
+
+    def test_empty_release_body_falls_back_to_raw(self):
+        self.releases["cline/cline"] = {"v4.2.0": "  "}
+        r = self.run_src(src("F7"), {CLINE: ["v4.2.0"]}, {(CLINE, "v4.2.0"): ("2026-01-14", "")}, {CLINE_LOG: CLINE_MD})
+        self.assertTrue(r["opened"])
+        self.assertIn("Cloud tasks toggle", r["new"][0]["text"])
+
+    def test_one_api_read_per_repository(self):
+        self.releases["cline/cline"] = {"v4.2.0": "a", "v4.1.9": "b"}
+        self.run_src(src("F7"), {CLINE: ["v4.2.0", "v4.1.9"]},
+                     {(CLINE, "v4.2.0"): ("2026-01-14", ""), (CLINE, "v4.1.9"): ("2026-01-13", "")}, {})
+        self.assertEqual(len(self.api_requests), 1)
+
+    def test_api_403_is_reported_with_its_answer(self):
+        self.releases["langchain-ai/langgraph"] = lambda: collect.urllib.error.HTTPError(
+            "https://api.github.com/x", 403, "Forbidden", {"x-ratelimit-remaining": "0"},
+            io.BytesIO(b'{"message":"API rate limit exceeded"}'))
+        lg = "https://github.com/langchain-ai/langgraph.git"
+        r = self.run_src(src("F23"), {lg: ["1.3.0"]}, {(lg, "1.3.0"): ("2026-01-14", "")}, {})
+        self.assertFalse(r["opened"])
+        self.assertIn("HTTP 403 (rate limit left 0)", r["reason"])
+        self.assertIn("API rate limit exceeded", r["reason"])
+        self.assertEqual(self.pauses, [10, 10])
+
+    def test_fragile_source_with_api_notes(self):
+        self.releases["aaif-goose/goose"] = {"v1.58.0": "Recipes can no longer run shell without approval"}
+        goose = "https://github.com/aaif-goose/goose.git"
+        r = self.run_src(src("F19"), {goose: ["v1.58.0"]}, {(goose, "v1.58.0"): ("2026-01-14", "open release branch")}, {})
+        self.assertEqual(r["new"][0]["text"], "Recipes can no longer run shell without approval")
+
+    def test_gemini_api_first_web_last(self):
+        gem = "https://github.com/google-gemini/gemini-cli.git"
+        web = "https://geminicli.com/docs/changelogs/"
+        page = "<html><body><h2>Announcements: v0.70.0 - 2026-01-14</h2><p>From the web.</p></body></html>"
+        self.releases["google-gemini/gemini-cli"] = {"v0.70.0": "From the API."}
+        r = self.run_src(src("F11"), {gem: ["v0.70.0", "v0.71.0-nightly.1"]}, {(gem, "v0.70.0"): ("2026-01-14", "")}, {web: page})
+        self.assertEqual((r["latest"], r["new"][0]["text"]), ("v0.70.0", "From the API."))
+        self.releases["google-gemini/gemini-cli"] = {}
+        collect._releases.clear()
+        r = self.run_src(src("F11"), {gem: ["v0.70.0"]}, {(gem, "v0.70.0"): ("2026-01-14", "")}, {web: page})
+        self.assertEqual(r["new"][0]["text"], "From the web.")
+
+    def test_every_tag_source_asks_the_api_first(self):
+        for s in SOURCES["sources"]:
+            if s["method"] == "git-tags":
+                self.assertEqual(s["read"]["notes"][0], "github-api", s["id"])
+
+
+class Gtm76Sources(Base):
+    def test_hermes_pattern_v0(self):
+        hermes = "https://github.com/NousResearch/hermes-agent.git"
+        a, b = self.tags({hermes: ["v2026.9.24", "v0.22.6", "v0.22.6+canary.20261103T064339Z", "v0.22.5"]},
+                         {(hermes, "v0.22.6"): ("2026-01-10", "")})
+        with a, b:
+            r = collect.read_git_tags(src("F5"), L, TERMS)
+        self.assertEqual((r["latest"], r["latest_date"]), ("v0.22.6", "2026-01-10"))
+
+    def test_claude_desktop_ignores_the_updated_date(self):
+        page = ('<html><body><header><h1>Release notes</h1><time datetime="2026-01-14T21:51:46Z" title="January 14, 2026">'
+                'Updated this week</time></header><h2>January 2026</h2><h3>January 11, 2026</h3>'
+                '<p>Desktop extensions ask before reading files.</p><h3>January 13, 2026</h3><p>Connectors directory.</p>'
+                '</body></html>')
+        with self.web({"https://support.claude.com/en/articles/12138966-release-notes": page}):
+            r = collect.read_changelog_web(src("F13"), L, TERMS)
+        self.assertEqual(r["latest_date"], "2026-01-13")
+        self.assertEqual([e["date"] for e in r["new"]], ["2026-01-13"])
+        self.assertNotIn("Updated", " ".join(e["text"] for e in r["new"]))
+
+    def test_codex_cloud_title_or_label_only_and_since_l(self):
+        page = ("<html><body>"
+                "<time>2026-01-14</time><h3>Codex app 26.114</h3><p>Hand off a task to Codex Cloud from the app.</p>"
+                "<time>2026-01-13</time><h3>Faster environments</h3><p>Codex Cloud</p><p>Setup scripts are cached.</p>"
+                "<time>2026-01-02</time><h3>Codex Cloud tasks in Slack</h3><p>Older.</p>"
+                "</body></html>")
+        with self.web({"https://developers.openai.com/codex/changelog": page}):
+            r = collect.read_changelog_web(src("F21"), L, TERMS)
+        self.assertTrue(r["opened"])
+        self.assertEqual([e["date"] for e in r["new"]], ["2026-01-13"])
+        self.assertEqual(r["latest_date"], "2026-01-13")
 
 
 # ------------------------------------------------------------------------------------------------------ ossf

@@ -79,6 +79,46 @@ def http_get(url):
     return retry(url, once)
 
 
+GITHUB_API = "https://api.github.com/repos/{repo}/releases?per_page=10"
+API_ERRORS = []  # GitHub API failures of this run, printed by main() and kept in the reason of a closed source
+_releases = {}
+
+
+def github_releases(git_url):
+    """{tag_name: body} of the latest ten releases of a GitHub repository, read with the workflow's token.
+
+    The token comes from GH_TOKEN or GITHUB_TOKEN when set (the workflow's own GITHUB_TOKEN); without it the API is
+    read anonymously. A failure is recorded in API_ERRORS with the API's own answer and returns {}."""
+    m = re.match(r"https://github\.com/([^/]+/[^/]+?)(?:\.git)?/?$", git_url)
+    if not m:
+        return {}
+    repo = m.group(1)
+    if repo in _releases:
+        return _releases[repo]
+    headers = {"User-Agent": UA, "Accept": "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28"}
+    token = os.environ.get("GH_TOKEN") or os.environ.get("GITHUB_TOKEN")
+    if token:
+        headers["Authorization"] = "Bearer " + token
+
+    def once():
+        req = urllib.request.Request(GITHUB_API.format(repo=repo), headers=headers)
+        try:
+            with urllib.request.urlopen(req, timeout=TIMEOUT) as r:
+                return json.loads(r.read().decode("utf-8", errors="replace"))
+        except urllib.error.HTTPError as e:
+            answer = e.read().decode("utf-8", errors="replace")[:200]
+            left = e.headers.get("x-ratelimit-remaining")
+            raise ReadError(f"HTTP {e.code} (rate limit left {left}): {answer}") from None
+    try:
+        data = retry(f"GitHub API {repo}", once)
+        out = {x["tag_name"]: (x.get("body") or "").strip() for x in data if isinstance(x, dict) and "tag_name" in x}
+    except (ReadError, ValueError, TypeError) as e:
+        API_ERRORS.append(str(e)[:300])
+        out = {}
+    _releases[repo] = out
+    return out
+
+
 GIT_ENV = {"TZ": "UTC", "GIT_TERMINAL_PROMPT": "0", "GIT_CONFIG_NOSYSTEM": "1", "GIT_CONFIG_GLOBAL": os.devnull}
 GIT_SAFE = ["-c", "core.hooksPath=" + os.devnull, "-c", "protocol.file.allow=never", "-c", f"http.userAgent={UA}"]
 
@@ -115,6 +155,7 @@ def tag_info(url, tag):
 
 # ------------------------------------------------------------------------------------------------ text from pages
 
+UPDATED = re.compile(r"\b(updated|last modified|actualizad[oa])\b", re.I)
 BLOCK = {"p", "div", "li", "h1", "h2", "h3", "h4", "h5", "h6", "br", "tr", "section", "article", "header", "ul", "ol",
          "pre", "dt", "dd", "summary", "details", "table", "time"}
 SKIP = {"script", "style", "noscript", "svg", "template", "head"}
@@ -123,7 +164,7 @@ SKIP = {"script", "style", "noscript", "svg", "template", "head"}
 class _Text(HTMLParser):
     def __init__(self):
         super().__init__(convert_charrefs=True)
-        self.out, self.skip = [], 0
+        self.out, self.skip, self.time, self.time_at = [], 0, None, 0
 
     def handle_starttag(self, tag, attrs):
         if tag in SKIP:
@@ -136,11 +177,20 @@ class _Text(HTMLParser):
         if tag in ("h1", "h2", "h3", "h4"):
             self.out.append("#" * int(tag[1]) + " ")
         if tag == "time":
-            dt = dict(attrs).get("datetime") or ""
-            if re.match(r"\d{4}-\d{2}-\d{2}", dt):
-                self.out.append(dt[:10] + "\n")
+            a = dict(attrs)
+            dt = a.get("datetime") or ""
+            self.time = [dt[:10], a.get("title") or ""] if re.match(r"\d{4}-\d{2}-\d{2}", dt) else None
+            self.time_at = len(self.out)
 
     def handle_endtag(self, tag):
+        if tag == "time" and self.time and not self.skip:
+            # A <time> is an entry date, unless it is the page's own "updated" date (F13 support.claude.com).
+            label = "".join(self.out[self.time_at:]) + " " + self.time[1]
+            if UPDATED.search(label):
+                del self.out[self.time_at:]
+            else:
+                self.out.insert(self.time_at, self.time[0] + "\n")
+            self.time = None
         if tag in SKIP:
             self.skip = max(0, self.skip - 1)
         elif tag in BLOCK:
@@ -242,7 +292,8 @@ def entries(lines):
             while body and (_short_version(body[-1]) and (nv is None or _short_version(body[-1]) != nv) and len(body[-1]) < 25):
                 body.pop()
         title = body[0].lstrip("# ").strip() if body else ""
-        out.append({"date": date, "version": version, "title": title, "text": " ".join(body)})
+        labels = [ln.lstrip("# ").strip() for ln in body[1:4] if len(ln) <= 40]  # category tags under the title
+        out.append({"date": date, "version": version, "title": title, "labels": labels, "text": " ".join(body)})
     out = [e for e in out if e["text"]]  # date lists (tables of contents, filters) carry no text
     best = {}
     for e in out:  # pages that render twice, or list dates in a table of contents: keep the fullest text
@@ -341,8 +392,8 @@ def read_changelog_web(src, since, terms):
         return res
     all_entries = [e for e in all_entries if e["date"] <= today()]
     only = r.get("only_entries_with")
-    if only:
-        all_entries = [e for e in all_entries if only.lower() in (e["title"] + " " + e["text"]).lower()]
+    if only:  # the title or a short label line of the entry must say it; a mention in the body does not count
+        all_entries = [e for e in all_entries if any(only.lower() in x.lower() for x in [e["title"], *e["labels"]])]
     if not all_entries and not only:
         res["reason"] = "no dated entries found in the page"
         return res
@@ -357,9 +408,15 @@ def read_changelog_web(src, since, terms):
     return res
 
 
-def notes_for(version, tag_text, notes):
-    """Notes of one version following the notes rule: raw CHANGELOG, then web changelog, then tag text."""
+def notes_for(version, tag_text, notes, git_url=None):
+    """Notes of one version following the notes rule, in the order of the source's read.notes: 'github-api' (body of
+    the GitHub release with that tag), raw CHANGELOG, web changelog, annotated tag text."""
     for n in notes:
+        if n == "github-api":
+            body = github_releases(git_url).get(version, "") if git_url else ""
+            if body:
+                return body
+            continue
         if n == "tag":
             if tag_text:
                 return tag_text
@@ -414,7 +471,7 @@ def read_tags(src, r, since, terms):
                 res["latest"], res["latest_date"] = tag, date
             if date < since:
                 break
-            notes = notes_for(tag, text, r.get("notes", []))
+            notes = notes_for(tag, text, r.get("notes", []), r["git"])
             if notes:
                 res["new"].append({"date": date, "version": tag, "text": trim(notes)})
             else:
@@ -436,6 +493,8 @@ def read_tags(src, r, since, terms):
     res["ids"] = sorted({i for e in res["new"] for i in ADVISORY.findall(e["text"])})
     if missing and not src.get("fragile"):
         res["reason"] = "new version without notes: " + ", ".join(missing)
+        if "github-api" in r.get("notes", []) and API_ERRORS:
+            res["reason"] += "; GitHub API: " + API_ERRORS[-1]
         return res
     res["opened"] = True  # a fragile source opens with version and date; its entries say "notes not available"
     return res
@@ -620,6 +679,8 @@ def collect(sources_file=SOURCES, raw_dir=RAW_DIR, now=None, progress=None):
     now = now or datetime.datetime.now(datetime.timezone.utc)
     global TODAY
     TODAY = now.astimezone(MADRID).date().isoformat()
+    _releases.clear()
+    API_ERRORS.clear()
     cfg = json.loads(Path(sources_file).read_text(encoding="utf-8"))
     terms = [t.lower() for t in cfg["scope_terms"]]
     since = last_raw_date(raw_dir, TODAY)
@@ -652,6 +713,8 @@ def main():
     for s in d["sources"]:
         print(f"{s['id']:>4} {'open' if s['opened'] else 'NOT ':4} {s['latest'] or '-'} {s['latest_date'] or '-'} "
               f"new={len(s['new'])} ids={len(s['ids'])} {s['reason'] or ''}")
+    for e in API_ERRORS:
+        print(f"GitHub API: {e}")
     print(f"{out}: {d['opened']}/{d['total']} opened")
 
 
