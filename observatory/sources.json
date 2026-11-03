@@ -1,0 +1,506 @@
+{
+  "$comment": "GTM-75. Single list of the Observatory's fixed sources F1-F28, read daily by observatory/collect.py. Methods and URLs transcribed from rosmarops-vigil docs/research/2026-11-01-observatorio-ampliacion-fuentes.md (signed 01-11) and docs/observatorio/fuentes-F1-F28.md (annex to GTM-75). public_url: the url of each source in 'checked' of observatory/daily/2026-11-03.json (commit aa5f165); Hermes Agent's from the annex. scope: the agent file in observatory/data/agents/ the source watches, 'threats' for the threat registries, 'all-agents' for cross-cutting sources. Tag patterns: 'v*' means v followed by a version number (likewise 'rust-v*', 'python-*', 'python-v*'); 'N.N.N' means three numbers without a prefix; null means every tag. Tags with alpha, beta, rc, nightly, preview, canary or dev are discarded; the rest are ordered like sort -V. read.notes is the order in which notes are looked for: 'raw' (official CHANGELOG on raw.githubusercontent.com), 'web' (official changelog page), 'tag' (annotated tag text); an empty list means the source needs no notes.",
+  "scope_terms": [
+    "mcp",
+    "agent",
+    "skill",
+    "claude",
+    "anthropic",
+    "codex",
+    "openai",
+    "cursor",
+    "copilot",
+    "cline",
+    "gemini",
+    "antigravity",
+    "hermes",
+    "opencode",
+    "kiro",
+    "devin",
+    "goose",
+    "openclaw",
+    "langgraph",
+    "crewai",
+    "autogen"
+  ],
+  "sources": [
+    {
+      "id": "F1",
+      "name": "Claude Code",
+      "scope": "claude-code",
+      "method": "changelog-web",
+      "read": {
+        "urls": [
+          "https://code.claude.com/docs/en/changelog"
+        ],
+        "fallback": {
+          "git": "https://github.com/anthropics/claude-code.git",
+          "tags": null,
+          "notes": []
+        }
+      },
+      "public_url": "https://code.claude.com/docs/en/changelog",
+      "fragile": false,
+      "notes": "If the changelog page fails: tags of the git repository; a new version without notes is NOT opened."
+    },
+    {
+      "id": "F2",
+      "name": "Cursor",
+      "scope": "cursor",
+      "method": "changelog-web",
+      "read": {
+        "urls": [
+          "https://cursor.com/changelog",
+          "https://cursor.com/docs/cli/changelog"
+        ]
+      },
+      "public_url": "https://cursor.com/changelog",
+      "fragile": false,
+      "notes": null
+    },
+    {
+      "id": "F3",
+      "name": "OpenAI Codex",
+      "scope": "codex",
+      "method": "git-tags",
+      "read": {
+        "git": "https://github.com/openai/codex.git",
+        "tags": "rust-v*",
+        "notes": [
+          {
+            "web": "https://developers.openai.com/codex/changelog"
+          }
+        ]
+      },
+      "public_url": "https://github.com/openai/codex/releases",
+      "fragile": false,
+      "notes": "Notes: only the CLI and IDE extension entries of the changelog."
+    },
+    {
+      "id": "F4",
+      "name": "Google Antigravity",
+      "scope": "antigravity",
+      "method": "changelog-web",
+      "read": {
+        "urls": [
+          "https://antigravity.google/docs/changelog"
+        ]
+      },
+      "public_url": "https://antigravity.google/docs/changelog",
+      "fragile": false,
+      "notes": "All visible tabs (App, CLI, IDE Extensions, SDK, IDE): they are all in the served page."
+    },
+    {
+      "id": "F5",
+      "name": "Hermes Agent",
+      "scope": "hermes-agent",
+      "method": "git-tags",
+      "read": {
+        "git": "https://github.com/NousResearch/hermes-agent.git",
+        "tags": null,
+        "notes": [
+          "tag"
+        ]
+      },
+      "public_url": "https://github.com/NousResearch/hermes-agent/releases",
+      "fragile": false,
+      "notes": "Notes: annotated tag text. No CHANGELOG.md."
+    },
+    {
+      "id": "F6",
+      "name": "GitHub Copilot",
+      "scope": "github-copilot",
+      "method": "changelog-web",
+      "read": {
+        "urls": [
+          "https://github.blog/changelog/label/copilot/"
+        ]
+      },
+      "public_url": "https://github.blog/changelog/",
+      "fragile": false,
+      "notes": null
+    },
+    {
+      "id": "F7",
+      "name": "Cline",
+      "scope": "cline",
+      "method": "git-tags",
+      "read": {
+        "git": "https://github.com/cline/cline.git",
+        "tags": "v*",
+        "notes": [
+          {
+            "raw": "https://raw.githubusercontent.com/cline/cline/main/CHANGELOG.md"
+          }
+        ]
+      },
+      "public_url": "https://github.com/cline/cline/releases",
+      "fragile": false,
+      "notes": null
+    },
+    {
+      "id": "F8",
+      "name": "Continue",
+      "scope": "continue",
+      "method": "git-tags",
+      "read": {
+        "git": "https://github.com/continuedev/continue.git",
+        "tags": null,
+        "ignore": [
+          "@continuedev/*"
+        ],
+        "notes": [
+          "tag"
+        ]
+      },
+      "public_url": "https://github.com/continuedev/continue/releases",
+      "fragile": true,
+      "notes": "Fragile (accepted 01-11): no CHANGELOG.md on main; opened with version and date, notes not available."
+    },
+    {
+      "id": "F9",
+      "name": "Kanvas",
+      "scope": "kanvas",
+      "method": "git-tags",
+      "read": {
+        "git": "https://github.com/XMihura/Kanvas.git",
+        "tags": null,
+        "notes": [
+          {
+            "raw": "https://raw.githubusercontent.com/XMihura/Kanvas/main/CHANGELOG.md"
+          }
+        ]
+      },
+      "public_url": "https://github.com/XMihura/Kanvas/blob/main/CHANGELOG.md",
+      "fragile": false,
+      "notes": null
+    },
+    {
+      "id": "F10",
+      "name": "OpenSSF malicious-packages",
+      "scope": "threats",
+      "method": "ossf",
+      "read": {
+        "git": "https://github.com/ossf/malicious-packages.git",
+        "branch": "main",
+        "paths": [
+          "osv/malicious/npm/*/MAL-*.json",
+          "osv/malicious/pypi/*/MAL-*.json"
+        ],
+        "record_url": "https://osv.dev/vulnerability/<id>"
+      },
+      "public_url": "https://github.com/ossf/malicious-packages",
+      "fragile": false,
+      "notes": "Files added or modified since L (git diff-tree), read with git show; 'published' >= L and a package name matching scope_terms."
+    },
+    {
+      "id": "F11",
+      "name": "Gemini CLI",
+      "scope": "gemini-cli",
+      "method": "git-tags",
+      "read": {
+        "git": "https://github.com/google-gemini/gemini-cli.git",
+        "tags": null,
+        "notes": [
+          {
+            "web": "https://geminicli.com/docs/changelogs/"
+          }
+        ]
+      },
+      "public_url": "https://github.com/google-gemini/gemini-cli/releases",
+      "fragile": false,
+      "notes": "Stable tags only."
+    },
+    {
+      "id": "F12",
+      "name": "GitHub Copilot CLI",
+      "scope": "github-copilot",
+      "method": "changelog-web",
+      "read": {
+        "urls": [
+          "https://raw.githubusercontent.com/github/copilot-cli/main/changelog.md"
+        ]
+      },
+      "public_url": "https://github.com/github/copilot-cli/blob/main/changelog.md",
+      "fragile": false,
+      "notes": null
+    },
+    {
+      "id": "F13",
+      "name": "Claude desktop",
+      "scope": "claude-desktop",
+      "method": "changelog-web",
+      "read": {
+        "urls": [
+          "https://support.claude.com/en/articles/12138966-release-notes"
+        ]
+      },
+      "public_url": "https://support.claude.com/en/articles/12138966-release-notes",
+      "fragile": false,
+      "notes": "Desktop app only: connectors, extensions, permissions. The collector keeps every entry; the selection is the writer's."
+    },
+    {
+      "id": "F14",
+      "name": "OSV npm and PyPI",
+      "scope": "threats",
+      "method": "osv-csv",
+      "read": {
+        "urls": [
+          "https://osv-vulnerabilities.storage.googleapis.com/npm/modified_id.csv",
+          "https://osv-vulnerabilities.storage.googleapis.com/PyPI/modified_id.csv"
+        ],
+        "record_url": "https://api.osv.dev/v1/vulns/<id>"
+      },
+      "public_url": "https://osv.dev/list?ecosystem=npm",
+      "fragile": false,
+      "notes": "Rows modified since L; each record read from api.osv.dev; kept when 'published' >= L and a package name matches scope_terms."
+    },
+    {
+      "id": "F15",
+      "name": "NVD",
+      "scope": "threats",
+      "method": "nvd",
+      "read": {
+        "url": "https://services.nvd.nist.gov/rest/json/cves/2.0?keywordSearch=<term>&pubStartDate=<L>T00:00:00.000&pubEndDate=<today>T23:59:59.999",
+        "terms": [
+          "MCP",
+          "Claude Code",
+          "Cursor",
+          "Copilot",
+          "Codex",
+          "Gemini CLI",
+          "OpenCode",
+          "LangGraph",
+          "CrewAI"
+        ],
+        "pause_seconds": 7
+      },
+      "public_url": "https://nvd.nist.gov/vuln/search",
+      "fragile": false,
+      "notes": null
+    },
+    {
+      "id": "F16",
+      "name": "OpenCode",
+      "scope": "opencode",
+      "method": "git-tags",
+      "read": {
+        "git": "https://github.com/anomalyco/opencode.git",
+        "tags": "v*",
+        "notes": [
+          {
+            "raw": "https://raw.githubusercontent.com/anomalyco/opencode/dev/CHANGELOG.md"
+          }
+        ]
+      },
+      "public_url": "https://github.com/anomalyco/opencode/releases",
+      "fragile": false,
+      "notes": null
+    },
+    {
+      "id": "F17",
+      "name": "Kiro",
+      "scope": "kiro",
+      "method": "changelog-web",
+      "read": {
+        "urls": [
+          "https://kiro.dev/changelog/",
+          "https://kiro.dev/changelog/cli/"
+        ]
+      },
+      "public_url": "https://kiro.dev/changelog/",
+      "fragile": false,
+      "notes": "IDE and CLI. No public tags: web only."
+    },
+    {
+      "id": "F18",
+      "name": "Devin Desktop",
+      "scope": "devin-desktop",
+      "method": "changelog-web",
+      "read": {
+        "urls": [
+          "https://docs.devin.ai/desktop/changelog"
+        ]
+      },
+      "public_url": "https://docs.devin.ai/desktop/changelog",
+      "fragile": false,
+      "notes": null
+    },
+    {
+      "id": "F19",
+      "name": "Goose",
+      "scope": "goose",
+      "method": "git-tags",
+      "read": {
+        "git": "https://github.com/aaif-goose/goose.git",
+        "tags": "v*",
+        "notes": [
+          "tag"
+        ]
+      },
+      "public_url": "https://github.com/aaif-goose/goose/releases",
+      "fragile": true,
+      "notes": "Fragile (accepted 01-11): no CHANGELOG.md on main and the tag text is only 'open release branch'; opened with version and date, notes not available."
+    },
+    {
+      "id": "F20",
+      "name": "Devin (cloud)",
+      "scope": "devin",
+      "method": "changelog-web",
+      "read": {
+        "urls": [
+          "https://docs.devin.ai/release-notes/overview"
+        ]
+      },
+      "public_url": "https://docs.devin.ai/release-notes/overview",
+      "fragile": false,
+      "notes": null
+    },
+    {
+      "id": "F21",
+      "name": "Codex cloud",
+      "scope": "codex-cloud",
+      "method": "changelog-web",
+      "read": {
+        "urls": [
+          "https://developers.openai.com/codex/changelog"
+        ],
+        "only_entries_with": "Codex Cloud"
+      },
+      "public_url": "https://developers.openai.com/codex/changelog",
+      "fragile": false,
+      "notes": "The changelog of F3, only entries «Codex Cloud»."
+    },
+    {
+      "id": "F22",
+      "name": "OpenClaw",
+      "scope": "openclaw",
+      "method": "git-tags",
+      "read": {
+        "git": "https://github.com/openclaw/openclaw.git",
+        "tags": "v*",
+        "notes": [
+          {
+            "raw": "https://raw.githubusercontent.com/openclaw/openclaw/main/CHANGELOG.md"
+          }
+        ]
+      },
+      "public_url": "https://github.com/openclaw/openclaw/releases",
+      "fragile": false,
+      "notes": "The CHANGELOG.md is split: each version's line links to CHANGELOG/<version>.md on the same branch, which is read from raw.githubusercontent.com."
+    },
+    {
+      "id": "F23",
+      "name": "LangGraph",
+      "scope": "langgraph",
+      "method": "git-tags",
+      "read": {
+        "git": "https://github.com/langchain-ai/langgraph.git",
+        "tags": "N.N.N",
+        "ignore": [
+          "cli==*",
+          "sdk==*",
+          "checkpoint*==*"
+        ],
+        "notes": [
+          "tag"
+        ]
+      },
+      "public_url": "https://github.com/langchain-ai/langgraph/releases",
+      "fragile": false,
+      "notes": null
+    },
+    {
+      "id": "F24",
+      "name": "CrewAI",
+      "scope": "crewai",
+      "method": "git-tags",
+      "read": {
+        "git": "https://github.com/crewAIInc/crewAI.git",
+        "tags": "N.N.N",
+        "notes": [
+          "tag"
+        ]
+      },
+      "public_url": "https://github.com/crewAIInc/crewAI/releases",
+      "fragile": false,
+      "notes": "Tags N.N.N without 'v'; the old 'v' tags are not mixed in."
+    },
+    {
+      "id": "F25",
+      "name": "Microsoft Agent Framework",
+      "scope": "autogen",
+      "method": "git-tags",
+      "read": {
+        "git": "https://github.com/microsoft/agent-framework.git",
+        "tags": "python-*",
+        "notes": [
+          "tag"
+        ],
+        "also": {
+          "git": "https://github.com/microsoft/autogen.git",
+          "tags": "python-v*"
+        }
+      },
+      "public_url": "https://github.com/microsoft/agent-framework/releases",
+      "fragile": false,
+      "notes": "Also notes the latest python-v* tag of AutoGen."
+    },
+    {
+      "id": "F26",
+      "name": "MCP specification",
+      "scope": "all-agents",
+      "method": "git-tags",
+      "read": {
+        "git": "https://github.com/modelcontextprotocol/modelcontextprotocol.git",
+        "tags": null,
+        "notes": []
+      },
+      "public_url": "https://github.com/modelcontextprotocol/modelcontextprotocol/releases",
+      "fragile": false,
+      "notes": null
+    },
+    {
+      "id": "F27",
+      "name": "VS Code",
+      "scope": "all-agents",
+      "method": "changelog-web",
+      "read": {
+        "urls": [
+          "https://code.visualstudio.com/updates"
+        ]
+      },
+      "public_url": "https://code.visualstudio.com/updates",
+      "fragile": false,
+      "notes": "Agent mode, MCP, approvals and Copilot only. The collector keeps the whole release; the selection is the writer's."
+    },
+    {
+      "id": "F28",
+      "name": "CISA KEV",
+      "scope": "threats",
+      "method": "kev",
+      "read": {
+        "url": "https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json",
+        "vendors": [
+          "Anthropic",
+          "OpenAI",
+          "GitHub",
+          "Google",
+          "Cursor"
+        ],
+        "vendor_products": {
+          "Microsoft": [
+            "Visual Studio Code",
+            "VS Code"
+          ]
+        },
+        "products": [
+          "MCP"
+        ]
+      },
+      "public_url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
+      "fragile": false,
+      "notes": "Entries added since L whose vendorProject or product is Anthropic, OpenAI, GitHub, Google, Microsoft (VS Code), Cursor or MCP servers."
+    }
+  ]
+}
