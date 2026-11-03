@@ -1,5 +1,5 @@
 {
-  "$comment": "GTM-75. Single list of the Observatory's fixed sources F1-F28, read daily by observatory/collect.py. Methods and URLs transcribed from rosmarops-vigil docs/research/2026-11-01-observatorio-ampliacion-fuentes.md (signed 01-11) and docs/observatorio/fuentes-F1-F28.md (annex to GTM-75). public_url: the url of each source in 'checked' of observatory/daily/2026-11-03.json (commit aa5f165); Hermes Agent's from the annex. scope: the agent file in observatory/data/agents/ the source watches, 'threats' for the threat registries, 'all-agents' for cross-cutting sources. Tag patterns: 'v*' means v followed by a version number (likewise 'rust-v*', 'python-*', 'python-v*'); 'N.N.N' means three numbers without a prefix; null means every tag. Tags with alpha, beta, rc, nightly, preview, canary or dev are discarded; the rest are ordered like sort -V. read.notes is the order in which notes are looked for: 'github-api' (body of the GitHub release with that tag, read with the workflow's token; GTM-76), 'raw' (official CHANGELOG on raw.githubusercontent.com), 'web' (official changelog page), 'tag' (annotated tag text); an empty list means the source needs no notes.",
+  "$comment": "GTM-75. Single list of the Observatory's fixed sources F1-F29, read daily by observatory/collect.py. Methods and URLs transcribed from rosmarops-vigil docs/research/2026-11-01-observatorio-ampliacion-fuentes.md (signed 01-11) and docs/observatorio/fuentes-F1-F28.md (annex to GTM-75). public_url: the url of each source in 'checked' of observatory/daily/2026-11-03.json (commit aa5f165); Hermes Agent's from the annex. scope: the agent file in observatory/data/agents/ the source watches, 'threats' for the threat registries, 'all-agents' for cross-cutting sources. Tag patterns: 'v*' means v followed by a version number (likewise 'rust-v*', 'python-*', 'python-v*'); 'N.N.N' means three numbers without a prefix; null means every tag. Tags with alpha, beta, rc, nightly, preview, canary or dev are discarded; the rest are ordered like sort -V. read.notes is the order in which notes are looked for: 'github-api' (body of the GitHub release with that tag, read with the workflow's token; GTM-76), 'raw' (official CHANGELOG on raw.githubusercontent.com), 'web' (official changelog page), 'tag' (annotated tag text); an empty list means the source needs no notes.",
   "scope_terms": [
     "mcp",
     "agent",
@@ -21,7 +21,8 @@
     "openclaw",
     "langgraph",
     "crewai",
-    "autogen"
+    "autogen",
+    "muse"
   ],
   "sources": [
     {
@@ -516,6 +517,18 @@
       "public_url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
       "fragile": false,
       "notes": "Entries added since L whose vendorProject or product is Anthropic, OpenAI, GitHub, Google, Microsoft (VS Code), Cursor or MCP servers."
+    },
+    {
+      "id": "F29",
+      "name": "Muse Code",
+      "scope": "Muse Code (Meta)",
+      "method": "changelog-versions",
+      "read": {
+        "url": "https://dev.meta.ai/docs/muse-code/changelog"
+      },
+      "public_url": "https://dev.meta.ai/docs/muse-code/changelog",
+      "fragile": false,
+      "notes": "Official changelog with versions and no dates (GTM-77): a version that differs from the previous raw file's is new and dated the day it is detected (date_is_detection). The first time, the version is only noted."
     }
   ]
 }
