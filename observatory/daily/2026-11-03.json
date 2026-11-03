@@ -1,6 +1,6 @@
 {
   "date": "2026-11-03",
-  "reviewed_at": "2026-11-03T10:41:25Z",
+  "reviewed_at": "2026-11-03T11:00:18Z",
   "status": "incomplete",
   "items": [
     {
@@ -132,6 +132,84 @@
       "url": "https://nvd.nist.gov/vuln/search",
       "latest_seen": "",
       "latest_date": null
+    },
+    {
+      "name": "OpenCode",
+      "url": "https://github.com/anomalyco/opencode/releases",
+      "latest_seen": "v2.2.5",
+      "latest_date": "2026-10-30"
+    },
+    {
+      "name": "Kiro",
+      "url": "https://kiro.dev/changelog/",
+      "latest_seen": "2.37.1",
+      "latest_date": "2026-10-31"
+    },
+    {
+      "name": "Devin Desktop",
+      "url": "https://docs.devin.ai/desktop/changelog",
+      "latest_seen": "v3.11.238",
+      "latest_date": "2026-10-30"
+    },
+    {
+      "name": "Goose",
+      "url": "https://github.com/aaif-goose/goose/releases",
+      "latest_seen": "v1.57.0",
+      "latest_date": "2026-10-27"
+    },
+    {
+      "name": "Devin (cloud)",
+      "url": "https://docs.devin.ai/release-notes/overview",
+      "latest_seen": "",
+      "latest_date": "2026-11-02"
+    },
+    {
+      "name": "Codex cloud",
+      "url": "https://developers.openai.com/codex/changelog",
+      "latest_seen": "",
+      "latest_date": "2026-10-29"
+    },
+    {
+      "name": "OpenClaw",
+      "url": "https://github.com/openclaw/openclaw/releases",
+      "latest_seen": "v2026.10.10",
+      "latest_date": "2026-11-03"
+    },
+    {
+      "name": "LangGraph",
+      "url": "https://github.com/langchain-ai/langgraph/releases",
+      "latest_seen": "1.2.19",
+      "latest_date": "2026-10-30"
+    },
+    {
+      "name": "CrewAI",
+      "url": "https://github.com/crewAIInc/crewAI/releases",
+      "latest_seen": "1.15.34",
+      "latest_date": "2026-11-01"
+    },
+    {
+      "name": "Microsoft Agent Framework",
+      "url": "https://github.com/microsoft/agent-framework/releases",
+      "latest_seen": "python-1.24.0",
+      "latest_date": "2026-10-30"
+    },
+    {
+      "name": "MCP specification",
+      "url": "https://github.com/modelcontextprotocol/modelcontextprotocol/releases",
+      "latest_seen": "",
+      "latest_date": "2026-07-28"
+    },
+    {
+      "name": "VS Code",
+      "url": "https://code.visualstudio.com/updates",
+      "latest_seen": "1.144",
+      "latest_date": "2026-10-28"
+    },
+    {
+      "name": "CISA KEV",
+      "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
+      "latest_seen": "2026.10.30",
+      "latest_date": "2026-10-30"
     }
   ],
   "not_checked": [
