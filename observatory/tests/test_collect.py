@@ -139,6 +139,35 @@ class Retry(Base):
         self.assertIn("http.userAgent=" + collect.UA, args)
         self.assertEqual(self.pauses, [10])
 
+    def test_git_failure_reason_has_subcommand_code_and_stderr_tail(self):
+        stderr = "x" * 500 + "fatal: could not read from remote repository: shallow boundary missing"
+        bad = mock.Mock(returncode=128, stderr=stderr, stdout="")
+        with mock.patch("subprocess.run", return_value=bad):
+            with self.assertRaises(collect.ReadError) as cm:
+                collect.run_git(["-c", "fetch.negotiationAlgorithm=noop", "log", "--format=", "--raw", "refs/remotes/origin/main"])
+        msg = str(cm.exception)
+        self.assertTrue(msg.startswith("git log: exit 128: "), msg)
+        self.assertTrue(msg.endswith("shallow boundary missing"), msg)
+        self.assertEqual(len(msg), len("git log: exit 128: ") + 200)
+        self.assertNotIn("core.hooksPath", msg)
+        self.assertNotIn("--format", msg)
+
+    def test_git_timeout_reason(self):
+        to = collect.subprocess.TimeoutExpired(["git", "log"], 180, stderr=b"remote: counting objects")
+        with mock.patch("subprocess.run", side_effect=to):
+            with self.assertRaises(collect.ReadError) as cm:
+                collect.run_git(["log", "--raw"])
+        self.assertEqual(str(cm.exception), "git log: exit timeout (180 s): remote: counting objects")
+        self.assertEqual(self.pauses, [10, 10])
+
+    def test_ossf_reason_from_a_failing_git(self):
+        bad = mock.Mock(returncode=128, stderr="fatal: protocol error: bad pack header", stdout="")
+        with mock.patch("subprocess.run", return_value=bad):
+            r = collect.read_ossf(src("F10"), L, TERMS)
+        self.assertFalse(r["opened"])
+        self.assertEqual(r["reason"], "git init: exit 128: fatal: protocol error: bad pack header")
+        self.assertLessEqual(len(r["reason"]), 300)
+
 
 # --------------------------------------------------------------------------------------------- changelog-web
 

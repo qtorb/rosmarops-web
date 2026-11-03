@@ -123,16 +123,37 @@ GIT_ENV = {"TZ": "UTC", "GIT_TERMINAL_PROMPT": "0", "GIT_CONFIG_NOSYSTEM": "1", 
 GIT_SAFE = ["-c", "core.hooksPath=" + os.devnull, "-c", "protocol.file.allow=never", "-c", f"http.userAgent={UA}"]
 
 
+GIT_TIMEOUT = 180
+
+
+def git_subcommand(args):
+    """The git subcommand of args, skipping leading '-c key=value' pairs."""
+    i = 0
+    while i + 1 < len(args) and args[i] == "-c":
+        i += 2
+    return args[i] if i < len(args) else "?"
+
+
 def run_git(args, cwd=None):
+    """stdout of one git command. A failure reads «git <subcommand>: exit <code>: <last 200 chars of stderr>»
+    (GTM-82); a timeout reads «exit timeout». The full argument list is never put in the reason."""
     env = dict(os.environ, **GIT_ENV)
 
+    def tail(text):
+        if isinstance(text, bytes):
+            text = text.decode("utf-8", errors="replace")
+        return (text or "").strip()[-200:]
+
     def once():
-        p = subprocess.run(["git", *GIT_SAFE, *args], cwd=cwd, env=env, capture_output=True, text=True,
-                           encoding="utf-8", errors="replace", timeout=180)
+        try:
+            p = subprocess.run(["git", *GIT_SAFE, *args], cwd=cwd, env=env, capture_output=True, text=True,
+                               encoding="utf-8", errors="replace", timeout=GIT_TIMEOUT)
+        except subprocess.TimeoutExpired as e:
+            raise ReadError(f"exit timeout ({GIT_TIMEOUT} s): {tail(e.stderr)}") from None
         if p.returncode != 0:
-            raise ReadError((p.stderr or p.stdout).strip()[-300:])
+            raise ReadError(f"exit {p.returncode}: {tail(p.stderr or p.stdout)}")
         return p.stdout
-    return retry("git " + " ".join(a for a in args if not a.startswith("refs/tags/")), once)
+    return retry("git " + git_subcommand(args), once)
 
 
 def ls_remote_tags(url):
