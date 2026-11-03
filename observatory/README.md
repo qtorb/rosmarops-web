@@ -6,3 +6,4 @@
 - Every page carries `noindex` and nothing is added to sitemaps or `llms.txt` while `NOINDEX = True`.
 - `tests/fixture/`: one synthetic agent, used only by CI to render the agent page template. Never copied to `site/`.
 - The deploy workflow only runs on `main` and uploads an explicit file list, so nothing here reaches the server.
+- `sources.json`, `collect.py`, `schema/raw.v1.schema.json` (GTM-75): the single list of fixed sources F1–F28 and the collector that reads them without a model. `.github/workflows/observatory-collect.yml` runs it daily at 05:30 UTC and commits `raw/<date>.json` (Madrid date) to `main`. Test phase: nothing reads `raw/` yet.

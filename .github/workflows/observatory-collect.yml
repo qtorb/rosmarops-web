@@ -1,0 +1,81 @@
+name: Observatory collector (daily)
+
+# GTM-75 (signed by Albert, 03-11 12:16). Reads the fixed sources F1-F28 listed in observatory/sources.json without a
+# model and writes observatory/raw/<date>.json (Madrid date) to main. Test phase: it runs alongside the current
+# scheduled tasks and nothing reads its output yet. If fewer than 20 sources open, the run ends red after committing
+# the file, so the failure shows in Actions. observatory/ is outside deploy.yml's paths, and a push made with this
+# workflow's GITHUB_TOKEN does not start other workflows: no deploy is asked for.
+
+on:
+  schedule:
+    - cron: "30 5 * * *" # 06:30 in Madrid in winter (CET); 07:30 in summer (CEST).
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily
+  cancel-in-progress: false
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: main
+
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
+        with:
+          python-version: "3.12"
+
+      - name: Read the sources
+        id: collect
+        run: |
+          set -eu
+          python observatory/collect.py
+          d="$(python -c 'import datetime, zoneinfo; print(datetime.datetime.now(zoneinfo.ZoneInfo("Europe/Madrid")).date())')"
+          test -f "observatory/raw/$d.json"
+          echo "date=$d" >> "$GITHUB_OUTPUT"
+
+      - name: Validate against raw.v1 (validator installed in CI only)
+        run: |
+          set -eu
+          pip install "jsonschema[format-nongpl]==4.23.0"
+          python - "observatory/raw/${{ steps.collect.outputs.date }}.json" <<'EOF'
+          import json, sys
+          from jsonschema import Draft202012Validator, FormatChecker
+          schema = json.load(open("observatory/schema/raw.v1.schema.json"))
+          errors = list(Draft202012Validator(schema, format_checker=FormatChecker()).iter_errors(json.load(open(sys.argv[1]))))
+          for e in errors:
+              print(f"::error file={sys.argv[1]}::{'/'.join(map(str, e.path)) or '(root)'}: {e.message}")
+          sys.exit(1 if errors else 0)
+          EOF
+
+      - name: Commit to main
+        run: |
+          set -eu
+          d="${{ steps.collect.outputs.date }}"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "observatory/raw/$d.json"
+          git commit -m "observatory: raw $d"
+          git pull --rebase origin main
+          git push origin HEAD:main
+
+      - name: At least 20 of 28 sources opened
+        run: |
+          set -eu
+          python - "observatory/raw/${{ steps.collect.outputs.date }}.json" <<'EOF'
+          import json, sys
+          d = json.load(open(sys.argv[1]))
+          for s in d["sources"]:
+              if not s["opened"]:
+                  print(f"::warning::{s['id']} not opened: {s['reason']}")
+          print(f"{d['opened']}/{d['total']} sources opened")
+          if d["opened"] < 20:
+              print(f"::error::only {d['opened']} of {d['total']} sources opened (minimum 20)")
+              sys.exit(1)
+          EOF
