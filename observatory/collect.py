@@ -79,7 +79,7 @@ def http_get(url):
     return retry(url, once)
 
 
-GIT_ENV = {"GIT_TERMINAL_PROMPT": "0", "GIT_CONFIG_NOSYSTEM": "1", "GIT_CONFIG_GLOBAL": os.devnull}
+GIT_ENV = {"TZ": "UTC", "GIT_TERMINAL_PROMPT": "0", "GIT_CONFIG_NOSYSTEM": "1", "GIT_CONFIG_GLOBAL": os.devnull}
 GIT_SAFE = ["-c", "core.hooksPath=" + os.devnull, "-c", "protocol.file.allow=never", "-c", f"http.userAgent={UA}"]
 
 
@@ -106,7 +106,7 @@ def tag_info(url, tag):
         run_git(["init", "-q", d])
         ref = f"refs/tags/{tag}"
         run_git(["fetch", "-q", "--depth=1", "--filter=blob:none", "--no-tags", url, f"{ref}:{ref}"], cwd=d)
-        out = run_git(["for-each-ref", ref, "--format=%(creatordate:short)%00%(objecttype)%00%(contents)"], cwd=d)
+        out = run_git(["for-each-ref", ref, "--format=%(creatordate:short-local)%00%(objecttype)%00%(contents)"], cwd=d)
     date, objtype, contents = (out.split("\0", 2) + ["", ""])[:3]
     text = contents.strip() if objtype.strip() == "tag" else ""
     text = re.sub(r"-----BEGIN (?:PGP|SSH) SIGNATURE-----.*", "", text, flags=re.S).strip()
