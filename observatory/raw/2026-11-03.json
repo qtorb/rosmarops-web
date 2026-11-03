@@ -1,0 +1,1678 @@
+{
+  "date": "2026-11-03",
+  "collected_at": "2026-11-03T13:05:26Z",
+  "sources": [
+    {
+      "id": "F1",
+      "opened": true,
+      "reason": null,
+      "latest": "2.1.317",
+      "latest_date": "2026-11-03",
+      "new": [
+        {
+          "date": "2026-11-03",
+          "version": "2.1.317",
+          "text": "Added Added a warning to /schedule when a new cloud scheduled task gets connectors you did not ask for, with how to remove them Added a check that asks before a web or shell tool call sends your account email address to the network Added onFailure: \"block\" for Agent SDK hook callbacks, so a callback that fails blocks the action instead of letting it run Added a notice in Claude Desktop’s Code tab when your organization’s remote managed settings haven’t loaded for the session, and another once they do Added a notice when auto mode’s check has no answer for a subagent’s tool call, which used to…"
+        },
+        {
+          "date": "2026-10-31",
+          "version": "2.1.316",
+          "text": "Added Added CLAUDE_CODE_DISABLE_ULTRATHINK, which turns the ultrathink keyword off Added pooled group budgets to the Claude apps gateway: one monthly budget that a group’s members share, on top of each member’s own limit, set with pooled_budget on the spend limits admin API Added CLAUDE_CODE_DISABLE_LOOPED_CROSS_CERT_DROP to keep system cross-certificates that certify each other in a loop, for servers whose private CA needs one Added CLAUDE_CODE_SUBAGENT_EFFORT to set the effort level subagents run at when nothing else names one, instead of inheriting the session’s Added managed.policy_mode:…"
+        },
+        {
+          "date": "2026-10-30",
+          "version": "2.1.314",
+          "text": "Added Added permissions.blockWritesOutsideWorkingDirectories: Write, Edit and NotebookEdit refuse paths outside the working directories in every permission mode Added an optional groups list to Claude apps gateway upstreams: only developers in the listed IdP groups are sent to that upstream, on failover too Added guardrail_trace to Claude apps gateway Bedrock upstreams, to log which Amazon Bedrock guardrail filter fired on a request, without the matched text Added idle compaction to VS Code and Claude Desktop’s Code tab: a 200K+ token conversation left idle is summarized, and the summary is u…"
+        },
+        {
+          "date": "2026-10-27",
+          "version": "2.1.312",
+          "text": "Added Added oidc.user_id_claim to the Claude apps gateway, to identify people by an id_token claim other than sub, such as Microsoft Entra ID’s oid Added click to send: in fullscreen, clicking the “to send now” hint under a queued message sends it right away, as its key does [Cloud sessions] Added an effort level to the model picker when you create or edit a routine that runs in the cloud [Cloud sessions] Added a Bash editor with colors, line numbers and a Copy button to the setup script box in cloud environment settings Changed Changed Bedrock, Vertex, Foundry and Mantle to use the shorter s…"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F2",
+      "opened": true,
+      "reason": null,
+      "latest": "v2026.10.22",
+      "latest_date": "2026-10-22",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F3",
+      "opened": true,
+      "reason": null,
+      "latest": "rust-v0.166.0",
+      "latest_date": "2026-10-29",
+      "new": [
+        {
+          "date": "2026-10-29",
+          "version": "rust-v0.166.0",
+          "text": "### Codex CLI 0.166.0 $ npm install -g @openai/codex@0.166.0 View details ## New Features Added keyboard-driven transcript selection with word, line, and page motions, integrated search, and configurable shortcuts. (#57221, #57222, #57223, #57224) Rendered Markdown consistently in async questions, choices, answers, and transcript replies. (#57259, #57292) Added GPT-6.1 Terra to the bundled, Vertex AI, and Amazon Bedrock model catalogs. (#57293) Added codex queue --resume to resume unloaded threads after queueing a message. (#57232) Added clearer safety-block explanations and selectable safer…"
+        },
+        {
+          "date": "2026-10-27",
+          "version": "rust-v0.165.0",
+          "text": "### Codex CLI 0.165.0 $ npm install -g @openai/codex@0.165.0 View details ## New Features Added a built-in Google Cloud Vertex AI provider, configured with model_provider = \"gcp\". (#56265) Added GPT-6.1 Terra to the model catalogs. (#57337) Added a repository filter to the session picker and directory grouping to the agent command center, making it easier to navigate sessions across linked worktrees. (#56308) Added experimental attached thread forks to the app-server API. (#56351) Enabled reasoning effort changes during a conversation by default for supported models. (#56163) Enabled memory v…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F4",
+      "opened": true,
+      "reason": null,
+      "latest": "v2.28.2",
+      "latest_date": "2026-10-29",
+      "new": [
+        {
+          "date": "2026-10-29",
+          "version": "v2.28.2",
+          "text": "### Partner plugins in the Marketplace and plugin sign-in This release brings plugins from partners such as Figma, Linear, Notion, and Stripe to the Marketplace, with a new Featured spotlight. You can also sign in to a plugin's account right after you add it. Improvements(5) The Marketplace now includes plugins from partners such as Canva, Figma, Linear, Notion, Stripe, Supabase, and Vercel, on new shelves including Developer Tools, Productivity & Project Management, and Cloud Hosting & Deployment. The Marketplace has a new Featured spotlight that highlights plugins such as Firebase, Notion,…"
+        },
+        {
+          "date": "2026-10-29",
+          "version": "v1.4.10",
+          "text": "### Low-bandwidth terminal scrollback streaming, post-startup memory reclamation, accurate compaction size metrics, and automatic image resizing Reduces terminal streaming output by ~70% using native scrollback and batched text wrapping, reclaims ~100 MB of startup memory after launch, reports full post-compaction context size in /context, and automatically resizes large attached images to prevent request size errors. Improvements(3) Improved streaming of agent replies: lines that scroll off the top of the screen are now scrolled into your terminal's scrollback instead of repainting the whole…"
+        },
+        {
+          "date": "2026-10-28",
+          "version": "v2.28.1",
+          "text": "### Conversation navigator and third party tools notice This release adds a conversation navigator for jumping between turns, a notice about third party developer tools on the Marketplace tab and on the pages of plugins from other developers, and each plugin's developer, version, and links on its page. Improvements(3) The new conversation navigator puts a rail at the left edge of each conversation with one dot per turn. Hover over a dot to see that turn's prompt, a preview of the reply, and when it was sent, and select it to jump there. Long conversations are grouped into chapters by date. Th…"
+        },
+        {
+          "date": "2026-10-28",
+          "version": "v1.4.9",
+          "text": "### Native terminal image paste and drag-and-drop, categorized marketplace shelves in /plugin, and per-origin Google app URL permissions Adds native terminal shortcut and drag-and-drop image attachment (including over SSH with X11 or Wayland forwarding), organizes the /plugin Discover tab into marketplace shelves, validates plugin names and logos in agy plugin validate, and separates execute_url approvals for sensitive Google apps. Improvements(6) Added image pasting through your terminal's own paste shortcut, such as Cmd+V or Ctrl+Shift+V with only an image copied, and by dragging image file…"
+        },
+        {
+          "date": "2026-10-27",
+          "version": "v2.28.0",
+          "text": "### Built-in browser and attachments of any file type This release adds a built-in browser that opens web pages in the side panel, a built-in PDF viewer, attachments of any file type, and word and character highlighting in diffs. It also adds a shortcut to reopen closed side panel tabs. It includes 19 improvements and 14 fixes. Improvements(19) Antigravity now has a built-in browser. Web pages open in a browser tab in the side panel, and the panel widens when a page opens so sites are less likely to switch to their narrow mobile layout. Links you open from a conversation open in the built-in…"
+        },
+        {
+          "date": "2026-10-27",
+          "version": "v1.4.8",
+          "text": "### Turn navigation shortcuts and progressive loading in /diff, longer Auto mode review timeouts, and detailed plugin install summaries Adds [ and ] turn-jump shortcuts and progressive background loading to /diff, extends Auto mode sandbox review timeouts, and expands agy plugin install and validate output, alongside fixes for failed tool call error reporting, forked /goal cancellation, and Windows clipboard image paste. Improvements(7) Added [ and ] to the Per Turn tab in /diff to jump to the first file of the previous or next turn, wrapping around at either end, in both the file list and th…"
+        },
+        {
+          "date": "2026-10-27",
+          "version": "v1.0.0",
+          "text": "### Initial release of Antigravity for Eclipse with agentic chat, side-by-side diff review, artifact previews, workspace trust, and theme synchronization. Introduces Antigravity for Eclipse with an embedded agentic chat view, side-by-side compare editor diffs, interactive artifact previews, smart project import suggestions, workspace trust controls, and automatic Eclipse theme synchronization. Improvements(10) Added the Antigravity chat view, a top-level Antigravity menu, a main toolbar toggle button, and automatic first-launch view docking alongside the Eclipse editor area. Added editor, Ter…"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F5",
+      "opened": true,
+      "reason": null,
+      "latest": "v2026.9.24",
+      "latest_date": "2026-09-24",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F6",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-10-28",
+      "new": [
+        {
+          "date": "2026-10-28",
+          "version": null,
+          "text": "Oct.28 Release Route and orchestrate models with GitHub Copilot Fusion copilot enterprise management tools universe26 ... +2 ###"
+        },
+        {
+          "date": "2026-10-27",
+          "version": null,
+          "text": "Oct.27 Release GitHub Copilot supports server-to-server authentication copilot ###"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F7",
+      "opened": true,
+      "reason": null,
+      "latest": "v4.1.26",
+      "latest_date": "2026-10-26",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F8",
+      "opened": true,
+      "reason": null,
+      "latest": "v2.1.0-vscode",
+      "latest_date": "2026-06-19",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F9",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.4.0",
+      "latest_date": "2026-10-27",
+      "new": [
+        {
+          "date": "2026-10-27",
+          "version": "v0.4.0",
+          "text": "Kanvas runs without Obsidian. The board is a JSON file, agents use a new CLI, and you plan and review in an interactive HTML page. - Add `kanvas.html`: a single-file board with a dependency graph (swimlanes per group, left-to-right or top-to-bottom, adjustable spacing, lineage highlighting, drag to connect) and a kanban view, right-click menus for cards, dependencies and empty space, undo and redo that keep agents' changes, a task panel with Markdown, notes and review actions, filters, search, dark mode and keyboard shortcuts - Status at a glance: cards are outlined in their state colour over…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F10",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-03",
+      "new": [
+        {
+          "date": "2026-10-28",
+          "version": null,
+          "text": "MAL-0000-ghsa-malware-2a3a3ee38efcdb6e @atlisp/mcp: Malware in @atlisp/mcp"
+        },
+        {
+          "date": "2026-11-02",
+          "version": null,
+          "text": "MAL-0000-ghsa-malware-c4f509ad1b4b7cd4 @bigdevin55/calculator-install-demo: Malware in @bigdevin55/calculator-install-demo"
+        },
+        {
+          "date": "2026-11-02",
+          "version": null,
+          "text": "MAL-0000-ghsa-malware-47b31798da27fd69 @bigdevin55/calculator-install-hook: Malware in @bigdevin55/calculator-install-hook"
+        },
+        {
+          "date": "2026-10-29",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-20c31530d82900d0 @decoopus/claude-setup: No installer-harm behavior observed in @decoopus/claude-setup@1.0.7"
+        },
+        {
+          "date": "2026-10-29",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-477d83bf58b21f95 @decoopus/claude-setup: Claude Desktop reconfigured to route API traffic and user API key through anthropic-lookalike gateway"
+        },
+        {
+          "date": "2026-10-29",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-4fc1df1e808600d2 @decoopus/claude-setup: Claude Desktop setup CLI routes Anthropic API keys and prompt traffic to lookalike domain api-anthropic.help"
+        },
+        {
+          "date": "2026-10-29",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-60a6f5b287b9fe35 @decoopus/claude-setup: @decoopus/claude-setup reconfigures Claude Desktop to route traffic and API keys through Anthropic-typosquat domain api-anthropic.help"
+        },
+        {
+          "date": "2026-10-29",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-64cee7777c5ac02f @decoopus/claude-setup: CLI reconfigures Claude Desktop to route all AI traffic through an Anthropic-lookalike gateway"
+        },
+        {
+          "date": "2026-10-29",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-76684a796f492891 @decoopus/claude-setup: Claude Desktop configuration hijack to lookalike Anthropic gateway (api-anthropic.help)"
+        },
+        {
+          "date": "2026-10-29",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-b5d20ab525fdd687 @decoopus/claude-setup: @decoopus/claude-setup reconfigures Claude Desktop to route API traffic and user-supplied Anthropic API key through lookalike gateway api-anthropic.help"
+        },
+        {
+          "date": "2026-10-29",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-c2f431ce3ff86a31 @decoopus/claude-setup: Reroutes Claude Desktop API key and inference traffic to Anthropic-lookalike gateway"
+        },
+        {
+          "date": "2026-10-29",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-d46ba00abd2866eb @decoopus/claude-setup: @decoopus/claude-setup redirects Claude Desktop inference and API keys to typosquat gateway api-anthropic.help"
+        },
+        {
+          "date": "2026-10-29",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-db89b84ec7a5a4ea @decoopus/claude-setup: Claude Desktop setup CLI reroutes inference traffic and API keys to brand-impersonating gateway api-anthropic.help"
+        },
+        {
+          "date": "2026-10-29",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-f7e155559d26176a @decoopus/claude-setup: @decoopus/claude-setup redirects Claude Desktop traffic and API keys to a lookalike Anthropic gateway"
+        },
+        {
+          "date": "2026-11-02",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-808d25733e867c0c @ifasn/md-doc-mcp: md-doc-mcp performs cloud-metadata reconnaissance and exfiltrates results to a hardcoded bare-IP host"
+        },
+        {
+          "date": "2026-11-02",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-d37d60d7e1b4af36 @ifasn/md-doc-mcp: md-doc-mcp probes cloud metadata endpoints and beacons results to hardcoded remote"
+        },
+        {
+          "date": "2026-11-02",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-e0bb69de5181a0d9 @ifasn/md-doc-mcp: md-doc-mcp probes cloud metadata services and beacons results to a hardcoded bare-IP endpoint"
+        },
+        {
+          "date": "2026-11-02",
+          "version": null,
+          "text": "MAL-2026-18486 @ifasn/md-doc-mcp: Malicious code in @ifasn/md-doc-mcp (npm)"
+        },
+        {
+          "date": "2026-11-02",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-0ef8bc86c819e2e0 @ifasn/mdd-doc-mcp: Cloud instance-metadata reconnaissance beacons to hardcoded bare-IP host on load"
+        },
+        {
+          "date": "2026-11-02",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-1d8295dd6d1f932a @ifasn/mdd-doc-mcp: @ifasn/mdd-doc-mcp harvests Alibaba Cloud instance credentials and resolves an off-registry HTTP dependency from a bare IP"
+        },
+        {
+          "date": "2026-11-02",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-667635d5f1caab0b @ifasn/mdd-doc-mcp: @ifasn/mdd-doc-mcp performs cloud IMDS reconnaissance and exfiltrates results to a hardcoded bare-IP endpoint on load"
+        },
+        {
+          "date": "2026-11-02",
+          "version": null,
+          "text": "MAL-2026-18487 @ifasn/mdd-doc-mcp: Malicious code in @ifasn/mdd-doc-mcp (npm)"
+        },
+        {
+          "date": "2026-11-02",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-405cdeb444a83f5b @ifasn/mmd-doc-mcp: Package probes Alibaba Cloud instance metadata on load, mismatched with advertised Markdown MCP purpose"
+        },
+        {
+          "date": "2026-11-02",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-e3b58b8adeff2784 @ifasn/mmd-doc-mcp: @ifasn/mmd-doc-mcp probes cloud IMDS endpoints and exfiltrates provider fingerprint to hardcoded bare-IP host"
+        },
+        {
+          "date": "2026-11-02",
+          "version": null,
+          "text": "MAL-2026-18488 @ifasn/mmd-doc-mcp: Malicious code in @ifasn/mmd-doc-mcp (npm)"
+        },
+        {
+          "date": "2026-11-02",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-00e9e090da5207e0 @ifasn/mmdd-doc-mcp: Markdown MCP package performs cloud metadata and host reconnaissance and reads installer secrets on load"
+        },
+        {
+          "date": "2026-11-02",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-134b408ae3c9b75f @ifasn/mmdd-doc-mcp: mmdd-doc-mcp probes Alibaba Cloud IMDS and beacons results to hardcoded attacker IP"
+        },
+        {
+          "date": "2026-11-02",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-1766bd7f233a3ba2 @ifasn/mmdd-doc-mcp: @ifasn/mmdd-doc-mcp harvests host secrets and cloud metadata on MCP server startup"
+        },
+        {
+          "date": "2026-11-02",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-17e5c38a039ae01c @ifasn/mmdd-doc-mcp: Covert Alibaba Cloud RAM credential harvesting disguised as a Markdown MCP server"
+        },
+        {
+          "date": "2026-11-02",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-2999c5d0dd2a35fe @ifasn/mmdd-doc-mcp: Markdown MCP server probes Alibaba Cloud IMDS for instance RAM credentials on startup"
+        },
+        {
+          "date": "2026-11-02",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-2bc47781fce0924a @ifasn/mmdd-doc-mcp: @ifasn/mmdd-doc-mcp performs Alibaba Cloud IMDS credential probe and beacons to hardcoded bare-IP C2 on startup"
+        },
+        {
+          "date": "2026-11-02",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-2fd806537ea00c81 @ifasn/mmdd-doc-mcp: Aliyun IMDS credential probe and external beacon on MCP server startup"
+        },
+        {
+          "date": "2026-11-02",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-3098acbe44e80ad3 @ifasn/mmdd-doc-mcp: Obfuscated Alibaba Cloud IMDS credential probe on startup in Markdown MCP package"
+        },
+        {
+          "date": "2026-11-02",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-567db56a574896ab @ifasn/mmdd-doc-mcp: Covert Alibaba Cloud IMDS reconnaissance in Markdown toolkit package"
+        },
+        {
+          "date": "2026-11-02",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-69c49355c8e32d2c @ifasn/mmdd-doc-mcp: Covert Alibaba Cloud IMDS and container reconnaissance in Markdown MCP package"
+        },
+        {
+          "date": "2026-11-02",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-6d88c8191553a540 @ifasn/mmdd-doc-mcp: MCP markdown package probes cloud instance metadata and exfiltrates results to hardcoded IP"
+        },
+        {
+          "date": "2026-11-02",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-7f8d552bb28ae986 @ifasn/mmdd-doc-mcp: Alibaba Cloud instance metadata harvesting disguised as markdown MCP tool"
+        },
+        {
+          "date": "2026-11-02",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-9dafe071e7822c47 @ifasn/mmdd-doc-mcp: Auto-executed host-secret and cloud-credential harvesting in @ifasn/mmdd-doc-mcp"
+        },
+        {
+          "date": "2026-11-02",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-aae5bba340b14529 @ifasn/mmdd-doc-mcp: Markdown MCP package covertly harvests Alibaba Cloud instance metadata and user-data on startup"
+        },
+        {
+          "date": "2026-11-02",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-b60c6fc375909417 @ifasn/mmdd-doc-mcp: MCP server performs covert Alibaba Cloud metadata and container-escape reconnaissance on startup"
+        },
+        {
+          "date": "2026-11-02",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-df4004eb0f6cbdb9 @ifasn/mmdd-doc-mcp: Markdown MCP package ships Alibaba Cloud / Kubernetes credential-reconnaissance toolchain"
+        },
+        {
+          "date": "2026-11-02",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-f00189c1838ba969 @ifasn/mmdd-doc-mcp: Markdown MCP package exfiltrates Alibaba Cloud instance metadata and user-data on startup"
+        },
+        {
+          "date": "2026-11-02",
+          "version": null,
+          "text": "MAL-2026-18489 @ifasn/mmdd-doc-mcp: Malicious code in @ifasn/mmdd-doc-mcp (npm)"
+        },
+        {
+          "date": "2026-10-29",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-07db0f79773c0790 agentenact: No installer-harm indicators observed in agentenact@0.2.0"
+        },
+        {
+          "date": "2026-10-27",
+          "version": null,
+          "text": "MAL-0000-ghsa-malware-069f1dacd0464661 agentenact: Malware in agentenact"
+        },
+        {
+          "date": "2026-10-27",
+          "version": null,
+          "text": "MAL-2026-18346 agentenact: Malicious code in agentenact (npm)"
+        },
+        {
+          "date": "2026-10-30",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-2a9e88d3e76e19bc agentic-awesome-skills: Skills collection with benign tool and endpoint references"
+        },
+        {
+          "date": "2026-10-30",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-4356ccc5aff5a46d agentic-awesome-skills: Skills collection with benign network/CLI helpers"
+        },
+        {
+          "date": "2026-10-30",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-bce718f3dabec30c agentic-awesome-skills: Skills bundle with assorted install/network helper scripts"
+        },
+        {
+          "date": "2026-10-29",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-0b5a143886cc66cf api-anthropic: No installer-harm behavior observed in api-anthropic@0.1.0"
+        },
+        {
+          "date": "2026-10-29",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-19164d6b4b781d02 api-anthropic: api-anthropic hijacks Claude Code to route prompts and auth token through an Anthropic-impersonating proxy"
+        },
+        {
+          "date": "2026-10-29",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-50d22f4491327818 api-anthropic: api-anthropic CLI redirects Claude Code traffic and API tokens to author-controlled gateway api-anthropic.help"
+        },
+        {
+          "date": "2026-10-29",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-5ddb7023b6761d90 api-anthropic: No installer-harm behavior observed in api-anthropic@0.1.1"
+        },
+        {
+          "date": "2026-10-29",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-8bc38b611790247a api-anthropic: api-anthropic hijacks Claude Code configuration to route credentials and prompts through brand-impersonating proxy"
+        },
+        {
+          "date": "2026-10-29",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-da6ded6ef7316224 api-anthropic: api-anthropic redirects Claude Code to lookalike gateway api-anthropic.help and harvests Anthropic API keys"
+        },
+        {
+          "date": "2026-10-29",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-087b9fd6203d2981 claude-desktop-setup: claude-desktop-setup reroutes Claude Desktop prompts and API key to lookalike gateway api-anthropic.help"
+        },
+        {
+          "date": "2026-10-29",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-1b8163e760d1467e claude-desktop-setup: claude-desktop-setup redirects Claude Desktop traffic and API key to lookalike domain api-anthropic.help"
+        },
+        {
+          "date": "2026-10-29",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-2926a67217e5731f claude-desktop-setup: claude-desktop-setup reroutes Claude Desktop inference to lookalike domain api-anthropic.help"
+        },
+        {
+          "date": "2026-10-29",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-2a4c78f62f2dc1d9 claude-desktop-setup: claude-desktop-setup reconfigures Claude Desktop to route prompts and API keys to anthropic-lookalike gateway"
+        },
+        {
+          "date": "2026-10-29",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-39f6903d77c98a8e claude-desktop-setup: claude-desktop-setup reroutes Claude Desktop API traffic and API keys to lookalike domain api-anthropic.help"
+        },
+        {
+          "date": "2026-10-29",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-74ee6c93cc90cc1e claude-desktop-setup: claude-desktop-setup reroutes Claude Desktop to lookalike domain api-anthropic.help and exfiltrates Anthropic API key"
+        },
+        {
+          "date": "2026-10-29",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-988fd06bf995b077 claude-desktop-setup: CLI configures Claude Desktop to route Anthropic API traffic and keys through lookalike domain api-anthropic.help"
+        },
+        {
+          "date": "2026-10-29",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-a3cbc81e32e7ef2e claude-desktop-setup: claude-desktop-setup reroutes Claude Desktop traffic and user's Anthropic API key to look-alike domain api-anthropic.help"
+        },
+        {
+          "date": "2026-10-29",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-b2f20ed6e8bf3d15 claude-desktop-setup: claude-desktop-setup reconfigures Claude Desktop to route prompts and API key to anthropic.com lookalike"
+        },
+        {
+          "date": "2026-10-29",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-bb4ecc175ca6f124 claude-desktop-setup: claude-desktop-setup reconfigures Claude Desktop to route prompts and API keys to attacker-controlled lookalike domain api-anthropic.help"
+        },
+        {
+          "date": "2026-10-29",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-c8bd0d707f60a5a0 claude-desktop-setup: claude-desktop-setup reroutes Claude Desktop traffic and API keys to a typosquat Anthropic gateway"
+        },
+        {
+          "date": "2026-10-29",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-cd16300d464a4ef2 claude-desktop-setup: claude-desktop-setup reconfigures Claude Desktop to route API keys and prompts through typosquat gateway api-anthropic.help"
+        },
+        {
+          "date": "2026-10-29",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-df2e62a3f7124a4e claude-desktop-setup: claude-desktop-setup reconfigures Claude Desktop to route API traffic and keys through lookalike domain api-anthropic.help"
+        },
+        {
+          "date": "2026-10-29",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-ea01d3c239acb6ec claude-desktop-setup: claude-desktop-setup reconfigures Claude Desktop to route all inference through look-alike domain api-anthropic.help"
+        },
+        {
+          "date": "2026-10-29",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-1dc5704d4c9ccb90 codex-setup: No installer-harm behavior observed in codex-setup@1.0.1"
+        },
+        {
+          "date": "2026-10-29",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-aaa549fa19e7e633 codex-setup: No installer-harm behavior observed in codex-setup@1.0.0"
+        },
+        {
+          "date": "2026-10-29",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-d8443bc4eedb8fb3 codex-setup: No installer-harm behavior observed in codex-setup@1.0.2"
+        },
+        {
+          "date": "2026-10-29",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-e573e4212ef5b4d6 codex-setup: No installer-harm behavior observed in codex-setup@1.0.3"
+        },
+        {
+          "date": "2026-10-29",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-ae799a3444c808e1 ctf-agent: No installer-harm behavior observed in ctf-agent@0.1.0"
+        },
+        {
+          "date": "2026-10-29",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-56b34e8766d76b6b gemini-computer-use: gemini-computer-use pipes remote script from Tailscale funnel to shell and installs a gateway-driven bash backdoor"
+        },
+        {
+          "date": "2026-10-29",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-82132c993bf6c637 gemini-computer-use: No installer-harm behavior observed in gemini-computer-use@0.4.5"
+        },
+        {
+          "date": "2026-10-31",
+          "version": null,
+          "text": "MAL-0000-ghsa-malware-bddef1c4c8e802c4 local-commander-agent: Malware in local-commander-agent"
+        },
+        {
+          "date": "2026-10-29",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-0029ec54bda52537 opencode-skills-collection: Skills collection with benign install/verify scripts"
+        },
+        {
+          "date": "2026-10-29",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-0a8991af13903dc2 opencode-skills-collection: Bundled skill scripts invoke curl/ping with no evidence of installer harm"
+        },
+        {
+          "date": "2026-10-29",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-0da45f9abc383cb7 opencode-skills-collection: Skills collection bundling third-party scripts; no installer-attack behavior observed"
+        },
+        {
+          "date": "2026-10-29",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-0ef3ce32c66764fd opencode-skills-collection: Skills collection with bundled helper scripts using curl/ping"
+        },
+        {
+          "date": "2026-10-29",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-0f6060bf9b062de8 opencode-skills-collection: Collection of bundled developer skills with benign network utilities"
+        },
+        {
+          "date": "2026-10-29",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-154334b82c927a19 opencode-skills-collection: Bundled skills invoke external network utilities but no installer-side exfiltration observed"
+        },
+        {
+          "date": "2026-10-30",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-21910c571efff594 opencode-skills-collection: Skills collection with bundled helper scripts; static matches are weak keyword co-occurrences"
+        },
+        {
+          "date": "2026-10-29",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-2805226ddecf9303 opencode-skills-collection: Bundled skill scripts contain benign network and shell utilities"
+        },
+        {
+          "date": "2026-10-29",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-3ae0d7d01d6afaae opencode-skills-collection: Skills collection bundling scripts with curl/ping usage; no traced installer harm"
+        },
+        {
+          "date": "2026-10-29",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-4b370ecef32f75c3 opencode-skills-collection: Skills collection bundling third-party install scripts and HTTP tooling"
+        },
+        {
+          "date": "2026-10-29",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-51a4eccc4d08f6fd opencode-skills-collection: Skills collection bundling third-party scripts; no installer-side attack behavior observed"
+        },
+        {
+          "date": "2026-10-29",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-5b3fc933b0130a8a opencode-skills-collection: Bundled skill scripts invoke curl/ping with no install-time execution path"
+        },
+        {
+          "date": "2026-10-29",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-6fc59e1e0fe7b6cf opencode-skills-collection: Skills collection bundles scripts that fetch from documented vendor endpoints"
+        },
+        {
+          "date": "2026-10-29",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-87fb5656dcf33893 opencode-skills-collection: Bundled skills collection with routine network commands in utility scripts"
+        },
+        {
+          "date": "2026-10-29",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-959d4111548af2c6 opencode-skills-collection: Collection of bundled skill scripts with routine network and install commands"
+        },
+        {
+          "date": "2026-10-29",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-a0cc548c85008df9 opencode-skills-collection: Bundled skill scripts contain benign network/CLI usage"
+        },
+        {
+          "date": "2026-10-29",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-ad4663af5b87079e opencode-skills-collection: Bundled skill scripts include network/curl usage without confirmed installer-harm payload"
+        },
+        {
+          "date": "2026-10-29",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-b0135fc94540220b opencode-skills-collection: Skills collection bundling scraper and verification scripts; no installer-side attack surface traced"
+        },
+        {
+          "date": "2026-10-29",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-cf2b098c0145a47b opencode-skills-collection: Skills collection bundling third-party install and verify scripts"
+        },
+        {
+          "date": "2026-10-30",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-d0ecfdc36fc27457 opencode-skills-collection: Skills collection with benign curl/ping references in bundled scripts"
+        },
+        {
+          "date": "2026-10-29",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-d974034cdfef3f7b opencode-skills-collection: Bundled skill scripts perform routine network calls; no installer-side attack observed"
+        },
+        {
+          "date": "2026-10-29",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-ea84433517366e47 opencode-skills-collection: Skills collection bundling third-party scripts with network fetches"
+        },
+        {
+          "date": "2026-10-29",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-f04ac946536f534c opencode-skills-collection: Bundled skill scripts with routine network calls"
+        },
+        {
+          "date": "2026-10-29",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-6c3ad90106c904f1 skillward: Defensive linter rules cataloging malicious indicators as inert data"
+        },
+        {
+          "date": "2026-10-29",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-6c7bb80d99fd671e skillward: Static-analysis ruleset cataloging IOCs as inert data"
+        },
+        {
+          "date": "2026-10-31",
+          "version": null,
+          "text": "MAL-0000-kam193-415c95c384a9901b skills-analyzer: Malicious code in skills-analyzer (PyPI)"
+        },
+        {
+          "date": "2026-10-31",
+          "version": null,
+          "text": "MAL-0000-kam193-ad55bf608a0d98ad skills-analyzer: Malicious code in skills-analyzer (PyPI)"
+        },
+        {
+          "date": "2026-10-31",
+          "version": null,
+          "text": "MAL-2026-18427 skills-analyzer: Malicious code in skills-analyzer (PyPI)"
+        },
+        {
+          "date": "2026-10-29",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-177a91975e11b9b3 zagents-message-bus: Dependency-confusion canary package beacons to webhook.site"
+        },
+        {
+          "date": "2026-10-29",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-51b99fe5927b864b zagents-message-bus: No installer-harm behavior observed in zagents-message-bus 1.0.5"
+        },
+        {
+          "date": "2026-10-29",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-d36fb2daa7def049 zagents-message-bus: zagents-message-bus 1.0.10: no concrete installer-harm signals observed"
+        }
+      ],
+      "ids": [
+        "MAL-0000-amazon-inspector-0029ec54bda52537",
+        "MAL-0000-amazon-inspector-00e9e090da5207e0",
+        "MAL-0000-amazon-inspector-07db0f79773c0790",
+        "MAL-0000-amazon-inspector-087b9fd6203d2981",
+        "MAL-0000-amazon-inspector-0a8991af13903dc2",
+        "MAL-0000-amazon-inspector-0b5a143886cc66cf",
+        "MAL-0000-amazon-inspector-0da45f9abc383cb7",
+        "MAL-0000-amazon-inspector-0ef3ce32c66764fd",
+        "MAL-0000-amazon-inspector-0ef8bc86c819e2e0",
+        "MAL-0000-amazon-inspector-0f6060bf9b062de8",
+        "MAL-0000-amazon-inspector-134b408ae3c9b75f",
+        "MAL-0000-amazon-inspector-154334b82c927a19",
+        "MAL-0000-amazon-inspector-1766bd7f233a3ba2",
+        "MAL-0000-amazon-inspector-177a91975e11b9b3",
+        "MAL-0000-amazon-inspector-17e5c38a039ae01c",
+        "MAL-0000-amazon-inspector-19164d6b4b781d02",
+        "MAL-0000-amazon-inspector-1b8163e760d1467e",
+        "MAL-0000-amazon-inspector-1d8295dd6d1f932a",
+        "MAL-0000-amazon-inspector-1dc5704d4c9ccb90",
+        "MAL-0000-amazon-inspector-20c31530d82900d0",
+        "MAL-0000-amazon-inspector-21910c571efff594",
+        "MAL-0000-amazon-inspector-2805226ddecf9303",
+        "MAL-0000-amazon-inspector-2926a67217e5731f",
+        "MAL-0000-amazon-inspector-2999c5d0dd2a35fe",
+        "MAL-0000-amazon-inspector-2a4c78f62f2dc1d9",
+        "MAL-0000-amazon-inspector-2a9e88d3e76e19bc",
+        "MAL-0000-amazon-inspector-2bc47781fce0924a",
+        "MAL-0000-amazon-inspector-2fd806537ea00c81",
+        "MAL-0000-amazon-inspector-3098acbe44e80ad3",
+        "MAL-0000-amazon-inspector-39f6903d77c98a8e",
+        "MAL-0000-amazon-inspector-3ae0d7d01d6afaae",
+        "MAL-0000-amazon-inspector-405cdeb444a83f5b",
+        "MAL-0000-amazon-inspector-4356ccc5aff5a46d",
+        "MAL-0000-amazon-inspector-477d83bf58b21f95",
+        "MAL-0000-amazon-inspector-4b370ecef32f75c3",
+        "MAL-0000-amazon-inspector-4fc1df1e808600d2",
+        "MAL-0000-amazon-inspector-50d22f4491327818",
+        "MAL-0000-amazon-inspector-51a4eccc4d08f6fd",
+        "MAL-0000-amazon-inspector-51b99fe5927b864b",
+        "MAL-0000-amazon-inspector-567db56a574896ab",
+        "MAL-0000-amazon-inspector-56b34e8766d76b6b",
+        "MAL-0000-amazon-inspector-5b3fc933b0130a8a",
+        "MAL-0000-amazon-inspector-5ddb7023b6761d90",
+        "MAL-0000-amazon-inspector-60a6f5b287b9fe35",
+        "MAL-0000-amazon-inspector-64cee7777c5ac02f",
+        "MAL-0000-amazon-inspector-667635d5f1caab0b",
+        "MAL-0000-amazon-inspector-69c49355c8e32d2c",
+        "MAL-0000-amazon-inspector-6c3ad90106c904f1",
+        "MAL-0000-amazon-inspector-6c7bb80d99fd671e",
+        "MAL-0000-amazon-inspector-6d88c8191553a540",
+        "MAL-0000-amazon-inspector-6fc59e1e0fe7b6cf",
+        "MAL-0000-amazon-inspector-74ee6c93cc90cc1e",
+        "MAL-0000-amazon-inspector-76684a796f492891",
+        "MAL-0000-amazon-inspector-7f8d552bb28ae986",
+        "MAL-0000-amazon-inspector-808d25733e867c0c",
+        "MAL-0000-amazon-inspector-82132c993bf6c637",
+        "MAL-0000-amazon-inspector-87fb5656dcf33893",
+        "MAL-0000-amazon-inspector-8bc38b611790247a",
+        "MAL-0000-amazon-inspector-959d4111548af2c6",
+        "MAL-0000-amazon-inspector-988fd06bf995b077",
+        "MAL-0000-amazon-inspector-9dafe071e7822c47",
+        "MAL-0000-amazon-inspector-a0cc548c85008df9",
+        "MAL-0000-amazon-inspector-a3cbc81e32e7ef2e",
+        "MAL-0000-amazon-inspector-aaa549fa19e7e633",
+        "MAL-0000-amazon-inspector-aae5bba340b14529",
+        "MAL-0000-amazon-inspector-ad4663af5b87079e",
+        "MAL-0000-amazon-inspector-ae799a3444c808e1",
+        "MAL-0000-amazon-inspector-b0135fc94540220b",
+        "MAL-0000-amazon-inspector-b2f20ed6e8bf3d15",
+        "MAL-0000-amazon-inspector-b5d20ab525fdd687",
+        "MAL-0000-amazon-inspector-b60c6fc375909417",
+        "MAL-0000-amazon-inspector-bb4ecc175ca6f124",
+        "MAL-0000-amazon-inspector-bce718f3dabec30c",
+        "MAL-0000-amazon-inspector-c2f431ce3ff86a31",
+        "MAL-0000-amazon-inspector-c8bd0d707f60a5a0",
+        "MAL-0000-amazon-inspector-cd16300d464a4ef2",
+        "MAL-0000-amazon-inspector-cf2b098c0145a47b",
+        "MAL-0000-amazon-inspector-d0ecfdc36fc27457",
+        "MAL-0000-amazon-inspector-d36fb2daa7def049",
+        "MAL-0000-amazon-inspector-d37d60d7e1b4af36",
+        "MAL-0000-amazon-inspector-d46ba00abd2866eb",
+        "MAL-0000-amazon-inspector-d8443bc4eedb8fb3",
+        "MAL-0000-amazon-inspector-d974034cdfef3f7b",
+        "MAL-0000-amazon-inspector-da6ded6ef7316224",
+        "MAL-0000-amazon-inspector-db89b84ec7a5a4ea",
+        "MAL-0000-amazon-inspector-df2e62a3f7124a4e",
+        "MAL-0000-amazon-inspector-df4004eb0f6cbdb9",
+        "MAL-0000-amazon-inspector-e0bb69de5181a0d9",
+        "MAL-0000-amazon-inspector-e3b58b8adeff2784",
+        "MAL-0000-amazon-inspector-e573e4212ef5b4d6",
+        "MAL-0000-amazon-inspector-ea01d3c239acb6ec",
+        "MAL-0000-amazon-inspector-ea84433517366e47",
+        "MAL-0000-amazon-inspector-f00189c1838ba969",
+        "MAL-0000-amazon-inspector-f04ac946536f534c",
+        "MAL-0000-amazon-inspector-f7e155559d26176a",
+        "MAL-0000-ghsa-malware-069f1dacd0464661",
+        "MAL-0000-ghsa-malware-2a3a3ee38efcdb6e",
+        "MAL-0000-ghsa-malware-47b31798da27fd69",
+        "MAL-0000-ghsa-malware-bddef1c4c8e802c4",
+        "MAL-0000-ghsa-malware-c4f509ad1b4b7cd4",
+        "MAL-0000-kam193-415c95c384a9901b",
+        "MAL-0000-kam193-ad55bf608a0d98ad",
+        "MAL-2026-18346",
+        "MAL-2026-18427",
+        "MAL-2026-18486",
+        "MAL-2026-18487",
+        "MAL-2026-18488",
+        "MAL-2026-18489"
+      ],
+      "read_with": "git"
+    },
+    {
+      "id": "F11",
+      "opened": false,
+      "reason": "new version without notes: v0.66.0",
+      "latest": "v0.66.0",
+      "latest_date": "2026-10-27",
+      "new": [
+        {
+          "date": "2026-10-27",
+          "version": "v0.66.0",
+          "text": "notes not available"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F12",
+      "opened": true,
+      "reason": null,
+      "latest": "1.0.105",
+      "latest_date": "2026-10-27",
+      "new": [
+        {
+          "date": "2026-10-27",
+          "version": "1.0.105",
+          "text": "- Selecting Copilot Fusion High or Max in /model now works from long-context sessions"
+        },
+        {
+          "date": "2026-10-27",
+          "version": "1.0.104",
+          "text": "- Managed model \"fusion\" now starts sessions on Auto and applies fusionTier settings - Interactive and SDK Autopilot sessions keep waiting for attached background tasks instead of stopping after COPILOT_TASK_WAIT_TIMEOUT_SECONDS; `-p --autopilot` still honors it - When a saved Auto preference is no longer available, Auto falls back to its default preference instead of failing each turn - Assisted Permissions are available without enabling experimental mode."
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F13",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-10-30",
+      "new": [
+        {
+          "date": "2026-10-30",
+          "version": null,
+          "text": "Updated this week Copy for LLM ## October 2026"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F14",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-03",
+      "new": [
+        {
+          "date": "2026-11-02",
+          "version": null,
+          "text": "MAL-2026-18488 @ifasn/mmd-doc-mcp: Malicious code in @ifasn/mmd-doc-mcp (npm)"
+        },
+        {
+          "date": "2026-11-02",
+          "version": null,
+          "text": "MAL-2026-18489 @ifasn/mmdd-doc-mcp: Malicious code in @ifasn/mmdd-doc-mcp (npm)"
+        },
+        {
+          "date": "2026-11-02",
+          "version": null,
+          "text": "MAL-2026-18486 @ifasn/md-doc-mcp: Malicious code in @ifasn/md-doc-mcp (npm)"
+        },
+        {
+          "date": "2026-11-02",
+          "version": null,
+          "text": "MAL-2026-18487 @ifasn/mdd-doc-mcp: Malicious code in @ifasn/mdd-doc-mcp (npm)"
+        },
+        {
+          "date": "2026-11-02",
+          "version": null,
+          "text": "MAL-2026-18465 @bigdevin55/calculator-install-demo: Malicious code in @bigdevin55/calculator-install-demo (npm)"
+        },
+        {
+          "date": "2026-11-02",
+          "version": null,
+          "text": "MAL-2026-18466 @bigdevin55/calculator-install-hook: Malicious code in @bigdevin55/calculator-install-hook (npm)"
+        },
+        {
+          "date": "2026-10-31",
+          "version": null,
+          "text": "MAL-2026-18425 local-commander-agent: Malicious code in local-commander-agent (npm)"
+        },
+        {
+          "date": "2026-10-29",
+          "version": null,
+          "text": "GHSA-q344-5v34-gm84 @sylphx/pdf-reader-mcp: @sylphx/pdf-reader-mcp: HTTP transport accepts unauthenticated requests despite a configured MCP_API_KEY"
+        },
+        {
+          "date": "2026-10-27",
+          "version": null,
+          "text": "MAL-2026-18346 agentenact: Malicious code in agentenact (npm)"
+        },
+        {
+          "date": "2026-10-28",
+          "version": null,
+          "text": "GHSA-7w82-6f9j-v9jp mcp-sanitizer: mcp-sanitizer: File Path Sanitizer Permits Arbitrary User-Home Absolute Paths"
+        },
+        {
+          "date": "2026-10-28",
+          "version": null,
+          "text": "GHSA-4mfg-r38w-w8fg mcp-sanitizer: mcp-sanitizer: URL sanitizer allows localhost/IPv6 loopback SSRF bypass via explicit port or bracketed IPv6"
+        },
+        {
+          "date": "2026-10-31",
+          "version": null,
+          "text": "MAL-2026-18427 skills-analyzer: Malicious code in skills-analyzer (PyPI)"
+        },
+        {
+          "date": "2026-10-28",
+          "version": null,
+          "text": "GHSA-4hm6-w6qq-w73v langgraph-api: LangGraph JavaScript custom authentication may permit cross-user Store access"
+        },
+        {
+          "date": "2026-10-28",
+          "version": null,
+          "text": "GHSA-8prr-f582-jqq3 langgraph-cli: LangGraph CLI prints the registry push token in `langgraph deploy --verbose` output"
+        },
+        {
+          "date": "2026-10-28",
+          "version": null,
+          "text": "GHSA-3fx2-cqw9-xr3c langgraph-sdk, langgraph: LangGraph: Unencoded identifiers in LangGraph SDK v3 streaming can redirect authenticated GET requests"
+        },
+        {
+          "date": "2026-10-27",
+          "version": null,
+          "text": "GHSA-rwrf-2pqf-9j8j mcp, mcp: Model Context Protocol Python SDK: Client fetched server-chosen $ref URLs while validating tool results against output schemas"
+        },
+        {
+          "date": "2026-10-27",
+          "version": null,
+          "text": "GHSA-w4fh-qvv9-3v23 mcp, mcp: Model Context Protocol Python SDK: Server bearer-token authentication accepts tokens issued for a different resource server"
+        },
+        {
+          "date": "2026-10-27",
+          "version": null,
+          "text": "GHSA-5h93-6whr-6q8j mcp, mcp: Model Context Protocol Python SDK: HTTP client transports followed cross-origin redirects carrying custom headers and bodies"
+        },
+        {
+          "date": "2026-10-27",
+          "version": null,
+          "text": "GHSA-763v-5pjm-fx36 strands-agents: Strands Agents: Default FileSessionManager storage is world-readable on shared systems"
+        },
+        {
+          "date": "2026-10-27",
+          "version": null,
+          "text": "GHSA-3w55-933p-8pv5 strands-agents: Strands Agents: Local Privilege Escalation via Symlink Attack in Default Session File Storage"
+        }
+      ],
+      "ids": [
+        "GHSA-3fx2-cqw9-xr3c",
+        "GHSA-3w55-933p-8pv5",
+        "GHSA-4hm6-w6qq-w73v",
+        "GHSA-4mfg-r38w-w8fg",
+        "GHSA-5h93-6whr-6q8j",
+        "GHSA-763v-5pjm-fx36",
+        "GHSA-7w82-6f9j-v9jp",
+        "GHSA-8prr-f582-jqq3",
+        "GHSA-q344-5v34-gm84",
+        "GHSA-rwrf-2pqf-9j8j",
+        "GHSA-w4fh-qvv9-3v23",
+        "MAL-2026-18346",
+        "MAL-2026-18425",
+        "MAL-2026-18427",
+        "MAL-2026-18465",
+        "MAL-2026-18466",
+        "MAL-2026-18486",
+        "MAL-2026-18487",
+        "MAL-2026-18488",
+        "MAL-2026-18489"
+      ],
+      "read_with": "curl"
+    },
+    {
+      "id": "F15",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-03",
+      "new": [
+        {
+          "date": "2026-11-03",
+          "version": null,
+          "text": "CVE-2026-89229 [Copilot]: Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal') in the ShareActivity component of BlueLM Copilot (com.vivo.ai.copilot) allows a malicious application installed on the same device to write arbitrary files via a crafted ACTION_SEND intent with a ContentProvider-supplied file name containing '..' sequences."
+        },
+        {
+          "date": "2026-11-02",
+          "version": null,
+          "text": "CVE-2026-120323 [MCP]: A security flaw has been discovered in samanhappy MCPHub up to 1.0.45/1.1.7. Impacted is an unknown function of the file src/utils/passthroughHeaders.ts. The manipulation of the argument passthroughHeaders results in information disclosure. The attack may be launched remotely. Upgrading to version 1.1.8 is recommended to address this issue. The patch is identified as 040f7b9ae004070bdfe5084cde6bc2c609f78e76. It is advisable to upgrade the affected component."
+        },
+        {
+          "date": "2026-11-02",
+          "version": null,
+          "text": "CVE-2026-120450 [MCP]: LaraDashboard 1.4.0 before 1.4.9 contains an improper authorization vulnerability that allows authenticated users with read-only email_template.view permission to send arbitrary emails via the MCP send-email tool. Attackers can mint an MCP token and call send-email with any recipient, subject, and raw HTML body to deliver phishing or spam from the site's mailer."
+        },
+        {
+          "date": "2026-11-02",
+          "version": null,
+          "text": "CVE-2026-120492 [MCP]: Chainlit 2.12.0 contains a server-side request forgery vulnerability that allows unauthenticated attackers to bypass path-scoped MCP allowed_urls entries because validate_mcp_url does not reject the semicolon character. Attackers can submit MCP URLs with '..;' segments to the /mcp endpoint, causing requests to paths outside the operator's grant on origins that strip semicolon path parameters."
+        },
+        {
+          "date": "2026-11-02",
+          "version": null,
+          "text": "CVE-2026-116635 [MCP]: Improper limitation of a pathname to a restricted directory in the deployment status component of the AWS Serverless MCP Server (aws-serverless-mcp-server) before v0.2.1 might allow an actor who can influence the MCP agent to read the contents of JSON files outside the intended deployment status directory. Where write access has been enabled, to create or overwrite JSON files outside that directory. This issue is reachable through directory traversal sequences or an absolute path supplied in the project name input. To remediate this issue, users should upgrade to versio…"
+        },
+        {
+          "date": "2026-11-02",
+          "version": null,
+          "text": "CVE-2026-120058 [Cursor]: psqlODBC sizes its row cache from the column count of a cursor's first result, but recomputes the column count from each later FETCH reply without checking that it matches. A server not trusted under current SSL settings can answer a later FETCH with more columns and make the driver write tuple records past the end of the heap allocation. A keyset reply with fewer columns than the key fields also underflows the unsigned field count. This is reachable with UseDeclareFetch enabled. Versions before psqlODBC 18.00.0006 are affected."
+        },
+        {
+          "date": "2026-11-02",
+          "version": null,
+          "text": "CVE-2026-120059 [Cursor]: For an updatable cursor over a table without OIDs that has an auto-increment int4 column, psqlODBC places that column's name, as reported by the server, into a printf-style format string. It later expands that string with one argument while it builds the WHERE clause of its positioned SELECT, UPDATE, and DELETE statements. A column name that contains format directives makes the driver read unrelated memory, which can crash the application or copy client memory into query text sent to the server. The name can come from a server not trusted under current SSL settings,…"
+        },
+        {
+          "date": "2026-11-02",
+          "version": null,
+          "text": "CVE-2026-120065 [Cursor]: For an updatable cursor over a table without OIDs that has an auto-increment int4 column, psqlODBC uses that column to identify rows. It places the column's name, as reported by the server, between double quotes in its keyset queries and in the WHERE clause of its positioned SELECT, UPDATE, and DELETE statements, without doubling any double quote in the name. A column name that contains a double quote therefore changes the SQL that the driver runs with the application's privileges, including which rows a positioned UPDATE or DELETE affects. Any database user who can…"
+        },
+        {
+          "date": "2026-11-02",
+          "version": null,
+          "text": "CVE-2026-120067 [Cursor]: For updatable cursors, which are enabled by default, psqlODBC adds hidden ctid and, for tables with OIDs, oid columns to the query. It copies each value into a 32-byte stack buffer using the length the server sent, without checking it against the buffer size, so a value of 32 bytes or more writes past the buffer. A server not trusted under current SSL settings can send such a value. So can any database user who can create a view with its own column named ctid that the application reads with an updatable cursor. Builds with _FORTIFY_SOURCE abort; other builds overwrit…"
+        },
+        {
+          "date": "2026-11-02",
+          "version": null,
+          "text": "CVE-2026-120630 [CrewAI]: CrewAI contains an SSRF vulnerability caused by its SSRF guard and HTTP client, which both miss malicious content in URLs by checking opposite content passed to it, enabling any request that injects a malicious URL to perform SSRF, such as with the ScrapWebsiteTool."
+        },
+        {
+          "date": "2026-11-01",
+          "version": null,
+          "text": "CVE-2026-120338 [MCP]: Prefab UI's Generative UI sandbox runs caller-supplied Python inside Pyodide, Python compiled to WebAssembly, in a Deno subprocess. The feature is documented as isolation for untrusted code, including LLM-written UI. From prefab-ui 0.14.0 through 0.20.2 the launcher starts Deno with unrestricted --allow-read, --allow-write, and --allow-net, and the runner leaves the Deno API on the JavaScript global object. Pyodide's js module proxies that global, so the Python can call Deno.readTextFileSync and Deno.writeTextFileSync. A caller who can supply the code can read and write…"
+        },
+        {
+          "date": "2026-10-30",
+          "version": null,
+          "text": "CVE-2026-110732 [MCP]: The AI Engine – The Chatbot, AI Framework & MCP for WordPress plugin for WordPress is vulnerable to Missing Authorization in all versions up to, and including, 3.8.6 This is due to the MCP module's OAuth 2.1 Dynamic Client Registration endpoint (/wp-json/mcp/v1/oauth/register) being registered with a permission_callback of __return_true, allowing an unauthenticated user to register an active OAuth client with an attacker-controlled redirect URI. This makes it possible for unauthenticated attackers to obtain an administrator-bound MCP access token, and thereby full admin…"
+        },
+        {
+          "date": "2026-10-30",
+          "version": null,
+          "text": "CVE-2026-119287 [MCP]: Zuke is a code-first, strongly typed build automation system for Deno. Prior to 1.51.0, the @zuke/core MCP registry mode accepts command-form registry descriptors without applying the ZUKE_REGISTRY_LAUNCH_HOSTS authorization enforced for remote module descriptors. When zuke mcp --registry --allow-run reads a registry writable by another party and a run-capable caller invokes the affected tool, the registry writer can choose the program and arguments executed with the operator's environment and workspace access. The --allow-run and --protect name globs do not contain the…"
+        },
+        {
+          "date": "2026-10-30",
+          "version": null,
+          "text": "CVE-2026-61789 [MCP]: DBHub is a database MCP server for Postgres, MySQL, SQL Server, Oracle, MariaDB, SQLite. Prior to 0.22.6, read-only SQL validation can be bypassed on the MySQL and MariaDB connectors. In `src/utils/sql-parser.ts`, `scanSingleLineComment` treats every double dash as a comment start, whereas MySQL and MariaDB require following whitespace, a control character, or the end of the line. The read-only check in `src/tools/execute-sql.ts` validates split statements with `isReadOnlySQL`, but `src/connectors/mysql/index.ts` and `src/connectors/mariadb/index.ts` execute the original…"
+        },
+        {
+          "date": "2026-10-30",
+          "version": null,
+          "text": "CVE-2026-119979 [MCP]: LM Studio before 0.4.22+1 contains a path traversal vulnerability in the model downloader's resolveDownloadRequest that allows attackers to write files outside the models directory using backslash-separated traversal filenames. Attackers can trick users into downloading a crafted model repository that plants a plugin manifest.json, install-state.json and mcp-bridge-config.json, running an attacker-supplied Python payload on every launch."
+        },
+        {
+          "date": "2026-10-30",
+          "version": null,
+          "text": "CVE-2026-62264 [MCP]: PDF Reader MCP is a Model Context Protocol server for reading PDF documents. In versions 2.2.0 and later prior to 3.0.1, when `MCP_TRANSPORT=http` enables the opt-in HTTP server, `@sylphx/pdf-reader-mcp` reads `MCP_API_KEY` and logs that `X-API-Key` authentication is enabled but never validates the `X-API-Key` header on incoming requests. The `/mcp` endpoint consequently accepts unauthenticated clients. With the default bind address of `0.0.0.0`, any client able to reach the port can invoke every PDF tool and read any PDF the server process can open on the host, despite…"
+        },
+        {
+          "date": "2026-10-30",
+          "version": null,
+          "text": "CVE-2026-62863 [MCP]: MoLing is a computer-use and browser-use based MCP server. Prior to 0.5.0, when MoLing runs in SSE mode using `-l`, its `/sse` and `/message` HTTP endpoints do not authenticate requests and the `mcp-go` dependency sets `Access-Control-Allow-Origin: *`. A malicious web page can open a cross-origin `EventSource` to `/sse`, including a loopback listener, and read the `endpoint` event to obtain `sessionId`. After a victim running SSE mode visits that page, the attacker can use the disclosed `sessionId` against `/message` to send unauthorized MCP tool calls. Depending on the…"
+        },
+        {
+          "date": "2026-10-30",
+          "version": null,
+          "text": "CVE-2026-62331 [Claude Code]: praktor is a multi-agent Claude Code orchestrator with Telegram input and output, Docker isolation, and a Mission Control UI. Prior to 0.9.1, both Telegram upload sites in `internal/telegram/bot.go` concatenate the attacker-controlled document filename into a destination path without sanitization, and `path.Join` collapses parent-directory traversal. A remote Telegram user who can message the bot can therefore write outside `uploads/` within the persistent agent workspace mounted at `/workspace/agent`. Because `allow_from: []` permits all senders by default, no p…"
+        },
+        {
+          "date": "2026-10-30",
+          "version": null,
+          "text": "CVE-2026-61708 [Copilot]: SOCFortress CoPilot focuses on providing a single pane of glass for all your security operations needs. Prior to 0.1.76, `POST /api/agent_data_store/upload` in `backend/app/data_store/data_store_routes.py` permits `customer_user` callers to choose `bucket_name` and `object_name` without an allowlist, tenant prefix, ownership check or content restriction. The only file check requires a nonempty filename. The operations in `backend/app/data_store/data_store_operations.py` create missing buckets and upsert objects, allowing existing objects belonging to any tenant to be…"
+        },
+        {
+          "date": "2026-10-30",
+          "version": null,
+          "text": "CVE-2026-61728 [Copilot]: SOCFortress CoPilot focuses on providing a single pane of glass for all your security operations needs. In affected snapshots preceding the respective 0.1.70 and 0.1.76 sink repairs, portal users, including `customer_user`, can submit stored markup through `POST /api/incidents/db_operations/alert/comment`. In `customer-portal/src/components/alerts/AlertDetails/AlertComment.vue`, `commentHtml` replaces newlines in `comment.comment` but passes the result to `v-html` without escaping or sanitizing HTML. When another user views the poisoned alert, stored script executes…"
+        },
+        {
+          "date": "2026-10-30",
+          "version": null,
+          "text": "CVE-2026-61729 [Copilot]: SOCFortress CoPilot focuses on providing a single pane of glass for all your security operations needs. Prior to 0.1.76, `verify_graylog_header` in `backend/app/active_response/routes/graylog.py` and `verify_velociraptor_header` in `backend/app/incidents/routes/incident_alert.py` authenticate webhooks against `GRAYLOG_API_HEADER_VALUE` and `VELOCIRAPTOR_API_HEADER_VALUE` with the same publicly hardcoded fallback. The same default is shipped in `.env.example`. Deployments that leave either setting unset or unchanged permit an anonymous caller with the known header val…"
+        },
+        {
+          "date": "2026-10-30",
+          "version": null,
+          "text": "CVE-2026-61730 [Copilot]: SOCFortress CoPilot focuses on providing a single pane of glass for all your security operations needs. In affected deployments, the unauthenticated `/scoutsuite-report` `StaticFiles` mount in `backend/copilot.py` exposes the `scoutsuite-report` directory even though normal /api routes require JWT authentication. Generated HTML reports and `scoutsuite-results/scoutsuite_results_<name>.js` files disclose AWS, Azure and GCP IAM principals, resource inventories, misconfigurations and findings. Report names derive from caller-selected names with predictable defaults. Dur…"
+        },
+        {
+          "date": "2026-10-30",
+          "version": null,
+          "text": "CVE-2026-61738 [Copilot]: SOCFortress CoPilot focuses on providing a single pane of glass for all your security operations needs. Prior to 0.1.77, `POST /api/scoutsuite/generate-gcp-report` in `backend/app/integrations/scoutsuite/routes/scoutsuite.py` admits admin and analyst users and validates the uploaded content as `GCPScoutSuiteJSON`, but passes raw `file.filename` from the multipart header to `save_file_to_directory` in `backend/app/integrations/scoutsuite/services/scoutsuite.py`. The writer combines this filename with `scoutsuite-report` using `os.path.join` without sanitization or a r…"
+        },
+        {
+          "date": "2026-10-30",
+          "version": null,
+          "text": "CVE-2026-61739 [Copilot]: SOCFortress CoPilot focuses on providing a single pane of glass for all your security operations needs. Prior to 0.1.77, the Velociraptor Sigma exclusion-management endpoints in `backend/app/incidents/routes/incident_alert.py` omit role and tenant authorization, and `POST /api/incidents/alerts/create/velo-sigma/exclusion` does not validate credentials. Its `return_username_for_logging` dependency in `backend/app/auth/utils.py` calls `decode_token`, which returns ordinary Invalid token or Expired signature strings on failure, and the dependency passes these strings th…"
+        },
+        {
+          "date": "2026-10-29",
+          "version": null,
+          "text": "CVE-2026-119025 [MCP]: open 7.2.0 before 11.0.0 contains an OS command injection vulnerability that allows attackers to execute PowerShell code by supplying crafted URLs on Windows and WSL. Attackers can embed $(...) subexpressions in URLs, such as OAuth authorization_endpoint values from malicious MCP servers, which execute when index.js passes them unescaped to powershell -EncodedCommand."
+        },
+        {
+          "date": "2026-10-29",
+          "version": null,
+          "text": "CVE-2026-61707 [Copilot]: SOCFortress CoPilot focuses on providing a single pane of glass for all your security operations needs. Prior to 0.1.76, in the reported deployment, case-report templates uploaded by `customer_user`, the lowest-privilege portal role, are later executed by non-sandboxed Jinja2 engines when an admin or analyst generates a report. The `/case-report-template/upload` route in `backend/app/incidents/routes/db_operations.py` validates only the filename-derived MIME type, not the template content. Templates share a global store without customer_code scoping, and `customer_us…"
+        },
+        {
+          "date": "2026-10-28",
+          "version": null,
+          "text": "CVE-2026-107745 [MCP]: The AI Engine – The Chatbot, AI Framework & MCP for WordPress plugin for WordPress is vulnerable to limited media file deletion due to insufficient file path validation in the upload_file function in all versions up to, and including, 3.8.4 This makes it possible for authenticated attackers, with subscriber-level access and above, to delete arbitrary media files on the server. This requires the administrator to have enabled the Public API option, and exploitation depends on the hourly cleanup_files task running after the malicious upload."
+        },
+        {
+          "date": "2026-10-28",
+          "version": null,
+          "text": "CVE-2026-118378 [MCP]: Tabularis before 0.28.0 contains an SQL injection vulnerability in its SQLite driver that allows MCP clients to execute stacked statements by supplying a crafted table_name to the describe_table tool. Attackers, including AI agents steered by untrusted content, can close the quoted PRAGMA argument and append statements to read, modify, or drop SQLite data, bypassing read-only mode and write approval."
+        },
+        {
+          "date": "2026-10-28",
+          "version": null,
+          "text": "CVE-2026-111960 [MCP]: The Royal MCP WordPress plugin before 1.5.10 does not perform object-level or post-type authorisation checks in one of its search tools, allowing authenticated users such as a subscriber to disclose the title and content of non-public entries, including personal data stored by a companion Royal MCP WordPress plugin before 1.5.10."
+        },
+        {
+          "date": "2026-10-28",
+          "version": null,
+          "text": "CVE-2026-111961 [MCP]: The Royal MCP WordPress plugin before 1.5.10 does not perform an object-level permission check before duplicating a requested page, relying on a generic capability, which allows users with contributor-level access to read the full content of any private or draft page and to publish it without holding the publish capability."
+        },
+        {
+          "date": "2026-10-28",
+          "version": null,
+          "text": "CVE-2026-99164 [MCP]: In the Linux kernel, the following vulnerability has been resolved: spi: imx: fix slab corruption from undersized DMA bounce buffers Since commit faa8e404ad8e (\"spi: imx: support dynamic burst length for ECSPI DMA mode\"), the driver allocates its private DMA TX/RX buffers with kzalloc(dma_len), where dma_len is only rounded up to 4 bytes, but maps, syncs and unmaps them with DMA_CACHE_ALIGNED_LEN(dma_len), i.e. rounded up to the cache line size. As a result, the DMA API operates on memory beyond the end of the allocation. This was observed on a custom i.MX8MP platform wi…"
+        },
+        {
+          "date": "2026-10-28",
+          "version": null,
+          "text": "CVE-2026-59176 [MCP]: Functype is a family of TypeScript functional programming libraries. Prior to 1.4.4, the `set_functype_version` MCP tool in `functype-mcp-server` accepts an unconstrained `version` string using only `z.string()` validation in `packages/mcp-server/src/index.ts` and interpolates it into `functype@<version>` for `pnpm add`. Package-alias syntaxes such as `file:`, `npm:`, URLs, or paths can cause an arbitrary local or remote package to be installed as functype. Immediately afterward, `initDocsData(true)` in `packages/mcp-server/src/lib/docs/data.ts` resolves `functype/cli` a…"
+        },
+        {
+          "date": "2026-10-28",
+          "version": null,
+          "text": "CVE-2026-61542 [MCP]: Gearboy is a Game Boy, Game Boy Color, and Super Game Boy emulator and debugger with an embedded MCP server. Gearsystem, the affected component, has an optional `--mcp-http` mode that accepts unauthenticated MCP requests from any reachable network peer despite localhost-only documentation and logging. In the described `platforms/shared/desktop/mcp/mcp_transport.h` transport, the socket binds `INADDR_ANY`, normally on port 7777, and POST requests to `/mcp` reach dispatch without `Authorization`, `Host`, or `Origin` checks. Responses and OPTIONS advertise `Access-Control-A…"
+        },
+        {
+          "date": "2026-10-28",
+          "version": null,
+          "text": "CVE-2026-61546 [MCP]: AnkiMCP is an Anki addon that implements an MCP server, enabling AI assistants to interact with the Anki flashcard application. Prior to version 0.21.0, `anki_mcp_server/mcp_server.py` globally disables FastMCP DNS-rebinding protection through `TransportSecuritySettings` with `enable_dns_rebinding_protection=False`, including for the default local Streamable HTTP listener. The defaults in `anki_mcp_server/config.py` enable `http_enabled` on `127.0.0.1:3141`, with an empty `http_path` selecting the root endpoint. No bearer token, API key, session secret, strict `Host` all…"
+        },
+        {
+          "date": "2026-10-28",
+          "version": null,
+          "text": "CVE-2026-99112 [Cursor]: In the Linux kernel, the following vulnerability has been resolved: net/sched: cls_flower: validate mask pointer after nla_next() fl_set_enc_opt() iterates the key's nested tunnel-option attributes with nla_for_each_attr() while advancing a single mask pointer via nla_next() at the bottom of each loop, so the mask cursor is driven by the number of key attributes rather than by the mask's own attributes. The nla_ok() added by commit c96adff956191 (\"cls_flower: call nla_ok() before nla_next()\") only validates the mask pointer that was just consumed; the pointer produced…"
+        },
+        {
+          "date": "2026-10-28",
+          "version": null,
+          "text": "CVE-2026-99175 [Cursor]: In the Linux kernel, the following vulnerability has been resolved: fsnotify: prevent mark additions during connector teardown fsnotify_destroy_marks() keeps a reference to its current mark while it drops conn->lock to destroy the mark. This stabilizes the forward-walk cursor, but does not prevent a new mark from being inserted before it. For example, an inotify watch re-added after IN_IGNORED sorts before the old, detached mark for the same group. The walk can miss the replacement and then detach the entire connector from the object. The replacement is still on its g…"
+        },
+        {
+          "date": "2026-10-28",
+          "version": null,
+          "text": "CVE-2026-118667 [LangGraph]: LangGraph Python SDK is used to connect to running LangGraph API servers, manage assistants, threads and stream runs from Python applications. From langgraph-sdk 0.4.0 until 0.4.6, and from langgraph 1.2.3 until 1.2.14 when RemoteGraph v3 streaming uses an affected langgraph-sdk version, the synchronous and asynchronous v3 stream get_tree and _fetch_state helpers interpolate caller-controlled assistant_id and thread_id values into authenticated GET request paths without using _quote_path_param. Relative path segments can therefore be normalized into another readab…"
+        },
+        {
+          "date": "2026-10-28",
+          "version": null,
+          "text": "CVE-2026-118668 [LangGraph]: langgraph-api implements the LangGraph API for rapid development and testing. From 0.1.2 until 0.15.0, JavaScript or TypeScript custom authentication Store authorization handlers can return a rewritten namespace that is not carried across the runtime boundary and applied before the Store operation. An authenticated user can therefore access another user's Store namespace when a deployment relies on namespace rewriting for isolation, allowing unauthorized reads, overwrites, searches, or deletions. Python custom authentication and handlers that reject unauthorized n…"
+        },
+        {
+          "date": "2026-10-27",
+          "version": null,
+          "text": "CVE-2026-117558 [MCP]: The ai-sdlc plugin MCP server through 0.31.2 contains an OS command injection vulnerability that allows attackers to execute commands by supplying shell metacharacters in the repo argument. The unvalidated repo value is interpolated into gh issue view or gh pr view commands run via execSync(), letting prompt-injected agents execute commands as the MCP server user."
+        },
+        {
+          "date": "2026-10-27",
+          "version": null,
+          "text": "CVE-2026-117559 [MCP]: DroidMind through 0.4.0 contains a command injection vulnerability that allows MCP clients to bypass the shell command allowlist by using $(...) or backtick substitution. Attackers, including prompt-injected agents, can inject commands through parameters interpolated into Device.run_shell() or unvalidated Device.list_directory() to run blocked commands such as reboot on connected Android devices."
+        },
+        {
+          "date": "2026-10-27",
+          "version": null,
+          "text": "CVE-2026-117560 [MCP]: ATXP Gemini CLI extension through 1.0.0 contains an OS command injection vulnerability in runAtxp() that allows attackers to execute shell commands through unsanitized MCP tool parameters. Attackers can plant instructions in email or SMS content to inject $() or backtick substitutions into parameters like message_id, subject, or query, running commands as the user."
+        },
+        {
+          "date": "2026-10-27",
+          "version": null,
+          "text": "CVE-2026-117561 [MCP]: Codefriar sf-mcp through 1.3.2 contains an OS command injection vulnerability that allows attackers to execute shell commands by supplying crafted Salesforce CLI tool flag values. Because escapeValue() in src/utils.ts fails to neutralize backticks, $() substitution, and other shell metacharacters, these values reach execSync in executeSfCommand and run as the MCP server user."
+        },
+        {
+          "date": "2026-10-27",
+          "version": null,
+          "text": "CVE-2026-117567 [MCP]: esp-mcp through commit 28afddf contains an OS command injection vulnerability that allows attackers to run arbitrary commands by supplying shell metacharacters in MCP tool parameters. Attackers influencing agent tool calls through prompt injection can inject metacharacters into target, port, project_path, or project_name values passed to asyncio.create_subprocess_shell, executing commands as the MCP server user."
+        },
+        {
+          "date": "2026-10-27",
+          "version": null,
+          "text": "CVE-2026-117568 [MCP]: mcp-ffmpeg through 1.0.5 contains an OS command injection vulnerability that allows attackers to run shell commands by supplying crafted videoPath or outputDir values to the resize-video, extract-audio and get-video-info tools. Attackers can embed $(), backticks or a closing double quote in an existing file or directory name to break out of the child_process.exec command string and execute commands as the MCP server user."
+        },
+        {
+          "date": "2026-10-27",
+          "version": null,
+          "text": "CVE-2026-117569 [MCP]: Kali-GPT through commit a608c74 contains an OS command injection vulnerability in execute_tool() in kali_gpt/tools/mcp_server.py that allows MCP clients to run commands via unsanitized scanner parameters. Attackers or prompt-injected agents can embed shell metacharacters in parameters like target, ports, domain, wordlist, or url, executed via subprocess.run with shell=True as the MCP server user."
+        },
+        {
+          "date": "2026-10-27",
+          "version": null,
+          "text": "CVE-2026-117570 [MCP]: Vorota-ai nmap-mcp through commit 3636afa contains an improper allowlist validation vulnerability in the scan_vulnerabilities tool that lets callers run blocked NSE script categories. MCP clients or prompt-injected agents can pass categories like exploit, dos, brute, or intrusive to nmap --script, running intrusive, brute-force, exploit, or denial-of-service scripts against scan targets."
+        },
+        {
+          "date": "2026-10-27",
+          "version": null,
+          "text": "CVE-2026-117573 [MCP]: hagent through commit 761eec6 contains an OS command injection vulnerability that allows MCP clients to execute shell commands by injecting metacharacters into the args parameter of the hagent_arduino and hagent_esp32 tools. Attackers or prompt-injected agents can supply crafted args interpolated into arduino-cli and idf.py commands run with subprocess.run(shell=True) to execute commands as the MCP server user."
+        },
+        {
+          "date": "2026-10-27",
+          "version": null,
+          "text": "CVE-2026-115413 [MCP]: Missing token audience validation in the OAuth authentication mode of AWS API MCP Server before version 1.6.0 might allow local users to run AWS operations with the server's configured AWS credentials via an access token issued to another application by the same identity provider. To remediate this issue, users should upgrade to version 1.6.0 and configure the expected token audience or client ID for the server."
+        },
+        {
+          "date": "2026-10-27",
+          "version": null,
+          "text": "CVE-2026-116684 [MCP]: The Model Context Protocol Python SDK is the official Python SDK for Model Context Protocol servers and clients. From 1.10.0 until 1.30.0 and 2.2.0, server-side bearer authentication configured through AuthSettings with token_verifier accepts a valid token issued for another service when the authorization server serves multiple resources and the TokenVerifier does not independently validate the aud audience. This resource-confusion flaw lets a token holder authenticate to the wrong MCP server and exercise that token's resulting access. This issue is fixed in versions 1.…"
+        },
+        {
+          "date": "2026-10-27",
+          "version": null,
+          "text": "CVE-2026-116691 [CrewAI]: MLflow is an open source AI engineering platform for agents, large language models, and machine learning models. From 2.19.0 until 3.17.0, mlflow.crewai.autolog() records CrewAI Agent objects without consistently sanitizing nested credential-bearing values. mlflow/crewai/autolog.py::_get_agent_attributes() converts the Agent llm field to a string that includes the provider API key, while mlflow/crewai/autolog.py::_construct_full_inputs() expands the Agent object into mlflow.spanInputs. Applications can therefore send plaintext provider credentials to the MLflow trace…"
+        }
+      ],
+      "ids": [
+        "CVE-2026-107745",
+        "CVE-2026-110732",
+        "CVE-2026-111960",
+        "CVE-2026-111961",
+        "CVE-2026-115413",
+        "CVE-2026-116635",
+        "CVE-2026-116684",
+        "CVE-2026-116691",
+        "CVE-2026-117558",
+        "CVE-2026-117559",
+        "CVE-2026-117560",
+        "CVE-2026-117561",
+        "CVE-2026-117567",
+        "CVE-2026-117568",
+        "CVE-2026-117569",
+        "CVE-2026-117570",
+        "CVE-2026-117573",
+        "CVE-2026-118378",
+        "CVE-2026-118667",
+        "CVE-2026-118668",
+        "CVE-2026-119025",
+        "CVE-2026-119287",
+        "CVE-2026-119979",
+        "CVE-2026-120058",
+        "CVE-2026-120059",
+        "CVE-2026-120065",
+        "CVE-2026-120067",
+        "CVE-2026-120323",
+        "CVE-2026-120338",
+        "CVE-2026-120450",
+        "CVE-2026-120492",
+        "CVE-2026-120630",
+        "CVE-2026-59176",
+        "CVE-2026-61542",
+        "CVE-2026-61546",
+        "CVE-2026-61707",
+        "CVE-2026-61708",
+        "CVE-2026-61728",
+        "CVE-2026-61729",
+        "CVE-2026-61730",
+        "CVE-2026-61738",
+        "CVE-2026-61739",
+        "CVE-2026-61789",
+        "CVE-2026-62264",
+        "CVE-2026-62331",
+        "CVE-2026-62863",
+        "CVE-2026-89229",
+        "CVE-2026-99112",
+        "CVE-2026-99164",
+        "CVE-2026-99175"
+      ],
+      "read_with": "curl"
+    },
+    {
+      "id": "F16",
+      "opened": true,
+      "reason": null,
+      "latest": "v2.2.5",
+      "latest_date": "2026-10-30",
+      "new": [
+        {
+          "date": "2026-10-30",
+          "version": "v2.2.5",
+          "text": "### Highlights - **Worktree and Shell Mode Shortcuts**: Press `⌘⌥O` on macOS or `Ctrl+Alt+O` on Windows and Linux to choose a worktree, and `⌘⌥B` or `Ctrl+Alt+B` to choose its base branch. `⌘⇧X` or `Ctrl+Shift+X` now toggles shell mode in the composer. ([#60713](https://github.com/anomalyco/opencode/pull/60713)) - **Send Quotes From the Comment Popup**: Hold `⌘` or `Ctrl` in the quote popup to turn its checkmark into send, or press `⌘Enter` or `Ctrl+Enter`, to send just that quote and comment while leaving the rest of the composer untouched. ([#60640](https://github.com/anomalyco/opencode/pul…"
+        },
+        {
+          "date": "2026-10-30",
+          "version": "v2.2.4",
+          "text": "### Highlights - **Persistent Desktop Terminals**: Desktop terminals now belong to the session, survive server restarts with their scrollback, and stay synchronized with the TUI and other windows. Renamed terminals also keep their names across restarts. ([#60346](https://github.com/anomalyco/opencode/pull/60346)) - **Publish Interactive Artifacts**: Enable `\"experimental\": { \"artifacts\": true }` in `opencode.json` to let agents publish, update, and serve HTML or static artifacts through the built-in local provider or plugin-provided storage. ([#60351](https://github.com/anomalyco/opencode/pul…"
+        },
+        {
+          "date": "2026-10-30",
+          "version": "v2.2.3",
+          "text": "### Highlights - **Use Claude Code in OpenCode**: Install Claude Code, run `claude auth login`, then select **Claude Agent** in `/connect` to use your Claude Code login and models. ([#58782](https://github.com/anomalyco/opencode/pull/58782)) - **Faster Long Sessions in Desktop**: Streaming replies and long conversations now do much less rendering work. ([#60489](https://github.com/anomalyco/opencode/pull/60489), [#60521](https://github.com/anomalyco/opencode/pull/60521), [#60513](https://github.com/anomalyco/opencode/pull/60513), [#60481](https://github.com/anomalyco/opencode/pull/60481)) - *…"
+        },
+        {
+          "date": "2026-10-29",
+          "version": "v2.2.2",
+          "text": "### Highlights - **Image Generation by Default**: When a connected provider supports image models, agents can now use `experimental_image_generate` without additional configuration. Set its preferred model through `experimental.image_generate.model`. ([#60258](https://github.com/anomalyco/opencode/pull/60258)) - **Faster Worktree Selection**: On the new-session screen, click the current Git branch to open that project’s “Run session in” worktree picker directly. ([#60263](https://github.com/anomalyco/opencode/pull/60263)) - **Unified Quotes and Annotations**: Timeline quotes, terminal quotes,…"
+        },
+        {
+          "date": "2026-10-29",
+          "version": "v2.2.1",
+          "text": "### Highlights - **Keep Working Toward a Goal**: Run `/goal <objective>` in the TUI or Desktop to let the session continue until a reviewer confirms the objective is met. Use `/goal pause`, `/goal resume`, or `/goal clear` to control it. ([#59437](https://github.com/anomalyco/opencode/pull/59437)) - **Generate Images**: Enable `experimental.image_generate` to let agents create or edit images with the new `image_generate` tool. You can optionally set its default model with `experimental.image_generate.model`. ([#59939](https://github.com/anomalyco/opencode/pull/59939), [#60096](https://github.…"
+        },
+        {
+          "date": "2026-10-27",
+          "version": "v2.2.0",
+          "text": "### Highlights - Create, install and share [Desktop plugins](https://opencode.ai/v2/docs/build/plugins/gui) (experimental) ([#55246](https://github.com/anomalyco/opencode/pull/55246), [#59469](https://github.com/anomalyco/opencode/pull/59469), [#59489](https://github.com/anomalyco/opencode/pull/59489)) - Refreshed the desktop app experience ([#56898](https://github.com/anomalyco/opencode/pull/56898), [#58865](https://github.com/anomalyco/opencode/pull/58865), [#55838](https://github.com/anomalyco/opencode/pull/55838), [#57962](https://github.com/anomalyco/opencode/pull/57962)) - Add experimen…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F17",
+      "opened": true,
+      "reason": null,
+      "latest": "2.37.1",
+      "latest_date": "2026-10-31",
+      "new": [
+        {
+          "date": "2026-10-31",
+          "version": "2.37.1",
+          "text": "## Automatic V2 Agent Upgrades and ACP Sign-In This release turns on automatic V2 agent upgrades by default when a V3 session starts and lets ACP clients that declare terminal authentication sign in to Kiro from a terminal. Custom agents built for V2 keep working on V3 without a manual upgrade run, and a capable client opens a terminal sign-in flow. It also draws Mermaid node shapes and nested subgraphs, adds a KIRO_RUNTIME_DIR override for the bundled runtime, and tidies V3 approval prompts. Fixes cover fullscreen scrolling, click targeting in fullscreen, and the Homebrew upgrade hint. ## Up…"
+        },
+        {
+          "date": "2026-10-31",
+          "version": "2.37.1",
+          "text": "## Automatic V2 Agent Upgrades and ACP Sign-In This release turns on automatic V2 agent upgrades by default when a V3 session starts and lets ACP clients that declare terminal authentication sign in to Kiro from a terminal. Custom agents built for V2 keep working on V3 without a manual upgrade run, and a capable client opens a terminal sign-in flow. It also draws Mermaid node shapes and nested subgraphs, adds a KIRO_RUNTIME_DIR override for the bundled runtime, and tidies V3 approval prompts. Fixes cover fullscreen scrolling, click targeting in fullscreen, and the Homebrew upgrade hint. ## Up…"
+        },
+        {
+          "date": "2026-10-30",
+          "version": null,
+          "text": "Models ## Generally Available: Claude Opus 5.5, GPT-5.6 Sol Claude Opus 5.5 and GPT-5.6 Sol are generally available with full Kiro support. Expanded capacity supports more dependable access for production workloads. Their current plans, regions, surfaces, context windows, credit multipliers, and inference scopes remain unchanged. Both models' Experimental labels no longer apply. The Kiro Excluded Models indemnity exception also no longer applies to these models. To load the latest model list, restart the IDE or CLI, run kirocrew restart for Crew, or refresh Web in your browser. Learn more ->"
+        },
+        {
+          "date": "2026-10-30",
+          "version": "2.37.0",
+          "text": "2.37.0CLI Latest Patches"
+        },
+        {
+          "date": "2026-10-30",
+          "version": "2.37.0",
+          "text": "2.37.0CLI Latest Patches"
+        },
+        {
+          "date": "2026-10-29",
+          "version": "2.36.0",
+          "text": "2.36.0CLI ## Approve for Me, Subcommand Approval Rules, and an ACP Engine Setting This release adds Approve for me to interactive V3 sessions. Kiro approves routine actions for you, blocks risky ones, and asks when unsure, so work no longer stops at every routine prompt. Existing deny, ask, and allow rules decide first; Approve for me handles only unsettled actions and marks each action it approves Approved for you. Turn it on under /permissions when available. ## Let Kiro approve routine actions for you In an interactive V3 session, run /permissions and choose Policies. When the page offers…"
+        },
+        {
+          "date": "2026-10-29",
+          "version": "2.36.0",
+          "text": "2.36.0CLI ## Approve for Me, Subcommand Approval Rules, and an ACP Engine Setting This release adds Approve for me to interactive V3 sessions. Kiro approves routine actions for you, blocks risky ones, and asks when unsure, so work no longer stops at every routine prompt. Existing deny, ask, and allow rules decide first; Approve for me handles only unsettled actions and marks each action it approves Approved for you. Turn it on under /permissions when available. ## Let Kiro approve routine actions for you In an interactive V3 session, run /permissions and choose Policies. When the page offers…"
+        },
+        {
+          "date": "2026-10-28",
+          "version": null,
+          "text": "Web ## Session Recaps, Guided Workflows, and Reorganized Settings Kiro Web can now keep a short recap for each session and separates agent settings from account settings. Workflows now ask for input during planning and review. Schedule replaces Automations, and reopened sessions stay usable while their sandbox starts. ## Agent Config and Settings, Side by Side The sidebar now separates Agent Config for choices that shape the agent from Settings for your account and environment. Agent Config includes Cloud Config, Steering, Skills, Workflows, Powers & MCP, Model fallback, and Memory; Settings…"
+        },
+        {
+          "date": "2026-10-28",
+          "version": "1.4.62",
+          "text": "1.4.62IDE ## Windows System-Wide Installer, Drag Files Into Chat Without Shift, Framed Mermaid Diagrams This release adds Windows system-wide installers for x64 and ARM64 devices. It also brings drag-and-drop file attachments to chat without holding Shift, and framed Mermaid diagrams that stay readable on dark themes. It fixes slash commands that did not run when you typed right after them, and hook toggles that failed without an error. Improvements Fixes"
+        },
+        {
+          "date": "2026-10-28",
+          "version": "2.35.0",
+          "text": "## Elevated-Privilege Warning and Organization Controls in V3 This release warns you when Kiro CLI starts as root or Administrator and makes V3 sessions follow your organization's MCP and web tools settings. It also lets you jump back to the prompt from a long answer in fullscreen, shows which MCP servers your registry hid in V3, and fixes model fallback, session resume, dictation, and MCP connection issues. ## Know when Kiro CLI runs with elevated privileges Kiro CLI now warns you when a session starts as root on macOS and Linux or as Administrator on Windows. Tools, shell commands, Hooks, a…"
+        },
+        {
+          "date": "2026-10-28",
+          "version": "2.35.0",
+          "text": "## Elevated-Privilege Warning and Organization Controls in V3 This release warns you when Kiro CLI starts as root or Administrator and makes V3 sessions follow your organization's MCP and web tools settings. It also lets you jump back to the prompt from a long answer in fullscreen, shows which MCP servers your registry hid in V3, and fixes model fallback, session resume, dictation, and MCP connection issues. ## Know when Kiro CLI runs with elevated privileges Kiro CLI now warns you when a session starts as root on macOS and Linux or as Administrator on Windows. Tools, shell commands, Hooks, a…"
+        },
+        {
+          "date": "2026-10-27",
+          "version": "1.4.51",
+          "text": "1.4.51IDE ## Reconnect After Session Expiry and Keyboard Comments in Markdown Review This release adds a faster way to reconnect when an IAM Identity Center or AWS Builder ID session expires, without choosing a sign-in method or re-entering your Start URL. Markdown Review now lets you copy selected text and send comments from the keyboard. Kiro also now tells you when a file edit fails to save. Improvements Fixes"
+        },
+        {
+          "date": "2026-10-27",
+          "version": "2.35.0",
+          "text": "2.35.0CLI Latest Patches"
+        },
+        {
+          "date": "2026-10-27",
+          "version": "2.35.0",
+          "text": "2.35.0CLI Latest Patches"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F18",
+      "opened": true,
+      "reason": null,
+      "latest": "v3.11.238",
+      "latest_date": "2026-10-30",
+      "new": [
+        {
+          "date": "2026-10-30",
+          "version": "v3.11.238",
+          "text": "New Members an enterprise admin has listed for Anthropic’s Cyber Verification Program can now switch the program on or off for themselves from the Devin Local model picker. Off routes their Anthropic requests like everyone else’s, under the team’s usual data retention settings."
+        },
+        {
+          "date": "2026-10-30",
+          "version": "v3.11.235",
+          "text": "Fixed Downloaded diagnostics now keep the last 4 MB of each output log, up from 25 KB, so an export includes the failure you are reporting."
+        },
+        {
+          "date": "2026-10-29",
+          "version": "v3.11.234",
+          "text": "Fixed Reduced memory usage for large Devin Local sessions. Restored multi-select questions in Devin Local."
+        },
+        {
+          "date": "2026-10-28",
+          "version": "v3.11.231",
+          "text": "Fixed In Devin Local, some tool requests, such as web fetches and multi-file edits, now consistently show Allow and Reject buttons."
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F19",
+      "opened": true,
+      "reason": null,
+      "latest": "v1.57.0",
+      "latest_date": "2026-10-27",
+      "new": [
+        {
+          "date": "2026-10-27",
+          "version": "v1.57.0",
+          "text": "notes not available"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F20",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-02",
+      "new": [
+        {
+          "date": "2026-11-02",
+          "version": null,
+          "text": "Clearer Read-only Access in the ComposerViewers who can read but not write to a session now see that they lack write access in the composer, and “Continue in a new session” is offered only when the new session will be able to read this one.“Fix with Devin” Links to the SessionOn a blueprint build page, the “Fix with Devin” toast links straight to the session handling the fix when the batch lands in one session, and points at the rows otherwise.Multi-repo Scans up to 1,000 RepositoriesThe per-scan repository cap for code scans is raised from 500 to 1,000 in the UI and the API.Auto-scan Control…"
+        },
+        {
+          "date": "2026-10-30",
+          "version": null,
+          "text": "Rendered Previews for Markdown and Patch Files from Devin’s MachineMarkdown and .patch/.diff files opened from Devin’s machine now open as a rendered preview, like attachments do, with a toggle back to the source.Files Tab ImprovementsFolders that contain only a single sub-folder open all the way down in one click (shown as parent / child), and each session’s expanded folders are kept when you switch between sessions.Multi-line Secret ValuesEditing an existing secret now accepts multi-line values (for example private keys or JSON files) without collapsing them to a single line.GitHub File Anc…"
+        },
+        {
+          "date": "2026-10-28",
+          "version": null,
+          "text": "Progress Tab Shows Your Tasks LiveThe Progress tab now shows the session’s task list as a live drawer; clicking a task filters the Activity stream to the work done for it. Each session has a single Progress tab, and the separate Tasks tab is retired.Transcript and Composer RefinementsEnd / Cmd+Down jumps to the end of the transcript in one press. Shell cards for chained commands show the whole command and each step’s output. Attached .diff/.patch files render as a Changes list, and you can quote a selection from an attachment’s code view. Error toasts auto-dismiss by default, with a preferenc…"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F21",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-08-19",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F22",
+      "opened": true,
+      "reason": null,
+      "latest": "v2026.10.10",
+      "latest_date": "2026-11-03",
+      "new": [
+        {
+          "date": "2026-11-03",
+          "version": "v2026.10.10",
+          "text": "## 2026.10.10 ### v2026.10.10 For formatted release notes, [read this release on the docs site](https://docs.openclaw.ai/releases/2026.10.10). OpenClaw v2026.10.10 brings Chat Details beside the conversation, an Advisor that can suggest course corrections during a task, and split speech mode for browser Talk. There’s plenty beyond those highlights, with hundreds of improvements and fixes for everyday chats, memory search, automations, coding agents and connected devices. **3,028 source PRs · 1,064 direct commits · 454 contributors** #### Chat Details Panel The main chat view now gathers sessi…"
+        },
+        {
+          "date": "2026-10-29",
+          "version": "v2026.10.9",
+          "text": "## 2026.10.9 ### v2026.10.9 For formatted release notes, [read this release on the docs site](https://docs.openclaw.ai/releases/2026.10.9). **Security release:** v2026.10.9 adds remediations for vulnerable dependencies and repairs credential handling and workspace restrictions. Update OpenClaw to receive these fixes. This is a patch release with no new features. It fixes problems that could leave OpenClaw stopped after an update, prevent recovery of intact agent data, or send tools to the wrong project folder, alongside smaller reliability fixes. **Release scale:** 38 pull requests, 8 direct…"
+        },
+        {
+          "date": "2026-10-27",
+          "version": "v2026.10.8",
+          "text": "## 2026.10.8 ### v2026.10.8 For formatted release notes, [read this release on the docs site](https://docs.openclaw.ai/releases/2026.10.8). **Security release:** v2026.10.8 adds remediations for the eMudhra certificate compromise in the secret egress proxy and its exported trust bundle. Restart the Gateway to apply the change. Apps with independent trust stores and bypass tunnels need their own updates. This is a patch release with no new features. It fixes problems that could stop OpenClaw from installing, updating, starting or delivering replies, alongside smaller app, channel and provider…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F23",
+      "opened": false,
+      "reason": "new version without notes: 1.2.19",
+      "latest": "1.2.19",
+      "latest_date": "2026-10-30",
+      "new": [
+        {
+          "date": "2026-10-30",
+          "version": "1.2.19",
+          "text": "notes not available"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F24",
+      "opened": true,
+      "reason": null,
+      "latest": "1.15.34",
+      "latest_date": "2026-11-01",
+      "new": [
+        {
+          "date": "2026-11-01",
+          "version": "1.15.34",
+          "text": "- Add standalone LiteLLM catalog PR before version bump - Record where crewai run stops before kickoff - Add crewai skill search to list the organization's skills - Pass crewai run --inputs to a Python flow - Add deploy create --zip and print the commit a zip is built from - Document agent planning with planningconfig and migrate reasoning page - Stop offering shut-down Gemini models in crewai create - Raise MissingAPIKeyError for OpenAI-compatible providers - Count repeated tool call stops in anonymous telemetry - Count a crewai run whose project script fails - Let crewai[litellm] import on…"
+        },
+        {
+          "date": "2026-10-29",
+          "version": "1.15.33",
+          "text": "1.15.33"
+        },
+        {
+          "date": "2026-10-27",
+          "version": "1.15.32",
+          "text": "- Fix failing flaky tests - Update snapshot and changelog for v1.15.31 @lorenzejay"
+        },
+        {
+          "date": "2026-10-27",
+          "version": "1.15.31",
+          "text": "- Support conversational flow context compaction. - Update vulnerable audit dependencies. - Stop sending 'stop' to GPT-6 and newer models. - Run the provider listing off the loop in `acleanup_provider_files`. - Emit `LLMGuardrailCompletedEvent` for a malformed guardrail result. - Name the renamed integration token when it is missing. - Fix path traversal in `output_file` via template interpolation. - Patch deserialization, SQL injection, and path traversal vulnerabilities. - Restore configured logging levels after suppression. - Drop checkpoint resume state when copying a crew. - Honor an inj…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F25",
+      "opened": false,
+      "reason": "new version without notes: python-1.24.0",
+      "latest": "python-1.24.0",
+      "latest_date": "2026-10-30",
+      "new": [
+        {
+          "date": "2026-10-30",
+          "version": "python-1.24.0",
+          "text": "notes not available"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F26",
+      "opened": true,
+      "reason": null,
+      "latest": "2026-07-28",
+      "latest_date": "2026-07-28",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F27",
+      "opened": true,
+      "reason": null,
+      "latest": "1.144",
+      "latest_date": "2026-10-28",
+      "new": [
+        {
+          "date": "2026-10-28",
+          "version": "1.144",
+          "text": "## Downloads for 1.144.0 Windows x64Arm64 macOS UniversalIntelApple silicon Linux .deb.rpm.tar.gzArm instructionsSnap ## Release recap The road to GitHub Universe (join us virtually!) is paved with lots of pull requests! So, let's take a step back and look at what we've shipped recently. Remember when agent sessions would stop as soon as you closed your client? We built the Agent Host, a separate process that keeps your agents running, on your local machine or remotely. With language servers in mind, we designed the Agent Host Protocol (AHP) to allow any client to interact with agent sessions…"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F28",
+      "opened": true,
+      "reason": null,
+      "latest": "2026.10.30",
+      "latest_date": "2026-10-30",
+      "new": [
+        {
+          "date": "2026-10-27",
+          "version": null,
+          "text": "CVE-2026-111497 Google Brotli: Google Brotli Unchecked Return Value Vulnerability. Google Brotli contains an unchecked return value vulnerability that allows a remote unauthenticated attacker to corrupt adjacent decoder state memory, disclose sensitive memory contents, cause a denial of service, or potentially execute arbitrary code using a crafted Brotli-compressed stream."
+        }
+      ],
+      "ids": [
+        "CVE-2026-111497"
+      ],
+      "read_with": "curl"
+    }
+  ],
+  "opened": 25,
+  "total": 28
+}
