@@ -1,0 +1,185 @@
+[
+  {
+    "agent": "Claude Code",
+    "file": "observatory/data/agents/claude-code.json",
+    "mode": "auto",
+    "who_decides": "another_model",
+    "cells": [
+      {
+        "action": "read_files",
+        "default": "allow",
+        "scope": "working_directories",
+        "capability": "cap-read-working-dirs",
+        "url": "https://code.claude.com/docs/en/permissions",
+        "all": [
+          "cap-read-working-dirs: working_directories=allow",
+          "cap-read-outside: outside_working_directories=ask"
+        ]
+      },
+      {
+        "action": "write_files",
+        "default": "ask",
+        "scope": "any_path",
+        "capability": "cap-edit",
+        "url": "https://code.claude.com/docs/en/permissions",
+        "all": [
+          "cap-edit: any_path=ask",
+          "cap-protected-paths: protected_paths=ask"
+        ]
+      },
+      {
+        "action": "execute_commands",
+        "default": "allow",
+        "scope": "read_only_commands",
+        "capability": "cap-readonly-commands",
+        "url": "https://code.claude.com/docs/en/permissions",
+        "all": [
+          "cap-readonly-commands: read_only_commands=allow",
+          "cap-commands: all_commands=ask"
+        ]
+      },
+      {
+        "action": "network",
+        "default": "allow",
+        "scope": "preapproved_domains",
+        "capability": "cap-web-preapproved",
+        "url": "https://code.claude.com/docs/en/permissions",
+        "all": [
+          "cap-web-preapproved: preapproved_domains=allow",
+          "cap-web: any_destination=ask"
+        ]
+      },
+      {
+        "action": "use_mcp_tools",
+        "default": null,
+        "scope": null,
+        "capability": null,
+        "url": null
+      }
+    ]
+  },
+  {
+    "agent": "Cursor",
+    "file": "observatory/data/agents/cursor.json",
+    "mode": "auto_review",
+    "who_decides": "another_model",
+    "cells": [
+      {
+        "action": "read_files",
+        "default": "allow",
+        "scope": "whole_system",
+        "capability": "cap-sandbox-read",
+        "url": "https://cursor.com/docs/reference/sandbox.md",
+        "all": [
+          "cap-read-workspace: working_directories=allow",
+          "cap-read-outside: outside_working_directories=allow",
+          "cap-read-ignored: ignored_credential_files=deny",
+          "cap-sandbox-read: whole_system=allow"
+        ]
+      },
+      {
+        "action": "write_files",
+        "default": "allow",
+        "scope": "working_directories",
+        "capability": "cap-write-workspace",
+        "url": "https://cursor.com/docs/agent/security.md",
+        "all": [
+          "cap-write-workspace: working_directories=allow",
+          "cap-sandbox-protected: protected_paths=deny"
+        ]
+      },
+      {
+        "action": "execute_commands",
+        "default": "ask",
+        "scope": "all_commands",
+        "capability": "cap-terminal",
+        "url": "https://cursor.com/docs/agent/security.md",
+        "all": [
+          "cap-terminal: all_commands=ask"
+        ]
+      },
+      {
+        "action": "network",
+        "default": "ask",
+        "scope": "any_destination",
+        "capability": "cap-network",
+        "url": "https://cursor.com/docs/agent/security.md",
+        "all": [
+          "cap-network: any_destination=ask"
+        ]
+      },
+      {
+        "action": "use_mcp_tools",
+        "default": "ask",
+        "scope": "all_mcp_tools",
+        "capability": "cap-mcp",
+        "url": "https://cursor.com/docs/context/mcp",
+        "all": [
+          "cap-mcp: all_mcp_tools=ask"
+        ]
+      }
+    ]
+  },
+  {
+    "agent": "Hermes Agent",
+    "file": "observatory/data/agents/hermes-agent.json",
+    "mode": "smart",
+    "who_decides": "another_model",
+    "cells": [
+      {
+        "action": "read_files",
+        "default": "allow",
+        "scope": "whole_system",
+        "capability": "cap-read-shell",
+        "url": "https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/hermes_cli/config_defaults.py#L297-L298",
+        "all": [
+          "cap-read-tools: any_path=allow",
+          "cap-read-shell: whole_system=allow",
+          "cap-read-other-agents: other_agents_credentials=allow"
+        ]
+      },
+      {
+        "action": "write_files",
+        "default": "allow",
+        "scope": "any_path",
+        "capability": "cap-write-tools",
+        "url": "https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/tools/file_tools_write_guards.py#L166-L179",
+        "all": [
+          "cap-write-tools: any_path=allow",
+          "cap-write-instructions: protected_paths=ask",
+          "cap-write-other-agents: other_agents_credentials=allow"
+        ]
+      },
+      {
+        "action": "execute_commands",
+        "default": "allow",
+        "scope": "all_commands",
+        "capability": "cap-exec",
+        "url": "https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/tools/approval.py#L1165-L1194",
+        "all": [
+          "cap-exec: all_commands=allow"
+        ]
+      },
+      {
+        "action": "network",
+        "default": "allow",
+        "scope": "any_destination",
+        "capability": "cap-network",
+        "url": "https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/hermes_cli/config_defaults.py#L396-L401",
+        "all": [
+          "cap-network: any_destination=allow"
+        ]
+      },
+      {
+        "action": "use_mcp_tools",
+        "default": "allow",
+        "scope": "all_mcp_tools",
+        "capability": "cap-mcp",
+        "url": "https://github.com/NousResearch/hermes-agent/blob/bf0203a794a07aac3ff764972ab9087baa4e4f4e/tools/mcp_tool.py#L519-L533",
+        "all": [
+          "cap-mcp: all_mcp_tools=allow"
+        ]
+      }
+    ]
+  }
+]
