@@ -1,5 +1,5 @@
 {
-  "$comment": "GTM-75. Single list of the Observatory's fixed sources F1-F28, read daily by observatory/collect.py. Methods and URLs transcribed from rosmarops-vigil docs/research/2026-11-01-observatorio-ampliacion-fuentes.md (signed 01-11) and docs/observatorio/fuentes-F1-F28.md (annex to GTM-75). public_url: the url of each source in 'checked' of observatory/daily/2026-11-03.json (commit aa5f165); Hermes Agent's from the annex. scope: the agent file in observatory/data/agents/ the source watches, 'threats' for the threat registries, 'all-agents' for cross-cutting sources. Tag patterns: 'v*' means v followed by a version number (likewise 'rust-v*', 'python-*', 'python-v*'); 'N.N.N' means three numbers without a prefix; null means every tag. Tags with alpha, beta, rc, nightly, preview, canary or dev are discarded; the rest are ordered like sort -V. read.notes is the order in which notes are looked for: 'raw' (official CHANGELOG on raw.githubusercontent.com), 'web' (official changelog page), 'tag' (annotated tag text); an empty list means the source needs no notes.",
+  "$comment": "GTM-75. Single list of the Observatory's fixed sources F1-F28, read daily by observatory/collect.py. Methods and URLs transcribed from rosmarops-vigil docs/research/2026-11-01-observatorio-ampliacion-fuentes.md (signed 01-11) and docs/observatorio/fuentes-F1-F28.md (annex to GTM-75). public_url: the url of each source in 'checked' of observatory/daily/2026-11-03.json (commit aa5f165); Hermes Agent's from the annex. scope: the agent file in observatory/data/agents/ the source watches, 'threats' for the threat registries, 'all-agents' for cross-cutting sources. Tag patterns: 'v*' means v followed by a version number (likewise 'rust-v*', 'python-*', 'python-v*'); 'N.N.N' means three numbers without a prefix; null means every tag. Tags with alpha, beta, rc, nightly, preview, canary or dev are discarded; the rest are ordered like sort -V. read.notes is the order in which notes are looked for: 'github-api' (body of the GitHub release with that tag, read with the workflow's token; GTM-76), 'raw' (official CHANGELOG on raw.githubusercontent.com), 'web' (official changelog page), 'tag' (annotated tag text); an empty list means the source needs no notes.",
   "scope_terms": [
     "mcp",
     "agent",
@@ -67,6 +67,7 @@
         "git": "https://github.com/openai/codex.git",
         "tags": "rust-v*",
         "notes": [
+          "github-api",
           {
             "web": "https://developers.openai.com/codex/changelog"
           }
@@ -97,14 +98,15 @@
       "method": "git-tags",
       "read": {
         "git": "https://github.com/NousResearch/hermes-agent.git",
-        "tags": null,
+        "tags": "v0.*",
         "notes": [
+          "github-api",
           "tag"
         ]
       },
       "public_url": "https://github.com/NousResearch/hermes-agent/releases",
       "fragile": false,
-      "notes": "Notes: annotated tag text. No CHANGELOG.md."
+      "notes": "Notes: GitHub release body, then annotated tag text. No CHANGELOG.md. Tag pattern v0.* (GTM-76): the v2026.* series is another scheme."
     },
     {
       "id": "F6",
@@ -129,6 +131,7 @@
         "git": "https://github.com/cline/cline.git",
         "tags": "v*",
         "notes": [
+          "github-api",
           {
             "raw": "https://raw.githubusercontent.com/cline/cline/main/CHANGELOG.md"
           }
@@ -150,6 +153,7 @@
           "@continuedev/*"
         ],
         "notes": [
+          "github-api",
           "tag"
         ]
       },
@@ -166,6 +170,7 @@
         "git": "https://github.com/XMihura/Kanvas.git",
         "tags": null,
         "notes": [
+          "github-api",
           {
             "raw": "https://raw.githubusercontent.com/XMihura/Kanvas/main/CHANGELOG.md"
           }
@@ -202,6 +207,7 @@
         "git": "https://github.com/google-gemini/gemini-cli.git",
         "tags": null,
         "notes": [
+          "github-api",
           {
             "web": "https://geminicli.com/docs/changelogs/"
           }
@@ -209,7 +215,7 @@
       },
       "public_url": "https://github.com/google-gemini/gemini-cli/releases",
       "fragile": false,
-      "notes": "Stable tags only."
+      "notes": "Stable tags only. Notes from the GitHub release; the geminicli.com page is the last resort (GTM-76)."
     },
     {
       "id": "F12",
@@ -237,7 +243,7 @@
       },
       "public_url": "https://support.claude.com/en/articles/12138966-release-notes",
       "fragile": false,
-      "notes": "Desktop app only: connectors, extensions, permissions. The collector keeps every entry; the selection is the writer's."
+      "notes": "Desktop app only: connectors, extensions, permissions. The collector keeps every entry; the selection is the writer's. The date is the latest entry's, never the article's «updated» date (GTM-76)."
     },
     {
       "id": "F14",
@@ -288,6 +294,7 @@
         "git": "https://github.com/anomalyco/opencode.git",
         "tags": "v*",
         "notes": [
+          "github-api",
           {
             "raw": "https://raw.githubusercontent.com/anomalyco/opencode/dev/CHANGELOG.md"
           }
@@ -335,6 +342,7 @@
         "git": "https://github.com/aaif-goose/goose.git",
         "tags": "v*",
         "notes": [
+          "github-api",
           "tag"
         ]
       },
@@ -369,7 +377,7 @@
       },
       "public_url": "https://developers.openai.com/codex/changelog",
       "fragile": false,
-      "notes": "The changelog of F3, only entries «Codex Cloud»."
+      "notes": "The changelog of F3, only entries whose title or label says «Codex Cloud» (GTM-76)."
     },
     {
       "id": "F22",
@@ -380,6 +388,7 @@
         "git": "https://github.com/openclaw/openclaw.git",
         "tags": "v*",
         "notes": [
+          "github-api",
           {
             "raw": "https://raw.githubusercontent.com/openclaw/openclaw/main/CHANGELOG.md"
           }
@@ -403,6 +412,7 @@
           "checkpoint*==*"
         ],
         "notes": [
+          "github-api",
           "tag"
         ]
       },
@@ -419,6 +429,7 @@
         "git": "https://github.com/crewAIInc/crewAI.git",
         "tags": "N.N.N",
         "notes": [
+          "github-api",
           "tag"
         ]
       },
@@ -435,6 +446,7 @@
         "git": "https://github.com/microsoft/agent-framework.git",
         "tags": "python-*",
         "notes": [
+          "github-api",
           "tag"
         ],
         "also": {
@@ -454,7 +466,10 @@
       "read": {
         "git": "https://github.com/modelcontextprotocol/modelcontextprotocol.git",
         "tags": null,
-        "notes": []
+        "notes": [
+          "github-api",
+          "tag"
+        ]
       },
       "public_url": "https://github.com/modelcontextprotocol/modelcontextprotocol/releases",
       "fragile": false,

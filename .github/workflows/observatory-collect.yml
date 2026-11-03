@@ -33,6 +33,8 @@ jobs:
 
       - name: Read the sources
         id: collect
+        env:
+          GH_TOKEN: ${{ github.token }} # release notes from the GitHub API (GTM-76); read access only
         run: |
           set -eu
           python observatory/collect.py
