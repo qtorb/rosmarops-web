@@ -1,6 +1,6 @@
 {
   "date": "2026-11-03",
-  "collected_at": "2026-11-03T13:05:26Z",
+  "collected_at": "2026-11-03T13:35:40Z",
   "sources": [
     {
       "id": "F1",
@@ -53,12 +53,12 @@
         {
           "date": "2026-10-29",
           "version": "rust-v0.166.0",
-          "text": "### Codex CLI 0.166.0 $ npm install -g @openai/codex@0.166.0 View details ## New Features Added keyboard-driven transcript selection with word, line, and page motions, integrated search, and configurable shortcuts. (#57221, #57222, #57223, #57224) Rendered Markdown consistently in async questions, choices, answers, and transcript replies. (#57259, #57292) Added GPT-6.1 Terra to the bundled, Vertex AI, and Amazon Bedrock model catalogs. (#57293) Added codex queue --resume to resume unloaded threads after queueing a message. (#57232) Added clearer safety-block explanations and selectable safer…"
+          "text": "## New Features - Added keyboard-driven transcript selection with word, line, and page motions, integrated search, and configurable shortcuts. (#57221, #57222, #57223, #57224) - Rendered Markdown consistently in async questions, choices, answers, and transcript replies. (#57259, #57292) - Added GPT-6.1 Terra to the bundled, Vertex AI, and Amazon Bedrock model catalogs. (#57293) - Added `codex queue --resume` to resume unloaded threads after queueing a message. (#57232) - Added clearer safety-block explanations and selectable safer follow-up prompts in the TUI. (#57363, #57365) - Added `codex…"
         },
         {
           "date": "2026-10-27",
           "version": "rust-v0.165.0",
-          "text": "### Codex CLI 0.165.0 $ npm install -g @openai/codex@0.165.0 View details ## New Features Added a built-in Google Cloud Vertex AI provider, configured with model_provider = \"gcp\". (#56265) Added GPT-6.1 Terra to the model catalogs. (#57337) Added a repository filter to the session picker and directory grouping to the agent command center, making it easier to navigate sessions across linked worktrees. (#56308) Added experimental attached thread forks to the app-server API. (#56351) Enabled reasoning effort changes during a conversation by default for supported models. (#56163) Enabled memory v…"
+          "text": "## New Features - Added a built-in Google Cloud Vertex AI provider, configured with `model_provider = \"gcp\"`. (#56265) - Added GPT-6.1 Terra to the model catalogs. (#57337) - Added a repository filter to the session picker and directory grouping to the agent command center, making it easier to navigate sessions across linked worktrees. (#56308) - Added experimental attached thread forks to the app-server API. (#56351) - Enabled reasoning effort changes during a conversation by default for supported models. (#56163) - Enabled memory v2 by default for fresh profiles and added support for import…"
         }
       ],
       "ids": [],
@@ -114,9 +114,15 @@
       "id": "F5",
       "opened": true,
       "reason": null,
-      "latest": "v2026.9.24",
-      "latest_date": "2026-09-24",
-      "new": [],
+      "latest": "v0.22.6",
+      "latest_date": "2026-11-02",
+      "new": [
+        {
+          "date": "2026-11-02",
+          "version": "v0.22.6",
+          "text": "# Hermes Agent v0.22.6 **Release Date:** November 2, 2026 > Patch release. This tag rolls up the ~776 PRs merged since v0.22.5 into a stable release for the GitHub release (CLI and installers), the Microsoft Store app, Docker and Hermes Cloud. Full curated notes for this window ship with v0.23.0. <!-- HERMES_BUILDS_TABLE --> ## About this release Measured at commit `f0d94882e89`, the window since v0.22.5 contains **3,448 non-merge commits** across **4,316 changed files** (+248,579 / −94,077), **776 merged PRs** and **385 closed issues**. Also in the window, undocumented here on purpose: the W…"
+        }
+      ],
       "ids": [],
       "read_with": "git"
     },
@@ -171,7 +177,7 @@
         {
           "date": "2026-10-27",
           "version": "v0.4.0",
-          "text": "Kanvas runs without Obsidian. The board is a JSON file, agents use a new CLI, and you plan and review in an interactive HTML page. - Add `kanvas.html`: a single-file board with a dependency graph (swimlanes per group, left-to-right or top-to-bottom, adjustable spacing, lineage highlighting, drag to connect) and a kanban view, right-click menus for cards, dependencies and empty space, undo and redo that keep agents' changes, a task panel with Markdown, notes and review actions, filters, search, dark mode and keyboard shortcuts - Status at a glance: cards are outlined in their state colour over…"
+          "text": "Install with `uv tool install kanvas-board` or `pipx install kanvas-board`, or try it with `uvx kanvas-board init`. Coming from an Obsidian board? `kanvas import Project.canvas` brings it over; see [Migrating from Kanvas 0.x](https://github.com/XMihura/Kanvas#migrating-from-kanvas-0x-obsidian). Kanvas runs without Obsidian. The board is a JSON file, agents use a new CLI, and you plan and review in an interactive HTML page. - Add `kanvas.html`: a single-file board with a dependency graph (swimlanes per group, left-to-right or top-to-bottom, adjustable spacing, lineage highlighting, drag to con…"
         }
       ],
       "ids": [],
@@ -839,15 +845,15 @@
     },
     {
       "id": "F11",
-      "opened": false,
-      "reason": "new version without notes: v0.66.0",
+      "opened": true,
+      "reason": null,
       "latest": "v0.66.0",
       "latest_date": "2026-10-27",
       "new": [
         {
           "date": "2026-10-27",
           "version": "v0.66.0",
-          "text": "notes not available"
+          "text": "## What's Changed * Update ROADMAP.md to no longer reference outdated 2025 roadmap by @DavidAPierce in https://github.com/google-gemini/gemini-cli/pull/29723 * Changelog for v0.65.0-preview.0 by @gemini-cli-robot in https://github.com/google-gemini/gemini-cli/pull/29739 * chore(release): bump version to 0.66.0-nightly.20261013.g204db94ae by @gemini-cli-robot in https://github.com/google-gemini/gemini-cli/pull/29740 * Changelog for v0.64.0 by @gemini-cli-robot in https://github.com/google-gemini/gemini-cli/pull/29741 * fix(ui): implement synchronized output and isolate spinner rendering by @di…"
         }
       ],
       "ids": [],
@@ -879,14 +885,8 @@
       "opened": true,
       "reason": null,
       "latest": null,
-      "latest_date": "2026-10-30",
-      "new": [
-        {
-          "date": "2026-10-30",
-          "version": null,
-          "text": "Updated this week Copy for LLM ## October 2026"
-        }
-      ],
+      "latest_date": "2026-10-21",
+      "new": [],
       "ids": [],
       "read_with": "curl"
     },
@@ -1029,6 +1029,11 @@
       "latest": null,
       "latest_date": "2026-11-03",
       "new": [
+        {
+          "date": "2026-11-03",
+          "version": null,
+          "text": "CVE-2026-121458 [MCP]: Instatic before 0.0.21 contains a missing authorization vulnerability in its AI/MCP content read tools that allows low-privileged authenticated users with ai.chat and content.edit.own capabilities to access data rows belonging to other users by calling content_get_document and content_list_documents without the object-level authorization checks enforced by the normal HTTP API. Attackers can use the MCP interface to retrieve private or unpublished draft content and enumerate rows from the posts system table, resulting in cross-user data disclosure."
+        },
         {
           "date": "2026-11-03",
           "version": null,
@@ -1313,6 +1318,7 @@
         "CVE-2026-120450",
         "CVE-2026-120492",
         "CVE-2026-120630",
+        "CVE-2026-121458",
         "CVE-2026-59176",
         "CVE-2026-61542",
         "CVE-2026-61546",
@@ -1497,7 +1503,7 @@
         {
           "date": "2026-10-27",
           "version": "v1.57.0",
-          "text": "notes not available"
+          "text": "## ✨ Features - Allowlist: require HTTPS and validate redirects, block on policy failure [#12619](https://github.com/aaif-goose/goose/pull/12619) - Allow callers to supply Goose session IDs [#13098](https://github.com/aaif-goose/goose/pull/13098) ## 🐛 Bug Fixes - Linux window icons restored in desktop app [#13120](https://github.com/aaif-goose/goose/pull/13120) - OpenRouter: resolve variant suffixes like `:free` and `:nitro` to the base model [#12979](https://github.com/aaif-goose/goose/pull/12979) - Use catalog_provider_id for vision lookup on custom providers [#12993](https://github.com/aai…"
         }
       ],
       "ids": [],
@@ -1549,17 +1555,17 @@
         {
           "date": "2026-11-03",
           "version": "v2026.10.10",
-          "text": "## 2026.10.10 ### v2026.10.10 For formatted release notes, [read this release on the docs site](https://docs.openclaw.ai/releases/2026.10.10). OpenClaw v2026.10.10 brings Chat Details beside the conversation, an Advisor that can suggest course corrections during a task, and split speech mode for browser Talk. There’s plenty beyond those highlights, with hundreds of improvements and fixes for everyday chats, memory search, automations, coding agents and connected devices. **3,028 source PRs · 1,064 direct commits · 454 contributors** #### Chat Details Panel The main chat view now gathers sessi…"
+          "text": "<!-- openclaw-release-publication:docs-v1 --> ## OpenClaw v2026.10.10 4,825 commits · 3,028 pull requests · 454 contributors ### Changes included in this release The release notes and changelog contain the same content, presented in two formats: - [Release notes](https://docs.openclaw.ai/releases/2026.10.10) — formatted for people. - [Changelog](https://raw.githubusercontent.com/openclaw/openclaw/main/CHANGELOG/2026.10.10.md) — plain Markdown for AI agents and tools. ### Thanks [@3n8](https://github.com/3n8) [@555aaditya](https://github.com/555aaditya) [@5jrfrbd6z9-spec](https://github.com/5j…"
         },
         {
           "date": "2026-10-29",
           "version": "v2026.10.9",
-          "text": "## 2026.10.9 ### v2026.10.9 For formatted release notes, [read this release on the docs site](https://docs.openclaw.ai/releases/2026.10.9). **Security release:** v2026.10.9 adds remediations for vulnerable dependencies and repairs credential handling and workspace restrictions. Update OpenClaw to receive these fixes. This is a patch release with no new features. It fixes problems that could leave OpenClaw stopped after an update, prevent recovery of intact agent data, or send tools to the wrong project folder, alongside smaller reliability fixes. **Release scale:** 38 pull requests, 8 direct…"
+          "text": "## 2026.10.9 ### Highlights - Patch vulnerable runtime dependencies: fast-uri 4.2.3 rejects malformed URI schemes and hosts in MCP schema validation, oversized Zod collections are rejected early in A2UI and the Discord embedded app SDK, IMAP sender parsing uses nodemailer 10.1.4 so spoofed senders cannot pass the sender token gate, and Microsoft Teams uses patched MSAL Node 7.1.1. (#187294) Thanks @RomneyDa. - Apply `tools.fs.workspaceOnly` to Gateway-built tools, so delegate changes still require approval and media tools stay inside the workspace. (#185094) Thanks @eleqtrizit, @RomneyDa, and…"
         },
         {
           "date": "2026-10-27",
           "version": "v2026.10.8",
-          "text": "## 2026.10.8 ### v2026.10.8 For formatted release notes, [read this release on the docs site](https://docs.openclaw.ai/releases/2026.10.8). **Security release:** v2026.10.8 adds remediations for the eMudhra certificate compromise in the secret egress proxy and its exported trust bundle. Restart the Gateway to apply the change. Apps with independent trust stores and bypass tunnels need their own updates. This is a patch release with no new features. It fixes problems that could stop OpenClaw from installing, updating, starting or delivering replies, alongside smaller app, channel and provider…"
+          "text": "## 2026.10.8 ### Highlights - **Updates that finish and recover:** an ordinary post-update Doctor failure restarts the Gateway instead of leaving it stopped, an orphaned maintenance worker no longer blocks every CLI command and Gateway start, and updates no longer abort on ACL filesystems, Windows pnpm optional-dependency links, pnpm 10 global installs, debug console logging, or a missing legacy OAuth directory. (#180668, #181695, #181141, #181596, #181456, #182850, #180174) Thanks @hannesrudolph, @SMF12138, @rayluo88, @PonySlayer28, and @VN77-77VN. - **Gateway service installs on every deskt…"
         }
       ],
       "ids": [],
@@ -1567,15 +1573,15 @@
     },
     {
       "id": "F23",
-      "opened": false,
-      "reason": "new version without notes: 1.2.19",
+      "opened": true,
+      "reason": null,
       "latest": "1.2.19",
       "latest_date": "2026-10-30",
       "new": [
         {
           "date": "2026-10-30",
           "version": "1.2.19",
-          "text": "notes not available"
+          "text": "Changes since 1.2.18 * release(langgraph): 1.2.19 (#9504) * release(checkpoint-sqlite): 3.1.3 (#9505) * fix(langgraph): keep trace_policy from rewriting streamed node payloads (#9486) * fix(langgraph): give messages and tools events the namespace of their graph (#9458) * chore(deps): bump setuptools from 83.0.0 to 84.1.0 in /libs/langgraph (#9433) * fix(langgraph): emit node-output messages from a graph streamed inside a node (#9463) * fix(langgraph): respect subgraphs=False in RemoteGraph.stream under a streaming parent (#9453) * fix(langgraph): don't report a paused tool as failed on the to…"
         }
       ],
       "ids": [],
@@ -1591,22 +1597,22 @@
         {
           "date": "2026-11-01",
           "version": "1.15.34",
-          "text": "- Add standalone LiteLLM catalog PR before version bump - Record where crewai run stops before kickoff - Add crewai skill search to list the organization's skills - Pass crewai run --inputs to a Python flow - Add deploy create --zip and print the commit a zip is built from - Document agent planning with planningconfig and migrate reasoning page - Stop offering shut-down Gemini models in crewai create - Raise MissingAPIKeyError for OpenAI-compatible providers - Count repeated tool call stops in anonymous telemetry - Count a crewai run whose project script fails - Let crewai[litellm] import on…"
+          "text": "## What's Changed ### Features - Add standalone LiteLLM catalog PR before version bump - Record where crewai run stops before kickoff - Add crewai skill search to list the organization's skills - Pass crewai run --inputs to a Python flow - Add deploy create --zip and print the commit a zip is built from - Document agent planning with planningconfig and migrate reasoning page ### Bug Fixes - Stop offering shut-down Gemini models in crewai create - Raise MissingAPIKeyError for OpenAI-compatible providers - Count repeated tool call stops in anonymous telemetry - Count a crewai run whose project…"
         },
         {
           "date": "2026-10-29",
           "version": "1.15.33",
-          "text": "1.15.33"
+          "text": "## What's Changed ### Features - Add `crewai skill search` to list the organization's skills - Pass `crewai run --inputs` to a Python flow - Add `deploy create --zip` and print the commit a zip is built from ### Bug Fixes - Report token usage for LiteLLM tool-call and structured-output calls - Restore recent backwards-compatible imports and token - Let the JSON crew runner load against an older crewai-core - Keep deeply nested JSON as text in the run TUI on Python 3.12 - Export `persist` from `crewai.flow.flow` - Load JSON crews in `crewai chat` - Treat an env tracing `false` as off in `is_tr…"
         },
         {
           "date": "2026-10-27",
           "version": "1.15.32",
-          "text": "- Fix failing flaky tests - Update snapshot and changelog for v1.15.31 @lorenzejay"
+          "text": "## What's Changed ### Bug Fixes - Fix failing flaky tests ### Documentation - Update snapshot and changelog for v1.15.31 ## Contributors @lorenzejay"
         },
         {
           "date": "2026-10-27",
           "version": "1.15.31",
-          "text": "- Support conversational flow context compaction. - Update vulnerable audit dependencies. - Stop sending 'stop' to GPT-6 and newer models. - Run the provider listing off the loop in `acleanup_provider_files`. - Emit `LLMGuardrailCompletedEvent` for a malformed guardrail result. - Name the renamed integration token when it is missing. - Fix path traversal in `output_file` via template interpolation. - Patch deserialization, SQL injection, and path traversal vulnerabilities. - Restore configured logging levels after suppression. - Drop checkpoint resume state when copying a crew. - Honor an inj…"
+          "text": "## What's Changed ### Features - Support conversational flow context compaction. ### Bug Fixes - Update vulnerable audit dependencies. - Stop sending 'stop' to GPT-6 and newer models. - Run the provider listing off the loop in `acleanup_provider_files`. - Emit `LLMGuardrailCompletedEvent` for a malformed guardrail result. - Name the renamed integration token when it is missing. - Fix path traversal in `output_file` via template interpolation. - Patch deserialization, SQL injection, and path traversal vulnerabilities. - Restore configured logging levels after suppression. - Drop checkpoint res…"
         }
       ],
       "ids": [],
@@ -1614,15 +1620,15 @@
     },
     {
       "id": "F25",
-      "opened": false,
-      "reason": "new version without notes: python-1.24.0",
+      "opened": true,
+      "reason": null,
       "latest": "python-1.24.0",
       "latest_date": "2026-10-30",
       "new": [
         {
           "date": "2026-10-30",
           "version": "python-1.24.0",
-          "text": "notes not available"
+          "text": "## [1.24.0] - 2026-10-30 > [!WARNING] > **Redis context index migration:** The beta `RedisContextProvider` now preserves exact scope identity and rejects the legacy raw-scope index schema. Delete the old context index and its context hashes, let the provider create a new index, and re-ingest the context data. `overwrite_index=True` does not migrate incompatible indexes. > [!IMPORTANT] > **Python support:** Python 3.11 or later is now the supported baseline, subject to package-specific upper limits. Python 3.10 installation remains permitted by `Requires-Python` in this release, but compatibil…"
         }
       ],
       "ids": [],
@@ -1673,6 +1679,6 @@
       "read_with": "curl"
     }
   ],
-  "opened": 25,
+  "opened": 28,
   "total": 28
 }
