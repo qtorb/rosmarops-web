@@ -76,6 +76,8 @@ jobs:
           python -m unittest wp/tests/test_daily.py
           php -l wp/mu-plugins/rosmarops-seo.php
           python -m unittest wp/tests/test_seo.py
+          php -l wp/mu-plugins/rosmarops-retired.php
+          python -m unittest wp/tests/test_retired.py
 
       - name: Publication rules hold in the output
         run: |

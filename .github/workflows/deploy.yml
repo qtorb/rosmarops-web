@@ -34,6 +34,7 @@ jobs:
           php -l wp/mu-plugins/rosmarops-seo.php
           php -l wp/mu-plugins/rosmarops-downloads.php
           php -l wp/mu-plugins/rosmarops-daily.php
+          php -l wp/mu-plugins/rosmarops-retired.php
           ls -l wp/daily/shell-en.html wp/daily/shell-es.html wp/daily/shell-ca.html wp/daily/i18n.json
           ! grep -RIl 'noindex' site/index.html site/es/index.html site/methodology site/faq site/es/metodologia site/es/preguntas-frecuentes site/ca/index.html site/ca/metodologia site/ca/preguntes-frequents site/cloud-access site/es/acceso-en-la-nube site/ca/acces-al-nuvol site/ca/privadesa site/macos site/es/macos site/ca/macos site/sample-report/index.html site/es/informe-de-ejemplo site/ca/informe-dexemple site/observatory/index.html site/es/observatorio/index.html site/ca/observatori/index.html
           # Observatory: only the three index pages and the JSON files are published (GTM-11). Agent pages wait for verification.
@@ -159,6 +160,7 @@ jobs:
           put wp/mu-plugins/rosmarops-consent.php wp-content/mu-plugins/rosmarops-consent.php
           put wp/mu-plugins/rosmarops-seo.php wp-content/mu-plugins/rosmarops-seo.php
           put wp/mu-plugins/rosmarops-downloads.php wp-content/mu-plugins/rosmarops-downloads.php
+          put wp/mu-plugins/rosmarops-retired.php wp-content/mu-plugins/rosmarops-retired.php
           -mkdir wp-content/mu-plugins/rosmarops-daily
           put wp/daily/shell-en.html wp-content/mu-plugins/rosmarops-daily/shell-en.html
           put wp/daily/shell-es.html wp-content/mu-plugins/rosmarops-daily/shell-es.html
@@ -326,6 +328,11 @@ jobs:
           h=$(curl -sI "https://rosmarops.com/download?from=home&os=windows" | tr -d '\r')
           echo "$h" | grep -q '^HTTP/[0-9.]* 302' && echo "$h" | grep -qi '^location: https://github.com/qtorb/rosmarops/releases/latest/download/rosmarops.exe$' && echo "$h" | grep -qi '^cache-control: no-store' && echo "/download?os=windows redirects to the .exe" || (echo "/download?os=windows does not redirect to the .exe"; exit 1)
           curl -s "https://rosmarops.com/wp-json/rosmarops/v1/downloads?deploy=${GITHUB_SHA::7}" | python3 -c 'import json,sys; d=json.load(sys.stdin); assert set(d)=={"generated_at","rows"} and isinstance(d["rows"],list); print("downloads endpoint ok,", len(d["rows"]), "rows")'
+          # Retired legacy posts (rosmarops-retired.php): 301 to /es/blog/; a product post stays 200.
+          loc=$(curl -s -o /dev/null -w '%{http_code} %{redirect_url}' "https://rosmarops.com/es/blog/como-construir-un-ejercito-de-bots-para-manipulacion-de-seo-guia-tecnica/?deploy=${GITHUB_SHA::7}")
+          [ "$loc" = "301 https://rosmarops.com/es/blog/" ] && echo "retired post redirects" || (echo "retired post: $loc"; exit 1)
+          code=$(curl -s -o /dev/null -w '%{http_code}' "https://rosmarops.com/es/blog/mi-maquina-saco-un-18-de-100/?deploy=${GITHUB_SHA::7}")
+          [ "$code" = "200" ] && echo "product post 200" || (echo "product post: $code"; exit 1)
           # Daily synopsis (GTM-23): index pages, RSS and the slash redirect, served by the rosmarops-daily mu-plugin.
           check_page() {
             out=$(curl -s -w '\n%{http_code}' "https://rosmarops.com$1?deploy=${GITHUB_SHA::7}")
