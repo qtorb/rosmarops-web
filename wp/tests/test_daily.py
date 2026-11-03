@@ -237,6 +237,28 @@ class Daily(unittest.TestCase):
         descs = [i.findtext("description") for i in ET.fromstring(body).findall("channel/item")]
         self.assertIn("Avui la revisió no ha pogut comprovar cap font.", descs)
 
+    # GTM-74: an entry pointing at the internal repository is not a source: none_checked, and no link to it.
+    def test_internal_summary_is_not_a_source(self):
+        d = copy.deepcopy(self.valid)
+        d.update(date="2026-01-13", status="incomplete", items=[], summary_ref="docs/observatorio/2026-01-13.md",
+                 not_checked=["Claude Code", "NVD"])
+        d["checked"] = [{"name": "Resumen interno del Observatorio",
+                         "url": "https://github.com/qtorb/rosmarops-vigil/tree/master/docs/observatorio",
+                         "latest_seen": "", "latest_date": None}]
+        self.assertEqual(self.store_day(d), "stored")
+        for path, sentence in (
+            ("/observatory/daily/2026-01-13/", "The review could not check any source today."),
+            ("/es/observatorio/diario/2026-01-13/", "Hoy la revisión no ha podido comprobar ninguna fuente."),
+            ("/ca/observatori/diari/2026-01-13/", "Avui la revisió no ha pogut comprovar cap font."),
+        ):
+            st, _, body = self.get(path)
+            self.assertEqual(st, 200)
+            self.assertIn(f'<p class="empty box">{sentence}</p>', body)
+            self.assertNotIn("rosmarops-vigil", body)
+            self.assertNotIn("Resumen interno", body)
+        st, _, body = self.get("/es/observatorio/diario/feed.xml")
+        self.assertNotIn("rosmarops-vigil", body)
+
 
 if __name__ == "__main__":
     unittest.main()
