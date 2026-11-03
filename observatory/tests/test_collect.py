@@ -633,6 +633,21 @@ class Kev(Base):
         self.assertEqual((r["latest"], r["latest_date"]), ("2026.01.14", "2026-01-14"))
         self.assertEqual(r["ids"], ["CVE-2026-1", "CVE-2026-4"])
 
+    def test_agent_platforms_match_and_generic_words_do_not(self):
+        body = kev(("CVE-2026-11", "Langflow", "Langflow", "2026-01-13"),
+                   ("CVE-2026-12", "IBM", "Langflow", "2026-01-13"),
+                   ("CVE-2026-13", "n8n", "n8n", "2026-01-13"),
+                   ("CVE-2026-14", "Ray-Project", "Ray", "2026-01-13"),
+                   ("CVE-2026-21", "Veritas", "Backup Exec Agent", "2026-01-13"),
+                   ("CVE-2026-22", "Exim", "Mail Transfer Agent (MTA)", "2026-01-13"),
+                   ("CVE-2026-23", "Array Networks", "ArrayOS AG", "2026-01-13"),
+                   ("CVE-2026-24", "DrayTek", "Vigor Routers", "2026-01-13"))
+        with self.web({KEV_URL: body}):
+            r = collect.read_kev(src("F28"), L, TERMS)
+        self.assertEqual(r["ids"], ["CVE-2026-11", "CVE-2026-12", "CVE-2026-13", "CVE-2026-14"])
+        self.assertEqual(src("F28")["read"]["products"],
+                         ["MCP", "Langflow", "n8n", "Ray", "Dify", "Flowise", "Ollama", "LangChain"])
+
     def test_nothing_new(self):
         with self.web({KEV_URL: kev(("CVE-2025-5", "Anthropic", "Claude Code", "2025-12-01"))}):
             r = collect.read_kev(src("F28"), L, TERMS)
