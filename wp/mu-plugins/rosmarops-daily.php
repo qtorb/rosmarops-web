@@ -264,7 +264,7 @@ function rosmarops_daily_day_body($lang, $d) {
 	}
 	$out .= '<h2 id="checked">' . rosmarops_daily_e(rosmarops_daily_t($lang, 'daily.checked_h2')) . "</h2>\n";
 	$out .= '<ul class="box">';
-	foreach ($d['checked'] as $c) {
+	foreach (rosmarops_daily_sources($d) as $c) {
 		$line = '<a href="' . rosmarops_daily_e($c['url']) . '" rel="noopener">' . rosmarops_daily_e($c['name']) . '</a>';
 		if ($c['latest_seen'] !== '') {
 			$line .= ' · ' . rosmarops_daily_e($c['latest_seen']);
@@ -279,9 +279,20 @@ function rosmarops_daily_day_body($lang, $d) {
 	return $out;
 }
 
+/** GTM-74: an entry pointing at the internal repository is not a source: it is neither listed nor counted. */
+function rosmarops_daily_is_internal($c) {
+	return is_array($c) && is_string($c['url'] ?? null) && strpos($c['url'], 'https://github.com/qtorb/rosmarops-vigil/') === 0;
+}
+
+function rosmarops_daily_sources($d) {
+	return array_values(array_filter((array) $d['checked'], function ($c) {
+		return !rosmarops_daily_is_internal($c);
+	}));
+}
+
 /** The incomplete-day sentence (GTM-48): partial with items, partial_empty without, none_checked when nothing was checked. */
 function rosmarops_daily_partial($lang, $d) {
-	$n = count($d['checked']);
+	$n = count(rosmarops_daily_sources($d));
 	$nc = (array) ($d['not_checked'] ?? []);
 	$key = count($d['items']) > 0 ? 'daily.partial' : ($n > 0 ? 'daily.partial_empty' : 'daily.none_checked');
 	return strtr(rosmarops_daily_t($lang, $key), ['{n}' => (string) $n, '{total}' => (string) ($n + count($nc)), '{names}' => implode(', ', $nc)]);
