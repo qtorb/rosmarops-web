@@ -51,10 +51,10 @@
       },
       {
         "action": "use_mcp_tools",
-        "default": null,
+        "value": "no_data",
         "scope": null,
         "capability": null,
-        "url": null
+        "source": null
       }
     ]
   },

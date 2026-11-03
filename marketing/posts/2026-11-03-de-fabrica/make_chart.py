@@ -22,23 +22,26 @@ BREADTH = ["whole_system", "any_path", "any_destination", "all_commands", "all_m
 
 # Design tokens of rosmarops.com (light theme): site/index.html and the sample report's grade colours.
 T = {"bg": "#F6F5F2", "card": "#FFFFFF", "ink": "#1B1A18", "muted": "#66635D", "line": "#E3E0D8",
-     "red": "#94200B", "red_bg": "#FDECE7", "amb": "#6B4700", "amb_bg": "#FDF5DF", "grey": "#4D4A45", "grey_bg": "#F0EEE8"}
+     "red": "#94200B", "red_bg": "#FDECE7", "amb": "#6B4700", "amb_bg": "#FDF5DF", "grey": "#4D4A45", "grey_bg": "#F0EEE8",
+     "nodata": "#4F4C46", "nodata_bg": "#EFEDE8"}
 FONT = "system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif"
 
 TEXT = {
     "es": {
         "title": "Qué deja hacer cada agente sin preguntarte, de fábrica",
         "cols": ["Lee tus ficheros", "Escribe ficheros", "Ejecuta comandos", "Saca datos fuera", "Usa herramientas MCP"],
-        "word": {"allow": "sin preguntar", "ask": "pregunta", "deny": "bloqueado"},
-        "footer": "En los tres, lo que “pregunta” lo decide de fábrica otro modelo de IA, no tú. "
-                  "Fuente: documentación oficial de cada agente · rosmarops.com/es/metodologia/",
+        "word": {"allow": "sin preguntar", "ask": "pregunta", "deny": "bloqueado", "no_data": "sin dato"},
+        "no_data_scope": "aún no evaluado",
+        "footer": ["En los tres, lo que «pregunta» lo decide primero otro modelo de IA; a ti solo te llega en algunos casos.",
+                   "Fuente: documentación oficial de cada agente · rosmarops.com/es/metodologia/"],
     },
     "en": {
         "title": "What each agent does without asking you, out of the box",
         "cols": ["Reads your files", "Writes files", "Runs commands", "Sends data out", "Uses MCP tools"],
-        "word": {"allow": "without asking", "ask": "asks", "deny": "blocked"},
-        "footer": "In all three, what “asks” is decided out of the box by another AI model, not by you. "
-                  "Source: each agent's official documentation · rosmarops.com/methodology/",
+        "word": {"allow": "without asking", "ask": "asks", "deny": "blocked", "no_data": "no data"},
+        "no_data_scope": "not yet evaluated",
+        "footer": ["In all three, what “asks” is decided first by another AI model; it only reaches you in some cases.",
+                   "Source: each agent's official documentation · rosmarops.com/methodology/"],
     },
 }
 
@@ -59,7 +62,8 @@ def cells():
         for action in ACTIONS:
             caps = [c for c in d["capabilities"] if c["action"] == action]
             if not caps:
-                row["cells"].append({"action": action, "default": None, "scope": None, "capability": None, "url": None})
+                row["cells"].append({"action": action, "value": "no_data", "scope": None, "capability": None,
+                                     "source": None})
                 continue
             best = max(caps, key=lambda c: (RANK[c["default"]], -BREADTH.index(c["scope"])))
             row["cells"].append({"action": action, "default": best["default"], "scope": best["scope"],
@@ -102,25 +106,25 @@ def svg(lang, rows):
         for k, c in enumerate(row["cells"]):
             x0 = left + label_w + k * col_w + 8
             cx = x0 + (col_w - 16) / 2
-            if c["default"] is None:
-                s.append(f'<text x="{cx:.1f}" y="{y + row_h / 2 + 10}" font-size="28" fill="{T["muted"]}" '
-                         f'text-anchor="middle">—</text>')
-                continue
+            value = c.get("value") or c["default"]
             fg, bg = {"allow": (T["red"], T["red_bg"]), "ask": (T["amb"], T["amb_bg"]),
-                      "deny": (T["grey"], T["grey_bg"])}[c["default"]]
+                      "deny": (T["grey"], T["grey_bg"]), "no_data": (T["nodata"], T["nodata_bg"])}[value]
             s.append(f'<rect x="{x0:.1f}" y="{y + 12}" width="{col_w - 16:.1f}" height="{row_h - 24}" rx="10" fill="{bg}"/>')
-            label = scope_label(lang, c["scope"])
-            scope = wrap(label[0].lower() + label[1:], 22)
+            if value == "no_data":
+                scope = wrap(t["no_data_scope"], 22)
+            else:
+                label = scope_label(lang, c["scope"])
+                scope = wrap(label[0].lower() + label[1:], 22)
             y_word = y + row_h / 2 - 6 * len(scope) + 2
             s.append(f'<text x="{cx:.1f}" y="{y_word:.1f}" font-size="21" font-weight="700" fill="{fg}" '
-                     f'text-anchor="middle">{e(t["word"][c["default"]])}</text>')
+                     f'text-anchor="middle">{e(t["word"][value])}</text>')
             for n, line in enumerate(scope):
                 s.append(f'<text x="{cx:.1f}" y="{y_word + 24 + n * 18:.1f}" font-size="15" fill="{T["ink"]}" '
                          f'text-anchor="middle">{e(line)}</text>')
     yb = top + len(rows) * row_h
     s.append(f'<line x1="{left}" y1="{yb}" x2="{W - left}" y2="{yb}" stroke="{T["line"]}" stroke-width="1.5"/>')
-    s.append(f'<text x="{left}" y="{H - 40}" font-size="15" fill="{T["muted"]}" textLength="{W - 2 * left}" '
-             f'lengthAdjust="spacingAndGlyphs">{e(t["footer"])}</text>')
+    for n, line in enumerate(t["footer"]):  # two lines: the second on the old baseline, the first 22 px above
+        s.append(f'<text x="{left}" y="{H - 40 - 22 * (1 - n)}" font-size="15" fill="{T["muted"]}">{e(line)}</text>')
     s.append("</svg>")
     return "\n".join(s) + "\n"
 

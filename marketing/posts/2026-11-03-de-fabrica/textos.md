@@ -18,7 +18,7 @@ Cursor lee de todo el ordenador desde su terminal aislado y escribe en las carpe
 
 Hermes Agent hace las cinco cosas sin preguntar; solo las órdenes que encajan con un patrón peligroso pasan antes por otro modelo. [hermes-agent.json cap-read-shell, cap-write-tools, cap-exec (note), cap-network, cap-mcp]
 
-Y donde el gráfico dice «pregunta», de fábrica no te pregunta a ti: lo decide otro modelo. [default_mode.who_decides = another_model en los tres]
+Y donde el gráfico dice «pregunta», de fábrica lo decide primero otro modelo de IA; a ti solo te llega en algunos casos. [default_mode.who_decides = another_model en los tres]
 
 Es un mapa de lo que permite la configuración de fábrica, no un veredicto sobre ningún agente.
 
@@ -62,7 +62,7 @@ Cursor reads the whole computer from its sandboxed terminal and writes in your w
 
 Hermes Agent does all five without asking; only commands that match a dangerous pattern go through another model first. [hermes-agent.json cap-read-shell, cap-write-tools, cap-exec (note), cap-network, cap-mcp]
 
-And where the chart says "asks", out of the box it does not ask you: another model decides. [default_mode.who_decides = another_model in all three]
+And where the chart says "asks", out of the box another AI model decides first; it only reaches you in some cases. [default_mode.who_decides = another_model in all three]
 
 It is a map of what the factory configuration allows, not a verdict on any agent.
 

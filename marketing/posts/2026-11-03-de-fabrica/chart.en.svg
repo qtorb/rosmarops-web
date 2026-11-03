@@ -22,7 +22,9 @@
 <text x="883.8" y="222.0" font-size="15" fill="#1B1A18" text-anchor="middle">documentation websites</text>
 <text x="883.8" y="240.0" font-size="15" fill="#1B1A18" text-anchor="middle">pre-approved by the</text>
 <text x="883.8" y="258.0" font-size="15" fill="#1B1A18" text-anchor="middle">maker</text>
-<text x="1062.6" y="224.0" font-size="28" fill="#66635D" text-anchor="middle">—</text>
+<rect x="981.2" y="162" width="162.8" height="104" rx="10" fill="#EFEDE8"/>
+<text x="1062.6" y="210.0" font-size="21" font-weight="700" fill="#4F4C46" text-anchor="middle">no data</text>
+<text x="1062.6" y="234.0" font-size="15" fill="#1B1A18" text-anchor="middle">not yet evaluated</text>
 <line x1="48" y1="278" x2="1152" y2="278" stroke="#E3E0D8" stroke-width="1.5"/>
 <text x="48" y="351.0" font-size="26" font-weight="700" fill="#1B1A18">Cursor</text>
 <rect x="266.0" y="290" width="162.8" height="104" rx="10" fill="#FDECE7"/>
@@ -58,5 +60,6 @@
 <text x="1062.6" y="466.0" font-size="21" font-weight="700" fill="#94200B" text-anchor="middle">without asking</text>
 <text x="1062.6" y="490.0" font-size="15" fill="#1B1A18" text-anchor="middle">all MCP tools</text>
 <line x1="48" y1="534" x2="1152" y2="534" stroke="#E3E0D8" stroke-width="1.5"/>
-<text x="48" y="635" font-size="15" fill="#66635D" textLength="1104" lengthAdjust="spacingAndGlyphs">In all three, what “asks” is decided out of the box by another AI model, not by you. Source: each agent&#x27;s official documentation · rosmarops.com/methodology/</text>
+<text x="48" y="613" font-size="15" fill="#66635D">In all three, what “asks” is decided first by another AI model; it only reaches you in some cases.</text>
+<text x="48" y="635" font-size="15" fill="#66635D">Source: each agent&#x27;s official documentation · rosmarops.com/methodology/</text>
 </svg>
