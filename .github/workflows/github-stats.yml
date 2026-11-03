@@ -8,7 +8,7 @@ name: GitHub stats (daily)
 
 on:
   schedule:
-    - cron: "10 6 * * *"
+    - cron: "0 6 * * *" # 07:00 in Madrid in winter (CET); 08:00 in summer (CEST). The space reads it at 09:00 Madrid (BA-46).
   workflow_dispatch:
 
 permissions:
