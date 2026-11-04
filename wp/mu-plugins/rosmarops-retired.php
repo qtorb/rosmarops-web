@@ -133,3 +133,22 @@ function rosmarops_retired_root() {
 	$p = wp_parse_url(home_url());
 	return $p['scheme'] . '://' . $p['host'] . (isset($p['port']) ? ':' . $p['port'] : '');
 }
+
+// The Spanish blog home (/es/blog/, now the posts page, 04-11) lists only the product's three categories:
+// the legacy posts that are still published (retired, or waiting to be rewritten or moved) stay out of the list.
+const ROSMAROPS_BLOG_CATEGORIES = ['novedades-de-rosmarops', 'que-puede-hacer-tu-agente', 'metodologia'];
+
+/** Categories the blog home is limited to on this site (by its home URL), or null when it is not limited. */
+function rosmarops_blog_categories($home_url) {
+	return rtrim((string) $home_url, '/') === 'https://rosmarops.com/es' ? ROSMAROPS_BLOG_CATEGORIES : null;
+}
+
+add_action('pre_get_posts', function ($query) {
+	if (is_admin() || !$query->is_main_query() || !$query->is_home()) {
+		return;
+	}
+	$cats = rosmarops_blog_categories(home_url());
+	if ($cats !== null) {
+		$query->set('category_name', implode(',', $cats));
+	}
+});
