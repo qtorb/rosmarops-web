@@ -25,7 +25,11 @@
     "daily.disclaimer": "From the vendors' official sources and public registries, each line with its date and source. Not a security guarantee or advice.",
     "daily.partial": "Checked today: {n} of {total} sources. Not checked: {names}.",
     "daily.partial_empty": "No changes found in the {n} sources checked today. Not checked: {names}.",
-    "daily.none_checked": "The review could not check any source today."
+    "daily.none_checked": "The review could not check any source today.",
+    "index.today_checked": "{date} · {checked} sources checked",
+    "index.today_incomplete": "Today's review is incomplete: see the day by day for what could not be checked.",
+    "index.today_source": "Official source",
+    "index.today_empty": "No new changes in the sources today."
   },
   "es": {
     "common.date": "{day} de {month} de {year}",
@@ -53,7 +57,11 @@
     "daily.disclaimer": "Según las fuentes oficiales de los fabricantes y registros públicos, cada línea con su fecha y su fuente. No es una garantía de seguridad ni un consejo.",
     "daily.partial": "Hoy hemos revisado {n} de {total} fuentes. Sin revisar: {names}.",
     "daily.partial_empty": "No hemos encontrado cambios en las {n} fuentes revisadas hoy. Sin revisar: {names}.",
-    "daily.none_checked": "Hoy la revisión no ha podido comprobar ninguna fuente."
+    "daily.none_checked": "Hoy la revisión no ha podido comprobar ninguna fuente.",
+    "index.today_checked": "{date} · {checked} fuentes revisadas",
+    "index.today_incomplete": "La revisión de hoy está incompleta: en el día a día ves qué no se pudo revisar.",
+    "index.today_source": "Fuente oficial",
+    "index.today_empty": "Hoy no hay cambios nuevos en las fuentes."
   },
   "ca": {
     "common.date": "{day} {month} de {year}",
@@ -81,7 +89,11 @@
     "daily.disclaimer": "Segons les fonts oficials dels fabricants i registres públics, cada línia amb la seva data i la seva font. No és una garantia de seguretat ni un consell.",
     "daily.partial": "Avui hem revisat {n} de {total} fonts. Sense revisar: {names}.",
     "daily.partial_empty": "No hem trobat canvis a les {n} fonts revisades avui. Sense revisar: {names}.",
-    "daily.none_checked": "Avui la revisió no ha pogut comprovar cap font."
+    "daily.none_checked": "Avui la revisió no ha pogut comprovar cap font.",
+    "index.today_checked": "{date} · {checked} fonts revisades",
+    "index.today_incomplete": "La revisió d'avui és incompleta: al dia a dia veus què no s'ha pogut revisar.",
+    "index.today_source": "Font oficial",
+    "index.today_empty": "Avui no hi ha canvis nous a les fonts."
   },
   "_paths": {
     "en": "/observatory/daily/",

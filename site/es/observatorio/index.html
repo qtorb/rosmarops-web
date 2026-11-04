@@ -52,6 +52,7 @@ h1{margin:0;font-size:clamp(34px,6vw,52px);line-height:1.08;font-weight:700;lett
 .btn.primary{background:var(--ink);color:#FFFFFF}.btn.primary:hover{background:var(--ink2);color:#FFFFFF}
 .btn.secondary{background:transparent;color:var(--ink)}
 section{display:flex;flex-direction:column;gap:16px}
+section[hidden]{display:none}
 h2{margin:0;font-size:26px;line-height:1.2}
 h3{margin:0;font-size:18px}
 .note{margin:0;font-size:15px;line-height:1.55;color:var(--muted)}
@@ -119,6 +120,12 @@ td:empty{display:none}}
 <p class="note">Revisamos cada día las fuentes de los fabricantes. Lo que ha cambiado hoy está en la <a href="/es/observatorio/diario/">sinopsis diaria</a>.</p>
 <div class="actions"><a class="btn primary" href="/es/observatorio/diario/">Día a día</a><a class="btn secondary" href="#method">Cómo trabajamos</a><a class="btn secondary" href="/observatory/data.json">Descargar los datos (JSON)</a></div>
 </section>
+
+<section id="today" aria-labelledby="today-h2" data-src="/es/observatorio/diario/today.html" hidden>
+<h2 id="today-h2">Hoy en el Observatorio</h2>
+<p class="note today-all"><a href="/es/observatorio/diario/">Ver todo el día a día</a></p>
+</section>
+<script src="/assets/observatory/today.js?v=1" defer></script>
 
 <section aria-labelledby="agents">
 <h2 id="agents">En tu ordenador</h2>

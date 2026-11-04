@@ -48,7 +48,8 @@ DAILY_DIR = ROOT / "wp" / "daily"
 CLOUD_PATH = {"en": "/cloud-access/", "es": "/es/acceso-en-la-nube/", "ca": "/ca/acces-al-nuvol/"}
 DAILY_KEYS = ["common.date", "common.months", "site.observatory_brand",
               "daily.title", "daily.lead", "daily.empty", "daily.checked_h2", "daily.index_h1", "daily.rss_title", "daily.disclaimer",
-              "daily.partial", "daily.partial_empty", "daily.none_checked"]
+              "daily.partial", "daily.partial_empty", "daily.none_checked",
+              "index.today_checked", "index.today_incomplete", "index.today_source", "index.today_empty"]
 
 
 # ---------------------------------------------------------------- inputs
@@ -237,6 +238,7 @@ h1{margin:0;font-size:clamp(34px,6vw,52px);line-height:1.08;font-weight:700;lett
 .btn.primary{background:var(--ink);color:#FFFFFF}.btn.primary:hover{background:var(--ink2);color:#FFFFFF}
 .btn.secondary{background:transparent;color:var(--ink)}
 section{display:flex;flex-direction:column;gap:16px}
+section[hidden]{display:none}
 h2{margin:0;font-size:26px;line-height:1.2}
 h3{margin:0;font-size:18px}
 .note{margin:0;font-size:15px;line-height:1.55;color:var(--muted)}
@@ -538,6 +540,12 @@ def build_index(lang, t, agents, candidates):
 <p class="note">{t("index.daily_line", link=daily_link)}</p>
 <div class="actions"><a class="btn primary" href="{DAILY_PATH[lang]}">{t("index.cta_daily")}</a><a class="btn secondary" href="#method">{t("index.cta_method")}</a><a class="btn secondary" href="{JSON_BASE}data.json">{t("index.cta_data")}</a></div>
 </section>
+
+<section id="today" aria-labelledby="today-h2" data-src="{DAILY_PATH[lang]}today.html" hidden>
+<h2 id="today-h2">{t("index.today_h2")}</h2>
+<p class="note today-all"><a href="{DAILY_PATH[lang]}">{t("index.today_all")}</a></p>
+</section>
+<script src="/assets/observatory/today.js?v=1" defer></script>
 
 <section aria-labelledby="agents">
 <h2 id="agents">{t("index.agents_h2")}</h2>

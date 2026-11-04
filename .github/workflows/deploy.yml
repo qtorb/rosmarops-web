@@ -125,6 +125,8 @@ jobs:
           put site/assets/consent/cookieconsent.css assets/consent/cookieconsent.css
           put site/assets/consent/consent.js assets/consent/consent.js
           put site/assets/consent/LICENSE-cookieconsent.txt assets/consent/LICENSE-cookieconsent.txt
+          -mkdir assets/observatory
+          put site/assets/observatory/today.js assets/observatory/today.js
           -mkdir assets/brand
           put site/assets/brand/rosmarops-logo.png assets/brand/rosmarops-logo.png
           put site/assets/brand/rosmarops-logo@2x.png assets/brand/rosmarops-logo@2x.png
@@ -347,6 +349,11 @@ jobs:
           check_page /observatory/daily/ "Agent security, day by day"
           check_page /es/observatorio/diario/ "La seguridad de los agentes, día a día"
           check_page /ca/observatori/diari/ "La seguretat dels agents, dia a dia"
+          # GTM-88: «Today in the Observatory» on the Observatory index, rendered by the same mu-plugin.
+          check_page /es/observatorio/diario/today.html "fuentes revisadas"
+          check_page /observatory/daily/today.html "sources checked"
+          check_page /ca/observatori/diari/today.html "fonts revisades"
+          curl -s "https://rosmarops.com/assets/observatory/today.js?deploy=${GITHUB_SHA::7}" | grep -q "insertAdjacentHTML" && echo "today.js ok" || (echo "today.js missing"; exit 1)
           h=$(curl -sI "https://rosmarops.com/observatory/daily/feed.xml?deploy=${GITHUB_SHA::7}" | tr -d '\r')
           echo "$h" | grep -q '^HTTP/[0-9.]* 200' && echo "$h" | grep -qi '^content-type: application/rss+xml' && echo "daily feed ok" || (echo "daily feed missing"; exit 1)
           h=$(curl -sI "https://rosmarops.com/observatory/daily" | tr -d '\r')
