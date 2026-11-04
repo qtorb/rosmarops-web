@@ -69,3 +69,26 @@ class Retired(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+def blog_categories(urls):
+    code = (
+        "define('ABSPATH', '/');"
+        "function add_action(...$a) {}"
+        f"require '{PLUGIN}';"
+        "$out = [];"
+        "foreach (json_decode(stream_get_contents(STDIN), true) as $u) { $out[$u] = rosmarops_blog_categories($u); }"
+        "echo json_encode($out);"
+    )
+    p = subprocess.run(["php", "-r", code], input=json.dumps(urls), capture_output=True, text=True, check=True)
+    return json.loads(p.stdout)
+
+
+class BlogHome(unittest.TestCase):
+    def test_only_spanish_home_is_limited(self):
+        c = blog_categories(["https://rosmarops.com/es", "https://rosmarops.com/es/", "https://rosmarops.com", "https://rosmarops.com/ca"])
+        three = ["novedades-de-rosmarops", "que-puede-hacer-tu-agente", "metodologia"]
+        self.assertEqual(c["https://rosmarops.com/es"], three)
+        self.assertEqual(c["https://rosmarops.com/es/"], three)
+        self.assertIsNone(c["https://rosmarops.com"])
+        self.assertIsNone(c["https://rosmarops.com/ca"])
