@@ -329,9 +329,16 @@ def trim(text):
     return text if len(text) <= TEXT_MAX else text[:TEXT_MAX - 1].rstrip() + "…"
 
 
+def version_number(tag):
+    """The dotted version inside a tag: rust-v0.166.0 -> 0.166.0, n8n@3.1.0 -> 3.1.0; otherwise the tag without a
+    leading word and 'v' (2026-07-28 stays as it is)."""
+    m = re.search(r"(?<![\d.])\d+(?:\.\d+)+", tag)
+    return m.group(0) if m else re.sub(r"^[A-Za-z_-]*?v?(?=\d)", "", tag)
+
+
 def section_for(lines, version):
     """Lines of the section of a changelog (Markdown or page text) that names `version`, or None."""
-    num = re.sub(r"^[A-Za-z_-]*?v?(?=\d)", "", version)
+    num = version_number(version)
     rx = re.compile(r"(?<![\w.])v?" + re.escape(num) + r"(?![\w]|\.\d)")
     for i, line in enumerate(lines):
         if len(line) <= 200 and rx.search(line) and (line.startswith("#") or line.startswith("- [") or _short_version(line)
@@ -353,8 +360,9 @@ def section_for(lines, version):
 def tag_matcher(pattern, ignore):
     if pattern is None:
         rx = None
-    elif pattern == "N.N.N":
-        rx = re.compile(r"^\d+\.\d+\.\d+$")
+    elif "N.N.N" in pattern:  # "N.N.N", or with a fixed prefix such as "n8n@N.N.N" (GTM-86)
+        pre, post = pattern.split("N.N.N", 1)
+        rx = re.compile("^" + re.escape(pre) + r"\d+\.\d+\.\d+" + re.escape(post) + "$")
     elif pattern.endswith("*"):
         rx = re.compile("^" + re.escape(pattern[:-1]) + r"\d")
     else:
@@ -448,11 +456,14 @@ def notes_for(version, tag_text, notes, git_url=None):
         except ReadError:
             continue
         if kind == "web":
-            num = re.sub(r"^[A-Za-z_-]*?v?(?=\d)", "", version)
+            num = version_number(version)
             rx = re.compile(r"(?<![\w.])v?" + re.escape(num) + r"(?![\w]|\.\d)")
             for e in entries(lines):
                 if (e["version"] and rx.search(e["version"])) or rx.search(e["title"]):
                     return e["text"]
+            sec = section_for(lines, version)  # a heading that names the version ("## n8n 2.45.4 …")
+            if sec and body_has_text(sec[1]):
+                return " ".join([sec[0].lstrip("# ")] + sec[1])
             continue
         sec = section_for(lines, version)
         if not sec:
