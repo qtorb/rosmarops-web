@@ -18,6 +18,10 @@ const ROSMAROPS_DAILY_HOSTS = [
 ];
 const ROSMAROPS_DAILY_PREFIX = ['en' => '/observatory/daily/', 'es' => '/es/observatorio/diario/', 'ca' => '/ca/observatori/diari/'];
 const ROSMAROPS_DAILY_FEED_ITEMS = 30;
+// GTM-89: the agent files, read from the same public repository, for the security changes shown on the Observatory.
+const ROSMAROPS_AGENTS_RAW = 'https://raw.githubusercontent.com/qtorb/rosmarops-web/main/observatory/data/agents/';
+const ROSMAROPS_AGENTS_MAX = 524288; // bytes per agent file
+const ROSMAROPS_CATEGORIES = ['permissions', 'approval_mode', 'sandbox', 'default_value', 'config_path_or_format', 'mcp', 'hooks', 'instructions', 'credentials', 'telemetry', 'data_destination', 'agent_scope'];
 
 function rosmarops_daily_dir() {
 	return defined('ROSMAROPS_DAILY_DIR') ? ROSMAROPS_DAILY_DIR : __DIR__ . '/rosmarops-daily';
@@ -207,6 +211,126 @@ function rosmarops_daily_fetch() {
 	}
 }
 add_action('rosmarops_daily_fetch', 'rosmarops_daily_fetch');
+add_action('rosmarops_daily_fetch', 'rosmarops_agents_fetch');
+
+// ------------------------------------------------------------------ agent files (GTM-89)
+
+/** A prose object {en, es?, ca?} as in observatory.v1 $defs/text. */
+function rosmarops_agents_is_text($v) {
+	if (!is_array($v) || !isset($v['en']) || array_diff(array_keys($v), ['en', 'es', 'ca'])) {
+		return false;
+	}
+	foreach ($v as $s) {
+		if (!is_string($s) || mb_strlen($s) < 1 || mb_strlen($s) > 280) {
+			return false;
+		}
+	}
+	return true;
+}
+
+/** One entry of changes[] as in observatory.v1 (required keys, no extra keys, enums, formats). */
+function rosmarops_agents_change_ok($c) {
+	$keys = ['id', 'version', 'date', 'category', 'before', 'after', 'source', 'verified', 'rosmarops_impact', 'correction'];
+	if (!is_array($c) || array_diff(array_keys($c), $keys)) {
+		return false;
+	}
+	foreach (['id', 'date', 'category', 'before', 'after', 'source', 'verified', 'rosmarops_impact'] as $k) {
+		if (!array_key_exists($k, $c)) {
+			return false;
+		}
+	}
+	if (!is_string($c['id']) || !preg_match('/^chg-[a-z0-9-]{1,60}$/', $c['id'])) {
+		return false;
+	}
+	if (isset($c['version']) && (!is_string($c['version']) || mb_strlen($c['version']) > 40)) {
+		return false;
+	}
+	if (!rosmarops_daily_is_day($c['date']) || !in_array($c['category'], ROSMAROPS_CATEGORIES, true)) {
+		return false;
+	}
+	if (!rosmarops_agents_is_text($c['before']) || !rosmarops_agents_is_text($c['after'])) {
+		return false;
+	}
+	$src = $c['source'];
+	if (!rosmarops_daily_keys_exact($src, ['url', 'official', 'accessed_at']) || !is_string($src['url']) || strpos($src['url'], 'https://') !== 0
+		|| filter_var($src['url'], FILTER_VALIDATE_URL) === false || !is_bool($src['official']) || !rosmarops_daily_is_day($src['accessed_at'])) {
+		return false;
+	}
+	$v = $c['verified'];
+	if (!rosmarops_daily_keys_exact($v, ['by', 'at', 'how']) || !in_array($v['by'], ['advisor', 'writer'], true) || !rosmarops_daily_is_day($v['at'])
+		|| !in_array($v['how'], ['official_doc', 'official_changelog', 'lab_observation'], true)) {
+		return false;
+	}
+	if (!in_array($c['rosmarops_impact'], ['none', 'knowledge', 'rule'], true)) {
+		return false;
+	}
+	if (isset($c['correction']) && (!rosmarops_daily_keys_exact($c['correction'], ['at', 'reason']) || !rosmarops_daily_is_day($c['correction']['at'])
+		|| !rosmarops_agents_is_text($c['correction']['reason']))) {
+		return false;
+	}
+	return true;
+}
+
+/** What the pages need from an agent file ({agent: {id, name}, changes}), or null if it does not match observatory.v1 there. */
+function rosmarops_agents_validate($a, $id) {
+	if (!is_array($a) || !is_array($a['agent'] ?? null) || ($a['agent']['id'] ?? null) !== $id
+		|| !is_string($a['agent']['name'] ?? null) || mb_strlen($a['agent']['name']) < 1 || mb_strlen($a['agent']['name']) > 60
+		|| !is_array($a['changes'] ?? null) || !array_is_list($a['changes'])) {
+		return null;
+	}
+	foreach ($a['changes'] as $c) {
+		if (!rosmarops_agents_change_ok($c)) {
+			return null;
+		}
+	}
+	return ['agent' => ['id' => $id, 'name' => $a['agent']['name']], 'changes' => $a['changes']];
+}
+
+/** Store a validated agent; an invalid file keeps what was stored before. */
+function rosmarops_agents_store($a, $id) {
+	$v = rosmarops_agents_validate($a, $id);
+	if ($v === null) {
+		error_log("rosmarops-daily: agent $id does not validate; keeping the previous copy");
+		return false;
+	}
+	rosmarops_daily_set('rosmarops_agent_' . $id, $v);
+	return true;
+}
+
+function rosmarops_agents_ids() {
+	return (array) (rosmarops_daily_texts()['_agents'] ?? []);
+}
+
+function rosmarops_agents_fetch() {
+	foreach (rosmarops_agents_ids() as $id) {
+		if (!is_string($id) || !preg_match('/^[a-z0-9][a-z0-9-]{1,40}$/', $id)) {
+			continue;
+		}
+		$res = wp_remote_get(ROSMAROPS_AGENTS_RAW . $id . '.json', ['timeout' => 10, 'sslverify' => true, 'redirection' => 0, 'limit_response_size' => ROSMAROPS_AGENTS_MAX + 1]);
+		if (is_wp_error($res) || (int) wp_remote_retrieve_response_code($res) !== 200) {
+			continue;
+		}
+		$body = (string) wp_remote_retrieve_body($res);
+		if ($body === '' || strlen($body) > ROSMAROPS_AGENTS_MAX) {
+			error_log("rosmarops-daily: agent $id body empty or too large");
+			continue;
+		}
+		rosmarops_agents_store(json_decode($body, true), $id);
+	}
+}
+
+/** Every agent, or null while any of them has not been stored yet (the pages then keep their static HTML). */
+function rosmarops_agents_all() {
+	$all = [];
+	foreach (rosmarops_agents_ids() as $id) {
+		$a = rosmarops_daily_get('rosmarops_agent_' . $id);
+		if (!is_array($a)) {
+			return null;
+		}
+		$all[$id] = $a;
+	}
+	return $all ?: null;
+}
 
 add_action('init', function () {
 	if (function_exists('is_main_site') && !is_main_site()) {
@@ -339,6 +463,112 @@ function rosmarops_daily_today($lang, $d) {
 	return $out;
 }
 
+// ------------------------------------------------------------------ security changes, as observatory/build.py renders them (GTM-89)
+
+/** [value, lang attribute]: EN with lang="en" when the language is missing (build.py loc()). */
+function rosmarops_agents_loc($text, $lang) {
+	if (!empty($text[$lang])) {
+		return [$text[$lang], ''];
+	}
+	return [$text['en'], ' lang="en"'];
+}
+
+function rosmarops_agents_published($a) {
+	if (!in_array($a['agent']['id'], (array) (rosmarops_daily_texts()['_published'] ?? []), true)) {
+		return false;
+	}
+	foreach ($a['changes'] as $c) {
+		foreach (array_merge([$c['before'], $c['after']], isset($c['correction']) ? [$c['correction']['reason']] : []) as $t) {
+			if (empty($t['en']) || empty($t['es']) || empty($t['ca'])) {
+				return false;
+			}
+		}
+	}
+	return true;
+}
+
+function rosmarops_agents_cmp($x, $y) {
+	return [$y['date'], $y['id']] <=> [$x['date'], $x['id']]; // newest first, as build.py sorts by (date, id) reversed
+}
+
+function rosmarops_agents_change_item($lang, $a, $c, $with_agent) {
+	$e = 'rosmarops_daily_e';
+	$t = fn($k) => rosmarops_daily_t($lang, $k);
+	$cat = $t('category.' . $c['category']);
+	$date = rosmarops_daily_date($lang, $c['date']);
+	if ($with_agent) {
+		$label = $a['agent']['name'] . (!empty($c['version']) ? ' ' . $c['version'] : '');
+		$meta = $e($date) . ' · ' . $e($label) . ' · ' . $e($cat);
+	} elseif (!empty($c['version'])) {
+		$meta = $e(strtr($t('agent.change_meta'), ['{date}' => $date, '{version}' => $c['version'], '{category}' => $cat]));
+	} else {
+		$meta = $e(strtr($t('agent.change_meta_noversion'), ['{date}' => $date, '{category}' => $cat]));
+	}
+	if (isset($c['correction'])) {
+		$meta .= ' · ' . $e(strtr($t('agent.corrected'), ['{date}' => rosmarops_daily_date($lang, $c['correction']['at']), '{reason}' => rosmarops_agents_loc($c['correction']['reason'], $lang)[0]]));
+	}
+	$src = $c['source']['official'] ? $t('agent.source_official') : $t('agent.source_rosmarops');
+	[$before, $bl] = rosmarops_agents_loc($c['before'], $lang);
+	[$after, $al] = rosmarops_agents_loc($c['after'], $lang);
+	$vat = rosmarops_daily_date($lang, $c['verified']['at']);
+	if ($c['verified']['by'] === 'writer' && in_array($c['verified']['how'], ['official_changelog', 'official_doc'], true)) {
+		$verified = strtr($t('agent.verified_writer_' . $c['verified']['how']), ['{date}' => $vat]);
+	} else {
+		$verified = strtr($t('agent.verified'), ['{date}' => $vat, '{how}' => $t('how.' . $c['verified']['how'])]);
+	}
+	$name_link = '';
+	if ($with_agent && rosmarops_agents_published($a)) {
+		$path = (rosmarops_daily_texts()['_index_paths'][$lang] ?? '') . $a['agent']['id'] . '/';
+		$name_link = ' <a href="' . $e($path) . '">' . $e($a['agent']['name']) . '</a> ·';
+	}
+	return '<li>'
+		. '<p class="meta">' . $meta . '</p>'
+		. '<p><strong>' . $e($t('agent.before')) . '</strong> <span' . $bl . '>' . $e($before) . '</span></p>'
+		. '<p><strong>' . $e($t('agent.after')) . '</strong> <span' . $al . '>' . $e($after) . '</span></p>'
+		. '<p class="meta">' . $e($verified) . $name_link . ' <a href="' . $e($c['source']['url']) . '" rel="noopener">' . $e($src) . '</a></p>'
+		. '</li>';
+}
+
+/** «Latest security changes» on the Observatory index: the 10 newest across agents. */
+function rosmarops_agents_changes_html($lang, $all) {
+	$rows = [];
+	foreach ($all as $a) {
+		foreach ($a['changes'] as $c) {
+			$rows[] = ['date' => $c['date'], 'id' => $c['id'], 'c' => $c, 'a' => $a];
+		}
+	}
+	usort($rows, 'rosmarops_agents_cmp');
+	$rows = array_slice($rows, 0, 10);
+	if (!$rows) {
+		return '<p class="empty box">' . rosmarops_daily_e(rosmarops_daily_t($lang, 'index.changes_empty')) . '</p>';
+	}
+	return '<ol class="changes box">' . implode('', array_map(fn($r) => rosmarops_agents_change_item($lang, $r['a'], $r['c'], true), $rows)) . '</ol>';
+}
+
+/** The «Latest security change» cells: one span per agent, placed by today.js into td[data-last]. */
+function rosmarops_agents_last_html($lang, $all) {
+	$out = '';
+	foreach ($all as $id => $a) {
+		$changes = $a['changes'];
+		usort($changes, 'rosmarops_agents_cmp');
+		$text = $changes
+			? rosmarops_daily_e(rosmarops_daily_date($lang, $changes[0]['date'])) . ' · ' . rosmarops_daily_e(rosmarops_daily_t($lang, 'category.' . $changes[0]['category']))
+			: rosmarops_daily_e(rosmarops_daily_t($lang, 'index.no_change'));
+		$out .= '<span data-agent="' . rosmarops_daily_e($id) . '">' . $text . '</span>';
+	}
+	return $out;
+}
+
+/** An agent page's history, newest first. */
+function rosmarops_agents_history_html($lang, $a) {
+	$changes = $a['changes'];
+	usort($changes, 'rosmarops_agents_cmp');
+	if (!$changes) {
+		return '<p class="empty box">' . rosmarops_daily_e(rosmarops_daily_t($lang, 'agent.history_empty')) . '</p>';
+	}
+	return '<ol class="changes box">' . implode('', array_map(fn($c) => rosmarops_agents_change_item($lang, $a, $c, false), $changes)) . '</ol>';
+}
+
 function rosmarops_daily_days($limit = null) {
 	$days = [];
 	foreach ((array) rosmarops_daily_get('rosmarops_daily_dates', []) as $date) {
@@ -400,6 +630,23 @@ function rosmarops_daily_route($path) {
 				return [404, ['Content-Type' => 'text/plain; charset=UTF-8', 'Cache-Control' => 'public, max-age=900', 'X-Robots-Tag' => 'noindex'], ''];
 			}
 			return [200, $html + ['X-Robots-Tag' => 'noindex'], rosmarops_daily_today($lang, $days[0])];
+		}
+		if ($rest === 'changes.html' || $rest === 'last-change.html' || preg_match('#^history-([a-z0-9][a-z0-9-]{1,40})\.html$#', $rest, $hm)) {
+			$miss = [404, ['Content-Type' => 'text/plain; charset=UTF-8', 'Cache-Control' => 'public, max-age=900', 'X-Robots-Tag' => 'noindex'], ''];
+			$all = rosmarops_agents_all();
+			if ($all === null) {
+				return $miss;
+			}
+			if ($rest === 'changes.html') {
+				$body = rosmarops_agents_changes_html($lang, $all);
+			} elseif ($rest === 'last-change.html') {
+				$body = rosmarops_agents_last_html($lang, $all);
+			} elseif (isset($all[$hm[1]])) {
+				$body = rosmarops_agents_history_html($lang, $all[$hm[1]]);
+			} else {
+				return $miss;
+			}
+			return [200, $html + ['X-Robots-Tag' => 'noindex'], $body];
 		}
 		if ($rest === 'feed.xml') {
 			return [200, ['Content-Type' => 'application/rss+xml; charset=UTF-8', 'Cache-Control' => 'public, max-age=900'], rosmarops_daily_feed($lang, rosmarops_daily_days(ROSMAROPS_DAILY_FEED_ITEMS))];

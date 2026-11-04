@@ -102,6 +102,8 @@
   "agent.source_official": "Fuente oficial",
   "agent.source_rosmarops": "Fuente: lectura de RosmarOps",
   "agent.verified": "Comprobado el {date} con {how}.",
+  "agent.verified_writer_official_changelog": "Recogido automáticamente el {date} del registro de cambios oficial.",
+  "agent.verified_writer_official_doc": "Recogido automáticamente el {date} de la documentación oficial.",
   "agent.corrected": "Corregido el {date}: {reason}",
   "agent.versions_h2": "Versiones observadas",
   "agent.version_line": "{version} · publicada el {date}",

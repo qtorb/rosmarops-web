@@ -7,6 +7,7 @@ Needs php (8.1+) on PATH.
 import copy
 import json
 import os
+import re
 import socket
 import subprocess
 import tempfile
@@ -315,3 +316,106 @@ class Daily(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+AGENTS = ROOT / "observatory" / "data" / "agents"
+FIXTURE = ROOT / "observatory" / "tests" / "fixture" / "example-agent.json"
+SITE = ROOT / "site"
+
+
+def norm(h):
+    """Static HTML (build.py) and the plugin escape an apostrophe differently; the hook attribute only exists in the static page."""
+    return h.replace(" data-live-target", "").replace("&#x27;", "&#039;")
+
+
+class Agents(unittest.TestCase):
+    """GTM-89: the security changes on the Observatory, served by the plugin from the agent files."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.tmp = tempfile.TemporaryDirectory()
+        cls.store = Path(cls.tmp.name) / "store.json"
+        cls.env = dict(os.environ, DAILY_STORE=str(cls.store))
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.tmp.cleanup()
+
+    def cli(self, *args, env=None):
+        return subprocess.run(["php", str(TESTS / "daily-cli.php"), *map(str, args)], env=env or self.env,
+                              capture_output=True, text=True, check=True).stdout
+
+    def route(self, path):
+        status, _, body = self.cli("route", path).partition("\n")
+        return status, body
+
+    def store_all(self):
+        for f in sorted(AGENTS.glob("*.json")):
+            self.assertEqual(self.cli("store-agent", f, f.stem).strip(), "stored", f.name)
+
+    def test_1_incomplete_store_keeps_static(self):
+        self.assertEqual(self.route("/es/observatorio/diario/changes.html")[0], "404")
+        f = next(AGENTS.glob("*.json"))
+        self.cli("store-agent", f, f.stem)
+        self.assertEqual(self.route("/es/observatorio/diario/last-change.html")[0], "404")
+
+    def test_2_live_matches_static(self):
+        self.store_all()
+        for lang, prefix, index in [("en", "/observatory/daily/", "observatory"), ("es", "/es/observatorio/diario/", "es/observatorio"),
+                                    ("ca", "/ca/observatori/diari/", "ca/observatori")]:
+            static = (SITE / index / "index.html").read_text(encoding="utf-8")
+            status, body = self.route(prefix + "changes.html")
+            self.assertEqual(status, "200")
+            start = static.index('<ol class="changes box" data-live-target>')
+            self.assertEqual(body, norm(static[start:static.index("</ol>", start) + 5]), lang)
+            status, body = self.route(prefix + "last-change.html")
+            self.assertEqual(status, "200")
+            cells = re.findall(r'data-last="([a-z0-9-]+)">(.*?)</td>', static)
+            self.assertGreater(len(cells), 10)
+            for aid, cell in cells:
+                self.assertIn(f'<span data-agent="{aid}">{norm(cell)}</span>', body, (lang, aid))
+            for page in (SITE / index).glob("*/index.html"):
+                aid = page.parent.name
+                st = page.read_text(encoding="utf-8")
+                status, body = self.route(f"{prefix}history-{aid}.html")
+                self.assertEqual(status, "200", aid)
+                m = re.search(r'(<ol class="changes box" data-live-target>.*?</ol>|<p class="empty box" data-live-target>.*?</p>)', st, re.S)
+                self.assertEqual(body, norm(m.group(1)), (lang, aid))
+        self.assertEqual(self.route("/es/observatorio/diario/history-not-an-agent.html")[0], "404")
+
+    def test_writer_entry(self):
+        for lang, line in [("en", "Collected automatically on 4 November 2026 from the official changelog."),
+                           ("es", "Recogido automáticamente el 4 de noviembre de 2026 del registro de cambios oficial."),
+                           ("ca", "Recollit automàticament el 4 de novembre de 2026 del registre de canvis oficial.")]:
+            out = self.cli("history", FIXTURE, lang)
+            self.assertIn(f'<p class="meta">{line} <a href="https://example.com/changelog#1.3.0" rel="noopener">', out, lang)
+        self.assertIn("Comprobado el 28 de octubre de 2026 con el registro de cambios oficial.", self.cli("history", FIXTURE, "es"))
+        d = json.loads(FIXTURE.read_text(encoding="utf-8"))
+        d["changes"][-1]["verified"]["how"] = "official_doc"
+        f = Path(self.tmp.name) / "doc.json"
+        f.write_text(json.dumps(d), encoding="utf-8")
+        self.assertIn("Recogido automáticamente el 4 de noviembre de 2026 de la documentación oficial.", self.cli("history", f, "es"))
+
+    def test_writer_entry_escaped(self):
+        d = json.loads(FIXTURE.read_text(encoding="utf-8"))
+        d["changes"][-1]["after"]["es"] = '<img src=x onerror="alert(1)"> desde 1.3.0'
+        f = Path(self.tmp.name) / "xss.json"
+        f.write_text(json.dumps(d), encoding="utf-8")
+        out = self.cli("history", f, "es")
+        self.assertNotIn("<img", out)
+        self.assertIn("&lt;img src=x onerror=&quot;alert(1)&quot;&gt; desde 1.3.0", out)
+
+    def test_invalid_agent_file(self):
+        base = json.loads(FIXTURE.read_text(encoding="utf-8"))
+        f = Path(self.tmp.name) / "bad.json"
+        for mutate in (lambda c: c["verified"].update(by="robot"), lambda c: c["source"].update(url="http://example.com/x"),
+                       lambda c: c.update(extra=1), lambda c: c.update(category="other"), lambda c: c["after"].pop("en"),
+                       lambda c: c.update(id="chg-UPPER")):
+            d = copy.deepcopy(base)
+            mutate(d["changes"][-1])
+            f.write_text(json.dumps(d), encoding="utf-8")
+            self.assertEqual(self.cli("history", f, "en"), "invalid")
+        # An invalid file never replaces the stored copy.
+        env = dict(os.environ, DAILY_STORE=str(Path(self.tmp.name) / "s2.json"))
+        self.assertEqual(self.cli("store-agent", FIXTURE, "example-agent", env=env).strip(), "stored")
+        self.assertEqual(self.cli("store-agent", f, "example-agent", env=env).strip(), "not stored")

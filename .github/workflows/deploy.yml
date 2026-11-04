@@ -353,7 +353,7 @@ jobs:
           check_page /es/observatorio/diario/today.html "fuentes revisadas"
           check_page /observatory/daily/today.html "sources checked"
           check_page /ca/observatori/diari/today.html "fonts revisades"
-          curl -s "https://rosmarops.com/assets/observatory/today.js?deploy=${GITHUB_SHA::7}" | grep -q "insertAdjacentHTML" && echo "today.js ok" || (echo "today.js missing"; exit 1)
+          curl -s "https://rosmarops.com/assets/observatory/today.js?deploy=${GITHUB_SHA::7}" | grep -q "data-last-src" && echo "today.js ok" || (echo "today.js missing"; exit 1)
           h=$(curl -sI "https://rosmarops.com/observatory/daily/feed.xml?deploy=${GITHUB_SHA::7}" | tr -d '\r')
           echo "$h" | grep -q '^HTTP/[0-9.]* 200' && echo "$h" | grep -qi '^content-type: application/rss+xml' && echo "daily feed ok" || (echo "daily feed missing"; exit 1)
           h=$(curl -sI "https://rosmarops.com/observatory/daily" | tr -d '\r')

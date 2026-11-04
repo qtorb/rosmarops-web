@@ -49,7 +49,15 @@ CLOUD_PATH = {"en": "/cloud-access/", "es": "/es/acceso-en-la-nube/", "ca": "/ca
 DAILY_KEYS = ["common.date", "common.months", "site.observatory_brand",
               "daily.title", "daily.lead", "daily.empty", "daily.checked_h2", "daily.index_h1", "daily.rss_title", "daily.disclaimer",
               "daily.partial", "daily.partial_empty", "daily.none_checked",
-              "index.today_checked", "index.today_incomplete", "index.today_source", "index.today_empty"]
+              "index.today_checked", "index.today_incomplete", "index.today_source", "index.today_empty",
+              # GTM-89: the security changes list, the «Latest security change» column and the agent histories, served live.
+              "agent.change_meta", "agent.change_meta_noversion", "agent.before", "agent.after", "agent.source_official",
+              "agent.source_rosmarops", "agent.verified", "agent.verified_writer_official_changelog",
+              "agent.verified_writer_official_doc", "agent.corrected", "agent.history_empty", "index.no_change",
+              "index.changes_empty"] + [f"category.{c}" for c in (
+                  "permissions", "approval_mode", "sandbox", "default_value", "config_path_or_format", "mcp", "hooks",
+                  "instructions", "credentials", "telemetry", "data_destination", "agent_scope")] + [
+              f"how.{h}" for h in ("official_doc", "official_changelog", "lab_observation")]
 
 
 # ---------------------------------------------------------------- inputs
@@ -416,7 +424,10 @@ def change_item(t, lang, a, c, with_agent):
     src_label = t("agent.source_official") if c["source"]["official"] else t("agent.source_rosmarops")
     before, bl = loc(c["before"], lang)
     after, al = loc(c["after"], lang)
-    verified = t("agent.verified", date=t.date(c["verified"]["at"]), how=t.text("how." + c["verified"]["how"]))
+    if c["verified"]["by"] == "writer" and c["verified"]["how"] in ("official_changelog", "official_doc"):
+        verified = t("agent.verified_writer_" + c["verified"]["how"], date=t.date(c["verified"]["at"]))  # GTM-89
+    else:
+        verified = t("agent.verified", date=t.date(c["verified"]["at"]), how=t.text("how." + c["verified"]["how"]))
     name_link = ""
     if with_agent and is_published(a):
         name_link = f' <a href="{agent_path(lang, ag["id"])}">{esc(ag["name"])}</a> ·'
@@ -482,7 +493,7 @@ def build_index(lang, t, agents, candidates):
             f'<td data-label="{t("index.th_type")}">{esc(kinds_text(t, a))}</td>'
             f'<td data-label="{t("index.th_platforms")}">{esc(platforms_text(t, a))}</td>'
             f'<td data-label="{t("index.th_rosmarops")}">{t("status.followed") if followed else esc(status_text(t, a))}</td>'
-            f'<td data-label="{t("index.th_last_change")}">{last}</td>'
+            f'<td data-label="{t("index.th_last_change")}" data-last="{esc(ag["id"])}">{last}</td>'
             "</tr>"
         )
 
@@ -525,9 +536,9 @@ def build_index(lang, t, agents, candidates):
         ((c, a) for a in agents for c in a["changes"]), key=lambda x: (x[0]["date"], x[0]["id"]), reverse=True
     )[:10]
     if all_changes:
-        changes = '<ol class="changes box">' + "".join(change_item(t, lang, a, c, True) for c, a in all_changes) + "</ol>"
+        changes = '<ol class="changes box" data-live-target>' + "".join(change_item(t, lang, a, c, True) for c, a in all_changes) + "</ol>"
     else:
-        changes = f'<p class="empty box">{t("index.changes_empty")}</p>'
+        changes = f'<p class="empty box" data-live-target>{t("index.changes_empty")}</p>'
 
     daily_link = Markup(f'<a href="{DAILY_PATH[lang]}">{t("index.daily_link")}</a>')
     cloud_link = Markup(f'<a href="{CLOUD_PATH[lang]}">{t("index.cloud_link")}</a>')
@@ -545,9 +556,9 @@ def build_index(lang, t, agents, candidates):
 <h2 id="today-h2">{t("index.today_h2")}</h2>
 <p class="note today-all"><a href="{DAILY_PATH[lang]}">{t("index.today_all")}</a></p>
 </section>
-<script src="/assets/observatory/today.js?v=1" defer></script>
+<script src="/assets/observatory/today.js?v=2" defer></script>
 
-<section aria-labelledby="agents">
+<section aria-labelledby="agents" data-last-src="{DAILY_PATH[lang]}last-change.html">
 <h2 id="agents">{t("index.agents_h2")}</h2>
 <p class="note">{t("index.agents_scope", link=cloud_link)}</p>
 {table(agent_list, "index.th_agent")}
@@ -555,7 +566,7 @@ def build_index(lang, t, agents, candidates):
 <p class="note">{t("index.pages_note")}</p>
 </section>{tools_section}{cloud_section}
 
-<section aria-labelledby="changes">
+<section aria-labelledby="changes" data-live="{DAILY_PATH[lang]}changes.html">
 <h2 id="changes">{t("index.changes_h2")}</h2>
 {changes}
 <p class="note">{t("index.changes_daily", link=daily_link)}</p>
@@ -750,9 +761,9 @@ def build_agent(lang, t, a):
 
     changes = sorted(a["changes"], key=lambda c: (c["date"], c["id"]), reverse=True)
     history = (
-        '<ol class="changes box">' + "".join(change_item(t, lang, a, c, False) for c in changes) + "</ol>"
+        '<ol class="changes box" data-live-target>' + "".join(change_item(t, lang, a, c, False) for c in changes) + "</ol>"
         if changes
-        else f'<p class="empty box">{t("agent.history_empty")}</p>'
+        else f'<p class="empty box" data-live-target>{t("agent.history_empty")}</p>'
     )
 
     versions_html = ""
@@ -809,11 +820,12 @@ def build_agent(lang, t, a):
 <div class="actions"><a class="btn primary" href="{esc(t.text("site.download_url") + ("?from=observatory-" + ag["id"] if is_published(a) else ""))}" target="_blank" rel="nofollow noopener">{t("agent.cta_download")}</a></div>
 </section>
 
-<section id="history" aria-labelledby="history-h">
+<section id="history" aria-labelledby="history-h" data-live="{DAILY_PATH[lang]}history-{esc(ag["id"])}.html">
 <h2 id="history-h">{t("agent.history_h2")}</h2>
 <p class="note">{t("agent.history_note")}</p>
 {history}
 </section>
+<script src="/assets/observatory/today.js?v=2" defer></script>
 {versions_html}
 <section id="sources" aria-labelledby="sources-h">
 <h2 id="sources-h">{t("agent.sources_h2")}</h2>
@@ -937,6 +949,10 @@ def build_daily_shells(cats):
         (DAILY_DIR / f"shell-{lang}.html").write_text(html_, encoding="utf-8")
     texts = {l: {k: cats[l][k] for k in DAILY_KEYS} for l in LANGS}
     texts["_paths"] = DAILY_PATH
+    # GTM-89: which agent files the mu-plugin reads, which agent pages are published (their links), and where they live.
+    texts["_agents"] = sorted(a["agent"]["id"] for a in load_agents())
+    texts["_published"] = sorted(a["agent"]["id"] for a in load_agents() if is_published(a))
+    texts["_index_paths"] = INDEX_PATH
     (DAILY_DIR / "i18n.json").write_text(json.dumps(texts, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
