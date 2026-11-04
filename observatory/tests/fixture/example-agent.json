@@ -89,6 +89,33 @@
           "ca": "Synthetic test entry: the date was wrong."
         }
       }
+    },
+    {
+      "id": "chg-example-agent-1-3-0-sandbox",
+      "version": "1.3.0",
+      "date": "2026-11-03",
+      "category": "sandbox",
+      "before": {
+        "en": "Synthetic writer entry: before 1.3.0 the sandbox was off by default.",
+        "es": "Entrada sintética del redactor: antes de 1.3.0 el sandbox venía desactivado.",
+        "ca": "Entrada sintètica del redactor: abans de 1.3.0 el sandbox venia desactivat."
+      },
+      "after": {
+        "en": "Synthetic writer entry: since 1.3.0 the sandbox is on by default.",
+        "es": "Entrada sintética del redactor: desde 1.3.0 el sandbox viene activado.",
+        "ca": "Entrada sintètica del redactor: des de 1.3.0 el sandbox ve activat."
+      },
+      "source": {
+        "url": "https://example.com/changelog#1.3.0",
+        "official": true,
+        "accessed_at": "2026-11-04"
+      },
+      "verified": {
+        "by": "writer",
+        "at": "2026-11-04",
+        "how": "official_changelog"
+      },
+      "rosmarops_impact": "none"
     }
   ],
   "ratings": []

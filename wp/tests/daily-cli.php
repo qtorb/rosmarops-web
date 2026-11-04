@@ -10,3 +10,17 @@ if ($cmd === 'store') {
 if ($cmd === 'today') {
 	echo rosmarops_daily_today($date, json_decode(file_get_contents($file), true));
 }
+// GTM-89. `store-agent <file> <id>` prints "stored" or "not stored"; `history <file> <lang>` prints the history of a
+// validated agent file (or "invalid"); `route <path>` prints the status line and the body the router answers.
+if ($cmd === 'store-agent') {
+	echo rosmarops_agents_store(json_decode(file_get_contents($file), true), $date) ? "stored\n" : "not stored\n";
+}
+if ($cmd === 'history') {
+	$a = json_decode(file_get_contents($file), true);
+	$v = rosmarops_agents_validate($a, $a['agent']['id'] ?? '');
+	echo $v === null ? 'invalid' : rosmarops_agents_history_html($date, $v);
+}
+if ($cmd === 'route') {
+	$r = rosmarops_daily_route($file);
+	echo $r === null ? "null\n" : $r[0] . "\n" . $r[2];
+}

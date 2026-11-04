@@ -3,7 +3,7 @@ name: Observatory (data, generator and output checks)
 on:
   push:
     branches: [observatory, main]
-    paths: ["observatory/**", "site/observatory/**", "site/es/observatorio/**", "site/ca/observatori/**", "wp/daily/**", "wp/mu-plugins/**", "wp/tests/**", ".github/workflows/observatory.yml"]
+    paths: ["observatory/**", "site/assets/observatory/**", "site/observatory/**", "site/es/observatorio/**", "site/ca/observatori/**", "wp/daily/**", "wp/mu-plugins/**", "wp/tests/**", ".github/workflows/observatory.yml"]
   pull_request:
     paths: ["observatory/**", "wp/daily/**", "wp/mu-plugins/**", "wp/tests/**", ".github/workflows/observatory.yml"]
   workflow_dispatch:
@@ -70,7 +70,7 @@ jobs:
       - name: Daily synopsis checks and mu-plugin (GTM-23)
         run: |
           set -eu
-          python -m unittest observatory/tests/test_daily_check.py observatory/tests/test_daily_alert.py observatory/tests/test_github_stats.py observatory/tests/test_collect.py
+          python -m unittest observatory/tests/test_daily_check.py observatory/tests/test_daily_alert.py observatory/tests/test_github_stats.py observatory/tests/test_collect.py observatory/tests/test_rules.py
           if ls observatory/daily/*.json >/dev/null 2>&1; then python observatory/daily_check.py observatory/daily/*.json; else echo "no daily files yet"; fi
           php -l wp/mu-plugins/rosmarops-daily.php
           python -m unittest wp/tests/test_daily.py
@@ -104,3 +104,7 @@ jobs:
             test -f "$RUNNER_TEMP/obs/$l/example-agent/index.html"
             grep -q '"@type":"TechArticle"' "$RUNNER_TEMP/obs/$l/example-agent/index.html"
           done
+          # GTM-89: an entry collected by the daily writer shows its own verification line in the three languages.
+          grep -q "Collected automatically on 4 November 2026 from the official changelog." "$RUNNER_TEMP/obs/observatory/example-agent/index.html"
+          grep -q "Recogido automáticamente el 4 de noviembre de 2026 del registro de cambios oficial." "$RUNNER_TEMP/obs/es/observatorio/example-agent/index.html"
+          grep -q "Recollit automàticament el 4 de novembre de 2026 del registre de canvis oficial." "$RUNNER_TEMP/obs/ca/observatori/example-agent/index.html"
