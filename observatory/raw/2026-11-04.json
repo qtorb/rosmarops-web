@@ -1,6 +1,6 @@
 {
   "date": "2026-11-04",
-  "collected_at": "2026-11-04T05:34:28Z",
+  "collected_at": "2026-11-04T11:25:51Z",
   "sources": [
     {
       "id": "F1",
@@ -127,8 +127,34 @@
       "reason": null,
       "latest": null,
       "latest_date": "2026-11-04",
-      "new": [],
-      "ids": [],
+      "new": [
+        {
+          "date": "2026-11-04",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-0d05039c4715b746 @ifasn/mmdd-doc-mcp: @ifasn/mmdd-doc-mcp exfiltrates /proc credentials and cloud IMDS data to hardcoded IP"
+        },
+        {
+          "date": "2026-11-04",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-89e10b57cd091186 @ifasn/ms-doc-mcp: Markdown MCP server auto-enumerates Alibaba Cloud IMDS credentials on startup"
+        },
+        {
+          "date": "2026-11-04",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-f8a9d0dad59c1103 @ifasn/ms-doc-mcp: MCP server harvests environment credentials and Alibaba Cloud IMDS data on startup"
+        },
+        {
+          "date": "2026-11-04",
+          "version": null,
+          "text": "MAL-2026-18603 @ifasn/ms-doc-mcp: Malicious code in @ifasn/ms-doc-mcp (npm)"
+        }
+      ],
+      "ids": [
+        "MAL-0000-amazon-inspector-0d05039c4715b746",
+        "MAL-0000-amazon-inspector-89e10b57cd091186",
+        "MAL-0000-amazon-inspector-f8a9d0dad59c1103",
+        "MAL-2026-18603"
+      ],
       "read_with": "git"
     },
     {
@@ -167,8 +193,16 @@
       "reason": null,
       "latest": null,
       "latest_date": "2026-11-04",
-      "new": [],
-      "ids": [],
+      "new": [
+        {
+          "date": "2026-11-04",
+          "version": null,
+          "text": "MAL-2026-18603 @ifasn/ms-doc-mcp: Malicious code in @ifasn/ms-doc-mcp (npm)"
+        }
+      ],
+      "ids": [
+        "MAL-2026-18603"
+      ],
       "read_with": "curl"
     },
     {
@@ -350,9 +384,15 @@
       "id": "F27",
       "opened": true,
       "reason": null,
-      "latest": "1.144",
-      "latest_date": "2026-10-28",
-      "new": [],
+      "latest": "1.145",
+      "latest_date": "2026-11-04",
+      "new": [
+        {
+          "date": "2026-11-04",
+          "version": "1.145",
+          "text": "## Downloads for 1.145.0 Windows x64Arm64 macOS UniversalIntelApple silicon Linux .deb.rpm.tar.gzArm instructionsSnap ## Release highlights This week, your remote agent sessions feel a bit more local. Preview apps and use canvases right in VS Code, fine-tune automation schedules with cron, and turn down the noise in chat. And when you need a break, Blobby is ready to play. Remote agents: Preview apps and use interactive canvases from remote agent sessions without leaving the Agents window. Automations: Run recurring agent tasks on custom schedules beyond the built-in presets with cron. Agent…"
+        }
+      ],
       "ids": [],
       "read_with": "curl"
     },
@@ -376,8 +416,24 @@
       "ids": [],
       "read_with": "curl",
       "date_is_detection": true
+    },
+    {
+      "id": "F31",
+      "opened": true,
+      "reason": null,
+      "latest": "n8n@3.1.0",
+      "latest_date": "2026-11-03",
+      "new": [
+        {
+          "date": "2026-11-03",
+          "version": "n8n@3.1.0",
+          "text": "<!-- release-prerelease --> # [3.1.0](https://github.com/n8n-io/n8n/compare/n8n@2.46.0...n8n@3.1.0) (2026-11-03) ### Bug Fixes * Add missing period to data table storage limit banner copy ([#37943](https://github.com/n8n-io/n8n/issues/37943)) ([d1dc4d6](https://github.com/n8n-io/n8n/commit/d1dc4d6cd3496618d3afdf75962fc2f4e51cec81)) * **AI Agent Node:** Point the deprecated agent type callout to an action that works ([#42898](https://github.com/n8n-io/n8n/issues/42898)) ([7a44fcb](https://github.com/n8n-io/n8n/commit/7a44fcbc4f9fb39c110545c8874c7a4da088ac15)) * **ai-builder:** Include instance…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
     }
   ],
-  "opened": 29,
-  "total": 29
+  "opened": 30,
+  "total": 30
 }
