@@ -23,6 +23,7 @@ import collect  # noqa: E402
 
 SOURCES = json.loads((ROOT / "observatory" / "sources.json").read_text(encoding="utf-8"))
 TERMS = SOURCES["scope_terms"]
+IDS = [s["id"] for s in SOURCES["sources"]]
 L = "2026-01-12"
 TODAY = "2026-01-15"
 
@@ -420,6 +421,39 @@ class GithubApiNotes(Base):
                 self.assertEqual(s["read"]["notes"][0], "github-api", s["id"])
 
 
+class N8nSource(Base):
+    N8N = "https://github.com/n8n-io/n8n.git"
+
+    def test_prefixed_pattern(self):
+        ok = collect.tag_matcher("n8n@N.N.N", None)
+        self.assertEqual([t for t in ["n8n@3.1.0", "n8n@0.189.1", "release/1.37.2", "stable", "v1", "n8n@3.1.0-rc.1",
+                                      "n8n@3.1", "@n8n/api-types@1.0.0"] if ok(t)], ["n8n@3.1.0", "n8n@0.189.1"])
+        self.assertTrue(collect.tag_matcher("N.N.N", None)("1.2.19"))
+        self.assertFalse(collect.tag_matcher("N.N.N", None)("v1.2.19"))
+
+    def test_version_number(self):
+        for tag, num in (("n8n@3.1.0", "3.1.0"), ("rust-v0.166.0", "0.166.0"), ("python-1.24.0", "1.24.0"),
+                         ("v2026.10.10", "2026.10.10"), ("2026-07-28", "2026-07-28")):
+            self.assertEqual(collect.version_number(tag), num)
+
+    def test_notes_from_release_then_from_the_web_heading(self):
+        page = ("<html><body><h2>n8n 3.1.0 Agent nodes ask before running tools</h2><p>Released 2026-01-14.</p>"
+                "<p>MCP Client node asks for approval.</p><h2>n8n 3.0.2 Older</h2><p>Older notes.</p></body></html>")
+        a, b = self.tags({self.N8N: ["n8n@3.1.0", "n8n@3.0.2", "stable"]},
+                         {(self.N8N, "n8n@3.1.0"): ("2026-01-14", ""), (self.N8N, "n8n@3.0.2"): ("2026-01-02", "")})
+        with a, b, self.web({"https://docs.n8n.io/release-notes/": page}):
+            r = collect.read_git_tags(src("F31"), L, TERMS)
+        self.assertTrue(r["opened"])
+        self.assertEqual((r["latest"], r["latest_date"]), ("n8n@3.1.0", "2026-01-14"))
+        self.assertIn("MCP Client node asks for approval", r["new"][0]["text"])
+        self.assertNotIn("Older notes", r["new"][0]["text"])
+        self.releases["n8n-io/n8n"] = {"n8n@3.1.0": "From the GitHub release."}
+        collect._releases.clear()
+        with a, b, self.web({"https://docs.n8n.io/release-notes/": page}):
+            r = collect.read_git_tags(src("F31"), L, TERMS)
+        self.assertEqual(r["new"][0]["text"], "From the GitHub release.")
+
+
 class Gtm76Sources(Base):
     def test_hermes_pattern_v0(self):
         hermes = "https://github.com/NousResearch/hermes-agent.git"
@@ -711,8 +745,8 @@ class WholeRun(Base):
                 out = collect.collect(raw_dir=d, now=datetime.datetime(2026, 1, 15, 5, 30, tzinfo=datetime.timezone.utc))
         self.assertEqual(set(seen), {"2026-01-12"})
         self.assertEqual((out["date"], out["collected_at"], out["opened"], out["total"]),
-                         ("2026-01-15", "2026-01-15T05:30:00Z", 28, 29))
-        self.assertEqual([s["id"] for s in out["sources"]], [f"F{i}" for i in range(1, 30)])
+                         ("2026-01-15", "2026-01-15T05:30:00Z", len(IDS) - 1, len(IDS)))
+        self.assertEqual([s["id"] for s in out["sources"]], IDS)
         validate(self, out)
 
     def test_l_defaults_to_seven_days(self):
@@ -754,15 +788,21 @@ class SourcesFile(unittest.TestCase):
         daily = json.loads((ROOT / "observatory" / "daily" / "2026-11-03.json").read_text(encoding="utf-8"))
         checked = {c["name"]: c["url"] for c in daily["checked"]}
         ids = [s["id"] for s in SOURCES["sources"]]
-        self.assertEqual(ids, [f"F{i}" for i in range(1, 30)])
+        self.assertEqual(ids, IDS)
+        self.assertEqual(IDS[:29], [f"F{i}" for i in range(1, 30)])
+        self.assertTrue(set(IDS[29:]) <= {"F30", "F31"}, IDS)
         for s in SOURCES["sources"]:
             self.assertEqual(set(s), {"id", "name", "scope", "method", "read", "public_url", "fragile", "notes"}, s["id"])
             self.assertIn(s["method"], collect.METHODS, s["id"])
             self.assertEqual(s["fragile"], s["id"] in ("F8", "F19"), s["id"])
             self.assertNotIn("raw.githubusercontent.com", s["public_url"], s["id"])
-            if s["name"] not in ("Hermes Agent", "Muse Code"):
+            if s["name"] not in ("Hermes Agent", "Muse Code", "n8n"):
                 self.assertEqual(s["public_url"], checked[s["name"]], s["id"])
-        self.assertEqual(len(SOURCES["scope_terms"]), 22)
+        self.assertEqual(len(set(SOURCES["scope_terms"])), len(SOURCES["scope_terms"]))
+        self.assertTrue({"muse", "n8n"} <= set(SOURCES["scope_terms"]))
+        f31 = src("F31")
+        self.assertEqual((f31["name"], f31["method"], f31["read"]["tags"], f31["fragile"]), ("n8n", "git-tags", "n8n@N.N.N", False))
+        self.assertEqual(f31["read"]["notes"], ["github-api", {"web": "https://docs.n8n.io/release-notes/"}])
         self.assertIn("muse", SOURCES["scope_terms"])
         f29 = SOURCES["sources"][28]
         self.assertEqual((f29["name"], f29["method"], f29["fragile"]), ("Muse Code", "changelog-versions", False))
