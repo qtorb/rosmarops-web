@@ -317,6 +317,28 @@ function rosmarops_daily_index_body($lang, $days) {
 	return $out;
 }
 
+/** «Today in the Observatory» (GTM-88): the block for the Observatory index, from the latest stored day. Every text escaped. */
+function rosmarops_daily_today($lang, $d) {
+	$checked = strtr(rosmarops_daily_t($lang, 'index.today_checked'), ['{date}' => rosmarops_daily_date($lang, $d['date']), '{checked}' => (string) count(rosmarops_daily_sources($d))]);
+	$out = '<p class="note">' . rosmarops_daily_e($checked) . "</p>\n";
+	if ($d['status'] === 'incomplete') {
+		$out .= '<p class="note">' . rosmarops_daily_e(rosmarops_daily_t($lang, 'index.today_incomplete')) . "</p>\n";
+	}
+	$items = array_slice((array) $d['items'], 0, 5);
+	if (count($items) > 0) {
+		$out .= '<ol class="changes box">';
+		foreach ($items as $it) {
+			$out .= '<li><p>' . rosmarops_daily_e($it['text'][$lang]) . '</p>'
+				. '<p class="meta">' . rosmarops_daily_e($it['subject'] . ' · ' . rosmarops_daily_date($lang, $it['source_date']) . ' · ')
+				. '<a href="' . rosmarops_daily_e($it['source_url']) . '" rel="noopener">' . rosmarops_daily_e(rosmarops_daily_t($lang, 'index.today_source')) . '</a></p></li>';
+		}
+		$out .= "</ol>\n";
+	} else {
+		$out .= '<p class="empty box">' . rosmarops_daily_e(rosmarops_daily_t($lang, 'index.today_empty')) . "</p>\n";
+	}
+	return $out;
+}
+
 function rosmarops_daily_days($limit = null) {
 	$days = [];
 	foreach ((array) rosmarops_daily_get('rosmarops_daily_dates', []) as $date) {
@@ -371,6 +393,13 @@ function rosmarops_daily_route($path) {
 			$body = rosmarops_daily_shell($lang, ['TITLE' => rosmarops_daily_t($lang, 'daily.index_h1'), 'DESCRIPTION' => rosmarops_daily_t($lang, 'daily.lead'), 'PATH' => $prefix,
 				'RSS_TITLE' => rosmarops_daily_t($lang, 'daily.rss_title'), 'RSS_PATH' => $prefix . 'feed.xml', 'BODY' => rosmarops_daily_index_body($lang, rosmarops_daily_days())] + $alts(''));
 			return [200, $html, $body];
+		}
+		if ($rest === 'today.html') {
+			$days = rosmarops_daily_days(1);
+			if (!$days) {
+				return [404, ['Content-Type' => 'text/plain; charset=UTF-8', 'Cache-Control' => 'public, max-age=900', 'X-Robots-Tag' => 'noindex'], ''];
+			}
+			return [200, $html + ['X-Robots-Tag' => 'noindex'], rosmarops_daily_today($lang, $days[0])];
 		}
 		if ($rest === 'feed.xml') {
 			return [200, ['Content-Type' => 'application/rss+xml; charset=UTF-8', 'Cache-Control' => 'public, max-age=900'], rosmarops_daily_feed($lang, rosmarops_daily_days(ROSMAROPS_DAILY_FEED_ITEMS))];

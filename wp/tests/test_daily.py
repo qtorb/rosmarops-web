@@ -135,6 +135,59 @@ class Daily(unittest.TestCase):
         self.assertLess(i1, i2)
         self.assertLess(i2, i3)
 
+    # ---- «Today in the Observatory» (GTM-88)
+
+    def today(self, d, lang):
+        f = Path(self.tmp.name) / "today.json"
+        f.write_text(json.dumps(d, ensure_ascii=False), encoding="utf-8")
+        return subprocess.run(["php", str(TESTS / "daily-cli.php"), "today", str(f), lang],
+                              env=self.env, capture_output=True, text=True, check=True).stdout
+
+    def test_today_route_uses_latest_day(self):
+        for prefix, line, empty in [
+            ("/observatory/daily/", "3 November 2026 · 2 sources checked", "No new changes in the sources today."),
+            ("/es/observatorio/diario/", "3 de noviembre de 2026 · 2 fuentes revisadas", "Hoy no hay cambios nuevos en las fuentes."),
+            ("/ca/observatori/diari/", "3 de novembre de 2026 · 2 fonts revisades", "Avui no hi ha canvis nous a les fonts."),
+        ]:
+            st, h, body = self.get(prefix + "today.html")
+            self.assertEqual(st, 200, prefix)
+            self.assertIn("text/html", h["Content-Type"])
+            self.assertEqual(h["Cache-Control"], "public, max-age=900")
+            self.assertEqual(h["X-Robots-Tag"], "noindex")
+            self.assertEqual(body, f'<p class="note">{line}</p>\n<p class="empty box">{empty}</p>\n')
+
+    def test_today_items(self):
+        out = self.today(self.valid, "es")
+        self.assertTrue(out.startswith('<p class="note">15 de enero de 2026 · 2 fuentes revisadas</p>\n<ol class="changes box"><li><p>El 14 de enero de 2026'), out)
+        self.assertIn('<p class="meta">example-mcp-package · 14 de enero de 2026 · <a href="https://osv.dev/vulnerability/MAL-2026-1" rel="noopener">Fuente oficial</a></p></li>', out)
+        self.assertEqual(out.count("<li>"), 2)
+        self.assertNotIn("incompleta", out)
+        self.assertIn("Official source</a>", self.today(self.valid, "en"))
+        self.assertIn("Font oficial</a>", self.today(self.valid, "ca"))
+
+    def test_today_escapes_and_caps(self):
+        d = copy.deepcopy(self.valid)
+        d["items"][1]["text"]["en"] = "<script>alert(1)</script> Example"
+        d["items"][1]["subject"] = "<b>x</b>"
+        out = self.today(d, "en")
+        self.assertNotIn("<script>", out)
+        self.assertNotIn("<b>", out)
+        self.assertIn("&lt;script&gt;alert(1)&lt;/script&gt; Example", out)
+        d["items"] = [copy.deepcopy(self.valid["items"][0]) for _ in range(7)]
+        self.assertEqual(self.today(d, "en").count("<li>"), 5)
+
+    def test_today_incomplete(self):
+        d = copy.deepcopy(self.valid)
+        d.update(status="incomplete", not_checked=["Example source"])
+        d["checked"].append({"name": "Internal", "url": "https://github.com/qtorb/rosmarops-vigil/tree/master/docs/observatorio", "latest_seen": "", "latest_date": None})
+        out = self.today(d, "ca")
+        self.assertTrue(out.startswith('<p class="note">15 de gener de 2026 · 2 fonts revisades</p>\n'
+                                       "<p class=\"note\">La revisió d&#039;avui és incompleta: al dia a dia veus què no s&#039;ha pogut revisar.</p>\n"), out)
+        d["items"] = []
+        out = self.today(d, "es")
+        self.assertIn('<p class="note">La revisión de hoy está incompleta: en el día a día ves qué no se pudo revisar.</p>', out)
+        self.assertIn('<p class="empty box">Hoy no hay cambios nuevos en las fuentes.</p>', out)
+
     def test_unknown_date_is_wordpress_404(self):
         st, _, body = self.get("/observatory/daily/2026-01-01/")
         self.assertEqual((st, body), (404, "wp-404"))
