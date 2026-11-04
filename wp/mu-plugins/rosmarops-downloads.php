@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: RosmarOps downloads
- * Description: Download counter (GTM-18; os added by the 2026-10-29 direct-download decision). /download, /es/descargar and /ca/descarregar add one to an aggregate count (UTC day, source page, language, os) and redirect to GitHub: to the file for ?os=windows|mac-arm|mac-intel, otherwise to the latest release. Stores no IP address, cookie, user agent or referrer. Public read-only totals at /wp-json/rosmarops/v1/downloads. Versioned in qtorb/rosmarops-web; do not edit on the server.
+ * Description: Download counter (GTM-18; os added by the 2026-10-29 direct-download decision). /download, /es/descargar and /ca/descarregar add one to an aggregate count (UTC day, source page, language, os) and redirect to GitHub: to the file for ?os=windows|mac-arm|mac-intel|linux-amd64|linux-arm64 (Linux added by GTM-83), otherwise to the latest release. Stores no IP address, cookie, user agent or referrer. Public read-only totals at /wp-json/rosmarops/v1/downloads. Versioned in qtorb/rosmarops-web; do not edit on the server.
  */
 
 if (!defined('ABSPATH')) {
@@ -15,9 +15,11 @@ const ROSMAROPS_DL_OS     = [
 	'windows'   => 'https://github.com/qtorb/rosmarops/releases/latest/download/rosmarops.exe',
 	'mac-arm'   => 'https://github.com/qtorb/rosmarops/releases/latest/download/rosmarops-macos-apple-silicon',
 	'mac-intel' => 'https://github.com/qtorb/rosmarops/releases/latest/download/rosmarops-macos-intel',
+	'linux-amd64' => 'https://github.com/qtorb/rosmarops/releases/latest/download/rosmarops-linux-amd64',
+	'linux-arm64' => 'https://github.com/qtorb/rosmarops/releases/latest/download/rosmarops-linux-arm64',
 ];
 const ROSMAROPS_DL_FROM   = [
-	'home', 'faq', 'about', 'macos-page',
+	'home', 'faq', 'about', 'macos-page', 'linux-page',
 	'observatory-claude-code', 'observatory-cursor', 'observatory-hermes-agent', 'observatory-kanvas',
 	'blog-v040', 'blog-v030', 'blog-launch', 'blog-18of100',
 ];

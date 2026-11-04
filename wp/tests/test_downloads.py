@@ -89,6 +89,8 @@ class Downloads(unittest.TestCase):
             "/download?from=home&os=windows": LATEST + "/download/rosmarops.exe",
             "/es/descargar?from=macos-page&os=mac-arm": LATEST + "/download/rosmarops-macos-apple-silicon",
             "/ca/descarregar?from=macos-page&os=mac-intel": LATEST + "/download/rosmarops-macos-intel",
+            "/es/descargar?from=linux-page&os=linux-amd64": LATEST + "/download/rosmarops-linux-amd64",
+            "/download?from=linux-page&os=linux-arm64": LATEST + "/download/rosmarops-linux-arm64",
             "/download?from=home": LATEST,
             "/download?from=home&os=linux": LATEST,
             "/download/?from=blog-v040": LATEST,
@@ -113,6 +115,12 @@ class Downloads(unittest.TestCase):
         ])
         key = mysql(f"SHOW KEYS FROM {TABLE} WHERE Key_name = 'PRIMARY'").splitlines()
         self.assertEqual([k.split("\t")[4] for k in key], ["day", "src", "lang", "os"])
+
+    def test_linux_counts_with_its_source_and_os(self):
+        mysql(f"DROP TABLE {TABLE}")
+        self.get("/es/descargar?from=linux-page&os=linux-amd64")
+        self.get("/ca/descarregar?from=linux-page&os=linux-arm64")
+        self.assertEqual(self.rows(), ["linux-page\tca\tlinux-arm64\t1", "linux-page\tes\tlinux-amd64\t1"])
 
     def test_fresh_table(self):
         mysql(f"DROP TABLE {TABLE}")
