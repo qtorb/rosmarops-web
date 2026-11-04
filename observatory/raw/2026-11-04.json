@@ -1,0 +1,383 @@
+{
+  "date": "2026-11-04",
+  "collected_at": "2026-11-04T05:34:28Z",
+  "sources": [
+    {
+      "id": "F1",
+      "opened": true,
+      "reason": null,
+      "latest": "2.1.318",
+      "latest_date": "2026-11-04",
+      "new": [
+        {
+          "date": "2026-11-04",
+          "version": "2.1.318",
+          "text": "Added Added a record of your answer when Claude Code asks to turn on the mods it writes in a session Added assume_role on mantle upstreams of the Claude apps gateway, for a role in another AWS account and for per-developer AWS cost attribution Added an effort option to a mod’s $.model.fork, so a quick side job can run at low whatever effort the session uses; the result reports the effort sent Added the date a stored claude.ai sign-in ends to claude auth status (loginExpiresAt) and to claude -p JSON results (credential_expires_at) Added a one-line stderr warning to claude -p text output, start…"
+        },
+        {
+          "date": "2026-11-03",
+          "version": "2.1.317",
+          "text": "Added Added a warning to /schedule when a new cloud scheduled task gets connectors you did not ask for, with how to remove them Added a check that asks before a web or shell tool call sends your account email address to the network Added onFailure: \"block\" for Agent SDK hook callbacks, so a callback that fails blocks the action instead of letting it run Added a notice in Claude Desktop’s Code tab when your organization’s remote managed settings haven’t loaded for the session, and another once they do Added a notice when auto mode’s check has no answer for a subagent’s tool call, which used to…"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F2",
+      "opened": true,
+      "reason": null,
+      "latest": "v2026.10.22",
+      "latest_date": "2026-10-22",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F3",
+      "opened": true,
+      "reason": null,
+      "latest": "rust-v0.166.0",
+      "latest_date": "2026-10-29",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F4",
+      "opened": true,
+      "reason": null,
+      "latest": "v2.29.0",
+      "latest_date": "2026-11-03",
+      "new": [
+        {
+          "date": "2026-11-03",
+          "version": "v2.29.0",
+          "text": "### Jupyter notebook viewer, redesigned Automations, voice mode, and remote agents This release adds a native Jupyter notebook viewer, redesigned Home and Automations pages, and downloads and browsing history in the built-in browser. Voice mode, powered by Gemini Live, and remote agents, which run conversations in the cloud, are starting to roll out. Improvements(22) Jupyter notebook .ipynb files now open natively in the file viewer, rendering code cells, Markdown, tables, images, and cell outputs without leaving Antigravity. Voice mode, powered by Gemini Live, lets you talk to Antigravity an…"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F5",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.22.7",
+      "latest_date": "2026-11-03",
+      "new": [
+        {
+          "date": "2026-11-03",
+          "version": "v0.22.7",
+          "text": "# Hermes Agent v0.22.7 **Release Date:** November 3, 2026 > Patch release. This tag rolls up the ~174 PRs merged since v0.22.6 into a stable release for the GitHub release (CLI and installers), the Microsoft Store app, Docker and Hermes Cloud. Full curated notes for this window ship with v0.23.0. <!-- HERMES_BUILDS_TABLE --> ## About this release Measured at commit `b200f5bc60e`, the window since v0.22.6 contains **581 non-merge commits** across **554 changed files** (+24,012 / −3,144), **174 merged PRs** and **29 closed issues**. Also in the window, undocumented here on purpose: opt-in lead…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F6",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-03",
+      "new": [
+        {
+          "date": "2026-11-03",
+          "version": null,
+          "text": "Nov.03 Improvement BYOK and enterprise custom models in the Copilot usage API account management copilot enterprise management tools ... +2 ###"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F7",
+      "opened": true,
+      "reason": null,
+      "latest": "v4.1.26",
+      "latest_date": "2026-10-26",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F8",
+      "opened": true,
+      "reason": null,
+      "latest": "v2.1.0-vscode",
+      "latest_date": "2026-06-19",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F9",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.4.0",
+      "latest_date": "2026-10-27",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F10",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-04",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F11",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.66.0",
+      "latest_date": "2026-10-27",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F12",
+      "opened": true,
+      "reason": null,
+      "latest": "1.0.105",
+      "latest_date": "2026-10-27",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F13",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-10-21",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F14",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-04",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F15",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-03",
+      "new": [
+        {
+          "date": "2026-11-03",
+          "version": null,
+          "text": "CVE-2026-121458 [MCP]: Instatic before 0.0.21 contains a missing authorization vulnerability in its AI/MCP content read tools that allows low-privileged authenticated users with ai.chat and content.edit.own capabilities to access data rows belonging to other users by calling content_get_document and content_list_documents without the object-level authorization checks enforced by the normal HTTP API. Attackers can use the MCP interface to retrieve private or unpublished draft content and enumerate rows from the posts system table, resulting in cross-user data disclosure."
+        },
+        {
+          "date": "2026-11-03",
+          "version": null,
+          "text": "CVE-2026-121419 [MCP]: SurrealDB from 3.1.0 before 3.3.0 contains an improper authentication vulnerability where the MCP BoundSubject fingerprint uses the access method name instead of per-user identity for JWT/Bearer access. Attackers with a valid low-privilege token for the same access method and a victim's mcp-session-id can hijack the session and execute MCP tools with the victim's roles and permissions."
+        },
+        {
+          "date": "2026-11-03",
+          "version": null,
+          "text": "CVE-2026-76894 [MCP]: CKAN MCP Server is a tool for querying CKAN open data portals. Prior to 0.4.112, the DataStore table UI in src/resources/datastore-table-ui.ts accepts window message events without validating event.origin and sends JSON-RPC messages through postMessage with a wildcard target origin. A frame that can reach the embedded document can inject fabricated fields or records, spoof pending ui/initialize responses, disrupt the MCP UI handshake, or receive outbound messages when the resource is embedded by an untrusted parent. Values are HTML escaped, so the demonstrated content in…"
+        },
+        {
+          "date": "2026-11-03",
+          "version": null,
+          "text": "CVE-2026-88968 [Claude Code]: Claude Code is an agentic coding tool. Prior to 2.1.251, the Edit tool validates a target using pathname and symlink resolution that is not bound to the underlying directory inode or file descriptor. On macOS, attacker-controlled code running in the Bash sandbox can atomically replace an in-workspace parent directory with a symlink after validation, causing the unsandboxed Edit implementation to overwrite a user-writable file outside the workspace. Exploitation requires attacker-controlled code to run inside the sandbox, such as from a malicious repository or dep…"
+        },
+        {
+          "date": "2026-11-03",
+          "version": null,
+          "text": "CVE-2026-89229 [Copilot]: Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal') in the ShareActivity component of BlueLM Copilot (com.vivo.ai.copilot) allows a malicious application installed on the same device to write arbitrary files via a crafted ACTION_SEND intent with a ContentProvider-supplied file name containing '..' sequences."
+        }
+      ],
+      "ids": [
+        "CVE-2026-121419",
+        "CVE-2026-121458",
+        "CVE-2026-76894",
+        "CVE-2026-88968",
+        "CVE-2026-89229"
+      ],
+      "read_with": "curl"
+    },
+    {
+      "id": "F16",
+      "opened": true,
+      "reason": null,
+      "latest": "v2.2.5",
+      "latest_date": "2026-10-30",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F17",
+      "opened": true,
+      "reason": null,
+      "latest": "3.0.0",
+      "latest_date": "2026-11-03",
+      "new": [
+        {
+          "date": "2026-11-03",
+          "version": "3.0.0",
+          "text": "3.0.0CLI ## V3 by Default, Classic and Desktop App Retired This release makes V3 the default agent harness for interactive Kiro CLI sessions on hosts that can run it. Existing V2 users are asked before the default applies, and Kiro upgrades custom agents still in the V2 format unless you turn that off. Kiro CLI is now a single standalone kiro-cli binary that retires the Classic interface, the desktop app, and inline autocomplete. V3 brings capabilities V2 does not have. Cloud sessions let you disconnect and resume later from /sessions. Memory, once enabled, carries repository context forward.…"
+        },
+        {
+          "date": "2026-11-03",
+          "version": "3.0.0",
+          "text": "3.0.0CLI ## V3 by Default, Classic and Desktop App Retired This release makes V3 the default agent harness for interactive Kiro CLI sessions on hosts that can run it. Existing V2 users are asked before the default applies, and Kiro upgrades custom agents still in the V2 format unless you turn that off. Kiro CLI is now a single standalone kiro-cli binary that retires the Classic interface, the desktop app, and inline autocomplete. V3 brings capabilities V2 does not have. Cloud sessions let you disconnect and resume later from /sessions. Memory, once enabled, carries repository context forward.…"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F18",
+      "opened": true,
+      "reason": null,
+      "latest": "v3.11.238",
+      "latest_date": "2026-10-30",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F19",
+      "opened": true,
+      "reason": null,
+      "latest": "v1.57.0",
+      "latest_date": "2026-10-27",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F20",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-02",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F21",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-08-19",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F22",
+      "opened": true,
+      "reason": null,
+      "latest": "v2026.10.10",
+      "latest_date": "2026-11-03",
+      "new": [
+        {
+          "date": "2026-11-03",
+          "version": "v2026.10.10",
+          "text": "<!-- openclaw-release-publication:docs-v1 --> ## OpenClaw v2026.10.10 4,825 commits · 3,028 pull requests · 454 contributors ### Changes included in this release The release notes and changelog contain the same content, presented in two formats: - [Release notes](https://docs.openclaw.ai/releases/2026.10.10) — formatted for people. - [Changelog](https://raw.githubusercontent.com/openclaw/openclaw/main/CHANGELOG/2026.10.10.md) — plain Markdown for AI agents and tools. ### Thanks [@3n8](https://github.com/3n8) [@555aaditya](https://github.com/555aaditya) [@5jrfrbd6z9-spec](https://github.com/5j…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F23",
+      "opened": true,
+      "reason": null,
+      "latest": "1.2.19",
+      "latest_date": "2026-10-30",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F24",
+      "opened": true,
+      "reason": null,
+      "latest": "1.15.35",
+      "latest_date": "2026-11-03",
+      "new": [
+        {
+          "date": "2026-11-03",
+          "version": "1.15.35",
+          "text": "## What's Changed ### Documentation - Update litellm model catalog for v1.15.35 - Add snapshot and changelog for v1.15.34 ## Contributors @github-actions[bot], @joaomdmoura, @lorenzejay"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F25",
+      "opened": true,
+      "reason": null,
+      "latest": "python-1.24.0",
+      "latest_date": "2026-10-30",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F26",
+      "opened": true,
+      "reason": null,
+      "latest": "2026-07-28",
+      "latest_date": "2026-07-28",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F27",
+      "opened": true,
+      "reason": null,
+      "latest": "1.144",
+      "latest_date": "2026-10-28",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F28",
+      "opened": true,
+      "reason": null,
+      "latest": "2026.11.03",
+      "latest_date": "2026-11-03",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F29",
+      "opened": true,
+      "reason": null,
+      "latest": "1.4.13",
+      "latest_date": "2026-11-04",
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "date_is_detection": true
+    }
+  ],
+  "opened": 29,
+  "total": 29
+}
