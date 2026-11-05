@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "agent": {
+    "id": "n8n",
+    "name": "n8n",
+    "vendor": "n8n",
+    "kinds": [
+      "agent_tooling"
+    ],
+    "platforms": [
+      "windows",
+      "macos",
+      "linux",
+      "web"
+    ],
+    "local_footprint": "partial",
+    "rosmarops": {
+      "status": "detected",
+      "since_version": "0.7.7"
+    },
+    "reviewed_at": "2026-11-06"
+  },
+  "versions": [],
+  "changes": [],
+  "ratings": []
+}
