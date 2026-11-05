@@ -1,6 +1,8 @@
 name: Daily synopsis (checks and alerts)
 
-# GTM-23 §7. Checks each daily file pushed to observatory/daily/ and, at 09:30 Madrid, that today's file exists.
+# GTM-23 §7. Checks each daily file pushed to observatory/daily/ and, at 15:30 Madrid (after the 08:13 and 14:13 writer
+# runs, GTM-90), that today's file exists, that the collector wrote observatory/raw/<today>.json and that no source
+# failed (opened false) two days in a row.
 # Alerts go only to albert@rosmarops.com through Postmark. This workflow uploads nothing and has no OVH credentials:
 # the rosmarops-daily mu-plugin fetches the files from this public repository.
 
@@ -9,7 +11,7 @@ on:
     branches: [main]
     paths: ["observatory/daily/*.json"]
   schedule:
-    - cron: "30 8 * * *" # 09:30 in Madrid in winter (CET); 10:30 in summer (CEST)
+    - cron: "30 14 * * *" # 15:30 in Madrid in winter (CET); 16:30 in summer (CEST). GTM-90
   workflow_dispatch:
 
 permissions:
@@ -58,6 +60,8 @@ jobs:
             else
               n=$(python observatory/daily_alert.py missing "$today")
             fi
+            r=$(python observatory/daily_alert.py repeat "$today")
+            n=$((n + r))
           fi
           echo "alerts: $n"
           echo "count=$n" >> "$GITHUB_OUTPUT"

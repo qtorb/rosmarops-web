@@ -18,6 +18,11 @@ class Rules(unittest.TestCase):
             self.assertRegex(text, re.compile(rf"^R{i} \S", re.M), f"R{i} missing")
         self.assertIn("## Reglas de la sinopsis diaria (R1–R13)", text)
         self.assertIn("## Registro de cambios (GTM-89)", text)
+        self.assertIn("## Fuente de datos (GTM-90)", text)
+        self.assertLess(text.index("## Fuente de datos (GTM-90)"), text.index("## Reglas de la sinopsis diaria (R1–R13)"))
+        self.assertNotIn("«Revisado» del resumen", text)
+        self.assertIn("el dato está en el texto que el recolector recogió hoy de esa fuente en observatory/raw/D.json", text)
+        self.assertNotIn("la has abierto hoy (con curl desde la shell)", text)
         self.assertIn("R11 Alcance: solo los agentes de observatory/data/agents/*.json", text)
 
 
