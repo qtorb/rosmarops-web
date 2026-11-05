@@ -14,7 +14,7 @@ Firmado por Albert el 05-11 23:46. Las fuentes solo las lee el recolector de Git
 
 ## Reglas de la sinopsis diaria (R1–R13)
 
-R1 Fuente: enlaza una fuente oficial (sitio, documentación, blog, changelog o repositorio de GitHub de quien hace el agente) o un registro público (osv.dev, github.com/advisories, nvd.nist.gov, npmjs.com, pypi.org, el catálogo KEV de cisa.gov); la has abierto hoy (con curl desde la shell) y el dato está en ella. Prensa, blogs de terceros, foros y redes no valen.
+R1 Fuente: enlaza una fuente oficial (sitio, documentación, blog, changelog o repositorio de GitHub de quien hace el agente) o un registro público (osv.dev, github.com/advisories, nvd.nist.gov, npmjs.com, pypi.org, el catálogo KEV de cisa.gov); el dato está en el texto que el recolector recogió hoy de esa fuente en observatory/raw/D.json; si el punto no sale de ahí (por ejemplo, un aviso de un registro público encontrado aparte), el redactor abre hoy la fuente con curl desde la shell y el dato tiene que estar en ella. Prensa, blogs de terceros, foros y redes no valen.
 
 R2 Forma: una frase factual, 30 palabras como mucho en EN y 40 en ES y CA: qué cambió, en qué agente o paquete, la fecha de la fuente y la versión si la hay.
 
