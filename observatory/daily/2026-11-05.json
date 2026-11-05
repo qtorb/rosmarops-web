@@ -1,0 +1,53 @@
+{
+  "date": "2026-11-05",
+  "reviewed_at": "2026-11-05T07:14:34Z",
+  "status": "incomplete",
+  "items": [],
+  "checked": [
+    {
+      "name": "Resumen interno del Observatorio",
+      "url": "https://github.com/qtorb/rosmarops-vigil/tree/master/docs/observatorio",
+      "latest_seen": "",
+      "latest_date": null
+    }
+  ],
+  "not_checked": [
+    "Claude Code",
+    "Cursor",
+    "OpenAI Codex",
+    "Google Antigravity",
+    "Hermes Agent",
+    "GitHub Copilot",
+    "Cline",
+    "Continue",
+    "Kanvas",
+    "OpenSSF malicious-packages",
+    "Gemini CLI",
+    "GitHub Copilot CLI",
+    "Claude desktop",
+    "OSV npm and PyPI",
+    "NVD",
+    "OpenCode",
+    "Kiro",
+    "Devin Desktop",
+    "Goose",
+    "Devin (cloud)",
+    "Codex cloud",
+    "OpenClaw",
+    "LangGraph",
+    "CrewAI",
+    "Microsoft Agent Framework",
+    "MCP specification",
+    "VS Code",
+    "CISA KEV"
+  ],
+  "held": [
+    {
+      "text_en": "",
+      "source_url": "",
+      "rule": 10,
+      "reason": "no summary for 2026-11-05"
+    }
+  ],
+  "summary_ref": "docs/observatorio/2026-11-05.md"
+}
