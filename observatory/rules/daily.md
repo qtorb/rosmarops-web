@@ -1,6 +1,16 @@
 # Reglas de la tarea diaria del Observatorio
 
-La tarea programada que escribe `observatory/daily/D.json` lee este fichero en cada ejecución y cumple las dos secciones. Firmado por Albert: R1–R13 en GTM-22 (29-10-2026); registro de cambios en GTM-89 (04-11-2026). Cambiar este fichero es un PR que firma Albert.
+La tarea programada que escribe `observatory/daily/D.json` lee este fichero en cada ejecución y cumple las tres secciones. Firmado por Albert: R1–R13 en GTM-22 (29-10-2026); registro de cambios en GTM-89 (04-11-2026). Cambiar este fichero es un PR que firma Albert.
+
+## Fuente de datos (GTM-90)
+
+Firmado por Albert el 05-11 23:46. Las fuentes solo las lee el recolector de GitHub (`observatory-collect.yml` → `observatory/raw/D.json`); el redactor no las reabre.
+
+1. El redactor lee `observatory/raw/D.json`. Las fuentes con `opened` true van a `checked`: `name` y `url` desde `observatory/sources.json` (`name` y `public_url`), `latest_seen` = `latest` (cadena vacía si es null) y `latest_date` = `latest_date`. Las de `opened` false van a `not_checked` con su `name`.
+2. Si alguna fuente tiene `opened` false, el status es "incomplete" y aun así se publican los items (máximo 5) que cumplan R1–R13 y vengan de fuentes abiertas. R10 se aplica sobre `observatory/raw/D.json` y no sobre la lista «Revisado» de vigil.
+3. Si `observatory/raw/D.json` no existe, se publica `D.json` con status "incomplete", items [], checked [], `not_checked` con el `name` de todas las fuentes y held [{"text_en": "", "source_url": "", "rule": 10, "reason": "no raw for D"}].
+4. Idempotencia: si `observatory/daily/D.json` ya existe en main, el redactor solo lo rehace (y lo sustituye en un commit «observatory: redo daily D») cuando su held contiene rule 10 con reason «no raw for D» o «no summary for D»; si no, para sin escribir nada.
+5. `python3 observatory/daily_raw.py skeleton D` da `checked`, `not_checked` y el fichero sin raw; `python3 observatory/daily_raw.py may-write D` sale con 0 si se puede escribir o rehacer y con 1 si hay que parar.
 
 ## Reglas de la sinopsis diaria (R1–R13)
 
@@ -22,7 +32,7 @@ R8 ES y CA dicen lo mismo que EN, con los mismos números, versiones e identific
 
 R9 Máximo 5 puntos. Orden: primero los que llevan identificador, luego el resto; dentro de cada grupo, el más reciente primero. Los que sobran van a held con reason «fuera por tope» y rule 9.
 
-R10 «Sin novedades» (status "no_changes") solo si abriste todas las fuentes de la lista «Revisado» del resumen. Una fuente cuenta como abierta si la reabres con el mismo método que figura para ella en esa lista: git para las etiquetas de versión y para ossf/malicious-packages, la página oficial con curl desde la shell (curl -sSL -A "Mozilla/5.0" <url>), nunca con WebFetch, para los changelogs. Si el resumen del día empieza por «Revisión de fuentes fijas: INCOMPLETA» o alguna fuente no abre hoy, el status es "incomplete": publica igualmente en items los puntos (máximo 5) que cumplan todas las reglas y vengan de fuentes que sí se abrieron, y pon en not_checked el nombre de cada fuente que no se abrió.
+R10 «Sin novedades» (status "no_changes") solo si todas las fuentes de observatory/raw/D.json tienen opened true. Una fuente cuenta como abierta si tiene opened true en observatory/raw/D.json. Si alguna fuente tiene opened false en observatory/raw/D.json, el status es "incomplete": publica igualmente en items los puntos (máximo 5) que cumplan todas las reglas y vengan de fuentes que sí se abrieron, y pon en not_checked el nombre de cada fuente que no se abrió.
 
 R11 Alcance: solo los agentes de observatory/data/agents/*.json o paquetes, extensiones o servidores MCP que esos agentes usan.
 
