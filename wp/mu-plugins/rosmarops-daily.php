@@ -15,6 +15,7 @@ const ROSMAROPS_DAILY_HOSTS = [
 	'antigravity.google', 'nousresearch.com', 'cline.bot', 'continue.dev', 'osv.dev',
 	'nvd.nist.gov', 'npmjs.com', 'pypi.org',
 	'kiro.dev', 'devin.ai', 'visualstudio.com', 'cisa.gov',
+	'dev.meta.ai', 'docs.n8n.io', // F29 Muse Code and F31 n8n (GTM-90)
 ];
 const ROSMAROPS_DAILY_PREFIX = ['en' => '/observatory/daily/', 'es' => '/es/observatorio/diario/', 'ca' => '/ca/observatori/diari/'];
 const ROSMAROPS_DAILY_FEED_ITEMS = 30;
@@ -539,10 +540,22 @@ function rosmarops_agents_changes_html($lang, $all) {
 	}
 	usort($rows, 'rosmarops_agents_cmp');
 	$rows = array_slice($rows, 0, 10);
+	$line = rosmarops_agents_last_check_html($lang);
 	if (!$rows) {
-		return '<p class="empty box">' . rosmarops_daily_e(rosmarops_daily_t($lang, 'index.changes_empty')) . '</p>';
+		return $line . '<p class="empty box">' . rosmarops_daily_e(rosmarops_daily_t($lang, 'index.changes_empty')) . '</p>';
 	}
-	return '<ol class="changes box">' . implode('', array_map(fn($r) => rosmarops_agents_change_item($lang, $r['a'], $r['c'], true), $rows)) . '</ol>';
+	return $line . '<ol class="changes box">' . implode('', array_map(fn($r) => rosmarops_agents_change_item($lang, $r['a'], $r['c'], true), $rows)) . '</ol>';
+}
+
+/** GTM-90: «Checked every day. Last check: {date}.» under «Latest security changes», from the newest stored daily.
+ * Styled inline like the date on the cards (.changes .meta), so the static pages need no deploy. Empty with no daily. */
+function rosmarops_agents_last_check_html($lang) {
+	$days = rosmarops_daily_days(1);
+	if (!$days) {
+		return '';
+	}
+	$text = strtr(rosmarops_daily_t($lang, 'index.last_check'), ['{date}' => rosmarops_daily_date($lang, $days[0]['date'])]);
+	return '<p class="meta last-check" style="margin:0 0 12px;font-size:14px;color:var(--muted)">' . rosmarops_daily_e($text) . '</p>';
 }
 
 /** The «Latest security change» cells: one span per agent, placed by today.js into td[data-last]. */

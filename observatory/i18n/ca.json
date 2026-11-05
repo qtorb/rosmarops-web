@@ -50,6 +50,7 @@
   "index.pages_note": "Només els agents amb contingut propi tenen pàgina. La resta surten aquí sense enllaç fins que en tinguin.",
   "index.status_note": "Avaluat: RosmarOps li posa una nota d'exposició al teu ordinador, de 0 a 100. Detectat: RosmarOps el troba al teu ordinador, però encara no li posa nota.",
   "index.changes_h2": "Últims canvis de seguretat",
+  "index.last_check": "Revisat cada dia. Última revisió: {date}.",
   "index.changes_daily": "El que hem revisat avui, font per font, és a la {link}.",
   "index.changes_empty": "Encara no hi ha canvis de seguretat registrats. Cadascun sortirà aquí amb la seva data, la seva versió i la seva font oficial.",
   "index.method_h3": "Com treballem",

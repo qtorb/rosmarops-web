@@ -50,6 +50,7 @@
   "index.pages_note": "Only agents with content of their own have a page. The rest are listed here without a link until they have one.",
   "index.status_note": "Evaluated: RosmarOps gives it an Agent Posture Score on your computer, from 0 to 100. Detected: RosmarOps finds it on your computer but doesn't score it yet.",
   "index.changes_h2": "Latest security changes",
+  "index.last_check": "Checked every day. Last check: {date}.",
   "index.changes_daily": "What we checked today, source by source, is in the {link}.",
   "index.changes_empty": "No security changes recorded yet. Each one will appear here with its date, version and official source.",
   "index.method_h3": "How we work",
