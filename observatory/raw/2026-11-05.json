@@ -1,0 +1,411 @@
+{
+  "date": "2026-11-05",
+  "collected_at": "2026-11-05T05:34:47Z",
+  "sources": [
+    {
+      "id": "F1",
+      "opened": true,
+      "reason": null,
+      "latest": "2.1.318",
+      "latest_date": "2026-11-04",
+      "new": [
+        {
+          "date": "2026-11-04",
+          "version": "2.1.318",
+          "text": "Added Added a record of your answer when Claude Code asks to turn on the mods it writes in a session Added assume_role on mantle upstreams of the Claude apps gateway, for a role in another AWS account and for per-developer AWS cost attribution Added an effort option to a mod’s $.model.fork, so a quick side job can run at low whatever effort the session uses; the result reports the effort sent Added the date a stored claude.ai sign-in ends to claude auth status (loginExpiresAt) and to claude -p JSON results (credential_expires_at) Added a one-line stderr warning to claude -p text output, start…"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F2",
+      "opened": true,
+      "reason": null,
+      "latest": "v2026.10.22",
+      "latest_date": "2026-10-22",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F3",
+      "opened": true,
+      "reason": null,
+      "latest": "rust-v0.166.0",
+      "latest_date": "2026-10-29",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F4",
+      "opened": true,
+      "reason": null,
+      "latest": "v2.29.0",
+      "latest_date": "2026-11-03",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F5",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.22.7",
+      "latest_date": "2026-11-03",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F6",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-04",
+      "new": [
+        {
+          "date": "2026-11-04",
+          "version": null,
+          "text": "Nov.04 Release GitHub Copilot is now available in Xcode’s coding assistant copilot ###"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F7",
+      "opened": true,
+      "reason": null,
+      "latest": "v4.1.26",
+      "latest_date": "2026-10-26",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F8",
+      "opened": true,
+      "reason": null,
+      "latest": "v2.1.0-vscode",
+      "latest_date": "2026-06-19",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F9",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.4.0",
+      "latest_date": "2026-10-27",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F10",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-05",
+      "new": [
+        {
+          "date": "2026-11-04",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-0d05039c4715b746 @ifasn/mmdd-doc-mcp: @ifasn/mmdd-doc-mcp exfiltrates /proc credentials and cloud IMDS data to hardcoded IP"
+        },
+        {
+          "date": "2026-11-04",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-89e10b57cd091186 @ifasn/ms-doc-mcp: Markdown MCP server auto-enumerates Alibaba Cloud IMDS credentials on startup"
+        },
+        {
+          "date": "2026-11-04",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-f8a9d0dad59c1103 @ifasn/ms-doc-mcp: MCP server harvests environment credentials and Alibaba Cloud IMDS data on startup"
+        },
+        {
+          "date": "2026-11-04",
+          "version": null,
+          "text": "MAL-2026-18603 @ifasn/ms-doc-mcp: Malicious code in @ifasn/ms-doc-mcp (npm)"
+        }
+      ],
+      "ids": [
+        "MAL-0000-amazon-inspector-0d05039c4715b746",
+        "MAL-0000-amazon-inspector-89e10b57cd091186",
+        "MAL-0000-amazon-inspector-f8a9d0dad59c1103",
+        "MAL-2026-18603"
+      ],
+      "read_with": "git"
+    },
+    {
+      "id": "F11",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.67.0",
+      "latest_date": "2026-11-04",
+      "new": [
+        {
+          "date": "2026-11-04",
+          "version": "v0.67.0",
+          "text": "## What's Changed * Changelog for v0.65.0 by @gemini-cli-robot in https://github.com/google-gemini/gemini-cli/pull/29853 * chore(release): bump version to 0.67.0-nightly.20261020.gb041de017 by @gemini-cli-robot in https://github.com/google-gemini/gemini-cli/pull/29854 * Changelog for v0.66.0-preview.0 by @gemini-cli-robot in https://github.com/google-gemini/gemini-cli/pull/29852 * feat(cli): bridge the IDE companion into container sandboxes over exec stdio by @elberthc-byte in https://github.com/google-gemini/gemini-cli/pull/29858 * fix(core): prevent duplicate agent loading when workspace is…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F12",
+      "opened": true,
+      "reason": null,
+      "latest": "1.0.105",
+      "latest_date": "2026-10-27",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F13",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-10-21",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F14",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-05",
+      "new": [
+        {
+          "date": "2026-11-04",
+          "version": null,
+          "text": "MAL-2026-18603 @ifasn/ms-doc-mcp: Malicious code in @ifasn/ms-doc-mcp (npm)"
+        }
+      ],
+      "ids": [
+        "MAL-2026-18603"
+      ],
+      "read_with": "curl"
+    },
+    {
+      "id": "F15",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-04",
+      "new": [
+        {
+          "date": "2026-11-04",
+          "version": null,
+          "text": "CVE-2026-122140 [MCP]: Trawl 1.5.0 before 1.10.0 contains a server-side request forgery vulnerability that allows unauthenticated attackers to bypass the MCP outbound URL policy using IPv4-mapped IPv6 addresses. Attackers can supply hex-normalized addresses like ::ffff:7f00:1 directly or via redirects to fetch loopback, private, and cloud metadata services and read responses."
+        },
+        {
+          "date": "2026-11-04",
+          "version": null,
+          "text": "CVE-2026-76893 [MCP]: tsParticles is a TypeScript library for creating highly customizable particle animations. Prior to 4.3.2, the HTTP mode of @tsparticles/mcp-server reuses one stateful StreamableHTTPServerTransport for every client. An unauthenticated client that sends the first initialize request without an mcp-session-id claims the shared transport state, causing later independent clients to receive Server already initialized and preventing them from establishing sessions until the process restarts. The first client's session remains functional. This issue is fixed in version 4.3.2."
+        },
+        {
+          "date": "2026-11-04",
+          "version": null,
+          "text": "CVE-2026-76892 [MCP]: tsParticles is a TypeScript library for creating highly customizable particle animations. Prior to 4.3.1, the HTTP mode of @tsparticles/mcp-server calls JSON.parse outside a request-local error boundary in the POST /mcp handler in integrations/mcp-server/src/index.ts. A single unauthenticated malformed JSON body raises a SyntaxError that terminates the Node.js process, leaving the MCP service unavailable until an external supervisor restarts it. This issue is fixed in version 4.3.1."
+        },
+        {
+          "date": "2026-11-04",
+          "version": null,
+          "text": "CVE-2026-86041 [MCP]: ezBookkeeping is an open source, self-hosted personal finance application. From 0.10.0 until 1.6.0, ezBookkeeping constructs its Gin router with gin.New() without configuring SetTrustedProxies, causing c.ClientIP() to trust a spoofed X-Forwarded-For value. An unauthenticated remote attacker can supply an allowlisted address to bypass the mcp_allowed_remote_ips or api_token_allowed_remote_ips gate. A valid MCP or API token remains required for protected actions. When such actions occur, the same spoofed value is stored in Transaction.CreatedIp and the request log, attribu…"
+        }
+      ],
+      "ids": [
+        "CVE-2026-122140",
+        "CVE-2026-76892",
+        "CVE-2026-76893",
+        "CVE-2026-86041"
+      ],
+      "read_with": "curl"
+    },
+    {
+      "id": "F16",
+      "opened": true,
+      "reason": null,
+      "latest": "v2.2.5",
+      "latest_date": "2026-10-30",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F17",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-04",
+      "new": [
+        {
+          "date": "2026-11-04",
+          "version": null,
+          "text": "General ## Share credits across your team with credit pooling Loading image... Enterprise administrators can now share Kiro credits across seated users with credit pooling. In the Kiro console, the feature is labeled Credit sharing. Each seat costs $20 per month and adds 500 monthly credits to one shared pool, so credits one user doesn't use stay available to the rest of the team. Seat price and credits are prorated for the first month. Admins can add users or groups, set per-user, per-group, and per-profile usage limits, monitor pool usage, and buy additional credits that are good for one ye…"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F18",
+      "opened": true,
+      "reason": null,
+      "latest": "v3.11.238",
+      "latest_date": "2026-10-30",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F19",
+      "opened": true,
+      "reason": null,
+      "latest": "v1.57.0",
+      "latest_date": "2026-10-27",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F20",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-02",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F21",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-08-19",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F22",
+      "opened": false,
+      "reason": "new version without notes: v2026.11.1",
+      "latest": "v2026.11.1",
+      "latest_date": "2026-11-05",
+      "new": [
+        {
+          "date": "2026-11-05",
+          "version": "v2026.11.1",
+          "text": "notes not available"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F23",
+      "opened": true,
+      "reason": null,
+      "latest": "1.2.20",
+      "latest_date": "2026-11-05",
+      "new": [
+        {
+          "date": "2026-11-05",
+          "version": "1.2.20",
+          "text": "Changes since 1.2.19 * release(langgraph): 1.2.20 (#9595) * feat(langgraph): give each interrupt() in a task its own id (#9589) * fix(langgraph): point the multiple-interrupts error at the current docs (#9590) * feat(langgraph): add a strict resume mode that refuses stale interrupt answers (#9574) * chore(deps-dev): bump types-requests from 2.33.0.20260906 to 2.33.0.20261006 in /libs/langgraph (#9535) * chore(deps-dev): bump pycryptodome from 3.23.0 to 4.2.0 in /libs/langgraph in the major group (#9534)"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F24",
+      "opened": true,
+      "reason": null,
+      "latest": "1.15.35",
+      "latest_date": "2026-11-03",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F25",
+      "opened": true,
+      "reason": null,
+      "latest": "python-1.24.0",
+      "latest_date": "2026-10-30",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F26",
+      "opened": true,
+      "reason": null,
+      "latest": "2026-07-28",
+      "latest_date": "2026-07-28",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F27",
+      "opened": true,
+      "reason": null,
+      "latest": "1.145",
+      "latest_date": "2026-11-04",
+      "new": [
+        {
+          "date": "2026-11-04",
+          "version": "1.145",
+          "text": "## Downloads for 1.145.0 Windows x64Arm64 macOS UniversalIntelApple silicon Linux .deb.rpm.tar.gzArm instructionsSnap ## Release highlights This week, your remote agent sessions feel a bit more local. Preview apps and use canvases right in VS Code, fine-tune automation schedules with cron, and turn down the noise in chat. And when you need a break, Blobby is ready to play. Remote agents: Preview apps and use interactive canvases from remote agent sessions without leaving the Agents window. Automations: Run recurring agent tasks on custom schedules beyond the built-in presets with cron. Agent…"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F28",
+      "opened": true,
+      "reason": null,
+      "latest": "2026.11.04",
+      "latest_date": "2026-11-04",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F29",
+      "opened": true,
+      "reason": null,
+      "latest": "1.4.13",
+      "latest_date": "2026-11-05",
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "date_is_detection": true
+    },
+    {
+      "id": "F31",
+      "opened": true,
+      "reason": null,
+      "latest": "n8n@3.1.0",
+      "latest_date": "2026-11-03",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    }
+  ],
+  "opened": 29,
+  "total": 30
+}
