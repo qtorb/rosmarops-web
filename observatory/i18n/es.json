@@ -50,6 +50,7 @@
   "index.pages_note": "Solo los agentes con contenido propio tienen página. Los demás aparecen aquí sin enlace hasta tenerla.",
   "index.status_note": "Evaluado: RosmarOps le pone una nota de exposición en tu ordenador, de 0 a 100. Detectado: RosmarOps lo encuentra en tu ordenador, pero todavía no le pone nota.",
   "index.changes_h2": "Últimos cambios de seguridad",
+  "index.last_check": "Revisado cada día. Última revisión: {date}.",
   "index.changes_daily": "Lo que revisamos hoy, fuente por fuente, está en la {link}.",
   "index.changes_empty": "Todavía no hay cambios de seguridad registrados. Cada uno aparecerá aquí con su fecha, su versión y su fuente oficial.",
   "index.method_h3": "Cómo trabajamos",

@@ -383,6 +383,27 @@ class Agents(unittest.TestCase):
                 self.assertEqual(body, norm(m.group(1)), (lang, aid))
         self.assertEqual(self.route("/es/observatorio/diario/history-not-an-agent.html")[0], "404")
 
+    def test_3_last_check_line(self):
+        """GTM-90: «Checked every day. Last check: {date}.» above the list, from the newest stored daily; absent without one."""
+        self.store_all()
+        status, body = self.route("/observatory/daily/changes.html")
+        self.assertEqual(status, "200")
+        self.assertNotIn("last-check", body)
+        valid = json.loads(VALID.read_text(encoding="utf-8"))
+        newer = copy.deepcopy(valid)
+        newer.update(date="2026-11-05", summary_ref="docs/observatorio/2026-11-05.md")
+        for d in (newer, valid):  # stored out of order: the newest date wins, not the last stored
+            f = Path(self.tmp.name) / "day.json"
+            f.write_text(json.dumps(d, ensure_ascii=False), encoding="utf-8")
+            self.assertEqual(self.cli("store", f, d["date"]).strip(), "stored")
+        style = 'style="margin:0 0 12px;font-size:14px;color:var(--muted)"'
+        for prefix, line in [("/observatory/daily/", "Checked every day. Last check: 5 November 2026."),
+                             ("/es/observatorio/diario/", "Revisado cada día. Última revisión: 5 de noviembre de 2026."),
+                             ("/ca/observatori/diari/", "Revisat cada dia. Última revisió: 5 de novembre de 2026.")]:
+            status, body = self.route(prefix + "changes.html")
+            self.assertEqual(status, "200")
+            self.assertTrue(body.startswith(f'<p class="meta last-check" {style}>{line}</p><ol class="changes box">'), body[:200])
+
     def test_writer_entry(self):
         for lang, line in [("en", "Collected automatically on 4 November 2026 from the official changelog."),
                            ("es", "Recogido automáticamente el 4 de noviembre de 2026 del registro de cambios oficial."),

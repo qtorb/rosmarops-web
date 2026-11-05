@@ -54,7 +54,7 @@ DAILY_KEYS = ["common.date", "common.months", "site.observatory_brand",
               "agent.change_meta", "agent.change_meta_noversion", "agent.before", "agent.after", "agent.source_official",
               "agent.source_rosmarops", "agent.verified", "agent.verified_writer_official_changelog",
               "agent.verified_writer_official_doc", "agent.corrected", "agent.history_empty", "index.no_change",
-              "index.changes_empty"] + [f"category.{c}" for c in (
+              "index.changes_empty", "index.last_check"] + [f"category.{c}" for c in (
                   "permissions", "approval_mode", "sandbox", "default_value", "config_path_or_format", "mcp", "hooks",
                   "instructions", "credentials", "telemetry", "data_destination", "agent_scope")] + [
               f"how.{h}" for h in ("official_doc", "official_changelog", "lab_observation")]
