@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-04T06:21:47Z",
+  "generated_at": "2026-11-05T06:21:42Z",
   "repo": {
     "stargazers_count": 1,
     "subscribers_count": 0,
@@ -8,6 +8,162 @@
   },
   "open_pulls": 2,
   "releases": [
+    {
+      "tag_name": "v0.7.8",
+      "published_at": "2026-11-04T18:55:07Z",
+      "draft": false,
+      "assets": [
+        {
+          "name": "rosmarops-linux-amd64",
+          "download_count": 1
+        },
+        {
+          "name": "rosmarops-linux-arm64",
+          "download_count": 0
+        },
+        {
+          "name": "rosmarops-macos-apple-silicon",
+          "download_count": 1
+        },
+        {
+          "name": "rosmarops-macos-intel",
+          "download_count": 1
+        },
+        {
+          "name": "rosmarops.exe",
+          "download_count": 4
+        },
+        {
+          "name": "sample-report.en.html",
+          "download_count": 0
+        },
+        {
+          "name": "sample-report.es.html",
+          "download_count": 1
+        },
+        {
+          "name": "SHA256SUMS.txt",
+          "download_count": 1
+        }
+      ]
+    },
+    {
+      "tag_name": "v0.7.7",
+      "published_at": "2026-11-04T16:44:31Z",
+      "draft": false,
+      "assets": [
+        {
+          "name": "rosmarops-linux-amd64",
+          "download_count": 1
+        },
+        {
+          "name": "rosmarops-linux-arm64",
+          "download_count": 1
+        },
+        {
+          "name": "rosmarops-macos-apple-silicon",
+          "download_count": 1
+        },
+        {
+          "name": "rosmarops-macos-intel",
+          "download_count": 1
+        },
+        {
+          "name": "rosmarops.exe",
+          "download_count": 3
+        },
+        {
+          "name": "sample-report.en.html",
+          "download_count": 1
+        },
+        {
+          "name": "sample-report.es.html",
+          "download_count": 1
+        },
+        {
+          "name": "SHA256SUMS.txt",
+          "download_count": 1
+        }
+      ]
+    },
+    {
+      "tag_name": "v0.7.6",
+      "published_at": "2026-11-04T11:47:11Z",
+      "draft": false,
+      "assets": [
+        {
+          "name": "rosmarops-linux-amd64",
+          "download_count": 1
+        },
+        {
+          "name": "rosmarops-linux-arm64",
+          "download_count": 2
+        },
+        {
+          "name": "rosmarops-macos-apple-silicon",
+          "download_count": 1
+        },
+        {
+          "name": "rosmarops-macos-intel",
+          "download_count": 1
+        },
+        {
+          "name": "rosmarops.exe",
+          "download_count": 2
+        },
+        {
+          "name": "sample-report.en.html",
+          "download_count": 1
+        },
+        {
+          "name": "sample-report.es.html",
+          "download_count": 1
+        },
+        {
+          "name": "SHA256SUMS.txt",
+          "download_count": 1
+        }
+      ]
+    },
+    {
+      "tag_name": "v0.7.5",
+      "published_at": "2026-11-04T07:55:57Z",
+      "draft": false,
+      "assets": [
+        {
+          "name": "rosmarops-linux-amd64",
+          "download_count": 2
+        },
+        {
+          "name": "rosmarops-linux-arm64",
+          "download_count": 1
+        },
+        {
+          "name": "rosmarops-macos-apple-silicon",
+          "download_count": 1
+        },
+        {
+          "name": "rosmarops-macos-intel",
+          "download_count": 2
+        },
+        {
+          "name": "rosmarops.exe",
+          "download_count": 6
+        },
+        {
+          "name": "sample-report.en.html",
+          "download_count": 1
+        },
+        {
+          "name": "sample-report.es.html",
+          "download_count": 1
+        },
+        {
+          "name": "SHA256SUMS.txt",
+          "download_count": 1
+        }
+      ]
+    },
     {
       "tag_name": "v0.7.4",
       "published_at": "2026-11-03T21:06:19Z",
@@ -23,7 +179,7 @@
         },
         {
           "name": "rosmarops.exe",
-          "download_count": 5
+          "download_count": 7
         },
         {
           "name": "sample-report.en.html",
@@ -409,5 +565,5 @@
       ]
     }
   ],
-  "latest_tag": "v0.7.4"
+  "latest_tag": "v0.7.8"
 }
