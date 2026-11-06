@@ -80,6 +80,8 @@ jobs:
           python -m unittest wp/tests/test_retired.py
           php -l wp/mu-plugins/rosmarops-categories-gtm94.php
           python -m unittest wp/tests/test_categories_gtm94.py
+          php -l wp/mu-plugins/rosmarops-gtm97-drafts.php
+          python -m unittest wp/tests/test_gtm97_drafts.py
 
       - name: Publication rules hold in the output
         run: |

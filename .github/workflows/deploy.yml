@@ -36,6 +36,7 @@ jobs:
           php -l wp/mu-plugins/rosmarops-daily.php
           php -l wp/mu-plugins/rosmarops-retired.php
           php -l wp/mu-plugins/rosmarops-categories-gtm94.php
+          php -l wp/mu-plugins/rosmarops-gtm97-drafts.php
           ls -l wp/daily/shell-en.html wp/daily/shell-es.html wp/daily/shell-ca.html wp/daily/i18n.json
           ! grep -RIl 'noindex' site/index.html site/es/index.html site/methodology site/faq site/es/metodologia site/es/preguntas-frecuentes site/ca/index.html site/ca/metodologia site/ca/preguntes-frequents site/cloud-access site/es/acceso-en-la-nube site/ca/acces-al-nuvol site/ca/privadesa site/macos site/es/macos site/ca/macos site/linux site/es/linux site/ca/linux site/sample-report/index.html site/es/informe-de-ejemplo site/ca/informe-dexemple site/observatory/index.html site/es/observatorio/index.html site/ca/observatori/index.html
           # Observatory: only the three index pages and the JSON files are published (GTM-11). Agent pages wait for verification.
@@ -171,6 +172,7 @@ jobs:
           put wp/mu-plugins/rosmarops-downloads.php wp-content/mu-plugins/rosmarops-downloads.php
           put wp/mu-plugins/rosmarops-retired.php wp-content/mu-plugins/rosmarops-retired.php
           put wp/mu-plugins/rosmarops-categories-gtm94.php wp-content/mu-plugins/rosmarops-categories-gtm94.php
+          put wp/mu-plugins/rosmarops-gtm97-drafts.php wp-content/mu-plugins/rosmarops-gtm97-drafts.php
           -mkdir wp-content/mu-plugins/rosmarops-daily
           put wp/daily/shell-en.html wp-content/mu-plugins/rosmarops-daily/shell-en.html
           put wp/daily/shell-es.html wp-content/mu-plugins/rosmarops-daily/shell-es.html
@@ -403,6 +405,42 @@ jobs:
             code=$(curl -s -o /dev/null -w '%{http_code}' "https://rosmarops.com$c?gtm94=${GITHUB_SHA::7}")
             echo "$code $c"; test "$code" = "200"
           done
+
+      - name: GTM-97 retired posts to draft (one time, /es/), its log and the Spanish sitemap
+        env:
+          SFTP_HOST: ${{ vars.OVH_SFTP_HOST }}
+          SFTP_USER: ${{ vars.OVH_SFTP_USER }}
+          SFTP_PATH: ${{ vars.OVH_SITE_PATH }}
+          SSHPASS: ${{ secrets.OVH_SFTP_PASSWORD }}
+        run: |
+          set -eu
+          SFTP_HOST=$(printf %s "$SFTP_HOST" | tr -d '[:space:]')
+          SFTP_USER=$(printf %s "$SFTP_USER" | tr -d '[:space:]')
+          SFTP_PATH=$(printf %s "$SFTP_PATH" | tr -d '[:space:]')
+          # The migration runs on the first request to /es/ after the upload; once done it never runs again.
+          curl -s -o /dev/null -w "%{http_code} /es/blog/\n" "https://rosmarops.com/es/blog/?gtm97=${GITHUB_SHA::7}"
+          sleep 5
+          mkdir -p /tmp/gtm97
+          printf 'cd %s/wp-content/rosmarops-private\n-get gtm97-es.log /tmp/gtm97/\n' "$SFTP_PATH" > /tmp/b97
+          sshpass -e sftp -o BatchMode=no -b /tmp/b97 \
+            -o StrictHostKeyChecking=yes \
+            -o UserKnownHostsFile="$HOME/.ssh/known_hosts" \
+            -o PreferredAuthentications=password,keyboard-interactive \
+            -o PubkeyAuthentication=no \
+            "$SFTP_USER@$SFTP_HOST" || true
+          if [ -f /tmp/gtm97/gtm97-es.log ]; then echo "--- gtm97-es.log"; cat /tmp/gtm97/gtm97-es.log; else echo "::warning::gtm97-es.log not found"; fi
+          code=$(curl -s -o /dev/null -w '%{http_code}' "https://rosmarops.com/wp-content/rosmarops-private/gtm97-es.log")
+          [ "$code" != "200" ] && echo "log folder closed to the web ($code)" || (echo "::error::the migration log is reachable from the web"; exit 1)
+          # The Spanish sitemap no longer lists any retired address, and it was rebuilt today.
+          grep -oP "^\t'\K[^']+(?=',$)" wp/mu-plugins/rosmarops-retired.php > /tmp/retired.txt
+          test "$(wc -l < /tmp/retired.txt)" = 90
+          curl -s "https://rosmarops.com/es/sitemap.xml?gtm97=${GITHUB_SHA::7}" > /tmp/es-sitemap.xml
+          left=0
+          while read -r s; do grep -q "/es/blog/$s/<" /tmp/es-sitemap.xml && { echo "still in the sitemap: $s"; left=$((left+1)); }; done < /tmp/retired.txt
+          echo "retired addresses in the ES sitemap: $left; addresses in it: $(grep -c '<loc>' /tmp/es-sitemap.xml)"
+          grep -o 'generado el [0-9-]*' /tmp/es-sitemap.xml || true
+          test "$left" = 0
+          grep -q "generado el $(date -u +%F)" /tmp/es-sitemap.xml && echo "ES sitemap rebuilt today" || (echo "::error::ES sitemap not rebuilt today"; exit 1)
 
       - name: Tell Bing and other IndexNow engines what changed (best effort)
         continue-on-error: true
