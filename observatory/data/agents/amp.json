@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "agent": {
+    "id": "amp",
+    "name": "Amp",
+    "vendor": "Amp",
+    "kinds": [
+      "cli",
+      "cloud"
+    ],
+    "platforms": [
+      "windows",
+      "macos",
+      "linux",
+      "web"
+    ],
+    "local_footprint": "yes",
+    "rosmarops": {
+      "status": "not_supported"
+    },
+    "reviewed_at": "2026-11-06"
+  },
+  "versions": [],
+  "changes": [],
+  "ratings": []
+}

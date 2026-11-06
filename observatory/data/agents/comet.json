@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "agent": {
+    "id": "comet",
+    "name": "Comet",
+    "vendor": "Perplexity",
+    "kinds": [
+      "desktop_app"
+    ],
+    "platforms": [
+      "windows",
+      "macos"
+    ],
+    "local_footprint": "partial",
+    "rosmarops": {
+      "status": "not_supported"
+    },
+    "reviewed_at": "2026-11-06"
+  },
+  "versions": [],
+  "changes": [],
+  "ratings": []
+}

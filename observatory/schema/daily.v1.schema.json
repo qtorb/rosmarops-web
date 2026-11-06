@@ -10,8 +10,8 @@
     "reviewed_at": {"type": "string", "format": "date-time", "pattern": "Z$"},
     "status": {"enum": ["published", "no_changes", "incomplete"]},
     "items": {"type": "array", "minItems": 0, "maxItems": 5, "items": {"$ref": "#/$defs/item"}},
-    "checked": {"type": "array", "minItems": 0, "maxItems": 40, "items": {"$ref": "#/$defs/checked"}},
-    "not_checked": {"type": "array", "maxItems": 40, "items": {"type": "string", "minLength": 1, "maxLength": 80}},
+    "checked": {"type": "array", "minItems": 0, "maxItems": 50, "items": {"$ref": "#/$defs/checked"}},
+    "not_checked": {"type": "array", "maxItems": 50, "items": {"type": "string", "minLength": 1, "maxLength": 80}},
     "held": {"type": "array", "items": {"$ref": "#/$defs/held"}},
     "summary_ref": {"type": "string", "pattern": "^docs/observatorio/\\d{4}-\\d{2}-\\d{2}\\.md$"}
   },

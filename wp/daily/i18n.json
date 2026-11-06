@@ -188,6 +188,8 @@
     "ca": "/ca/observatori/diari/"
   },
   "_agents": [
+    "aider",
+    "amp",
     "antigravity",
     "autogen",
     "claude-code",
@@ -196,6 +198,7 @@
     "codebuddy",
     "codex",
     "codex-cloud",
+    "comet",
     "continue",
     "copilot-coding-agent",
     "crewai",
@@ -206,16 +209,20 @@
     "github-copilot",
     "goose",
     "hermes-agent",
+    "junie",
     "kanvas",
+    "kilo-code",
     "kimi-code",
     "kiro",
     "langgraph",
     "n8n",
     "openclaw",
     "opencode",
+    "openhands",
     "qoder-cn",
     "qwen-code",
-    "trae"
+    "trae",
+    "warp"
   ],
   "_published": [
     "antigravity",

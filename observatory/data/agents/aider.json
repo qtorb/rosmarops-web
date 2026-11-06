@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "agent": {
+    "id": "aider",
+    "name": "Aider",
+    "vendor": "Aider",
+    "kinds": [
+      "cli"
+    ],
+    "platforms": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "local_footprint": "yes",
+    "rosmarops": {
+      "status": "not_supported"
+    },
+    "reviewed_at": "2026-11-06"
+  },
+  "versions": [],
+  "changes": [],
+  "ratings": []
+}

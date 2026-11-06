@@ -68,9 +68,19 @@ def retry(what, fn):
     raise ReadError(f"{what}: {last}")
 
 
-def http_get(url):
-    """Body of url as text (UTF-8, errors replaced). Raises on anything but 200."""
+def http_get(url, client=None):
+    """Body of url as text (UTF-8, errors replaced). Raises on anything but 200.
+
+    client "curl": read with the system curl instead (F43 www.perplexity.ai answers 403 to Python's client, 200 to
+    curl with the same User-Agent; GTM-98)."""
     def once():
+        if client == "curl":
+            p = subprocess.run(["curl", "-sS", "--max-time", str(TIMEOUT), "-A", UA, "-o", "-", "-w", "\n%{http_code}", url],
+                               capture_output=True, timeout=TIMEOUT + 10)
+            body, _, code = p.stdout.decode("utf-8", errors="replace").rpartition("\n")
+            if p.returncode or code != "200":
+                raise ReadError(f"HTTP {code or p.returncode}")
+            return body
         req = urllib.request.Request(url, headers={"User-Agent": UA})
         with urllib.request.urlopen(req, timeout=TIMEOUT) as r:
             if r.status != 200:
@@ -248,7 +258,9 @@ DATE_RES = [
     (re.compile(r"(?<!\d)(20\d\d)\s*年\s*(\d{1,2})\s*月\s*(\d{1,2})\s*日"), lambda m: (m[1], m[2], m[3])),
 ]
 VERSION_RE = re.compile(r"(?<![\w.])v?\d+(?:\.\d+){1,3}(?![\d]|\.\d)")
-CALVER_HEADING = re.compile(r"#+\s*(v?(20\d\d)\.(\d{1,2})\.(\d{1,2}))")
+# A heading that is only a calendar version, maybe followed by its build in brackets (Warp "### 2026.10.22 (v0.2026.10.21.08.25)")
+CALVER_HEADING = re.compile(r"#+\s*(v?(20\d\d)\.(\d{1,2})\.(\d{1,2}))(?:\s+\(v?[\d.]+\))?")
+SLASH_DATE = re.compile(r"\d{1,2}/\d{1,2}/\d{2}(?:\d\d)?")  # a line that is only "11/06/26" (Perplexity, next to its <time>)
 ANCHOR_WORDS = re.compile(r"release date|released|announcements|latest|stable|changelog|version|[#·:|—–\-,()]", re.I)
 
 
@@ -311,14 +323,16 @@ def entries(lines):
                     version = _short_version(lines[j])
                     if version:
                         break
-        body = [ln for ln in lines[i + 1:end] if ln != version]
+        body = [ln for ln in lines[i + 1:end] if ln != version and not SLASH_DATE.fullmatch(ln)]
         if k + 1 < len(anchors):  # drop the next entry's version line, if it sits just before its anchor
             nv = anchors[k + 1][2]
             while body and (_short_version(body[-1]) and (nv is None or _short_version(body[-1]) != nv) and len(body[-1]) < 25):
                 body.pop()
         title = body[0].lstrip("# ").strip() if body else ""
         labels = [ln.lstrip("# ").strip() for ln in body[1:4] if len(ln) <= 40]  # category tags under the title
-        out.append({"date": date, "version": version, "title": title, "labels": labels, "text": " ".join(body)})
+        summary = body[1] if len(body) > 1 else ""
+        out.append({"date": date, "version": version, "title": title, "labels": labels, "summary": summary,
+                    "text": " ".join(body)})
     out = [e for e in out if e["text"]]  # date lists (tables of contents, filters) carry no text
     best = {}
     for e in out:  # pages that render twice, or list dates in a table of contents: keep the fullest text
@@ -447,7 +461,7 @@ def read_changelog_web(src, since, terms):
             if isinstance(url, dict):  # a dated version index whose notes live one page per version (GTM-93)
                 all_entries += index_entries(url, since)
             else:
-                all_entries += entries(page_lines(http_get(url)))
+                all_entries += entries(page_lines(http_get(url, r["client"]) if r.get("client") else http_get(url)))
         all_entries.sort(key=lambda e: e["date"], reverse=True)
     except ReadError as e:
         fb = r.get("fallback")
@@ -460,7 +474,9 @@ def read_changelog_web(src, since, terms):
     all_entries = [e for e in all_entries if e["date"] <= today()]
     only = r.get("only_entries_with")
     if only:  # the title or a short label line of the entry must say it; a mention in the body does not count
-        all_entries = [e for e in all_entries if any(only.lower() in x.lower() for x in [e["title"], *e["labels"]])]
+        where = ["title", "summary"] if r.get("match_summary") else ["title"]  # F43: also the line under the title
+        all_entries = [e for e in all_entries
+                       if any(only.lower() in x.lower() for x in [*(e.get(k, "") for k in where), *e["labels"]])]
     if not all_entries and not only:
         res["reason"] = "no dated entries found in the page"
         return res

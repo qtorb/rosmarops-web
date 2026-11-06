@@ -17,6 +17,7 @@ const ROSMAROPS_DAILY_HOSTS = [
 	'kiro.dev', 'devin.ai', 'visualstudio.com', 'cisa.gov',
 	'dev.meta.ai', 'docs.n8n.io', // F29 Muse Code and F31 n8n (GTM-90)
 	'trae.cn', 'moonshotai.github.io', 'codebuddy.cn', 'qoder.cn', // F32-F36 (GTM-93)
+	'ampcode.com', 'warp.dev', 'jetbrains.com', 'perplexity.ai', // F39-F41 and F43 (GTM-98)
 ];
 const ROSMAROPS_DAILY_PREFIX = ['en' => '/observatory/daily/', 'es' => '/es/observatorio/diario/', 'ca' => '/ca/observatori/diari/'];
 const ROSMAROPS_DAILY_FEED_ITEMS = 30;
@@ -136,7 +137,7 @@ function rosmarops_daily_validate($d, $date) {
 			}
 		}
 	}
-	if (!is_array($d['checked']) || !array_is_list($d['checked']) || count($d['checked']) > 40
+	if (!is_array($d['checked']) || !array_is_list($d['checked']) || count($d['checked']) > 50
 		|| ($d['status'] !== 'incomplete' && count($d['checked']) < 1)) {
 		return 'checked';
 	}
@@ -149,7 +150,7 @@ function rosmarops_daily_validate($d, $date) {
 		}
 	}
 	if (array_key_exists('not_checked', $d)) {
-		if (!is_array($d['not_checked']) || !array_is_list($d['not_checked']) || count($d['not_checked']) > 40) {
+		if (!is_array($d['not_checked']) || !array_is_list($d['not_checked']) || count($d['not_checked']) > 50) {
 			return 'not_checked';
 		}
 		foreach ($d['not_checked'] as $n) {

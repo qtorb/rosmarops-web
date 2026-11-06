@@ -38,6 +38,7 @@ ALLOWED_HOSTS = [
     "kiro.dev", "devin.ai", "visualstudio.com", "cisa.gov",
     "dev.meta.ai", "docs.n8n.io",  # F29 Muse Code and F31 n8n (GTM-90)
     "trae.cn", "moonshotai.github.io", "codebuddy.cn", "qoder.cn",  # F32-F36 (GTM-93)
+    "ampcode.com", "warp.dev", "jetbrains.com", "perplexity.ai",  # F39-F41 and F43 (GTM-98)
 ]
 ID_RE = re.compile(r"MAL-\d{4}-\d+|GHSA(?:-[23456789cfghjmpqrvwx]{4}){3}|CVE-\d{4}-\d{4,}")
 VERSION_RE = re.compile(r"\d+(?:\.\d+)+")
