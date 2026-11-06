@@ -244,6 +244,8 @@ DATE_RES = [
     (re.compile(r"(?<!\d)(20\d\d)-(\d\d)-(\d\d)(?!\d)"), lambda m: (m[1], m[2], m[3])),
     (re.compile(_MON + r"\s*(\d{1,2})(?:st|nd|rd|th)?,?\s+(20\d\d)"), lambda m: (m[3], MONTHS[m[1].lower()], m[2])),
     (re.compile(r"(?<!\d)(\d{1,2})\s+" + _MON + r",?\s+(20\d\d)"), lambda m: (m[3], MONTHS[m[2].lower()], m[1])),
+    # Chinese dates, "2026年11月5日" or "2026 年 11 月 03 日" (TRAE CN, Qoder CN; GTM-93)
+    (re.compile(r"(?<!\d)(20\d\d)\s*年\s*(\d{1,2})\s*月\s*(\d{1,2})\s*日"), lambda m: (m[1], m[2], m[3])),
 ]
 VERSION_RE = re.compile(r"(?<![\w.])v?\d+(?:\.\d+){1,3}(?![\d]|\.\d)")
 CALVER_HEADING = re.compile(r"#+\s*(v?(20\d\d)\.(\d{1,2})\.(\d{1,2}))")
@@ -291,6 +293,8 @@ def entries(lines):
             continue
         date, m = find_date(line)
         if not date:
+            continue
+        if i and lines[i - 1].rstrip(":： ").lower() in LAST_UPDATED:  # a page footer, not an entry (GTM-93)
             continue
         rest = line[:m.start()] + line[m.end():]
         v = VERSION_RE.search(rest)
@@ -403,13 +407,47 @@ def scope_match(text, terms):
     return any(term in t for term in terms)
 
 
+LAST_UPDATED = ("最后更新", "last updated")
+
+
+def page_article(lines, version):
+    """The body of a one-version page: from the heading that names the version to the «last updated» footer."""
+    start = next((i for i, ln in enumerate(lines) if ln.startswith("#") and version in ln), None)
+    if start is None:
+        start = next((i for i, ln in enumerate(lines) if version in ln), 0)
+    end = next((i for i in range(start + 1, len(lines)) if lines[i].rstrip(":： ").lower() in LAST_UPDATED), len(lines))
+    return lines[start:end]
+
+
+def index_entries(spec, since):
+    """Entries of a version index ("v2.179.3 - 2026-11-03", one line per version, CodeBuddy CLI): every version is an
+    entry; those dated from `since` take their text from spec["page"] with {version} filled in (at most 10 pages)."""
+    out, fetched = [], 0
+    for line in page_lines(http_get(spec["index"])):
+        if len(line) > 60:
+            continue
+        date, m = find_date(line)
+        v = VERSION_RE.search(line[:m.start()] + " " + line[m.end():]) if date else None
+        if not v or date > today():
+            continue
+        text = ""
+        if date >= since and fetched < 10:
+            fetched += 1
+            text = " ".join(page_article(page_lines(http_get(spec["page"].format(version=v.group(0)))), v.group(0)))
+        out.append({"date": date, "version": v.group(0), "title": line, "labels": [], "text": text or line})
+    return out
+
+
 def read_changelog_web(src, since, terms):
     r = src["read"]
     res = blank(src, "curl")
     try:
         all_entries = []
         for url in r["urls"]:
-            all_entries += entries(page_lines(http_get(url)))
+            if isinstance(url, dict):  # a dated version index whose notes live one page per version (GTM-93)
+                all_entries += index_entries(url, since)
+            else:
+                all_entries += entries(page_lines(http_get(url)))
         all_entries.sort(key=lambda e: e["date"], reverse=True)
     except ReadError as e:
         fb = r.get("fallback")

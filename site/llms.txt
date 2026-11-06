@@ -6,6 +6,8 @@ Everything is computed on your computer. It sends nothing unless you approve it 
 
 Today it evaluates Claude Code, Cursor and Hermes Agent on Windows and Linux, and on macOS in preview. It detects Cline, GitHub Copilot, Continue, Codex, Antigravity and Claude Desktop, but doesn't score them yet. Download (Windows): https://github.com/qtorb/rosmarops/releases/latest. Download (Linux): https://rosmarops.com/linux/. Download (macOS, preview): https://rosmarops.com/macos/. How to check it's authentic: https://github.com/qtorb/rosmarops#check-the-download. Source code: https://github.com/qtorb/rosmarops (AGPL-3.0).
 
+Can I use it on a work computer? Yes, but tell your security team first. To look for keys, RosmarOps reads the files in your code projects, and some security systems flag many file reads in a short time. It does not open images, documents or other binary files, and it never changes or sends anything without your permission.
+
 ## Key terms
 
 - Exposure map: what an agent can do with the permissions it has today. It is not a verdict on whether a machine has been attacked.

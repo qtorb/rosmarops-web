@@ -193,6 +193,7 @@
     "claude-code",
     "claude-desktop",
     "cline",
+    "codebuddy",
     "codex",
     "codex-cloud",
     "continue",
@@ -206,11 +207,15 @@
     "goose",
     "hermes-agent",
     "kanvas",
+    "kimi-code",
     "kiro",
     "langgraph",
     "n8n",
     "openclaw",
-    "opencode"
+    "opencode",
+    "qoder-cn",
+    "qwen-code",
+    "trae"
   ],
   "_published": [
     "antigravity",
