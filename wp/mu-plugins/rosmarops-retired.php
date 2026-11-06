@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: RosmarOps retired posts
- * Description: Legacy Spanish blog posts and topic pages retired from rosmarops.com (selection in the claude.ai project, claude/criba-blog-heredado.md, group 3; asked by Albert 2026-11-03 19:48). Each listed /es/blog/<slug>/ answers 301 to /es/blog/, also when the post is a draft. A category or tag archive under /es/blog/ with no published posts answers 301 to /es/blog/ too. Nothing is deleted. Versioned in qtorb/rosmarops-web; do not edit on the server.
+ * Description: Legacy Spanish blog posts and topic pages retired from rosmarops.com (selection in the claude.ai project, claude/criba-blog-heredado.md, group 3; asked by Albert 2026-11-03 19:48). Each listed /es/blog/<slug>/ answers 301 to /es/blog/, also when the post is a draft. A category or tag archive under /es/blog/ with no published posts answers 301 to /es/blog/ too. The blog's old category addresses (EN, ES, CA) that no longer exist answer 301 to the category that replaced them (GTM-94, 06-11). Nothing is deleted. Versioned in qtorb/rosmarops-web; do not edit on the server.
  */
 
 if (!defined('ABSPATH')) {
@@ -113,7 +113,40 @@ function rosmarops_retired_target($request_uri) {
 	return in_array($slug, ROSMAROPS_RETIRED, true) ? ROSMAROPS_RETIRED_HOME : null;
 }
 
+// GTM-94 (06-11): the blog's categories were renamed. An old category address that no longer exists (404) answers 301
+// to the category that replaced it, or to the blog home when its posts went to several new categories.
+const ROSMAROPS_CATEGORY_MOVES = [
+	'/es/blog/category/que-puede-hacer-tu-agente/' => '/es/blog/',
+	'/es/blog/category/metodologia/'               => '/es/blog/category/nota-de-exposicion/',
+	'/blog/category/ai-agents/'                    => '/blog/',
+	'/blog/category/methodology/'                  => '/blog/category/agent-posture-score/',
+	'/ca/blog/category/agents-ia/'                 => '/ca/blog/',
+	'/ca/blog/category/metodologia/'               => '/ca/blog/category/nota-dexposicio/',
+];
+
+/** Target of a request URI if it is under an old category address (its pages and feed included), else null. */
+function rosmarops_category_move($request_uri) {
+	$path = parse_url((string) $request_uri, PHP_URL_PATH);
+	if (!is_string($path)) {
+		return null;
+	}
+	$path = rtrim($path, '/') . '/';
+	foreach (ROSMAROPS_CATEGORY_MOVES as $old => $new) {
+		if (strpos($path, $old) === 0) {
+			return $new;
+		}
+	}
+	return null;
+}
+
 add_action('template_redirect', function () {
+	if (is_404()) {
+		$moved = rosmarops_category_move($_SERVER['REQUEST_URI'] ?? '');
+		if ($moved !== null) {
+			wp_redirect(rosmarops_retired_root() . $moved, 301, 'RosmarOps');
+			exit;
+		}
+	}
 	$target = rosmarops_retired_target($_SERVER['REQUEST_URI'] ?? '');
 	if ($target === null && (is_category() || is_tag())) {
 		$term = get_queried_object();
@@ -134,9 +167,14 @@ function rosmarops_retired_root() {
 	return $p['scheme'] . '://' . $p['host'] . (isset($p['port']) ? ':' . $p['port'] : '');
 }
 
-// The Spanish blog home (/es/blog/, now the posts page, 04-11) lists only the product's three categories:
-// the legacy posts that are still published (retired, or waiting to be rewritten or moved) stay out of the list.
-const ROSMAROPS_BLOG_CATEGORIES = ['novedades-de-rosmarops', 'que-puede-hacer-tu-agente', 'metodologia'];
+// The Spanish blog home (/es/blog/, now the posts page, 04-11) lists only the product's categories: the legacy posts
+// that are still published (retired, or waiting to be rewritten or moved) stay out of the list. GTM-94 (06-11): the
+// nine new categories, plus the two old ones until their posts are moved in WordPress (then they can go).
+const ROSMAROPS_BLOG_CATEGORIES = [
+	'novedades-de-rosmarops', 'modos-y-aprobaciones', 'claves-de-api-y-env', 'claude-md-agents-md-y-reglas', 'servidores-mcp',
+	'inyeccion-de-prompts-en-agentes', 'bots-y-agentes-en-la-nube', 'datos-y-privacidad', 'nota-de-exposicion',
+	'que-puede-hacer-tu-agente', 'metodologia',
+];
 
 /** Categories the blog home is limited to on this site (by its home URL), or null when it is not limited. */
 function rosmarops_blog_categories($home_url) {
