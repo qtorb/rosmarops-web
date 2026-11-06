@@ -1,0 +1,308 @@
+{
+  "date": "2026-11-06",
+  "reviewed_at": "2026-11-06T07:18:27Z",
+  "status": "published",
+  "items": [
+    {
+      "source_url": "https://nvd.nist.gov/vuln/detail/CVE-2026-110930",
+      "source_date": "2026-11-05",
+      "subject": "Codex Desktop (Windows)",
+      "identifier": "CVE-2026-110930",
+      "text": {
+        "en": "CVE-2026-110930, published in NVD on 5 November 2026, affects Codex Desktop for Windows: quotation marks in Explorer project paths can add startup arguments that run code before sign-in.",
+        "es": "CVE-2026-110930, publicado en NVD el 5 de noviembre de 2026, afecta a Codex Desktop para Windows: las comillas en rutas de proyecto del Explorador pueden añadir argumentos de arranque que ejecutan código antes de iniciar sesión.",
+        "ca": "CVE-2026-110930, publicat a NVD el 5 de novembre de 2026, afecta Codex Desktop per a Windows: les cometes en camins de projecte de l'Explorador poden afegir arguments d'arrencada que executen codi abans d'iniciar sessió."
+      }
+    },
+    {
+      "source_url": "https://nvd.nist.gov/vuln/detail/CVE-2026-111771",
+      "source_date": "2026-11-05",
+      "subject": "MCP TypeScript SDK",
+      "identifier": "CVE-2026-111771",
+      "text": {
+        "en": "CVE-2026-111771, published in NVD on 5 November 2026, affects @modelcontextprotocol/sdk from 1.6.0 before 1.32.0: its server-side bearer authentication did not check the token audience.",
+        "es": "CVE-2026-111771, publicado en NVD el 5 de noviembre de 2026, afecta a @modelcontextprotocol/sdk desde 1.6.0 hasta antes de 1.32.0: su autenticación bearer del lado del servidor no comprobaba la audiencia del token.",
+        "ca": "CVE-2026-111771, publicat a NVD el 5 de novembre de 2026, afecta @modelcontextprotocol/sdk des de 1.6.0 fins abans de 1.32.0: la seva autenticació bearer del costat del servidor no comprovava l'audiència del token."
+      }
+    },
+    {
+      "source_url": "https://nvd.nist.gov/vuln/detail/CVE-2026-111769",
+      "source_date": "2026-11-05",
+      "subject": "MCP TypeScript SDK",
+      "identifier": "CVE-2026-111769",
+      "text": {
+        "en": "CVE-2026-111769, published in NVD on 5 November 2026, affects @modelcontextprotocol/sdk before 1.32.0: its client transports and OAuth requests kept custom headers when following redirects to another origin.",
+        "es": "CVE-2026-111769, publicado en NVD el 5 de noviembre de 2026, afecta a @modelcontextprotocol/sdk antes de 1.32.0: sus transportes de cliente y peticiones OAuth conservaban las cabeceras propias al seguir redirecciones a otro origen.",
+        "ca": "CVE-2026-111769, publicat a NVD el 5 de novembre de 2026, afecta @modelcontextprotocol/sdk abans de 1.32.0: els seus transports de client i peticions OAuth conservaven les capçaleres pròpies en seguir redireccions a un altre origen."
+      }
+    },
+    {
+      "source_url": "https://nvd.nist.gov/vuln/detail/CVE-2026-123272",
+      "source_date": "2026-11-05",
+      "subject": "mcp-go",
+      "identifier": "CVE-2026-123272",
+      "text": {
+        "en": "CVE-2026-123272, published in NVD on 5 November 2026, affects mcp-go before 1.2.1: an MCP server can declare another resource in its OAuth metadata and obtain tokens for it.",
+        "es": "CVE-2026-123272, publicado en NVD el 5 de noviembre de 2026, afecta a mcp-go antes de 1.2.1: un servidor MCP puede declarar otro recurso en sus metadatos OAuth y obtener tokens para él.",
+        "ca": "CVE-2026-123272, publicat a NVD el 5 de novembre de 2026, afecta mcp-go abans de 1.2.1: un servidor MCP pot declarar un altre recurs a les seves metadades OAuth i obtenir-ne tokens."
+      }
+    },
+    {
+      "source_url": "https://osv.dev/vulnerability/MAL-2026-18705",
+      "source_date": "2026-11-05",
+      "subject": "teamviewer-mcp-server (PyPI)",
+      "identifier": "MAL-2026-18705",
+      "text": {
+        "en": "OSV published MAL-2026-18705 and MAL-2026-18706 on 5 November 2026, listing the PyPI packages teamviewer-mcp-server and mcp-teamviewer as containing malicious code.",
+        "es": "OSV publicó MAL-2026-18705 y MAL-2026-18706 el 5 de noviembre de 2026, que clasifican los paquetes PyPI teamviewer-mcp-server y mcp-teamviewer como código malicioso.",
+        "ca": "OSV va publicar MAL-2026-18705 i MAL-2026-18706 el 5 de novembre de 2026, que classifiquen els paquets PyPI teamviewer-mcp-server i mcp-teamviewer com a codi maliciós."
+      }
+    }
+  ],
+  "checked": [
+    {
+      "name": "Claude Code",
+      "url": "https://code.claude.com/docs/en/changelog",
+      "latest_seen": "2.1.318",
+      "latest_date": "2026-11-04"
+    },
+    {
+      "name": "Cursor",
+      "url": "https://cursor.com/changelog",
+      "latest_seen": "",
+      "latest_date": "2026-11-05"
+    },
+    {
+      "name": "OpenAI Codex",
+      "url": "https://github.com/openai/codex/releases",
+      "latest_seen": "rust-v0.167.0",
+      "latest_date": "2026-11-05"
+    },
+    {
+      "name": "Google Antigravity",
+      "url": "https://antigravity.google/docs/changelog",
+      "latest_seen": "v1.5.1",
+      "latest_date": "2026-11-05"
+    },
+    {
+      "name": "Hermes Agent",
+      "url": "https://github.com/NousResearch/hermes-agent/releases",
+      "latest_seen": "v0.23.0",
+      "latest_date": "2026-11-05"
+    },
+    {
+      "name": "GitHub Copilot",
+      "url": "https://github.blog/changelog/",
+      "latest_seen": "",
+      "latest_date": "2026-11-05"
+    },
+    {
+      "name": "Cline",
+      "url": "https://github.com/cline/cline/releases",
+      "latest_seen": "v4.1.26",
+      "latest_date": "2026-10-26"
+    },
+    {
+      "name": "Continue",
+      "url": "https://github.com/continuedev/continue/releases",
+      "latest_seen": "v2.1.0-vscode",
+      "latest_date": "2026-06-19"
+    },
+    {
+      "name": "Kanvas",
+      "url": "https://github.com/XMihura/Kanvas/blob/main/CHANGELOG.md",
+      "latest_seen": "v0.4.0",
+      "latest_date": "2026-10-27"
+    },
+    {
+      "name": "OpenSSF malicious-packages",
+      "url": "https://github.com/ossf/malicious-packages",
+      "latest_seen": "",
+      "latest_date": "2026-11-06"
+    },
+    {
+      "name": "Gemini CLI",
+      "url": "https://github.com/google-gemini/gemini-cli/releases",
+      "latest_seen": "v0.67.0",
+      "latest_date": "2026-11-04"
+    },
+    {
+      "name": "GitHub Copilot CLI",
+      "url": "https://github.com/github/copilot-cli/blob/main/changelog.md",
+      "latest_seen": "1.0.106",
+      "latest_date": "2026-11-05"
+    },
+    {
+      "name": "Claude desktop",
+      "url": "https://support.claude.com/en/articles/12138966-release-notes",
+      "latest_seen": "",
+      "latest_date": "2026-11-05"
+    },
+    {
+      "name": "OSV npm and PyPI",
+      "url": "https://osv.dev/list?ecosystem=npm",
+      "latest_seen": "",
+      "latest_date": "2026-11-06"
+    },
+    {
+      "name": "NVD",
+      "url": "https://nvd.nist.gov/vuln/search",
+      "latest_seen": "",
+      "latest_date": "2026-11-05"
+    },
+    {
+      "name": "OpenCode",
+      "url": "https://github.com/anomalyco/opencode/releases",
+      "latest_seen": "v2.2.5",
+      "latest_date": "2026-10-30"
+    },
+    {
+      "name": "Kiro",
+      "url": "https://kiro.dev/changelog/",
+      "latest_seen": "",
+      "latest_date": "2026-11-04"
+    },
+    {
+      "name": "Devin Desktop",
+      "url": "https://docs.devin.ai/desktop/changelog",
+      "latest_seen": "v3.11.238",
+      "latest_date": "2026-10-30"
+    },
+    {
+      "name": "Goose",
+      "url": "https://github.com/aaif-goose/goose/releases",
+      "latest_seen": "v1.57.0",
+      "latest_date": "2026-10-27"
+    },
+    {
+      "name": "Devin (cloud)",
+      "url": "https://docs.devin.ai/release-notes/overview",
+      "latest_seen": "",
+      "latest_date": "2026-11-02"
+    },
+    {
+      "name": "Codex cloud",
+      "url": "https://developers.openai.com/codex/changelog",
+      "latest_seen": "",
+      "latest_date": "2026-08-19"
+    },
+    {
+      "name": "OpenClaw",
+      "url": "https://github.com/openclaw/openclaw/releases",
+      "latest_seen": "v2026.11.1",
+      "latest_date": "2026-11-05"
+    },
+    {
+      "name": "LangGraph",
+      "url": "https://github.com/langchain-ai/langgraph/releases",
+      "latest_seen": "1.2.20",
+      "latest_date": "2026-11-05"
+    },
+    {
+      "name": "CrewAI",
+      "url": "https://github.com/crewAIInc/crewAI/releases",
+      "latest_seen": "1.15.36",
+      "latest_date": "2026-11-06"
+    },
+    {
+      "name": "Microsoft Agent Framework",
+      "url": "https://github.com/microsoft/agent-framework/releases",
+      "latest_seen": "python-1.24.0",
+      "latest_date": "2026-10-30"
+    },
+    {
+      "name": "MCP specification",
+      "url": "https://github.com/modelcontextprotocol/modelcontextprotocol/releases",
+      "latest_seen": "2026-07-28",
+      "latest_date": "2026-07-28"
+    },
+    {
+      "name": "VS Code",
+      "url": "https://code.visualstudio.com/updates",
+      "latest_seen": "1.145",
+      "latest_date": "2026-11-04"
+    },
+    {
+      "name": "CISA KEV",
+      "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
+      "latest_seen": "2026.11.04",
+      "latest_date": "2026-11-04"
+    },
+    {
+      "name": "Muse Code",
+      "url": "https://dev.meta.ai/docs/muse-code/changelog",
+      "latest_seen": "1.4.13",
+      "latest_date": "2026-11-06"
+    },
+    {
+      "name": "n8n",
+      "url": "https://docs.n8n.io/release-notes/",
+      "latest_seen": "n8n@3.1.0",
+      "latest_date": "2026-11-03"
+    }
+  ],
+  "not_checked": [],
+  "held": [
+    {
+      "text_en": "CVE-2026-111770, published in NVD on 5 November 2026, affects @modelcontextprotocol/server from 2.0.0 before 2.3.0: a shared stateless transport could send responses to the wrong client.",
+      "source_url": "https://nvd.nist.gov/vuln/detail/CVE-2026-111770",
+      "rule": 9,
+      "reason": "fuera por tope"
+    },
+    {
+      "text_en": "CVE-2026-123271, published in NVD on 5 November 2026, affects ChatCLI before v1.215.2: its MCP OAuth login accepts a resource indicator supplied by the server.",
+      "source_url": "https://nvd.nist.gov/vuln/detail/CVE-2026-123271",
+      "rule": 9,
+      "reason": "fuera por tope"
+    },
+    {
+      "text_en": "CVE-2026-54140, published in NVD on 5 November 2026, affects OpenHuman before 0.57.13: MCP tool descriptions enter the model context without neutralizing instructions.",
+      "source_url": "https://nvd.nist.gov/vuln/detail/CVE-2026-54140",
+      "rule": 9,
+      "reason": "fuera por tope"
+    },
+    {
+      "text_en": "CVE-2026-123022, published in NVD on 5 November 2026, affects AgentScope up to 2.0.11: OS command injection in its MCP Workspace API.",
+      "source_url": "https://nvd.nist.gov/vuln/detail/CVE-2026-123022",
+      "rule": 9,
+      "reason": "fuera por tope"
+    },
+    {
+      "text_en": "CVE-2026-77604, published in NVD on 5 November 2026, affects Code Graph RAG before 0.0.345: its MCP read_file can read outside the project root.",
+      "source_url": "https://nvd.nist.gov/vuln/detail/CVE-2026-77604",
+      "rule": 9,
+      "reason": "fuera por tope"
+    },
+    {
+      "text_en": "CVE-2026-87008, published in NVD on 5 November 2026, affects Code Graph RAG before 0.0.589: symbolic links let structural_search reach files outside the root.",
+      "source_url": "https://nvd.nist.gov/vuln/detail/CVE-2026-87008",
+      "rule": 9,
+      "reason": "fuera por tope"
+    },
+    {
+      "text_en": "CVE-2026-102943, published in NVD on 5 November 2026, affects Dagu before 2.11.0: its MCP dagu_read reads YAML files outside the DAG directories.",
+      "source_url": "https://nvd.nist.gov/vuln/detail/CVE-2026-102943",
+      "rule": 9,
+      "reason": "fuera por tope"
+    },
+    {
+      "text_en": "Google Antigravity CLI 1.5.1, dated 5 November 2026, hardens plugin OAuth token protection in the sandbox, according to its changelog.",
+      "source_url": "https://antigravity.google/docs/changelog",
+      "rule": 9,
+      "reason": "fuera por tope"
+    },
+    {
+      "text_en": "OpenClaw 2026.11.1, dated 5 November 2026: failed Mac config saves no longer overwrite secrets, according to its release notes.",
+      "source_url": "https://github.com/openclaw/openclaw/releases/tag/v2026.11.1",
+      "rule": 9,
+      "reason": "fuera por tope"
+    },
+    {
+      "text_en": "GitHub Copilot CLI 1.0.106, dated 5 November 2026, adds COPILOT_SESSION_CWD for launching and expanding local MCP server configs.",
+      "source_url": "https://github.com/github/copilot-cli/blob/main/changelog.md",
+      "rule": 9,
+      "reason": "fuera por tope"
+    }
+  ],
+  "summary_ref": "docs/observatorio/2026-11-06.md"
+}
