@@ -1,0 +1,489 @@
+{
+  "date": "2026-11-06",
+  "collected_at": "2026-11-06T05:34:30Z",
+  "sources": [
+    {
+      "id": "F1",
+      "opened": true,
+      "reason": null,
+      "latest": "2.1.318",
+      "latest_date": "2026-11-04",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F2",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-05",
+      "new": [
+        {
+          "date": "2026-11-05",
+          "version": null,
+          "text": "· Changelog # Build Live Apps in Cursor Agents have lowered the cost of writing code, but most apps and tools that users build never make it off of localhost. Now, you can build live apps directly in Cursor and share them with a link. Describe what you want to create and Cursor will handle the rest: build the app, set up a database, configure auth, and deploy it. With this release, anyone in your org can now build useful tools for their work and share them with teammates. Update Cursor to try it out. ## #How it works To get started, kick off a cloud agent and tell it explicitly that you want…"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F3",
+      "opened": true,
+      "reason": null,
+      "latest": "rust-v0.167.0",
+      "latest_date": "2026-11-05",
+      "new": [
+        {
+          "date": "2026-11-05",
+          "version": "rust-v0.167.0",
+          "text": "## New Features - Open the agent command center with `codex agents --no-daemon`. The command center and session picker now mark unread results (#58238, #58239, #58263, #58264). - Switch between connected backends from the terminal session picker and keep your drafts when switching (#58280, #58457). - Preview local image attachments while composing on supported terminals, and open viewed local images from clickable transcript paths (#58261, #58446). - Find API key and cloud provider options under “Sign in another way.” Enable `gcp_setup_wizard` to set up Google Cloud Vertex AI with Application…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F4",
+      "opened": true,
+      "reason": null,
+      "latest": "v1.5.1",
+      "latest_date": "2026-11-05",
+      "new": [
+        {
+          "date": "2026-11-05",
+          "version": "v1.5.1",
+          "text": "### Broader ACP model access, faster terminal exits, sandbox OAuth hardening, and Windows fixes. Antigravity CLI 1.5.1 expands model availability across all ACP clients, speeds up terminal command completion when background processes stay open, hardens plugin OAuth token protection in the sandbox, and resolves several ACP session, Windows encoding/CRLF, and plugin authentication bugs. Improvements(5) Changed agy acp to offer every model available to your account to every ACP client, where previously only a fixed list of editors were offered models other than Gemini. Changed the tabs in /confi…"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F5",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.23.0",
+      "latest_date": "2026-11-05",
+      "new": [
+        {
+          "date": "2026-11-05",
+          "version": "v0.23.0",
+          "text": "# Hermes Agent v0.23.0 **Release Date:** November 5, 2026 **Since v0.22.0:** ~10,080 commits · ~1,950 merged PRs · ~8,720 files changed · ~725,200 insertions · ~201,400 deletions · **~850 issues closed** · 666 contributors > **The Hearth Release.** In the old hymns Hermes kept the threshold and Hestia kept the hearth, and the two were honored side by side. v0.22.0 got newcomers through the door; v0.23.0 builds the fire they gather around. The headline: your whole Desktop workspace now opens in a browser tab, served by your own gateway. Underneath it, every conversation lives in one place: a s…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F6",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-05",
+      "new": [
+        {
+          "date": "2026-11-05",
+          "version": null,
+          "text": "Nov.05 Improvement Usage metrics API adds code review details and addressed rate account management copilot enterprise management tools ... +2 ###"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F7",
+      "opened": true,
+      "reason": null,
+      "latest": "v4.1.26",
+      "latest_date": "2026-10-26",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F8",
+      "opened": true,
+      "reason": null,
+      "latest": "v2.1.0-vscode",
+      "latest_date": "2026-06-19",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F9",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.4.0",
+      "latest_date": "2026-10-27",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F10",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-06",
+      "new": [
+        {
+          "date": "2026-11-05",
+          "version": null,
+          "text": "MAL-0000-kam193-54d27496a09fce8a mcp-teamviewer: Pentesting or research code in mcp-teamviewer (PyPI)"
+        },
+        {
+          "date": "2026-11-05",
+          "version": null,
+          "text": "MAL-0000-ossf-package-analysis-a5d59e94208df065 mcp-teamviewer: Malicious code in mcp-teamviewer (PyPI)"
+        },
+        {
+          "date": "2026-11-05",
+          "version": null,
+          "text": "MAL-2026-18706 mcp-teamviewer: Malicious code in mcp-teamviewer (PyPI)"
+        },
+        {
+          "date": "2026-11-05",
+          "version": null,
+          "text": "MAL-0000-kam193-6b304890f921805f teamviewer-mcp-server: Pentesting or research code in teamviewer-mcp-server (PyPI)"
+        },
+        {
+          "date": "2026-11-05",
+          "version": null,
+          "text": "MAL-0000-ossf-package-analysis-fbb7b3161ae2b934 teamviewer-mcp-server: Malicious code in teamviewer-mcp-server (PyPI)"
+        },
+        {
+          "date": "2026-11-05",
+          "version": null,
+          "text": "MAL-2026-18705 teamviewer-mcp-server: Malicious code in teamviewer-mcp-server (PyPI)"
+        }
+      ],
+      "ids": [
+        "MAL-0000-kam193-54d27496a09fce8a",
+        "MAL-0000-kam193-6b304890f921805f",
+        "MAL-0000-ossf-package-analysis-a5d59e94208df065",
+        "MAL-0000-ossf-package-analysis-fbb7b3161ae2b934",
+        "MAL-2026-18705",
+        "MAL-2026-18706"
+      ],
+      "read_with": "git"
+    },
+    {
+      "id": "F11",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.67.0",
+      "latest_date": "2026-11-04",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F12",
+      "opened": true,
+      "reason": null,
+      "latest": "1.0.106",
+      "latest_date": "2026-11-05",
+      "new": [
+        {
+          "date": "2026-11-05",
+          "version": "1.0.106",
+          "text": "- Rex terminals render inline images using Kitty direct placements. - Add /code command to open the current session in VS Code - Add a Fusion tier setting to `copilot config`. - Make /settings open the unified dashboard for all users and add global search across settings and local resources. - Interactive CLI reports program status to supporting terminals, including when attention is needed. - Add opt-in session management tools and @mentions for opted-in local sessions - Add COPILOT_SESSION_CWD for launching and expanding LSP and local MCP server configs - Add GPT-6.1 Terra as a selectable m…"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F13",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-05",
+      "new": [
+        {
+          "date": "2026-11-05",
+          "version": null,
+          "text": "New security and admin controls for Enterprise plans Claude Enterprise has new security and admin features, including a security center, inference hooks, centralized management, and additional access controls, several in beta. For more information, see our blog post: More visibility and control over Claude Enterprise for security teams. Personal Finance in Claude We’re rolling out Personal Finance, a beta that lets you link your bank, credit card, loan, and investment accounts to Claude, so you can see your balances and spending on one page and ask Claude questions about your own money. It's…"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F14",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-06",
+      "new": [
+        {
+          "date": "2026-11-05",
+          "version": null,
+          "text": "MAL-2026-18706 mcp-teamviewer: Malicious code in mcp-teamviewer (PyPI)"
+        },
+        {
+          "date": "2026-11-05",
+          "version": null,
+          "text": "MAL-2026-18705 teamviewer-mcp-server: Malicious code in teamviewer-mcp-server (PyPI)"
+        }
+      ],
+      "ids": [
+        "MAL-2026-18705",
+        "MAL-2026-18706"
+      ],
+      "read_with": "curl"
+    },
+    {
+      "id": "F15",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-05",
+      "new": [
+        {
+          "date": "2026-11-05",
+          "version": null,
+          "text": "CVE-2026-123022 [MCP]: A vulnerability was detected in agentscope-ai AgentScope up to 2.0.11. The impacted element is the function subprocess.Popen of the file src/agentscope/mcp/_config.py of the component MCP Workspace API. The manipulation of the argument command results in os command injection. The attack may be launched remotely. The exploit is now public and may be used. The pull request to fix this issue awaits acceptance."
+        },
+        {
+          "date": "2026-11-05",
+          "version": null,
+          "text": "CVE-2026-54140 [MCP]: OpenHuman is an open-source agent harness available as a desktop application and Rust library. Before 0.57.13, OpenHuman places names, descriptions, titles, and parameter definitions returned by configured external MCP servers into the agent model context without neutralizing instructions or bounding the descriptive fields. The McpRemoteTool records produced by list_tools preserve this remote content, while tool filtering considers the tool name and the prompt-injection detector screens user messages rather than MCP definitions. A malicious or compromised MCP server can…"
+        },
+        {
+          "date": "2026-11-05",
+          "version": null,
+          "text": "CVE-2026-123271 [MCP]: ChatCLI before v1.215.2 contains an improper validation vulnerability in the MCP OAuth login flow that uses server-supplied Protected Resource Metadata as the resource indicator without checking it matches the configured server URL. A malicious MCP server can declare another resource on the same authorization server, obtain the user's bearer token for it, and replay that token against the other resource."
+        },
+        {
+          "date": "2026-11-05",
+          "version": null,
+          "text": "CVE-2026-123272 [MCP]: Mark3labs mcp-go before v1.2.1 contains an improper validation vulnerability in OAuthHandler.fetchServerMetadata that allows malicious MCP servers to obtain tokens for other resources by declaring arbitrary resources in well-known metadata. Attackers can declare a different MCP server as the RFC 8707 resource indicator, causing the authorization server to mint tokens the attacker replays against that resource."
+        },
+        {
+          "date": "2026-11-05",
+          "version": null,
+          "text": "CVE-2026-77604 [MCP]: Code Graph RAG is an AI-powered knowledge graph and retrieval system for querying, understanding, and editing multi-language codebases. Prior to 0.0.345, the MCPToolsRegistry.read_file implementation in codebase_rag/mcp/tools.py joins attacker-controlled file_path input to project_root without resolving and verifying containment when offset or limit selects the paginated branch. An absolute path causes pathlib to discard the configured root, while relative traversal can also resolve outside it. The protected non-paginated branch uses validate_project_path, but the pagina…"
+        },
+        {
+          "date": "2026-11-05",
+          "version": null,
+          "text": "CVE-2026-111771 [MCP]: The Model Context Protocol TypeScript SDK provides TypeScript client and server implementations of the Model Context Protocol. From 1.6.0 until 1.32.0 in @modelcontextprotocol/sdk, from 2.0.0 until 2.3.0 in @modelcontextprotocol/server, from 2.0.0 until 2.0.2 in @modelcontextprotocol/express, and from 2.0.0 until 2.3.1 in @modelcontextprotocol/server-legacy, server-side bearer authentication could accept a valid access token issued for a different service because the SDK did not enforce the token audience. The affected surface is server-side HTTP bearer authentication.…"
+        },
+        {
+          "date": "2026-11-05",
+          "version": null,
+          "text": "CVE-2026-87008 [MCP]: Code Graph RAG is an AI-powered knowledge graph and retrieval system for querying, understanding, and editing multi-language codebases. Prior to 0.0.589, AstGrepService in codebase_rag/tools/ast_grep_service.py enumerates files beneath project_root and relies on should_skip_path in codebase_rag/utils/path_utils.py to classify them, but the containment check operates on unresolved lexical paths. A symbolic link planted inside an analyzed repository can therefore reference a file outside the configured root while still appearing in scope. The structural_search tool follows…"
+        },
+        {
+          "date": "2026-11-05",
+          "version": null,
+          "text": "CVE-2026-111769 [MCP]: The Model Context Protocol TypeScript SDK provides TypeScript client and server implementations of the Model Context Protocol. Prior to 1.32.0 in @modelcontextprotocol/sdk and from 2.0.0 until 2.3.0 in @modelcontextprotocol/client, the HTTP client transports and OAuth client requests followed redirects to a different origin while retaining custom request headers and, for HTTP 307 or 308 responses, request bodies. The affected surfaces are StreamableHTTPClientTransport, SSEClientTransport, and OAuth client functions such as auth(). The trigger is an HTTP redirect to anot…"
+        },
+        {
+          "date": "2026-11-05",
+          "version": null,
+          "text": "CVE-2026-111770 [MCP]: The Model Context Protocol TypeScript SDK provides TypeScript client and server implementations of the Model Context Protocol. From 2.0.0 until 2.3.0 in @modelcontextprotocol/server, applications that shared one stateless HTTP transport or one McpServer or Server instance among multiple clients could deliver responses and notifications to the wrong client. The affected surface is an MCP server reached over HTTP by multiple clients. The trigger is reuse of one stateless transport or server instance. Messages were associated with a connection using only the JSON-RPC reque…"
+        },
+        {
+          "date": "2026-11-05",
+          "version": null,
+          "text": "CVE-2026-102943 [MCP]: Dagu is a workflow engine with a built-in Web user interface. Prior to version 2.11.0, its MCP dagu_read operation with target dag_spec invokes the DAG specification API directly, bypassing the HTTP middleware introduced for CVE-2026-33344. The underlying resolver does not restrict resolved paths to configured DAG directories. An authenticated attacker with a viewer-role API key can supply an absolute or traversing path to read .yaml or .yml files outside those directories that are accessible to the Dagu process. The affected operation does not provide write or executio…"
+        },
+        {
+          "date": "2026-11-05",
+          "version": null,
+          "text": "CVE-2026-110930 [Codex]: Codex Desktop for Windows does not correctly check quotation marks in project paths from Windows Explorer. If a user selects \"Open project in ChatGPT\" for an attacker-controlled library's child item, the path can add application startup arguments. These arguments can run attacker-controlled code with the current Windows user's permissions before sign-in or project trust approval."
+        }
+      ],
+      "ids": [
+        "CVE-2026-102943",
+        "CVE-2026-110930",
+        "CVE-2026-111769",
+        "CVE-2026-111770",
+        "CVE-2026-111771",
+        "CVE-2026-123022",
+        "CVE-2026-123271",
+        "CVE-2026-123272",
+        "CVE-2026-54140",
+        "CVE-2026-77604",
+        "CVE-2026-87008"
+      ],
+      "read_with": "curl"
+    },
+    {
+      "id": "F16",
+      "opened": true,
+      "reason": null,
+      "latest": "v2.2.5",
+      "latest_date": "2026-10-30",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F17",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-04",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F18",
+      "opened": true,
+      "reason": null,
+      "latest": "v3.11.238",
+      "latest_date": "2026-10-30",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F19",
+      "opened": true,
+      "reason": null,
+      "latest": "v1.57.0",
+      "latest_date": "2026-10-27",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F20",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-02",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F21",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-08-19",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F22",
+      "opened": true,
+      "reason": null,
+      "latest": "v2026.11.1",
+      "latest_date": "2026-11-05",
+      "new": [
+        {
+          "date": "2026-11-05",
+          "version": "v2026.11.1",
+          "text": "## 2026.11.1 ### Highlights - Safer Mac settings: failed config saves no longer overwrite secrets, and turning off Tailscale exposure keeps Gateway authentication intact. (#187734, #187664) Fixes #187600, #187597 Thanks @anmol0b. - More reliable channel replies: Telegram, Discord, and webhook conversations keep reaching the agent after request handlers or earlier turns finish. (#179200, #179385, #179704, #189457) Fixes #178554 Thanks @steipete, @LiuwqGit, @jalehman, and @vincentkoc. - Conversations survive more interruptions: oversized turns retain useful history, and stopping the first Claud…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F23",
+      "opened": true,
+      "reason": null,
+      "latest": "1.2.20",
+      "latest_date": "2026-11-05",
+      "new": [
+        {
+          "date": "2026-11-05",
+          "version": "1.2.20",
+          "text": "Changes since 1.2.19 * release(langgraph): 1.2.20 (#9595) * feat(langgraph): give each interrupt() in a task its own id (#9589) * fix(langgraph): point the multiple-interrupts error at the current docs (#9590) * feat(langgraph): add a strict resume mode that refuses stale interrupt answers (#9574) * chore(deps-dev): bump types-requests from 2.33.0.20260906 to 2.33.0.20261006 in /libs/langgraph (#9535) * chore(deps-dev): bump pycryptodome from 3.23.0 to 4.2.0 in /libs/langgraph in the major group (#9534)"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F24",
+      "opened": true,
+      "reason": null,
+      "latest": "1.15.36",
+      "latest_date": "2026-11-06",
+      "new": [
+        {
+          "date": "2026-11-06",
+          "version": "1.15.36",
+          "text": "# What's Changed ### Features - Add experimental conversational Agent sessions. - Ask for a missing API key when crewai run starts. - Record the error class when crewai run cannot load a project. - Name the apps CrewAI AMP cannot resolve for an agent. ### Bug Fixes - Fix async call execution in the caller's context for sync tools. - Resolve issue with empty value precedence in the run's key check. - Stop a JSON crew run cleanly when its API key is missing. - Call GPT-6 Astra and GPT-6.1 Sol tools through the Responses API. - Handle the sourcedAnswer output shape correctly. - Drop None metadat…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F25",
+      "opened": true,
+      "reason": null,
+      "latest": "python-1.24.0",
+      "latest_date": "2026-10-30",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F26",
+      "opened": true,
+      "reason": null,
+      "latest": "2026-07-28",
+      "latest_date": "2026-07-28",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F27",
+      "opened": true,
+      "reason": null,
+      "latest": "1.145",
+      "latest_date": "2026-11-04",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F28",
+      "opened": true,
+      "reason": null,
+      "latest": "2026.11.04",
+      "latest_date": "2026-11-04",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F29",
+      "opened": true,
+      "reason": null,
+      "latest": "1.4.13",
+      "latest_date": "2026-11-06",
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "date_is_detection": true
+    },
+    {
+      "id": "F31",
+      "opened": true,
+      "reason": null,
+      "latest": "n8n@3.1.0",
+      "latest_date": "2026-11-03",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    }
+  ],
+  "opened": 30,
+  "total": 30
+}
