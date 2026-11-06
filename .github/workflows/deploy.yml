@@ -35,6 +35,7 @@ jobs:
           php -l wp/mu-plugins/rosmarops-downloads.php
           php -l wp/mu-plugins/rosmarops-daily.php
           php -l wp/mu-plugins/rosmarops-retired.php
+          php -l wp/mu-plugins/rosmarops-categories-gtm94.php
           ls -l wp/daily/shell-en.html wp/daily/shell-es.html wp/daily/shell-ca.html wp/daily/i18n.json
           ! grep -RIl 'noindex' site/index.html site/es/index.html site/methodology site/faq site/es/metodologia site/es/preguntas-frecuentes site/ca/index.html site/ca/metodologia site/ca/preguntes-frequents site/cloud-access site/es/acceso-en-la-nube site/ca/acces-al-nuvol site/ca/privadesa site/macos site/es/macos site/ca/macos site/linux site/es/linux site/ca/linux site/sample-report/index.html site/es/informe-de-ejemplo site/ca/informe-dexemple site/observatory/index.html site/es/observatorio/index.html site/ca/observatori/index.html
           # Observatory: only the three index pages and the JSON files are published (GTM-11). Agent pages wait for verification.
@@ -169,6 +170,7 @@ jobs:
           put wp/mu-plugins/rosmarops-seo.php wp-content/mu-plugins/rosmarops-seo.php
           put wp/mu-plugins/rosmarops-downloads.php wp-content/mu-plugins/rosmarops-downloads.php
           put wp/mu-plugins/rosmarops-retired.php wp-content/mu-plugins/rosmarops-retired.php
+          put wp/mu-plugins/rosmarops-categories-gtm94.php wp-content/mu-plugins/rosmarops-categories-gtm94.php
           -mkdir wp-content/mu-plugins/rosmarops-daily
           put wp/daily/shell-en.html wp-content/mu-plugins/rosmarops-daily/shell-en.html
           put wp/daily/shell-es.html wp-content/mu-plugins/rosmarops-daily/shell-es.html
@@ -365,6 +367,41 @@ jobs:
           # Nothing from Google may be in the HTML before consent.
           for u in https://rosmarops.com/ https://rosmarops.com/es/ https://rosmarops.com/blog/ https://rosmarops.com/es/blog/; do
             ! curl -s "$u?deploy=${GITHUB_SHA::7}" | grep -q 'googletagmanager.com/gtag' || (echo "Google tag in HTML of $u"; exit 1)
+          done
+
+      - name: GTM-94 category migration (one time per site) and its log
+        env:
+          SFTP_HOST: ${{ vars.OVH_SFTP_HOST }}
+          SFTP_USER: ${{ vars.OVH_SFTP_USER }}
+          SFTP_PATH: ${{ vars.OVH_SITE_PATH }}
+          SSHPASS: ${{ secrets.OVH_SFTP_PASSWORD }}
+        run: |
+          set -eu
+          SFTP_HOST=$(printf %s "$SFTP_HOST" | tr -d '[:space:]')
+          SFTP_USER=$(printf %s "$SFTP_USER" | tr -d '[:space:]')
+          SFTP_PATH=$(printf %s "$SFTP_PATH" | tr -d '[:space:]')
+          # The migration runs on the first request to each WordPress site after the upload; once done it never runs again.
+          for u in https://rosmarops.com/blog/ https://rosmarops.com/es/blog/ https://rosmarops.com/ca/blog/; do
+            curl -s -o /dev/null -w "%{http_code} $u\n" "$u?gtm94=${GITHUB_SHA::7}"
+          done
+          sleep 5
+          # The log holds category and post slugs only (public content); it lives in a folder closed to the web.
+          mkdir -p /tmp/gtm94
+          printf 'cd %s/wp-content/rosmarops-private\n-get gtm94-en.log /tmp/gtm94/\n-get gtm94-es.log /tmp/gtm94/\n-get gtm94-ca.log /tmp/gtm94/\n' "$SFTP_PATH" > /tmp/b94
+          sshpass -e sftp -o BatchMode=no -b /tmp/b94 \
+            -o StrictHostKeyChecking=yes \
+            -o UserKnownHostsFile="$HOME/.ssh/known_hosts" \
+            -o PreferredAuthentications=password,keyboard-interactive \
+            -o PubkeyAuthentication=no \
+            "$SFTP_USER@$SFTP_HOST" || true
+          for l in en es ca; do
+            if [ -f "/tmp/gtm94/gtm94-$l.log" ]; then echo "--- gtm94-$l.log"; cat "/tmp/gtm94/gtm94-$l.log"; else echo "::warning::gtm94-$l.log not found"; fi
+          done
+          code=$(curl -s -o /dev/null -w '%{http_code}' "https://rosmarops.com/wp-content/rosmarops-private/gtm94-es.log")
+          [ "$code" != "200" ] && echo "log folder closed to the web ($code)" || (echo "::error::the migration log is reachable from the web"; exit 1)
+          for c in /es/blog/category/nota-de-exposicion/ /blog/category/agent-posture-score/ /ca/blog/category/nota-dexposicio/; do
+            code=$(curl -s -o /dev/null -w '%{http_code}' "https://rosmarops.com$c?gtm94=${GITHUB_SHA::7}")
+            echo "$code $c"; test "$code" = "200"
           done
 
       - name: Tell Bing and other IndexNow engines what changed (best effort)
