@@ -1215,6 +1215,56 @@
     {
       "schema_version": 1,
       "agent": {
+        "id": "aider",
+        "name": "Aider",
+        "vendor": "Aider",
+        "kinds": [
+          "cli"
+        ],
+        "platforms": [
+          "windows",
+          "macos",
+          "linux"
+        ],
+        "local_footprint": "yes",
+        "rosmarops": {
+          "status": "not_supported"
+        },
+        "reviewed_at": "2026-11-06"
+      },
+      "versions": [],
+      "changes": [],
+      "ratings": []
+    },
+    {
+      "schema_version": 1,
+      "agent": {
+        "id": "amp",
+        "name": "Amp",
+        "vendor": "Amp",
+        "kinds": [
+          "cli",
+          "cloud"
+        ],
+        "platforms": [
+          "windows",
+          "macos",
+          "linux",
+          "web"
+        ],
+        "local_footprint": "yes",
+        "rosmarops": {
+          "status": "not_supported"
+        },
+        "reviewed_at": "2026-11-06"
+      },
+      "versions": [],
+      "changes": [],
+      "ratings": []
+    },
+    {
+      "schema_version": 1,
+      "agent": {
         "id": "autogen",
         "name": "AutoGen",
         "vendor": "Microsoft",
@@ -1279,6 +1329,29 @@
           "status": "not_supported"
         },
         "reviewed_at": "2026-10-30"
+      },
+      "versions": [],
+      "changes": [],
+      "ratings": []
+    },
+    {
+      "schema_version": 1,
+      "agent": {
+        "id": "comet",
+        "name": "Comet",
+        "vendor": "Perplexity",
+        "kinds": [
+          "desktop_app"
+        ],
+        "platforms": [
+          "windows",
+          "macos"
+        ],
+        "local_footprint": "partial",
+        "rosmarops": {
+          "status": "not_supported"
+        },
+        "reviewed_at": "2026-11-06"
       },
       "versions": [],
       "changes": [],
@@ -1438,6 +1511,31 @@
     {
       "schema_version": 1,
       "agent": {
+        "id": "junie",
+        "name": "Junie",
+        "vendor": "JetBrains",
+        "kinds": [
+          "cli",
+          "ide_extension"
+        ],
+        "platforms": [
+          "windows",
+          "macos",
+          "linux"
+        ],
+        "local_footprint": "yes",
+        "rosmarops": {
+          "status": "not_supported"
+        },
+        "reviewed_at": "2026-11-06"
+      },
+      "versions": [],
+      "changes": [],
+      "ratings": []
+    },
+    {
+      "schema_version": 1,
+      "agent": {
         "id": "kanvas",
         "name": "Kanvas",
         "vendor": "XMihura",
@@ -1519,6 +1617,32 @@
           }
         }
       ]
+    },
+    {
+      "schema_version": 1,
+      "agent": {
+        "id": "kilo-code",
+        "name": "Kilo Code",
+        "vendor": "Kilo Code",
+        "kinds": [
+          "ide_extension",
+          "cli",
+          "cloud"
+        ],
+        "platforms": [
+          "windows",
+          "macos",
+          "linux"
+        ],
+        "local_footprint": "yes",
+        "rosmarops": {
+          "status": "not_supported"
+        },
+        "reviewed_at": "2026-11-06"
+      },
+      "versions": [],
+      "changes": [],
+      "ratings": []
     },
     {
       "schema_version": 1,
@@ -1644,6 +1768,32 @@
     {
       "schema_version": 1,
       "agent": {
+        "id": "openhands",
+        "name": "OpenHands",
+        "vendor": "OpenHands",
+        "kinds": [
+          "desktop_app",
+          "cloud"
+        ],
+        "platforms": [
+          "windows",
+          "macos",
+          "linux",
+          "web"
+        ],
+        "local_footprint": "yes",
+        "rosmarops": {
+          "status": "not_supported"
+        },
+        "reviewed_at": "2026-11-06"
+      },
+      "versions": [],
+      "changes": [],
+      "ratings": []
+    },
+    {
+      "schema_version": 1,
+      "agent": {
         "id": "qoder-cn",
         "name": "Qoder CN",
         "vendor": "Alibaba",
@@ -1705,6 +1855,32 @@
           "macos",
           "linux",
           "web"
+        ],
+        "local_footprint": "yes",
+        "rosmarops": {
+          "status": "not_supported"
+        },
+        "reviewed_at": "2026-11-06"
+      },
+      "versions": [],
+      "changes": [],
+      "ratings": []
+    },
+    {
+      "schema_version": 1,
+      "agent": {
+        "id": "warp",
+        "name": "Warp",
+        "vendor": "Warp",
+        "kinds": [
+          "desktop_app",
+          "cli",
+          "cloud"
+        ],
+        "platforms": [
+          "windows",
+          "macos",
+          "linux"
         ],
         "local_footprint": "yes",
         "rosmarops": {

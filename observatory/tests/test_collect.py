@@ -52,6 +52,7 @@ class _Resp:
 class Base(unittest.TestCase):
     def setUp(self):
         self.pauses = []
+        self.clients = []
         patches = [
             mock.patch.object(collect, "sleep", self.pauses.append),
             mock.patch.object(collect, "TODAY", TODAY),
@@ -78,7 +79,8 @@ class Base(unittest.TestCase):
 
     def web(self, pages):
         """Serve http_get from a dict url -> body (or an Exception to raise)."""
-        def get(url):
+        def get(url, client=None):
+            self.clients.append(client)
             body = pages.get(url)
             if body is None:
                 raise collect.ReadError(f"{url}: HTTP 404")
@@ -547,6 +549,63 @@ class ChineseChangelogs(Base):
         self.assertNotIn("Pager", r["new"][0]["text"])
 
 
+class Gtm98Sources(Base):
+    """GTM-98: Warp's calendar headings with a build in brackets, Perplexity's changelog filtered by «Comet» (title or
+    the line under it) and read with curl."""
+
+    def test_warp_calver_heading_with_build(self):
+        page = ("# Changelog — 2026\n\n### 2026.01.14 (v0.2026.01.13.08.25)\n\n**Improvements**\n\n- Agents can read MCP prompts.\n\n"
+                "### 2026.01.07 (v0.2026.01.06.08.29)\n\n**Bug fixes**\n\n- Fixed a crash.\n")
+        with self.web({"https://docs.warp.dev/changelog/2026.md": page}):
+            r = collect.read_changelog_web(src("F40"), L, TERMS)
+        self.assertTrue(r["opened"])
+        self.assertEqual((r["latest"], r["latest_date"]), ("2026.01.14", "2026-01-14"))
+        self.assertEqual([e["date"] for e in r["new"]], ["2026-01-14"])
+        self.assertIn("MCP prompts", r["new"][0]["text"])
+
+    PPLX = ("<html><body><p>What's new</p>"
+            "<time datetime=\"2026-01-14\">01/14/26</time><time datetime=\"2026-01-14\">01/14/26</time>"
+            "<h2>Teammates and Voice mode</h2><p>Hand off jobs to teammates and set Comet as the default browser.</p><p>See changes</p>"
+            "<time datetime=\"2026-01-13\">01/13/26</time><h2>Comet for Android</h2><p>New mobile app.</p><p>See changes</p>"
+            "<time datetime=\"2026-01-12\">01/12/26</time><h2>Decisions API</h2><p>Classify content.</p><p>See changes</p>"
+            "<h3>Products</h3><p>Search</p><p>Comet</p><p>API</p></body></html>")
+
+    def test_comet_entries_by_title_or_summary(self):
+        with self.web({"https://www.perplexity.ai/changelog": self.PPLX}):
+            r = collect.read_changelog_web(src("F43"), L, TERMS)
+        self.assertTrue(r["opened"])
+        self.assertEqual(self.clients, ["curl"])
+        self.assertEqual([e["date"] for e in r["new"]], ["2026-01-14", "2026-01-13"])
+        self.assertTrue(r["new"][0]["text"].startswith("## Teammates and Voice mode"))  # no "01/14/26" line
+        self.assertNotIn("01/14/26", r["new"][0]["text"])
+
+    def test_comet_footer_does_not_count(self):
+        page = self.PPLX.replace("set Comet as the default browser", "share files").replace("Comet for Android", "Android app")
+        with self.web({"https://www.perplexity.ai/changelog": page}):
+            r = collect.read_changelog_web(src("F43"), L, TERMS)
+        self.assertTrue(r["opened"])  # the page was read; nothing in it is about Comet
+        self.assertEqual((r["new"], r["latest"], r["latest_date"]), ([], None, None))
+
+    def test_codex_cloud_still_matches_only_title_and_labels(self):
+        lines = ["2026-01-14", "## Codex app 26.114", "Codex Cloud tasks now resume after the app restarts on any computer.", "2026-01-13", "## Codex Cloud",
+                 "Environments."]
+        es = collect.entries(lines)
+        self.assertEqual(es[0]["summary"], "Codex Cloud tasks now resume after the app restarts on any computer.")
+        with self.web({"https://developers.openai.com/codex/changelog": "\n".join(lines)}):
+            r = collect.read_changelog_web(src("F21"), L, TERMS)
+        self.assertEqual([e["date"] for e in r["new"]], ["2026-01-13"])
+
+    def test_curl_client(self):
+        ok = mock.Mock(returncode=0, stdout=b"<html>ok</html>\n200")
+        with mock.patch.object(collect.subprocess, "run", return_value=ok) as run:
+            self.assertEqual(collect.http_get("https://www.perplexity.ai/changelog", "curl"), "<html>ok</html>")
+        self.assertEqual(run.call_args[0][0][:2], ["curl", "-sS"])
+        self.assertIn(collect.UA, run.call_args[0][0])
+        bad = mock.Mock(returncode=0, stdout=b"denied\n403")
+        with mock.patch.object(collect.subprocess, "run", return_value=bad), self.assertRaises(collect.ReadError):
+            collect.http_get("https://www.perplexity.ai/changelog", "curl")
+
+
 class ChangelogVersions(Base):
     def run_f29(self, previous, page=MUSE_PAGE):
         with mock.patch.dict(collect.PREVIOUS, previous, clear=True), self.web({MUSE_URL: page}):
@@ -836,13 +895,14 @@ class SourcesFile(unittest.TestCase):
         ids = [s["id"] for s in SOURCES["sources"]]
         self.assertEqual(ids, IDS)
         self.assertEqual(IDS[:29], [f"F{i}" for i in range(1, 30)])
-        self.assertEqual(IDS[29:], ["F31", "F32", "F33", "F34", "F35", "F36"])
+        self.assertEqual(IDS[29:], ["F31", "F32", "F33", "F34", "F35", "F36", "F37", "F38", "F39", "F40", "F41", "F42", "F43"])
         for s in SOURCES["sources"]:
             self.assertEqual(set(s), {"id", "name", "scope", "method", "read", "public_url", "fragile", "notes"}, s["id"])
             self.assertIn(s["method"], collect.METHODS, s["id"])
-            self.assertEqual(s["fragile"], s["id"] in ("F8", "F19"), s["id"])
+            self.assertEqual(s["fragile"], s["id"] in ("F8", "F19", "F43"), s["id"])
             self.assertNotIn("raw.githubusercontent.com", s["public_url"], s["id"])
-            if s["name"] not in ("Hermes Agent", "Muse Code", "n8n", "TRAE", "Qwen Code", "Kimi Code", "CodeBuddy", "Qoder CN"):
+            if s["name"] not in ("Hermes Agent", "Muse Code", "n8n", "TRAE", "Qwen Code", "Kimi Code", "CodeBuddy", "Qoder CN",
+                                 "Aider", "OpenHands", "Amp", "Warp", "Junie", "Kilo Code", "Comet"):
                 self.assertEqual(s["public_url"], checked[s["name"]], s["id"])
         self.assertEqual(len(set(SOURCES["scope_terms"])), len(SOURCES["scope_terms"]))
         self.assertTrue({"muse", "n8n"} <= set(SOURCES["scope_terms"]))
@@ -858,6 +918,18 @@ class SourcesFile(unittest.TestCase):
         self.assertEqual(new["F33"]["read"]["tags"], "v*")
         self.assertEqual(new["F34"]["read"]["tags"], "@moonshot-ai/kimi-code@N.N.N")
         for s in new.values():
+            self.assertTrue((ROOT / "observatory" / "data" / "agents" / f"{s['scope']}.json").is_file(), s["id"])
+            self.assertTrue(daily_check.host_allowed(s["public_url"]), s["id"])
+        gtm98 = {s["id"]: s for s in SOURCES["sources"] if s["id"] in [f"F{i}" for i in range(37, 44)]}
+        self.assertEqual({k: (v["name"], v["scope"], v["method"]) for k, v in gtm98.items()}, {
+            "F37": ("Aider", "aider", "git-tags"), "F38": ("OpenHands", "openhands", "git-tags"),
+            "F39": ("Amp", "amp", "changelog-web"), "F40": ("Warp", "warp", "changelog-web"),
+            "F41": ("Junie", "junie", "changelog-web"), "F42": ("Kilo Code", "kilo-code", "git-tags"),
+            "F43": ("Comet", "comet", "changelog-web")})
+        f43 = gtm98["F43"]["read"]
+        self.assertEqual((f43["only_entries_with"], f43["match_summary"], f43["client"]), ("Comet", True, "curl"))
+        self.assertIn("only entries whose title, or the line under the title, contains «Comet»", gtm98["F43"]["notes"])
+        for s in gtm98.values():
             self.assertTrue((ROOT / "observatory" / "data" / "agents" / f"{s['scope']}.json").is_file(), s["id"])
             self.assertTrue(daily_check.host_allowed(s["public_url"]), s["id"])
         f29 = SOURCES["sources"][28]

@@ -22,6 +22,7 @@ Standard library only. Run from the repository root:  python3 observatory/build.
 import argparse
 import html
 import json
+import re
 import shutil
 import sys
 from pathlib import Path
@@ -93,14 +94,22 @@ def load_agents():
 
 
 def load_candidates():
-    """GTM-57: observatory/data/candidates.json, [{name, vendor, reason}] in the signed order. Missing file: none."""
+    """GTM-57: observatory/data/candidates.json, [{name, vendor, reason}] in the signed order. Missing file: none.
+
+    GTM-98: a no_source candidate may also carry checked_url (https) and checked_at (date), the official page that was
+    looked at for a dated source; they are internal and not shown on the page."""
     f = DATA.parent / "candidates.json"
     if not f.exists():
         return []
     items = json.loads(f.read_text(encoding="utf-8"))
     for i, c in enumerate(items):
-        if set(c) != {"name", "vendor", "reason"} or not c["name"] or not c["vendor"] or c["reason"] not in ("next_batch", "no_source"):
-            sys.exit(f"candidates.json item {i}: needs non-empty name and vendor and reason next_batch or no_source")
+        base = {"name", "vendor", "reason"}
+        if not (set(c) == base or (set(c) == base | {"checked_url", "checked_at"} and c.get("reason") == "no_source"
+                                   and str(c["checked_url"]).startswith("https://")
+                                   and re.fullmatch(r"\d{4}-\d{2}-\d{2}", str(c["checked_at"])))) \
+                or not c["name"] or not c["vendor"] or c["reason"] not in ("next_batch", "no_source"):
+            sys.exit(f"candidates.json item {i}: needs non-empty name and vendor and reason next_batch or no_source"
+                     " (and, for no_source only, checked_url https and checked_at date)")
     return items
 
 

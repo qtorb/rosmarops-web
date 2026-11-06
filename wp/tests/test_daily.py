@@ -254,6 +254,13 @@ class Daily(unittest.TestCase):
         d["not_checked"] = []
         self.assertEqual(self.store_day(d), "not stored")
 
+    def test_up_to_fifty_sources(self):  # GTM-98: 42 sources F1-F43 (no F30); the cap is 50
+        d = copy.deepcopy(self.valid)
+        d.update(date="2026-01-09", status="incomplete", summary_ref="docs/observatorio/2026-01-09.md",
+                 checked=[dict(d["checked"][0], name=f"Source {i}") for i in range(42)], not_checked=["F43 Comet"])
+        self.assertEqual(self.store_day(d), "stored")
+        self.rejected(lambda x: x.update(checked=[x["checked"][0]] * 51))
+
     # ---- incomplete days are published too (GTM-48). Dates before 2026-01-15, so the index and feed tests keep their order.
 
     def incomplete_day(self, date, items, checked, not_checked):

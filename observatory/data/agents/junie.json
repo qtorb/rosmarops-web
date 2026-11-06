@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "agent": {
+    "id": "junie",
+    "name": "Junie",
+    "vendor": "JetBrains",
+    "kinds": [
+      "cli",
+      "ide_extension"
+    ],
+    "platforms": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "local_footprint": "yes",
+    "rosmarops": {
+      "status": "not_supported"
+    },
+    "reviewed_at": "2026-11-06"
+  },
+  "versions": [],
+  "changes": [],
+  "ratings": []
+}
