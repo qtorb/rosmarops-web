@@ -20,6 +20,7 @@ from unittest import mock
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "observatory"))
 import collect  # noqa: E402
+import daily_check  # noqa: E402
 
 SOURCES = json.loads((ROOT / "observatory" / "sources.json").read_text(encoding="utf-8"))
 TERMS = SOURCES["scope_terms"]
@@ -501,6 +502,51 @@ MUSE_PAGE = """<html><body><nav>Changelog</nav><h1>Changelog</h1><p>What's new, 
 </body></html>"""
 
 
+class ChineseChangelogs(Base):
+    """GTM-93: Chinese dates (TRAE CN, Qoder CN), «last updated» footers and a version index with one page per version
+    (CodeBuddy CLI)."""
+
+    def test_trae_cn_dates(self):
+        page = ("<html><body><h2>2026 年 01 月 14 日（功能发布）</h2><p>TRAE v3.4.15 版本正式发布。</p><p>新增功能 支持登录。</p>"
+                "<h2>2026 年 01 月 02 日（Hotfix）</h2><p>TRAE v3.4.14 版本正式发布。</p></body></html>")
+        with self.web({"https://docs.trae.cn/ide/changelog": page}):
+            r = collect.read_changelog_web(src("F32"), L, TERMS)
+        self.assertTrue(r["opened"])
+        self.assertEqual((r["latest"], r["latest_date"]), ("v3.4.15", "2026-01-14"))
+        self.assertEqual([e["date"] for e in r["new"]], ["2026-01-14"])
+
+    def test_qoder_dates_and_version_line(self):
+        page = "<html><body><p>2026年1月14日</p><h3>CLI 1.1.83</h3><p>修复 /resume。</p></body></html>"
+        pages = {"https://changelog.qoder.cn/ide": "<html><body><p>moved</p></body></html>",
+                 "https://changelog.qoder.cn/jetbrains": "<html><body><p>moved</p></body></html>",
+                 "https://changelog.qoder.cn/cli": page}
+        with self.web(pages):
+            r = collect.read_changelog_web(src("F36"), L, TERMS)
+        self.assertTrue(r["opened"])
+        self.assertEqual((r["latest"], r["latest_date"]), ("1.1.83", "2026-01-14"))
+
+    def test_last_updated_footer_is_not_an_entry(self):
+        lines = ["### 4.12.3 (2026-01-10)", "新增功能", "最后更新:", "2026-01-14", "Pager"]
+        self.assertEqual([(e["date"], e["version"]) for e in collect.entries(lines)], [("2026-01-10", "4.12.3")])
+
+    def test_codebuddy_cli_index_reads_version_pages(self):
+        index = "<html><body><ul><li><p>v2.179.3 - 2026-01-14</p></li><li><p>v2.179.2 - 2026-01-02</p></li></ul></body></html>"
+        ver = ("<html><body><p>Skip to content</p><p>CLI</p><h1>CodeBuddy Code v2.179.3 发布</h1><p>修复会话问题。</p>"
+               "<p>最后更新:</p><p>2026-01-14</p><p>Pager</p></body></html>")
+        ide = "<html><body><h3>4.12.3 (2026-01-13)</h3><p>新增功能 插件市场。</p><p>最后更新:</p><p>2026-01-14</p></body></html>"
+        pages = {"https://www.codebuddy.cn/docs/cli/release-notes/README": index,
+                 "https://www.codebuddy.cn/docs/cli/release-notes/v2.179.3": ver,
+                 "https://www.codebuddy.cn/docs/ide/release-notes/release-notes": ide}
+        with self.web(pages):
+            r = collect.read_changelog_web(src("F35"), L, TERMS)
+        self.assertTrue(r["opened"])
+        self.assertEqual((r["latest"], r["latest_date"]), ("v2.179.3", "2026-01-14"))
+        self.assertEqual([(e["date"], e["version"]) for e in r["new"]], [("2026-01-14", "v2.179.3"), ("2026-01-13", "4.12.3")])
+        self.assertTrue(r["new"][0]["text"].startswith("# CodeBuddy Code v2.179.3"))
+        self.assertNotIn("Skip to content", r["new"][0]["text"])
+        self.assertNotIn("Pager", r["new"][0]["text"])
+
+
 class ChangelogVersions(Base):
     def run_f29(self, previous, page=MUSE_PAGE):
         with mock.patch.dict(collect.PREVIOUS, previous, clear=True), self.web({MUSE_URL: page}):
@@ -790,13 +836,13 @@ class SourcesFile(unittest.TestCase):
         ids = [s["id"] for s in SOURCES["sources"]]
         self.assertEqual(ids, IDS)
         self.assertEqual(IDS[:29], [f"F{i}" for i in range(1, 30)])
-        self.assertTrue(set(IDS[29:]) <= {"F30", "F31"}, IDS)
+        self.assertEqual(IDS[29:], ["F31", "F32", "F33", "F34", "F35", "F36"])
         for s in SOURCES["sources"]:
             self.assertEqual(set(s), {"id", "name", "scope", "method", "read", "public_url", "fragile", "notes"}, s["id"])
             self.assertIn(s["method"], collect.METHODS, s["id"])
             self.assertEqual(s["fragile"], s["id"] in ("F8", "F19"), s["id"])
             self.assertNotIn("raw.githubusercontent.com", s["public_url"], s["id"])
-            if s["name"] not in ("Hermes Agent", "Muse Code", "n8n"):
+            if s["name"] not in ("Hermes Agent", "Muse Code", "n8n", "TRAE", "Qwen Code", "Kimi Code", "CodeBuddy", "Qoder CN"):
                 self.assertEqual(s["public_url"], checked[s["name"]], s["id"])
         self.assertEqual(len(set(SOURCES["scope_terms"])), len(SOURCES["scope_terms"]))
         self.assertTrue({"muse", "n8n"} <= set(SOURCES["scope_terms"]))
@@ -804,6 +850,16 @@ class SourcesFile(unittest.TestCase):
         self.assertEqual((f31["name"], f31["method"], f31["read"]["tags"], f31["fragile"]), ("n8n", "git-tags", "n8n@N.N.N", False))
         self.assertEqual(f31["read"]["notes"], ["github-api", {"web": "https://docs.n8n.io/release-notes/"}])
         self.assertIn("muse", SOURCES["scope_terms"])
+        new = {s["id"]: s for s in SOURCES["sources"] if s["id"] in ("F32", "F33", "F34", "F35", "F36")}
+        self.assertEqual({k: (v["name"], v["scope"], v["method"]) for k, v in new.items()}, {
+            "F32": ("TRAE", "trae", "changelog-web"), "F33": ("Qwen Code", "qwen-code", "git-tags"),
+            "F34": ("Kimi Code", "kimi-code", "git-tags"), "F35": ("CodeBuddy", "codebuddy", "changelog-web"),
+            "F36": ("Qoder CN", "qoder-cn", "changelog-web")})
+        self.assertEqual(new["F33"]["read"]["tags"], "v*")
+        self.assertEqual(new["F34"]["read"]["tags"], "@moonshot-ai/kimi-code@N.N.N")
+        for s in new.values():
+            self.assertTrue((ROOT / "observatory" / "data" / "agents" / f"{s['scope']}.json").is_file(), s["id"])
+            self.assertTrue(daily_check.host_allowed(s["public_url"]), s["id"])
         f29 = SOURCES["sources"][28]
         self.assertEqual((f29["name"], f29["method"], f29["fragile"]), ("Muse Code", "changelog-versions", False))
         self.assertEqual(f29["public_url"], f29["read"]["url"])

@@ -16,6 +16,7 @@ const ROSMAROPS_DAILY_HOSTS = [
 	'nvd.nist.gov', 'npmjs.com', 'pypi.org',
 	'kiro.dev', 'devin.ai', 'visualstudio.com', 'cisa.gov',
 	'dev.meta.ai', 'docs.n8n.io', // F29 Muse Code and F31 n8n (GTM-90)
+	'trae.cn', 'moonshotai.github.io', 'codebuddy.cn', 'qoder.cn', // F32-F36 (GTM-93)
 ];
 const ROSMAROPS_DAILY_PREFIX = ['en' => '/observatory/daily/', 'es' => '/es/observatorio/diario/', 'ca' => '/ca/observatori/diari/'];
 const ROSMAROPS_DAILY_FEED_ITEMS = 30;

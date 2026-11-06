@@ -21,7 +21,89 @@
     "reviewed_at": "2026-10-29"
   },
   "versions": [],
-  "changes": [],
+  "changes": [
+    {
+      "id": "chg-claude-code-2-1-316-managed",
+      "version": "2.1.316",
+      "date": "2026-10-31",
+      "category": "approval_mode",
+      "before": {
+        "en": "Before 2.1.316, server-managed settings for Team and Enterprise logins applied after an approval prompt, according to the changelog.",
+        "es": "Antes de 2.1.316, los ajustes gestionados por servidor para cuentas Team y Enterprise se aplicaban tras un aviso de aprobación, según el changelog.",
+        "ca": "Abans de 2.1.316, els ajustos gestionats pel servidor per a comptes Team i Enterprise s'aplicaven després d'un avís d'aprovació, segons el changelog."
+      },
+      "after": {
+        "en": "From 2.1.316, server-managed settings for Team and Enterprise logins apply without an approval prompt, according to the changelog.",
+        "es": "Desde 2.1.316, los ajustes gestionados por servidor para cuentas Team y Enterprise se aplican sin aviso de aprobación, según el changelog.",
+        "ca": "Des de 2.1.316, els ajustos gestionats pel servidor per a comptes Team i Enterprise s'apliquen sense avís d'aprovació, segons el changelog."
+      },
+      "source": {
+        "url": "https://code.claude.com/docs/en/changelog",
+        "official": true,
+        "accessed_at": "2026-11-06"
+      },
+      "verified": {
+        "by": "writer",
+        "at": "2026-11-06",
+        "how": "official_changelog"
+      },
+      "rosmarops_impact": "none"
+    },
+    {
+      "id": "chg-claude-code-2-1-317-email",
+      "version": "2.1.317",
+      "date": "2026-11-03",
+      "category": "approval_mode",
+      "before": {
+        "en": "Before 2.1.317, the changelog lists no check before a web or shell tool call sent the account email address to the network.",
+        "es": "Antes de 2.1.317, el changelog no recoge ninguna comprobación antes de que una llamada web o de shell enviara a la red el correo de la cuenta.",
+        "ca": "Abans de 2.1.317, el changelog no recull cap comprovació abans que una crida web o de shell enviés a la xarxa el correu del compte."
+      },
+      "after": {
+        "en": "From 2.1.317, Claude Code asks before a web or shell tool call sends the account email address to the network, according to the changelog.",
+        "es": "Desde 2.1.317, Claude Code pregunta antes de que una llamada web o de shell envíe a la red el correo de la cuenta, según el changelog.",
+        "ca": "Des de 2.1.317, Claude Code pregunta abans que una crida web o de shell enviï a la xarxa el correu del compte, segons el changelog."
+      },
+      "source": {
+        "url": "https://code.claude.com/docs/en/changelog#2-1-317",
+        "official": true,
+        "accessed_at": "2026-11-06"
+      },
+      "verified": {
+        "by": "writer",
+        "at": "2026-11-06",
+        "how": "official_changelog"
+      },
+      "rosmarops_impact": "none"
+    },
+    {
+      "id": "chg-claude-code-2-1-318-denied-mcp",
+      "version": "2.1.318",
+      "date": "2026-11-04",
+      "category": "mcp",
+      "before": {
+        "en": "Before 2.1.318, deniedMcpServers URL entries did not block matching Anthropic-provided servers and connectors in cloud sessions, according to the changelog.",
+        "es": "Antes de 2.1.318, las entradas por URL de deniedMcpServers no bloqueaban servidores aportados por Anthropic con URL coincidente ni conectores en sesiones en la nube, según el changelog.",
+        "ca": "Abans de 2.1.318, les entrades per URL de deniedMcpServers no bloquejaven servidors aportats per Anthropic amb URL coincident ni connectors en sessions al núvol, segons el changelog."
+      },
+      "after": {
+        "en": "From 2.1.318, deniedMcpServers URL entries also block matching Anthropic-provided servers and connectors in cloud sessions, according to the changelog.",
+        "es": "Desde 2.1.318, las entradas por URL de deniedMcpServers bloquean también servidores aportados por Anthropic con URL coincidente y conectores en sesiones en la nube, según el changelog.",
+        "ca": "Des de 2.1.318, les entrades per URL de deniedMcpServers bloquegen també servidors aportats per Anthropic amb URL coincident i connectors en sessions al núvol, segons el changelog."
+      },
+      "source": {
+        "url": "https://code.claude.com/docs/en/changelog#2-1-318",
+        "official": true,
+        "accessed_at": "2026-11-06"
+      },
+      "verified": {
+        "by": "writer",
+        "at": "2026-11-06",
+        "how": "official_changelog"
+      },
+      "rosmarops_impact": "none"
+    }
+  ],
   "ratings": [],
   "default_mode": {
     "name": "auto",

@@ -2,16 +2,16 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://rosmarops.com/observatory/schema/raw.v1.schema.json",
   "title": "RosmarOps Observatory: daily raw collection (raw.v1)",
-  "description": "What observatory/collect.py read from the fixed sources F1-F29 on one day (GTM-75). Data from public sources only; no prose of ours.",
+  "description": "What observatory/collect.py read from the fixed sources F1-F36 on one day (GTM-75). Data from public sources only; no prose of ours.",
   "type": "object",
   "additionalProperties": false,
   "required": ["date", "collected_at", "sources", "opened", "total"],
   "properties": {
     "date": {"type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$", "format": "date", "description": "Day of the collection in Madrid."},
     "collected_at": {"type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$", "format": "date-time"},
-    "sources": {"type": "array", "minItems": 28, "maxItems": 31, "items": {"$ref": "#/$defs/source"}},
-    "opened": {"type": "integer", "minimum": 0, "maximum": 31},
-    "total": {"enum": [28, 29, 30, 31], "description": "28 until GTM-77, 29 with F29 Muse Code, then F30 and F31 (n8n, GTM-86)."}
+    "sources": {"type": "array", "minItems": 28, "maxItems": 36, "items": {"$ref": "#/$defs/source"}},
+    "opened": {"type": "integer", "minimum": 0, "maximum": 36},
+    "total": {"enum": [28, 29, 30, 31, 32, 33, 34, 35, 36], "description": "28 until GTM-77, 29 with F29 Muse Code, then F30 and F31 (n8n, GTM-86), and F32-F36 (TRAE, Qwen Code, Kimi Code, CodeBuddy, Qoder CN; GTM-93)."}
   },
   "$defs": {
     "date": {"type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$", "format": "date"},
@@ -20,7 +20,7 @@
       "additionalProperties": false,
       "required": ["id", "opened", "reason", "latest", "latest_date", "new", "ids", "read_with"],
       "properties": {
-        "id": {"type": "string", "pattern": "^F([1-9]|[12][0-9]|3[01])$"},
+        "id": {"type": "string", "pattern": "^F([1-9]|[12][0-9]|3[0-6])$"},
         "opened": {"type": "boolean"},
         "reason": {"type": ["string", "null"], "maxLength": 300},
         "latest": {"type": ["string", "null"], "minLength": 1, "maxLength": 120},

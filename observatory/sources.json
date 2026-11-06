@@ -1,5 +1,5 @@
 {
-  "$comment": "GTM-75. Single list of the Observatory's fixed sources F1-F29, read daily by observatory/collect.py. Methods and URLs transcribed from rosmarops-vigil docs/research/2026-11-01-observatorio-ampliacion-fuentes.md (signed 01-11) and docs/observatorio/fuentes-F1-F28.md (annex to GTM-75). public_url: the url of each source in 'checked' of observatory/daily/2026-11-03.json (commit aa5f165); Hermes Agent's from the annex. scope: the agent file in observatory/data/agents/ the source watches, 'threats' for the threat registries, 'all-agents' for cross-cutting sources. Tag patterns: 'v*' means v followed by a version number (likewise 'rust-v*', 'python-*', 'python-v*'); 'N.N.N' means three numbers without a prefix ('n8n@N.N.N': the same after a fixed prefix); null means every tag. Tags with alpha, beta, rc, nightly, preview, canary or dev are discarded; the rest are ordered like sort -V. read.notes is the order in which notes are looked for: 'github-api' (body of the GitHub release with that tag, read with the workflow's token; GTM-76), 'raw' (official CHANGELOG on raw.githubusercontent.com), 'web' (official changelog page), 'tag' (annotated tag text); an empty list means the source needs no notes.",
+  "$comment": "GTM-75. Single list of the Observatory's fixed sources F1-F36, read daily by observatory/collect.py. Methods and URLs transcribed from rosmarops-vigil docs/research/2026-11-01-observatorio-ampliacion-fuentes.md (signed 01-11) and docs/observatorio/fuentes-F1-F28.md (annex to GTM-75). public_url: the url of each source in 'checked' of observatory/daily/2026-11-03.json (commit aa5f165); Hermes Agent's from the annex. scope: the agent file in observatory/data/agents/ the source watches, 'threats' for the threat registries, 'all-agents' for cross-cutting sources. Tag patterns: 'v*' means v followed by a version number (likewise 'rust-v*', 'python-*', 'python-v*'); 'N.N.N' means three numbers without a prefix ('n8n@N.N.N': the same after a fixed prefix); null means every tag. Tags with alpha, beta, rc, nightly, preview, canary or dev are discarded; the rest are ordered like sort -V. read.notes is the order in which notes are looked for: 'github-api' (body of the GitHub release with that tag, read with the workflow's token; GTM-76), 'raw' (official CHANGELOG on raw.githubusercontent.com), 'web' (official changelog page), 'tag' (annotated tag text); an empty list means the source needs no notes.",
   "scope_terms": [
     "mcp",
     "agent",
@@ -556,6 +556,92 @@
       "public_url": "https://docs.n8n.io/release-notes/",
       "fragile": false,
       "notes": "Tags n8n@N.N.N (GTM-86). Notes: the GitHub release, then the official release notes page."
+    },
+    {
+      "id": "F32",
+      "name": "TRAE",
+      "scope": "trae",
+      "method": "changelog-web",
+      "read": {
+        "urls": [
+          "https://docs.trae.cn/ide/changelog"
+        ]
+      },
+      "public_url": "https://docs.trae.cn/ide/changelog",
+      "fragile": false,
+      "notes": "GTM-93. China changelog (docs.trae.cn), plain HTML with Chinese dates. The international one (docs.trae.ai/ide/changelog) carries its versions in a JSON embedded in the page and the collector finds no dated entries there; its numbering differs (v3.6.x vs v3.4.x)."
+    },
+    {
+      "id": "F33",
+      "name": "Qwen Code",
+      "scope": "qwen-code",
+      "method": "git-tags",
+      "read": {
+        "git": "https://github.com/QwenLM/qwen-code.git",
+        "tags": "v*",
+        "notes": [
+          "github-api",
+          {
+            "raw": "https://raw.githubusercontent.com/QwenLM/qwen-code/main/CHANGELOG.md"
+          }
+        ]
+      },
+      "public_url": "https://github.com/QwenLM/qwen-code/releases",
+      "fragile": false,
+      "notes": "GTM-93. Stable tags vN.N.N; -preview and -nightly are discarded. Notes from CHANGELOG.md (stable releases only)."
+    },
+    {
+      "id": "F34",
+      "name": "Kimi Code",
+      "scope": "kimi-code",
+      "method": "git-tags",
+      "read": {
+        "git": "https://github.com/MoonshotAI/kimi-code.git",
+        "tags": "@moonshot-ai/kimi-code@N.N.N",
+        "notes": [
+          "github-api",
+          {
+            "raw": "https://raw.githubusercontent.com/MoonshotAI/kimi-code/main/docs/en/release-notes/changelog.md"
+          }
+        ]
+      },
+      "public_url": "https://moonshotai.github.io/kimi-code/en/release-notes/changelog",
+      "fragile": false,
+      "notes": "GTM-93. Tags @moonshot-ai/kimi-code@N.N.N; -canary is discarded. Successor of the archived Kimi CLI."
+    },
+    {
+      "id": "F35",
+      "name": "CodeBuddy",
+      "scope": "codebuddy",
+      "method": "changelog-web",
+      "read": {
+        "urls": [
+          {
+            "index": "https://www.codebuddy.cn/docs/cli/release-notes/README",
+            "page": "https://www.codebuddy.cn/docs/cli/release-notes/{version}"
+          },
+          "https://www.codebuddy.cn/docs/ide/release-notes/release-notes"
+        ]
+      },
+      "public_url": "https://www.codebuddy.cn/docs/cli/release-notes/README",
+      "fragile": false,
+      "notes": "GTM-93. China site (codebuddy.cn): the CLI release-notes index (one page per version, read for new versions) and the IDE release notes. codebuddy.ai does not answer from the cloud."
+    },
+    {
+      "id": "F36",
+      "name": "Qoder CN",
+      "scope": "qoder-cn",
+      "method": "changelog-web",
+      "read": {
+        "urls": [
+          "https://changelog.qoder.cn/ide",
+          "https://changelog.qoder.cn/jetbrains",
+          "https://changelog.qoder.cn/cli"
+        ]
+      },
+      "public_url": "https://changelog.qoder.cn/",
+      "fragile": false,
+      "notes": "GTM-93. Formerly Tongyi Lingma; IDE, JetBrains plugin and CLI changelogs."
     }
   ]
 }
