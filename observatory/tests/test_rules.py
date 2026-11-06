@@ -19,6 +19,8 @@ class Rules(unittest.TestCase):
         self.assertIn("## Reglas de la sinopsis diaria (R1–R13)", text)
         self.assertIn("## Registro de cambios (GTM-89)", text)
         self.assertIn("## Fuente de datos (GTM-90)", text)
+        self.assertIn("de una fuente de `observatory/sources.json` cuyo `scope` tenga fichero en `observatory/data/agents/`", text)
+        self.assertNotIn("F1–F31", text)
         self.assertLess(text.index("## Fuente de datos (GTM-90)"), text.index("## Reglas de la sinopsis diaria (R1–R13)"))
         self.assertNotIn("«Revisado» del resumen", text)
         self.assertIn("el dato está en el texto que el recolector recogió hoy de esa fuente en observatory/raw/D.json", text)
