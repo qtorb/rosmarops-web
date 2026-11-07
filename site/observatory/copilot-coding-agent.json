@@ -2,7 +2,7 @@
   "schema_version": 1,
   "agent": {
     "id": "copilot-coding-agent",
-    "name": "GitHub Copilot coding agent",
+    "name": "GitHub Copilot cloud agent",
     "vendor": "GitHub",
     "kinds": [
       "cloud"

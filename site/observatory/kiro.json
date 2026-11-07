@@ -6,7 +6,8 @@
     "vendor": "AWS",
     "kinds": [
       "ide",
-      "cli"
+      "cli",
+      "cloud"
     ],
     "platforms": [
       "windows",

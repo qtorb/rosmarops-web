@@ -6,7 +6,8 @@
     "vendor": "Google",
     "kinds": [
       "ide",
-      "cli"
+      "cli",
+      "cloud"
     ],
     "platforms": [
       "windows",
@@ -18,7 +19,22 @@
       "status": "detected",
       "since_version": "0.3.0"
     },
-    "reviewed_at": "2026-10-29"
+    "reviewed_at": "2026-10-29",
+    "sources": [
+      {
+        "field": "kinds",
+        "source": {
+          "url": "https://antigravity.google/docs/changelog#rel-hub-2.29.0",
+          "official": true,
+          "accessed_at": "2026-11-07"
+        },
+        "verified": {
+          "by": "advisor",
+          "at": "2026-11-07",
+          "how": "official_changelog"
+        }
+      }
+    ]
   },
   "versions": [],
   "changes": [

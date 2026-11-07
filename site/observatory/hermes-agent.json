@@ -5,7 +5,8 @@
     "name": "Hermes Agent",
     "vendor": "Nous Research",
     "kinds": [
-      "cli"
+      "cli",
+      "desktop_app"
     ],
     "platforms": [
       "windows",

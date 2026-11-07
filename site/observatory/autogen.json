@@ -2,7 +2,7 @@
   "schema_version": 1,
   "agent": {
     "id": "autogen",
-    "name": "AutoGen",
+    "name": "Microsoft Agent Framework (AutoGen)",
     "vendor": "Microsoft",
     "kinds": [
       "framework"

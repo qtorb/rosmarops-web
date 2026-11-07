@@ -5,7 +5,9 @@
     "name": "Cline",
     "vendor": "Cline",
     "kinds": [
-      "ide_extension"
+      "ide_extension",
+      "cli",
+      "desktop_app"
     ],
     "platforms": [
       "windows",

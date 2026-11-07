@@ -2,7 +2,7 @@
   "schema_version": 1,
   "agent": {
     "id": "autogen",
-    "name": "AutoGen",
+    "name": "Microsoft Agent Framework (AutoGen)",
     "vendor": "Microsoft",
     "kinds": [
       "framework"
@@ -16,7 +16,22 @@
     "rosmarops": {
       "status": "not_supported"
     },
-    "reviewed_at": "2026-10-30"
+    "reviewed_at": "2026-10-30",
+    "sources": [
+      {
+        "field": "name",
+        "source": {
+          "url": "https://github.com/microsoft/autogen/blob/d07c667a3239ea4ab7af62a53b0f4ff205a1f23d/README.md#L21-L29",
+          "official": true,
+          "accessed_at": "2026-11-07"
+        },
+        "verified": {
+          "by": "advisor",
+          "at": "2026-11-07",
+          "how": "official_code"
+        }
+      }
+    ]
   },
   "versions": [],
   "changes": [],
