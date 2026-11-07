@@ -1406,6 +1406,9 @@
           "cloud"
         ],
         "platforms": [
+          "windows",
+          "macos",
+          "linux",
           "web"
         ],
         "local_footprint": "partial",
