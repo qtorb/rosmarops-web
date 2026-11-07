@@ -229,7 +229,7 @@ NODE_HARNESS = r"""
 const fs = require('fs');
 const [src, visible, referrer, path, on] = process.argv.slice(2);
 let code = fs.readFileSync(src, 'utf8');
-if (on === '1') code = code.replace('var ON = false;', 'var ON = true;');
+code = code.replace(/var ON = (true|false);/, on === '1' ? 'var ON = true;' : 'var ON = false;');
 const calls = []; const listeners = {};
 const touched = [];
 const doc = { visibilityState: visible, referrer,
@@ -290,11 +290,11 @@ class Script(unittest.TestCase):
 
 
 class Switch(unittest.TestCase):
-    def test_script_and_plugin_switches_agree_and_are_off(self):
+    def test_script_and_plugin_switches_agree_and_are_on(self):
         js = re.search(r"var ON = (true|false);", SCRIPT.read_text(encoding="utf-8")).group(1)
         php = re.search(r"define\('ROSMAROPS_VISITS_ON', (true|false)\)", PLUGIN.read_text(encoding="utf-8")).group(1)
         self.assertEqual(js, php)
-        self.assertEqual(js, "false", "the visit counter stays off until the privacy texts are published (GTM-111)")
+        self.assertEqual(js, "true", "switched on with the signed privacy texts (GTM-111 C)")
 
     def test_every_static_page_with_the_consent_script_loads_the_visit_script(self):
         missing = [str(f.relative_to(ROOT)) for f in sorted((ROOT / "site").rglob("*.html"))
