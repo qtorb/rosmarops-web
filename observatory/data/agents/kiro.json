@@ -101,10 +101,10 @@
     },
     {
       "surface": "subagents",
-      "since": "2026-02-05",
+      "since": "2025-12-18",
       "since_basis": "announced",
       "source": {
-        "url": "https://kiro.dev/changelog/ide/0-9/",
+        "url": "https://kiro.dev/changelog/ide/0-8/",
         "official": true,
         "accessed_at": "2026-11-07"
       },
@@ -161,10 +161,10 @@
     },
     {
       "surface": "scheduled_tasks",
-      "since": "2026-10-28",
-      "since_basis": "first_mention",
+      "since": "2026-06-19",
+      "since_basis": "announced",
       "source": {
-        "url": "https://kiro.dev/changelog/web/session-recap-and-reorganized-settings/",
+        "url": "https://kiro.dev/changelog/web/introducing-automations/",
         "official": true,
         "accessed_at": "2026-11-07"
       },

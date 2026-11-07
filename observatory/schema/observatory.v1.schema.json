@@ -633,7 +633,7 @@
       }
     },
     "reads_from": {
-      "description": "v1.8 (GTM-105). Files of another agent, or of a shared convention, that this agent reads or loads. owner: an agent file id or «shared» (checked against observatory/data/shared-files.json in CI). condition: a code, not prose.",
+      "description": "v1.8 (GTM-105). Files of another agent, or of a shared convention, that this agent reads or loads. owner: an agent file id or «shared» (checked against observatory/data/shared-files.json in CI). condition: a code, not prose. v1.9 (GTM-108): default_source, optional: the official source that shows the default value when `source` (the line or page with the literal path) does not.",
       "type": "array",
       "items": {
         "type": "object",
@@ -673,6 +673,9 @@
           },
           "verified": {
             "$ref": "#/$defs/verified"
+          },
+          "default_source": {
+            "$ref": "#/$defs/source"
           }
         }
       }

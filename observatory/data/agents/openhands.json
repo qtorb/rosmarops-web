@@ -197,7 +197,7 @@
       "owner": "shared",
       "load": "default",
       "source": {
-        "url": "https://github.com/OpenHands/software-agent-sdk/blob/20ddae0e1551cbecdde36d8cdfd69d47728a5a9d/openhands-sdk/openhands/sdk/skills/skill.py#L347-L353",
+        "url": "https://github.com/OpenHands/software-agent-sdk/blob/edaac806d1599a4ee1662fd4008fbcd7b537ecd1/openhands-sdk/openhands/sdk/skills/skill.py#L895-L910",
         "official": true,
         "accessed_at": "2026-11-07"
       },
@@ -205,6 +205,11 @@
         "by": "advisor",
         "at": "2026-11-07",
         "how": "official_code"
+      },
+      "default_source": {
+        "url": "https://github.com/OpenHands/OpenHands-CLI/blob/283c6ac3610f4299f405f7389f65766dcb83e12a/openhands_cli/stores/agent_store.py#L408-L420",
+        "official": true,
+        "accessed_at": "2026-11-07"
       }
     },
     {
@@ -212,7 +217,7 @@
       "owner": "shared",
       "load": "default",
       "source": {
-        "url": "https://github.com/OpenHands/software-agent-sdk/blob/20ddae0e1551cbecdde36d8cdfd69d47728a5a9d/openhands-sdk/openhands/sdk/skills/skill.py#L347-L353",
+        "url": "https://github.com/OpenHands/software-agent-sdk/blob/edaac806d1599a4ee1662fd4008fbcd7b537ecd1/openhands-sdk/openhands/sdk/skills/skill.py#L895-L910",
         "official": true,
         "accessed_at": "2026-11-07"
       },
@@ -220,6 +225,11 @@
         "by": "advisor",
         "at": "2026-11-07",
         "how": "official_code"
+      },
+      "default_source": {
+        "url": "https://github.com/OpenHands/OpenHands-CLI/blob/283c6ac3610f4299f405f7389f65766dcb83e12a/openhands_cli/stores/agent_store.py#L408-L420",
+        "official": true,
+        "accessed_at": "2026-11-07"
       }
     },
     {
@@ -227,7 +237,7 @@
       "owner": "claude-code",
       "load": "default",
       "source": {
-        "url": "https://github.com/OpenHands/software-agent-sdk/blob/20ddae0e1551cbecdde36d8cdfd69d47728a5a9d/openhands-sdk/openhands/sdk/skills/skill.py#L347-L353",
+        "url": "https://github.com/OpenHands/software-agent-sdk/blob/edaac806d1599a4ee1662fd4008fbcd7b537ecd1/openhands-sdk/openhands/sdk/skills/skill.py#L895-L910",
         "official": true,
         "accessed_at": "2026-11-07"
       },
@@ -235,6 +245,11 @@
         "by": "advisor",
         "at": "2026-11-07",
         "how": "official_code"
+      },
+      "default_source": {
+        "url": "https://github.com/OpenHands/OpenHands-CLI/blob/283c6ac3610f4299f405f7389f65766dcb83e12a/openhands_cli/stores/agent_store.py#L408-L420",
+        "official": true,
+        "accessed_at": "2026-11-07"
       }
     },
     {
@@ -242,7 +257,7 @@
       "owner": "gemini-cli",
       "load": "default",
       "source": {
-        "url": "https://github.com/OpenHands/software-agent-sdk/blob/20ddae0e1551cbecdde36d8cdfd69d47728a5a9d/openhands-sdk/openhands/sdk/skills/skill.py#L347-L353",
+        "url": "https://github.com/OpenHands/software-agent-sdk/blob/edaac806d1599a4ee1662fd4008fbcd7b537ecd1/openhands-sdk/openhands/sdk/skills/skill.py#L895-L910",
         "official": true,
         "accessed_at": "2026-11-07"
       },
@@ -250,6 +265,11 @@
         "by": "advisor",
         "at": "2026-11-07",
         "how": "official_code"
+      },
+      "default_source": {
+        "url": "https://github.com/OpenHands/OpenHands-CLI/blob/283c6ac3610f4299f405f7389f65766dcb83e12a/openhands_cli/stores/agent_store.py#L408-L420",
+        "official": true,
+        "accessed_at": "2026-11-07"
       }
     },
     {
@@ -257,7 +277,7 @@
       "owner": "cursor",
       "load": "default",
       "source": {
-        "url": "https://github.com/OpenHands/software-agent-sdk/blob/20ddae0e1551cbecdde36d8cdfd69d47728a5a9d/openhands-sdk/openhands/sdk/skills/skill.py#L347-L353",
+        "url": "https://github.com/OpenHands/software-agent-sdk/blob/edaac806d1599a4ee1662fd4008fbcd7b537ecd1/openhands-sdk/openhands/sdk/skills/skill.py#L895-L910",
         "official": true,
         "accessed_at": "2026-11-07"
       },
@@ -265,6 +285,11 @@
         "by": "advisor",
         "at": "2026-11-07",
         "how": "official_code"
+      },
+      "default_source": {
+        "url": "https://github.com/OpenHands/OpenHands-CLI/blob/283c6ac3610f4299f405f7389f65766dcb83e12a/openhands_cli/stores/agent_store.py#L408-L420",
+        "official": true,
+        "accessed_at": "2026-11-07"
       }
     },
     {
@@ -272,7 +297,7 @@
       "owner": "shared",
       "load": "default",
       "source": {
-        "url": "https://github.com/OpenHands/software-agent-sdk/blob/20ddae0e1551cbecdde36d8cdfd69d47728a5a9d/openhands-sdk/openhands/sdk/skills/skill.py#L1150-L1157",
+        "url": "https://github.com/OpenHands/software-agent-sdk/blob/edaac806d1599a4ee1662fd4008fbcd7b537ecd1/openhands-sdk/openhands/sdk/skills/skill.py#L912-L923",
         "official": true,
         "accessed_at": "2026-11-07"
       },
@@ -280,6 +305,11 @@
         "by": "advisor",
         "at": "2026-11-07",
         "how": "official_code"
+      },
+      "default_source": {
+        "url": "https://github.com/OpenHands/OpenHands-CLI/blob/283c6ac3610f4299f405f7389f65766dcb83e12a/openhands_cli/stores/agent_store.py#L408-L420",
+        "official": true,
+        "accessed_at": "2026-11-07"
       }
     },
     {
@@ -287,7 +317,7 @@
       "owner": "shared",
       "load": "default",
       "source": {
-        "url": "https://github.com/OpenHands/software-agent-sdk/blob/20ddae0e1551cbecdde36d8cdfd69d47728a5a9d/openhands-sdk/openhands/sdk/skills/skill.py#L952-L957",
+        "url": "https://github.com/OpenHands/software-agent-sdk/blob/edaac806d1599a4ee1662fd4008fbcd7b537ecd1/openhands-sdk/openhands/sdk/skills/skill.py#L739-L766",
         "official": true,
         "accessed_at": "2026-11-07"
       },
@@ -295,6 +325,11 @@
         "by": "advisor",
         "at": "2026-11-07",
         "how": "official_code"
+      },
+      "default_source": {
+        "url": "https://github.com/OpenHands/OpenHands-CLI/blob/283c6ac3610f4299f405f7389f65766dcb83e12a/openhands_cli/stores/agent_store.py#L408-L420",
+        "official": true,
+        "accessed_at": "2026-11-07"
       }
     },
     {
@@ -302,7 +337,7 @@
       "owner": "shared",
       "load": "default",
       "source": {
-        "url": "https://github.com/OpenHands/software-agent-sdk/blob/20ddae0e1551cbecdde36d8cdfd69d47728a5a9d/openhands-sdk/openhands/sdk/subagent/load.py#L50-L54",
+        "url": "https://github.com/OpenHands/software-agent-sdk/blob/edaac806d1599a4ee1662fd4008fbcd7b537ecd1/openhands-sdk/openhands/sdk/subagent/load.py#L50-L77",
         "official": true,
         "accessed_at": "2026-11-07"
       },
@@ -310,6 +345,11 @@
         "by": "advisor",
         "at": "2026-11-07",
         "how": "official_code"
+      },
+      "default_source": {
+        "url": "https://github.com/OpenHands/software-agent-sdk/blob/edaac806d1599a4ee1662fd4008fbcd7b537ecd1/openhands-sdk/openhands/sdk/conversation/impl/local_conversation.py#L793-L797",
+        "official": true,
+        "accessed_at": "2026-11-07"
       }
     },
     {
@@ -317,7 +357,7 @@
       "owner": "shared",
       "load": "default",
       "source": {
-        "url": "https://github.com/OpenHands/software-agent-sdk/blob/20ddae0e1551cbecdde36d8cdfd69d47728a5a9d/openhands-sdk/openhands/sdk/subagent/load.py#L81-L88",
+        "url": "https://github.com/OpenHands/software-agent-sdk/blob/edaac806d1599a4ee1662fd4008fbcd7b537ecd1/openhands-sdk/openhands/sdk/subagent/load.py#L80-L95",
         "official": true,
         "accessed_at": "2026-11-07"
       },
@@ -325,14 +365,19 @@
         "by": "advisor",
         "at": "2026-11-07",
         "how": "official_code"
+      },
+      "default_source": {
+        "url": "https://github.com/OpenHands/software-agent-sdk/blob/edaac806d1599a4ee1662fd4008fbcd7b537ecd1/openhands-sdk/openhands/sdk/conversation/impl/local_conversation.py#L793-L797",
+        "official": true,
+        "accessed_at": "2026-11-07"
       }
     },
     {
       "path": ".agents/plugins",
       "owner": "shared",
-      "load": "default",
+      "load": "if_configured",
       "source": {
-        "url": "https://github.com/OpenHands/software-agent-sdk/blob/20ddae0e1551cbecdde36d8cdfd69d47728a5a9d/openhands-sdk/openhands/sdk/plugin/discovery.py#L30-L41",
+        "url": "https://github.com/OpenHands/software-agent-sdk/blob/20ddae0e1551cbecdde36d8cdfd69d47728a5a9d/openhands-sdk/openhands/sdk/plugin/discovery.py#L128-L131",
         "official": true,
         "accessed_at": "2026-11-07"
       },
@@ -340,14 +385,15 @@
         "by": "advisor",
         "at": "2026-11-07",
         "how": "official_code"
-      }
+      },
+      "condition": "sdk_ambient_plugins"
     },
     {
       "path": "~/.agents/plugins",
       "owner": "shared",
-      "load": "default",
+      "load": "if_configured",
       "source": {
-        "url": "https://github.com/OpenHands/software-agent-sdk/blob/20ddae0e1551cbecdde36d8cdfd69d47728a5a9d/openhands-sdk/openhands/sdk/plugin/discovery.py#L30-L41",
+        "url": "https://github.com/OpenHands/software-agent-sdk/blob/20ddae0e1551cbecdde36d8cdfd69d47728a5a9d/openhands-sdk/openhands/sdk/plugin/discovery.py#L91-L94",
         "official": true,
         "accessed_at": "2026-11-07"
       },
@@ -355,15 +401,16 @@
         "by": "advisor",
         "at": "2026-11-07",
         "how": "official_code"
-      }
+      },
+      "condition": "sdk_ambient_plugins"
     },
     {
       "path": ".claude-plugin/plugin.json",
       "owner": "claude-code",
-      "load": "default",
-      "condition": "inside_plugin_dir",
+      "load": "if_configured",
+      "condition": "conversation_plugins_set",
       "source": {
-        "url": "https://github.com/OpenHands/software-agent-sdk/blob/20ddae0e1551cbecdde36d8cdfd69d47728a5a9d/openhands-sdk/openhands/sdk/plugin/format/claude_code.py#L39-L41",
+        "url": "https://github.com/OpenHands/software-agent-sdk/blob/edaac806d1599a4ee1662fd4008fbcd7b537ecd1/openhands-sdk/openhands/sdk/plugin/plugin.py#L44-L47",
         "official": true,
         "accessed_at": "2026-11-07"
       },

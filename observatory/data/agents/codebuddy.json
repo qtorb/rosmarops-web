@@ -26,8 +26,8 @@
   "surfaces": [
     {
       "surface": "hooks",
-      "since": "2025-11-14",
-      "since_basis": "first_mention",
+      "since": null,
+      "since_basis": null,
       "source": {
         "url": "https://www.codebuddy.cn/docs/cli/release-notes/v2.3.1",
         "official": true,
@@ -41,8 +41,8 @@
     },
     {
       "surface": "skills",
-      "since": "2025-11-14",
-      "since_basis": "first_mention",
+      "since": null,
+      "since_basis": null,
       "source": {
         "url": "https://www.codebuddy.cn/docs/cli/release-notes/v2.3.1",
         "official": true,
@@ -56,8 +56,8 @@
     },
     {
       "surface": "plugins",
-      "since": "2025-11-14",
-      "since_basis": "first_mention",
+      "since": null,
+      "since_basis": null,
       "source": {
         "url": "https://www.codebuddy.cn/docs/cli/release-notes/v2.3.1",
         "official": true,
@@ -71,8 +71,8 @@
     },
     {
       "surface": "subagents",
-      "since": "2025-11-17",
-      "since_basis": "first_mention",
+      "since": null,
+      "since_basis": null,
       "source": {
         "url": "https://www.codebuddy.cn/docs/cli/release-notes/v2.4.0",
         "official": true,
@@ -86,8 +86,8 @@
     },
     {
       "surface": "mcp",
-      "since": "2025-11-18",
-      "since_basis": "first_mention",
+      "since": null,
+      "since_basis": null,
       "source": {
         "url": "https://www.codebuddy.cn/docs/cli/release-notes/v2.5.0",
         "official": true,
@@ -101,8 +101,8 @@
     },
     {
       "surface": "permission_modes",
-      "since": "2025-11-24",
-      "since_basis": "first_mention",
+      "since": null,
+      "since_basis": null,
       "source": {
         "url": "https://www.codebuddy.cn/docs/cli/release-notes/v2.8.1",
         "official": true,
@@ -116,8 +116,8 @@
     },
     {
       "surface": "rules_files",
-      "since": "2025-12-02",
-      "since_basis": "first_mention",
+      "since": null,
+      "since_basis": null,
       "source": {
         "url": "https://www.codebuddy.cn/docs/cli/release-notes/v2.11.0",
         "official": true,
@@ -131,8 +131,8 @@
     },
     {
       "surface": "scheduled_tasks",
-      "since": "2026-03-11",
-      "since_basis": "announced",
+      "since": null,
+      "since_basis": null,
       "source": {
         "url": "https://www.codebuddy.cn/docs/cli/release-notes/v2.57.0",
         "official": true,

@@ -475,8 +475,8 @@
     },
     {
       "surface": "subagents",
-      "since": "2025-07-24",
-      "since_basis": "announced",
+      "since": "2025-07-03",
+      "since_basis": "first_mention",
       "source": {
         "url": "https://code.claude.com/docs/en/changelog#1-0-60",
         "official": true,

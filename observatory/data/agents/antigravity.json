@@ -169,10 +169,10 @@
     },
     {
       "surface": "subagents",
-      "since": "2026-06-06",
+      "since": "2026-06-11",
       "since_basis": "first_mention",
       "source": {
-        "url": "https://antigravity.google/docs/changelog#rel-cli-1.0.6",
+        "url": "https://antigravity.google/docs/changelog#rel-hub-2.1.4",
         "official": true,
         "accessed_at": "2026-11-07"
       },
@@ -199,10 +199,10 @@
     },
     {
       "surface": "browser",
-      "since": "2025-12-17",
+      "since": "2025-11-18",
       "since_basis": "first_mention",
       "source": {
-        "url": "https://antigravity.google/docs/changelog#rel-ide-1.12.4",
+        "url": "https://antigravity.google/docs/changelog#rel-ide-1.11.2",
         "official": true,
         "accessed_at": "2026-11-07"
       },
@@ -264,7 +264,7 @@
       "owner": "shared",
       "load": "default",
       "source": {
-        "url": "https://antigravity.google/docs/rules",
+        "url": "https://antigravity.google/docs/rules#directory-scoped-rules",
         "official": true,
         "accessed_at": "2026-11-07"
       },
@@ -279,7 +279,7 @@
       "owner": "gemini-cli",
       "load": "default",
       "source": {
-        "url": "https://antigravity.google/docs/rules",
+        "url": "https://antigravity.google/docs/rules#directory-scoped-rules",
         "official": true,
         "accessed_at": "2026-11-07"
       },
@@ -294,7 +294,7 @@
       "owner": "gemini-cli",
       "load": "default",
       "source": {
-        "url": "https://antigravity.google/docs/rules",
+        "url": "https://antigravity.google/docs/rules#global-rules",
         "official": true,
         "accessed_at": "2026-11-07"
       },

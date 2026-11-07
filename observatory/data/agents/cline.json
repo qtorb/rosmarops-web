@@ -190,6 +190,11 @@
         "by": "advisor",
         "at": "2026-11-07",
         "how": "official_code"
+      },
+      "default_source": {
+        "url": "https://github.com/cline/cline/blob/94eecbbe1a2f899c66b118d13656651b0a884e1f/sdk/packages/shared/src/session/runtime-config.ts#L11-L50",
+        "official": true,
+        "accessed_at": "2026-11-07"
       }
     },
     {
@@ -205,6 +210,11 @@
         "by": "advisor",
         "at": "2026-11-07",
         "how": "official_code"
+      },
+      "default_source": {
+        "url": "https://github.com/cline/cline/blob/94eecbbe1a2f899c66b118d13656651b0a884e1f/sdk/packages/shared/src/session/runtime-config.ts#L11-L50",
+        "official": true,
+        "accessed_at": "2026-11-07"
       }
     },
     {
@@ -220,6 +230,11 @@
         "by": "advisor",
         "at": "2026-11-07",
         "how": "official_doc"
+      },
+      "default_source": {
+        "url": "https://github.com/cline/cline/blob/94eecbbe1a2f899c66b118d13656651b0a884e1f/apps/vscode/src/core/context/instructions/user-instructions/rule-helpers.ts#L79-L83",
+        "official": true,
+        "accessed_at": "2026-11-07"
       }
     },
     {
@@ -235,6 +250,11 @@
         "by": "advisor",
         "at": "2026-11-07",
         "how": "official_doc"
+      },
+      "default_source": {
+        "url": "https://github.com/cline/cline/blob/94eecbbe1a2f899c66b118d13656651b0a884e1f/apps/vscode/src/core/context/instructions/user-instructions/rule-helpers.ts#L79-L83",
+        "official": true,
+        "accessed_at": "2026-11-07"
       }
     },
     {
@@ -250,6 +270,11 @@
         "by": "advisor",
         "at": "2026-11-07",
         "how": "official_code"
+      },
+      "default_source": {
+        "url": "https://github.com/cline/cline/blob/94eecbbe1a2f899c66b118d13656651b0a884e1f/sdk/packages/shared/src/session/runtime-config.ts#L11-L50",
+        "official": true,
+        "accessed_at": "2026-11-07"
       }
     },
     {
@@ -265,6 +290,11 @@
         "by": "advisor",
         "at": "2026-11-07",
         "how": "official_code"
+      },
+      "default_source": {
+        "url": "https://github.com/cline/cline/blob/94eecbbe1a2f899c66b118d13656651b0a884e1f/sdk/packages/shared/src/session/runtime-config.ts#L11-L50",
+        "official": true,
+        "accessed_at": "2026-11-07"
       }
     },
     {
@@ -280,6 +310,11 @@
         "by": "advisor",
         "at": "2026-11-07",
         "how": "official_code"
+      },
+      "default_source": {
+        "url": "https://github.com/cline/cline/blob/94eecbbe1a2f899c66b118d13656651b0a884e1f/sdk/packages/shared/src/session/runtime-config.ts#L11-L50",
+        "official": true,
+        "accessed_at": "2026-11-07"
       }
     },
     {
@@ -287,7 +322,7 @@
       "owner": "shared",
       "load": "default",
       "source": {
-        "url": "https://github.com/cline/cline/blob/94eecbbe1a2f899c66b118d13656651b0a884e1f/sdk/packages/shared/src/storage/paths.ts#L628-L640",
+        "url": "https://github.com/cline/cline/blob/94eecbbe1a2f899c66b118d13656651b0a884e1f/sdk/packages/shared/src/storage/paths.ts#L638-L640",
         "official": true,
         "accessed_at": "2026-11-07"
       },
@@ -295,6 +330,11 @@
         "by": "advisor",
         "at": "2026-11-07",
         "how": "official_code"
+      },
+      "default_source": {
+        "url": "https://github.com/cline/cline/blob/94eecbbe1a2f899c66b118d13656651b0a884e1f/sdk/packages/shared/src/session/runtime-config.ts#L11-L50",
+        "official": true,
+        "accessed_at": "2026-11-07"
       }
     }
   ]

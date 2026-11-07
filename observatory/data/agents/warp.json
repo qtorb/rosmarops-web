@@ -71,7 +71,7 @@
     },
     {
       "surface": "rules_files",
-      "since": "2025-02-26",
+      "since": "2025-08-13",
       "since_basis": "announced",
       "source": {
         "url": "https://docs.warp.dev/changelog/2025/",

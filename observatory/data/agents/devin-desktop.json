@@ -177,7 +177,7 @@
       "owner": "shared",
       "load": "default",
       "source": {
-        "url": "https://docs.devin.ai/pt-BR/desktop/cascade/agents-md.md",
+        "url": "https://docs.devin.ai/desktop/devin-local/customizations.md",
         "official": true,
         "accessed_at": "2026-11-07"
       },
@@ -185,6 +185,11 @@
         "by": "advisor",
         "at": "2026-11-07",
         "how": "official_doc"
+      },
+      "default_source": {
+        "url": "https://docs.devin.ai/desktop/changelog",
+        "official": true,
+        "accessed_at": "2026-11-07"
       }
     },
     {
@@ -201,6 +206,11 @@
         "by": "advisor",
         "at": "2026-11-07",
         "how": "official_doc"
+      },
+      "default_source": {
+        "url": "https://docs.devin.ai/desktop/changelog",
+        "official": true,
+        "accessed_at": "2026-11-07"
       }
     },
     {
@@ -208,7 +218,7 @@
       "owner": "shared",
       "load": "default",
       "source": {
-        "url": "https://docs.devin.ai/pt-BR/desktop/cascade/skills.md",
+        "url": "https://docs.devin.ai/desktop/devin-local/customizations.md",
         "official": true,
         "accessed_at": "2026-11-07"
       },
@@ -216,6 +226,11 @@
         "by": "advisor",
         "at": "2026-11-07",
         "how": "official_doc"
+      },
+      "default_source": {
+        "url": "https://docs.devin.ai/desktop/changelog",
+        "official": true,
+        "accessed_at": "2026-11-07"
       }
     },
     {
@@ -223,7 +238,7 @@
       "owner": "shared",
       "load": "default",
       "source": {
-        "url": "https://docs.devin.ai/pt-BR/desktop/cascade/skills.md",
+        "url": "https://docs.devin.ai/desktop/devin-local/customizations.md",
         "official": true,
         "accessed_at": "2026-11-07"
       },
@@ -231,6 +246,11 @@
         "by": "advisor",
         "at": "2026-11-07",
         "how": "official_doc"
+      },
+      "default_source": {
+        "url": "https://docs.devin.ai/desktop/changelog",
+        "official": true,
+        "accessed_at": "2026-11-07"
       }
     }
   ]

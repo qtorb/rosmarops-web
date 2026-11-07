@@ -179,7 +179,7 @@
       "owner": "shared",
       "load": "default",
       "source": {
-        "url": "https://github.com/QwenLM/qwen-code/blob/ced03aef5d80356d570d04990677f26a37d61a0f/packages/core/src/utils/memory-constants.ts#L30-L37",
+        "url": "https://github.com/QwenLM/qwen-code/blob/ced03aef5d80356d570d04990677f26a37d61a0f/packages/core/src/memory/memoryDiscovery.ts#L159-L195",
         "official": true,
         "accessed_at": "2026-11-07"
       },
@@ -187,6 +187,11 @@
         "by": "advisor",
         "at": "2026-11-07",
         "how": "official_code"
+      },
+      "default_source": {
+        "url": "https://github.com/QwenLM/qwen-code/blob/ced03aef5d80356d570d04990677f26a37d61a0f/packages/cli/src/config/trustedFolders.ts#L323-L327",
+        "official": true,
+        "accessed_at": "2026-11-07"
       }
     },
     {
@@ -225,7 +230,7 @@
       "load": "default",
       "condition": "server_approval_required",
       "source": {
-        "url": "https://github.com/QwenLM/qwen-code/blob/ced03aef5d80356d570d04990677f26a37d61a0f/packages/cli/src/config/mcpJson.ts#L17-L26",
+        "url": "https://github.com/QwenLM/qwen-code/blob/ced03aef5d80356d570d04990677f26a37d61a0f/packages/cli/src/config/mcpJson.ts#L17-L54",
         "official": true,
         "accessed_at": "2026-11-07"
       },
@@ -233,6 +238,11 @@
         "by": "advisor",
         "at": "2026-11-07",
         "how": "official_code"
+      },
+      "default_source": {
+        "url": "https://github.com/QwenLM/qwen-code/blob/ced03aef5d80356d570d04990677f26a37d61a0f/packages/cli/src/config/config.ts#L2536-L2595",
+        "official": true,
+        "accessed_at": "2026-11-07"
       }
     },
     {

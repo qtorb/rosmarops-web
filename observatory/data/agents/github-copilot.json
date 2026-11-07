@@ -283,17 +283,17 @@
     },
     {
       "surface": "permission_modes",
-      "since": "2025-10-13",
+      "since": "2026-01-13",
       "since_basis": "first_mention",
       "source": {
-        "url": "https://github.com/github/copilot-cli/blob/2e935d3612dcfac71c3a76842794e8c7d93c5fd3/changelog.md#L4724-L4729",
+        "url": "https://github.com/github/copilot-cli/blob/2e935d3612dcfac71c3a76842794e8c7d93c5fd3/changelog.md#L4410-L4412",
         "official": true,
         "accessed_at": "2026-11-07"
       },
       "verified": {
         "by": "advisor",
         "at": "2026-11-07",
-        "how": "official_changelog"
+        "how": "official_code"
       }
     }
   ],
@@ -311,6 +311,11 @@
         "by": "advisor",
         "at": "2026-11-07",
         "how": "official_doc"
+      },
+      "default_source": {
+        "url": "https://github.com/microsoft/vscode/blob/b4bd9bd3c0171f72f54d742b8152db735fd9ce0a/src/vs/workbench/contrib/chat/browser/chat.shared.contribution.ts#L2155-L2163",
+        "official": true,
+        "accessed_at": "2026-11-07"
       }
     },
     {
@@ -326,7 +331,8 @@
         "by": "advisor",
         "at": "2026-11-07",
         "how": "official_doc"
-      }
+      },
+      "condition": "copilot_cli"
     },
     {
       "path": "GEMINI.md",
@@ -347,8 +353,8 @@
     {
       "path": ".claude/CLAUDE.md",
       "owner": "claude-code",
-      "load": "default",
-      "condition": "vscode_local_harness",
+      "load": "if_configured",
+      "condition": "local_harness_selected",
       "source": {
         "url": "https://code.visualstudio.com/docs/agents/reference/custom-instructions-reference",
         "official": true,
@@ -363,8 +369,8 @@
     {
       "path": "~/.claude/CLAUDE.md",
       "owner": "claude-code",
-      "load": "default",
-      "condition": "vscode_local_harness",
+      "load": "if_configured",
+      "condition": "local_harness_selected",
       "source": {
         "url": "https://code.visualstudio.com/docs/agents/reference/custom-instructions-reference",
         "official": true,
@@ -379,8 +385,8 @@
     {
       "path": "CLAUDE.local.md",
       "owner": "claude-code",
-      "load": "default",
-      "condition": "vscode_local_harness",
+      "load": "if_configured",
+      "condition": "local_harness_selected",
       "source": {
         "url": "https://code.visualstudio.com/docs/agents/reference/custom-instructions-reference",
         "official": true,
@@ -405,7 +411,8 @@
         "by": "advisor",
         "at": "2026-11-07",
         "how": "official_changelog"
-      }
+      },
+      "condition": "copilot_cli"
     },
     {
       "path": ".claude/skills",
@@ -455,8 +462,8 @@
     {
       "path": "~/.claude/skills",
       "owner": "claude-code",
-      "load": "default",
-      "condition": "vscode_local_harness",
+      "load": "if_configured",
+      "condition": "local_harness_selected",
       "source": {
         "url": "https://code.visualstudio.com/docs/agent-customization/agent-skills",
         "official": true,
@@ -514,6 +521,11 @@
         "by": "advisor",
         "at": "2026-11-07",
         "how": "official_doc"
+      },
+      "default_source": {
+        "url": "https://github.com/microsoft/vscode/blob/b4bd9bd3c0171f72f54d742b8152db735fd9ce0a/src/vs/platform/agentHost/common/agentHostEnablementService.ts#L87-L91",
+        "official": true,
+        "accessed_at": "2026-11-07"
       }
     },
     {
@@ -530,6 +542,11 @@
         "by": "advisor",
         "at": "2026-11-07",
         "how": "official_doc"
+      },
+      "default_source": {
+        "url": "https://github.com/microsoft/vscode/blob/b4bd9bd3c0171f72f54d742b8152db735fd9ce0a/src/vs/platform/agentHost/common/agentHostEnablementService.ts#L87-L91",
+        "official": true,
+        "accessed_at": "2026-11-07"
       }
     },
     {

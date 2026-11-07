@@ -49,6 +49,12 @@ def check(agents, shared):
                 errs.append(f"{where}: owner {r['owner']} has no agent file")
             if r["owner"] == aid:
                 errs.append(f"{where}: an agent does not read its own files here")
+            ds = r.get("default_source")
+            if ds is not None:
+                if r["load"] != "default":
+                    errs.append(f"{where}: default_source only goes with load default (GTM-108)")
+                if ds.get("official") is not True or not ds.get("accessed_at"):
+                    errs.append(f"{where}: default_source without an official source or its accessed_at")
         for e in d.get("surfaces", []) + d.get("reads_from", []):
             src, ver = e["source"], e["verified"]
             if src.get("official") is not True or not src.get("accessed_at") or not ver.get("at"):
@@ -114,6 +120,16 @@ class MapData(unittest.TestCase):
         e.update(kw)
         return e
 
+
+    def test_default_source(self):
+        ds = {"url": "https://example.test/settings", "official": True, "accessed_at": "2026-11-07"}
+        agents = {"a": {"surfaces": [], "reads_from": []},
+                  "b": {"surfaces": [], "reads_from": [dict(self.entry(path="CLAUDE.md", owner="a", load="default"), default_source=ds),
+                                                       dict(self.entry(path="AGENTS.md", owner="shared", load="if_configured", condition="x_on"), default_source=ds),
+                                                       dict(self.entry(path=".mcp.json", owner="shared", load="default"), default_source=dict(ds, official=False))]}}
+        shared = {"paths": [{"path": "CLAUDE.md", "owner": "a"}, {"path": "AGENTS.md", "owner": "shared"}, {"path": ".mcp.json", "owner": "shared"}]}
+        self.assertEqual(check(agents, shared), ["b reads AGENTS.md: default_source only goes with load default (GTM-108)",
+                                                 "b reads .mcp.json: default_source without an official source or its accessed_at"])
     def test_failing_cases(self):
         shared = {"paths": [{"path": "AGENTS.md", "owner": "shared"}, {"path": "CLAUDE.md", "owner": "a"}]}
         agents = {
