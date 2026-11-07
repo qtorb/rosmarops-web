@@ -4,12 +4,15 @@ Run from the repository root:  python3 -m unittest observatory/tests/test_map_da
 """
 
 import json
+import os
+import subprocess
 import unittest
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 AGENTS = ROOT / "observatory" / "data" / "agents"
 SHARED = ROOT / "observatory" / "data" / "shared-files.json"
+CORRECTABLE = ("name", "vendor", "kinds", "platforms", "local_footprint")
 PROGRAM = ROOT / "observatory" / "data" / "program-agents.json"
 
 
@@ -58,6 +61,28 @@ def check(agents, shared):
     return errs
 
 
+def uncited_corrections(base, head):
+    """GTM-106: fields of agent.CORRECTABLE that changed from base to head without an agent.sources[] entry."""
+    errs = []
+    for aid, d in head.items():
+        if aid not in base:
+            continue  # a new file is opened, not corrected
+        cited = {s["field"] for s in d["agent"].get("sources", [])}
+        for f in CORRECTABLE:
+            if base[aid]["agent"].get(f) != d["agent"].get(f) and f not in cited:
+                errs.append(f"{aid}: agent.{f} changed without an agent.sources[] entry for it")
+    return errs
+
+
+def base_files(rev):
+    out = {}
+    for f in AGENTS.glob("*.json"):
+        p = subprocess.run(["git", "show", f"{rev}:observatory/data/agents/{f.name}"], cwd=ROOT, capture_output=True, text=True)
+        if p.returncode == 0:
+            out[f.stem] = json.loads(p.stdout)
+    return out
+
+
 class MapData(unittest.TestCase):
     def test_repository(self):
         self.assertEqual(check(files(), json.loads(SHARED.read_text(encoding="utf-8"))), [])
@@ -68,6 +93,20 @@ class MapData(unittest.TestCase):
         mapped = set(json.loads(PROGRAM.read_text(encoding="utf-8"))["knowledge_to_file"].values())
         scored = {a for a, d in files().items() if d["agent"]["rosmarops"]["status"] == "evaluated"}
         self.assertEqual(scored, mapped)
+
+    def test_corrections_are_cited(self):
+        rev = os.environ.get("OBS_BASE")
+        if not rev or subprocess.run(["git", "cat-file", "-e", rev], cwd=ROOT).returncode:
+            self.skipTest("no base commit (OBS_BASE) to compare with; CI sets it")
+        self.assertEqual(uncited_corrections(base_files(rev), files()), [])
+
+    def test_correction_rule(self):
+        src = {"field": "local_footprint", "source": {"url": "https://example.test", "official": True, "accessed_at": "2026-11-07"},
+               "verified": {"by": "advisor", "at": "2026-11-07", "how": "official_doc"}}
+        base = {"x": {"agent": {"name": "X", "local_footprint": "no", "kinds": ["cloud"]}}}
+        head = {"x": {"agent": {"name": "X", "local_footprint": "partial", "kinds": ["cloud", "cli"], "sources": [src]}},
+                "new": {"agent": {"name": "N"}}}
+        self.assertEqual(uncited_corrections(base, head), ["x: agent.kinds changed without an agent.sources[] entry for it"])
 
     def entry(self, **kw):
         e = {"source": {"url": "https://example.test/doc", "official": True, "accessed_at": "2026-11-07"},

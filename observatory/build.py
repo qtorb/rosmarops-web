@@ -968,10 +968,12 @@ def build_daily_shells(cats):
 # GTM-105: the map data (schema v1.8) stays out of the published JSON until the advisor has checked a sample and the
 # map views are signed; it lives only in observatory/data/agents/ for now.
 UNPUBLISHED = ("surfaces", "reads_from")
+UNPUBLISHED_AGENT = ("sources", "notes")  # GTM-106: notes wait for their signed texts
 
 
 def build_data(agents):
-    agents = [{k: v for k, v in a.items() if k not in UNPUBLISHED} for a in agents]
+    agents = [{k: ({kk: vv for kk, vv in v.items() if kk not in UNPUBLISHED_AGENT} if k == "agent" else v)
+               for k, v in a.items() if k not in UNPUBLISHED} for a in agents]
     for a in agents:
         write(JSON_BASE + a["agent"]["id"] + ".json", json.dumps(a, ensure_ascii=False, indent=2) + "\n")
     write(JSON_BASE + "data.json", json.dumps({"schema_version": 1, "agents": agents}, ensure_ascii=False, indent=2) + "\n")
