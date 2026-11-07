@@ -389,6 +389,33 @@
             "how": "official_changelog"
           },
           "rosmarops_impact": "none"
+        },
+        {
+          "id": "chg-claude-code-2-1-319-deny-prompt",
+          "version": "2.1.319",
+          "date": "2026-11-06",
+          "category": "permissions",
+          "before": {
+            "en": "Before 2.1.319, Claude Code had no permissions.denyInsteadOfPrompting setting, according to the changelog.",
+            "es": "Antes de 2.1.319, Claude Code no tenía el ajuste permissions.denyInsteadOfPrompting, según el changelog.",
+            "ca": "Abans de 2.1.319, Claude Code no tenia l'opció permissions.denyInsteadOfPrompting, segons el changelog."
+          },
+          "after": {
+            "en": "From 2.1.319, permissions.denyInsteadOfPrompting denies a tool call that would wait on a permission prompt and the turn continues, according to the changelog.",
+            "es": "Desde 2.1.319, permissions.denyInsteadOfPrompting deniega la llamada a una herramienta que esperaría una petición de permiso y el turno continúa, según el changelog.",
+            "ca": "Des de 2.1.319, permissions.denyInsteadOfPrompting denega la crida a una eina que esperaria una petició de permís i el torn continua, segons el changelog."
+          },
+          "source": {
+            "url": "https://code.claude.com/docs/en/changelog#2-1-319",
+            "official": true,
+            "accessed_at": "2026-11-07"
+          },
+          "verified": {
+            "by": "writer",
+            "at": "2026-11-07",
+            "how": "official_changelog"
+          },
+          "rosmarops_impact": "none"
         }
       ],
       "ratings": [],
@@ -1424,7 +1451,35 @@
         "reviewed_at": "2026-10-30"
       },
       "versions": [],
-      "changes": [],
+      "changes": [
+        {
+          "id": "chg-devin-desktop-3-12-17-mcp",
+          "version": "3.12.17",
+          "date": "2026-11-06",
+          "category": "mcp",
+          "before": {
+            "en": "Before 3.12.17, the changelog lists no Agent Command Center session menu for MCP servers in Devin Desktop.",
+            "es": "Antes de 3.12.17, el changelog no recoge en Devin Desktop un menú de sesión del Agent Command Center para los servidores MCP.",
+            "ca": "Abans de 3.12.17, el changelog no recull a Devin Desktop cap menú de sessió de l'Agent Command Center per als servidors MCP."
+          },
+          "after": {
+            "en": "From 3.12.17, the Agent Command Center session menu shows a session's MCP servers and can turn one on or off or re-authenticate it, according to the changelog.",
+            "es": "Desde 3.12.17, el menú de sesión del Agent Command Center muestra los servidores MCP de la sesión y permite activarlos, desactivarlos o volver a autenticarlos, según el changelog.",
+            "ca": "Des de 3.12.17, el menú de sessió de l'Agent Command Center mostra els servidors MCP de la sessió i permet activar-los, desactivar-los o tornar-los a autenticar, segons el changelog."
+          },
+          "source": {
+            "url": "https://docs.devin.ai/desktop/changelog",
+            "official": true,
+            "accessed_at": "2026-11-07"
+          },
+          "verified": {
+            "by": "writer",
+            "at": "2026-11-07",
+            "how": "official_changelog"
+          },
+          "rosmarops_impact": "none"
+        }
+      ],
       "ratings": []
     },
     {
@@ -1762,7 +1817,35 @@
         "reviewed_at": "2026-10-30"
       },
       "versions": [],
-      "changes": [],
+      "changes": [
+        {
+          "id": "chg-opencode-2-2-6-mcp-pool",
+          "version": "2.2.6",
+          "date": "2026-11-06",
+          "category": "mcp",
+          "before": {
+            "en": "Before 2.2.6, the release notes list no MCP connection pooling in OpenCode.",
+            "es": "Antes de 2.2.6, las notas de versión no recogen en OpenCode el agrupamiento de conexiones MCP.",
+            "ca": "Abans de 2.2.6, les notes de versió no recullen a OpenCode l'agrupació de connexions MCP."
+          },
+          "after": {
+            "en": "From 2.2.6, pooling can be turned on for an MCP server so projects with the same setup share one connection, according to the release notes.",
+            "es": "Desde 2.2.6, se puede activar el agrupamiento para un servidor MCP y los proyectos con la misma configuración comparten una conexión, según las notas de versión.",
+            "ca": "Des de 2.2.6, es pot activar l'agrupació per a un servidor MCP i els projectes amb la mateixa configuració comparteixen una connexió, segons les notes de versió."
+          },
+          "source": {
+            "url": "https://github.com/anomalyco/opencode/releases/tag/v2.2.6",
+            "official": true,
+            "accessed_at": "2026-11-07"
+          },
+          "verified": {
+            "by": "writer",
+            "at": "2026-11-07",
+            "how": "official_changelog"
+          },
+          "rosmarops_impact": "none"
+        }
+      ],
       "ratings": []
     },
     {
