@@ -21,5 +21,264 @@
   },
   "versions": [],
   "changes": [],
-  "ratings": []
+  "ratings": [],
+  "surfaces": [
+    {
+      "surface": "mcp",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://docs.cline.bot/mcp/mcp-overview",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "surface": "hooks",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://github.com/cline/cline/blob/94eecbbe1a2f899c66b118d13656651b0a884e1f/sdk/packages/shared/src/storage/paths.ts#L495-L509",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_code"
+      }
+    },
+    {
+      "surface": "skills",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://docs.cline.bot/customization/skills",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "surface": "plugins",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://docs.cline.bot/customization/plugins",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "surface": "subagents",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://docs.cline.bot/features/subagents",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "surface": "rules_files",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://docs.cline.bot/customization/cline-rules",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "surface": "browser",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://github.com/cline/cline/blob/94eecbbe1a2f899c66b118d13656651b0a884e1f/apps/vscode/src/shared/ExtensionMessage.ts#L313-L314",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_code"
+      }
+    },
+    {
+      "surface": "scheduled_tasks",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://docs.cline.bot/cli/scheduling",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "surface": "permission_modes",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://docs.cline.bot/features/auto-approve",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    }
+  ],
+  "reads_from": [
+    {
+      "path": "AGENTS.md",
+      "owner": "shared",
+      "load": "default",
+      "source": {
+        "url": "https://github.com/cline/cline/blob/94eecbbe1a2f899c66b118d13656651b0a884e1f/sdk/packages/shared/src/storage/paths.ts#L586-L600",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_code"
+      }
+    },
+    {
+      "path": "~/.agents/AGENTS.md",
+      "owner": "shared",
+      "load": "default",
+      "source": {
+        "url": "https://github.com/cline/cline/blob/94eecbbe1a2f899c66b118d13656651b0a884e1f/sdk/packages/shared/src/storage/paths.ts#L525-L527",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_code"
+      }
+    },
+    {
+      "path": ".cursorrules",
+      "owner": "cursor",
+      "load": "default",
+      "source": {
+        "url": "https://docs.cline.bot/customization/cline-rules",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "path": ".windsurfrules",
+      "owner": "devin-desktop",
+      "load": "default",
+      "source": {
+        "url": "https://docs.cline.bot/customization/cline-rules",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "path": ".claude/skills",
+      "owner": "claude-code",
+      "load": "default",
+      "source": {
+        "url": "https://github.com/cline/cline/blob/94eecbbe1a2f899c66b118d13656651b0a884e1f/sdk/packages/shared/src/storage/paths.ts#L468-L478",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_code"
+      }
+    },
+    {
+      "path": ".agents/skills",
+      "owner": "shared",
+      "load": "default",
+      "source": {
+        "url": "https://github.com/cline/cline/blob/94eecbbe1a2f899c66b118d13656651b0a884e1f/sdk/packages/shared/src/storage/paths.ts#L468-L478",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_code"
+      }
+    },
+    {
+      "path": "~/.agents/skills",
+      "owner": "shared",
+      "load": "default",
+      "source": {
+        "url": "https://github.com/cline/cline/blob/94eecbbe1a2f899c66b118d13656651b0a884e1f/sdk/packages/shared/src/storage/paths.ts#L511-L522",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_code"
+      }
+    },
+    {
+      "path": "~/.agents/plugins",
+      "owner": "shared",
+      "load": "default",
+      "source": {
+        "url": "https://github.com/cline/cline/blob/94eecbbe1a2f899c66b118d13656651b0a884e1f/sdk/packages/shared/src/storage/paths.ts#L628-L640",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_code"
+      }
+    }
+  ]
 }

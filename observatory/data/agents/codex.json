@@ -25,5 +25,310 @@
   },
   "versions": [],
   "changes": [],
-  "ratings": []
+  "ratings": [],
+  "surfaces": [
+    {
+      "surface": "mcp",
+      "since": "2025-12-04",
+      "since_basis": "first_mention",
+      "source": {
+        "url": "https://learn.chatgpt.com/docs/changelog#codex-2025-12-04",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    },
+    {
+      "surface": "hooks",
+      "since": "2026-05-08",
+      "since_basis": "first_mention",
+      "source": {
+        "url": "https://learn.chatgpt.com/docs/changelog#codex-2026-05-08-app",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    },
+    {
+      "surface": "skills",
+      "since": "2025-12-19",
+      "since_basis": "announced",
+      "source": {
+        "url": "https://learn.chatgpt.com/docs/changelog#codex-2025-12-19",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    },
+    {
+      "surface": "plugins",
+      "since": "2026-03-19",
+      "since_basis": "first_mention",
+      "source": {
+        "url": "https://learn.chatgpt.com/docs/changelog#codex-2026-03-19-app",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    },
+    {
+      "surface": "subagents",
+      "since": "2026-03-17",
+      "since_basis": "first_mention",
+      "source": {
+        "url": "https://learn.chatgpt.com/docs/changelog#codex-2026-03-17",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    },
+    {
+      "surface": "rules_files",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://learn.chatgpt.com/docs/agent-configuration/agents-md",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "surface": "browser",
+      "since": "2026-04-12",
+      "since_basis": "first_mention",
+      "source": {
+        "url": "https://learn.chatgpt.com/docs/changelog#codex-2026-04-12-app",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    },
+    {
+      "surface": "computer_use",
+      "since": "2026-04-16",
+      "since_basis": "announced",
+      "source": {
+        "url": "https://learn.chatgpt.com/docs/changelog#codex-2026-04-16-app",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    },
+    {
+      "surface": "scheduled_tasks",
+      "since": "2026-02-02",
+      "since_basis": "announced",
+      "source": {
+        "url": "https://learn.chatgpt.com/docs/changelog#codex-2026-02-02",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    },
+    {
+      "surface": "cloud_execution",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://learn.chatgpt.com/docs/cloud",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "surface": "permission_modes",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://learn.chatgpt.com/docs/agent-approvals-security",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    }
+  ],
+  "reads_from": [
+    {
+      "path": "AGENTS.md",
+      "owner": "shared",
+      "load": "default",
+      "source": {
+        "url": "https://learn.chatgpt.com/docs/agent-configuration/agents-md",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "path": "AGENTS.override.md",
+      "owner": "shared",
+      "load": "default",
+      "source": {
+        "url": "https://learn.chatgpt.com/docs/agent-configuration/agents-md",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "path": ".agents/skills",
+      "owner": "shared",
+      "load": "default",
+      "source": {
+        "url": "https://learn.chatgpt.com/docs/build-skills",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "path": "~/.agents/skills",
+      "owner": "shared",
+      "load": "default",
+      "source": {
+        "url": "https://learn.chatgpt.com/docs/build-skills",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "path": ".claude-plugin/marketplace.json",
+      "owner": "claude-code",
+      "load": "if_configured",
+      "condition": "marketplace_added",
+      "source": {
+        "url": "https://github.com/openai/codex/blob/cce9d3228b5d649cea400bc6d19514a0342ad998/codex-rs/core-plugins/src/marketplace.rs#L20-L25",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_code"
+      }
+    },
+    {
+      "path": "CLAUDE.md",
+      "owner": "claude-code",
+      "load": "on_import",
+      "source": {
+        "url": "https://github.com/openai/codex/blob/cce9d3228b5d649cea400bc6d19514a0342ad998/codex-rs/external-agent-migration/src/source/cla.rs#L20-L22",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_code"
+      }
+    },
+    {
+      "path": ".claude/settings.json",
+      "owner": "claude-code",
+      "load": "on_import",
+      "source": {
+        "url": "https://github.com/openai/codex/blob/cce9d3228b5d649cea400bc6d19514a0342ad998/codex-rs/external-agent-migration/src/source/cla.rs#L20-L22",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_code"
+      }
+    },
+    {
+      "path": ".mcp.json",
+      "owner": "claude-code",
+      "load": "on_import",
+      "source": {
+        "url": "https://github.com/openai/codex/blob/cce9d3228b5d649cea400bc6d19514a0342ad998/codex-rs/external-agent-migration/src/mcp.rs#L10-L11",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_code"
+      }
+    },
+    {
+      "path": ".cursorrules",
+      "owner": "cursor",
+      "load": "on_import",
+      "source": {
+        "url": "https://github.com/openai/codex/blob/cce9d3228b5d649cea400bc6d19514a0342ad998/codex-rs/external-agent-migration/src/source/cur.rs#L19-L21",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_code"
+      }
+    }
+  ]
 }

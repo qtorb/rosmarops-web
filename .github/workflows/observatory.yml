@@ -19,6 +19,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # GTM-106: test_map_data compares corrected agent fields with the base commit
 
       - uses: actions/setup-python@v5
         with:
@@ -78,7 +80,8 @@ jobs:
       - name: Daily synopsis checks and mu-plugin (GTM-23)
         run: |
           set -eu
-          python -m unittest observatory/tests/test_daily_check.py observatory/tests/test_daily_alert.py observatory/tests/test_daily_raw.py observatory/tests/test_github_stats.py observatory/tests/test_collect.py observatory/tests/test_rules.py observatory/tests/test_agent_lists.py
+          export OBS_BASE="${{ github.event.pull_request.base.sha || github.event.before }}"
+          python -m unittest observatory/tests/test_daily_check.py observatory/tests/test_daily_alert.py observatory/tests/test_daily_raw.py observatory/tests/test_github_stats.py observatory/tests/test_collect.py observatory/tests/test_rules.py observatory/tests/test_agent_lists.py observatory/tests/test_map_data.py
           if ls observatory/daily/*.json >/dev/null 2>&1; then python observatory/daily_check.py observatory/daily/*.json; else echo "no daily files yet"; fi
           php -l wp/mu-plugins/rosmarops-daily.php
           python -m unittest wp/tests/test_daily.py
@@ -90,6 +93,8 @@ jobs:
           python -m unittest wp/tests/test_categories_gtm94.py
           php -l wp/mu-plugins/rosmarops-gtm97-drafts.php
           python -m unittest wp/tests/test_gtm97_drafts.py
+          php -l wp/mu-plugins/rosmarops-gtm103-noindex.php
+          python -m unittest wp/tests/test_gtm103_noindex.py
 
       - name: Publication rules hold in the output
         run: |

@@ -18,5 +18,219 @@
   },
   "versions": [],
   "changes": [],
-  "ratings": []
+  "ratings": [],
+  "surfaces": [
+    {
+      "surface": "mcp",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://docs.devin.ai/de/work-with-devin/mcp.md",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "surface": "skills",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://docs.devin.ai/de/product-guides/skills.md",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "surface": "plugins",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://docs.devin.ai/de/product-guides/plugins.md",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "surface": "subagents",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://docs.devin.ai/de/work-with-devin/advanced-capabilities.md",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "surface": "rules_files",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://docs.devin.ai/de/onboard-devin/agents-md.md",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "surface": "browser",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://docs.devin.ai/de/work-with-devin/browser-auth.md",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "surface": "computer_use",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://docs.devin.ai/de/work-with-devin/computer-use.md",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "surface": "scheduled_tasks",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://docs.devin.ai/de/product-guides/scheduled-sessions.md",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "surface": "cloud_execution",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://docs.devin.ai/de/onboard-devin/environment.md",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "surface": "permission_modes",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://docs.devin.ai/de/work-with-devin/local-hands.md",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    }
+  ],
+  "reads_from": [
+    {
+      "path": "AGENTS.md",
+      "owner": "shared",
+      "load": "default",
+      "source": {
+        "url": "https://docs.devin.ai/de/onboard-devin/agents-md.md",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "path": ".agents/skills",
+      "owner": "shared",
+      "load": "default",
+      "source": {
+        "url": "https://docs.devin.ai/de/product-guides/skills.md",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "path": ".claude/skills",
+      "owner": "claude-code",
+      "load": "default",
+      "source": {
+        "url": "https://docs.devin.ai/de/product-guides/skills.md",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "path": ".github/skills",
+      "owner": "github-copilot",
+      "load": "default",
+      "source": {
+        "url": "https://docs.devin.ai/de/product-guides/skills.md",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    }
+  ]
 }

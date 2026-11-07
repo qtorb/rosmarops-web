@@ -22,5 +22,286 @@
   },
   "versions": [],
   "changes": [],
-  "ratings": []
+  "ratings": [],
+  "surfaces": [
+    {
+      "surface": "mcp",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://ampcode.com/docs/customize/mcp",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "surface": "hooks",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://ampcode.com/docs/customize/plugins",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "surface": "skills",
+      "since": "2025-12-10",
+      "since_basis": "announced",
+      "source": {
+        "url": "https://ampcode.com/news/agent-skills",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    },
+    {
+      "surface": "plugins",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://ampcode.com/docs/customize/plugins",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "surface": "subagents",
+      "since": "2025-06-10",
+      "since_basis": "announced",
+      "source": {
+        "url": "https://ampcode.com/agents-for-the-agent",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    },
+    {
+      "surface": "rules_files",
+      "since": "2025-05-07",
+      "since_basis": "announced",
+      "source": {
+        "url": "https://ampcode.com/news/AGENT.md",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    },
+    {
+      "surface": "browser",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://ampcode.com/docs/orbs/portals",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "surface": "scheduled_tasks",
+      "since": "2026-07-21",
+      "since_basis": "announced",
+      "source": {
+        "url": "https://ampcode.com/news/schedule",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    },
+    {
+      "surface": "cloud_execution",
+      "since": "2026-06-30",
+      "since_basis": "announced",
+      "source": {
+        "url": "https://ampcode.com/news/agents-in-orbs",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    }
+  ],
+  "reads_from": [
+    {
+      "path": "AGENTS.md",
+      "owner": "shared",
+      "load": "default",
+      "source": {
+        "url": "https://ampcode.com/docs/customize/agents-md",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "path": "AGENT.md",
+      "owner": "shared",
+      "load": "default",
+      "condition": "no_agents_md_in_dir",
+      "source": {
+        "url": "https://ampcode.com/docs/customize/agents-md",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "path": "CLAUDE.md",
+      "owner": "claude-code",
+      "load": "default",
+      "condition": "no_agents_md_in_dir",
+      "source": {
+        "url": "https://ampcode.com/docs/customize/agents-md",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "path": ".claude/skills",
+      "owner": "claude-code",
+      "load": "default",
+      "condition": "claude_code_skills_not_disabled",
+      "source": {
+        "url": "https://ampcode.com/docs/customize/skills",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "path": "~/.claude/skills",
+      "owner": "claude-code",
+      "load": "default",
+      "condition": "claude_code_skills_not_disabled",
+      "source": {
+        "url": "https://ampcode.com/docs/customize/skills",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "path": "~/.claude/plugins",
+      "owner": "claude-code",
+      "load": "default",
+      "condition": "plugins_cache_skills_only",
+      "source": {
+        "url": "https://ampcode.com/docs/customize/skills",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "path": ".agents/skills",
+      "owner": "shared",
+      "load": "default",
+      "source": {
+        "url": "https://ampcode.com/docs/customize/skills",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "path": "~/.agents/skills",
+      "owner": "shared",
+      "load": "default",
+      "condition": "global_agents_skills_not_disabled",
+      "source": {
+        "url": "https://ampcode.com/docs/customize/skills",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "path": "~/.config/agents/skills",
+      "owner": "shared",
+      "load": "default",
+      "condition": "global_agents_skills_not_disabled",
+      "source": {
+        "url": "https://ampcode.com/docs/customize/skills",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    }
+  ]
 }

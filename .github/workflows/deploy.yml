@@ -37,6 +37,7 @@ jobs:
           php -l wp/mu-plugins/rosmarops-retired.php
           php -l wp/mu-plugins/rosmarops-categories-gtm94.php
           php -l wp/mu-plugins/rosmarops-gtm97-drafts.php
+          php -l wp/mu-plugins/rosmarops-gtm103-noindex.php
           ls -l wp/daily/shell-en.html wp/daily/shell-es.html wp/daily/shell-ca.html wp/daily/i18n.json
           ! grep -RIl 'noindex' site/index.html site/es/index.html site/methodology site/faq site/es/metodologia site/es/preguntas-frecuentes site/ca/index.html site/ca/metodologia site/ca/preguntes-frequents site/cloud-access site/es/acceso-en-la-nube site/ca/acces-al-nuvol site/ca/privadesa site/macos site/es/macos site/ca/macos site/linux site/es/linux site/ca/linux site/sample-report/index.html site/es/informe-de-ejemplo site/ca/informe-dexemple site/observatory/index.html site/es/observatorio/index.html site/ca/observatori/index.html
           # Observatory: only the three index pages and the JSON files are published (GTM-11). Agent pages wait for verification.
@@ -178,6 +179,7 @@ jobs:
           put wp/mu-plugins/rosmarops-retired.php wp-content/mu-plugins/rosmarops-retired.php
           put wp/mu-plugins/rosmarops-categories-gtm94.php wp-content/mu-plugins/rosmarops-categories-gtm94.php
           put wp/mu-plugins/rosmarops-gtm97-drafts.php wp-content/mu-plugins/rosmarops-gtm97-drafts.php
+          put wp/mu-plugins/rosmarops-gtm103-noindex.php wp-content/mu-plugins/rosmarops-gtm103-noindex.php
           -mkdir wp-content/mu-plugins/rosmarops-daily
           put wp/daily/shell-en.html wp-content/mu-plugins/rosmarops-daily/shell-en.html
           put wp/daily/shell-es.html wp-content/mu-plugins/rosmarops-daily/shell-es.html
@@ -446,6 +448,43 @@ jobs:
           grep -o 'generado el [0-9-]*' /tmp/es-sitemap.xml || true
           test "$left" = 0
           grep -q "generado el $(date -u +%F)" /tmp/es-sitemap.xml && echo "ES sitemap rebuilt today" || (echo "::error::ES sitemap not rebuilt today"; exit 1)
+
+      - name: GTM-103 legacy posts and old categories to noindex (one time, /es/), its log and the check from outside
+        env:
+          SFTP_HOST: ${{ vars.OVH_SFTP_HOST }}
+          SFTP_USER: ${{ vars.OVH_SFTP_USER }}
+          SFTP_PATH: ${{ vars.OVH_SITE_PATH }}
+          SSHPASS: ${{ secrets.OVH_SFTP_PASSWORD }}
+        run: |
+          set -eu
+          SFTP_HOST=$(printf %s "$SFTP_HOST" | tr -d '[:space:]')
+          SFTP_USER=$(printf %s "$SFTP_USER" | tr -d '[:space:]')
+          SFTP_PATH=$(printf %s "$SFTP_PATH" | tr -d '[:space:]')
+          # The migration runs on the first request to /es/ after the upload; once done it never runs again.
+          curl -s -o /dev/null -w "%{http_code} /es/blog/\n" "https://rosmarops.com/es/blog/?gtm103=${GITHUB_SHA::7}"
+          sleep 5
+          mkdir -p /tmp/gtm103
+          printf 'cd %s/wp-content/rosmarops-private\n-get gtm103-es.log /tmp/gtm103/\n' "$SFTP_PATH" > /tmp/b103
+          sshpass -e sftp -o BatchMode=no -b /tmp/b103 \
+            -o StrictHostKeyChecking=yes \
+            -o UserKnownHostsFile="$HOME/.ssh/known_hosts" \
+            -o PreferredAuthentications=password,keyboard-interactive \
+            -o PubkeyAuthentication=no \
+            "$SFTP_USER@$SFTP_HOST" || true
+          if [ ! -f /tmp/gtm103/gtm103-es.log ]; then echo "::warning::gtm103-es.log not found"; exit 0; fi
+          echo "--- gtm103-es.log"; cat /tmp/gtm103/gtm103-es.log
+          code=$(curl -s -o /dev/null -w '%{http_code}' "https://rosmarops.com/wp-content/rosmarops-private/gtm103-es.log")
+          [ "$code" != "200" ] && echo "log folder closed to the web ($code)" || (echo "::error::the migration log is reachable from the web"; exit 1)
+          if grep -q '^stopped:' /tmp/gtm103/gtm103-es.log; then echo "::warning::GTM-103 stopped without changes; see the log"; exit 0; fi
+          # Every legacy post now says noindex and has left the Spanish sitemap.
+          curl -s "https://rosmarops.com/es/sitemap.xml?gtm103=${GITHUB_SHA::7}" > /tmp/es-sitemap-103.xml
+          bad=0
+          for s in $(sed -n -e 's/^post done: \([a-z0-9-]*\) noindex$/\1/p' -e 's/^skipped: post \([a-z0-9-]*\) is already noindex$/\1/p' /tmp/gtm103/gtm103-es.log); do
+            curl -s "https://rosmarops.com/es/blog/$s/?gtm103=${GITHUB_SHA::7}" | grep -qi '<meta name="robots" content="[^"]*noindex' || { echo "not noindex: $s"; bad=$((bad+1)); }
+            grep -q "/es/blog/$s/<" /tmp/es-sitemap-103.xml && { echo "still in the sitemap: $s"; bad=$((bad+1)); }
+          done
+          echo "legacy posts with a problem: $bad"
+          test "$bad" = 0
 
       - name: Tell Bing and other IndexNow engines what changed (best effort)
         continue-on-error: true

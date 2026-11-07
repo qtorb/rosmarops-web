@@ -22,5 +22,300 @@
   },
   "versions": [],
   "changes": [],
-  "ratings": []
+  "ratings": [],
+  "surfaces": [
+    {
+      "surface": "mcp",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://kilo.ai/docs/automate/mcp/using-in-cli",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "surface": "hooks",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://kilo.ai/docs/automate/extending/plugins",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "surface": "skills",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://kilo.ai/docs/customize/skills",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "surface": "plugins",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://kilo.ai/docs/customize/marketplace",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "surface": "subagents",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://kilo.ai/docs/customize/custom-subagents",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "surface": "rules_files",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://kilo.ai/docs/customize/agents-md",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "surface": "browser",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://kilo.ai/docs/code-with-ai/features/browser-use",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "surface": "scheduled_tasks",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://kilo.ai/docs/code-with-ai/platforms/cloud-agent",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "surface": "cloud_execution",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://kilo.ai/docs/code-with-ai/platforms/cloud-agent",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "surface": "permission_modes",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://kilo.ai/docs/customize/agent-permissions",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    }
+  ],
+  "reads_from": [
+    {
+      "path": "AGENTS.md",
+      "owner": "shared",
+      "load": "default",
+      "source": {
+        "url": "https://github.com/Kilo-Org/kilocode/blob/45484c918a48f05a1d2d47cb6a35c6bdc3e57800/packages/opencode/src/session/instruction.ts#L63-L78",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_code"
+      }
+    },
+    {
+      "path": "CLAUDE.md",
+      "owner": "claude-code",
+      "load": "default",
+      "condition": "cli_default_vscode_opt_in",
+      "source": {
+        "url": "https://github.com/Kilo-Org/kilocode/blob/45484c918a48f05a1d2d47cb6a35c6bdc3e57800/packages/opencode/src/session/instruction.ts#L63-L78",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_code"
+      }
+    },
+    {
+      "path": "~/.claude/CLAUDE.md",
+      "owner": "claude-code",
+      "load": "default",
+      "condition": "cli_default_vscode_opt_in",
+      "source": {
+        "url": "https://github.com/Kilo-Org/kilocode/blob/45484c918a48f05a1d2d47cb6a35c6bdc3e57800/packages/opencode/src/session/instruction.ts#L63-L78",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_code"
+      }
+    },
+    {
+      "path": ".claude/skills",
+      "owner": "claude-code",
+      "load": "default",
+      "condition": "cli_default_vscode_opt_in",
+      "source": {
+        "url": "https://github.com/Kilo-Org/kilocode/blob/45484c918a48f05a1d2d47cb6a35c6bdc3e57800/packages/opencode/src/skill/index.ts#L218-L250",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_code"
+      }
+    },
+    {
+      "path": "~/.claude/skills",
+      "owner": "claude-code",
+      "load": "default",
+      "condition": "cli_default_vscode_opt_in",
+      "source": {
+        "url": "https://github.com/Kilo-Org/kilocode/blob/45484c918a48f05a1d2d47cb6a35c6bdc3e57800/packages/opencode/src/skill/index.ts#L218-L250",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_code"
+      }
+    },
+    {
+      "path": ".agents/skills",
+      "owner": "shared",
+      "load": "default",
+      "source": {
+        "url": "https://github.com/Kilo-Org/kilocode/blob/45484c918a48f05a1d2d47cb6a35c6bdc3e57800/packages/opencode/src/skill/index.ts#L218-L250",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_code"
+      }
+    },
+    {
+      "path": "~/.agents/skills",
+      "owner": "shared",
+      "load": "default",
+      "source": {
+        "url": "https://github.com/Kilo-Org/kilocode/blob/45484c918a48f05a1d2d47cb6a35c6bdc3e57800/packages/opencode/src/skill/index.ts#L218-L250",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_code"
+      }
+    },
+    {
+      "path": "opencode.json",
+      "owner": "opencode",
+      "load": "default",
+      "condition": "project_config_not_disabled",
+      "source": {
+        "url": "https://github.com/Kilo-Org/kilocode/blob/45484c918a48f05a1d2d47cb6a35c6bdc3e57800/packages/opencode/src/config/config.ts#L784-L791",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_code"
+      }
+    },
+    {
+      "path": "~/.claude.json",
+      "owner": "claude-code",
+      "load": "on_import",
+      "condition": "experimental_claude_migration",
+      "source": {
+        "url": "https://github.com/Kilo-Org/kilocode/blob/45484c918a48f05a1d2d47cb6a35c6bdc3e57800/packages/opencode/src/kilocode/config/claude-migration.ts#L208-L229",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_code"
+      }
+    }
+  ]
 }

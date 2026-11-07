@@ -20,5 +20,127 @@
   },
   "versions": [],
   "changes": [],
-  "ratings": []
+  "ratings": [],
+  "surfaces": [
+    {
+      "surface": "mcp",
+      "since": "2025-10-07",
+      "since_basis": "first_mention",
+      "source": {
+        "url": "https://github.com/microsoft/agent-framework/blob/924a6e50ec0336f3c965ee8b1151c54085888b6e/python/CHANGELOG.md#L1959-L1966",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    },
+    {
+      "surface": "hooks",
+      "since": "2026-08-13",
+      "since_basis": "announced",
+      "source": {
+        "url": "https://github.com/microsoft/agent-framework/blob/924a6e50ec0336f3c965ee8b1151c54085888b6e/python/CHANGELOG.md#L501-L505",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    },
+    {
+      "surface": "skills",
+      "since": "2026-02-25",
+      "since_basis": "announced",
+      "source": {
+        "url": "https://github.com/microsoft/agent-framework/blob/924a6e50ec0336f3c965ee8b1151c54085888b6e/python/CHANGELOG.md#L1324-L1328",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    },
+    {
+      "surface": "subagents",
+      "since": "2025-10-28",
+      "since_basis": "announced",
+      "source": {
+        "url": "https://github.com/microsoft/agent-framework/blob/924a6e50ec0336f3c965ee8b1151c54085888b6e/python/CHANGELOG.md#L1900-L1906",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    },
+    {
+      "surface": "browser",
+      "since": "2025-11-14",
+      "since_basis": "first_mention",
+      "source": {
+        "url": "https://github.com/microsoft/agent-framework/blob/924a6e50ec0336f3c965ee8b1151c54085888b6e/python/CHANGELOG.md#L1770-L1775",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    },
+    {
+      "surface": "computer_use",
+      "since": "2026-10-02",
+      "since_basis": "announced",
+      "source": {
+        "url": "https://github.com/microsoft/agent-framework/blob/924a6e50ec0336f3c965ee8b1151c54085888b6e/python/CHANGELOG.md#L255-L261",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    },
+    {
+      "surface": "cloud_execution",
+      "since": "2025-11-14",
+      "since_basis": "first_mention",
+      "source": {
+        "url": "https://github.com/microsoft/agent-framework/blob/924a6e50ec0336f3c965ee8b1151c54085888b6e/python/CHANGELOG.md#L1770-L1776",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    },
+    {
+      "surface": "permission_modes",
+      "since": "2025-10-07",
+      "since_basis": "announced",
+      "source": {
+        "url": "https://github.com/microsoft/agent-framework/blob/924a6e50ec0336f3c965ee8b1151c54085888b6e/python/CHANGELOG.md#L1959-L1967",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    }
+  ]
 }
