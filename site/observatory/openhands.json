@@ -6,7 +6,8 @@
     "vendor": "OpenHands",
     "kinds": [
       "desktop_app",
-      "cloud"
+      "cloud",
+      "cli"
     ],
     "platforms": [
       "windows",

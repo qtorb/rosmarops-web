@@ -9,7 +9,8 @@
     ],
     "platforms": [
       "windows",
-      "macos"
+      "macos",
+      "linux"
     ],
     "local_footprint": "yes",
     "rosmarops": {

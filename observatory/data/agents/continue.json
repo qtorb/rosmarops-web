@@ -5,7 +5,8 @@
     "name": "Continue",
     "vendor": "Continue",
     "kinds": [
-      "ide_extension"
+      "ide_extension",
+      "cli"
     ],
     "platforms": [
       "windows",
@@ -17,7 +18,37 @@
       "status": "detected",
       "since_version": "0.1.0"
     },
-    "reviewed_at": "2026-10-28"
+    "reviewed_at": "2026-10-28",
+    "sources": [
+      {
+        "field": "kinds",
+        "source": {
+          "url": "https://github.com/continuedev/continue/blob/5522c6f44ca0ac3528b37244818fbfa39b5af470/README.md#L21",
+          "official": true,
+          "accessed_at": "2026-11-07"
+        },
+        "verified": {
+          "by": "advisor",
+          "at": "2026-11-07",
+          "how": "official_code"
+        }
+      }
+    ],
+    "notes": [
+      {
+        "code": "repository_unmaintained_final_release_2_0_0",
+        "source": {
+          "url": "https://github.com/continuedev/continue/blob/5522c6f44ca0ac3528b37244818fbfa39b5af470/README.md#L19-L27",
+          "official": true,
+          "accessed_at": "2026-11-07"
+        },
+        "verified": {
+          "by": "advisor",
+          "at": "2026-11-07",
+          "how": "official_code"
+        }
+      }
+    ]
   },
   "versions": [],
   "changes": [],

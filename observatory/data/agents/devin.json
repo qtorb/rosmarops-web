@@ -8,13 +8,44 @@
       "cloud"
     ],
     "platforms": [
+      "windows",
+      "macos",
+      "linux",
       "web"
     ],
-    "local_footprint": "no",
+    "local_footprint": "partial",
     "rosmarops": {
       "status": "not_supported"
     },
-    "reviewed_at": "2026-10-30"
+    "reviewed_at": "2026-10-30",
+    "sources": [
+      {
+        "field": "local_footprint",
+        "source": {
+          "url": "https://docs.devin.ai/de/work-with-devin/local-hands.md",
+          "official": true,
+          "accessed_at": "2026-11-07"
+        },
+        "verified": {
+          "by": "advisor",
+          "at": "2026-11-07",
+          "how": "official_doc"
+        }
+      },
+      {
+        "field": "platforms",
+        "source": {
+          "url": "https://docs.devin.ai/cli.md",
+          "official": true,
+          "accessed_at": "2026-11-07"
+        },
+        "verified": {
+          "by": "advisor",
+          "at": "2026-11-07",
+          "how": "official_doc"
+        }
+      }
+    ]
   },
   "versions": [],
   "changes": [],

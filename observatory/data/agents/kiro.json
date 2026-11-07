@@ -6,7 +6,8 @@
     "vendor": "AWS",
     "kinds": [
       "ide",
-      "cli"
+      "cli",
+      "cloud"
     ],
     "platforms": [
       "windows",
@@ -17,7 +18,22 @@
     "rosmarops": {
       "status": "not_supported"
     },
-    "reviewed_at": "2026-10-30"
+    "reviewed_at": "2026-10-30",
+    "sources": [
+      {
+        "field": "kinds",
+        "source": {
+          "url": "https://kiro.dev/docs/cloud-sessions/",
+          "official": true,
+          "accessed_at": "2026-11-07"
+        },
+        "verified": {
+          "by": "advisor",
+          "at": "2026-11-07",
+          "how": "official_doc"
+        }
+      }
+    ]
   },
   "versions": [],
   "changes": [],

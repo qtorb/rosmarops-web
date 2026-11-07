@@ -62,7 +62,8 @@
         "name": "Hermes Agent",
         "vendor": "Nous Research",
         "kinds": [
-          "cli"
+          "cli",
+          "desktop_app"
         ],
         "platforms": [
           "windows",
@@ -347,12 +348,15 @@
         "vendor": "Anthropic",
         "kinds": [
           "cli",
-          "ide_extension"
+          "ide_extension",
+          "desktop_app",
+          "cloud"
         ],
         "platforms": [
           "windows",
           "macos",
-          "linux"
+          "linux",
+          "web"
         ],
         "local_footprint": "yes",
         "rosmarops": {
@@ -717,7 +721,9 @@
         "name": "Cursor",
         "vendor": "Anysphere",
         "kinds": [
-          "ide"
+          "ide",
+          "cli",
+          "cloud"
         ],
         "platforms": [
           "windows",
@@ -984,7 +990,8 @@
         "vendor": "Google",
         "kinds": [
           "ide",
-          "cli"
+          "cli",
+          "cloud"
         ],
         "platforms": [
           "windows",
@@ -1068,7 +1075,8 @@
         ],
         "platforms": [
           "windows",
-          "macos"
+          "macos",
+          "linux"
         ],
         "local_footprint": "yes",
         "rosmarops": {
@@ -1088,7 +1096,9 @@
         "name": "Cline",
         "vendor": "Cline",
         "kinds": [
-          "ide_extension"
+          "ide_extension",
+          "cli",
+          "desktop_app"
         ],
         "platforms": [
           "windows",
@@ -1113,7 +1123,8 @@
         "name": "Continue",
         "vendor": "Continue",
         "kinds": [
-          "ide_extension"
+          "ide_extension",
+          "cli"
         ],
         "platforms": [
           "windows",
@@ -1296,7 +1307,8 @@
         "vendor": "Amp",
         "kinds": [
           "cli",
-          "cloud"
+          "cloud",
+          "desktop_app"
         ],
         "platforms": [
           "windows",
@@ -1309,30 +1321,6 @@
           "status": "not_supported"
         },
         "reviewed_at": "2026-11-06"
-      },
-      "versions": [],
-      "changes": [],
-      "ratings": []
-    },
-    {
-      "schema_version": 1,
-      "agent": {
-        "id": "autogen",
-        "name": "AutoGen",
-        "vendor": "Microsoft",
-        "kinds": [
-          "framework"
-        ],
-        "platforms": [
-          "windows",
-          "macos",
-          "linux"
-        ],
-        "local_footprint": "yes",
-        "rosmarops": {
-          "status": "not_supported"
-        },
-        "reviewed_at": "2026-10-30"
       },
       "versions": [],
       "changes": [],
@@ -1443,9 +1431,12 @@
           "cloud"
         ],
         "platforms": [
+          "windows",
+          "macos",
+          "linux",
           "web"
         ],
-        "local_footprint": "no",
+        "local_footprint": "partial",
         "rosmarops": {
           "status": "not_supported"
         },
@@ -1545,7 +1536,7 @@
       "schema_version": 1,
       "agent": {
         "id": "copilot-coding-agent",
-        "name": "GitHub Copilot coding agent",
+        "name": "GitHub Copilot cloud agent",
         "vendor": "GitHub",
         "kinds": [
           "cloud"
@@ -1707,7 +1698,8 @@
         "kinds": [
           "ide_extension",
           "cli",
-          "cloud"
+          "cloud",
+          "desktop_app"
         ],
         "platforms": [
           "windows",
@@ -1756,7 +1748,8 @@
         "vendor": "AWS",
         "kinds": [
           "ide",
-          "cli"
+          "cli",
+          "cloud"
         ],
         "platforms": [
           "windows",
@@ -1784,6 +1777,30 @@
         ],
         "platforms": [
           "python"
+        ],
+        "local_footprint": "yes",
+        "rosmarops": {
+          "status": "not_supported"
+        },
+        "reviewed_at": "2026-10-30"
+      },
+      "versions": [],
+      "changes": [],
+      "ratings": []
+    },
+    {
+      "schema_version": 1,
+      "agent": {
+        "id": "autogen",
+        "name": "Microsoft Agent Framework (AutoGen)",
+        "vendor": "Microsoft",
+        "kinds": [
+          "framework"
+        ],
+        "platforms": [
+          "windows",
+          "macos",
+          "linux"
         ],
         "local_footprint": "yes",
         "rosmarops": {
@@ -1881,7 +1898,8 @@
         "vendor": "OpenHands",
         "kinds": [
           "desktop_app",
-          "cloud"
+          "cloud",
+          "cli"
         ],
         "platforms": [
           "windows",

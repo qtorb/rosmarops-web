@@ -5,7 +5,8 @@
     "name": "Continue",
     "vendor": "Continue",
     "kinds": [
-      "ide_extension"
+      "ide_extension",
+      "cli"
     ],
     "platforms": [
       "windows",
