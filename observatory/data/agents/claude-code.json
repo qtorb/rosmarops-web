@@ -367,5 +367,206 @@
         "accessed_at": "2026-10-28"
       }
     }
+  ],
+  "surfaces": [
+    {
+      "surface": "mcp",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://code.claude.com/docs/en/mcp",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "surface": "hooks",
+      "since": "2025-06-30",
+      "since_basis": "announced",
+      "source": {
+        "url": "https://code.claude.com/docs/en/changelog#1-0-38",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    },
+    {
+      "surface": "skills",
+      "since": "2025-10-16",
+      "since_basis": "announced",
+      "source": {
+        "url": "https://code.claude.com/docs/en/changelog#2-0-20",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    },
+    {
+      "surface": "plugins",
+      "since": "2025-10-09",
+      "since_basis": "announced",
+      "source": {
+        "url": "https://code.claude.com/docs/en/changelog#2-0-12",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    },
+    {
+      "surface": "subagents",
+      "since": "2025-07-24",
+      "since_basis": "announced",
+      "source": {
+        "url": "https://code.claude.com/docs/en/changelog#1-0-60",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    },
+    {
+      "surface": "rules_files",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://code.claude.com/docs/en/memory",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "surface": "browser",
+      "since": "2025-12-17",
+      "since_basis": "announced",
+      "source": {
+        "url": "https://code.claude.com/docs/en/changelog#2-0-72",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    },
+    {
+      "surface": "computer_use",
+      "since": "2026-03-23",
+      "since_basis": "announced",
+      "source": {
+        "url": "https://support.claude.com/en/articles/12138966-release-notes",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    },
+    {
+      "surface": "scheduled_tasks",
+      "since": "2026-03-07",
+      "since_basis": "announced",
+      "source": {
+        "url": "https://code.claude.com/docs/en/changelog#2-1-71",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    },
+    {
+      "surface": "cloud_execution",
+      "since": "2025-10-20",
+      "since_basis": "first_mention",
+      "source": {
+        "url": "https://code.claude.com/docs/en/changelog#2-0-24",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    },
+    {
+      "surface": "permission_modes",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://code.claude.com/docs/en/permission-modes",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    }
+  ],
+  "reads_from": [
+    {
+      "path": "AGENTS.md",
+      "owner": "shared",
+      "load": "default",
+      "condition": "only_if_no_claude_md",
+      "source": {
+        "url": "https://code.claude.com/docs/en/memory#agents-md",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "path": "claude_desktop_config.json",
+      "owner": "claude-desktop",
+      "load": "on_import",
+      "condition": "macos_and_wsl_only",
+      "source": {
+        "url": "https://code.claude.com/docs/en/desktop#mcp-servers-from-the-claude-desktop-chat-app",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    }
   ]
 }

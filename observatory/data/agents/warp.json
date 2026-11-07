@@ -22,5 +22,457 @@
   },
   "versions": [],
   "changes": [],
-  "ratings": []
+  "ratings": [],
+  "surfaces": [
+    {
+      "surface": "mcp",
+      "since": "2025-05-28",
+      "since_basis": "announced",
+      "source": {
+        "url": "https://docs.warp.dev/changelog/2025/",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    },
+    {
+      "surface": "skills",
+      "since": "2026-02-10",
+      "since_basis": "announced",
+      "source": {
+        "url": "https://docs.warp.dev/changelog/2026/",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    },
+    {
+      "surface": "subagents",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://docs.warp.dev/platform/orchestration/",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "surface": "rules_files",
+      "since": "2025-02-26",
+      "since_basis": "announced",
+      "source": {
+        "url": "https://docs.warp.dev/changelog/2025/",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    },
+    {
+      "surface": "browser",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://docs.warp.dev/agents/capabilities/computer-use/browser-use/",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "surface": "computer_use",
+      "since": "2026-02-10",
+      "since_basis": "announced",
+      "source": {
+        "url": "https://docs.warp.dev/changelog/2026/",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    },
+    {
+      "surface": "scheduled_tasks",
+      "since": "2025-12-10",
+      "since_basis": "first_mention",
+      "source": {
+        "url": "https://docs.warp.dev/changelog/2025/",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    },
+    {
+      "surface": "cloud_execution",
+      "since": "2026-01-07",
+      "since_basis": "first_mention",
+      "source": {
+        "url": "https://docs.warp.dev/changelog/2026/",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    },
+    {
+      "surface": "permission_modes",
+      "since": "2025-01-29",
+      "since_basis": "announced",
+      "source": {
+        "url": "https://docs.warp.dev/changelog/2025/",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    }
+  ],
+  "reads_from": [
+    {
+      "path": "AGENTS.md",
+      "owner": "shared",
+      "load": "default",
+      "source": {
+        "url": "https://docs.warp.dev/agents/capabilities/rules/",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "path": ".agents/skills",
+      "owner": "shared",
+      "load": "default",
+      "source": {
+        "url": "https://docs.warp.dev/agents/capabilities/skills/",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "path": "~/.agents/skills",
+      "owner": "shared",
+      "load": "default",
+      "source": {
+        "url": "https://docs.warp.dev/agents/capabilities/skills/",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "path": ".claude/skills",
+      "owner": "claude-code",
+      "load": "default",
+      "source": {
+        "url": "https://docs.warp.dev/agents/capabilities/skills/",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "path": ".codex/skills",
+      "owner": "codex",
+      "load": "default",
+      "source": {
+        "url": "https://docs.warp.dev/agents/capabilities/skills/",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "path": ".cursor/skills",
+      "owner": "cursor",
+      "load": "default",
+      "source": {
+        "url": "https://docs.warp.dev/agents/capabilities/skills/",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "path": ".github/skills",
+      "owner": "github-copilot",
+      "load": "default",
+      "source": {
+        "url": "https://docs.warp.dev/agents/capabilities/skills/",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "path": "~/.claude.json",
+      "owner": "claude-code",
+      "load": "if_configured",
+      "condition": "third_party_autospawn_enabled",
+      "source": {
+        "url": "https://docs.warp.dev/agents/capabilities/mcp/",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "path": ".mcp.json",
+      "owner": "claude-code",
+      "load": "if_trusted",
+      "condition": "per_server_approval",
+      "source": {
+        "url": "https://docs.warp.dev/agents/capabilities/mcp/",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "path": "~/.codex/config.toml",
+      "owner": "codex",
+      "load": "if_configured",
+      "condition": "third_party_autospawn_enabled",
+      "source": {
+        "url": "https://docs.warp.dev/agents/capabilities/mcp/",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "path": ".codex/config.toml",
+      "owner": "codex",
+      "load": "if_trusted",
+      "condition": "per_server_approval",
+      "source": {
+        "url": "https://docs.warp.dev/agents/capabilities/mcp/",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "path": "~/.agents/.mcp.json",
+      "owner": "shared",
+      "load": "if_configured",
+      "condition": "third_party_autospawn_enabled",
+      "source": {
+        "url": "https://docs.warp.dev/agents/capabilities/mcp/",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "path": ".agents/.mcp.json",
+      "owner": "shared",
+      "load": "if_trusted",
+      "condition": "per_server_approval",
+      "source": {
+        "url": "https://docs.warp.dev/agents/capabilities/mcp/",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "path": "CLAUDE.md",
+      "owner": "claude-code",
+      "load": "on_import",
+      "condition": "linked_by_init",
+      "source": {
+        "url": "https://docs.warp.dev/agents/capabilities/rules/",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "path": ".cursorrules",
+      "owner": "cursor",
+      "load": "on_import",
+      "condition": "linked_by_init",
+      "source": {
+        "url": "https://docs.warp.dev/agents/capabilities/rules/",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "path": "AGENT.md",
+      "owner": "shared",
+      "load": "on_import",
+      "condition": "linked_by_init",
+      "source": {
+        "url": "https://docs.warp.dev/agents/capabilities/rules/",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "path": "GEMINI.md",
+      "owner": "gemini-cli",
+      "load": "on_import",
+      "condition": "linked_by_init",
+      "source": {
+        "url": "https://docs.warp.dev/agents/capabilities/rules/",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "path": ".clinerules",
+      "owner": "cline",
+      "load": "on_import",
+      "condition": "linked_by_init",
+      "source": {
+        "url": "https://docs.warp.dev/agents/capabilities/rules/",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "path": ".windsurfrules",
+      "owner": "devin-desktop",
+      "load": "on_import",
+      "condition": "linked_by_init",
+      "source": {
+        "url": "https://docs.warp.dev/agents/capabilities/rules/",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "path": ".github/copilot-instructions.md",
+      "owner": "github-copilot",
+      "load": "on_import",
+      "condition": "linked_by_init",
+      "source": {
+        "url": "https://docs.warp.dev/agents/capabilities/rules/",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    }
+  ]
 }

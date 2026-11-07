@@ -77,5 +77,219 @@
       "rosmarops_impact": "knowledge"
     }
   ],
-  "ratings": []
+  "ratings": [],
+  "surfaces": [
+    {
+      "surface": "mcp",
+      "since": "2026-03-25",
+      "since_basis": "first_mention",
+      "source": {
+        "url": "https://antigravity.google/docs/changelog#rel-ide-1.21.6",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    },
+    {
+      "surface": "hooks",
+      "since": "2026-06-12",
+      "since_basis": "first_mention",
+      "source": {
+        "url": "https://antigravity.google/docs/changelog#rel-cli-1.0.8",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    },
+    {
+      "surface": "skills",
+      "since": "2026-01-13",
+      "since_basis": "announced",
+      "source": {
+        "url": "https://antigravity.google/docs/changelog#rel-ide-1.14.2",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    },
+    {
+      "surface": "plugins",
+      "since": "2026-02-19",
+      "since_basis": "first_mention",
+      "source": {
+        "url": "https://antigravity.google/docs/changelog#rel-ide-1.18.3",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    },
+    {
+      "surface": "subagents",
+      "since": "2026-06-06",
+      "since_basis": "first_mention",
+      "source": {
+        "url": "https://antigravity.google/docs/changelog#rel-cli-1.0.6",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    },
+    {
+      "surface": "rules_files",
+      "since": "2026-03-09",
+      "since_basis": "first_mention",
+      "source": {
+        "url": "https://antigravity.google/docs/changelog#rel-ide-1.20.5",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    },
+    {
+      "surface": "browser",
+      "since": "2025-12-17",
+      "since_basis": "first_mention",
+      "source": {
+        "url": "https://antigravity.google/docs/changelog#rel-ide-1.12.4",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    },
+    {
+      "surface": "scheduled_tasks",
+      "since": "2026-08-07",
+      "since_basis": "first_mention",
+      "source": {
+        "url": "https://antigravity.google/docs/changelog#rel-hub-2.6.0",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    },
+    {
+      "surface": "cloud_execution",
+      "since": "2026-11-03",
+      "since_basis": "announced",
+      "source": {
+        "url": "https://antigravity.google/docs/changelog#rel-hub-2.29.0",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    },
+    {
+      "surface": "permission_modes",
+      "since": "2025-12-08",
+      "since_basis": "first_mention",
+      "source": {
+        "url": "https://antigravity.google/docs/changelog#rel-ide-1.11.17",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    }
+  ],
+  "reads_from": [
+    {
+      "path": "AGENTS.md",
+      "owner": "shared",
+      "load": "default",
+      "source": {
+        "url": "https://antigravity.google/docs/rules",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "path": "GEMINI.md",
+      "owner": "gemini-cli",
+      "load": "default",
+      "source": {
+        "url": "https://antigravity.google/docs/rules",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "path": "~/.gemini/GEMINI.md",
+      "owner": "gemini-cli",
+      "load": "default",
+      "source": {
+        "url": "https://antigravity.google/docs/rules",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "path": ".agents/skills",
+      "owner": "shared",
+      "load": "default",
+      "source": {
+        "url": "https://antigravity.google/docs/skills",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    }
+  ]
 }
