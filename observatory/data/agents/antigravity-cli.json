@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "agent": {
+    "id": "antigravity-cli",
+    "name": "Antigravity CLI",
+    "vendor": "Google",
+    "kinds": [
+      "cli"
+    ],
+    "platforms": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "local_footprint": "yes",
+    "rosmarops": {
+      "status": "evaluated",
+      "since_version": "0.9.0"
+    },
+    "reviewed_at": "2026-11-07",
+    "sources": [
+      {
+        "field": "name",
+        "source": {
+          "url": "https://antigravity.google/docs/install?tab=cli",
+          "official": true,
+          "accessed_at": "2026-11-07"
+        },
+        "verified": {
+          "by": "advisor",
+          "at": "2026-11-07",
+          "how": "official_doc"
+        }
+      },
+      {
+        "field": "vendor",
+        "source": {
+          "url": "https://antigravity.google/docs/getting-started?tab=cli",
+          "official": true,
+          "accessed_at": "2026-11-07"
+        },
+        "verified": {
+          "by": "advisor",
+          "at": "2026-11-07",
+          "how": "official_doc"
+        }
+      },
+      {
+        "field": "kinds",
+        "source": {
+          "url": "https://antigravity.google/docs/getting-started?tab=cli",
+          "official": true,
+          "accessed_at": "2026-11-07"
+        },
+        "verified": {
+          "by": "advisor",
+          "at": "2026-11-07",
+          "how": "official_doc"
+        }
+      },
+      {
+        "field": "platforms",
+        "source": {
+          "url": "https://antigravity.google/docs/getting-started?tab=cli",
+          "official": true,
+          "accessed_at": "2026-11-07"
+        },
+        "verified": {
+          "by": "advisor",
+          "at": "2026-11-07",
+          "how": "official_doc"
+        }
+      },
+      {
+        "field": "local_footprint",
+        "source": {
+          "url": "https://antigravity.google/docs/settings?tab=cli",
+          "official": true,
+          "accessed_at": "2026-11-07"
+        },
+        "verified": {
+          "by": "advisor",
+          "at": "2026-11-07",
+          "how": "official_doc"
+        }
+      }
+    ]
+  },
+  "versions": [],
+  "changes": [],
+  "ratings": []
+}
