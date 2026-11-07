@@ -21,6 +21,34 @@
     "reviewed_at": "2026-10-30"
   },
   "versions": [],
-  "changes": [],
+  "changes": [
+    {
+      "id": "chg-opencode-2-2-6-mcp-pool",
+      "version": "2.2.6",
+      "date": "2026-11-06",
+      "category": "mcp",
+      "before": {
+        "en": "Before 2.2.6, the release notes list no MCP connection pooling in OpenCode.",
+        "es": "Antes de 2.2.6, las notas de versión no recogen en OpenCode el agrupamiento de conexiones MCP.",
+        "ca": "Abans de 2.2.6, les notes de versió no recullen a OpenCode l'agrupació de connexions MCP."
+      },
+      "after": {
+        "en": "From 2.2.6, pooling can be turned on for an MCP server so projects with the same setup share one connection, according to the release notes.",
+        "es": "Desde 2.2.6, se puede activar el agrupamiento para un servidor MCP y los proyectos con la misma configuración comparten una conexión, según las notas de versión.",
+        "ca": "Des de 2.2.6, es pot activar l'agrupació per a un servidor MCP i els projectes amb la mateixa configuració comparteixen una connexió, segons les notes de versió."
+      },
+      "source": {
+        "url": "https://github.com/anomalyco/opencode/releases/tag/v2.2.6",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "writer",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      },
+      "rosmarops_impact": "none"
+    }
+  ],
   "ratings": []
 }
