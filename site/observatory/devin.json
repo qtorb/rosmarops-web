@@ -5,6 +5,7 @@
     "name": "Devin",
     "vendor": "Cognition",
     "kinds": [
+      "cli",
       "cloud"
     ],
     "platforms": [

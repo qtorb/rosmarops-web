@@ -4,6 +4,31 @@
     {
       "schema_version": 1,
       "agent": {
+        "id": "antigravity-cli",
+        "name": "Antigravity CLI",
+        "vendor": "Google",
+        "kinds": [
+          "cli"
+        ],
+        "platforms": [
+          "windows",
+          "macos",
+          "linux"
+        ],
+        "local_footprint": "yes",
+        "rosmarops": {
+          "status": "evaluated",
+          "since_version": "0.9.0"
+        },
+        "reviewed_at": "2026-11-07"
+      },
+      "versions": [],
+      "changes": [],
+      "ratings": []
+    },
+    {
+      "schema_version": 1,
+      "agent": {
         "id": "hermes-agent",
         "name": "Hermes Agent",
         "vendor": "Nous Research",
@@ -1403,6 +1428,7 @@
         "name": "Devin",
         "vendor": "Cognition",
         "kinds": [
+          "cli",
           "cloud"
         ],
         "platforms": [
