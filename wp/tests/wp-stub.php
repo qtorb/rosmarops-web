@@ -7,11 +7,11 @@ $GLOBALS['__actions'] = [];
 $GLOBALS['__routes']  = [];
 function add_action($hook, $cb) { $GLOBALS['__actions'][$hook][] = $cb; }
 function do_action($hook) { foreach ($GLOBALS['__actions'][$hook] ?? [] as $cb) { $cb(); } }
-function register_rest_route($ns, $route, $args) { $GLOBALS['__routes']["/$ns$route"] = $args; }
+function register_rest_route($ns, $route, $args) { $GLOBALS['__routes']["/$ns$route"][$args['methods']] = $args; } // like WordPress: one route, several methods
 function __return_true() { return true; }
 class WP_REST_Response {
-	public $data; public $headers = [];
-	public function __construct($data) { $this->data = $data; }
+	public $data; public $status; public $headers = [];
+	public function __construct($data = null, $status = 200) { $this->data = $data; $this->status = $status; }
 	public function header($k, $v) { $this->headers[$k] = $v; }
 }
 class StubWpdb {
@@ -31,4 +31,9 @@ class StubWpdb {
 	public function raw() { return $this->db; }
 }
 $GLOBALS['wpdb'] = new StubWpdb(getenv('DB_PREFIX') ?: 'wptest_');
+// GTM-111 visits: the switch, the static pages folder and the published posts come from the test.
+if (getenv('VISITS_ON')) { define('ROSMAROPS_VISITS_ON', true); }
+if (getenv('VISITS_DOCROOT')) { define('ROSMAROPS_VISITS_DOCROOT', getenv('VISITS_DOCROOT')); }
+function url_to_postid($url) { return in_array($url, array_filter(explode(' ', (string) getenv('VISITS_POSTS'))), true) ? 7 : 0; }
+function wp_enqueue_script(...$a) { $GLOBALS['__enqueued'][] = $a; }
 require __DIR__ . '/../mu-plugins/rosmarops-downloads.php';

@@ -1,7 +1,9 @@
 <?php
 /**
- * Plugin Name: RosmarOps downloads
+ * Plugin Name: RosmarOps downloads and visits
  * Description: Download counter (GTM-18; os added by the 2026-10-29 direct-download decision). /download, /es/descargar and /ca/descarregar add one to an aggregate count (UTC day, source page, language, os) and redirect to GitHub: to the file for ?os=windows|mac-arm|mac-intel|linux-amd64|linux-arm64 (Linux added by GTM-83), otherwise to the latest release. Stores no IP address, cookie, user agent or referrer; requests with the WordPress session cookie (the team, signed in) are not counted (GTM-111). Public read-only totals at /wp-json/rosmarops/v1/downloads. Versioned in qtorb/rosmarops-web; do not edit on the server.
+ *
+ * GTM-111: visit counter, behind ROSMAROPS_VISITS_ON (off). Pages send their path and the referrer's domain with JavaScript (/assets/visits/visits.js); the server adds one to (UTC day, page, language, referrer kind), with closed lists. It stores no IP address, cookie, user agent, exact time or identifier. Public read-only totals at /wp-json/rosmarops/v1/visits.
  */
 
 if (!defined('ABSPATH')) {
@@ -173,3 +175,213 @@ add_action('rest_api_init', function () {
 		},
 	]);
 });
+
+
+// ------------------------------------------------------------------------------------------------- visits (GTM-111)
+
+// Off until the privacy policy texts for it are published (Albert). Must match ON in site/assets/visits/visits.js.
+if (!defined('ROSMAROPS_VISITS_ON')) {
+	define('ROSMAROPS_VISITS_ON', false);
+}
+const ROSMAROPS_VISITS_ORIGIN    = 'https://rosmarops.com';
+const ROSMAROPS_VISITS_MAX_BODY  = 512;
+const ROSMAROPS_VISITS_BLOGS     = ['/blog/', '/es/blog/', '/ca/blog/'];
+// Referrer domains, closed list: the first matching rule wins (gemini before google). Anything else is "other";
+// none is "direct"; rosmarops.com itself is "internal".
+const ROSMAROPS_VISITS_REFS      = [
+	['gemini', '/^gemini\.google\.com$/'],
+	['google', '/(^|\.)google\.[a-z]{2,3}(\.[a-z]{2})?$/'],
+	['bing', '/(^|\.)bing\.com$/'],
+	['duckduckgo', '/(^|\.)duckduckgo\.com$/'],
+	['github', '/(^|\.)github\.com$/'],
+	['linkedin', '/(^|\.)(linkedin\.com|lnkd\.in)$/'],
+	['x', '/^(x\.com|t\.co|twitter\.com|mobile\.twitter\.com)$/'],
+	['hn', '/^news\.ycombinator\.com$/'],
+	['reddit', '/(^|\.)reddit\.com$/'],
+	['chatgpt', '/^(chatgpt\.com|chat\.openai\.com)$/'],
+	['perplexity', '/(^|\.)perplexity\.ai$/'],
+	['claude', '/^claude\.ai$/'],
+];
+// User agents that are not a person reading: looked at, never stored.
+const ROSMAROPS_VISITS_BOTS      = '/bot|crawl|spider|slurp|headless|lighthouse|preview|python|curl|wget|go-http|java\/|httpclient|okhttp|axios|node-fetch|scrapy|facebookexternalhit|embedly|monitor|uptime|phantom|selenium|playwright|puppeteer/i';
+
+function rosmarops_visits_table() {
+	global $wpdb;
+	return $wpdb->base_prefix . 'rosmarops_visits';
+}
+
+function rosmarops_visits_create_table() {
+	global $wpdb;
+	$t = rosmarops_visits_table();
+	$wpdb->query(
+		"CREATE TABLE IF NOT EXISTS `$t` (
+			day DATE NOT NULL,
+			page VARCHAR(160) NOT NULL,
+			lang CHAR(2) NOT NULL,
+			ref VARCHAR(16) NOT NULL,
+			count INT UNSIGNED NOT NULL DEFAULT 0,
+			PRIMARY KEY (day, page, lang, ref)
+		) " . $wpdb->get_charset_collate()
+	);
+}
+
+/** Folder that holds the static pages (site/ is deployed next to WordPress). */
+function rosmarops_visits_docroot() {
+	return defined('ROSMAROPS_VISITS_DOCROOT') ? ROSMAROPS_VISITS_DOCROOT : ABSPATH;
+}
+
+/** True if the path is a page of this site: a static page, a blog home, or a published post or page. */
+function rosmarops_visits_page_exists($path) {
+	$file = rtrim(rosmarops_visits_docroot(), '/') . $path . 'index.html';
+	if (is_file($file) || in_array($path, ROSMAROPS_VISITS_BLOGS, true)) {
+		return true;
+	}
+	// The daily synopsis pages (rosmarops-daily.php): its index and one page per date. Only the shape is checked.
+	foreach (['/observatory/daily/', '/es/observatorio/diario/', '/ca/observatori/diari/'] as $prefix) {
+		if ($path === $prefix || preg_match('#^' . preg_quote($prefix, '#') . '\d{4}-\d{2}-\d{2}/$#', $path)) {
+			return true;
+		}
+	}
+	return function_exists('url_to_postid') && url_to_postid(ROSMAROPS_VISITS_ORIGIN . $path) > 0;
+}
+
+/** The page from the path the browser sent: lowercase letters, digits, hyphens and slashes, an existing page; else "other". */
+function rosmarops_visits_page($raw) {
+	if (!is_string($raw) || strlen($raw) > 150 || !preg_match('#^/[a-z0-9/-]*$#', $raw) || strpos($raw, '//') !== false) {
+		return 'other';
+	}
+	$path = rtrim($raw, '/') . '/';
+	return rosmarops_visits_page_exists($path) ? $path : 'other';
+}
+
+/** Language from the page path, never from the browser. */
+function rosmarops_visits_lang($page) {
+	if (strpos($page, '/es/') === 0) {
+		return 'es';
+	}
+	if (strpos($page, '/ca/') === 0) {
+		return 'ca';
+	}
+	return 'en';
+}
+
+/** Kind of referrer from the domain the page sent (only the domain is sent). */
+function rosmarops_visits_ref($raw) {
+	if (!is_string($raw) || $raw === '') {
+		return 'direct';
+	}
+	$host = strtolower($raw);
+	if (strlen($host) > 253 || !preg_match('/^[a-z0-9.-]+$/', $host)) {
+		return 'other';
+	}
+	$host = preg_replace('/^www\./', '', $host);
+	if ($host === 'rosmarops.com') {
+		return 'internal';
+	}
+	foreach (ROSMAROPS_VISITS_REFS as [$key, $rx]) {
+		if (preg_match($rx, $host)) {
+			return $key;
+		}
+	}
+	return 'other';
+}
+
+/** Whether a POST counts: from our own pages, not a prefetch, not a bot, not the team. Headers are looked at, never kept. */
+function rosmarops_visits_accept($server, $cookies) {
+	if (($server['HTTP_ORIGIN'] ?? '') !== ROSMAROPS_VISITS_ORIGIN) {
+		return false;
+	}
+	$purpose = strtolower(($server['HTTP_SEC_PURPOSE'] ?? '') . ' ' . ($server['HTTP_PURPOSE'] ?? '') . ' ' . ($server['HTTP_X_MOZ'] ?? ''));
+	if (strpos($purpose, 'prefetch') !== false || strpos($purpose, 'prerender') !== false) {
+		return false;
+	}
+	$ua = (string) ($server['HTTP_USER_AGENT'] ?? '');
+	if ($ua === '' || preg_match(ROSMAROPS_VISITS_BOTS, $ua)) {
+		return false;
+	}
+	return !rosmarops_is_team($cookies);
+}
+
+/** Adds one to (UTC day, page, language, referrer kind). Only this table is written. */
+function rosmarops_visits_count($page, $lang, $ref, $day = null) {
+	global $wpdb;
+	$t   = rosmarops_visits_table();
+	$day = $day ?? gmdate('Y-m-d');
+	$sql = $wpdb->prepare(
+		"INSERT INTO `$t` (day, page, lang, ref, count) VALUES (%s, %s, %s, %s, 1) ON DUPLICATE KEY UPDATE count = count + 1",
+		$day,
+		$page,
+		$lang,
+		$ref
+	);
+	$suppress = $wpdb->suppress_errors(true);
+	$ok       = $wpdb->query($sql);
+	if ($ok === false) {
+		rosmarops_visits_create_table();
+		$ok = $wpdb->query($sql);
+	}
+	$wpdb->suppress_errors($suppress);
+	return $ok !== false;
+}
+
+/** Counts a POST body {"p": path, "r": referrer domain}, if the request is accepted. */
+function rosmarops_visits_handle($body, $server, $cookies) {
+	if (!rosmarops_visits_accept($server, $cookies) || !is_string($body) || strlen($body) > ROSMAROPS_VISITS_MAX_BODY) {
+		return false;
+	}
+	$in = json_decode($body, true);
+	if (!is_array($in) || !array_key_exists('p', $in)) {
+		return false;
+	}
+	$page = rosmarops_visits_page($in['p'] ?? null);
+	return rosmarops_visits_count($page, rosmarops_visits_lang($page), rosmarops_visits_ref($in['r'] ?? null));
+}
+
+/** Aggregate rows of the last ROSMAROPS_DL_DAYS days (UTC), oldest first. */
+function rosmarops_visits_rows($today = null) {
+	global $wpdb;
+	$t     = rosmarops_visits_table();
+	$today = $today ?? gmdate('Y-m-d');
+	$since = gmdate('Y-m-d', strtotime($today . ' UTC') - (ROSMAROPS_DL_DAYS - 1) * 86400);
+	$sql      = $wpdb->prepare("SELECT day, page, lang, ref, count FROM `$t` WHERE day >= %s ORDER BY day, page, lang, ref", $since);
+	$suppress = $wpdb->suppress_errors(true);
+	$res      = $wpdb->get_results($sql, ARRAY_A);
+	$wpdb->suppress_errors($suppress);
+	$rows = [];
+	foreach ((array) $res as $r) {
+		$rows[] = ['day' => $r['day'], 'page' => $r['page'], 'lang' => $r['lang'], 'ref' => $r['ref'], 'count' => (int) $r['count']];
+	}
+	return $rows;
+}
+
+if (ROSMAROPS_VISITS_ON) {
+	add_action('rest_api_init', function () {
+		register_rest_route('rosmarops/v1', '/visits', [
+			'methods'             => 'GET',
+			'permission_callback' => '__return_true',
+			'callback'            => function () {
+				$res = new WP_REST_Response([
+					'generated_at' => gmdate('Y-m-d\TH:i:s\Z'),
+					'rows'         => rosmarops_visits_rows(),
+				]);
+				$res->header('Cache-Control', 'public, max-age=3600');
+				return $res;
+			},
+		]);
+		register_rest_route('rosmarops/v1', '/visits', [
+			'methods'             => 'POST',
+			'permission_callback' => '__return_true',
+			'callback'            => function () {
+				// The same answer whether it counted or not, and nothing set on the browser.
+				rosmarops_visits_handle(file_get_contents('php://input', false, null, 0, ROSMAROPS_VISITS_MAX_BODY + 1), $_SERVER, $_COOKIE);
+				$res = new WP_REST_Response(null, 204);
+				$res->header('Cache-Control', 'no-store');
+				return $res;
+			},
+		]);
+	});
+	// WordPress pages (blogs, privacy, about): the same script as the static pages.
+	add_action('wp_enqueue_scripts', function () {
+		wp_enqueue_script('rosmarops-visits', ROSMAROPS_VISITS_ORIGIN . '/assets/visits/visits.js', [], '1', true);
+	});
+}

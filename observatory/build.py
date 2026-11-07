@@ -387,6 +387,7 @@ def page(lang, t, *, path, title, description, alternates, jsonld, body, og_type
     tail = [
         '<script src="/assets/consent/cookieconsent.umd.js?v=3.1.0" defer></script>',
         '<script src="/assets/consent/consent.js?v=4" defer></script>',
+        '<script src="/assets/visits/visits.js?v=1" defer></script>',  # GTM-111, off until switched on
         "</body>",
         "</html>",
         "",
