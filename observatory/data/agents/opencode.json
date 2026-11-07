@@ -202,6 +202,11 @@
         "by": "advisor",
         "at": "2026-11-07",
         "how": "official_code"
+      },
+      "default_source": {
+        "url": "https://github.com/anomalyco/opencode/blob/dc2ffcf8bf26f9e669b6aa22b95f50e12be15e06/packages/core/src/instruction-discovery.ts#L98-L100",
+        "official": true,
+        "accessed_at": "2026-11-07"
       }
     },
     {

@@ -103,7 +103,7 @@
     {
       "surface": "subagents",
       "since": "2025-06-10",
-      "since_basis": "announced",
+      "since_basis": "first_mention",
       "source": {
         "url": "https://ampcode.com/agents-for-the-agent",
         "official": true,
@@ -238,6 +238,11 @@
         "by": "advisor",
         "at": "2026-11-07",
         "how": "official_doc"
+      },
+      "default_source": {
+        "url": "https://ampcode.com/docs/cli/settings",
+        "official": true,
+        "accessed_at": "2026-11-07"
       }
     },
     {
@@ -254,6 +259,11 @@
         "by": "advisor",
         "at": "2026-11-07",
         "how": "official_doc"
+      },
+      "default_source": {
+        "url": "https://ampcode.com/docs/cli/settings",
+        "official": true,
+        "accessed_at": "2026-11-07"
       }
     },
     {
@@ -270,6 +280,11 @@
         "by": "advisor",
         "at": "2026-11-07",
         "how": "official_doc"
+      },
+      "default_source": {
+        "url": "https://ampcode.com/docs/cli/settings",
+        "official": true,
+        "accessed_at": "2026-11-07"
       }
     },
     {
@@ -301,6 +316,11 @@
         "by": "advisor",
         "at": "2026-11-07",
         "how": "official_doc"
+      },
+      "default_source": {
+        "url": "https://ampcode.com/docs/cli/settings",
+        "official": true,
+        "accessed_at": "2026-11-07"
       }
     },
     {
@@ -317,6 +337,11 @@
         "by": "advisor",
         "at": "2026-11-07",
         "how": "official_doc"
+      },
+      "default_source": {
+        "url": "https://ampcode.com/docs/cli/settings",
+        "official": true,
+        "accessed_at": "2026-11-07"
       }
     }
   ]

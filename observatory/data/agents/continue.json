@@ -150,7 +150,7 @@
       "path": "AGENTS.md",
       "owner": "shared",
       "load": "default",
-      "condition": "first_match_wins",
+      "condition": "cli_first_match_wins",
       "source": {
         "url": "https://github.com/continuedev/continue/blob/5522c6f44ca0ac3528b37244818fbfa39b5af470/extensions/cli/src/systemMessage.ts#L167-L178",
         "official": true,
@@ -199,7 +199,7 @@
       "owner": "claude-code",
       "load": "default",
       "source": {
-        "url": "https://github.com/continuedev/continue/blob/5522c6f44ca0ac3528b37244818fbfa39b5af470/extensions/cli/src/util/loadMarkdownSkills.ts#L95-L99",
+        "url": "https://github.com/continuedev/continue/blob/5522c6f44ca0ac3528b37244818fbfa39b5af470/core/config/markdown/loadMarkdownSkills.ts#L20-L26",
         "official": true,
         "accessed_at": "2026-11-07"
       },
@@ -207,6 +207,11 @@
         "by": "advisor",
         "at": "2026-11-07",
         "how": "official_code"
+      },
+      "default_source": {
+        "url": "https://github.com/continuedev/continue/blob/5522c6f44ca0ac3528b37244818fbfa39b5af470/extensions/cli/src/tools/index.tsx#L131-L135",
+        "official": true,
+        "accessed_at": "2026-11-07"
       }
     },
     {
@@ -215,7 +220,7 @@
       "load": "default",
       "condition": "cli_hooks",
       "source": {
-        "url": "https://github.com/continuedev/continue/blob/5522c6f44ca0ac3528b37244818fbfa39b5af470/extensions/cli/src/hooks/hookConfig.ts#L78-L90",
+        "url": "https://github.com/continuedev/continue/blob/5522c6f44ca0ac3528b37244818fbfa39b5af470/extensions/cli/src/hooks/hookConfig.ts#L9-L12",
         "official": true,
         "accessed_at": "2026-11-07"
       },
@@ -223,6 +228,11 @@
         "by": "advisor",
         "at": "2026-11-07",
         "how": "official_code"
+      },
+      "default_source": {
+        "url": "https://github.com/continuedev/continue/blob/5522c6f44ca0ac3528b37244818fbfa39b5af470/extensions/cli/src/services/index.ts#L311-L317",
+        "official": true,
+        "accessed_at": "2026-11-07"
       }
     },
     {
@@ -231,7 +241,7 @@
       "load": "default",
       "condition": "cli_hooks",
       "source": {
-        "url": "https://github.com/continuedev/continue/blob/5522c6f44ca0ac3528b37244818fbfa39b5af470/extensions/cli/src/hooks/hookConfig.ts#L78-L90",
+        "url": "https://github.com/continuedev/continue/blob/5522c6f44ca0ac3528b37244818fbfa39b5af470/extensions/cli/src/hooks/hookConfig.ts#L9-L12",
         "official": true,
         "accessed_at": "2026-11-07"
       },
@@ -239,6 +249,11 @@
         "by": "advisor",
         "at": "2026-11-07",
         "how": "official_code"
+      },
+      "default_source": {
+        "url": "https://github.com/continuedev/continue/blob/5522c6f44ca0ac3528b37244818fbfa39b5af470/extensions/cli/src/services/index.ts#L311-L317",
+        "official": true,
+        "accessed_at": "2026-11-07"
       }
     },
     {
@@ -247,7 +262,7 @@
       "load": "default",
       "condition": "cli_hooks",
       "source": {
-        "url": "https://github.com/continuedev/continue/blob/5522c6f44ca0ac3528b37244818fbfa39b5af470/extensions/cli/src/hooks/hookConfig.ts#L78-L90",
+        "url": "https://github.com/continuedev/continue/blob/5522c6f44ca0ac3528b37244818fbfa39b5af470/extensions/cli/src/hooks/hookConfig.ts#L9-L12",
         "official": true,
         "accessed_at": "2026-11-07"
       },
@@ -255,6 +270,11 @@
         "by": "advisor",
         "at": "2026-11-07",
         "how": "official_code"
+      },
+      "default_source": {
+        "url": "https://github.com/continuedev/continue/blob/5522c6f44ca0ac3528b37244818fbfa39b5af470/extensions/cli/src/services/index.ts#L311-L317",
+        "official": true,
+        "accessed_at": "2026-11-07"
       }
     }
   ]

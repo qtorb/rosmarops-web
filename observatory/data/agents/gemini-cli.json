@@ -167,6 +167,11 @@
         "by": "advisor",
         "at": "2026-11-07",
         "how": "official_code"
+      },
+      "default_source": {
+        "url": "https://github.com/google-gemini/gemini-cli/blob/62bab5b232c15b925d31e655ce844ab939c882b7/packages/cli/src/config/settingsSchema.ts#L2543-L2551",
+        "official": true,
+        "accessed_at": "2026-11-07"
       }
     },
     {

@@ -79,21 +79,6 @@
         "at": "2026-11-07",
         "how": "official_doc"
       }
-    },
-    {
-      "surface": "permission_modes",
-      "since": "2024-12-14",
-      "since_basis": "announced",
-      "source": {
-        "url": "https://www.langchain.com/blog/making-it-easier-to-build-human-in-the-loop-agents-with-interrupt",
-        "official": true,
-        "accessed_at": "2026-11-07"
-      },
-      "verified": {
-        "by": "advisor",
-        "at": "2026-11-07",
-        "how": "official_doc"
-      }
     }
   ]
 }

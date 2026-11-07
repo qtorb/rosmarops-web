@@ -70,8 +70,8 @@
     },
     {
       "surface": "plugins",
-      "since": "2026-09-03",
-      "since_basis": "announced",
+      "since": "2026-10-30",
+      "since_basis": "first_mention",
       "source": {
         "url": "https://docs.trae.cn/ide/changelog",
         "official": true,
@@ -85,8 +85,8 @@
     },
     {
       "surface": "subagents",
-      "since": "2026-06-17",
-      "since_basis": "announced",
+      "since": "2026-06-04",
+      "since_basis": "first_mention",
       "source": {
         "url": "https://docs.trae.cn/ide/changelog",
         "official": true,

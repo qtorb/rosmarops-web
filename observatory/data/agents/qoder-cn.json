@@ -57,7 +57,7 @@
     {
       "surface": "skills",
       "since": "2026-02-05",
-      "since_basis": "announced",
+      "since_basis": "first_mention",
       "source": {
         "url": "https://changelog.qoder.cn/ide",
         "official": true,
@@ -71,7 +71,7 @@
     },
     {
       "surface": "plugins",
-      "since": "2026-03-25",
+      "since": "2026-07-15",
       "since_basis": "first_mention",
       "source": {
         "url": "https://changelog.qoder.cn/ide",
@@ -87,7 +87,7 @@
     {
       "surface": "subagents",
       "since": "2026-02-05",
-      "since_basis": "announced",
+      "since_basis": "first_mention",
       "source": {
         "url": "https://changelog.qoder.cn/ide",
         "official": true,
@@ -147,7 +147,7 @@
     {
       "surface": "scheduled_tasks",
       "since": "2026-05-28",
-      "since_basis": "announced",
+      "since_basis": "first_mention",
       "source": {
         "url": "https://changelog.qoder.cn/cli",
         "official": true,
@@ -176,7 +176,7 @@
     },
     {
       "surface": "permission_modes",
-      "since": "2026-05-29",
+      "since": "2026-05-22",
       "since_basis": "first_mention",
       "source": {
         "url": "https://changelog.qoder.cn/cli",

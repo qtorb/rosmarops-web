@@ -295,6 +295,11 @@
         "by": "advisor",
         "at": "2026-11-07",
         "how": "official_code"
+      },
+      "default_source": {
+        "url": "https://goose-docs.ai/docs/guides/context-engineering/using-skills",
+        "official": true,
+        "accessed_at": "2026-11-07"
       }
     },
     {
@@ -302,7 +307,7 @@
       "owner": "shared",
       "load": "default",
       "source": {
-        "url": "https://goose-docs.ai/docs/guides/context-engineering/plugins",
+        "url": "https://goose-docs.ai/docs/guides/context-engineering/plugins#plugin-locations",
         "official": true,
         "accessed_at": "2026-11-07"
       },
@@ -317,7 +322,7 @@
       "owner": "shared",
       "load": "default",
       "source": {
-        "url": "https://goose-docs.ai/docs/guides/context-engineering/plugins",
+        "url": "https://goose-docs.ai/docs/guides/context-engineering/plugins#plugin-locations",
         "official": true,
         "accessed_at": "2026-11-07"
       },

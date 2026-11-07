@@ -201,6 +201,11 @@
         "by": "advisor",
         "at": "2026-11-07",
         "how": "official_doc"
+      },
+      "default_source": {
+        "url": "https://docs.devin.ai/desktop/changelog",
+        "official": true,
+        "accessed_at": "2026-11-07"
       }
     },
     {

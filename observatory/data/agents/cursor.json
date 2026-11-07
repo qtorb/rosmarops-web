@@ -346,7 +346,7 @@
     {
       "surface": "rules_files",
       "since": "2025-01-23",
-      "since_basis": "announced",
+      "since_basis": "first_mention",
       "source": {
         "url": "https://cursor.com/changelog/0-45-x",
         "official": true,

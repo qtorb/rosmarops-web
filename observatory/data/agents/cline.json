@@ -182,7 +182,7 @@
       "owner": "shared",
       "load": "default",
       "source": {
-        "url": "https://github.com/cline/cline/blob/94eecbbe1a2f899c66b118d13656651b0a884e1f/sdk/packages/shared/src/storage/paths.ts#L586-L600",
+        "url": "https://github.com/cline/cline/blob/94eecbbe1a2f899c66b118d13656651b0a884e1f/sdk/packages/shared/src/storage/paths.ts#L57",
         "official": true,
         "accessed_at": "2026-11-07"
       },
@@ -190,6 +190,11 @@
         "by": "advisor",
         "at": "2026-11-07",
         "how": "official_code"
+      },
+      "default_source": {
+        "url": "https://github.com/cline/cline/blob/94eecbbe1a2f899c66b118d13656651b0a884e1f/sdk/packages/core/src/extensions/config/user-instruction-config-loader.ts#L676-L678",
+        "official": true,
+        "accessed_at": "2026-11-07"
       }
     },
     {
@@ -197,7 +202,7 @@
       "owner": "shared",
       "load": "default",
       "source": {
-        "url": "https://github.com/cline/cline/blob/94eecbbe1a2f899c66b118d13656651b0a884e1f/sdk/packages/shared/src/storage/paths.ts#L525-L527",
+        "url": "https://github.com/cline/cline/blob/94eecbbe1a2f899c66b118d13656651b0a884e1f/sdk/packages/shared/src/storage/paths.ts#L48-L57",
         "official": true,
         "accessed_at": "2026-11-07"
       },
@@ -205,6 +210,11 @@
         "by": "advisor",
         "at": "2026-11-07",
         "how": "official_code"
+      },
+      "default_source": {
+        "url": "https://github.com/cline/cline/blob/94eecbbe1a2f899c66b118d13656651b0a884e1f/sdk/packages/core/src/extensions/config/user-instruction-config-loader.ts#L676-L678",
+        "official": true,
+        "accessed_at": "2026-11-07"
       }
     },
     {
@@ -212,14 +222,19 @@
       "owner": "cursor",
       "load": "default",
       "source": {
-        "url": "https://docs.cline.bot/customization/cline-rules",
+        "url": "https://github.com/cline/cline/blob/94eecbbe1a2f899c66b118d13656651b0a884e1f/apps/vscode/src/core/storage/disk.ts#L31",
         "official": true,
         "accessed_at": "2026-11-07"
       },
       "verified": {
         "by": "advisor",
         "at": "2026-11-07",
-        "how": "official_doc"
+        "how": "official_code"
+      },
+      "default_source": {
+        "url": "https://github.com/cline/cline/blob/94eecbbe1a2f899c66b118d13656651b0a884e1f/apps/vscode/src/core/context/instructions/user-instructions/rule-helpers.ts#L79-L83",
+        "official": true,
+        "accessed_at": "2026-11-07"
       }
     },
     {
@@ -227,14 +242,19 @@
       "owner": "devin-desktop",
       "load": "default",
       "source": {
-        "url": "https://docs.cline.bot/customization/cline-rules",
+        "url": "https://github.com/cline/cline/blob/94eecbbe1a2f899c66b118d13656651b0a884e1f/apps/vscode/src/core/storage/disk.ts#L32",
         "official": true,
         "accessed_at": "2026-11-07"
       },
       "verified": {
         "by": "advisor",
         "at": "2026-11-07",
-        "how": "official_doc"
+        "how": "official_code"
+      },
+      "default_source": {
+        "url": "https://github.com/cline/cline/blob/94eecbbe1a2f899c66b118d13656651b0a884e1f/apps/vscode/src/core/context/instructions/user-instructions/rule-helpers.ts#L79-L83",
+        "official": true,
+        "accessed_at": "2026-11-07"
       }
     },
     {
@@ -242,7 +262,7 @@
       "owner": "claude-code",
       "load": "default",
       "source": {
-        "url": "https://github.com/cline/cline/blob/94eecbbe1a2f899c66b118d13656651b0a884e1f/sdk/packages/shared/src/storage/paths.ts#L468-L478",
+        "url": "https://github.com/cline/cline/blob/94eecbbe1a2f899c66b118d13656651b0a884e1f/sdk/packages/shared/src/storage/paths.ts#L42-L53",
         "official": true,
         "accessed_at": "2026-11-07"
       },
@@ -250,6 +270,11 @@
         "by": "advisor",
         "at": "2026-11-07",
         "how": "official_code"
+      },
+      "default_source": {
+        "url": "https://github.com/cline/cline/blob/94eecbbe1a2f899c66b118d13656651b0a884e1f/sdk/packages/core/src/extensions/config/user-instruction-config-loader.ts#L162-L164",
+        "official": true,
+        "accessed_at": "2026-11-07"
       }
     },
     {
@@ -257,7 +282,7 @@
       "owner": "shared",
       "load": "default",
       "source": {
-        "url": "https://github.com/cline/cline/blob/94eecbbe1a2f899c66b118d13656651b0a884e1f/sdk/packages/shared/src/storage/paths.ts#L468-L478",
+        "url": "https://github.com/cline/cline/blob/94eecbbe1a2f899c66b118d13656651b0a884e1f/sdk/packages/shared/src/storage/paths.ts#L48-L53",
         "official": true,
         "accessed_at": "2026-11-07"
       },
@@ -265,6 +290,11 @@
         "by": "advisor",
         "at": "2026-11-07",
         "how": "official_code"
+      },
+      "default_source": {
+        "url": "https://github.com/cline/cline/blob/94eecbbe1a2f899c66b118d13656651b0a884e1f/sdk/packages/core/src/extensions/config/user-instruction-config-loader.ts#L162-L164",
+        "official": true,
+        "accessed_at": "2026-11-07"
       }
     },
     {
@@ -272,7 +302,7 @@
       "owner": "shared",
       "load": "default",
       "source": {
-        "url": "https://github.com/cline/cline/blob/94eecbbe1a2f899c66b118d13656651b0a884e1f/sdk/packages/shared/src/storage/paths.ts#L511-L522",
+        "url": "https://github.com/cline/cline/blob/94eecbbe1a2f899c66b118d13656651b0a884e1f/sdk/packages/shared/src/storage/paths.ts#L48-L53",
         "official": true,
         "accessed_at": "2026-11-07"
       },
@@ -280,6 +310,11 @@
         "by": "advisor",
         "at": "2026-11-07",
         "how": "official_code"
+      },
+      "default_source": {
+        "url": "https://github.com/cline/cline/blob/94eecbbe1a2f899c66b118d13656651b0a884e1f/sdk/packages/core/src/extensions/config/user-instruction-config-loader.ts#L162-L164",
+        "official": true,
+        "accessed_at": "2026-11-07"
       }
     },
     {
@@ -287,7 +322,7 @@
       "owner": "shared",
       "load": "default",
       "source": {
-        "url": "https://github.com/cline/cline/blob/94eecbbe1a2f899c66b118d13656651b0a884e1f/sdk/packages/shared/src/storage/paths.ts#L628-L640",
+        "url": "https://github.com/cline/cline/blob/94eecbbe1a2f899c66b118d13656651b0a884e1f/sdk/packages/shared/src/storage/paths.ts#L48-L56",
         "official": true,
         "accessed_at": "2026-11-07"
       },
@@ -295,6 +330,11 @@
         "by": "advisor",
         "at": "2026-11-07",
         "how": "official_code"
+      },
+      "default_source": {
+        "url": "https://github.com/cline/cline/blob/94eecbbe1a2f899c66b118d13656651b0a884e1f/sdk/packages/core/src/extensions/agent-plugin/loader.ts#L238",
+        "official": true,
+        "accessed_at": "2026-11-07"
       }
     }
   ]

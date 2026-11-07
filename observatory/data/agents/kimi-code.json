@@ -99,17 +99,17 @@
     },
     {
       "surface": "rules_files",
-      "since": "2026-06-15",
+      "since": "2026-06-09",
       "since_basis": "first_mention",
       "source": {
-        "url": "https://github.com/MoonshotAI/kimi-code/blob/eb2035f3cad57cc12d4d5082ec626f7f0ea5f651/docs/en/release-notes/changelog.md#L1459-L1484",
+        "url": "https://github.com/MoonshotAI/kimi-code/blob/eb2035f3cad57cc12d4d5082ec626f7f0ea5f651/docs/en/release-notes/changelog.md#L1587-L1615",
         "official": true,
         "accessed_at": "2026-11-07"
       },
       "verified": {
         "by": "advisor",
         "at": "2026-11-07",
-        "how": "official_changelog"
+        "how": "official_code"
       }
     },
     {
@@ -179,7 +179,7 @@
       "owner": "shared",
       "load": "default",
       "source": {
-        "url": "https://github.com/MoonshotAI/kimi-code/blob/eb2035f3cad57cc12d4d5082ec626f7f0ea5f651/packages/agent-core-v2/src/agent/profile/context.ts#L246-L253",
+        "url": "https://github.com/MoonshotAI/kimi-code/blob/eb2035f3cad57cc12d4d5082ec626f7f0ea5f651/packages/agent-core-v2/src/agent/profile/context.ts#L103-L107",
         "official": true,
         "accessed_at": "2026-11-07"
       },
@@ -187,6 +187,11 @@
         "by": "advisor",
         "at": "2026-11-07",
         "how": "official_code"
+      },
+      "default_source": {
+        "url": "https://github.com/MoonshotAI/kimi-code/blob/eb2035f3cad57cc12d4d5082ec626f7f0ea5f651/packages/agent-core-v2/src/agent/profile/context.ts#L198-L208",
+        "official": true,
+        "accessed_at": "2026-11-07"
       }
     },
     {
@@ -194,7 +199,7 @@
       "owner": "shared",
       "load": "default",
       "source": {
-        "url": "https://github.com/MoonshotAI/kimi-code/blob/eb2035f3cad57cc12d4d5082ec626f7f0ea5f651/packages/agent-core-v2/src/agent/profile/context.ts#L236-L244",
+        "url": "https://github.com/MoonshotAI/kimi-code/blob/eb2035f3cad57cc12d4d5082ec626f7f0ea5f651/packages/agent-core-v2/src/agent/profile/context.ts#L242-L242",
         "official": true,
         "accessed_at": "2026-11-07"
       },
@@ -202,6 +207,11 @@
         "by": "advisor",
         "at": "2026-11-07",
         "how": "official_code"
+      },
+      "default_source": {
+        "url": "https://github.com/MoonshotAI/kimi-code/blob/eb2035f3cad57cc12d4d5082ec626f7f0ea5f651/packages/agent-core-v2/src/agent/profile/context.ts#L186-L196",
+        "official": true,
+        "accessed_at": "2026-11-07"
       }
     },
     {
@@ -209,7 +219,7 @@
       "owner": "shared",
       "load": "default",
       "source": {
-        "url": "https://github.com/MoonshotAI/kimi-code/blob/eb2035f3cad57cc12d4d5082ec626f7f0ea5f651/packages/agent-core-v2/src/features/skill/catalog/skillRoots.ts#L10-L13",
+        "url": "https://github.com/MoonshotAI/kimi-code/blob/eb2035f3cad57cc12d4d5082ec626f7f0ea5f651/packages/agent-core-v2/src/features/skill/catalog/skillRoots.ts#L11-L11",
         "official": true,
         "accessed_at": "2026-11-07"
       },
@@ -217,6 +227,11 @@
         "by": "advisor",
         "at": "2026-11-07",
         "how": "official_code"
+      },
+      "default_source": {
+        "url": "https://github.com/MoonshotAI/kimi-code/blob/eb2035f3cad57cc12d4d5082ec626f7f0ea5f651/packages/agent-core-v2/src/features/skill/catalog/skillRoots.ts#L29-L39",
+        "official": true,
+        "accessed_at": "2026-11-07"
       }
     },
     {
@@ -224,7 +239,7 @@
       "owner": "shared",
       "load": "default",
       "source": {
-        "url": "https://github.com/MoonshotAI/kimi-code/blob/eb2035f3cad57cc12d4d5082ec626f7f0ea5f651/packages/agent-core-v2/src/features/skill/catalog/skillRoots.ts#L10-L13",
+        "url": "https://github.com/MoonshotAI/kimi-code/blob/eb2035f3cad57cc12d4d5082ec626f7f0ea5f651/packages/agent-core-v2/src/features/skill/catalog/skillRoots.ts#L13-L13",
         "official": true,
         "accessed_at": "2026-11-07"
       },
@@ -232,6 +247,11 @@
         "by": "advisor",
         "at": "2026-11-07",
         "how": "official_code"
+      },
+      "default_source": {
+        "url": "https://github.com/MoonshotAI/kimi-code/blob/eb2035f3cad57cc12d4d5082ec626f7f0ea5f651/packages/agent-core-v2/src/features/skill/catalog/skillRoots.ts#L41-L52",
+        "official": true,
+        "accessed_at": "2026-11-07"
       }
     },
     {
@@ -239,14 +259,14 @@
       "owner": "shared",
       "load": "default",
       "source": {
-        "url": "https://github.com/MoonshotAI/kimi-code/blob/eb2035f3cad57cc12d4d5082ec626f7f0ea5f651/docs/en/customization/agents.md#L60-L63",
+        "url": "https://github.com/MoonshotAI/kimi-code/blob/eb2035f3cad57cc12d4d5082ec626f7f0ea5f651/docs/en/customization/agents.md#L60-L64",
         "official": true,
         "accessed_at": "2026-11-07"
       },
       "verified": {
         "by": "advisor",
         "at": "2026-11-07",
-        "how": "official_doc"
+        "how": "official_code"
       }
     },
     {

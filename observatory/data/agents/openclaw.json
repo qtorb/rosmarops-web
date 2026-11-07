@@ -179,7 +179,7 @@
       "owner": "shared",
       "load": "default",
       "source": {
-        "url": "https://github.com/openclaw/openclaw/blob/8333511f3ad54440da1c5c563081049d31bc1eca/src/agents/bootstrap-files.ts#L250-L271",
+        "url": "https://github.com/openclaw/openclaw/blob/8333511f3ad54440da1c5c563081049d31bc1eca/src/agents/workspace-bootstrap-policy.ts#L11-L37",
         "official": true,
         "accessed_at": "2026-11-07"
       },
@@ -187,6 +187,11 @@
         "by": "advisor",
         "at": "2026-11-07",
         "how": "official_code"
+      },
+      "default_source": {
+        "url": "https://docs.openclaw.ai/concepts/agent-workspace",
+        "official": true,
+        "accessed_at": "2026-11-07"
       }
     },
     {

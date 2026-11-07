@@ -70,7 +70,7 @@
     },
     {
       "surface": "skills",
-      "since": "2026-02-25",
+      "since": "2025-12-18",
       "since_basis": "first_mention",
       "source": {
         "url": "https://support.claude.com/en/articles/12138966-release-notes",
@@ -85,17 +85,17 @@
     },
     {
       "surface": "plugins",
-      "since": "2025-06-26",
-      "since_basis": "announced",
+      "since": "2026-02-24",
+      "since_basis": "first_mention",
       "source": {
-        "url": "https://www.anthropic.com/engineering/desktop-extensions",
+        "url": "https://support.claude.com/en/articles/12138966-release-notes",
         "official": true,
         "accessed_at": "2026-11-07"
       },
       "verified": {
         "by": "advisor",
         "at": "2026-11-07",
-        "how": "official_doc"
+        "how": "official_changelog"
       }
     },
     {
@@ -131,7 +131,7 @@
     {
       "surface": "browser",
       "since": "2025-12-18",
-      "since_basis": "announced",
+      "since_basis": "first_mention",
       "source": {
         "url": "https://support.claude.com/en/articles/12138966-release-notes",
         "official": true,
@@ -219,6 +219,11 @@
         "by": "advisor",
         "at": "2026-11-07",
         "how": "official_doc"
+      },
+      "default_source": {
+        "url": "https://code.claude.com/docs/en/desktop-quickstart",
+        "official": true,
+        "accessed_at": "2026-11-07"
       }
     },
     {
@@ -235,6 +240,11 @@
         "by": "advisor",
         "at": "2026-11-07",
         "how": "official_doc"
+      },
+      "default_source": {
+        "url": "https://code.claude.com/docs/en/desktop-quickstart",
+        "official": true,
+        "accessed_at": "2026-11-07"
       }
     },
     {
@@ -251,6 +261,11 @@
         "by": "advisor",
         "at": "2026-11-07",
         "how": "official_doc"
+      },
+      "default_source": {
+        "url": "https://code.claude.com/docs/en/desktop-quickstart",
+        "official": true,
+        "accessed_at": "2026-11-07"
       }
     },
     {
@@ -267,6 +282,11 @@
         "by": "advisor",
         "at": "2026-11-07",
         "how": "official_doc"
+      },
+      "default_source": {
+        "url": "https://code.claude.com/docs/en/desktop-quickstart",
+        "official": true,
+        "accessed_at": "2026-11-07"
       }
     },
     {
@@ -283,6 +303,11 @@
         "by": "advisor",
         "at": "2026-11-07",
         "how": "official_doc"
+      },
+      "default_source": {
+        "url": "https://code.claude.com/docs/en/desktop-quickstart",
+        "official": true,
+        "accessed_at": "2026-11-07"
       }
     },
     {
@@ -291,7 +316,7 @@
       "load": "default",
       "condition": "code_tab_local_sessions",
       "source": {
-        "url": "https://code.claude.com/docs/en/desktop",
+        "url": "https://code.claude.com/docs/en/desktop#use-skills",
         "official": true,
         "accessed_at": "2026-11-07"
       },
@@ -299,6 +324,11 @@
         "by": "advisor",
         "at": "2026-11-07",
         "how": "official_doc"
+      },
+      "default_source": {
+        "url": "https://code.claude.com/docs/en/desktop-quickstart",
+        "official": true,
+        "accessed_at": "2026-11-07"
       }
     }
   ]

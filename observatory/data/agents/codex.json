@@ -229,7 +229,7 @@
       "owner": "shared",
       "load": "default",
       "source": {
-        "url": "https://learn.chatgpt.com/docs/build-skills",
+        "url": "https://learn.chatgpt.com/docs/build-skills#where-codex-loads-local-skills",
         "official": true,
         "accessed_at": "2026-11-07"
       },
@@ -244,7 +244,7 @@
       "owner": "shared",
       "load": "default",
       "source": {
-        "url": "https://learn.chatgpt.com/docs/build-skills",
+        "url": "https://learn.chatgpt.com/docs/build-skills#where-codex-loads-local-skills",
         "official": true,
         "accessed_at": "2026-11-07"
       },
