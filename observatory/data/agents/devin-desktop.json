@@ -48,5 +48,190 @@
       "rosmarops_impact": "none"
     }
   ],
-  "ratings": []
+  "ratings": [],
+  "surfaces": [
+    {
+      "surface": "mcp",
+      "since": "2025-04-02",
+      "since_basis": "first_mention",
+      "source": {
+        "url": "https://docs.devin.ai/desktop/changelog",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    },
+    {
+      "surface": "hooks",
+      "since": "2025-11-13",
+      "since_basis": "announced",
+      "source": {
+        "url": "https://docs.devin.ai/desktop/changelog",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    },
+    {
+      "surface": "skills",
+      "since": "2026-01-13",
+      "since_basis": "announced",
+      "source": {
+        "url": "https://docs.devin.ai/desktop/changelog",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    },
+    {
+      "surface": "plugins",
+      "since": "2026-06-16",
+      "since_basis": "announced",
+      "source": {
+        "url": "https://docs.devin.ai/desktop/changelog",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    },
+    {
+      "surface": "subagents",
+      "since": "2025-10-16",
+      "since_basis": "first_mention",
+      "source": {
+        "url": "https://docs.devin.ai/desktop/changelog",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    },
+    {
+      "surface": "rules_files",
+      "since": "2025-04-07",
+      "since_basis": "first_mention",
+      "source": {
+        "url": "https://docs.devin.ai/desktop/changelog",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    },
+    {
+      "surface": "cloud_execution",
+      "since": "2026-04-15",
+      "since_basis": "announced",
+      "source": {
+        "url": "https://docs.devin.ai/desktop/changelog",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    },
+    {
+      "surface": "permission_modes",
+      "since": "2025-11-13",
+      "since_basis": "first_mention",
+      "source": {
+        "url": "https://docs.devin.ai/desktop/changelog",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    }
+  ],
+  "reads_from": [
+    {
+      "path": "AGENTS.md",
+      "owner": "shared",
+      "load": "default",
+      "source": {
+        "url": "https://docs.devin.ai/pt-BR/desktop/cascade/agents-md.md",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "path": "AGENT.md",
+      "owner": "shared",
+      "load": "default",
+      "condition": "devin_local_agent",
+      "source": {
+        "url": "https://docs.devin.ai/desktop/devin-local/customizations.md",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "path": ".agents/skills",
+      "owner": "shared",
+      "load": "default",
+      "source": {
+        "url": "https://docs.devin.ai/pt-BR/desktop/cascade/skills.md",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "path": "~/.agents/skills",
+      "owner": "shared",
+      "load": "default",
+      "source": {
+        "url": "https://docs.devin.ai/pt-BR/desktop/cascade/skills.md",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    }
+  ]
 }

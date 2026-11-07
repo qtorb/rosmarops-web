@@ -22,5 +22,236 @@
   },
   "versions": [],
   "changes": [],
-  "ratings": []
+  "ratings": [],
+  "surfaces": [
+    {
+      "surface": "mcp",
+      "since": "2026-05-20",
+      "since_basis": "first_mention",
+      "source": {
+        "url": "https://changelog.qoder.cn/cli",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    },
+    {
+      "surface": "hooks",
+      "since": "2026-04-28",
+      "since_basis": "announced",
+      "source": {
+        "url": "https://changelog.qoder.cn/ide",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    },
+    {
+      "surface": "skills",
+      "since": "2026-02-05",
+      "since_basis": "announced",
+      "source": {
+        "url": "https://changelog.qoder.cn/ide",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    },
+    {
+      "surface": "plugins",
+      "since": "2026-03-25",
+      "since_basis": "first_mention",
+      "source": {
+        "url": "https://changelog.qoder.cn/ide",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    },
+    {
+      "surface": "subagents",
+      "since": "2026-02-05",
+      "since_basis": "announced",
+      "source": {
+        "url": "https://changelog.qoder.cn/ide",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    },
+    {
+      "surface": "rules_files",
+      "since": "2026-06-10",
+      "since_basis": "first_mention",
+      "source": {
+        "url": "https://changelog.qoder.cn/ide",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    },
+    {
+      "surface": "browser",
+      "since": "2026-04-28",
+      "since_basis": "announced",
+      "source": {
+        "url": "https://changelog.qoder.cn/ide",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    },
+    {
+      "surface": "computer_use",
+      "since": "2026-06-10",
+      "since_basis": "announced",
+      "source": {
+        "url": "https://changelog.qoder.cn/ide",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    },
+    {
+      "surface": "scheduled_tasks",
+      "since": "2026-05-28",
+      "since_basis": "announced",
+      "source": {
+        "url": "https://changelog.qoder.cn/cli",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    },
+    {
+      "surface": "cloud_execution",
+      "since": "2026-05-20",
+      "since_basis": "announced",
+      "source": {
+        "url": "https://changelog.qoder.cn/cli",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    },
+    {
+      "surface": "permission_modes",
+      "since": "2026-05-29",
+      "since_basis": "first_mention",
+      "source": {
+        "url": "https://changelog.qoder.cn/cli",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    }
+  ],
+  "reads_from": [
+    {
+      "path": "AGENTS.md",
+      "owner": "shared",
+      "load": "default",
+      "source": {
+        "url": "https://docs.qoder.cn/cli/memory.md",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "path": ".mcp.json",
+      "owner": "claude-code",
+      "load": "default",
+      "condition": "server_approval_required",
+      "source": {
+        "url": "https://docs.qoder.cn/cli/mcp-reference.md",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "path": ".agents/skills",
+      "owner": "shared",
+      "load": "default",
+      "source": {
+        "url": "https://changelog.qoder.cn/cli",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    },
+    {
+      "path": ".claude-plugin/plugin.json",
+      "owner": "claude-code",
+      "load": "on_import",
+      "condition": "qoder_plugin_dir_missing",
+      "source": {
+        "url": "https://docs.qoder.cn/cli/plugins-reference.md",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    }
+  ]
 }

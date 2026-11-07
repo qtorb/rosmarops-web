@@ -1,0 +1,229 @@
+{
+  "$comment": "GTM-105. Each path that one agent reads from another agent or from a shared convention, and its owner: an agent file id in observatory/data/agents/, or «shared» for conventions no single agent owns (AGENTS.md, .agents/). reads_from[].path must be one of these, and reads_from[].owner must match (checked in CI).",
+  "paths": [
+    {
+      "path": "AGENTS.md",
+      "owner": "shared"
+    },
+    {
+      "path": "AGENTS.override.md",
+      "owner": "shared"
+    },
+    {
+      "path": "AGENT.md",
+      "owner": "shared"
+    },
+    {
+      "path": "~/.agents/AGENTS.md",
+      "owner": "shared"
+    },
+    {
+      "path": ".agents/skills",
+      "owner": "shared"
+    },
+    {
+      "path": "~/.agents/skills",
+      "owner": "shared"
+    },
+    {
+      "path": "~/.config/agents/skills",
+      "owner": "shared"
+    },
+    {
+      "path": ".agents/agents",
+      "owner": "shared"
+    },
+    {
+      "path": "~/.agents/agents",
+      "owner": "shared"
+    },
+    {
+      "path": ".agents/plugins",
+      "owner": "shared"
+    },
+    {
+      "path": "~/.agents/plugins",
+      "owner": "shared"
+    },
+    {
+      "path": ".agents/.mcp.json",
+      "owner": "shared"
+    },
+    {
+      "path": "~/.agents/.mcp.json",
+      "owner": "shared"
+    },
+    {
+      "path": "CLAUDE.md",
+      "owner": "claude-code"
+    },
+    {
+      "path": "CLAUDE.local.md",
+      "owner": "claude-code"
+    },
+    {
+      "path": ".claude/CLAUDE.md",
+      "owner": "claude-code"
+    },
+    {
+      "path": "~/.claude/CLAUDE.md",
+      "owner": "claude-code"
+    },
+    {
+      "path": ".claude/rules",
+      "owner": "claude-code"
+    },
+    {
+      "path": "~/.claude/rules",
+      "owner": "claude-code"
+    },
+    {
+      "path": ".claude/skills",
+      "owner": "claude-code"
+    },
+    {
+      "path": "~/.claude/skills",
+      "owner": "claude-code"
+    },
+    {
+      "path": ".claude/agents",
+      "owner": "claude-code"
+    },
+    {
+      "path": "~/.claude/agents",
+      "owner": "claude-code"
+    },
+    {
+      "path": ".claude/commands",
+      "owner": "claude-code"
+    },
+    {
+      "path": ".claude/settings.json",
+      "owner": "claude-code"
+    },
+    {
+      "path": ".claude/settings.local.json",
+      "owner": "claude-code"
+    },
+    {
+      "path": "~/.claude/settings.json",
+      "owner": "claude-code"
+    },
+    {
+      "path": "~/.claude.json",
+      "owner": "claude-code"
+    },
+    {
+      "path": ".mcp.json",
+      "owner": "claude-code"
+    },
+    {
+      "path": "~/.claude/plugins",
+      "owner": "claude-code"
+    },
+    {
+      "path": ".claude-plugin/marketplace.json",
+      "owner": "claude-code"
+    },
+    {
+      "path": ".claude-plugin/plugin.json",
+      "owner": "claude-code"
+    },
+    {
+      "path": "claude_desktop_config.json",
+      "owner": "claude-desktop"
+    },
+    {
+      "path": ".cursorrules",
+      "owner": "cursor"
+    },
+    {
+      "path": ".cursor/rules",
+      "owner": "cursor"
+    },
+    {
+      "path": "~/.cursor/rules",
+      "owner": "cursor"
+    },
+    {
+      "path": ".cursor/skills",
+      "owner": "cursor"
+    },
+    {
+      "path": ".cursor/agents",
+      "owner": "cursor"
+    },
+    {
+      "path": ".cursor/mcp.json",
+      "owner": "cursor"
+    },
+    {
+      "path": "~/.cursor/mcp.json",
+      "owner": "cursor"
+    },
+    {
+      "path": ".cursor/hooks.json",
+      "owner": "cursor"
+    },
+    {
+      "path": "~/.cursor/hooks.json",
+      "owner": "cursor"
+    },
+    {
+      "path": "GEMINI.md",
+      "owner": "gemini-cli"
+    },
+    {
+      "path": "~/.gemini/GEMINI.md",
+      "owner": "gemini-cli"
+    },
+    {
+      "path": "gemini-extension.json",
+      "owner": "gemini-cli"
+    },
+    {
+      "path": ".codex/skills",
+      "owner": "codex"
+    },
+    {
+      "path": "~/.codex/skills",
+      "owner": "codex"
+    },
+    {
+      "path": ".codex/agents",
+      "owner": "codex"
+    },
+    {
+      "path": "~/.codex/agents",
+      "owner": "codex"
+    },
+    {
+      "path": "~/.codex/config.toml",
+      "owner": "codex"
+    },
+    {
+      "path": ".codex/config.toml",
+      "owner": "codex"
+    },
+    {
+      "path": ".windsurfrules",
+      "owner": "devin-desktop"
+    },
+    {
+      "path": "opencode.json",
+      "owner": "opencode"
+    },
+    {
+      "path": ".clinerules",
+      "owner": "cline"
+    },
+    {
+      "path": ".github/copilot-instructions.md",
+      "owner": "github-copilot"
+    },
+    {
+      "path": ".github/skills",
+      "owner": "github-copilot"
+    }
+  ]
+}

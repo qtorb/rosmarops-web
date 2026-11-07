@@ -20,5 +20,270 @@
   },
   "versions": [],
   "changes": [],
-  "ratings": []
+  "ratings": [],
+  "surfaces": [
+    {
+      "surface": "mcp",
+      "since": "2024-11-25",
+      "since_basis": "announced",
+      "source": {
+        "url": "https://www.anthropic.com/news/model-context-protocol",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "surface": "hooks",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://code.claude.com/docs/en/desktop#shared-configuration",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "surface": "skills",
+      "since": "2026-02-25",
+      "since_basis": "first_mention",
+      "source": {
+        "url": "https://support.claude.com/en/articles/12138966-release-notes",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    },
+    {
+      "surface": "plugins",
+      "since": "2025-06-26",
+      "since_basis": "announced",
+      "source": {
+        "url": "https://www.anthropic.com/engineering/desktop-extensions",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "surface": "subagents",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://support.claude.com/en/articles/13345190-getting-started-with-cowork",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "surface": "rules_files",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://code.claude.com/docs/en/desktop#shared-configuration",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "surface": "browser",
+      "since": "2025-12-18",
+      "since_basis": "announced",
+      "source": {
+        "url": "https://support.claude.com/en/articles/12138966-release-notes",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    },
+    {
+      "surface": "computer_use",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://support.claude.com/en/articles/14128542",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "surface": "scheduled_tasks",
+      "since": "2026-02-25",
+      "since_basis": "announced",
+      "source": {
+        "url": "https://support.claude.com/en/articles/12138966-release-notes",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    },
+    {
+      "surface": "cloud_execution",
+      "since": "2026-07-07",
+      "since_basis": "announced",
+      "source": {
+        "url": "https://support.claude.com/en/articles/12138966-release-notes",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    },
+    {
+      "surface": "permission_modes",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://support.claude.com/en/articles/13345190-getting-started-with-cowork",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    }
+  ],
+  "reads_from": [
+    {
+      "path": "CLAUDE.md",
+      "owner": "claude-code",
+      "load": "default",
+      "condition": "code_tab_local_sessions",
+      "source": {
+        "url": "https://code.claude.com/docs/en/desktop#shared-configuration",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "path": "CLAUDE.local.md",
+      "owner": "claude-code",
+      "load": "default",
+      "condition": "code_tab_local_sessions",
+      "source": {
+        "url": "https://code.claude.com/docs/en/desktop#shared-configuration",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "path": "~/.claude.json",
+      "owner": "claude-code",
+      "load": "default",
+      "condition": "code_tab_local_sessions",
+      "source": {
+        "url": "https://code.claude.com/docs/en/desktop#mcp-servers-from-the-claude-desktop-chat-app",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "path": ".mcp.json",
+      "owner": "claude-code",
+      "load": "default",
+      "condition": "code_tab_local_sessions",
+      "source": {
+        "url": "https://code.claude.com/docs/en/desktop#mcp-servers-from-the-claude-desktop-chat-app",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "path": "~/.claude/settings.json",
+      "owner": "claude-code",
+      "load": "default",
+      "condition": "code_tab_local_sessions",
+      "source": {
+        "url": "https://code.claude.com/docs/en/desktop#shared-configuration",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "path": "~/.claude/skills",
+      "owner": "claude-code",
+      "load": "default",
+      "condition": "code_tab_local_sessions",
+      "source": {
+        "url": "https://code.claude.com/docs/en/desktop",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    }
+  ]
 }
