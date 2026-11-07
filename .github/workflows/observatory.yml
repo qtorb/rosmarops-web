@@ -3,9 +3,12 @@ name: Observatory (data, generator and output checks)
 on:
   push:
     branches: [observatory, main]
-    paths: ["observatory/**", "site/assets/observatory/**", "site/observatory/**", "site/es/observatorio/**", "site/ca/observatori/**", "wp/daily/**", "wp/mu-plugins/**", "wp/tests/**", ".github/workflows/observatory.yml"]
+    paths: ["observatory/**", "wp/pages/**", "site/index.html", "site/*/index.html", "site/methodology/**", "site/faq/**", "site/*/metodologia/**",
+            "site/es/preguntas-frecuentes/**", "site/ca/preguntes-frequents/**", "site/llms.txt", "site/sample-report/**", "site/assets/observatory/**", "site/observatory/**", "site/es/observatorio/**", "site/ca/observatori/**", "wp/daily/**", "wp/mu-plugins/**", "wp/tests/**", ".github/workflows/observatory.yml"]
   pull_request:
-    paths: ["observatory/**", "wp/daily/**", "wp/mu-plugins/**", "wp/tests/**", ".github/workflows/observatory.yml"]
+    paths: ["observatory/**", "wp/daily/**", "wp/mu-plugins/**", "wp/tests/**", "wp/pages/**", "site/index.html", "site/*/index.html",
+            "site/methodology/**", "site/faq/**", "site/*/metodologia/**", "site/es/preguntas-frecuentes/**", "site/ca/preguntes-frequents/**",
+            "site/llms.txt", "site/sample-report/**", ".github/workflows/observatory.yml"]
   workflow_dispatch:
 
 permissions:
@@ -64,13 +67,18 @@ jobs:
       - name: Generated pages are up to date
         run: |
           python observatory/build.py
-          git status --porcelain -- site/observatory site/es/observatorio site/ca/observatori site/sitemap-pages.xml wp/daily
-          test -z "$(git status --porcelain -- site/observatory site/es/observatorio site/ca/observatori site/sitemap-pages.xml wp/daily)" || { echo "::error::site/ or wp/daily/ is out of date: run python3 observatory/build.py and commit"; exit 1; }
+          git status --porcelain -- site wp/daily wp/pages
+          test -z "$(git status --porcelain -- site wp/daily wp/pages)" || { echo "::error::site/, wp/daily/ or wp/pages/ is out of date: run python3 observatory/build.py and commit"; exit 1; }
+
+      - name: Agent lists agree with the agent files and the program's latest release (GTM-99)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python observatory/agent_lists.py check
 
       - name: Daily synopsis checks and mu-plugin (GTM-23)
         run: |
           set -eu
-          python -m unittest observatory/tests/test_daily_check.py observatory/tests/test_daily_alert.py observatory/tests/test_daily_raw.py observatory/tests/test_github_stats.py observatory/tests/test_collect.py observatory/tests/test_rules.py
+          python -m unittest observatory/tests/test_daily_check.py observatory/tests/test_daily_alert.py observatory/tests/test_daily_raw.py observatory/tests/test_github_stats.py observatory/tests/test_collect.py observatory/tests/test_rules.py observatory/tests/test_agent_lists.py
           if ls observatory/daily/*.json >/dev/null 2>&1; then python observatory/daily_check.py observatory/daily/*.json; else echo "no daily files yet"; fi
           php -l wp/mu-plugins/rosmarops-daily.php
           python -m unittest wp/tests/test_daily.py

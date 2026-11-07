@@ -1,10 +1,10 @@
 # RosmarOps
 
-> RosmarOps reads the configuration of the AI coding agents on your Windows, Linux and macOS (preview) computer (today Claude Code, Cursor, Hermes Agent, Codex and Grok Build) and draws an exposure map: what each agent can read and change, which keys it can reach, and whether one agent can change another agent's configuration or instructions.
+> RosmarOps reads the configuration of the AI coding agents on your Windows, Linux and macOS (preview) computer (today <!-- agents:scored -->Claude Code, Cursor, Hermes Agent, Codex and Grok Build<!-- /agents:scored -->) and draws an exposure map: what each agent can read and change, which keys it can reach, and whether one agent can change another agent's configuration or instructions.
 
 Everything is computed on your computer. It sends nothing unless you approve it first, and doesn't change anything on your machine: it only writes its own reports to its own folder. If you choose to paste its export into an AI in the cloud, that text leaves your computer because you paste it.
 
-Today it evaluates Claude Code, Cursor, Hermes Agent, Codex and Grok Build on Windows and Linux, and on macOS in preview. It detects Cline, GitHub Copilot, Continue, Antigravity and Claude Desktop, but doesn't score them yet. Download (Windows): https://github.com/qtorb/rosmarops/releases/latest. Download (Linux): https://rosmarops.com/linux/. Download (macOS, preview): https://rosmarops.com/macos/. How to check it's authentic: https://github.com/qtorb/rosmarops#check-the-download. Source code: https://github.com/qtorb/rosmarops (AGPL-3.0).
+Today it evaluates <!-- agents:scored -->Claude Code, Cursor, Hermes Agent, Codex and Grok Build<!-- /agents:scored --> on Windows and Linux, and on macOS in preview. It detects <!-- agents:detected -->Cline, Continue, GitHub Copilot, Antigravity, Claude Desktop and n8n<!-- /agents:detected -->, but doesn't score them yet. Download (Windows): https://github.com/qtorb/rosmarops/releases/latest. Download (Linux): https://rosmarops.com/linux/. Download (macOS, preview): https://rosmarops.com/macos/. How to check it's authentic: https://github.com/qtorb/rosmarops#check-the-download. Source code: https://github.com/qtorb/rosmarops (AGPL-3.0).
 
 Can I use it on a work computer? Yes, but tell your security team first. To look for keys, RosmarOps reads the files in your code projects, and some security systems flag many file reads in a short time. It does not open images, documents or other binary files, and it never changes or sends anything without your permission.
 

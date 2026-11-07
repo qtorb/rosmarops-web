@@ -42,6 +42,7 @@ jobs:
           ALERT_DIR: ${{ runner.temp }}/alerts
           EVENT: ${{ github.event_name }}
           BEFORE: ${{ github.event.before }}
+          GH_TOKEN: ${{ github.token }}
         run: |
           set -eu
           if [ "$EVENT" = push ]; then
@@ -62,6 +63,11 @@ jobs:
             fi
             r=$(python observatory/daily_alert.py repeat "$today")
             n=$((n + r))
+            # GTM-99: the web must not contradict the agent files or the program's latest release (FOCO line).
+            python observatory/agent_lists.py check > "$RUNNER_TEMP/agent-lists.txt" 2>&1 || true
+            cat "$RUNNER_TEMP/agent-lists.txt"
+            c=$(python observatory/daily_alert.py consistency "$today" "$RUNNER_TEMP/agent-lists.txt")
+            n=$((n + c))
           fi
           echo "alerts: $n"
           echo "count=$n" >> "$GITHUB_OUTPUT"
