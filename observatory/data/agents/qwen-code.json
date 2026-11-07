@@ -20,5 +20,332 @@
   },
   "versions": [],
   "changes": [],
-  "ratings": []
+  "ratings": [],
+  "surfaces": [
+    {
+      "surface": "mcp",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://github.com/QwenLM/qwen-code/blob/ced03aef5d80356d570d04990677f26a37d61a0f/docs/users/features/mcp.md#L1-L3",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "surface": "hooks",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://github.com/QwenLM/qwen-code/blob/ced03aef5d80356d570d04990677f26a37d61a0f/docs/users/features/hooks.md#L1-L5",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "surface": "skills",
+      "since": "2025-12-26",
+      "since_basis": "announced",
+      "source": {
+        "url": "https://github.com/QwenLM/qwen-code/blob/ced03aef5d80356d570d04990677f26a37d61a0f/CHANGELOG.md#L3897-L3918",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    },
+    {
+      "surface": "plugins",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://github.com/QwenLM/qwen-code/blob/ced03aef5d80356d570d04990677f26a37d61a0f/docs/users/extension/introduction.md#L1-L5",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "surface": "subagents",
+      "since": "2025-09-12",
+      "since_basis": "announced",
+      "source": {
+        "url": "https://github.com/QwenLM/qwen-code/blob/ced03aef5d80356d570d04990677f26a37d61a0f/CHANGELOG.md#L4299-L4329",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    },
+    {
+      "surface": "rules_files",
+      "since": "2025-08-12",
+      "since_basis": "first_mention",
+      "source": {
+        "url": "https://github.com/QwenLM/qwen-code/blob/ced03aef5d80356d570d04990677f26a37d61a0f/CHANGELOG.md#L4418-L4433",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    },
+    {
+      "surface": "browser",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://github.com/QwenLM/qwen-code/blob/ced03aef5d80356d570d04990677f26a37d61a0f/docs/users/features/browser-use.md#L1-L4",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "surface": "computer_use",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://github.com/QwenLM/qwen-code/blob/ced03aef5d80356d570d04990677f26a37d61a0f/docs/users/features/computer-use.md#L1-L3",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "surface": "scheduled_tasks",
+      "since": "2026-04-03",
+      "since_basis": "announced",
+      "source": {
+        "url": "https://github.com/QwenLM/qwen-code/blob/ced03aef5d80356d570d04990677f26a37d61a0f/CHANGELOG.md#L3113-L3121",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    },
+    {
+      "surface": "permission_modes",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://github.com/QwenLM/qwen-code/blob/ced03aef5d80356d570d04990677f26a37d61a0f/docs/users/features/approval-mode.md#L1-L3",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    }
+  ],
+  "reads_from": [
+    {
+      "path": "AGENTS.md",
+      "owner": "shared",
+      "load": "default",
+      "source": {
+        "url": "https://github.com/QwenLM/qwen-code/blob/ced03aef5d80356d570d04990677f26a37d61a0f/packages/core/src/utils/memory-constants.ts#L30-L37",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_code"
+      }
+    },
+    {
+      "path": "~/.agents/skills",
+      "owner": "shared",
+      "load": "default",
+      "source": {
+        "url": "https://github.com/QwenLM/qwen-code/blob/ced03aef5d80356d570d04990677f26a37d61a0f/docs/users/features/skills.md#L78-L78",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "path": ".agents/skills",
+      "owner": "shared",
+      "load": "default",
+      "source": {
+        "url": "https://github.com/QwenLM/qwen-code/blob/ced03aef5d80356d570d04990677f26a37d61a0f/docs/users/features/skills.md#L94-L94",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "path": ".mcp.json",
+      "owner": "claude-code",
+      "load": "default",
+      "condition": "server_approval_required",
+      "source": {
+        "url": "https://github.com/QwenLM/qwen-code/blob/ced03aef5d80356d570d04990677f26a37d61a0f/packages/cli/src/config/mcpJson.ts#L17-L26",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_code"
+      }
+    },
+    {
+      "path": "~/.claude/skills",
+      "owner": "claude-code",
+      "load": "if_configured",
+      "condition": "skills_directories_setting",
+      "source": {
+        "url": "https://github.com/QwenLM/qwen-code/blob/ced03aef5d80356d570d04990677f26a37d61a0f/docs/users/features/skills.md#L283-L283",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "path": "~/.claude.json",
+      "owner": "claude-code",
+      "load": "on_import",
+      "condition": "import_config_command",
+      "source": {
+        "url": "https://github.com/QwenLM/qwen-code/blob/ced03aef5d80356d570d04990677f26a37d61a0f/packages/cli/src/config/claudeMcpImport.ts#L178-L180",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_code"
+      }
+    },
+    {
+      "path": ".claude/settings.json",
+      "owner": "claude-code",
+      "load": "on_import",
+      "condition": "import_config_command",
+      "source": {
+        "url": "https://github.com/QwenLM/qwen-code/blob/ced03aef5d80356d570d04990677f26a37d61a0f/packages/cli/src/config/claudeMcpImport.ts#L315-L320",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_code"
+      }
+    },
+    {
+      "path": "~/.claude/settings.json",
+      "owner": "claude-code",
+      "load": "on_import",
+      "condition": "import_config_command",
+      "source": {
+        "url": "https://github.com/QwenLM/qwen-code/blob/ced03aef5d80356d570d04990677f26a37d61a0f/packages/cli/src/config/claudeMcpImport.ts#L323-L329",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_code"
+      }
+    },
+    {
+      "path": ".claude-plugin/marketplace.json",
+      "owner": "claude-code",
+      "load": "on_import",
+      "condition": "extension_install",
+      "source": {
+        "url": "https://github.com/QwenLM/qwen-code/blob/ced03aef5d80356d570d04990677f26a37d61a0f/packages/core/src/extension/claude-converter.ts#L470-L475",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_code"
+      }
+    },
+    {
+      "path": ".claude-plugin/plugin.json",
+      "owner": "claude-code",
+      "load": "on_import",
+      "condition": "extension_install",
+      "source": {
+        "url": "https://github.com/QwenLM/qwen-code/blob/ced03aef5d80356d570d04990677f26a37d61a0f/packages/core/src/extension/claude-converter.ts#L520-L528",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_code"
+      }
+    },
+    {
+      "path": "gemini-extension.json",
+      "owner": "gemini-cli",
+      "load": "on_import",
+      "condition": "extension_install",
+      "source": {
+        "url": "https://github.com/QwenLM/qwen-code/blob/ced03aef5d80356d570d04990677f26a37d61a0f/packages/core/src/extension/gemini-converter.ts#L38-L38",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_code"
+      }
+    }
+  ]
 }

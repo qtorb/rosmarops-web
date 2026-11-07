@@ -30,5 +30,175 @@
     }
   ],
   "changes": [],
-  "ratings": []
+  "ratings": [],
+  "surfaces": [
+    {
+      "surface": "mcp",
+      "since": "2025-09-01",
+      "since_basis": "first_mention",
+      "source": {
+        "url": "https://geminicli.com/docs/changelogs/#announcements-v040---2025-09-01",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    },
+    {
+      "surface": "hooks",
+      "since": "2026-01-14",
+      "since_basis": "first_mention",
+      "source": {
+        "url": "https://geminicli.com/docs/changelogs/#announcements-v0240---2026-01-14",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    },
+    {
+      "surface": "skills",
+      "since": "2026-01-07",
+      "since_basis": "announced",
+      "source": {
+        "url": "https://geminicli.com/docs/changelogs/#announcements-v0230---2026-01-07",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    },
+    {
+      "surface": "plugins",
+      "since": "2025-09-01",
+      "since_basis": "first_mention",
+      "source": {
+        "url": "https://geminicli.com/docs/changelogs/#announcements-v040---2025-09-01",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    },
+    {
+      "surface": "subagents",
+      "since": "2025-10-27",
+      "since_basis": "first_mention",
+      "source": {
+        "url": "https://geminicli.com/docs/changelogs/#announcements-v0120---2025-10-27",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    },
+    {
+      "surface": "rules_files",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://geminicli.com/docs/cli/gemini-md/",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "surface": "browser",
+      "since": "2026-02-27",
+      "since_basis": "announced",
+      "source": {
+        "url": "https://geminicli.com/docs/changelogs/#announcements-v0310---2026-02-27",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    },
+    {
+      "surface": "permission_modes",
+      "since": "2025-09-15",
+      "since_basis": "first_mention",
+      "source": {
+        "url": "https://geminicli.com/docs/changelogs/#announcements-v060---2025-09-15",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    }
+  ],
+  "reads_from": [
+    {
+      "path": "~/.agents/skills",
+      "owner": "shared",
+      "load": "default",
+      "source": {
+        "url": "https://github.com/google-gemini/gemini-cli/blob/62bab5b232c15b925d31e655ce844ab939c882b7/packages/core/src/skills/skillManager.ts#L75-L79",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_code"
+      }
+    },
+    {
+      "path": ".agents/skills",
+      "owner": "shared",
+      "load": "if_trusted",
+      "source": {
+        "url": "https://github.com/google-gemini/gemini-cli/blob/62bab5b232c15b925d31e655ce844ab939c882b7/packages/core/src/skills/skillManager.ts#L81-L98",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_code"
+      }
+    },
+    {
+      "path": "AGENTS.md",
+      "owner": "shared",
+      "load": "if_configured",
+      "condition": "context_filename",
+      "source": {
+        "url": "https://geminicli.com/docs/cli/gemini-md/",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    }
+  ]
 }

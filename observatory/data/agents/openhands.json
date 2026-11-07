@@ -22,5 +22,356 @@
   },
   "versions": [],
   "changes": [],
-  "ratings": []
+  "ratings": [],
+  "surfaces": [
+    {
+      "surface": "mcp",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://docs.openhands.dev/openhands/usage/settings/mcp-settings",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "surface": "hooks",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://docs.openhands.dev/openhands/usage/customization/hooks",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "surface": "skills",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://docs.openhands.dev/overview/skills",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "surface": "plugins",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://docs.openhands.dev/overview/plugins",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "surface": "subagents",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://docs.openhands.dev/sdk/guides/agent-file-based",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "surface": "rules_files",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://docs.openhands.dev/overview/skills",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "surface": "browser",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://docs.openhands.dev/sdk/guides/agent-browser-use",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "surface": "scheduled_tasks",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://docs.openhands.dev/openhands/usage/automations/overview",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "surface": "cloud_execution",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://docs.openhands.dev/openhands/usage/cloud/openhands-cloud",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    },
+    {
+      "surface": "permission_modes",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://docs.openhands.dev/sdk/guides/security",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    }
+  ],
+  "reads_from": [
+    {
+      "path": "AGENTS.md",
+      "owner": "shared",
+      "load": "default",
+      "source": {
+        "url": "https://github.com/OpenHands/software-agent-sdk/blob/20ddae0e1551cbecdde36d8cdfd69d47728a5a9d/openhands-sdk/openhands/sdk/skills/skill.py#L347-L353",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_code"
+      }
+    },
+    {
+      "path": "AGENT.md",
+      "owner": "shared",
+      "load": "default",
+      "source": {
+        "url": "https://github.com/OpenHands/software-agent-sdk/blob/20ddae0e1551cbecdde36d8cdfd69d47728a5a9d/openhands-sdk/openhands/sdk/skills/skill.py#L347-L353",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_code"
+      }
+    },
+    {
+      "path": "CLAUDE.md",
+      "owner": "claude-code",
+      "load": "default",
+      "source": {
+        "url": "https://github.com/OpenHands/software-agent-sdk/blob/20ddae0e1551cbecdde36d8cdfd69d47728a5a9d/openhands-sdk/openhands/sdk/skills/skill.py#L347-L353",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_code"
+      }
+    },
+    {
+      "path": "GEMINI.md",
+      "owner": "gemini-cli",
+      "load": "default",
+      "source": {
+        "url": "https://github.com/OpenHands/software-agent-sdk/blob/20ddae0e1551cbecdde36d8cdfd69d47728a5a9d/openhands-sdk/openhands/sdk/skills/skill.py#L347-L353",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_code"
+      }
+    },
+    {
+      "path": ".cursorrules",
+      "owner": "cursor",
+      "load": "default",
+      "source": {
+        "url": "https://github.com/OpenHands/software-agent-sdk/blob/20ddae0e1551cbecdde36d8cdfd69d47728a5a9d/openhands-sdk/openhands/sdk/skills/skill.py#L347-L353",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_code"
+      }
+    },
+    {
+      "path": ".agents/skills",
+      "owner": "shared",
+      "load": "default",
+      "source": {
+        "url": "https://github.com/OpenHands/software-agent-sdk/blob/20ddae0e1551cbecdde36d8cdfd69d47728a5a9d/openhands-sdk/openhands/sdk/skills/skill.py#L1150-L1157",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_code"
+      }
+    },
+    {
+      "path": "~/.agents/skills",
+      "owner": "shared",
+      "load": "default",
+      "source": {
+        "url": "https://github.com/OpenHands/software-agent-sdk/blob/20ddae0e1551cbecdde36d8cdfd69d47728a5a9d/openhands-sdk/openhands/sdk/skills/skill.py#L952-L957",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_code"
+      }
+    },
+    {
+      "path": ".agents/agents",
+      "owner": "shared",
+      "load": "default",
+      "source": {
+        "url": "https://github.com/OpenHands/software-agent-sdk/blob/20ddae0e1551cbecdde36d8cdfd69d47728a5a9d/openhands-sdk/openhands/sdk/subagent/load.py#L50-L54",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_code"
+      }
+    },
+    {
+      "path": "~/.agents/agents",
+      "owner": "shared",
+      "load": "default",
+      "source": {
+        "url": "https://github.com/OpenHands/software-agent-sdk/blob/20ddae0e1551cbecdde36d8cdfd69d47728a5a9d/openhands-sdk/openhands/sdk/subagent/load.py#L81-L88",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_code"
+      }
+    },
+    {
+      "path": ".agents/plugins",
+      "owner": "shared",
+      "load": "default",
+      "source": {
+        "url": "https://github.com/OpenHands/software-agent-sdk/blob/20ddae0e1551cbecdde36d8cdfd69d47728a5a9d/openhands-sdk/openhands/sdk/plugin/discovery.py#L30-L41",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_code"
+      }
+    },
+    {
+      "path": "~/.agents/plugins",
+      "owner": "shared",
+      "load": "default",
+      "source": {
+        "url": "https://github.com/OpenHands/software-agent-sdk/blob/20ddae0e1551cbecdde36d8cdfd69d47728a5a9d/openhands-sdk/openhands/sdk/plugin/discovery.py#L30-L41",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_code"
+      }
+    },
+    {
+      "path": ".claude-plugin/plugin.json",
+      "owner": "claude-code",
+      "load": "default",
+      "condition": "inside_plugin_dir",
+      "source": {
+        "url": "https://github.com/OpenHands/software-agent-sdk/blob/20ddae0e1551cbecdde36d8cdfd69d47728a5a9d/openhands-sdk/openhands/sdk/plugin/format/claude_code.py#L39-L41",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_code"
+      }
+    },
+    {
+      "path": ".claude-plugin/marketplace.json",
+      "owner": "claude-code",
+      "load": "if_configured",
+      "condition": "marketplace_added",
+      "source": {
+        "url": "https://github.com/OpenHands/software-agent-sdk/blob/20ddae0e1551cbecdde36d8cdfd69d47728a5a9d/openhands-sdk/openhands/sdk/marketplace/types.py#L23-L25",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_code"
+      }
+    }
+  ]
 }

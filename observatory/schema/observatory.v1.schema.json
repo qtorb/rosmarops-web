@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://rosmarops.com/schemas/observatory.v1.schema.json",
-  "title": "RosmarOps observatory, one agent file (v1.7: kinds gains framework and personal_agent, who_decides gains rule, platforms gains python, optional agent.model; v1.6: capability scope other_agents_credentials; v1.5: change category agent_scope; v1.4: optional default_mode.basis and capabilities[].via; v1.3: prose fields are {en, es, ca} objects; v1.2: kinds gains agent_tooling; v1.1: optional default_mode, capabilities and storage)",
+  "title": "RosmarOps observatory, one agent file (v1.8: optional surfaces[] and reads_from[], agent.sources[] and agent.notes[], verified.how gains official_code; v1.7: kinds gains framework and personal_agent, who_decides gains rule, platforms gains python, optional agent.model; v1.6: capability scope other_agents_credentials; v1.5: change category agent_scope; v1.4: optional default_mode.basis and capabilities[].via; v1.3: prose fields are {en, es, ca} objects; v1.2: kinds gains agent_tooling; v1.1: optional default_mode, capabilities and storage)",
   "description": "One file per agent: data/observatory/agents/<id>.json. No user-facing prose beyond short technical sentences; every fact carries its source and date. Never data from users' machines.",
   "type": "object",
   "additionalProperties": false,
@@ -123,6 +123,62 @@
               "$ref": "#/$defs/source"
             }
           }
+        },
+        "sources": {
+          "description": "v1.8 (GTM-106). The official source of a corrected agent field. A change to one of these fields needs an entry for it (checked in CI against the base commit).",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "field",
+              "source",
+              "verified"
+            ],
+            "properties": {
+              "field": {
+                "enum": [
+                  "name",
+                  "vendor",
+                  "kinds",
+                  "platforms",
+                  "local_footprint"
+                ]
+              },
+              "source": {
+                "$ref": "#/$defs/source"
+              },
+              "verified": {
+                "$ref": "#/$defs/verified"
+              }
+            }
+          }
+        },
+        "notes": {
+          "description": "v1.8 (GTM-106). Facts about the agent that no other field holds, as stable codes with their source. Not shown on the web until their texts are signed.",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "code",
+              "source",
+              "verified"
+            ],
+            "properties": {
+              "code": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_]*$",
+                "maxLength": 60
+              },
+              "source": {
+                "$ref": "#/$defs/source"
+              },
+              "verified": {
+                "$ref": "#/$defs/verified"
+              }
+            }
+          }
         }
       }
     },
@@ -228,7 +284,8 @@
                 "enum": [
                   "official_doc",
                   "official_changelog",
-                  "lab_observation"
+                  "lab_observation",
+                  "official_code"
                 ]
               }
             }
@@ -522,6 +579,103 @@
           }
         }
       }
+    },
+    "surfaces": {
+      "description": "v1.8 (GTM-105). Surfaces the agent has, each with its official source. A surface without an entry is «not verified», never «absent». One entry per surface (checked in CI).",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "surface",
+          "since",
+          "since_basis",
+          "source",
+          "verified"
+        ],
+        "properties": {
+          "surface": {
+            "enum": [
+              "mcp",
+              "hooks",
+              "skills",
+              "plugins",
+              "subagents",
+              "rules_files",
+              "browser",
+              "computer_use",
+              "scheduled_tasks",
+              "cloud_execution",
+              "permission_modes"
+            ]
+          },
+          "since": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date"
+          },
+          "since_basis": {
+            "enum": [
+              "announced",
+              "first_mention",
+              null
+            ]
+          },
+          "source": {
+            "$ref": "#/$defs/source"
+          },
+          "verified": {
+            "$ref": "#/$defs/verified"
+          }
+        }
+      }
+    },
+    "reads_from": {
+      "description": "v1.8 (GTM-105). Files of another agent, or of a shared convention, that this agent reads or loads. owner: an agent file id or «shared» (checked against observatory/data/shared-files.json in CI). condition: a code, not prose.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "path",
+          "owner",
+          "load",
+          "source",
+          "verified"
+        ],
+        "properties": {
+          "path": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 120
+          },
+          "owner": {
+            "type": "string",
+            "pattern": "^(shared|[a-z0-9][a-z0-9-]{1,40})$"
+          },
+          "load": {
+            "enum": [
+              "default",
+              "if_trusted",
+              "if_configured",
+              "on_import"
+            ]
+          },
+          "condition": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$",
+            "maxLength": 60
+          },
+          "source": {
+            "$ref": "#/$defs/source"
+          },
+          "verified": {
+            "$ref": "#/$defs/verified"
+          }
+        }
+      }
     }
   },
   "$defs": {
@@ -582,6 +736,34 @@
         }
       },
       "description": "Short prose. EN is the source; ES and CA are translations signed by Albert. A page is published only when every text on it has all three."
+    },
+    "verified": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "by",
+        "at",
+        "how"
+      ],
+      "properties": {
+        "by": {
+          "enum": [
+            "advisor",
+            "writer"
+          ]
+        },
+        "at": {
+          "type": "string",
+          "format": "date"
+        },
+        "how": {
+          "enum": [
+            "official_doc",
+            "official_changelog",
+            "official_code"
+          ]
+        }
+      }
     }
   }
 }

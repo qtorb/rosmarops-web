@@ -20,5 +20,127 @@
   },
   "versions": [],
   "changes": [],
-  "ratings": []
+  "ratings": [],
+  "surfaces": [
+    {
+      "surface": "mcp",
+      "since": "2025-05-22",
+      "since_basis": "first_mention",
+      "source": {
+        "url": "https://github.com/crewAIInc/crewAI/blob/73f48320dbe6e2dc7a9bc54fefc6a13637b9485c/docs/edge/en/changelog.mdx#L4374-L4398",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    },
+    {
+      "surface": "hooks",
+      "since": "2025-11-07",
+      "since_basis": "announced",
+      "source": {
+        "url": "https://github.com/crewAIInc/crewAI/blob/73f48320dbe6e2dc7a9bc54fefc6a13637b9485c/docs/edge/en/changelog.mdx#L3455-L3466",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    },
+    {
+      "surface": "skills",
+      "since": "2026-03-25",
+      "since_basis": "announced",
+      "source": {
+        "url": "https://github.com/crewAIInc/crewAI/blob/73f48320dbe6e2dc7a9bc54fefc6a13637b9485c/docs/edge/en/changelog.mdx#L2827-L2839",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    },
+    {
+      "surface": "plugins",
+      "since": "2024-10-11",
+      "since_basis": "first_mention",
+      "source": {
+        "url": "https://github.com/crewAIInc/crewAI/blob/73f48320dbe6e2dc7a9bc54fefc6a13637b9485c/docs/edge/en/changelog.mdx#L4901-L4910",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    },
+    {
+      "surface": "subagents",
+      "since": "2024-02-04",
+      "since_basis": "announced",
+      "source": {
+        "url": "https://github.com/crewAIInc/crewAI/blob/73f48320dbe6e2dc7a9bc54fefc6a13637b9485c/docs/edge/en/changelog.mdx#L5537-L5546",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    },
+    {
+      "surface": "browser",
+      "since": "2025-05-22",
+      "since_basis": "first_mention",
+      "source": {
+        "url": "https://github.com/crewAIInc/crewAI/blob/73f48320dbe6e2dc7a9bc54fefc6a13637b9485c/docs/edge/en/changelog.mdx#L4374-L4397",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    },
+    {
+      "surface": "cloud_execution",
+      "since": "2024-09-13",
+      "since_basis": "announced",
+      "source": {
+        "url": "https://github.com/crewAIInc/crewAI/blob/73f48320dbe6e2dc7a9bc54fefc6a13637b9485c/docs/edge/en/changelog.mdx#L5029-L5037",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      }
+    },
+    {
+      "surface": "permission_modes",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://github.com/crewAIInc/crewAI/blob/73f48320dbe6e2dc7a9bc54fefc6a13637b9485c/docs/edge/en/concepts/tasks.mdx#L57-L57",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "advisor",
+        "at": "2026-11-07",
+        "how": "official_doc"
+      }
+    }
+  ]
 }
