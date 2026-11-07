@@ -98,12 +98,12 @@ jobs:
           php -l wp/mu-plugins/rosmarops-downloads.php
           python -m unittest wp/tests/test_download_sources.py
 
-      - name: Download counter against MySQL (GTM-18, GTM-111)
+      - name: Download and visit counters against MySQL (GTM-18, GTM-111)
         run: |
           set -eu
           sudo systemctl start mysql
           mysql -h 127.0.0.1 -uroot -proot -e "CREATE DATABASE IF NOT EXISTS wptest"
-          DB_USER=root DB_PASS=root DB_NAME=wptest python -m unittest wp/tests/test_downloads.py
+          DB_USER=root DB_PASS=root DB_NAME=wptest python -m unittest wp/tests/test_downloads.py wp/tests/test_visits.py
 
       - name: Publication rules hold in the output
         run: |
