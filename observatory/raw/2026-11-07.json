@@ -1,0 +1,537 @@
+{
+  "date": "2026-11-07",
+  "collected_at": "2026-11-07T05:34:15Z",
+  "sources": [
+    {
+      "id": "F1",
+      "opened": true,
+      "reason": null,
+      "latest": "2.1.319",
+      "latest_date": "2026-11-06",
+      "new": [
+        {
+          "date": "2026-11-06",
+          "version": "2.1.319",
+          "text": "Added Added support for MCP tasks in the terminal: when an MCP server runs a tool call as a task, Claude Code moves it to the background right away and tells Claude the result when it finishes Added the CLAUDE_CODE_DISABLE_MCP_TASK_BACKGROUND environment variable to make Claude Code wait for an MCP task inside its tool call instead of moving it to the background right away Added permissions.denyInsteadOfPrompting setting: a tool call that would wait on a permission prompt is denied and the turn continues, in terminal sessions, subagents and teammates Added /claude-api latency-optimize to find…"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F2",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-06",
+      "new": [
+        {
+          "date": "2026-11-06",
+          "version": null,
+          "text": "· Changelog # Voice Chat with Agents You can now talk with your agents in a realtime voice call. Describe a change out loud, ask what an agent is working on, and hear updates as the work moves forward. Voice chat works in the Agents Window, the IDE, on web, and in Cursor for iOS. ## #Start a call When the agent is idle and the chat input is empty, click the waveform button labeled Start voice chat. It sits where Send usually is, next to the microphone button for dictation. On iOS, you can also say \"Hey Siri, call Cursor\" to start a call with a new agent, and mute or hang up from the Lock Scre…"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F3",
+      "opened": true,
+      "reason": null,
+      "latest": "rust-v0.167.0",
+      "latest_date": "2026-11-05",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F4",
+      "opened": true,
+      "reason": null,
+      "latest": "v1.5.1",
+      "latest_date": "2026-11-05",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F5",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.23.0",
+      "latest_date": "2026-11-05",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F6",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-06",
+      "new": [
+        {
+          "date": "2026-11-06",
+          "version": null,
+          "text": "Nov.06 Improvement Copilot impact dashboard adds chat and VS Code agent usage account management copilot enterprise management tools ... +2 ###"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F7",
+      "opened": true,
+      "reason": null,
+      "latest": "v4.1.26",
+      "latest_date": "2026-10-26",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F8",
+      "opened": true,
+      "reason": null,
+      "latest": "v2.1.0-vscode",
+      "latest_date": "2026-06-19",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F9",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.4.0",
+      "latest_date": "2026-10-27",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F10",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-06",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F11",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.67.0",
+      "latest_date": "2026-11-04",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F12",
+      "opened": true,
+      "reason": null,
+      "latest": "1.0.107",
+      "latest_date": "2026-11-06",
+      "new": [
+        {
+          "date": "2026-11-06",
+          "version": "1.0.107",
+          "text": "- Rex terminals render inline images using Kitty direct placements. - Add /code command to open the current session in VS Code - Add a Fusion tier setting to `copilot config`. - Make /settings open the unified dashboard for all users and add global search across settings and local resources. - Interactive CLI reports program status to supporting terminals, including when attention is needed. - Add opt-in session management tools and @mentions for opted-in local sessions - Add COPILOT_SESSION_CWD for launching and expanding LSP and local MCP server configs - Add GPT-6.1 Terra as a selectable m…"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F13",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-06",
+      "new": [
+        {
+          "date": "2026-11-06",
+          "version": null,
+          "text": "Track spend by cost code with project tags (beta) Eligible Enterprise organizations can now tag projects with the codes they already use, like a charge code or client-matter number, and see most spend in those projects by tag. This feature is available in beta. For more information, see Track spend by cost code with project tags."
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F14",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-06",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F15",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-06",
+      "new": [
+        {
+          "date": "2026-11-06",
+          "version": null,
+          "text": "CVE-2026-123492 [MCP]: SiYuan before 3.8.9 contains a nil pointer dereference vulnerability in privateCacheMiddleware that allows authenticated attackers to crash the kernel by reading nonexistent MCP resources. Attackers with a valid API token can send a resources/read request in an initialized MCP session, causing a panic that terminates the kernel process and interrupts service."
+        },
+        {
+          "date": "2026-11-06",
+          "version": null,
+          "text": "CVE-2026-102610 [MCP]: fast-agent is a framework for building, running, and evaluating AI agents with Model Context Protocol support. Prior to 0.7.21, fast-agent serve uses HTTP transport bound to 0.0.0.0 on port 8000 without authentication, allowing any network client that can reach the /mcp endpoint to invoke the exposed agent tool. When the server is started with --shell, the agent can call the local execute tool implemented by tools/local_shell_executor.py, so an unauthenticated remote client can cause operating-system commands to run as the server user; without --shell, the client can st…"
+        }
+      ],
+      "ids": [
+        "CVE-2026-102610",
+        "CVE-2026-123492"
+      ],
+      "read_with": "curl"
+    },
+    {
+      "id": "F16",
+      "opened": true,
+      "reason": null,
+      "latest": "v2.2.6",
+      "latest_date": "2026-11-06",
+      "new": [
+        {
+          "date": "2026-11-06",
+          "version": "v2.2.6",
+          "text": "### Highlights - **Shared MCP Connections**: Turn on pooling for an MCP server to share one connection across projects with the same setup, so you run fewer processes and start faster. ([#61185](https://github.com/anomalyco/opencode/pull/61185)) - **GUI Plugin Themes and New Slots**: GUI plugins can now add color themes, render or add actions to code blocks, and use native settings and menu components. ([#61485](https://github.com/anomalyco/opencode/pull/61485), [#61533](https://github.com/anomalyco/opencode/pull/61533), [#61527](https://github.com/anomalyco/opencode/pull/61527), [#61509](htt…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F17",
+      "opened": true,
+      "reason": null,
+      "latest": "1.4.121",
+      "latest_date": "2026-11-05",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F18",
+      "opened": true,
+      "reason": null,
+      "latest": "v3.12.17",
+      "latest_date": "2026-11-06",
+      "new": [
+        {
+          "date": "2026-11-06",
+          "version": "v3.12.17",
+          "text": "New In the Agent Command Center, open the ”…” menu in the session header to see its MCP servers, turn one on or off, or re-authenticate. If a local agent rejects the first prompt, Desktop puts the text back in the composer and shows the reason. You can correct it and resend without retyping. Changed The editor now uses VS Code 1.141.2 and Electron 43.8.3, which includes Chromium security fixes. In IDE mode, opening Devin settings opens an editor tab instead of switching modes. Chat diffs use your editor theme’s diff colors. Shell commands and code blocks in the transcript use its syntax highl…"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F19",
+      "opened": true,
+      "reason": null,
+      "latest": "v1.57.0",
+      "latest_date": "2026-10-27",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F20",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-02",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F21",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-08-19",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F22",
+      "opened": true,
+      "reason": null,
+      "latest": "v2026.11.1",
+      "latest_date": "2026-11-05",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F23",
+      "opened": true,
+      "reason": null,
+      "latest": "1.2.20",
+      "latest_date": "2026-11-05",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F24",
+      "opened": true,
+      "reason": null,
+      "latest": "1.15.37",
+      "latest_date": "2026-11-07",
+      "new": [
+        {
+          "date": "2026-11-07",
+          "version": "1.15.37",
+          "text": "## What's Changed ### Features - Add functionality to read spreadsheets for agents in crewai-files. - Scaffold and load standalone agent projects. ### Documentation - Update RagTool description for better parsing by Mintlify. ## Contributors @Vidit-Ostwal, @joaomdmoura, @lorenzejay"
+        },
+        {
+          "date": "2026-11-06",
+          "version": "1.15.36",
+          "text": "# What's Changed ### Features - Add experimental conversational Agent sessions. - Ask for a missing API key when crewai run starts. - Record the error class when crewai run cannot load a project. - Name the apps CrewAI AMP cannot resolve for an agent. ### Bug Fixes - Fix async call execution in the caller's context for sync tools. - Resolve issue with empty value precedence in the run's key check. - Stop a JSON crew run cleanly when its API key is missing. - Call GPT-6 Astra and GPT-6.1 Sol tools through the Responses API. - Handle the sourcedAnswer output shape correctly. - Drop None metadat…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F25",
+      "opened": false,
+      "reason": "new version without notes: python-1.25.0",
+      "latest": "python-1.25.0",
+      "latest_date": "2026-11-06",
+      "new": [
+        {
+          "date": "2026-11-06",
+          "version": "python-1.25.0",
+          "text": "notes not available"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F26",
+      "opened": true,
+      "reason": null,
+      "latest": "2026-07-28",
+      "latest_date": "2026-07-28",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F27",
+      "opened": true,
+      "reason": null,
+      "latest": "1.145",
+      "latest_date": "2026-11-04",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F28",
+      "opened": true,
+      "reason": null,
+      "latest": "2026.11.06",
+      "latest_date": "2026-11-06",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F29",
+      "opened": true,
+      "reason": null,
+      "latest": "1.4.13",
+      "latest_date": "2026-11-07",
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "date_is_detection": true
+    },
+    {
+      "id": "F31",
+      "opened": true,
+      "reason": null,
+      "latest": "n8n@3.1.0",
+      "latest_date": "2026-11-03",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F32",
+      "opened": true,
+      "reason": null,
+      "latest": "v3.4.15",
+      "latest_date": "2026-11-03",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F33",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.26.9",
+      "latest_date": "2026-11-06",
+      "new": [
+        {
+          "date": "2026-11-06",
+          "version": "v0.26.9",
+          "text": "<!-- qwen-release-notes:v2 --> ## Highlights _See the complete change list below._ ## Breaking Changes No known breaking changes. ## Skill installation and activation Skill ZIP uploads, daemon APIs, TypeScript SDK support, bulk activation, and recovery protections make installing and managing Skills more reliable. - Adds PUT /skills/activation and setUserSkillsActivation to enable or disable 1-100 user Skills in one request, with saved preferences and propagation status. ([#16186](https://github.com/QwenLM/qwen-code/pull/16186)) - Prepares Skill installation for larger archives by adding disk…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F34",
+      "opened": true,
+      "reason": null,
+      "latest": "@moonshot-ai/kimi-code@2.5.2",
+      "latest_date": "2026-11-06",
+      "new": [
+        {
+          "date": "2026-11-06",
+          "version": "@moonshot-ai/kimi-code@2.5.2",
+          "text": "### Patch Changes - [#4728](https://github.com/MoonshotAI/kimi-code/pull/4728) [`7b906ea`](https://github.com/MoonshotAI/kimi-code/commit/7b906ea345f40ed44aae3e759f5204d420e58482) Thanks [@sailist](https://github.com/sailist)! - Fix duplicate tool declaration errors in select_tools when MCP tool definitions change. - [#4731](https://github.com/MoonshotAI/kimi-code/pull/4731) [`ef10107`](https://github.com/MoonshotAI/kimi-code/commit/ef10107dd65ec6112f5b6cc836632fb068c02526) Thanks [@liruifengv](https://github.com/liruifengv)! - web: Fix steered messages being incorrectly queued while a sessio…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F35",
+      "opened": true,
+      "reason": null,
+      "latest": "v2.179.3",
+      "latest_date": "2026-11-03",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F36",
+      "opened": true,
+      "reason": null,
+      "latest": "1.1.84",
+      "latest_date": "2026-11-06",
+      "new": [
+        {
+          "date": "2026-11-06",
+          "version": "1.1.84",
+          "text": "CLI 1.1.84 ### 优化会话压缩与 MCP 状态展示 优化压缩交接状态，保留最近响应和工具结果 修复 /mcp 命令界面列表中待认证的服务未正确展示状态问题"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F37",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.86.2",
+      "latest_date": "2026-02-12",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F38",
+      "opened": true,
+      "reason": null,
+      "latest": "v1.37.0",
+      "latest_date": "2026-11-06",
+      "new": [
+        {
+          "date": "2026-11-06",
+          "version": "v1.37.0",
+          "text": "## 1.37.0 (2026-11-06) <!-- Release notes generated using configuration in .github/release.yml at main --> ## What's Changed ### Features * feat(automations): explain each automation with a Mermaid diagram by @VascoSch92 in https://github.com/OpenHands/OpenHands/pull/19318 ### Bug Fixes * fix(chat): place resumed sessions after UTC conversation history by @ak684 in https://github.com/OpenHands/OpenHands/pull/19400 * fix: keep generated conversation titles visible during startup handoff by @ak684 in https://github.com/OpenHands/OpenHands/pull/19404 * fix: wait for session replay before showing…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F39",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-06",
+      "new": [
+        {
+          "date": "2026-11-06",
+          "version": null,
+          "text": "### Spaces Spaces are a new, higher-level way to work with many agents and teammates."
+        },
+        {
+          "date": "2026-11-06",
+          "version": null,
+          "text": "### Close the Loop Point at anything on your website and have Amp change it."
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F40",
+      "opened": true,
+      "reason": null,
+      "latest": "2026.10.22",
+      "latest_date": "2026-10-22",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F41",
+      "opened": true,
+      "reason": null,
+      "latest": "26.11.3",
+      "latest_date": "2026-11-03",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F42",
+      "opened": true,
+      "reason": null,
+      "latest": "v7.8.27",
+      "latest_date": "2026-11-05",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F43",
+      "opened": false,
+      "reason": "https://www.perplexity.ai/changelog: HTTP 403",
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    }
+  ],
+  "opened": 40,
+  "total": 42
+}
