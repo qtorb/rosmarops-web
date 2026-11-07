@@ -493,6 +493,12 @@
         "by": "advisor",
         "at": "2026-11-07",
         "how": "official_doc"
+      },
+      "condition": "third_party_imports_on",
+      "default_source": {
+        "url": "https://cursor.com/docs/reference/third-party-hooks",
+        "official": true,
+        "accessed_at": "2026-11-07"
       }
     },
     {
@@ -508,6 +514,12 @@
         "by": "advisor",
         "at": "2026-11-07",
         "how": "official_doc"
+      },
+      "condition": "third_party_imports_on",
+      "default_source": {
+        "url": "https://cursor.com/docs/reference/third-party-hooks",
+        "official": true,
+        "accessed_at": "2026-11-07"
       }
     },
     {
@@ -523,6 +535,12 @@
         "by": "advisor",
         "at": "2026-11-07",
         "how": "official_doc"
+      },
+      "condition": "third_party_imports_on",
+      "default_source": {
+        "url": "https://cursor.com/docs/reference/third-party-hooks",
+        "official": true,
+        "accessed_at": "2026-11-07"
       }
     },
     {
@@ -538,6 +556,12 @@
         "by": "advisor",
         "at": "2026-11-07",
         "how": "official_doc"
+      },
+      "condition": "third_party_imports_on",
+      "default_source": {
+        "url": "https://cursor.com/docs/reference/third-party-hooks",
+        "official": true,
+        "accessed_at": "2026-11-07"
       }
     },
     {
@@ -553,6 +577,12 @@
         "by": "advisor",
         "at": "2026-11-07",
         "how": "official_doc"
+      },
+      "condition": "third_party_imports_on",
+      "default_source": {
+        "url": "https://cursor.com/docs/reference/third-party-hooks",
+        "official": true,
+        "accessed_at": "2026-11-07"
       }
     },
     {
@@ -568,6 +598,12 @@
         "by": "advisor",
         "at": "2026-11-07",
         "how": "official_doc"
+      },
+      "condition": "third_party_imports_on",
+      "default_source": {
+        "url": "https://cursor.com/docs/reference/third-party-hooks",
+        "official": true,
+        "accessed_at": "2026-11-07"
       }
     },
     {
@@ -583,6 +619,12 @@
         "by": "advisor",
         "at": "2026-11-07",
         "how": "official_doc"
+      },
+      "condition": "third_party_imports_on",
+      "default_source": {
+        "url": "https://cursor.com/docs/reference/third-party-hooks",
+        "official": true,
+        "accessed_at": "2026-11-07"
       }
     },
     {
@@ -598,6 +640,12 @@
         "by": "advisor",
         "at": "2026-11-07",
         "how": "official_doc"
+      },
+      "condition": "third_party_imports_on",
+      "default_source": {
+        "url": "https://cursor.com/docs/reference/third-party-hooks",
+        "official": true,
+        "accessed_at": "2026-11-07"
       }
     },
     {

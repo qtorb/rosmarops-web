@@ -194,7 +194,7 @@
       "owner": "shared",
       "load": "default",
       "source": {
-        "url": "https://github.com/anomalyco/opencode/blob/dc2ffcf8bf26f9e669b6aa22b95f50e12be15e06/packages/core/src/config/plugin/instruction.ts#L41-L87",
+        "url": "https://github.com/anomalyco/opencode/blob/dc2ffcf8bf26f9e669b6aa22b95f50e12be15e06/packages/core/src/config/plugin/instruction.ts#L78-L94",
         "official": true,
         "accessed_at": "2026-11-07"
       },

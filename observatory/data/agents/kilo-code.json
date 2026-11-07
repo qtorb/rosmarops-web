@@ -197,7 +197,7 @@
       "owner": "shared",
       "load": "default",
       "source": {
-        "url": "https://github.com/Kilo-Org/kilocode/blob/45484c918a48f05a1d2d47cb6a35c6bdc3e57800/packages/opencode/src/session/instruction.ts#L63-L78",
+        "url": "https://github.com/Kilo-Org/kilocode/blob/45484c918a48f05a1d2d47cb6a35c6bdc3e57800/packages/opencode/src/session/instruction.ts#L145-L163",
         "official": true,
         "accessed_at": "2026-11-07"
       },
@@ -218,7 +218,7 @@
       "load": "default",
       "condition": "cli_default_vscode_opt_in",
       "source": {
-        "url": "https://github.com/Kilo-Org/kilocode/blob/45484c918a48f05a1d2d47cb6a35c6bdc3e57800/packages/opencode/src/session/instruction.ts#L74-L78",
+        "url": "https://github.com/Kilo-Org/kilocode/blob/45484c918a48f05a1d2d47cb6a35c6bdc3e57800/packages/opencode/src/session/instruction.ts#L152-L163",
         "official": true,
         "accessed_at": "2026-11-07"
       },
@@ -239,7 +239,7 @@
       "load": "default",
       "condition": "cli_default_vscode_opt_in",
       "source": {
-        "url": "https://github.com/Kilo-Org/kilocode/blob/45484c918a48f05a1d2d47cb6a35c6bdc3e57800/packages/opencode/src/session/instruction.ts#L69-L71",
+        "url": "https://github.com/Kilo-Org/kilocode/blob/45484c918a48f05a1d2d47cb6a35c6bdc3e57800/packages/opencode/src/session/instruction.ts#L145-L150",
         "official": true,
         "accessed_at": "2026-11-07"
       },
@@ -249,7 +249,7 @@
         "how": "official_code"
       },
       "default_source": {
-        "url": "https://github.com/Kilo-Org/kilocode/blob/45484c918a48f05a1d2d47cb6a35c6bdc3e57800/packages/opencode/src/effect/runtime-flags.ts#L4-L29",
+        "url": "https://github.com/Kilo-Org/kilocode/blob/45484c918a48f05a1d2d47cb6a35c6bdc3e57800/packages/opencode/src/kilocode/config/claude-migration.ts#L114-L124",
         "official": true,
         "accessed_at": "2026-11-07"
       }
@@ -260,7 +260,7 @@
       "load": "default",
       "condition": "cli_default_vscode_opt_in",
       "source": {
-        "url": "https://github.com/Kilo-Org/kilocode/blob/45484c918a48f05a1d2d47cb6a35c6bdc3e57800/packages/opencode/src/skill/index.ts#L27-L32",
+        "url": "https://github.com/Kilo-Org/kilocode/blob/45484c918a48f05a1d2d47cb6a35c6bdc3e57800/packages/opencode/src/skill/index.ts#L220-L253",
         "official": true,
         "accessed_at": "2026-11-07"
       },
@@ -281,7 +281,7 @@
       "load": "default",
       "condition": "cli_default_vscode_opt_in",
       "source": {
-        "url": "https://github.com/Kilo-Org/kilocode/blob/45484c918a48f05a1d2d47cb6a35c6bdc3e57800/packages/opencode/src/skill/index.ts#L27-L32",
+        "url": "https://github.com/Kilo-Org/kilocode/blob/45484c918a48f05a1d2d47cb6a35c6bdc3e57800/packages/opencode/src/skill/index.ts#L226-L233",
         "official": true,
         "accessed_at": "2026-11-07"
       },
@@ -291,7 +291,7 @@
         "how": "official_code"
       },
       "default_source": {
-        "url": "https://github.com/Kilo-Org/kilocode/blob/45484c918a48f05a1d2d47cb6a35c6bdc3e57800/packages/opencode/src/effect/runtime-flags.ts#L4-L33",
+        "url": "https://github.com/Kilo-Org/kilocode/blob/45484c918a48f05a1d2d47cb6a35c6bdc3e57800/packages/opencode/src/kilocode/config/claude-migration.ts#L114-L124",
         "official": true,
         "accessed_at": "2026-11-07"
       }
@@ -301,7 +301,7 @@
       "owner": "shared",
       "load": "default",
       "source": {
-        "url": "https://github.com/Kilo-Org/kilocode/blob/45484c918a48f05a1d2d47cb6a35c6bdc3e57800/packages/opencode/src/skill/index.ts#L27-L32",
+        "url": "https://github.com/Kilo-Org/kilocode/blob/45484c918a48f05a1d2d47cb6a35c6bdc3e57800/packages/opencode/src/skill/index.ts#L220-L246",
         "official": true,
         "accessed_at": "2026-11-07"
       },
@@ -321,7 +321,7 @@
       "owner": "shared",
       "load": "default",
       "source": {
-        "url": "https://github.com/Kilo-Org/kilocode/blob/45484c918a48f05a1d2d47cb6a35c6bdc3e57800/packages/opencode/src/skill/index.ts#L27-L32",
+        "url": "https://github.com/Kilo-Org/kilocode/blob/45484c918a48f05a1d2d47cb6a35c6bdc3e57800/packages/opencode/src/skill/index.ts#L226-L233",
         "official": true,
         "accessed_at": "2026-11-07"
       },

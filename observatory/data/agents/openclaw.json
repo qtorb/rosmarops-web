@@ -179,7 +179,7 @@
       "owner": "shared",
       "load": "default",
       "source": {
-        "url": "https://github.com/openclaw/openclaw/blob/8333511f3ad54440da1c5c563081049d31bc1eca/src/agents/workspace-bootstrap-policy.ts#L11-L37",
+        "url": "https://github.com/openclaw/openclaw/blob/8333511f3ad54440da1c5c563081049d31bc1eca/src/agents/workspace-file-read.ts#L209-L235",
         "official": true,
         "accessed_at": "2026-11-07"
       },

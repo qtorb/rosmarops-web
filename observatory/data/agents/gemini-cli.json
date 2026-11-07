@@ -159,7 +159,7 @@
       "owner": "shared",
       "load": "default",
       "source": {
-        "url": "https://github.com/google-gemini/gemini-cli/blob/62bab5b232c15b925d31e655ce844ab939c882b7/packages/core/src/skills/skillManager.ts#L75-L79",
+        "url": "https://github.com/google-gemini/gemini-cli/blob/62bab5b232c15b925d31e655ce844ab939c882b7/packages/core/src/skills/skillManager.ts#L76-L79",
         "official": true,
         "accessed_at": "2026-11-07"
       },

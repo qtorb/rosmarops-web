@@ -311,6 +311,11 @@
         "by": "advisor",
         "at": "2026-11-07",
         "how": "official_doc"
+      },
+      "default_source": {
+        "url": "https://github.com/microsoft/vscode/blob/b4bd9bd3c0171f72f54d742b8152db735fd9ce0a/src/vs/workbench/contrib/chat/browser/chat.shared.contribution.ts#L2155-L2163",
+        "official": true,
+        "accessed_at": "2026-11-07"
       }
     },
     {
@@ -349,7 +354,7 @@
       "path": ".claude/CLAUDE.md",
       "owner": "claude-code",
       "load": "if_configured",
-      "condition": "chat_editor_local_agent_enabled",
+      "condition": "local_harness_selected",
       "source": {
         "url": "https://code.visualstudio.com/docs/agents/reference/custom-instructions-reference",
         "official": true,
@@ -365,7 +370,7 @@
       "path": "~/.claude/CLAUDE.md",
       "owner": "claude-code",
       "load": "if_configured",
-      "condition": "chat_editor_local_agent_enabled",
+      "condition": "local_harness_selected",
       "source": {
         "url": "https://code.visualstudio.com/docs/agents/reference/custom-instructions-reference",
         "official": true,
@@ -381,7 +386,7 @@
       "path": "CLAUDE.local.md",
       "owner": "claude-code",
       "load": "if_configured",
-      "condition": "chat_editor_local_agent_enabled",
+      "condition": "local_harness_selected",
       "source": {
         "url": "https://code.visualstudio.com/docs/agents/reference/custom-instructions-reference",
         "official": true,
@@ -458,7 +463,7 @@
       "path": "~/.claude/skills",
       "owner": "claude-code",
       "load": "if_configured",
-      "condition": "chat_editor_local_agent_enabled",
+      "condition": "local_harness_selected",
       "source": {
         "url": "https://code.visualstudio.com/docs/agent-customization/agent-skills",
         "official": true,
@@ -518,7 +523,7 @@
         "how": "official_doc"
       },
       "default_source": {
-        "url": "https://code.visualstudio.com/docs/agents/run/agent-harnesses",
+        "url": "https://github.com/microsoft/vscode/blob/b4bd9bd3c0171f72f54d742b8152db735fd9ce0a/src/vs/platform/agentHost/common/agentHostEnablementService.ts#L87-L91",
         "official": true,
         "accessed_at": "2026-11-07"
       }
@@ -539,7 +544,7 @@
         "how": "official_doc"
       },
       "default_source": {
-        "url": "https://code.visualstudio.com/docs/agents/run/agent-harnesses",
+        "url": "https://github.com/microsoft/vscode/blob/b4bd9bd3c0171f72f54d742b8152db735fd9ce0a/src/vs/platform/agentHost/common/agentHostEnablementService.ts#L87-L91",
         "official": true,
         "accessed_at": "2026-11-07"
       }

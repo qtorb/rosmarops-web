@@ -197,7 +197,7 @@
       "owner": "shared",
       "load": "default",
       "source": {
-        "url": "https://github.com/OpenHands/software-agent-sdk/blob/edaac806d1599a4ee1662fd4008fbcd7b537ecd1/openhands-sdk/openhands/sdk/skills/skill.py#L272-L277",
+        "url": "https://github.com/OpenHands/software-agent-sdk/blob/edaac806d1599a4ee1662fd4008fbcd7b537ecd1/openhands-sdk/openhands/sdk/skills/skill.py#L895-L910",
         "official": true,
         "accessed_at": "2026-11-07"
       },
@@ -217,7 +217,7 @@
       "owner": "shared",
       "load": "default",
       "source": {
-        "url": "https://github.com/OpenHands/software-agent-sdk/blob/edaac806d1599a4ee1662fd4008fbcd7b537ecd1/openhands-sdk/openhands/sdk/skills/skill.py#L272-L277",
+        "url": "https://github.com/OpenHands/software-agent-sdk/blob/edaac806d1599a4ee1662fd4008fbcd7b537ecd1/openhands-sdk/openhands/sdk/skills/skill.py#L895-L910",
         "official": true,
         "accessed_at": "2026-11-07"
       },
@@ -237,7 +237,7 @@
       "owner": "claude-code",
       "load": "default",
       "source": {
-        "url": "https://github.com/OpenHands/software-agent-sdk/blob/edaac806d1599a4ee1662fd4008fbcd7b537ecd1/openhands-sdk/openhands/sdk/skills/skill.py#L272-L277",
+        "url": "https://github.com/OpenHands/software-agent-sdk/blob/edaac806d1599a4ee1662fd4008fbcd7b537ecd1/openhands-sdk/openhands/sdk/skills/skill.py#L895-L910",
         "official": true,
         "accessed_at": "2026-11-07"
       },
@@ -257,7 +257,7 @@
       "owner": "gemini-cli",
       "load": "default",
       "source": {
-        "url": "https://github.com/OpenHands/software-agent-sdk/blob/edaac806d1599a4ee1662fd4008fbcd7b537ecd1/openhands-sdk/openhands/sdk/skills/skill.py#L272-L277",
+        "url": "https://github.com/OpenHands/software-agent-sdk/blob/edaac806d1599a4ee1662fd4008fbcd7b537ecd1/openhands-sdk/openhands/sdk/skills/skill.py#L895-L910",
         "official": true,
         "accessed_at": "2026-11-07"
       },
@@ -277,7 +277,7 @@
       "owner": "cursor",
       "load": "default",
       "source": {
-        "url": "https://github.com/OpenHands/software-agent-sdk/blob/edaac806d1599a4ee1662fd4008fbcd7b537ecd1/openhands-sdk/openhands/sdk/skills/skill.py#L272-L277",
+        "url": "https://github.com/OpenHands/software-agent-sdk/blob/edaac806d1599a4ee1662fd4008fbcd7b537ecd1/openhands-sdk/openhands/sdk/skills/skill.py#L895-L910",
         "official": true,
         "accessed_at": "2026-11-07"
       },
@@ -297,7 +297,7 @@
       "owner": "shared",
       "load": "default",
       "source": {
-        "url": "https://github.com/OpenHands/software-agent-sdk/blob/edaac806d1599a4ee1662fd4008fbcd7b537ecd1/openhands-sdk/openhands/sdk/skills/skill.py#L912-L916",
+        "url": "https://github.com/OpenHands/software-agent-sdk/blob/edaac806d1599a4ee1662fd4008fbcd7b537ecd1/openhands-sdk/openhands/sdk/skills/skill.py#L912-L923",
         "official": true,
         "accessed_at": "2026-11-07"
       },
@@ -317,7 +317,7 @@
       "owner": "shared",
       "load": "default",
       "source": {
-        "url": "https://github.com/OpenHands/software-agent-sdk/blob/edaac806d1599a4ee1662fd4008fbcd7b537ecd1/openhands-sdk/openhands/sdk/skills/skill.py#L747-L750",
+        "url": "https://github.com/OpenHands/software-agent-sdk/blob/edaac806d1599a4ee1662fd4008fbcd7b537ecd1/openhands-sdk/openhands/sdk/skills/skill.py#L739-L766",
         "official": true,
         "accessed_at": "2026-11-07"
       },
@@ -337,7 +337,7 @@
       "owner": "shared",
       "load": "default",
       "source": {
-        "url": "https://github.com/OpenHands/software-agent-sdk/blob/edaac806d1599a4ee1662fd4008fbcd7b537ecd1/openhands-sdk/openhands/sdk/subagent/load.py#L50-L53",
+        "url": "https://github.com/OpenHands/software-agent-sdk/blob/edaac806d1599a4ee1662fd4008fbcd7b537ecd1/openhands-sdk/openhands/sdk/subagent/load.py#L50-L77",
         "official": true,
         "accessed_at": "2026-11-07"
       },
@@ -357,7 +357,7 @@
       "owner": "shared",
       "load": "default",
       "source": {
-        "url": "https://github.com/OpenHands/software-agent-sdk/blob/edaac806d1599a4ee1662fd4008fbcd7b537ecd1/openhands-sdk/openhands/sdk/subagent/load.py#L80-L85",
+        "url": "https://github.com/OpenHands/software-agent-sdk/blob/edaac806d1599a4ee1662fd4008fbcd7b537ecd1/openhands-sdk/openhands/sdk/subagent/load.py#L80-L95",
         "official": true,
         "accessed_at": "2026-11-07"
       },
