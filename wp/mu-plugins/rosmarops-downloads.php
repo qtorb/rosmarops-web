@@ -179,9 +179,9 @@ add_action('rest_api_init', function () {
 
 // ------------------------------------------------------------------------------------------------- visits (GTM-111)
 
-// Off until the privacy policy texts for it are published (Albert). Must match ON in site/assets/visits/visits.js.
+// On since the privacy policy texts for it were signed (Albert, 07-11, GTM-111 C). Must match ON in site/assets/visits/visits.js.
 if (!defined('ROSMAROPS_VISITS_ON')) {
-	define('ROSMAROPS_VISITS_ON', false);
+	define('ROSMAROPS_VISITS_ON', true);
 }
 const ROSMAROPS_VISITS_ORIGIN    = 'https://rosmarops.com';
 const ROSMAROPS_VISITS_MAX_BODY  = 512;
@@ -382,6 +382,6 @@ if (ROSMAROPS_VISITS_ON) {
 	});
 	// WordPress pages (blogs, privacy, about): the same script as the static pages.
 	add_action('wp_enqueue_scripts', function () {
-		wp_enqueue_script('rosmarops-visits', ROSMAROPS_VISITS_ORIGIN . '/assets/visits/visits.js', [], '1', true);
+		wp_enqueue_script('rosmarops-visits', ROSMAROPS_VISITS_ORIGIN . '/assets/visits/visits.js', [], '2', true);
 	});
 }

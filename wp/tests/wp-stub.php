@@ -32,7 +32,7 @@ class StubWpdb {
 }
 $GLOBALS['wpdb'] = new StubWpdb(getenv('DB_PREFIX') ?: 'wptest_');
 // GTM-111 visits: the switch, the static pages folder and the published posts come from the test.
-if (getenv('VISITS_ON')) { define('ROSMAROPS_VISITS_ON', true); }
+define('ROSMAROPS_VISITS_ON', (bool) getenv('VISITS_ON')); // the test decides, whatever the plugin's default
 if (getenv('VISITS_DOCROOT')) { define('ROSMAROPS_VISITS_DOCROOT', getenv('VISITS_DOCROOT')); }
 function url_to_postid($url) { return in_array($url, array_filter(explode(' ', (string) getenv('VISITS_POSTS'))), true) ? 7 : 0; }
 function wp_enqueue_script(...$a) { $GLOBALS['__enqueued'][] = $a; }
