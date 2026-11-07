@@ -5,7 +5,9 @@
     "name": "Cursor",
     "vendor": "Anysphere",
     "kinds": [
-      "ide"
+      "ide",
+      "cli",
+      "cloud"
     ],
     "platforms": [
       "windows",
@@ -17,7 +19,35 @@
       "status": "evaluated",
       "since_version": "0.1.0"
     },
-    "reviewed_at": "2026-10-29"
+    "reviewed_at": "2026-10-29",
+    "sources": [
+      {
+        "field": "kinds",
+        "source": {
+          "url": "https://cursor.com/docs/cli/overview",
+          "official": true,
+          "accessed_at": "2026-11-07"
+        },
+        "verified": {
+          "by": "advisor",
+          "at": "2026-11-07",
+          "how": "official_doc"
+        }
+      },
+      {
+        "field": "kinds",
+        "source": {
+          "url": "https://cursor.com/docs/cloud-agent",
+          "official": true,
+          "accessed_at": "2026-11-07"
+        },
+        "verified": {
+          "by": "advisor",
+          "at": "2026-11-07",
+          "how": "official_doc"
+        }
+      }
+    ]
   },
   "versions": [],
   "changes": [],

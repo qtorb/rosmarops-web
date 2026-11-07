@@ -6,7 +6,8 @@
     "vendor": "Amp",
     "kinds": [
       "cli",
-      "cloud"
+      "cloud",
+      "desktop_app"
     ],
     "platforms": [
       "windows",

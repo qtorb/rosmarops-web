@@ -15,7 +15,22 @@
     "rosmarops": {
       "status": "not_supported"
     },
-    "reviewed_at": "2026-11-06"
+    "reviewed_at": "2026-11-06",
+    "notes": [
+      {
+        "code": "also_on_ios_and_android",
+        "source": {
+          "url": "https://www.perplexity.ai/changelog/what-we-shipped--march-27-2026",
+          "official": true,
+          "accessed_at": "2026-11-07"
+        },
+        "verified": {
+          "by": "advisor",
+          "at": "2026-11-07",
+          "how": "official_changelog"
+        }
+      }
+    ]
   },
   "versions": [],
   "changes": [],

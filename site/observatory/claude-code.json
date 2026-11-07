@@ -6,12 +6,15 @@
     "vendor": "Anthropic",
     "kinds": [
       "cli",
-      "ide_extension"
+      "ide_extension",
+      "desktop_app",
+      "cloud"
     ],
     "platforms": [
       "windows",
       "macos",
-      "linux"
+      "linux",
+      "web"
     ],
     "local_footprint": "yes",
     "rosmarops": {
