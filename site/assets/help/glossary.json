@@ -1,0 +1,128 @@
+{
+ "en": {
+  "agent": [
+   "AI agent",
+   "An artificial-intelligence program that doesn't just answer: it also does things for you, such as reading files, running commands or using your accounts."
+  ],
+  "mcp": [
+   "MCP server",
+   "A piece that adds tools to an AI agent, for example to read your email or your database. Each MCP server you add widens what the agent can do."
+  ],
+  "connector": [
+   "Connector",
+   "Permission you give an agent to get into another service of yours, such as Gmail, Google Drive or GitHub. While it's connected, the agent can read or change whatever that service lets it."
+  ],
+  "repo": [
+   "Repository",
+   "A code project's folder with its full history, usually on GitHub. It also holds the instructions your agents read when they work on that project."
+  ],
+  "credential": [
+   "Key or credential",
+   "What gives access to a service in your name: a password, a token or an API key. Whoever has it can get in as if they were you."
+  ],
+  "ask": [
+   "Without asking",
+   "The agent takes the action without you approving it first. The more it works this way, the further it can go if something tricks it."
+  ],
+  "unattended": [
+   "Automation",
+   "A task the agent does on its own, at a set time or when something happens, without you being there."
+  ],
+  "training": [
+   "Train its models",
+   "Using your conversations to improve the company's AI. It doesn't change what the agent can do, but it does change who may end up seeing what you write."
+  ],
+  "band": [
+   "Band",
+   "The part of the score set by the traffic light: 0–49 exposed, 50–79 gaps, 80–100 contained. The worst warning sets the band."
+  ],
+  "encrypted": [
+   "Encrypted",
+   "Turned into something only the holder of the key can read. RosmarOps encrypts your results before sending them."
+  ]
+ },
+ "es": {
+  "agent": [
+   "Agente de IA",
+   "Un programa de inteligencia artificial que no solo contesta: también hace cosas por ti, como leer ficheros, ejecutar órdenes o usar tus cuentas."
+  ],
+  "mcp": [
+   "Servidor MCP",
+   "Una pieza que añade herramientas a un agente de IA, por ejemplo para leer tu correo o tu base de datos. Cada servidor MCP que añades amplía lo que el agente puede hacer."
+  ],
+  "connector": [
+   "Conector",
+   "Un permiso que das a un agente para entrar en otro servicio tuyo, como Gmail, Google Drive o GitHub. Mientras está conectado, el agente puede leer o cambiar lo que ese servicio le deje."
+  ],
+  "repo": [
+   "Repositorio",
+   "La carpeta de un proyecto de código con todo su historial, normalmente en GitHub. Ahí también están las instrucciones que leen tus agentes cuando trabajan en ese proyecto."
+  ],
+  "credential": [
+   "Clave o credencial",
+   "Lo que da acceso a un servicio en tu nombre: una contraseña, un token o una clave de API. Quien la tenga puede entrar como si fueras tú."
+  ],
+  "ask": [
+   "Sin preguntarte",
+   "El agente hace la acción sin que tengas que aprobarla antes. Cuanto más hace así, más lejos puede llegar si algo lo engaña."
+  ],
+  "unattended": [
+   "Automatización",
+   "Una tarea que el agente hace solo, a una hora fija o cuando pasa algo, sin que tú estés delante."
+  ],
+  "training": [
+   "Entrenar sus modelos",
+   "Usar tus conversaciones para mejorar la IA de la empresa. No cambia lo que el agente puede hacer, pero sí quién puede llegar a ver lo que escribes."
+  ],
+  "band": [
+   "Banda",
+   "El tramo de la nota que marca el semáforo: 0–49 expuesto, 50–79 con huecos y 80–100 contenido. El aviso más grave fija la banda."
+  ],
+  "encrypted": [
+   "Cifrado",
+   "Convertido en algo que solo puede leer quien tiene la clave. RosmarOps cifra tus resultados antes de enviarlos."
+  ]
+ },
+ "ca": {
+  "agent": [
+   "Agent d'IA",
+   "Un programa d'intel·ligència artificial que no només contesta: també fa coses per tu, com llegir fitxers, executar ordres o fer servir els teus comptes."
+  ],
+  "mcp": [
+   "Servidor MCP",
+   "Una peça que afegeix eines a un agent d'IA, per exemple per llegir el teu correu o la teva base de dades. Cada servidor MCP que hi afegeixes amplia el que l'agent pot fer."
+  ],
+  "connector": [
+   "Connector",
+   "Un permís que dones a un agent per entrar en un altre servei teu, com Gmail, Google Drive o GitHub. Mentre està connectat, l'agent pot llegir o canviar el que aquell servei li permeti."
+  ],
+  "repo": [
+   "Repositori",
+   "La carpeta d'un projecte de codi amb tot el seu historial, normalment a GitHub. També hi ha les instruccions que llegeixen els teus agents quan treballen en aquell projecte."
+  ],
+  "credential": [
+   "Clau o credencial",
+   "El que dona accés a un servei en nom teu: una contrasenya, un testimoni (token) o una clau d'API. Qui la tingui hi pot entrar com si fossis tu."
+  ],
+  "ask": [
+   "Sense preguntar-te",
+   "L'agent fa l'acció sense que l'hagis d'aprovar abans. Com més treballa així, més lluny pot arribar si alguna cosa l'enganya."
+  ],
+  "unattended": [
+   "Automatització",
+   "Una tasca que l'agent fa sol, a una hora fixa o quan passa alguna cosa, sense que tu hi siguis."
+  ],
+  "training": [
+   "Entrenar els seus models",
+   "Fer servir les teves converses per millorar la IA de l'empresa. No canvia el que l'agent pot fer, però sí qui pot arribar a veure el que escrius."
+  ],
+  "band": [
+   "Banda",
+   "El tram de la nota que marca el semàfor: 0–49 exposat, 50–79 amb escletxes i 80–100 contingut. L'avís més greu fixa la banda."
+  ],
+  "encrypted": [
+   "Xifrat",
+   "Convertit en una cosa que només pot llegir qui té la clau. RosmarOps xifra els teus resultats abans d'enviar-los."
+  ]
+ }
+}
