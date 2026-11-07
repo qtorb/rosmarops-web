@@ -5,7 +5,8 @@
     "name": "Hermes Agent",
     "vendor": "Nous Research",
     "kinds": [
-      "cli"
+      "cli",
+      "desktop_app"
     ],
     "platforms": [
       "windows",
@@ -17,7 +18,22 @@
       "status": "evaluated",
       "since_version": "0.5.2"
     },
-    "reviewed_at": "2026-10-29"
+    "reviewed_at": "2026-10-29",
+    "sources": [
+      {
+        "field": "kinds",
+        "source": {
+          "url": "https://github.com/NousResearch/hermes-agent/blob/122fc40fb06b722b4debedac429c57336cff61ae/website/docs/user-guide/desktop.md#L8-L12",
+          "official": true,
+          "accessed_at": "2026-11-07"
+        },
+        "verified": {
+          "by": "advisor",
+          "at": "2026-11-07",
+          "how": "official_code"
+        }
+      }
+    ]
   },
   "versions": [
     {

@@ -6,7 +6,8 @@
     "vendor": "OpenHands",
     "kinds": [
       "desktop_app",
-      "cloud"
+      "cloud",
+      "cli"
     ],
     "platforms": [
       "windows",
@@ -18,7 +19,22 @@
     "rosmarops": {
       "status": "not_supported"
     },
-    "reviewed_at": "2026-11-06"
+    "reviewed_at": "2026-11-06",
+    "sources": [
+      {
+        "field": "kinds",
+        "source": {
+          "url": "https://github.com/OpenHands/OpenHands-CLI/blob/283c6ac3610f4299f405f7389f65766dcb83e12a/openhands_cli/stores/agent_store.py#L408-L410",
+          "official": true,
+          "accessed_at": "2026-11-07"
+        },
+        "verified": {
+          "by": "advisor",
+          "at": "2026-11-07",
+          "how": "official_code"
+        }
+      }
+    ]
   },
   "versions": [],
   "changes": [],

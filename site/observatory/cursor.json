@@ -5,7 +5,9 @@
     "name": "Cursor",
     "vendor": "Anysphere",
     "kinds": [
-      "ide"
+      "ide",
+      "cli",
+      "cloud"
     ],
     "platforms": [
       "windows",

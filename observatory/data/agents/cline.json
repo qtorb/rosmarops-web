@@ -5,7 +5,9 @@
     "name": "Cline",
     "vendor": "Cline",
     "kinds": [
-      "ide_extension"
+      "ide_extension",
+      "cli",
+      "desktop_app"
     ],
     "platforms": [
       "windows",
@@ -17,7 +19,22 @@
       "status": "detected",
       "since_version": "0.1.0"
     },
-    "reviewed_at": "2026-10-28"
+    "reviewed_at": "2026-10-28",
+    "sources": [
+      {
+        "field": "kinds",
+        "source": {
+          "url": "https://docs.cline.bot/features/subagents",
+          "official": true,
+          "accessed_at": "2026-11-07"
+        },
+        "verified": {
+          "by": "advisor",
+          "at": "2026-11-07",
+          "how": "official_doc"
+        }
+      }
+    ]
   },
   "versions": [],
   "changes": [],

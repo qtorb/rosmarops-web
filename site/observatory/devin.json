@@ -10,7 +10,7 @@
     "platforms": [
       "web"
     ],
-    "local_footprint": "no",
+    "local_footprint": "partial",
     "rosmarops": {
       "status": "not_supported"
     },

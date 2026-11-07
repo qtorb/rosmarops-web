@@ -9,14 +9,30 @@
     ],
     "platforms": [
       "windows",
-      "macos"
+      "macos",
+      "linux"
     ],
     "local_footprint": "yes",
     "rosmarops": {
       "status": "detected",
       "since_version": "0.3.0"
     },
-    "reviewed_at": "2026-10-28"
+    "reviewed_at": "2026-10-28",
+    "sources": [
+      {
+        "field": "platforms",
+        "source": {
+          "url": "https://support.claude.com/en/articles/13345190-getting-started-with-cowork",
+          "official": true,
+          "accessed_at": "2026-11-07"
+        },
+        "verified": {
+          "by": "advisor",
+          "at": "2026-11-07",
+          "how": "official_doc"
+        }
+      }
+    ]
   },
   "versions": [],
   "changes": [],

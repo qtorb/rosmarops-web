@@ -2,7 +2,7 @@
   "schema_version": 1,
   "agent": {
     "id": "copilot-coding-agent",
-    "name": "GitHub Copilot coding agent",
+    "name": "GitHub Copilot cloud agent",
     "vendor": "GitHub",
     "kinds": [
       "cloud"
@@ -14,7 +14,22 @@
     "rosmarops": {
       "status": "not_supported"
     },
-    "reviewed_at": "2026-10-30"
+    "reviewed_at": "2026-10-30",
+    "sources": [
+      {
+        "field": "name",
+        "source": {
+          "url": "https://docs.github.com/en/copilot/concepts/agents/cloud-agent/about-cloud-agent",
+          "official": true,
+          "accessed_at": "2026-11-07"
+        },
+        "verified": {
+          "by": "advisor",
+          "at": "2026-11-07",
+          "how": "official_doc"
+        }
+      }
+    ]
   },
   "versions": [],
   "changes": [],

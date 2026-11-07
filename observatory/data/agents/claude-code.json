@@ -6,19 +6,63 @@
     "vendor": "Anthropic",
     "kinds": [
       "cli",
-      "ide_extension"
+      "ide_extension",
+      "desktop_app",
+      "cloud"
     ],
     "platforms": [
       "windows",
       "macos",
-      "linux"
+      "linux",
+      "web"
     ],
     "local_footprint": "yes",
     "rosmarops": {
       "status": "evaluated",
       "since_version": "0.1.0"
     },
-    "reviewed_at": "2026-10-29"
+    "reviewed_at": "2026-10-29",
+    "sources": [
+      {
+        "field": "kinds",
+        "source": {
+          "url": "https://code.claude.com/docs/en/desktop",
+          "official": true,
+          "accessed_at": "2026-11-07"
+        },
+        "verified": {
+          "by": "advisor",
+          "at": "2026-11-07",
+          "how": "official_doc"
+        }
+      },
+      {
+        "field": "kinds",
+        "source": {
+          "url": "https://code.claude.com/docs/en/claude-code-on-the-web",
+          "official": true,
+          "accessed_at": "2026-11-07"
+        },
+        "verified": {
+          "by": "advisor",
+          "at": "2026-11-07",
+          "how": "official_doc"
+        }
+      },
+      {
+        "field": "platforms",
+        "source": {
+          "url": "https://code.claude.com/docs/en/claude-code-on-the-web",
+          "official": true,
+          "accessed_at": "2026-11-07"
+        },
+        "verified": {
+          "by": "advisor",
+          "at": "2026-11-07",
+          "how": "official_doc"
+        }
+      }
+    ]
   },
   "versions": [],
   "changes": [
