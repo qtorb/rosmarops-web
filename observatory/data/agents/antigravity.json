@@ -6,7 +6,6 @@
     "vendor": "Google",
     "kinds": [
       "ide",
-      "cli",
       "cloud"
     ],
     "platforms": [
@@ -32,6 +31,19 @@
           "by": "advisor",
           "at": "2026-11-07",
           "how": "official_changelog"
+        }
+      },
+      {
+        "field": "kinds",
+        "source": {
+          "url": "https://antigravity.google/docs/install?tab=cli",
+          "official": true,
+          "accessed_at": "2026-11-07"
+        },
+        "verified": {
+          "by": "advisor",
+          "at": "2026-11-07",
+          "how": "official_doc"
         }
       }
     ]

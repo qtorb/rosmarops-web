@@ -1148,7 +1148,6 @@
         "vendor": "Google",
         "kinds": [
           "ide",
-          "cli",
           "cloud"
         ],
         "platforms": [
