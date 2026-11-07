@@ -1,0 +1,19 @@
+/* AP-25 «i» help (signed by Albert 07-11 12:48). Values from vigil docs/research/2026-11-07-ap-25-ayuda-i-y-glosario.md §2. */
+.gt{white-space:nowrap}
+.gi{position:relative;top:-2px;display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;width:20px;height:20px;margin:0 2px 0 2px;padding:0;border:1.5px solid #4F4C46;border-radius:50%;background:transparent;color:#1B1A18;font:700 13px/1 system-ui,-apple-system,"Segoe UI",sans-serif;text-decoration:none;cursor:pointer;vertical-align:baseline}
+.gi::before{content:"";position:absolute;left:50%;top:50%;width:44px;height:44px;transform:translate(-50%,-50%)}
+.gi:hover,.gi:focus-visible{background:#EFEDE8;border-color:#1E3C9E;color:#1B1A18}
+.gi:focus-visible{outline:2px solid #2346B8;outline-offset:2px}
+.gi[aria-expanded="true"]{background:#1B1A18;border-color:#1B1A18;color:#FFFFFF}
+.gi-panel{box-sizing:border-box;max-width:640px;margin-top:8px;background:#EFEDE8;border-left:3px solid #2346B8;border-radius:8px;padding:12px 14px;font-size:15px;line-height:1.55;color:#1B1A18;white-space:normal;opacity:1;transition:opacity 120ms ease-out}
+.gi-panel.gi-enter{opacity:0}
+.gi-panel p{margin:0;font-size:15px;line-height:1.55;color:#1B1A18}
+.gi-panel b{font-weight:700}
+.gi-panel a{display:inline-block;margin-top:6px;font-size:14px;color:#2346B8;text-decoration:underline}
+.gi-panel a:hover{color:#1E3C9E}
+@media (prefers-reduced-motion:reduce){.gi-panel{transition:none}}
+/* Glossary page */
+.gloss{margin:0}
+.gloss dt{font-size:20px;font-weight:700;margin-top:12px;scroll-margin-top:24px}
+.gloss dd{margin:6px 0 0}
+.gloss dt:target{outline:2px solid #2346B8;outline-offset:4px;border-radius:4px}
