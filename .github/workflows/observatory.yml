@@ -69,8 +69,8 @@ jobs:
       - name: Generated pages are up to date
         run: |
           python observatory/build.py
-          git status --porcelain -- site wp/daily wp/pages
-          test -z "$(git status --porcelain -- site wp/daily wp/pages)" || { echo "::error::site/, wp/daily/ or wp/pages/ is out of date: run python3 observatory/build.py and commit"; exit 1; }
+          git status --porcelain -- site wp/daily wp/pages wp/mu-plugins/rosmarops-downloads.php
+          test -z "$(git status --porcelain -- site wp/daily wp/pages wp/mu-plugins/rosmarops-downloads.php)" || { echo "::error::site/, wp/daily/, wp/pages/ or the download sources are out of date: run python3 observatory/build.py and commit"; exit 1; }
 
       - name: Agent lists agree with the agent files and the program's latest release (GTM-99)
         env:
@@ -95,6 +95,15 @@ jobs:
           python -m unittest wp/tests/test_gtm97_drafts.py
           php -l wp/mu-plugins/rosmarops-gtm103-noindex.php
           python -m unittest wp/tests/test_gtm103_noindex.py
+          php -l wp/mu-plugins/rosmarops-downloads.php
+          python -m unittest wp/tests/test_download_sources.py
+
+      - name: Download counter against MySQL (GTM-18, GTM-111)
+        run: |
+          set -eu
+          sudo systemctl start mysql
+          mysql -h 127.0.0.1 -uroot -proot -e "CREATE DATABASE IF NOT EXISTS wptest"
+          DB_USER=root DB_PASS=root DB_NAME=wptest python -m unittest wp/tests/test_downloads.py
 
       - name: Publication rules hold in the output
         run: |

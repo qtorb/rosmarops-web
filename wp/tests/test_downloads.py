@@ -73,8 +73,8 @@ class Downloads(unittest.TestCase):
         self.srv.wait()
         mysql(f"DROP TABLE IF EXISTS {TABLE}")
 
-    def get(self, path, method="GET"):
-        req = urllib.request.Request(f"http://127.0.0.1:{self.port}{path}", method=method)
+    def get(self, path, method="GET", headers=None):
+        req = urllib.request.Request(f"http://127.0.0.1:{self.port}{path}", method=method, headers=headers or {})
         try:
             r = OPENER.open(req, timeout=5)
             return r.status, dict(r.headers), r.read().decode()
@@ -133,6 +133,15 @@ class Downloads(unittest.TestCase):
         self.assertEqual(h["Location"], LATEST + "/download/rosmarops.exe")
         # Not counted, so the table is not touched either (still without the os column).
         self.assertEqual(mysql(f"SELECT SUM(count) FROM {TABLE}").strip(), "10")
+
+    def test_team_not_counted(self):
+        # GTM-111: the WordPress session cookie (someone on the team, signed in) redirects but does not count.
+        st, h, _ = self.get("/download?from=home-band&os=windows", headers={"Cookie": "wordpress_logged_in_0a1b2c=albert%7C1"})
+        self.assertEqual(st, 302)
+        self.assertEqual(h["Location"], LATEST + "/download/rosmarops.exe")
+        self.assertEqual(mysql(f"SELECT SUM(count) FROM {TABLE}").strip(), "10")
+        self.get("/download?from=home-band&os=windows", headers={"Cookie": "cc_cookie=x"})
+        self.assertIn("home-band\ten\twindows\t1", self.rows())
 
     def test_endpoint_migrates_on_read_and_adds_os(self):
         st, _, body = self.get("/wp-json/rosmarops/v1/downloads")
