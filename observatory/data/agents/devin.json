@@ -5,6 +5,7 @@
     "name": "Devin",
     "vendor": "Cognition",
     "kinds": [
+      "cli",
       "cloud"
     ],
     "platforms": [
@@ -34,6 +35,19 @@
       },
       {
         "field": "platforms",
+        "source": {
+          "url": "https://docs.devin.ai/cli.md",
+          "official": true,
+          "accessed_at": "2026-11-07"
+        },
+        "verified": {
+          "by": "advisor",
+          "at": "2026-11-07",
+          "how": "official_doc"
+        }
+      },
+      {
+        "field": "kinds",
         "source": {
           "url": "https://docs.devin.ai/cli.md",
           "official": true,
