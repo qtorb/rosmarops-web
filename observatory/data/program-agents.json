@@ -1,0 +1,22 @@
+{
+  "$comment": "GTM-99. The program's knowledge files (internal/knowledge/<name>.json in qtorb/rosmarops, one per agent it scores) and the Observatory agent file each one stands for. not_agents: knowledge files that are not an agent. Checked against the latest release by observatory/agent_lists.py check. scored_list_names: the name an agent takes in the generated list of scored agents, per language (signed by Albert, 07-11: GitHub Copilot is scored only in VS Code).",
+  "knowledge_to_file": {
+    "claude-code": "claude-code",
+    "cursor": "cursor",
+    "hermes": "hermes-agent",
+    "codex": "codex",
+    "grok-build": "grok-build",
+    "antigravity-cli": "antigravity-cli",
+    "github-copilot": "github-copilot"
+  },
+  "not_agents": [
+    "mcp_catalog"
+  ],
+  "scored_list_names": {
+    "github-copilot": {
+      "en": "GitHub Copilot in VS Code",
+      "es": "GitHub Copilot en VS Code",
+      "ca": "GitHub Copilot a VS Code"
+    }
+  }
+}

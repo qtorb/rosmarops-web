@@ -895,14 +895,14 @@ class SourcesFile(unittest.TestCase):
         ids = [s["id"] for s in SOURCES["sources"]]
         self.assertEqual(ids, IDS)
         self.assertEqual(IDS[:29], [f"F{i}" for i in range(1, 30)])
-        self.assertEqual(IDS[29:], ["F31", "F32", "F33", "F34", "F35", "F36", "F37", "F38", "F39", "F40", "F41", "F42", "F43"])
+        self.assertEqual(IDS[29:], ["F31", "F32", "F33", "F34", "F35", "F36", "F37", "F38", "F39", "F40", "F41", "F42", "F43", "F44"])
         for s in SOURCES["sources"]:
             self.assertEqual(set(s), {"id", "name", "scope", "method", "read", "public_url", "fragile", "notes"}, s["id"])
             self.assertIn(s["method"], collect.METHODS, s["id"])
             self.assertEqual(s["fragile"], s["id"] in ("F8", "F19", "F43"), s["id"])
             self.assertNotIn("raw.githubusercontent.com", s["public_url"], s["id"])
             if s["name"] not in ("Hermes Agent", "Muse Code", "n8n", "TRAE", "Qwen Code", "Kimi Code", "CodeBuddy", "Qoder CN",
-                                 "Aider", "OpenHands", "Amp", "Warp", "Junie", "Kilo Code", "Comet"):
+                                 "Aider", "OpenHands", "Amp", "Warp", "Junie", "Kilo Code", "Comet", "Grok Build"):
                 self.assertEqual(s["public_url"], checked[s["name"]], s["id"])
         self.assertEqual(len(set(SOURCES["scope_terms"])), len(SOURCES["scope_terms"]))
         self.assertTrue({"muse", "n8n"} <= set(SOURCES["scope_terms"]))
@@ -932,6 +932,9 @@ class SourcesFile(unittest.TestCase):
         for s in gtm98.values():
             self.assertTrue((ROOT / "observatory" / "data" / "agents" / f"{s['scope']}.json").is_file(), s["id"])
             self.assertTrue(daily_check.host_allowed(s["public_url"]), s["id"])
+        f44 = src("F44")
+        self.assertEqual((f44["name"], f44["scope"], f44["method"], f44["read"]["urls"]), ("Grok Build", "grok-build", "changelog-web", ["https://x.ai/changelog/build"]))
+        self.assertTrue(daily_check.host_allowed(f44["public_url"]))
         f29 = SOURCES["sources"][28]
         self.assertEqual((f29["name"], f29["method"], f29["fragile"]), ("Muse Code", "changelog-versions", False))
         self.assertEqual(f29["public_url"], f29["read"]["url"])

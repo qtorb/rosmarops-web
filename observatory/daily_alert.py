@@ -5,6 +5,9 @@
   python3 observatory/daily_alert.py missing YYYY-MM-DD    alert that the day's file does not exist
   python3 observatory/daily_alert.py repeat YYYY-MM-DD     alert if observatory/raw/D.json is missing, or if a source
                                                            has opened false in it and in the day before's (GTM-90)
+  python3 observatory/daily_alert.py consistency YYYY-MM-DD FILE
+                                                           alert with a FOCO line if FILE (the output of
+                                                           agent_lists.py check) lists problems (GTM-99)
 
 Writes one JSON message per alert to the folder in $ALERT_DIR (default: ./alerts) and prints how many.
 Sending is done by the workflow with curl. The recipient is fixed here; nothing else is ever addressed.
@@ -97,8 +100,20 @@ def for_repeat(date, raw_dir=None, sources_file=SOURCES):
                   [f"Fecha: {date}", "Fuentes con opened false dos días seguidos:"] + lines)]
 
 
+def for_consistency(date, report):
+    """GTM-99: the web contradicts the agent files or the program's latest release. Same channel, one FOCO line first."""
+    lines = [ln.removeprefix("::error::").removeprefix("FAIL ").strip() for ln in report.splitlines()]
+    problems = [ln for ln in lines if ln and not ln.startswith("agent lists:")]
+    if not problems:
+        return []
+    return [plain(f"Observatorio: FOCO web incoherente con los agentes ({date})",
+                  [f"FOCO: la web dice algo distinto de las fichas de agente o de la última versión publicada ({len(problems)}).",
+                   f"Fecha: {date}", "Problemas:"] + [f"- {p}" for p in problems]
+                  + ["", "Si es una versión nueva del programa, el PR automático de esa versión lo arregla al fusionarlo."])]
+
+
 def main(argv):
-    if len(argv) < 2 or argv[0] not in ("push", "missing", "repeat"):
+    if len(argv) < 2 or argv[0] not in ("push", "missing", "repeat", "consistency"):
         sys.exit(__doc__)
     msgs = []
     if argv[0] == "push":
@@ -106,6 +121,8 @@ def main(argv):
             msgs += for_file(f)
     elif argv[0] == "repeat":
         msgs += for_repeat(argv[1])
+    elif argv[0] == "consistency":
+        msgs += for_consistency(argv[1], Path(argv[2]).read_text(encoding="utf-8") if len(argv) > 2 else "")
     else:
         date = argv[1]
         msgs.append(message(date, "sin fichero a las 15:30",

@@ -29,6 +29,193 @@
     {
       "schema_version": 1,
       "agent": {
+        "id": "github-copilot",
+        "name": "GitHub Copilot",
+        "vendor": "GitHub",
+        "kinds": [
+          "cli",
+          "ide_extension",
+          "cloud"
+        ],
+        "platforms": [
+          "windows",
+          "macos",
+          "linux",
+          "web"
+        ],
+        "local_footprint": "yes",
+        "rosmarops": {
+          "status": "evaluated",
+          "since_version": "0.9.0"
+        },
+        "reviewed_at": "2026-10-29"
+      },
+      "versions": [],
+      "changes": [
+        {
+          "id": "chg-copilot-projects-multi-repo",
+          "date": "2026-10-28",
+          "category": "agent_scope",
+          "before": {
+            "en": "No announced way to run one Copilot agent task across several repositories at once.",
+            "es": "No se había anunciado ninguna forma de ejecutar una misma tarea de un agente de Copilot en varios repositorios a la vez.",
+            "ca": "No s'havia anunciat cap manera d'executar una mateixa tasca d'un agent de Copilot en diversos repositoris alhora."
+          },
+          "after": {
+            "en": "Copilot projects run agent work across several repositories in parallel sessions, in the GitHub Copilot app, available from 28 October 2026.",
+            "es": "Los proyectos de Copilot ejecutan trabajo de agentes en varios repositorios en sesiones paralelas, en la aplicación GitHub Copilot, disponible desde el 28 de octubre de 2026.",
+            "ca": "Els projectes de Copilot executen feina d'agents en diversos repositoris en sessions paral·leles, a l'aplicació GitHub Copilot, disponible des del 28 d'octubre de 2026."
+          },
+          "source": {
+            "url": "https://github.blog/news-insights/company-news/github-universe-2026-evolving-every-layer-of-the-stack/",
+            "official": true,
+            "accessed_at": "2026-10-28"
+          },
+          "verified": {
+            "by": "advisor",
+            "at": "2026-10-28",
+            "how": "official_changelog"
+          },
+          "rosmarops_impact": "knowledge"
+        },
+        {
+          "id": "chg-copilot-session-continuity",
+          "date": "2026-10-28",
+          "category": "data_destination",
+          "before": {
+            "en": "No announced way to follow one cloud agent session from several places.",
+            "es": "No se había anunciado ninguna forma de seguir una misma sesión de agente en la nube desde varios sitios.",
+            "ca": "No s'havia anunciat cap manera de seguir una mateixa sessió d'agent al núvol des de diversos llocs."
+          },
+          "after": {
+            "en": "The same cloud agent session can be started and followed from the GitHub app, VS Code, the CLI and the web. The session runs in GitHub's cloud. Availability not stated.",
+            "es": "La misma sesión de agente en la nube se puede iniciar y seguir desde la aplicación de GitHub, VS Code, la línea de órdenes y la web. La sesión se ejecuta en la nube de GitHub. No se indica disponibilidad.",
+            "ca": "La mateixa sessió d'agent al núvol es pot iniciar i seguir des de l'aplicació de GitHub, VS Code, la línia d'ordres i el web. La sessió s'executa al núvol de GitHub. No se n'indica la disponibilitat."
+          },
+          "source": {
+            "url": "https://github.blog/news-insights/company-news/github-universe-2026-evolving-every-layer-of-the-stack/",
+            "official": true,
+            "accessed_at": "2026-10-28"
+          },
+          "verified": {
+            "by": "advisor",
+            "at": "2026-10-28",
+            "how": "official_changelog"
+          },
+          "rosmarops_impact": "none"
+        },
+        {
+          "id": "chg-copilot-automations-propose-changes",
+          "date": "2026-10-28",
+          "category": "instructions",
+          "before": {
+            "en": "No announced way for Copilot automations to propose changes to themselves.",
+            "es": "No se había anunciado ninguna forma de que las automatizaciones de Copilot propusieran cambios sobre sí mismas.",
+            "ca": "No s'havia anunciat cap manera que les automatitzacions de Copilot proposessin canvis sobre si mateixes."
+          },
+          "after": {
+            "en": "Copilot automations, cloud repository workflows run by hand, on events or on a schedule, can learn from their outcomes and propose improvements for the user to review and approve. Availability not stated.",
+            "es": "Las automatizaciones de Copilot, flujos de trabajo de repositorio en la nube que se lanzan a mano, por eventos o con un calendario, pueden aprender de sus resultados y proponer mejoras para que el usuario las revise y apruebe. No se indica disponibilidad.",
+            "ca": "Les automatitzacions de Copilot, fluxos de treball de repositori al núvol que s'executen a mà, per esdeveniments o amb un calendari, poden aprendre dels seus resultats i proposar millores perquè l'usuari les revisi i les aprovi. No se n'indica la disponibilitat."
+          },
+          "source": {
+            "url": "https://github.blog/news-insights/company-news/github-universe-2026-evolving-every-layer-of-the-stack/",
+            "official": true,
+            "accessed_at": "2026-10-28"
+          },
+          "verified": {
+            "by": "advisor",
+            "at": "2026-10-28",
+            "how": "official_changelog"
+          },
+          "rosmarops_impact": "none"
+        },
+        {
+          "id": "chg-copilot-server-to-server-auth",
+          "date": "2026-10-27",
+          "category": "credentials",
+          "before": {
+            "en": "No announced way for a GitHub App to use Copilot for an organization without a signed-in user.",
+            "es": "No se había anunciado ninguna forma de que una GitHub App usara Copilot para una organización sin un usuario conectado.",
+            "ca": "No s'havia anunciat cap manera que una GitHub App fes servir Copilot per a una organització sense un usuari connectat."
+          },
+          "after": {
+            "en": "A GitHub App installed on an organization can request Copilot without a signed-in user, with a short-lived installation token and the read-only «Copilot Requests» permission. Public preview; usage is billed to the organization.",
+            "es": "Una GitHub App instalada en una organización puede pedir Copilot sin un usuario conectado, con un token de instalación de corta duración y el permiso de solo lectura «Copilot Requests». En vista previa pública; el uso se factura a la organización.",
+            "ca": "Una GitHub App instal·lada en una organització pot demanar Copilot sense un usuari connectat, amb un token d'instal·lació de curta durada i el permís de només lectura «Copilot Requests». En vista prèvia pública; l'ús es factura a l'organització."
+          },
+          "source": {
+            "url": "https://github.blog/changelog/2026-10-27-github-copilot-supports-server-to-server-authentication",
+            "official": true,
+            "accessed_at": "2026-10-29"
+          },
+          "verified": {
+            "by": "advisor",
+            "at": "2026-10-29",
+            "how": "official_changelog"
+          },
+          "rosmarops_impact": "none"
+        }
+      ],
+      "ratings": []
+    },
+    {
+      "schema_version": 1,
+      "agent": {
+        "id": "codex",
+        "name": "Codex",
+        "vendor": "OpenAI",
+        "kinds": [
+          "cli",
+          "ide_extension",
+          "desktop_app",
+          "cloud"
+        ],
+        "platforms": [
+          "windows",
+          "macos",
+          "linux",
+          "web"
+        ],
+        "local_footprint": "yes",
+        "rosmarops": {
+          "status": "evaluated",
+          "since_version": "0.8.0"
+        },
+        "reviewed_at": "2026-10-28"
+      },
+      "versions": [],
+      "changes": [],
+      "ratings": []
+    },
+    {
+      "schema_version": 1,
+      "agent": {
+        "id": "grok-build",
+        "name": "Grok Build",
+        "vendor": "xAI",
+        "kinds": [
+          "cli"
+        ],
+        "platforms": [
+          "windows",
+          "macos",
+          "linux"
+        ],
+        "local_footprint": "yes",
+        "rosmarops": {
+          "status": "evaluated",
+          "since_version": "0.8.0"
+        },
+        "reviewed_at": "2026-11-07"
+      },
+      "versions": [],
+      "changes": [],
+      "ratings": []
+    },
+    {
+      "schema_version": 1,
+      "agent": {
         "id": "hermes-agent",
         "name": "Hermes Agent",
         "vendor": "Nous Research",
@@ -1063,35 +1250,6 @@
     {
       "schema_version": 1,
       "agent": {
-        "id": "codex",
-        "name": "Codex",
-        "vendor": "OpenAI",
-        "kinds": [
-          "cli",
-          "ide_extension",
-          "desktop_app",
-          "cloud"
-        ],
-        "platforms": [
-          "windows",
-          "macos",
-          "linux",
-          "web"
-        ],
-        "local_footprint": "yes",
-        "rosmarops": {
-          "status": "detected",
-          "since_version": "0.3.0"
-        },
-        "reviewed_at": "2026-10-28"
-      },
-      "versions": [],
-      "changes": [],
-      "ratings": []
-    },
-    {
-      "schema_version": 1,
-      "agent": {
         "id": "cline",
         "name": "Cline",
         "vendor": "Cline",
@@ -1140,139 +1298,6 @@
       },
       "versions": [],
       "changes": [],
-      "ratings": []
-    },
-    {
-      "schema_version": 1,
-      "agent": {
-        "id": "github-copilot",
-        "name": "GitHub Copilot",
-        "vendor": "GitHub",
-        "kinds": [
-          "cli",
-          "ide_extension",
-          "cloud"
-        ],
-        "platforms": [
-          "windows",
-          "macos",
-          "linux",
-          "web"
-        ],
-        "local_footprint": "yes",
-        "rosmarops": {
-          "status": "detected",
-          "since_version": "0.1.0"
-        },
-        "reviewed_at": "2026-10-29"
-      },
-      "versions": [],
-      "changes": [
-        {
-          "id": "chg-copilot-projects-multi-repo",
-          "date": "2026-10-28",
-          "category": "agent_scope",
-          "before": {
-            "en": "No announced way to run one Copilot agent task across several repositories at once.",
-            "es": "No se había anunciado ninguna forma de ejecutar una misma tarea de un agente de Copilot en varios repositorios a la vez.",
-            "ca": "No s'havia anunciat cap manera d'executar una mateixa tasca d'un agent de Copilot en diversos repositoris alhora."
-          },
-          "after": {
-            "en": "Copilot projects run agent work across several repositories in parallel sessions, in the GitHub Copilot app, available from 28 October 2026.",
-            "es": "Los proyectos de Copilot ejecutan trabajo de agentes en varios repositorios en sesiones paralelas, en la aplicación GitHub Copilot, disponible desde el 28 de octubre de 2026.",
-            "ca": "Els projectes de Copilot executen feina d'agents en diversos repositoris en sessions paral·leles, a l'aplicació GitHub Copilot, disponible des del 28 d'octubre de 2026."
-          },
-          "source": {
-            "url": "https://github.blog/news-insights/company-news/github-universe-2026-evolving-every-layer-of-the-stack/",
-            "official": true,
-            "accessed_at": "2026-10-28"
-          },
-          "verified": {
-            "by": "advisor",
-            "at": "2026-10-28",
-            "how": "official_changelog"
-          },
-          "rosmarops_impact": "knowledge"
-        },
-        {
-          "id": "chg-copilot-session-continuity",
-          "date": "2026-10-28",
-          "category": "data_destination",
-          "before": {
-            "en": "No announced way to follow one cloud agent session from several places.",
-            "es": "No se había anunciado ninguna forma de seguir una misma sesión de agente en la nube desde varios sitios.",
-            "ca": "No s'havia anunciat cap manera de seguir una mateixa sessió d'agent al núvol des de diversos llocs."
-          },
-          "after": {
-            "en": "The same cloud agent session can be started and followed from the GitHub app, VS Code, the CLI and the web. The session runs in GitHub's cloud. Availability not stated.",
-            "es": "La misma sesión de agente en la nube se puede iniciar y seguir desde la aplicación de GitHub, VS Code, la línea de órdenes y la web. La sesión se ejecuta en la nube de GitHub. No se indica disponibilidad.",
-            "ca": "La mateixa sessió d'agent al núvol es pot iniciar i seguir des de l'aplicació de GitHub, VS Code, la línia d'ordres i el web. La sessió s'executa al núvol de GitHub. No se n'indica la disponibilitat."
-          },
-          "source": {
-            "url": "https://github.blog/news-insights/company-news/github-universe-2026-evolving-every-layer-of-the-stack/",
-            "official": true,
-            "accessed_at": "2026-10-28"
-          },
-          "verified": {
-            "by": "advisor",
-            "at": "2026-10-28",
-            "how": "official_changelog"
-          },
-          "rosmarops_impact": "none"
-        },
-        {
-          "id": "chg-copilot-automations-propose-changes",
-          "date": "2026-10-28",
-          "category": "instructions",
-          "before": {
-            "en": "No announced way for Copilot automations to propose changes to themselves.",
-            "es": "No se había anunciado ninguna forma de que las automatizaciones de Copilot propusieran cambios sobre sí mismas.",
-            "ca": "No s'havia anunciat cap manera que les automatitzacions de Copilot proposessin canvis sobre si mateixes."
-          },
-          "after": {
-            "en": "Copilot automations, cloud repository workflows run by hand, on events or on a schedule, can learn from their outcomes and propose improvements for the user to review and approve. Availability not stated.",
-            "es": "Las automatizaciones de Copilot, flujos de trabajo de repositorio en la nube que se lanzan a mano, por eventos o con un calendario, pueden aprender de sus resultados y proponer mejoras para que el usuario las revise y apruebe. No se indica disponibilidad.",
-            "ca": "Les automatitzacions de Copilot, fluxos de treball de repositori al núvol que s'executen a mà, per esdeveniments o amb un calendari, poden aprendre dels seus resultats i proposar millores perquè l'usuari les revisi i les aprovi. No se n'indica la disponibilitat."
-          },
-          "source": {
-            "url": "https://github.blog/news-insights/company-news/github-universe-2026-evolving-every-layer-of-the-stack/",
-            "official": true,
-            "accessed_at": "2026-10-28"
-          },
-          "verified": {
-            "by": "advisor",
-            "at": "2026-10-28",
-            "how": "official_changelog"
-          },
-          "rosmarops_impact": "none"
-        },
-        {
-          "id": "chg-copilot-server-to-server-auth",
-          "date": "2026-10-27",
-          "category": "credentials",
-          "before": {
-            "en": "No announced way for a GitHub App to use Copilot for an organization without a signed-in user.",
-            "es": "No se había anunciado ninguna forma de que una GitHub App usara Copilot para una organización sin un usuario conectado.",
-            "ca": "No s'havia anunciat cap manera que una GitHub App fes servir Copilot per a una organització sense un usuari connectat."
-          },
-          "after": {
-            "en": "A GitHub App installed on an organization can request Copilot without a signed-in user, with a short-lived installation token and the read-only «Copilot Requests» permission. Public preview; usage is billed to the organization.",
-            "es": "Una GitHub App instalada en una organización puede pedir Copilot sin un usuario conectado, con un token de instalación de corta duración y el permiso de solo lectura «Copilot Requests». En vista previa pública; el uso se factura a la organización.",
-            "ca": "Una GitHub App instal·lada en una organització pot demanar Copilot sense un usuari connectat, amb un token d'instal·lació de curta durada i el permís de només lectura «Copilot Requests». En vista prèvia pública; l'ús es factura a l'organització."
-          },
-          "source": {
-            "url": "https://github.blog/changelog/2026-10-27-github-copilot-supports-server-to-server-authentication",
-            "official": true,
-            "accessed_at": "2026-10-29"
-          },
-          "verified": {
-            "by": "advisor",
-            "at": "2026-10-29",
-            "how": "official_changelog"
-          },
-          "rosmarops_impact": "none"
-        }
-      ],
       "ratings": []
     },
     {

@@ -17,8 +17,8 @@
     ],
     "local_footprint": "yes",
     "rosmarops": {
-      "status": "detected",
-      "since_version": "0.1.0"
+      "status": "evaluated",
+      "since_version": "0.9.0"
     },
     "reviewed_at": "2026-10-29"
   },

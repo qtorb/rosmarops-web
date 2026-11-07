@@ -43,6 +43,11 @@ jobs:
           # Observatory: only the three index pages and the JSON files are published (GTM-11). Agent pages wait for verification.
           ls site/observatory/index.html site/es/observatorio/index.html site/ca/observatori/index.html site/observatory/*.json
 
+      - name: The web agrees with the agent files and the program's latest release (GTM-99)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 observatory/agent_lists.py check
+
       - name: Install sshpass
         run: sudo apt-get update -qq && sudo apt-get install -y -qq sshpass
 

@@ -1,0 +1,52 @@
+[
+  {
+    "page": "site/index.html",
+    "contains": "In your accounts",
+    "reason": "Cloud accounts row (GTM-100): products reviewed in the account review, not the agents RosmarOps reads on the computer."
+  },
+  {
+    "page": "site/es/index.html",
+    "contains": "En tus cuentas",
+    "reason": "Cloud accounts row (GTM-100): products reviewed in the account review, not the agents RosmarOps reads on the computer."
+  },
+  {
+    "page": "site/ca/index.html",
+    "contains": "Als teus comptes",
+    "reason": "Cloud accounts row (GTM-100): products reviewed in the account review, not the agents RosmarOps reads on the computer."
+  },
+  {
+    "page": "site/methodology/index.html",
+    "contains": "Grok Build also loads",
+    "reason": "Prose: what Grok Build loads from Claude Code and Cursor, not a list of agents RosmarOps scores or detects."
+  },
+  {
+    "page": "site/es/metodologia/index.html",
+    "contains": "Grok Build carga también",
+    "reason": "Prose: what Grok Build loads from Claude Code and Cursor, not a list of agents RosmarOps scores or detects."
+  },
+  {
+    "page": "site/ca/metodologia/index.html",
+    "contains": "Grok Build també carrega",
+    "reason": "Prose: what Grok Build loads from Claude Code and Cursor, not a list of agents RosmarOps scores or detects."
+  },
+  {
+    "page": "site/methodology/index.html",
+    "contains": "Agents that work in the cloud (",
+    "reason": "Cloud agents (GTM-100): products of the account review, not agents read on the computer."
+  },
+  {
+    "page": "site/es/metodologia/index.html",
+    "contains": "Los agentes que trabajan en la nube (",
+    "reason": "Cloud agents (GTM-100): products of the account review, not agents read on the computer."
+  },
+  {
+    "page": "site/ca/metodologia/index.html",
+    "contains": "Els agents que treballen al núvol (",
+    "reason": "Cloud agents (GTM-100): products of the account review, not agents read on the computer."
+  },
+  {
+    "page": "site/llms.txt",
+    "contains": "[RosmarOps 0.3.0](",
+    "reason": "Title of a dated release post: what that version detected, kept as published."
+  }
+]
