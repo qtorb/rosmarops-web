@@ -8,6 +8,8 @@ name: Sample report captures
 # sample-report-<tag> and opens a PR with the 1280 and 390 px captures in its description; Albert merges it after
 # looking at them, and the merge asks for the deploy as any other change to site/. If the branch already exists,
 # nothing is done again. If the PR cannot be opened, the run fails and prints the link to open it by hand.
+# GTM-99 (signed by Albert, 07-11): the same PR updates agent.rosmarops in the agent files from the release's
+# internal/knowledge/ and the agent lists of the 13 pages. Only this repository's GITHUB_TOKEN and the public API.
 
 on:
   schedule:
@@ -68,6 +70,17 @@ jobs:
           gh release download "$TAG" -R qtorb/rosmarops -p 'sample-report.*.html' -D "$dir"
           cp "$dir/sample-report.en.html" "$dir/sample-report.es.html" site/sample-report/
 
+      - name: Agent status and lists for the release (GTM-99)
+        if: steps.rel.outputs.new == 'true'
+        env:
+          TAG: ${{ steps.rel.outputs.tag }}
+        run: |
+          set -eu
+          # Agents with a knowledge file in this release become "evaluated" since it; the 13 pages and the Observatory
+          # are generated again. What needs Albert (an unmapped knowledge file, an agent no longer scored) goes in the PR.
+          python3 observatory/agent_lists.py release "$TAG" | tee "$RUNNER_TEMP/agents.txt"
+          python3 observatory/build.py
+
       - name: Install Playwright, Chromium and optipng
         if: steps.rel.outputs.new == 'true'
         run: |
@@ -104,8 +117,9 @@ jobs:
           git checkout -b "$branch"
           git add site/sample-report/VERSION site/sample-report/sample-report.en.html site/sample-report/sample-report.es.html \
             site/assets/sample/ site/index.html site/sample-report/index.html site/es/index.html \
-            site/es/informe-de-ejemplo/index.html site/ca/index.html site/ca/informe-dexemple/index.html
-          git commit -m "Sample report and captures for $TAG (automatic, for review)"
+            site/es/informe-de-ejemplo/index.html site/ca/index.html site/ca/informe-dexemple/index.html \
+            observatory/data/agents site wp/daily wp/pages
+          git commit -m "Sample report, captures and agent lists for $TAG (automatic, for review)"
           git push origin "$branch"
           raw="https://github.com/${GITHUB_REPOSITORY}/raw/$branch/site/assets/sample"
           {
@@ -119,6 +133,10 @@ jobs:
             echo "390 px (EN, ES):"
             echo
             echo "![390 px EN]($raw/sample-mobile.en.png) ![390 px ES]($raw/sample-mobile.es.png)"
+            echo
+            echo "Agents scored in $TAG (GTM-99), from internal/knowledge/ of the release:"
+            echo
+            if [ -s "$RUNNER_TEMP/agents.txt" ]; then sed 's/^/- /' "$RUNNER_TEMP/agents.txt"; else echo "- no change"; fi
           } > "$RUNNER_TEMP/pr.md"
           if ! gh pr create --base main --head "$branch" --title "Sample report and captures for $TAG" --body-file "$RUNNER_TEMP/pr.md"; then
             echo "::error::Could not open the PR. Open it by hand: https://github.com/${GITHUB_REPOSITORY}/compare/main...$branch"

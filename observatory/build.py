@@ -989,6 +989,9 @@ def main():
     build_llms(agents, T(cats["en"]))
     if default_out:
         build_daily_shells(cats)
+        # GTM-99: the lists of scored and detected agents in the 13 pages, from agent.rosmarops of each file.
+        import agent_lists
+        agent_lists.render()
     pages = 0
     for lang in LANGS:
         t = T(cats[lang])

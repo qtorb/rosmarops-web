@@ -1,0 +1,13 @@
+{
+  "$comment": "GTM-99. The program's knowledge files (internal/knowledge/<name>.json in qtorb/rosmarops, one per agent it scores) and the Observatory agent file each one stands for. not_agents: knowledge files that are not an agent. Checked against the latest release by observatory/agent_lists.py check.",
+  "knowledge_to_file": {
+    "claude-code": "claude-code",
+    "cursor": "cursor",
+    "hermes": "hermes-agent",
+    "codex": "codex",
+    "grok-build": "grok-build"
+  },
+  "not_agents": [
+    "mcp_catalog"
+  ]
+}

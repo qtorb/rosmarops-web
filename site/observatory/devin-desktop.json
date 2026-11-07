@@ -19,6 +19,34 @@
     "reviewed_at": "2026-10-30"
   },
   "versions": [],
-  "changes": [],
+  "changes": [
+    {
+      "id": "chg-devin-desktop-3-12-17-mcp",
+      "version": "3.12.17",
+      "date": "2026-11-06",
+      "category": "mcp",
+      "before": {
+        "en": "Before 3.12.17, the changelog lists no Agent Command Center session menu for MCP servers in Devin Desktop.",
+        "es": "Antes de 3.12.17, el changelog no recoge en Devin Desktop un menú de sesión del Agent Command Center para los servidores MCP.",
+        "ca": "Abans de 3.12.17, el changelog no recull a Devin Desktop cap menú de sessió de l'Agent Command Center per als servidors MCP."
+      },
+      "after": {
+        "en": "From 3.12.17, the Agent Command Center session menu shows a session's MCP servers and can turn one on or off or re-authenticate it, according to the changelog.",
+        "es": "Desde 3.12.17, el menú de sesión del Agent Command Center muestra los servidores MCP de la sesión y permite activarlos, desactivarlos o volver a autenticarlos, según el changelog.",
+        "ca": "Des de 3.12.17, el menú de sessió de l'Agent Command Center mostra els servidors MCP de la sessió i permet activar-los, desactivar-los o tornar-los a autenticar, segons el changelog."
+      },
+      "source": {
+        "url": "https://docs.devin.ai/desktop/changelog",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "verified": {
+        "by": "writer",
+        "at": "2026-11-07",
+        "how": "official_changelog"
+      },
+      "rosmarops_impact": "none"
+    }
+  ],
   "ratings": []
 }
