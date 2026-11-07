@@ -54,11 +54,22 @@ def load_agents(folder=AGENTS):
     return [json.loads(f.read_text(encoding="utf-8"))["agent"] for f in sorted(folder.glob("*.json"))]
 
 
-def names(agents, kind):
-    """Names of the agents with that status, oldest since_version first, then by name."""
+def list_names(root=ROOT):
+    """Names some agents take in the list of scored agents, per language (program-agents.json, signed by Albert):
+    e.g. GitHub Copilot is scored only in VS Code."""
+    f = root / "observatory" / "data" / "program-agents.json"
+    return json.loads(f.read_text(encoding="utf-8")).get("scored_list_names", {}) if f.exists() else {}
+
+
+def names(agents, kind, lang="en", overrides=None):
+    """Names of the agents with that status, oldest since_version first, then by name. In the scored list, an agent
+    with a name in scored_list_names takes that name in the page's language."""
+    overrides = list_names() if overrides is None else overrides
     sel = [a for a in agents if a["rosmarops"]["status"] == KINDS[kind]]
     sel.sort(key=lambda a: (version_key(a["rosmarops"].get("since_version", "")), a["name"].lower()))
-    return [a["name"] for a in sel]
+    if kind != "scored":
+        return [a["name"] for a in sel]
+    return [overrides.get(a["id"], {}).get(lang, a["name"]) for a in sel]
 
 
 def join(items, lang):
@@ -87,13 +98,13 @@ def render_text(text, lang, agents, page):
             old = join(olds, lang) if len(olds) >= 2 else ""
         else:
             old = html.unescape(m.group(3)).strip()
-        new = join(names(agents, m.group(1)), lang)
+        new = join(names(agents, m.group(1), lang), lang)
         if old and old != new:
             mirrors.append((old, new))
 
     def sub(m):
         kind, style = m.group(1), m.group(2)
-        body = render_list(names(agents, kind), lang, kind, style, page)
+        body = render_list(names(agents, kind, lang), lang, kind, style, page)
         head = f"<!-- agents:{kind}{' ' + style if style else ''} -->"
         return f"{head}{body}<!-- /agents:{kind} -->"
 
@@ -209,7 +220,7 @@ def check_pages(agents, exclusions, root=ROOT):
                     + r")(?![\w-])")
     errs = []
     for page, lang in PAGES.items():
-        generated = [join(names(agents, k), lang) for k in KINDS]
+        generated = [join(names(agents, k, lang), lang) for k in KINDS]
         allowed = [e["contains"] for e in exclusions if e["page"] == page]
         for seg, mirror_zone in segments((root / page).read_text(encoding="utf-8")):
             if any(a in seg for a in allowed):

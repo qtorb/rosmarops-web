@@ -47,6 +47,17 @@ class Lists(unittest.TestCase):
         with self.assertRaises(ValueError):  # a singular sentence is a wording change: not generated
             al.join(["A"], "en")
 
+    def test_scored_list_names_per_language(self):
+        agents = AGENTS + [agent("github-copilot", "GitHub Copilot", "evaluated", "0.9.0")]
+        names = {"github-copilot": {"en": "GitHub Copilot in VS Code", "es": "GitHub Copilot en VS Code", "ca": "GitHub Copilot a VS Code"}}
+        self.assertEqual(al.names(agents, "scored", "es", names)[-1], "GitHub Copilot en VS Code")
+        self.assertEqual(al.names(agents, "scored", "ca", names)[-1], "GitHub Copilot a VS Code")
+        self.assertEqual(al.names(agents, "scored", "en", {})[-1], "GitHub Copilot")
+        detected = [agent("github-copilot", "GitHub Copilot", "detected", "0.1.0"), agent("cline", "Cline", "detected", "0.1.0")]
+        self.assertEqual(al.names(detected, "detected", "es", names), ["Cline", "GitHub Copilot"])  # only the scored list
+        signed = al.list_names()["github-copilot"]
+        self.assertEqual(signed, names["github-copilot"])
+
     def test_render_sentence_chips_and_mirrors(self):
         old = ("<html><head><meta name=\"description\" content=\"today Claude Code and Cursor\">"
                "<script type=\"application/ld+json\">{\"description\": \"(today Claude Code and Cursor)\"}</script></head><body>"
@@ -179,7 +190,7 @@ class Repository(unittest.TestCase):
         self.assertEqual(al.check_candidates(agents, json.loads((OBS / "data" / "candidates.json").read_text(encoding="utf-8"))), [])
         program = json.loads((OBS / "data" / "program-agents.json").read_text(encoding="utf-8"))
         # v0.8.0 (07-11): internal/knowledge/ has claude-code, codex, cursor, grok-build, hermes and mcp_catalog.
-        self.assertEqual(al.check_scored(agents, ["claude-code", "codex", "cursor", "grok-build", "hermes", "mcp_catalog"], program), [])
+        self.assertEqual(al.check_scored(agents, ["antigravity-cli", "claude-code", "codex", "cursor", "github-copilot", "grok-build", "hermes", "mcp_catalog"], program), [])
 
 
 class FocoAlert(unittest.TestCase):
