@@ -999,6 +999,95 @@ def build_download_sources(agents):
         DL_PLUGIN.write_text(new, encoding="utf-8")
 
 
+
+# GTM-114: «About RosmarOps» served from the repository (site/_static/, mapped to its WordPress addresses by
+# wp/htaccess-static.txt). The text is wp/pages/*.html, whose agent lists agent_lists.render() keeps current.
+ABOUT_PAGES = {
+    "en": ("about-en.html", "/blog/about/", "About RosmarOps", "en_US", "RosmarOps logo"),
+    "es": ("que-es-rosmarops-es.html", "/es/blog/que-es-rosmarops/", "Qué es RosmarOps", "es_ES", "Logotipo de RosmarOps"),
+    "ca": ("que-es-rosmarops-ca.html", "/ca/blog/que-es-rosmarops/", "Què és RosmarOps", "ca_ES", "Logotip de RosmarOps"),
+}
+ABOUT_NAV = {
+    "en": ('<a href="/blog/">Blog</a><a href="/blog/about/">About</a><a href="/observatory/">Observatory</a><a href="/methodology/">Methodology</a><a href="/faq/">FAQ</a>',
+           '<a href="/privacy/">Privacy</a><a href="#" data-cc="show-preferencesModal">Cookie settings</a>', "/"),
+    "es": ('<a href="/es/blog/">Blog</a><a href="/es/blog/que-es-rosmarops/">Acerca de</a><a href="/es/observatorio/">Observatorio</a><a href="/es/metodologia/">Metodología</a><a href="/es/preguntas-frecuentes/">Preguntas</a>',
+           '<a href="/es/privacidad/">Privacidad</a><a href="#" data-cc="show-preferencesModal">Configurar cookies</a>', "/es/"),
+    "ca": ('<a href="/ca/blog/">Bloc</a><a href="/ca/blog/que-es-rosmarops/">Quant a</a><a href="/ca/observatori/">Observatori</a><a href="/ca/metodologia/">Metodologia</a><a href="/ca/preguntes-frequents/">Preguntes</a>',
+           '<a href="/ca/privadesa/">Privadesa</a><a href="#" data-cc="show-preferencesModal">Configura les galetes</a>', "/ca/"),
+}
+ABOUT_SWITCH_LABEL = {"en": "English", "es": "Español", "ca": "Català"}
+
+
+def _about_body(src):
+    """WordPress block markup to the HTML WordPress shows: no block comments, and the apostrophes WordPress curls."""
+    body = re.sub(r"<!--.*?-->", "", src, flags=re.S)
+    body = re.sub(r' class="wp-block-[a-z-]+"', "", body)
+    body = re.sub(r"\n\s*\n+", "\n", body).strip()
+    parts = re.split(r"(<[^>]+>)", body)  # only text between tags, never attributes
+    return "".join(p if p.startswith("<") else re.sub(r"(?<=\w)'(?=\w)", "’", p) for p in parts)
+
+
+def build_static_about():
+    css = (SITE / "ca" / "privadesa" / "index.html").read_text(encoding="utf-8")
+    style = css[css.index('<link rel="stylesheet"'):css.index("</head>")]
+    out = SITE / "_static"
+    out.mkdir(parents=True, exist_ok=True)
+    for lang, (src, path, title, locale, alt) in ABOUT_PAGES.items():
+        body = _about_body((ROOT / "wp" / "pages" / src).read_text(encoding="utf-8"))
+        first = re.search(r"<p>(.*?)</p>", body, re.S).group(1)
+        desc = re.sub(r"<[^>]+>", "", first).split(". ")[0].rstrip(".") + "."
+        url = "https://rosmarops.com" + path
+        nav, extra, home = ABOUT_NAV[lang]
+        switch = "".join(f'<a href="{ABOUT_PAGES[o][1]}" hreflang="{o}" lang="{o}" aria-label="{ABOUT_SWITCH_LABEL[o]}">{o.upper()}</a>'
+                         for o in ABOUT_PAGES if o != lang)
+        alts = "".join(f'<link rel="alternate" hreflang="{o}" href="https://rosmarops.com{ABOUT_PAGES[o][1]}">\n' for o in ABOUT_PAGES)
+        ld = json.dumps({"@context": "https://schema.org", "@type": "AboutPage", "@id": url + "#page", "url": url, "name": title,
+                         "inLanguage": lang, "isPartOf": {"@id": "https://rosmarops.com/#website"}}, ensure_ascii=False)
+        e = lambda s: html.escape(s, quote=True)
+        page = f"""<!doctype html>
+<html lang="{lang}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{e(title)} — RosmarOps</title>
+<meta name="description" content="{e(desc)}">
+<link rel="canonical" href="{url}">
+{alts}<link rel="alternate" hreflang="x-default" href="https://rosmarops.com{ABOUT_PAGES['en'][1]}">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="RosmarOps">
+<meta property="og:title" content="{e(title)} — RosmarOps">
+<meta property="og:description" content="{e(desc)}">
+<meta property="og:url" content="{url}">
+<meta property="og:locale" content="{locale}">
+<meta property="og:image" content="https://rosmarops.com/assets/brand/rosmarops-social.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="{e(alt)}">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{ld}</script>
+{style}</head>
+<body>
+<header><div class="wrap">
+<a href="{home}"><img src="/assets/brand/rosmarops-logo.png" srcset="/assets/brand/rosmarops-logo.png 1x, /assets/brand/rosmarops-logo@2x.png 2x" width="512" height="131" alt="RosmarOps"></a>
+<nav>{nav}{switch}</nav>
+</div></header>
+
+<main><div class="wrap">
+<article class="doc"><h1>{title}</h1>
+{body}
+</article>
+</div></main>
+
+<footer><div class="wrap">
+<nav>{nav}{switch}{extra}</nav>
+</div></footer>
+<script src="/assets/consent/cookieconsent.umd.js?v=3.1.0" defer></script>
+<script src="/assets/consent/consent.js?v=4" defer></script><script src="/assets/visits/visits.js?v=2" defer></script>
+</body>
+</html>
+"""
+        (out / f"about-{lang}.html").write_text(page, encoding="utf-8")
+
 def main():
     global DATA, SITE
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
@@ -1021,6 +1110,7 @@ def main():
         # GTM-99: the lists of scored and detected agents in the 13 pages, from agent.rosmarops of each file.
         import agent_lists
         agent_lists.render()
+        build_static_about()
     pages = 0
     for lang in LANGS:
         t = T(cats[lang])

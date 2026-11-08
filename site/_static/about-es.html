@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Qué es RosmarOps — RosmarOps</title>
+<meta name="description" content="RosmarOps muestra qué pueden hacer los agentes de IA para programar que tienes en tu ordenador: qué puede leer y cambiar cada uno, qué claves tiene a su alcance, adónde envían datos sus servidores MCP y si un agente puede cambiar la configuración o las instrucciones de otro.">
+<link rel="canonical" href="https://rosmarops.com/es/blog/que-es-rosmarops/">
+<link rel="alternate" hreflang="en" href="https://rosmarops.com/blog/about/">
+<link rel="alternate" hreflang="es" href="https://rosmarops.com/es/blog/que-es-rosmarops/">
+<link rel="alternate" hreflang="ca" href="https://rosmarops.com/ca/blog/que-es-rosmarops/">
+<link rel="alternate" hreflang="x-default" href="https://rosmarops.com/blog/about/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="RosmarOps">
+<meta property="og:title" content="Qué es RosmarOps — RosmarOps">
+<meta property="og:description" content="RosmarOps muestra qué pueden hacer los agentes de IA para programar que tienes en tu ordenador: qué puede leer y cambiar cada uno, qué claves tiene a su alcance, adónde envían datos sus servidores MCP y si un agente puede cambiar la configuración o las instrucciones de otro.">
+<meta property="og:url" content="https://rosmarops.com/es/blog/que-es-rosmarops/">
+<meta property="og:locale" content="es_ES">
+<meta property="og:image" content="https://rosmarops.com/assets/brand/rosmarops-social.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Logotipo de RosmarOps">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "AboutPage", "@id": "https://rosmarops.com/es/blog/que-es-rosmarops/#page", "url": "https://rosmarops.com/es/blog/que-es-rosmarops/", "name": "Qué es RosmarOps", "inLanguage": "es", "isPartOf": {"@id": "https://rosmarops.com/#website"}}</script>
+<link rel="stylesheet" href="/assets/consent/cookieconsent.css?v=3.1.0">
+<link rel="icon" href="/wp-content/uploads/2026/10/image-1.png">
+<style>
+:root{--bg:#F6F5F2;--ink:#1B1A18;--ink2:#3A3833;--muted:#66635D;--line:#E3E0D8;--card:#FFFFFF;--accent:#6F8F78}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+a{color:var(--ink)}a:hover{color:var(--accent)}
+.wrap{max-width:1040px;margin:0 auto;padding:0 16px}
+header .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;padding-top:24px;padding-bottom:24px}
+header img{height:40px;width:auto;display:block}
+nav{display:flex;flex-wrap:wrap;gap:24px;font-size:16px}
+main .wrap{display:flex;flex-direction:column;gap:64px;padding-top:48px;padding-bottom:64px}
+.hero{display:flex;flex-direction:column;gap:20px;max-width:760px}
+h1{margin:0;font-size:clamp(34px,6vw,52px);line-height:1.08;font-weight:700;letter-spacing:-.02em}
+.lead{margin:0;font-size:20px;line-height:1.55;color:var(--ink2)}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:16px}
+h2{margin:0;font-size:14px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:12px;font-size:17px;line-height:1.55}
+.status{border-top:1px solid var(--line);padding-top:32px;display:flex;flex-direction:column;gap:12px;max-width:760px}
+.status p{margin:0;font-size:17px;line-height:1.55}
+footer{border-top:1px solid var(--line)}
+footer .wrap{padding-top:28px;padding-bottom:28px;font-size:15px;color:var(--muted)}
+footer nav{gap:20px;font-size:15px}
+.doc{max-width:760px;display:flex;flex-direction:column;gap:18px;font-size:18px;line-height:1.65}
+.doc h1{font-size:clamp(30px,5vw,44px);line-height:1.12}
+.doc h2{font-size:22px;letter-spacing:0;text-transform:none;color:var(--ink);margin-top:20px}
+.doc p,.doc ul{margin:0}.doc ul{font-size:18px;gap:8px}
+.doc .meta{font-size:15px;color:var(--muted)}
+.doc .formula{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 20px;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:16px;overflow-wrap:anywhere}
+.doc code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:.92em}
+.faq h2{margin-top:24px}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<a href="/es/"><img src="/assets/brand/rosmarops-logo.png" srcset="/assets/brand/rosmarops-logo.png 1x, /assets/brand/rosmarops-logo@2x.png 2x" width="512" height="131" alt="RosmarOps"></a>
+<nav><a href="/es/blog/">Blog</a><a href="/es/blog/que-es-rosmarops/">Acerca de</a><a href="/es/observatorio/">Observatorio</a><a href="/es/metodologia/">Metodología</a><a href="/es/preguntas-frecuentes/">Preguntas</a><a href="/blog/about/" hreflang="en" lang="en" aria-label="English">EN</a><a href="/ca/blog/que-es-rosmarops/" hreflang="ca" lang="ca" aria-label="Català">CA</a></nav>
+</div></header>
+
+<main><div class="wrap">
+<article class="doc"><h1>Qué es RosmarOps</h1>
+<p>RosmarOps muestra qué pueden hacer los agentes de IA para programar que tienes en tu ordenador: qué puede leer y cambiar cada uno, qué claves tiene a su alcance, adónde envían datos sus servidores MCP y si un agente puede cambiar la configuración o las instrucciones de otro. Todo se calcula en tu ordenador. Lo hace Albert Garcia Pujadas.</p>
+<h2>Qué es hoy</h2>
+<p>Un programa gratuito para Windows y Linux, y para macOS en vista previa, de código abierto con licencia AGPL-3.0, que se descarga desde GitHub (<a href="/es/">descargar</a>). Lee la configuración que tus agentes dejan en el disco y te da un informe con un semáforo, «Si solo haces una cosa hoy» y una nota de exposición sobre 100 para cada agente que evalúa.</p>
+<p>Funciona en Windows y Linux, y en macOS en vista previa. Hoy evalúa Claude Code, Cursor, Hermes Agent, Codex, Grok Build, Antigravity CLI, GitHub Copilot en VS Code, Cline en VS Code y Gemini CLI. Detecta Continue, Antigravity, Claude Desktop y n8n, pero todavía no les pone nota. Más en la <a href="https://rosmarops.com/es/">portada</a>.</p>
+<h2>Lo que nunca hace</h2>
+<ul>
+<li>No envía nada sin que tú lo apruebes antes. Sin tu permiso no se conecta a nada, ni siquiera para buscar actualizaciones. Si lo conectas a tu espacio, envía solo tus resultados, cifrados, solo a app.rosmarops.com.</li>
+<li>Nunca envía telemetría: ni anónima ni voluntaria.</li>
+<li>Nunca cambia tus ficheros, ajustes, claves ni agentes. El informe te dice qué cambiar; el cambio lo haces tú.</li>
+<li>Nunca muestra una clave entera: solo sus cuatro primeros y cuatro últimos caracteres.</li>
+<li>Solo escribe en su propia carpeta (~/.rosmarops/) y en la carpeta de informes que elijas.</li>
+</ul>
+<p>No hace falta que te fíes de nuestra palabra. El <a href="https://github.com/qtorb/rosmarops/blob/master/docs/trust-model.md">modelo de confianza</a> lista cada afirmación y cómo comprobarla. Cada versión trae una atestación de GitHub del commit y el proceso que la compilaron, y compilar esa misma versión desde su código, con la versión de Go y la orden que documentamos, da el mismo programa.</p>
+<h2>Lo que todavía no hace</h2>
+<ul>
+<li>El programa todavía no está firmado con un certificado de firma de código: Windows puede avisarte la primera vez que lo abras. En macOS, que tampoco está notarizado por Apple, la primera vez hacen falta dos órdenes en el Terminal.</li>
+<li>No se ha publicado ninguna revisión de seguridad independiente.</li>
+<li>Lee la configuración en reposo. No ve lo que hace un agente mientras trabaja, los ajustes que solo viven dentro de una aplicación o en los servidores del fabricante, ni lo que se configura solo en una sesión de terminal. Lo que no pudo leer aparece en el informe y nunca cuenta como limpio.</li>
+<li>En macOS es una vista previa: el informe lista lo que todavía no revisa en macOS, y nada de eso cuenta como limpio.</li>
+</ul>
+<h2>Qué publicamos</h2>
+<ul>
+<li><a href="https://rosmarops.com/es/observatorio/">El Observatorio</a>: qué puede hacer de serie cada agente de IA para programar en tu ordenador, dónde guarda su configuración y sus claves, y sus cambios de seguridad, cada dato con su fecha y su fuente. Nadie paga por aparecer.</li>
+<li><a href="https://rosmarops.com/es/metodologia/">La metodología</a>: cómo se calcula la nota de exposición y qué no mide.</li>
+<li>Este blog: las novedades del producto, en castellano, <a href="https://rosmarops.com/blog/">inglés</a> y <a href="https://rosmarops.com/ca/blog/">catalán</a>.</li>
+</ul>
+<h2>De dónde venimos</h2>
+<p>RosmarOps empezó en marzo de 2025 como un blog de investigación alrededor de una pregunta: qué puede hacer un sistema de IA que no esperas, y quién decide lo que lee. Publicó más de cien artículos en cuatro líneas:</p>
+<ul>
+<li>SEO adversarial y AI SEO: cómo se manipula lo que buscadores y asistentes leen, citan y recomiendan.</li>
+<li>Guerra de la información: cómo la IA abarata la desinformación y las operaciones de influencia.</li>
+<li>Ciberseguridad en IA: ataques a modelos, envenenamiento de datos y prompt injection.</li>
+<li>Agentes y autonomía: qué cambia cuando la IA deja de responder y empieza a actuar.</li>
+</ul>
+<p>Desde marzo de 2026 el blog se fue centrando en los agentes, porque con los agentes de IA para programar esa pregunta llegó al ordenador de quien construye: un agente lee ficheros, ejecuta órdenes y edita código con tus permisos. De ahí salió el producto. Para ver cómo llegamos ahí:</p>
+<ul>
+<li><a href="https://rosmarops.com/es/blog/el-agente-que-no-sabe-con-quien-habla/">El agente que no sabe con quién habla</a></li>
+<li><a href="https://rosmarops.com/es/blog/la-capa-de-inferencia-cuando-aprobar-ya-no-es-lo-mismo-que-decidir/">La capa de inferencia: cuando aprobar ya no es lo mismo que decidir</a></li>
+<li><a href="https://rosmarops.com/es/blog/mcp-seguridad-agentes-cadena-suministro-confianza/">MCP no es un plugin: la nueva cadena de suministro de confianza de los agentes</a></li>
+</ul>
+<h2>Quién hay detrás</h2>
+<p>RosmarOps lo hace Albert Garcia Pujadas, que lleva más de 30 años en digital, tecnología y marketing y construye con agentes de IA a diario. Escribe en <a href="https://www.qtorb.com/">qtorb.com</a> y está en <a href="https://www.linkedin.com/in/albertgpujadas/">LinkedIn</a>.</p>
+<ul>
+<li>Contacto general: <a href="mailto:info@rosmarops.com">info@rosmarops.com</a></li>
+<li>Para corregir un dato del Observatorio: <a href="mailto:legal@rosmarops.com">legal@rosmarops.com</a>, con la fuente.</li>
+<li>Para avisar de un problema de seguridad, o de algo que contradiga el modelo de confianza: en privado por GitHub, como explica la <a href="https://github.com/qtorb/rosmarops/blob/master/SECURITY.md">política de seguridad</a>.</li>
+</ul>
+<h2>Cómo leer este blog</h2>
+<p>Este blog publica las novedades de RosmarOps, qué puede hacer tu agente y la metodología, en castellano, <a href="/blog/">inglés</a> y <a href="/ca/blog/">catalán</a>. El archivo anterior a octubre de 2026 se retiró en noviembre; los artículos sobre agentes que siguen vigentes se reescriben aquí.</p>
+</article>
+</div></main>
+
+<footer><div class="wrap">
+<nav><a href="/es/blog/">Blog</a><a href="/es/blog/que-es-rosmarops/">Acerca de</a><a href="/es/observatorio/">Observatorio</a><a href="/es/metodologia/">Metodología</a><a href="/es/preguntas-frecuentes/">Preguntas</a><a href="/blog/about/" hreflang="en" lang="en" aria-label="English">EN</a><a href="/ca/blog/que-es-rosmarops/" hreflang="ca" lang="ca" aria-label="Català">CA</a><a href="/es/privacidad/">Privacidad</a><a href="#" data-cc="show-preferencesModal">Configurar cookies</a></nav>
+</div></footer>
+<script src="/assets/consent/cookieconsent.umd.js?v=3.1.0" defer></script>
+<script src="/assets/consent/consent.js?v=4" defer></script><script src="/assets/visits/visits.js?v=2" defer></script>
+</body>
+</html>

@@ -29,7 +29,7 @@ jobs:
         run: |
           set -eu
           # Only these files are published. Nothing else on the server is touched or deleted.
-          ls -l site/index.html site/es/index.html site/llms.txt site/assets/consent/* site/assets/visits/* site/assets/brand/* site/assets/methodology/* wp/htaccess-https.txt wp/htaccess-slash.txt wp/mu-plugins/rosmarops-consent.php
+          ls -l site/index.html site/es/index.html site/llms.txt site/assets/consent/* site/assets/visits/* site/assets/brand/* site/assets/methodology/* wp/htaccess-https.txt wp/htaccess-slash.txt wp/htaccess-static.txt site/_static/* wp/mu-plugins/rosmarops-consent.php
           php -l wp/mu-plugins/rosmarops-consent.php
           php -l wp/mu-plugins/rosmarops-seo.php
           php -l wp/mu-plugins/rosmarops-downloads.php
@@ -39,7 +39,7 @@ jobs:
           php -l wp/mu-plugins/rosmarops-gtm97-drafts.php
           php -l wp/mu-plugins/rosmarops-gtm103-noindex.php
           ls -l wp/daily/shell-en.html wp/daily/shell-es.html wp/daily/shell-ca.html wp/daily/i18n.json
-          ! grep -RIl 'noindex' site/index.html site/es/index.html site/methodology site/faq site/es/metodologia site/es/preguntas-frecuentes site/ca/index.html site/ca/metodologia site/ca/preguntes-frequents site/cloud-access site/es/acceso-en-la-nube site/ca/acces-al-nuvol site/ca/privadesa site/privacy site/es/privacidad site/macos site/es/macos site/ca/macos site/linux site/es/linux site/ca/linux site/sample-report/index.html site/es/informe-de-ejemplo site/ca/informe-dexemple site/observatory/index.html site/es/observatorio/index.html site/ca/observatori/index.html
+          ! grep -RIl 'noindex' site/index.html site/es/index.html site/methodology site/faq site/es/metodologia site/es/preguntas-frecuentes site/ca/index.html site/ca/metodologia site/ca/preguntes-frequents site/cloud-access site/es/acceso-en-la-nube site/ca/acces-al-nuvol site/ca/privadesa site/privacy site/es/privacidad site/_static site/macos site/es/macos site/ca/macos site/linux site/es/linux site/ca/linux site/sample-report/index.html site/es/informe-de-ejemplo site/ca/informe-dexemple site/observatory/index.html site/es/observatorio/index.html site/ca/observatori/index.html
           # Observatory: only the three index pages and the JSON files are published (GTM-11). Agent pages wait for verification.
           ls site/observatory/index.html site/es/observatorio/index.html site/ca/observatori/index.html site/observatory/*.json
 
@@ -107,6 +107,10 @@ jobs:
           put site/ca/acces-al-nuvol/index.html ca/acces-al-nuvol/index.html
           -mkdir ca/privadesa
           put site/ca/privadesa/index.html ca/privadesa/index.html
+          -mkdir _static
+          put site/_static/about-en.html _static/about-en.html
+          put site/_static/about-es.html _static/about-es.html
+          put site/_static/about-ca.html _static/about-ca.html
           -mkdir privacy
           put site/privacy/index.html privacy/index.html
           -mkdir es/privacidad
@@ -315,6 +319,56 @@ jobs:
             exit 1
           fi
 
+      - name: About pages from the repository in .htaccess (once, with automatic rollback, GTM-114)
+        env:
+          SFTP_HOST: ${{ vars.OVH_SFTP_HOST }}
+          SFTP_USER: ${{ vars.OVH_SFTP_USER }}
+          SFTP_PATH: ${{ vars.OVH_SITE_PATH }}
+          SSHPASS: ${{ secrets.OVH_SFTP_PASSWORD }}
+        run: |
+          set -eu
+          SFTP_HOST=$(printf %s "$SFTP_HOST" | tr -d '[:space:]')
+          SFTP_USER=$(printf %s "$SFTP_USER" | tr -d '[:space:]')
+          SFTP_PATH=$(printf %s "$SFTP_PATH" | tr -d '[:space:]')
+          sftp_run() {
+            sshpass -e sftp -o BatchMode=no -b "$1" \
+              -o StrictHostKeyChecking=yes \
+              -o UserKnownHostsFile="$HOME/.ssh/known_hosts" \
+              -o PreferredAuthentications=password,keyboard-interactive \
+              -o PubkeyAuthentication=no \
+              "$SFTP_USER@$SFTP_HOST"
+          }
+          printf 'cd %s\nget .htaccess /tmp/ht.current\n' "$SFTP_PATH" > /tmp/b1
+          sftp_run /tmp/b1
+          # The file's content is never printed: the repository and its logs are public.
+          if grep -q 'BEGIN RosmarOps STATIC' /tmp/ht.current; then
+            echo "Static block already present; nothing to do."
+            exit 0
+          fi
+          { cat wp/htaccess-static.txt; echo; cat /tmp/ht.current; } > /tmp/ht.new
+          printf 'cd %s\nput /tmp/ht.current .htaccess.pre-static\nput /tmp/ht.new .htaccess\n' "$SFTP_PATH" > /tmp/b2
+          sftp_run /tmp/b2
+          sleep 5
+          ok=yes
+          for u in https://rosmarops.com/ https://rosmarops.com/es/ https://rosmarops.com/ca/ https://rosmarops.com/blog/ https://rosmarops.com/es/blog/ https://rosmarops.com/ca/blog/ https://rosmarops.com/wp-login.php https://rosmarops.com/privacy/; do
+            code=$(curl -s -o /dev/null -w '%{http_code}' "$u")
+            echo "$code $u"; [ "$code" = "200" ] || ok=no
+          done
+          for pair in "blog/about/ about-en.html" "es/blog/que-es-rosmarops/ about-es.html" "ca/blog/que-es-rosmarops/ about-ca.html"; do
+            set -- $pair
+            if curl -s "https://rosmarops.com/$1?deploy=${GITHUB_SHA::7}" | cmp -s - "site/_static/$2"; then echo "$1 matches"; else echo "$1 differs from repo"; ok=no; fi
+          done
+          code=$(curl -s -o /dev/null -w '%{http_code}' "https://rosmarops.com/_static/about-en.html")
+          echo "$code /_static/about-en.html (want 404)"; [ "$code" = "404" ] || ok=no
+          loc=$(curl -s -o /dev/null -w '%{http_code} %{redirect_url}' "http://rosmarops.com/blog/about/")
+          echo "http -> $loc"; [ "$loc" = "301 https://rosmarops.com/blog/about/" ] || ok=no
+          if [ "$ok" != yes ]; then
+            printf 'cd %s\nput /tmp/ht.current .htaccess\n' "$SFTP_PATH" > /tmp/b3
+            sftp_run /tmp/b3
+            echo "::error::Static pages check failed; the previous .htaccess was restored."
+            exit 1
+          fi
+
       - name: Verify live
         run: |
           set -eu
@@ -324,6 +378,13 @@ jobs:
             echo "$code $u"; test "$code" = "200"
           done
           curl -s "https://rosmarops.com/?deploy=${GITHUB_SHA::7}" | cmp -s - site/index.html && echo "home EN matches" || (echo "home EN differs from repo"; exit 1)
+          for pair in "blog/about/ about-en.html" "es/blog/que-es-rosmarops/ about-es.html" "ca/blog/que-es-rosmarops/ about-ca.html"; do
+            set -- $pair
+            curl -s "https://rosmarops.com/$1?deploy=${GITHUB_SHA::7}" | cmp -s - "site/_static/$2" && echo "$1 matches" || (echo "$1 differs from repo"; exit 1)
+          done
+          for u in https://rosmarops.com/blog/ https://rosmarops.com/es/blog/ https://rosmarops.com/ca/blog/; do
+            code=$(curl -s -o /dev/null -w '%{http_code}' "$u?deploy=${GITHUB_SHA::7}"); echo "$code $u"; test "$code" = "200"
+          done
           for f in observatory/index.html es/observatorio/index.html ca/observatori/index.html observatory/data.json; do
             curl -s "https://rosmarops.com/$f?deploy=${GITHUB_SHA::7}" | cmp -s - "site/$f" && echo "$f matches" || (echo "$f differs from repo"; exit 1)
           done
