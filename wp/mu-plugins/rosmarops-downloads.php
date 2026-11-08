@@ -255,13 +255,28 @@ function rosmarops_visits_page_exists($path) {
 	return function_exists('url_to_postid') && url_to_postid(ROSMAROPS_VISITS_ORIGIN . $path) > 0;
 }
 
+/**
+ * GTM-118: the blog home of its language for the blog's WordPress listings (pagination, categories, tags, author,
+ * dates and search), which url_to_postid does not resolve. Only the shape of the path is checked; null if it is none.
+ */
+function rosmarops_visits_blog_listing($path) {
+	$listing = '#^(/es|/ca)?/(blog/(page/\d+|category/[a-z0-9/-]+|tag/[a-z0-9/-]+|author/[a-z0-9-]+(/page/\d+)?|\d{4}(/\d{2}){0,2}(/page/\d+)?|search/[a-z0-9/-]*)|search/[a-z0-9/-]*)/$#';
+	if (!preg_match($listing, $path, $m)) {
+		return null;
+	}
+	return ($m[1] ?? '') . '/blog/';
+}
+
 /** The page from the path the browser sent: lowercase letters, digits, hyphens and slashes, an existing page; else "other". */
 function rosmarops_visits_page($raw) {
 	if (!is_string($raw) || strlen($raw) > 150 || !preg_match('#^/[a-z0-9/-]*$#', $raw) || strpos($raw, '//') !== false) {
 		return 'other';
 	}
 	$path = rtrim($raw, '/') . '/';
-	return rosmarops_visits_page_exists($path) ? $path : 'other';
+	if (rosmarops_visits_page_exists($path)) {
+		return $path;
+	}
+	return rosmarops_visits_blog_listing($path) ?? 'other';
 }
 
 /** Language from the page path, never from the browser. */

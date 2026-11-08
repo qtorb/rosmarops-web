@@ -134,6 +134,32 @@ class Visits(unittest.TestCase):
             self.visit(p, "")
         self.assertEqual(self.rows(), ["other\ten\tdirect\t9"])
 
+    def test_blog_listings_count_as_the_blog_home_of_their_language(self):
+        # GTM-118: pagination, categories, tags, author, dates and search of the blog (url_to_postid = 0).
+        cases = {
+            "/blog/page/2/": "/blog/", "/blog/category/field-notes/": "/blog/", "/blog/category/a/b/page/3/": "/blog/",
+            "/blog/tag/claude-code/": "/blog/", "/blog/author/albert/": "/blog/", "/blog/author/albert/page/2/": "/blog/",
+            "/blog/2026/": "/blog/", "/blog/2026/11/": "/blog/", "/blog/2026/11/08/": "/blog/", "/blog/2026/11/page/2/": "/blog/",
+            "/blog/search/agentes/": "/blog/", "/search/agents/": "/blog/",
+            "/es/blog/page/2": "/es/blog/", "/es/blog/category/nota-de-exposicion/": "/es/blog/", "/es/blog/tag/cursor/": "/es/blog/",
+            "/es/blog/author/albert/": "/es/blog/", "/es/blog/2026/10/": "/es/blog/", "/es/search/claves/": "/es/blog/",
+            "/ca/blog/category/nota-dexposicio/": "/ca/blog/", "/ca/blog/tag/credencials/": "/ca/blog/",
+            "/ca/blog/author/albert/": "/ca/blog/", "/ca/blog/page/3/": "/ca/blog/",
+        }
+        for p in cases:
+            self.visit(p, "")
+        want = {}
+        for page in cases.values():
+            want[page] = want.get(page, 0) + 1
+        got = {line.split("\t")[0]: (line.split("\t")[1], int(line.split("\t")[3])) for line in self.rows()}
+        self.assertEqual(got, {"/blog/": ("en", want["/blog/"]), "/es/blog/": ("es", want["/es/blog/"]), "/ca/blog/": ("ca", want["/ca/blog/"])})
+
+    def test_not_a_listing_stays_other(self):
+        for p in ["/blog/page/", "/blog/page/x/", "/blog/category/", "/blog/12345/", "/blog/2026/1/", "/es/blog/no-such-post/",
+                  "/fr/blog/page/2/", "/blogs/page/2/"]:
+            self.visit(p, "")
+        self.assertEqual([line.split("\t")[0] for line in self.rows()], ["other"])
+
     def test_referrer_closed_list(self):
         refs = {"": "direct", "rosmarops.com": "internal", "www.rosmarops.com": "internal", "gemini.google.com": "gemini",
                 "www.google.es": "google", "www.google.co.uk": "google", "www.bing.com": "bing", "github.com": "github",
