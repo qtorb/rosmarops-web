@@ -1,0 +1,14 @@
+{
+ "id": "loop-engineering",
+ "lang": "ca",
+ "slug": "loop-engineering-agents-treballant-sols",
+ "title": "Loop engineering: deixar treballar sols els agents no vol dir que treballin millor",
+ "excerpt": "Un estudi va examinar 36.487 repositoris de programari i va confirmar bucles autònoms d'agents d'IA en 217. Més interessant que el percentatge és el que sabem —i el que encara ignorem— sobre els controls i els resultats d'aquests sistemes.",
+ "content": "loop-engineering-ca.html",
+ "seo_title": "Loop engineering: què diu un estudi de 36.487 repositoris",
+ "seo_description": "Un estudi va examinar 36.487 repositoris i va confirmar bucles autònoms d'agents d'IA en 217. Què va trobar sobre els seus controls i què no demostra.",
+ "translations": {
+  "en": "https://rosmarops.com/blog/loop-engineering-agents-working-alone/",
+  "es": "https://rosmarops.com/es/blog/loop-engineering-agentes-trabajando-solos/"
+ }
+}

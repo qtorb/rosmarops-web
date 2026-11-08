@@ -1,0 +1,157 @@
+<!-- wp:paragraph -->
+<p><em>A study examined 36,487 software repositories and confirmed autonomous AI agent loops in 217. More interesting than the percentage is what we know —and what we still don't— about the controls and results of those systems.</em></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>In June a new phrase started going around: <em>loop engineering</em>. The idea sounded irresistible. Instead of keeping an eye on Claude Code, Codex or any other agent, you set up a system that hands it one task after another. You get on with something else and the agent keeps working. Within weeks there were threads, diagrams and recipes on how to do it. Almost all of them talked about productivity. Far fewer explained how to measure it.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>This one is close to home for me. I've spent months building UXMachine with AI agents, and I've learned that letting them run ahead has its risks. Once, one of them started running checks nobody had asked for until it filled the disk. It wasn't exactly one of those scheduled autonomous loops, but the problem looked a lot like one: it could keep doing things without it being clear when it should stop.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>That's why I'm more interested in the question that comes after automating: how do we know all those runs actually did us any good?</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">What loop engineering is, exactly</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>A coding agent already works in small cycles: it reads files, runs tools, looks at the results and decides what to do next. <em>Loop engineering</em> adds another layer. Instead of starting each session yourself, you set up a mechanism so that sessions start on a schedule or on an event: an issue comes in, a test fails, someone opens a pull request.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>In its most careful version, the system should also know what goal it is pursuing, how to check the result, how much it can spend and when it has to stop or ask for help. But that definition is one thing, and what we find in real projects is another.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">What they found in 36,487 repositories</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>In August, researchers from Heidelberg University and Singapore Management University set out to examine the phenomenon. Their paper, <em><a href="https://arxiv.org/abs/2608.21884v3">Loop Engineering: Building Blocks, Adoption, and Impact</a></em>, was updated on 22 October. On 5 November, <a href="https://x.com/iiiichigo_chan/status/2118397992239571196">Ichigo brought it back in a thread on X</a> that led me to read it more closely.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>They started from 36,710 open-source software repositories. After removing duplicates and projects that were no longer reachable, 36,487 were left. Their searches found 256 possible cases and, after examining the configurations and the records available, they confirmed that 217 had run autonomous agent loops. That's 0.59% of the sample.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>It's worth not confusing that figure with the share of developers who use agents this way. The study could only find certain public traces on GitHub. It couldn't see what someone runs on their own computer, private configurations, or the part of the operation that lives outside the repository.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>What struck me most was the gap between starting an agent and controlling what it does. In the classification of the <strong>256 candidates inspected</strong>, done with the help of Claude Code and reviewed by one of the researchers, these mechanisms turned up:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list">
+<!-- wp:list-item -->
+<li><strong>101</strong> had some limit on spending or turns.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>76</strong> had some kind of verifier.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>55</strong> included a goal or stop condition.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>35</strong> kept state between runs.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Only <strong>10</strong> recorded the cost.</li>
+<!-- /wp:list-item -->
+</ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>These figures don't mean the others necessarily lacked those controls. They mean the researchers were able to identify them in the material they examined. In fact, direct searches of versioned files found hardly any trace of the memory and the other mechanisms that loop engineering guides recommend.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Another figure takes some of the shine off the image of an agent working all night on a big project. Of the 217 confirmed cases, 180 were triggered mainly by events in the repository, above all to review pull requests. Another 21 ran on a schedule and 15 combined both. A review automation can be useful, of course. But it's not the same as handing over a complex task for hours and expecting the system to find its own way.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>And then there's the example of a system for triaging issues: it had piled up <strong>6,290 runs</strong>. In the records the authors checked, none of them got as far as starting the agent step, because there were no issues to process. The workflow ran; that didn't mean the agent had worked.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">What the study does not prove</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>This is the part I miss most in many conversations about AI: telling apart what seems to work from what has been shown to work.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The paper by Lulla and colleagues <strong>does not show that loop engineering increases productivity</strong>. Nor does it show that it reduces it. What it says is that, in the literature and the cases they reviewed, systematic evidence to back up the claims about its benefits is missing. That's exactly why the authors propose a follow-up experiment to measure results, code quality, effort and resource use.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>It's an exploratory study, not a census of every loop out there. Its heuristics could miss cases, and much of a loop's run-time state is never published on GitHub. So it would be going too far to conclude that almost nobody applies controls. What the study does show is something more precise: <strong>it is much easier to find the configuration that starts an agent than public evidence of how it is supervised, what it remembers and how much it costs.</strong></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">There are three different loops, and it's best not to mix them up</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Ichigo's thread proposes a distinction I find especially useful:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list {"ordered":true} -->
+<ol class="wp-block-list">
+<!-- wp:list-item -->
+<li><strong>The agent loop.</strong> Inside a session, the model calls tools, interprets their responses and carries on. That's how today's agents normally work.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>The work loop.</strong> The agent delivers something, an external mechanism checks it, feeds back what failed and allows another attempt. Here it isn't enough for the agent to say "done".</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>The system loop.</strong> When you spot a recurring problem, you change the rules, the checks or the way of working so that the next attempt starts from better conditions. You're no longer just fixing one result: you're improving the process that produces it.</li>
+<!-- /wp:list-item -->
+</ol>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>Most of the cases the study found are automations that start agent sessions. That can save work. But on its own it doesn't amount to having those three levels working.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The last two are, for me, the interesting ones. They're also the ones that take more human work than many videos of agents coding on their own suggest.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">What do we gain by leaving an agent working alone for hours?</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>I don't have a universal answer. There are repetitive, well-bounded tasks where autonomy makes complete sense. And there are others where piling up attempts can mean piling up errors, costs or changes that someone will have to review later.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>If we only count runs, we'll miss much of the story. We should also count which changes were useful, how many attempts were thrown away, what it cost to check them and how much human time it takes to understand and accept the result.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>My experience with UXMachine has made me a little wary of the word "done". An agent saying it has finished a task doesn't mean it's done well. And the fact that it did it while I wasn't looking adds no guarantee at all.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Maybe we've started with the easy part: learning to start agents and keep them from stopping. The hard part comes after. <strong>Knowing what they've done, being able to check it and deciding when it's enough.</strong></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>That's what the next article in this series will be about: <em>The real work starts when the agent says "I'm done"</em>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><em>Main source: Jai Lal Lulla, Vahram Nersesyan, Seyedmoein Mohsenimofidi, Christoph Treude and Sebastian Baltes, <a href="https://arxiv.org/abs/2608.21884v3">"Loop Engineering: Building Blocks, Adoption, and Impact"</a>, arXiv:2608.21884, version 3 (22 October 2026). Preprint submitted to JAWs@ASE 2026.</em></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><em>Written with the help of AI assistants. The reading of the study, the examples and the decision to publish are mine.</em></p>
+<!-- /wp:paragraph -->
