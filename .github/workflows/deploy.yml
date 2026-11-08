@@ -514,7 +514,14 @@ jobs:
           echo "retired addresses in the ES sitemap: $left; addresses in it: $(grep -c '<loc>' /tmp/es-sitemap.xml)"
           grep -o 'generado el [0-9-]*' /tmp/es-sitemap.xml || true
           test "$left" = 0
-          grep -q "generado el $(date -u +%F)" /tmp/es-sitemap.xml && echo "ES sitemap rebuilt today" || (echo "::error::ES sitemap not rebuilt today"; exit 1)
+          # The sitemap must have been rebuilt after the migration ran (it clears The SEO Framework's sitemap cache
+          # once). Only the deploy that runs the migration sees it rebuilt that same day; later deploys find the cached
+          # sitemap from that day or after, which is right: the date to compare with is the migration's, from its log.
+          run_day=$(sed -n '1s/^GTM-97 retired posts to draft, site es, \([0-9-]*\) .*/\1/p' /tmp/gtm97/gtm97-es.log 2>/dev/null || true)
+          map_day=$(grep -o 'generado el [0-9-]*' /tmp/es-sitemap.xml | head -1 | sed 's/generado el //' || true)
+          echo "migration ran: ${run_day:-unknown}; ES sitemap generated: ${map_day:-unknown}"
+          if [ -z "$run_day" ]; then echo "::warning::GTM-97 log without its run date; sitemap date not checked"; exit 0; fi
+          [ -n "$map_day" ] && [ ! "$map_day" \< "$run_day" ] && echo "ES sitemap rebuilt after the migration" || (echo "::error::ES sitemap older than the GTM-97 migration ($map_day < $run_day)"; exit 1)
 
       - name: GTM-103 legacy posts and old categories to noindex (one time, /es/), its log and the check from outside
         env:
