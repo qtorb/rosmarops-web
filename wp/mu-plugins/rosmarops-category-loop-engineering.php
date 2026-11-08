@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: RosmarOps «Loop engineering» blog category (one-time, per site)
- * Description: Once per site (EN /, ES /es/, CA /ca/), creates the «Loop engineering» category (slug loop-engineering) with its description (ES and CA signed by Albert on 08-11; EN pending the product advisor), sets The SEO Framework noindex on it while it has fewer than three published posts, adds it to the loop engineering post of that site (found by slug, in any status but the bin) and removes the default category from that post, and sets the post's featured image from rosmarops-drafts/rosmarops-img-13-loop-engineering.jpg if it has none. Never publishes, never deletes a post or a category, never replaces a featured image. Anything not where the plan expects is left alone and logged. Idempotent: a per-site option marks it done, with a lock. The log (no personal data) goes to the option rosmarops_loopcat_log and to wp-content/rosmarops-private/loopcat-<lang>.log, which the deploy reads over SFTP. Versioned in qtorb/rosmarops-web; do not edit on the server.
+ * Description: Once per site (EN /, ES /es/, CA /ca/), creates the «Loop engineering» category (slug loop-engineering) with its description (ES and CA signed by Albert on 08-11; EN pending the product advisor), sets The SEO Framework noindex on it while it has fewer than three published posts and its meta description if it has none, adds it to the loop engineering post of that site (found by slug, in any status but the bin) and removes the default category from that post, and sets the post's featured image from rosmarops-drafts/rosmarops-img-13-loop-engineering.jpg if it has none. Never publishes, never deletes a post or a category, never replaces a featured image. Anything not where the plan expects is left alone and logged. Idempotent: a per-site option marks it done, with a lock. The log (no personal data) goes to the option rosmarops_loopcat_log and to wp-content/rosmarops-private/loopcat-<lang>.log, which the deploy reads over SFTP. Versioned in qtorb/rosmarops-web; do not edit on the server.
  */
 
 if (!defined('ABSPATH')) {
@@ -21,18 +21,21 @@ function rosmarops_loopcat_plan($home_url) {
 		'https://rosmarops.com' => [
 			'lang' => 'en',
 			'description' => 'What happens when you leave an AI agent working in a loop: what starts it, who checks what it does, when it stops and what it costs. With dated studies and cases, and their sources.',
+			'meta' => 'What happens when you leave an AI agent working in a loop: what starts it, who checks it, when it stops and what it costs.',
 			'post' => 'loop-engineering-agents-working-alone',
 			'alt'  => 'An AI agent at the centre of a loop of documents going round, with a hand checking one of them with a magnifying glass.',
 		],
 		'https://rosmarops.com/es' => [
 			'lang' => 'es',
 			'description' => 'Qué pasa cuando dejas a un agente de IA trabajando en bucle: qué lo pone en marcha, quién comprueba lo que hace, cuándo para y cuánto cuesta. Con estudios y casos fechados, y su fuente.',
+			'meta' => 'Qué pasa cuando dejas a un agente de IA trabajando en bucle: qué lo pone en marcha, quién lo comprueba, cuándo para y cuánto cuesta.',
 			'post' => 'loop-engineering-agentes-trabajando-solos',
 			'alt'  => 'Un agente de IA en el centro de un bucle de documentos que dan vueltas, y una mano que revisa uno de ellos con una lupa.',
 		],
 		'https://rosmarops.com/ca' => [
 			'lang' => 'ca',
 			'description' => "Què passa quan deixes un agent d'IA treballant en bucle: què el posa en marxa, qui comprova el que fa, quan s'atura i quant costa. Amb estudis i casos datats, i la seva font.",
+			'meta' => "Què passa quan deixes un agent d'IA treballant en bucle: què el posa en marxa, qui el comprova, quan s'atura i quant costa.",
 			'post' => 'loop-engineering-agents-treballant-sols',
 			'alt'  => "Un agent d'IA al centre d'un bucle de documents que donen voltes, i una mà que en revisa un amb una lupa.",
 		],
@@ -86,6 +89,17 @@ function rosmarops_loopcat_run() {
 		$meta['noindex'] = 1;
 		update_term_meta($term_id, ROSMAROPS_LOOPCAT_TSF, $meta);
 		$log[] = "B done: noindex ({$count} published posts)";
+	}
+
+	// B2. The SEO Framework meta description of the category, only if it has none.
+	$meta = get_term_meta($term_id, ROSMAROPS_LOOPCAT_TSF, true);
+	$meta = is_array($meta) ? $meta : [];
+	if (trim((string) ($meta['description'] ?? '')) !== '') {
+		$log[] = 'B2 skipped: meta description already set; not replaced';
+	} else {
+		$meta['description'] = $plan['meta'];
+		update_term_meta($term_id, ROSMAROPS_LOOPCAT_TSF, $meta);
+		$log[] = 'B2 done: meta description set';
 	}
 
 	// C. The post: the category, without the default one.

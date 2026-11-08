@@ -59,7 +59,10 @@ class LoopCategory(unittest.TestCase):
             self.assertEqual((term["name"], term["slug"]), ("Loop engineering", "loop-engineering"))
             if lang in SIGNED:
                 self.assertEqual(term["description"], SIGNED[lang])
-            self.assertEqual(out["term_meta"][str(term["term_id"])]["autodescription-term-settings"], {"noindex": 1})
+            tsf = out["term_meta"][str(term["term_id"])]["autodescription-term-settings"]
+            self.assertEqual(tsf["noindex"], 1)
+            self.assertTrue(40 <= len(tsf["description"]) <= 155, (lang, len(tsf["description"])))
+            self.assertTrue(tsf["description"].startswith({"en": "What happens", "es": "Qué pasa", "ca": "Què passa"}[lang]))
             self.assertEqual(out["posts"][0]["cats"], [term["term_id"]])  # default category gone
             self.assertEqual(out["posts"][0]["post_status"], "draft")  # never published
             att = out["thumbs"]["42"]
@@ -81,6 +84,14 @@ class LoopCategory(unittest.TestCase):
         log, out = self.run_once(SITES["ca"], self.db("ca", cats=[1, 19], extra_terms=[mine]))
         self.assertEqual(out["terms"], [mine])
         self.assertEqual(sorted(out["posts"][0]["cats"]), [7, 19])
+
+    def test_meta_description_never_replaced(self):
+        mine = {"term_id": 7, "name": "Loop engineering", "slug": "loop-engineering", "description": "x"}
+        data = self.db("es", extra_terms=[mine])
+        data["term_meta"] = {"7": {"autodescription-term-settings": {"description": "la mía"}}}
+        log, out = self.run_once(SITES["es"], data)
+        self.assertEqual(out["term_meta"]["7"]["autodescription-term-settings"]["description"], "la mía")
+        self.assertIn("B2 skipped: meta description already set; not replaced", log)
 
     def test_featured_image_never_replaced(self):
         log, out = self.run_once(SITES["en"], self.db("en", thumb=77))
