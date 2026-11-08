@@ -17,11 +17,11 @@ function get_option($k, $d = false) { return db()['options'][$k] ?? $d; }
 function add_option($k, $v, $x = '', $a = true) { $db = &db(); if (array_key_exists($k, $db['options'])) return false; $db['options'][$k] = $v; return true; }
 function update_option($k, $v, $a = null) { $db = &db(); $db['options'][$k] = $v; return true; }
 function delete_option($k) { $db = &db(); unset($db['options'][$k]); return true; }
-function get_term_by($f, $v, $tax) { foreach (db()['terms'] as $t) { if ($t['slug'] === $v) return (object) $t; } return false; }
+function get_term_by($f, $v, $tax) { foreach (db()['terms'] as $t) { if ($t['slug'] === $v && ($t['taxonomy'] ?? 'category') === $tax) return (object) $t; } return false; }
 function wp_insert_term($name, $tax, $args) {
 	if (getenv('LOOPCAT_TERM_FAIL')) return new WP_Error();
 	$db = &db(); $id = 500 + count($db['terms']);
-	$db['terms'][] = ['term_id' => $id, 'name' => $name, 'slug' => $args['slug'], 'description' => $args['description']];
+	$db['terms'][] = ['term_id' => $id, 'name' => $name, 'slug' => $args['slug'], 'description' => $args['description'] ?? '', 'taxonomy' => $tax];
 	return ['term_id' => $id];
 }
 function get_term_meta($id, $k, $single) { return db()['term_meta'][$id][$k] ?? ''; }
@@ -46,7 +46,13 @@ function wp_generate_attachment_metadata($id, $file) { return ['file' => $file];
 function wp_update_attachment_metadata($id, $m) { return true; }
 function update_post_meta($id, $k, $v) { $db = &db(); $db['post_meta'][$id][$k] = $v; return true; }
 function set_post_thumbnail($post, $att) { $db = &db(); $db['thumbs'][$post] = $att; return true; }
-function wp_update_post(...$a) { throw new Exception('must not update posts'); }
+function wp_set_post_terms($id, $ids, $tax, $append) { $db = &db(); foreach ($db['posts'] as &$p) { if ($p['ID'] === $id) $p['tags'] = array_values(array_unique(array_merge($append ? ($p['tags'] ?? []) : [], $ids))); } return true; }
+function current_time($t, $gmt = 0) { return '2026-11-08 22:00:00'; }
+function wp_update_post($a, $err = false) {
+	$db = &db();
+	foreach ($db['posts'] as &$p) { if ($p['ID'] === $a['ID']) { if (array_diff(array_keys($a), ['ID', 'post_status', 'post_date', 'post_date_gmt'])) throw new Exception('only status and date'); $p = array_merge($p, $a); return $p['ID']; } }
+	return 0;
+}
 require __DIR__ . '/../mu-plugins/rosmarops-category-loop-engineering.php';
 $GLOBALS['home'] = $argv[1];
 $log = rosmarops_loopcat_run();

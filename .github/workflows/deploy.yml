@@ -622,7 +622,8 @@ jobs:
             code=$(curl -s -o /dev/null -w '%{http_code}' "https://rosmarops.com/wp-content/rosmarops-private/$f.log")
             [ "$code" != "200" ] && echo "$f.log closed to the web ($code)" || (echo "::error::$f.log is reachable from the web"; exit 1)
           done
-          # Where each draft will live: its address answers 404 while it is a draft, 200 once Albert publishes it.
+          # Where each post lives: 404 while it is a draft, 200 once published (the loop engineering posts are published by
+          # rosmarops-category-loop-engineering.php, asked by Albert on 08-11).
           for f in wp/drafts/*.json; do
             url=$(python3 -c 'import json,sys; d=json.load(open(sys.argv[1])); b={"en":"https://rosmarops.com","es":"https://rosmarops.com/es","ca":"https://rosmarops.com/ca"}[d["lang"]]; print(b + "/blog/" + d["slug"] + "/")' "$f")
             code=$(curl -s -o /dev/null -w '%{http_code}' "$url?drafts=${GITHUB_SHA::7}")

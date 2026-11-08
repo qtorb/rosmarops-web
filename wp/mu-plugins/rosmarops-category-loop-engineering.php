@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: RosmarOps «Loop engineering» blog category (one-time, per site)
- * Description: Once per site (EN /, ES /es/, CA /ca/), creates the «Loop engineering» category (slug loop-engineering) with its description (ES and CA signed by Albert on 08-11; EN pending the product advisor), sets The SEO Framework noindex on it while it has fewer than three published posts and its meta description if it has none, adds it to the loop engineering post of that site (found by slug, in any status but the bin) and removes the default category from that post, and sets the post's featured image from rosmarops-drafts/rosmarops-img-13-loop-engineering.jpg if it has none. Never publishes, never deletes a post or a category, never replaces a featured image. Anything not where the plan expects is left alone and logged. Idempotent: a per-site option marks it done, with a lock. The log (no personal data) goes to the option rosmarops_loopcat_log and to wp-content/rosmarops-private/loopcat-<lang>.log, which the deploy reads over SFTP. Versioned in qtorb/rosmarops-web; do not edit on the server.
+ * Description: Once per site (EN /, ES /es/, CA /ca/), creates the «Loop engineering» category (slug loop-engineering) with its description (ES and CA signed by Albert on 08-11; EN pending the product advisor), sets The SEO Framework noindex on it while it has fewer than three published posts and its meta description if it has none, adds it to the loop engineering post of that site (found by slug, in any status but the bin) and removes the default category from that post, and sets the post's featured image from rosmarops-drafts/rosmarops-img-13-loop-engineering.jpg if it has none. adds the tags claude-code and codex (creating them if missing), and publishes the post if it is still a draft (asked by Albert on 08-11). Never deletes a post or a category, never replaces a featured image, never touches a post that is not a draft. Anything not where the plan expects is left alone and logged. Idempotent: a per-site option marks it done, with a lock. The log (no personal data) goes to the option rosmarops_loopcat_log and to wp-content/rosmarops-private/loopcat-<lang>.log, which the deploy reads over SFTP. Versioned in qtorb/rosmarops-web; do not edit on the server.
  */
 
 if (!defined('ABSPATH')) {
@@ -14,6 +14,8 @@ const ROSMAROPS_LOOPCAT_LOG   = 'rosmarops_loopcat_log';
 const ROSMAROPS_LOOPCAT_SLUG  = 'loop-engineering';
 const ROSMAROPS_LOOPCAT_IMAGE = 'rosmarops-img-13-loop-engineering.jpg';
 const ROSMAROPS_LOOPCAT_TSF   = 'autodescription-term-settings';
+// Tags (slug => name) the post gets on every site; a missing one is created. Asked by Albert on 08-11.
+const ROSMAROPS_LOOPCAT_TAGS  = ['claude-code' => 'Claude Code', 'codex' => 'Codex'];
 
 /** The plan for one site, by its home URL, or null for any other site. */
 function rosmarops_loopcat_plan($home_url) {
@@ -105,7 +107,7 @@ function rosmarops_loopcat_run() {
 	// C. The post: the category, without the default one.
 	$found = get_posts(['name' => $plan['post'], 'post_type' => 'post', 'post_status' => ['publish', 'draft', 'pending', 'future', 'private'], 'numberposts' => 2]);
 	if (count($found) !== 1) {
-		$log[] = "C skipped: post {$plan['post']} " . ($found ? 'matches more than one post' : 'not found') . '; D skipped too';
+		$log[] = "C skipped: post {$plan['post']} " . ($found ? 'matches more than one post' : 'not found') . '; D, E and F skipped too';
 		return rosmarops_loopcat_finish($plan['lang'], $log, true);
 	}
 	$post = $found[0];
@@ -121,25 +123,58 @@ function rosmarops_loopcat_run() {
 		$log[] = "C done: post {$post->ID} ({$post->post_status}) in " . ROSMAROPS_LOOPCAT_SLUG . ($post->post_status === 'publish' ? '' : '; still ' . $post->post_status);
 	}
 
-	// D. The featured image, only if the post has none.
+	rosmarops_loopcat_image($plan, $post, $log);
+
+	// E. Tags, added to the ones the post already has.
+	$tag_ids = [];
+	foreach (ROSMAROPS_LOOPCAT_TAGS as $slug => $name) {
+		$t = get_term_by('slug', $slug, 'post_tag');
+		if (!$t) {
+			$res = wp_insert_term($name, 'post_tag', ['slug' => $slug]);
+			if (is_wp_error($res)) {
+				$log[] = "E failed: tag {$slug} not created";
+				continue;
+			}
+			$t = get_term_by('slug', $slug, 'post_tag');
+			$log[] = "E done: tag {$slug} created";
+		}
+		$tag_ids[] = (int) $t->term_id;
+	}
+	if ($tag_ids) {
+		wp_set_post_terms($post->ID, $tag_ids, 'post_tag', true);
+		$log[] = 'E done: tags ' . implode(', ', array_keys(ROSMAROPS_LOOPCAT_TAGS)) . " on post {$post->ID}";
+	}
+
+	// F. Publish, asked by Albert on 08-11 («ya puedes publicar»), only a post still in draft, dated now.
+	if ($post->post_status !== 'draft') {
+		$log[] = "F skipped: post {$post->ID} is {$post->post_status}; left as it is";
+	} else {
+		$res = wp_update_post(['ID' => $post->ID, 'post_status' => 'publish', 'post_date' => current_time('mysql'), 'post_date_gmt' => current_time('mysql', 1)], true);
+		$log[] = (is_wp_error($res) || !$res) ? "F failed: post {$post->ID} still draft" : "F done: post {$post->ID} published";
+	}
+	return rosmarops_loopcat_finish($plan['lang'], $log, true);
+}
+
+/** D. The featured image, only if the post has none. */
+function rosmarops_loopcat_image($plan, $post, &$log) {
 	if (has_post_thumbnail($post->ID)) {
 		$log[] = "D skipped: post {$post->ID} already has a featured image; not replaced";
-		return rosmarops_loopcat_finish($plan['lang'], $log, true);
+		return;
 	}
 	$file = rosmarops_loopcat_dir() . '/' . ROSMAROPS_LOOPCAT_IMAGE;
 	if (!is_file($file)) {
 		$log[] = 'D skipped: ' . ROSMAROPS_LOOPCAT_IMAGE . ' not found';
-		return rosmarops_loopcat_finish($plan['lang'], $log, true);
+		return;
 	}
 	$up = wp_upload_bits(ROSMAROPS_LOOPCAT_IMAGE, null, (string) file_get_contents($file));
 	if (!empty($up['error'])) {
 		$log[] = 'D failed: image not uploaded';
-		return rosmarops_loopcat_finish($plan['lang'], $log, true);
+		return;
 	}
 	$att = wp_insert_attachment(['post_mime_type' => 'image/jpeg', 'post_title' => 'Loop engineering', 'post_status' => 'inherit'], $up['file'], $post->ID, true);
 	if (is_wp_error($att) || !$att) {
 		$log[] = 'D failed: attachment not created';
-		return rosmarops_loopcat_finish($plan['lang'], $log, true);
+		return;
 	}
 	foreach (['file.php', 'media.php', 'image.php'] as $inc) { // the admin helpers that build the image sizes
 		if (is_file(ABSPATH . 'wp-admin/includes/' . $inc)) {
@@ -150,7 +185,6 @@ function rosmarops_loopcat_run() {
 	update_post_meta($att, '_wp_attachment_image_alt', $plan['alt']);
 	set_post_thumbnail($post->ID, $att);
 	$log[] = "D done: featured image {$att} on post {$post->ID}";
-	return rosmarops_loopcat_finish($plan['lang'], $log, true);
 }
 
 /** Stores and writes the log, marks the site done when asked, and releases the lock. */

@@ -55,7 +55,7 @@ class LoopCategory(unittest.TestCase):
     def test_each_site(self):
         for lang, home in SITES.items():
             log, out = self.run_once(home, self.db(lang))
-            term = out["terms"][0]
+            term = next(t for t in out["terms"] if t.get("taxonomy", "category") == "category")
             self.assertEqual((term["name"], term["slug"]), ("Loop engineering", "loop-engineering"))
             if lang in SIGNED:
                 self.assertEqual(term["description"], SIGNED[lang])
@@ -64,7 +64,10 @@ class LoopCategory(unittest.TestCase):
             self.assertTrue(40 <= len(tsf["description"]) <= 155, (lang, len(tsf["description"])))
             self.assertTrue(tsf["description"].startswith({"en": "What happens", "es": "Qué pasa", "ca": "Què passa"}[lang]))
             self.assertEqual(out["posts"][0]["cats"], [term["term_id"]])  # default category gone
-            self.assertEqual(out["posts"][0]["post_status"], "draft")  # never published
+            self.assertEqual(out["posts"][0]["post_status"], "publish")  # Albert, 08-11: «ya puedes publicar»
+            self.assertEqual(out["posts"][0]["post_date_gmt"], "2026-11-08 22:00:00")
+            tags = {t["term_id"]: t["slug"] for t in out["terms"] if t.get("taxonomy") == "post_tag"}
+            self.assertEqual(sorted(tags[i] for i in out["posts"][0]["tags"]), ["claude-code", "codex"])
             att = out["thumbs"]["42"]
             self.assertEqual(out["uploads"][0][0], "rosmarops-img-13-loop-engineering.jpg")
             self.assertTrue(out["post_meta"][str(att)]["_wp_attachment_image_alt"])
@@ -76,13 +79,13 @@ class LoopCategory(unittest.TestCase):
         self.run_once(SITES["es"], self.db("es"))
         log, out = self.run_once(SITES["es"])
         self.assertIsNone(log)
-        self.assertEqual(len(out["terms"]), 1)
+        self.assertEqual(len(out["terms"]), 3)  # the category and the two tags
         self.assertEqual(len(out["uploads"]), 1)
 
     def test_existing_category_kept_and_other_categories_kept(self):
         mine = {"term_id": 7, "name": "Mine", "slug": "loop-engineering", "description": "theirs"}
         log, out = self.run_once(SITES["ca"], self.db("ca", cats=[1, 19], extra_terms=[mine]))
-        self.assertEqual(out["terms"], [mine])
+        self.assertEqual([t for t in out["terms"] if t.get("taxonomy", "category") == "category"], [mine])
         self.assertEqual(sorted(out["posts"][0]["cats"]), [7, 19])
 
     def test_meta_description_never_replaced(self):
@@ -104,12 +107,13 @@ class LoopCategory(unittest.TestCase):
         log, out = self.run_once(SITES["es"], data)
         self.assertEqual(len(out["terms"]), 1)
         self.assertIn("not found", log[-1])
+        self.assertEqual(out["posts"], [])
 
     def test_failed_category_runs_again(self):
         log, out = self.run_once(SITES["en"], self.db("en"), {"LOOPCAT_TERM_FAIL": "1"})
         self.assertNotIn("rosmarops_loopcat_done", out["options"])
         log, out = self.run_once(SITES["en"])
-        self.assertEqual(len(out["terms"]), 1)
+        self.assertEqual(len([t for t in out["terms"] if t.get("taxonomy", "category") == "category"]), 1)
 
     def test_other_hosts_do_nothing(self):
         for home in ["https://rosmarops.com/fr", "https://www.qtorb.com"]:
@@ -117,10 +121,26 @@ class LoopCategory(unittest.TestCase):
             self.assertIsNone(log)
             self.assertEqual(out["terms"], [])
 
-    def test_never_publishes_or_deletes(self):
+    def test_existing_tags_reused_and_kept(self):
+        data = self.db("ca")
+        data["terms"] = [{"term_id": 8, "slug": "claude-code", "name": "Claude Code", "taxonomy": "post_tag"}]
+        data["posts"][0]["tags"] = [16]
+        log, out = self.run_once(SITES["ca"], data)
+        self.assertIn("E done: tag codex created", log)
+        self.assertNotIn("E done: tag claude-code created", log)
+        self.assertEqual(out["posts"][0]["tags"][:2], [16, 8])
+
+    def test_only_a_draft_is_published(self):
+        for status in ("publish", "pending", "future", "private"):
+            log, out = self.run_once(SITES["es"], self.db("es", status=status))
+            self.assertEqual(out["posts"][0]["post_status"], status)
+            self.assertIn(f"F skipped: post 42 is {status}; left as it is", log)
+
+    def test_never_deletes_or_creates_posts(self):
         src = PLUGIN.read_text(encoding="utf-8")
-        for word in ["wp_update_post", "wp_publish_post", "wp_delete_post", "wp_delete_term", "wp_trash_post", "wp_insert_post"]:
+        for word in ["wp_publish_post", "wp_delete_post", "wp_delete_term", "wp_trash_post", "wp_insert_post"]:
             self.assertNotIn(word, src)
+        self.assertEqual(src.count("wp_update_post("), 1)
 
 
 if __name__ == "__main__":
