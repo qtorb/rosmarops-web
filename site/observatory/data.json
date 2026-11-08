@@ -4,6 +4,68 @@
     {
       "schema_version": 1,
       "agent": {
+        "id": "cline",
+        "name": "Cline",
+        "vendor": "Cline",
+        "kinds": [
+          "ide_extension",
+          "cli",
+          "desktop_app"
+        ],
+        "platforms": [
+          "windows",
+          "macos",
+          "linux"
+        ],
+        "local_footprint": "yes",
+        "rosmarops": {
+          "status": "evaluated",
+          "since_version": "0.10.0"
+        },
+        "reviewed_at": "2026-10-28"
+      },
+      "versions": [],
+      "changes": [],
+      "ratings": []
+    },
+    {
+      "schema_version": 1,
+      "agent": {
+        "id": "gemini-cli",
+        "name": "Gemini CLI",
+        "vendor": "Google",
+        "kinds": [
+          "cli"
+        ],
+        "platforms": [
+          "windows",
+          "macos",
+          "linux"
+        ],
+        "local_footprint": "yes",
+        "rosmarops": {
+          "status": "evaluated",
+          "since_version": "0.10.0"
+        },
+        "reviewed_at": "2026-10-30"
+      },
+      "versions": [
+        {
+          "version": "0.66.0",
+          "released_at": "2026-10-27",
+          "source": {
+            "url": "https://github.com/google-gemini/gemini-cli/releases/tag/v0.66.0",
+            "official": true,
+            "accessed_at": "2026-10-30"
+          }
+        }
+      ],
+      "changes": [],
+      "ratings": []
+    },
+    {
+      "schema_version": 1,
+      "agent": {
         "id": "antigravity-cli",
         "name": "Antigravity CLI",
         "vendor": "Google",
@@ -1249,33 +1311,6 @@
     {
       "schema_version": 1,
       "agent": {
-        "id": "cline",
-        "name": "Cline",
-        "vendor": "Cline",
-        "kinds": [
-          "ide_extension",
-          "cli",
-          "desktop_app"
-        ],
-        "platforms": [
-          "windows",
-          "macos",
-          "linux"
-        ],
-        "local_footprint": "yes",
-        "rosmarops": {
-          "status": "detected",
-          "since_version": "0.1.0"
-        },
-        "reviewed_at": "2026-10-28"
-      },
-      "versions": [],
-      "changes": [],
-      "ratings": []
-    },
-    {
-      "schema_version": 1,
-      "agent": {
         "id": "continue",
         "name": "Continue",
         "vendor": "Continue",
@@ -1521,40 +1556,6 @@
           "rosmarops_impact": "none"
         }
       ],
-      "ratings": []
-    },
-    {
-      "schema_version": 1,
-      "agent": {
-        "id": "gemini-cli",
-        "name": "Gemini CLI",
-        "vendor": "Google",
-        "kinds": [
-          "cli"
-        ],
-        "platforms": [
-          "windows",
-          "macos",
-          "linux"
-        ],
-        "local_footprint": "yes",
-        "rosmarops": {
-          "status": "not_supported"
-        },
-        "reviewed_at": "2026-10-30"
-      },
-      "versions": [
-        {
-          "version": "0.66.0",
-          "released_at": "2026-10-27",
-          "source": {
-            "url": "https://github.com/google-gemini/gemini-cli/releases/tag/v0.66.0",
-            "official": true,
-            "accessed_at": "2026-10-30"
-          }
-        }
-      ],
-      "changes": [],
       "ratings": []
     },
     {
@@ -1965,7 +1966,35 @@
         "reviewed_at": "2026-11-06"
       },
       "versions": [],
-      "changes": [],
+      "changes": [
+        {
+          "id": "chg-qoder-cn-1-39-1-permissions",
+          "version": "1.39.1",
+          "date": "2026-11-07",
+          "category": "permissions",
+          "before": {
+            "en": "Before 1.39.1, the changelog lists no admin console setting in Qoder CN for enterprise administrators to turn off full access mode for members.",
+            "es": "Antes de 1.39.1, el changelog no recoge en Qoder CN un ajuste de la consola de administración para que los administradores de empresa desactiven el modo de acceso completo de los miembros.",
+            "ca": "Abans de 1.39.1, el changelog no recull a Qoder CN cap opció de la consola d'administració perquè els administradors d'empresa desactivin el mode d'accés complet dels membres."
+          },
+          "after": {
+            "en": "From 1.39.1, enterprise administrators can turn off full access mode for members from the admin console, according to the changelog.",
+            "es": "Desde 1.39.1, los administradores de empresa pueden desactivar el modo de acceso completo de los miembros desde la consola de administración, según el changelog.",
+            "ca": "Des de 1.39.1, els administradors d'empresa poden desactivar el mode d'accés complet dels membres des de la consola d'administració, segons el changelog."
+          },
+          "source": {
+            "url": "https://changelog.qoder.cn/",
+            "official": true,
+            "accessed_at": "2026-11-08"
+          },
+          "verified": {
+            "by": "writer",
+            "at": "2026-11-08",
+            "how": "official_changelog"
+          },
+          "rosmarops_impact": "none"
+        }
+      ],
       "ratings": []
     },
     {
