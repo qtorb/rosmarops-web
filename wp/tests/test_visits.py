@@ -158,7 +158,15 @@ class Visits(unittest.TestCase):
         for p in ["/blog/page/", "/blog/page/x/", "/blog/category/", "/blog/12345/", "/blog/2026/1/", "/es/blog/no-such-post/",
                   "/fr/blog/page/2/", "/blogs/page/2/"]:
             self.visit(p, "")
-        self.assertEqual([line.split("\t")[0] for line in self.rows()], ["other"])
+        self.assertEqual([line.split("\t")[0] for line in self.rows()], ["other", "other"])
+
+    def test_language_of_other_comes_from_the_path_prefix(self):
+        # GTM-118: /es/, /ca/ or none, from the path the browser sent; never from the word "other".
+        for p in ["/es/no-such-page/", "/es/blog/no-such-post", "/ca/no-such-page/", "/ca", "/no-such-page/", "/fr/page/",
+                  "/es/Mayusculas/", 12, None]:
+            self.visit(p, "")
+        self.assertEqual(self.rows(), ["other\tca\tdirect\t2", "other\ten\tdirect\t4", "other\tes\tdirect\t3"])
+
 
     def test_referrer_closed_list(self):
         refs = {"": "direct", "rosmarops.com": "internal", "www.rosmarops.com": "internal", "gemini.google.com": "gemini",

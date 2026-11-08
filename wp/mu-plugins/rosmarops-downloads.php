@@ -358,7 +358,9 @@ function rosmarops_visits_handle($body, $server, $cookies) {
 		return false;
 	}
 	$page = rosmarops_visits_page($in['p'] ?? null);
-	return rosmarops_visits_count($page, rosmarops_visits_lang($page), rosmarops_visits_ref($in['r'] ?? null));
+	// GTM-118: for "other", the language comes from the prefix of the path the browser sent (/es/, /ca/ or none).
+	$from = ($page === 'other' && is_string($in['p'] ?? null)) ? rtrim($in['p'], '/') . '/' : $page;
+	return rosmarops_visits_count($page, rosmarops_visits_lang($from), rosmarops_visits_ref($in['r'] ?? null));
 }
 
 /** Aggregate rows of the last ROSMAROPS_DL_DAYS days (UTC), oldest first. */
