@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: RosmarOps downloads and visits
- * Description: Download counter (GTM-18; os added by the 2026-10-29 direct-download decision). /download, /es/descargar and /ca/descarregar add one to an aggregate count (UTC day, source page, language, os) and redirect to GitHub: to the file for ?os=windows|mac-arm|mac-intel|linux-amd64|linux-arm64 (Linux added by GTM-83), otherwise to the latest release. Stores no IP address, cookie, user agent or referrer; requests with the WordPress session cookie (the team, signed in) are not counted (GTM-111). Public read-only totals at /wp-json/rosmarops/v1/downloads. Versioned in qtorb/rosmarops-web; do not edit on the server.
+ * Description: Download counter (GTM-18; os added by the 2026-10-29 direct-download decision). /download, /es/descargar and /ca/descarregar add one to an aggregate count (UTC day, source page, language, os) and redirect to GitHub: to the file for ?os=windows|mac-arm|mac-intel|linux-amd64|linux-arm64 (Linux added by GTM-83), otherwise to the latest release. Stores no IP address, cookie, user agent or referrer; requests with the WordPress session cookie (the team, signed in) are not counted (GTM-111), nor requests from robots, by the same user-agent list as visits (GTM-118; the user agent is looked at, never stored). Public read-only totals at /wp-json/rosmarops/v1/downloads. Versioned in qtorb/rosmarops-web; do not edit on the server.
  *
  * GTM-111: visit counter, behind ROSMAROPS_VISITS_ON (off). Pages send their path and the referrer's domain with JavaScript (/assets/visits/visits.js); the server adds one to (UTC day, page, language, referrer kind), with closed lists. It stores no IP address, cookie, user agent, exact time or identifier. Public read-only totals at /wp-json/rosmarops/v1/visits.
  */
@@ -70,6 +70,15 @@ function rosmarops_is_team($cookies) {
 		}
 	}
 	return false;
+}
+
+/**
+ * GTM-118: a request that is not a person reading or clicking: no user agent, or one on ROSMAROPS_VISITS_BOTS.
+ * The same check for visits and for download clicks. The user agent is looked at, never stored.
+ */
+function rosmarops_is_bot($server) {
+	$ua = (string) ($server['HTTP_USER_AGENT'] ?? '');
+	return $ua === '' || preg_match(ROSMAROPS_VISITS_BOTS, $ua) === 1;
 }
 
 /** Redirect target for an os key. */
@@ -152,7 +161,8 @@ add_action('muplugins_loaded', function () {
 		return;
 	}
 	$os = rosmarops_dl_os($_GET['os'] ?? null);
-	if ($method === 'GET' && !rosmarops_is_team($_COOKIE)) {
+	// Robots and the team get the same redirect, but are not counted.
+	if ($method === 'GET' && !rosmarops_is_team($_COOKIE) && !rosmarops_is_bot($_SERVER)) {
 		rosmarops_dl_count(rosmarops_dl_source($_GET['from'] ?? null), $lang, $os);
 	}
 	header('Cache-Control: no-store');
@@ -295,8 +305,7 @@ function rosmarops_visits_accept($server, $cookies) {
 	if (strpos($purpose, 'prefetch') !== false || strpos($purpose, 'prerender') !== false) {
 		return false;
 	}
-	$ua = (string) ($server['HTTP_USER_AGENT'] ?? '');
-	if ($ua === '' || preg_match(ROSMAROPS_VISITS_BOTS, $ua)) {
+	if (rosmarops_is_bot($server)) {
 		return false;
 	}
 	return !rosmarops_is_team($cookies);

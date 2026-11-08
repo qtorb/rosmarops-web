@@ -20,6 +20,7 @@ TESTS = ROOT / "wp" / "tests"
 PREFIX = "dltest_"
 TABLE = PREFIX + "rosmarops_downloads"
 LATEST = "https://github.com/qtorb/rosmarops/releases/latest"
+UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36"
 
 
 class NoRedirect(urllib.request.HTTPRedirectHandler):
@@ -74,7 +75,10 @@ class Downloads(unittest.TestCase):
         mysql(f"DROP TABLE IF EXISTS {TABLE}")
 
     def get(self, path, method="GET", headers=None):
-        req = urllib.request.Request(f"http://127.0.0.1:{self.port}{path}", method=method, headers=headers or {})
+        h = {"User-Agent": UA}  # a person's browser unless the test says otherwise (urllib's own agent is a robot)
+        h.update(headers or {})
+        h = {k: v for k, v in h.items() if v is not None}
+        req = urllib.request.Request(f"http://127.0.0.1:{self.port}{path}", method=method, headers=h)
         try:
             r = OPENER.open(req, timeout=5)
             return r.status, dict(r.headers), r.read().decode()
@@ -142,6 +146,22 @@ class Downloads(unittest.TestCase):
         self.assertEqual(mysql(f"SELECT SUM(count) FROM {TABLE}").strip(), "10")
         self.get("/download?from=home-band&os=windows", headers={"Cookie": "cc_cookie=x"})
         self.assertIn("home-band\ten\twindows\t1", self.rows())
+
+    def test_robots_redirected_but_not_counted(self):
+        # GTM-118: the same user-agent list as visits (ROSMAROPS_VISITS_BOTS); the user agent is never stored.
+        bots = ["Googlebot/2.1 (+http://www.google.com/bot.html)", "LinkedInBot/1.0 (compatible; Mozilla/5.0)",
+                "Slackbot-LinkExpanding 1.0 (+https://api.slack.com/robots)", "curl/8.5.0",
+                "Python-urllib/3.12", "Mozilla/5.0 HeadlessChrome/130.0", "facebookexternalhit/1.1", None]
+        for ua in bots:
+            st, h, _ = self.get("/download?from=home&os=windows", headers={"User-Agent": ua})
+            self.assertEqual(st, 302, ua)
+            self.assertEqual(h["Location"], LATEST + "/download/rosmarops.exe", ua)
+        self.assertEqual(mysql(f"SELECT SUM(count) FROM {TABLE}").strip(), "10")
+        self.get("/download?from=home&os=windows", headers={"User-Agent": UA})
+        self.assertIn("home\ten\twindows\t1", self.rows())
+        cols = [c.split("\t")[0] for c in mysql(f"SHOW COLUMNS FROM {TABLE}").splitlines()]
+        self.assertEqual(cols, ["day", "src", "lang", "os", "count"])
+        self.assertNotIn("Mozilla", mysql(f"SELECT * FROM {TABLE}"))
 
     def test_endpoint_migrates_on_read_and_adds_os(self):
         st, _, body = self.get("/wp-json/rosmarops/v1/downloads")
