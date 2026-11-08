@@ -128,6 +128,15 @@ class Visits(unittest.TestCase):
             "/methodology/\ten\tgoogle\t2",
         ])
 
+    def test_the_three_homes_count(self):
+        # GTM-118 (5): the home pages are static index.html files at the root of the site, like the deploy puts them.
+        for p in ["es", "ca"]:
+            (Path(self.tmp, p) / "index.html").write_text("<html></html>")
+        self.visit("/", "")
+        self.visit("/es/", "www.linkedin.com", path="/es/wp-json/rosmarops/v1/visits")
+        self.visit("/ca/", "t.co", path="/ca/wp-json/rosmarops/v1/visits")
+        self.assertEqual(self.rows(), ["/\ten\tdirect\t1", "/ca/\tca\tx\t1", "/es/\tes\tlinkedin\t1"])
+
     def test_pages_outside_the_closed_list_are_other(self):
         for p in ["/no-such-page/", "/Methodology/", "/methodology/../wp-config.php", "/methodology/?q=1",
                   "/a//b/", "x", "/" + "a" * 200 + "/", 12, None]:
