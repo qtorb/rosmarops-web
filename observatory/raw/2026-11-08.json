@@ -1,0 +1,483 @@
+{
+  "date": "2026-11-08",
+  "collected_at": "2026-11-08T05:34:21Z",
+  "sources": [
+    {
+      "id": "F1",
+      "opened": true,
+      "reason": null,
+      "latest": "2.1.319",
+      "latest_date": "2026-11-06",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F2",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-06",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F3",
+      "opened": true,
+      "reason": null,
+      "latest": "rust-v0.167.0",
+      "latest_date": "2026-11-05",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F4",
+      "opened": true,
+      "reason": null,
+      "latest": "v1.5.1",
+      "latest_date": "2026-11-05",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F5",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.23.0",
+      "latest_date": "2026-11-05",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F6",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-06",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F7",
+      "opened": true,
+      "reason": null,
+      "latest": "v4.1.26",
+      "latest_date": "2026-10-26",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F8",
+      "opened": true,
+      "reason": null,
+      "latest": "v2.1.0-vscode",
+      "latest_date": "2026-06-19",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F9",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.4.0",
+      "latest_date": "2026-10-27",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F10",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-07",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F11",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.67.0",
+      "latest_date": "2026-11-04",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F12",
+      "opened": true,
+      "reason": null,
+      "latest": "1.0.107",
+      "latest_date": "2026-11-06",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F13",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-06",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F14",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-07",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F15",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-08",
+      "new": [
+        {
+          "date": "2026-11-08",
+          "version": null,
+          "text": "CVE-2026-123493 [MCP]: Vikunja from 2.4.0 before 2.7.1 contains an authentication bypass vulnerability that allows disabled or locked users to retain access through API tokens owned by their bot users. Because token validation only checks the bot's own status, attackers holding pre-minted bot tokens can keep reading and modifying shared projects via the HTTP API, CalDAV, MCP and feeds."
+        }
+      ],
+      "ids": [
+        "CVE-2026-123493"
+      ],
+      "read_with": "curl"
+    },
+    {
+      "id": "F16",
+      "opened": true,
+      "reason": null,
+      "latest": "v2.2.6",
+      "latest_date": "2026-11-06",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F17",
+      "opened": true,
+      "reason": null,
+      "latest": "1.4.121",
+      "latest_date": "2026-11-05",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F18",
+      "opened": true,
+      "reason": null,
+      "latest": "v3.12.28",
+      "latest_date": "2026-11-07",
+      "new": [
+        {
+          "date": "2026-11-07",
+          "version": "v3.12.28",
+          "text": "New In the Agent Command Center, open the ”…” menu in the session header to see its MCP servers, turn one on or off, or re-authenticate. If a local agent rejects the first prompt, Desktop puts the text back in the composer and shows the reason. You can correct it and resend without retyping. Changed The editor now uses VS Code 1.141.2 and Electron 43.8.3, which includes Chromium security fixes. In IDE mode, opening Devin settings opens an editor tab instead of switching modes. Chat diffs use your editor theme’s diff colors. Shell commands and code blocks in the transcript use its syntax highl…"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F19",
+      "opened": true,
+      "reason": null,
+      "latest": "v1.57.0",
+      "latest_date": "2026-10-27",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F20",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-02",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F21",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-08-19",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F22",
+      "opened": false,
+      "reason": "new version without notes: v2026.11.2",
+      "latest": "v2026.11.2",
+      "latest_date": "2026-11-08",
+      "new": [
+        {
+          "date": "2026-11-08",
+          "version": "v2026.11.2",
+          "text": "notes not available"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F23",
+      "opened": true,
+      "reason": null,
+      "latest": "1.2.20",
+      "latest_date": "2026-11-05",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F24",
+      "opened": true,
+      "reason": null,
+      "latest": "1.15.37",
+      "latest_date": "2026-11-07",
+      "new": [
+        {
+          "date": "2026-11-07",
+          "version": "1.15.37",
+          "text": "## What's Changed ### Features - Add functionality to read spreadsheets for agents in crewai-files. - Scaffold and load standalone agent projects. ### Documentation - Update RagTool description for better parsing by Mintlify. ## Contributors @Vidit-Ostwal, @joaomdmoura, @lorenzejay"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F25",
+      "opened": true,
+      "reason": null,
+      "latest": "python-1.25.0",
+      "latest_date": "2026-11-06",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F26",
+      "opened": true,
+      "reason": null,
+      "latest": "2026-07-28",
+      "latest_date": "2026-07-28",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F27",
+      "opened": true,
+      "reason": null,
+      "latest": "1.145",
+      "latest_date": "2026-11-04",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F28",
+      "opened": true,
+      "reason": null,
+      "latest": "2026.11.06",
+      "latest_date": "2026-11-06",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F29",
+      "opened": true,
+      "reason": null,
+      "latest": "1.4.13",
+      "latest_date": "2026-11-08",
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "date_is_detection": true
+    },
+    {
+      "id": "F31",
+      "opened": true,
+      "reason": null,
+      "latest": "n8n@3.1.0",
+      "latest_date": "2026-11-03",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F32",
+      "opened": true,
+      "reason": null,
+      "latest": "v3.4.15",
+      "latest_date": "2026-11-03",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F33",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.27.0",
+      "latest_date": "2026-11-07",
+      "new": [
+        {
+          "date": "2026-11-07",
+          "version": "v0.27.0",
+          "text": "<!-- qwen-release-notes:v1 --> ## Highlights - Managed-agent sessions can hold multiple child questions at once, answer them in any order, and keep drafts and errors separated per child. ([#16484](https://github.com/QwenLM/qwen-code/pull/16484)) - Web Shell adds a task Q&A heatmap and an Ask for details side task that explains pending Ask User Question options without answering. ([#16037](https://github.com/QwenLM/qwen-code/pull/16037), [#16458](https://github.com/QwenLM/qwen-code/pull/16458)) - GitHub channel editor adds Repository Filter allowlists and blocklists, while bound PR delivery an…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F34",
+      "opened": true,
+      "reason": null,
+      "latest": "@moonshot-ai/kimi-code@2.5.2",
+      "latest_date": "2026-11-06",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F35",
+      "opened": true,
+      "reason": null,
+      "latest": "v2.179.3",
+      "latest_date": "2026-11-03",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F36",
+      "opened": true,
+      "reason": null,
+      "latest": "1.39.1",
+      "latest_date": "2026-11-07",
+      "new": [
+        {
+          "date": "2026-11-07",
+          "version": "1.39.1",
+          "text": "### 任务耗时与积分用量可视化，Plan 模式支持切换执行模型 功能 任务结束后展示耗时与用量：任务完成后可直接查看执行耗时、积分用量等信息，便于了解任务执行情况与成本。 Plan 模式支持切换执行模型：方案生成后，可按任务需要切换模型执行，为规划与执行分别选择合适的模型，兼顾效果与成本。 qoder-ide-helper 支持设置与配置管理：通过 /qoder-ide-helper 获取产品咨询，也可直接调整回复语言、会话等常用设置，并管理规则、指令与插件。 企业管理员可禁用完全访问模式：管理员可在管理后台统一禁用成员的完全访问模式，加强组织权限管控。 设置页新增「保持此设备唤醒」开关：开启后可保持设备唤醒，避免长时间任务因设备休眠中断，无需单独调整系统设置。 优化 工具思考与执行内容在运行过程中自动折叠，减少会话流中的干扰，让阅读更聚焦。 切换模型后即时提示切换结果，便于确认是否生效。 活动模型当日额度耗尽时，明确提示额度状态与后续操作。 默认限制 Agent 单次自动打开的文件数量，减少标签页过多对稳定性的影响，也可按需调整上限或关闭限制。 大仓库首次生成或全量重新生成 Wiki 前，提前展示预计积分消耗，便于评估成本。 优化大段代码变更、多标签页及长会话场景下的处理性能，减少界面卡顿。 优化 WSL 终端配置探测，减少界面卡顿，提升响应速度。 修复 修复企业版启动恢复时…"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F37",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.86.2",
+      "latest_date": "2026-02-12",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F38",
+      "opened": true,
+      "reason": null,
+      "latest": "v1.37.0",
+      "latest_date": "2026-11-06",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F39",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-06",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F40",
+      "opened": true,
+      "reason": null,
+      "latest": "2026.10.22",
+      "latest_date": "2026-10-22",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F41",
+      "opened": true,
+      "reason": null,
+      "latest": "26.11.3",
+      "latest_date": "2026-11-03",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F42",
+      "opened": true,
+      "reason": null,
+      "latest": "v7.8.28",
+      "latest_date": "2026-11-07",
+      "new": [
+        {
+          "date": "2026-11-07",
+          "version": "v7.8.28",
+          "text": "## CLI ### Minor Changes - [#15929](https://github.com/Kilo-Org/kilocode/pull/15929) [`f15aff8`](https://github.com/Kilo-Org/kilocode/commit/f15aff8f3d186e3ed459775d0b164bed7782e320) - Expose hosted workspace profile defaults through the Session Host API. Clients can create an empty hosted workspace without an initial prompt or profile, list personal and organization profiles with their default flags, and set or clear the personal default profile. ### Patch Changes - [#15921](https://github.com/Kilo-Org/kilocode/pull/15921) [`8116541`](https://github.com/Kilo-Org/kilocode/commit/8116541a9b71f…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F43",
+      "opened": false,
+      "reason": "https://www.perplexity.ai/changelog: HTTP 403",
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F44",
+      "opened": true,
+      "reason": null,
+      "latest": "v1.0.70",
+      "latest_date": "2026-10-23",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    }
+  ],
+  "opened": 41,
+  "total": 43
+}
