@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: RosmarOps downloads and visits
- * Description: Download counter (GTM-18; os added by the 2026-10-29 direct-download decision). /download, /es/descargar and /ca/descarregar add one to an aggregate count (UTC day, source page, language, os) and redirect to GitHub: to the file for ?os=windows|mac-arm|mac-intel|linux-amd64|linux-arm64 (Linux added by GTM-83), otherwise to the latest release. Stores no IP address, cookie, user agent or referrer; requests with the WordPress session cookie (the team, signed in) are not counted (GTM-111). Public read-only totals at /wp-json/rosmarops/v1/downloads. Versioned in qtorb/rosmarops-web; do not edit on the server.
+ * Description: Download counter (GTM-18; os added by the 2026-10-29 direct-download decision). /download, /es/descargar and /ca/descarregar add one to an aggregate count (UTC day, source page, language, os) and redirect to GitHub: to the file for ?os=windows|mac-arm|mac-intel|linux-amd64|linux-arm64 (Linux added by GTM-83), otherwise to the latest release. Stores no IP address, cookie, user agent or referrer; requests with the WordPress session cookie (the team, signed in) are not counted (GTM-111), nor requests from robots, by the same user-agent list as visits (GTM-118; the user agent is looked at, never stored). Public read-only totals at /wp-json/rosmarops/v1/downloads. Versioned in qtorb/rosmarops-web; do not edit on the server.
  *
  * GTM-111: visit counter, behind ROSMAROPS_VISITS_ON (off). Pages send their path and the referrer's domain with JavaScript (/assets/visits/visits.js); the server adds one to (UTC day, page, language, referrer kind), with closed lists. It stores no IP address, cookie, user agent, exact time or identifier. Public read-only totals at /wp-json/rosmarops/v1/visits.
  */
@@ -70,6 +70,15 @@ function rosmarops_is_team($cookies) {
 		}
 	}
 	return false;
+}
+
+/**
+ * GTM-118: a request that is not a person reading or clicking: no user agent, or one on ROSMAROPS_VISITS_BOTS.
+ * The same check for visits and for download clicks. The user agent is looked at, never stored.
+ */
+function rosmarops_is_bot($server) {
+	$ua = (string) ($server['HTTP_USER_AGENT'] ?? '');
+	return $ua === '' || preg_match(ROSMAROPS_VISITS_BOTS, $ua) === 1;
 }
 
 /** Redirect target for an os key. */
@@ -152,7 +161,8 @@ add_action('muplugins_loaded', function () {
 		return;
 	}
 	$os = rosmarops_dl_os($_GET['os'] ?? null);
-	if ($method === 'GET' && !rosmarops_is_team($_COOKIE)) {
+	// Robots and the team get the same redirect, but are not counted.
+	if ($method === 'GET' && !rosmarops_is_team($_COOKIE) && !rosmarops_is_bot($_SERVER)) {
 		rosmarops_dl_count(rosmarops_dl_source($_GET['from'] ?? null), $lang, $os);
 	}
 	header('Cache-Control: no-store');
@@ -245,13 +255,28 @@ function rosmarops_visits_page_exists($path) {
 	return function_exists('url_to_postid') && url_to_postid(ROSMAROPS_VISITS_ORIGIN . $path) > 0;
 }
 
+/**
+ * GTM-118: the blog home of its language for the blog's WordPress listings (pagination, categories, tags, author,
+ * dates and search), which url_to_postid does not resolve. Only the shape of the path is checked; null if it is none.
+ */
+function rosmarops_visits_blog_listing($path) {
+	$listing = '#^(/es|/ca)?/(blog/(page/\d+|category/[a-z0-9/-]+|tag/[a-z0-9/-]+|author/[a-z0-9-]+(/page/\d+)?|\d{4}(/\d{2}){0,2}(/page/\d+)?|search/[a-z0-9/-]*)|search/[a-z0-9/-]*)/$#';
+	if (!preg_match($listing, $path, $m)) {
+		return null;
+	}
+	return ($m[1] ?? '') . '/blog/';
+}
+
 /** The page from the path the browser sent: lowercase letters, digits, hyphens and slashes, an existing page; else "other". */
 function rosmarops_visits_page($raw) {
 	if (!is_string($raw) || strlen($raw) > 150 || !preg_match('#^/[a-z0-9/-]*$#', $raw) || strpos($raw, '//') !== false) {
 		return 'other';
 	}
 	$path = rtrim($raw, '/') . '/';
-	return rosmarops_visits_page_exists($path) ? $path : 'other';
+	if (rosmarops_visits_page_exists($path)) {
+		return $path;
+	}
+	return rosmarops_visits_blog_listing($path) ?? 'other';
 }
 
 /** Language from the page path, never from the browser. */
@@ -295,8 +320,7 @@ function rosmarops_visits_accept($server, $cookies) {
 	if (strpos($purpose, 'prefetch') !== false || strpos($purpose, 'prerender') !== false) {
 		return false;
 	}
-	$ua = (string) ($server['HTTP_USER_AGENT'] ?? '');
-	if ($ua === '' || preg_match(ROSMAROPS_VISITS_BOTS, $ua)) {
+	if (rosmarops_is_bot($server)) {
 		return false;
 	}
 	return !rosmarops_is_team($cookies);
@@ -334,7 +358,9 @@ function rosmarops_visits_handle($body, $server, $cookies) {
 		return false;
 	}
 	$page = rosmarops_visits_page($in['p'] ?? null);
-	return rosmarops_visits_count($page, rosmarops_visits_lang($page), rosmarops_visits_ref($in['r'] ?? null));
+	// GTM-118: for "other", the language comes from the prefix of the path the browser sent (/es/, /ca/ or none).
+	$from = ($page === 'other' && is_string($in['p'] ?? null)) ? rtrim($in['p'], '/') . '/' : $page;
+	return rosmarops_visits_count($page, rosmarops_visits_lang($from), rosmarops_visits_ref($in['r'] ?? null));
 }
 
 /** Aggregate rows of the last ROSMAROPS_DL_DAYS days (UTC), oldest first. */
