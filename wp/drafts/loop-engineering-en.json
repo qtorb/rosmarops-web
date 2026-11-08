@@ -1,0 +1,14 @@
+{
+ "id": "loop-engineering",
+ "lang": "en",
+ "slug": "loop-engineering-agents-working-alone",
+ "title": "Loop engineering: letting agents work on their own doesn't mean they work better",
+ "excerpt": "A study examined 36,487 software repositories and confirmed autonomous AI agent loops in 217. More interesting than the percentage is what we know —and what we still don't— about the controls and results of those systems.",
+ "content": "loop-engineering-en.html",
+ "seo_title": "Loop engineering: what a study of 36,487 repositories found",
+ "seo_description": "A study examined 36,487 repositories and confirmed autonomous AI agent loops in 217. What it found about their controls, and what it does not prove.",
+ "translations": {
+  "es": "https://rosmarops.com/es/blog/loop-engineering-agentes-trabajando-solos/",
+  "ca": "https://rosmarops.com/ca/blog/loop-engineering-agents-treballant-sols/"
+ }
+}

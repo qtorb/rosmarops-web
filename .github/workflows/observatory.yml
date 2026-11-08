@@ -96,6 +96,8 @@ jobs:
           php -l wp/mu-plugins/rosmarops-gtm103-noindex.php
           python -m unittest wp/tests/test_gtm103_noindex.py
           php -l wp/mu-plugins/rosmarops-downloads.php
+          php -l wp/mu-plugins/rosmarops-blog-drafts.php
+          python -m unittest wp/tests/test_blog_drafts.py
           python -m unittest wp/tests/test_download_sources.py
           python -m unittest wp/tests/test_static_about.py
 
