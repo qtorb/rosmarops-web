@@ -97,6 +97,7 @@ jobs:
           python -m unittest wp/tests/test_gtm103_noindex.py
           php -l wp/mu-plugins/rosmarops-downloads.php
           python -m unittest wp/tests/test_download_sources.py
+          python -m unittest wp/tests/test_static_about.py
 
       - name: Download and visit counters against MySQL (GTM-18, GTM-111)
         run: |
