@@ -169,10 +169,11 @@ function rosmarops_retired_root() {
 
 // The Spanish blog home (/es/blog/, now the posts page, 04-11) lists only the product's categories: the legacy posts
 // that are still published (retired, or waiting to be rewritten or moved) stay out of the list. GTM-94 (06-11): the
-// nine new categories, plus the two old ones until their posts are moved in WordPress (then they can go).
+// nine new categories, plus the two old ones until their posts are moved in WordPress (then they can go). 08-11:
+// «Loop engineering» (rosmarops-category-loop-engineering.php).
 const ROSMAROPS_BLOG_CATEGORIES = [
 	'novedades-de-rosmarops', 'modos-y-aprobaciones', 'claves-de-api-y-env', 'claude-md-agents-md-y-reglas', 'servidores-mcp',
-	'inyeccion-de-prompts-en-agentes', 'bots-y-agentes-en-la-nube', 'datos-y-privacidad', 'nota-de-exposicion',
+	'inyeccion-de-prompts-en-agentes', 'bots-y-agentes-en-la-nube', 'datos-y-privacidad', 'nota-de-exposicion', 'loop-engineering',
 	'que-puede-hacer-tu-agente', 'metodologia',
 ];
 
