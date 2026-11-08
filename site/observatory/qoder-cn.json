@@ -21,6 +21,34 @@
     "reviewed_at": "2026-11-06"
   },
   "versions": [],
-  "changes": [],
+  "changes": [
+    {
+      "id": "chg-qoder-cn-1-39-1-permissions",
+      "version": "1.39.1",
+      "date": "2026-11-07",
+      "category": "permissions",
+      "before": {
+        "en": "Before 1.39.1, the changelog lists no admin console setting in Qoder CN for enterprise administrators to turn off full access mode for members.",
+        "es": "Antes de 1.39.1, el changelog no recoge en Qoder CN un ajuste de la consola de administración para que los administradores de empresa desactiven el modo de acceso completo de los miembros.",
+        "ca": "Abans de 1.39.1, el changelog no recull a Qoder CN cap opció de la consola d'administració perquè els administradors d'empresa desactivin el mode d'accés complet dels membres."
+      },
+      "after": {
+        "en": "From 1.39.1, enterprise administrators can turn off full access mode for members from the admin console, according to the changelog.",
+        "es": "Desde 1.39.1, los administradores de empresa pueden desactivar el modo de acceso completo de los miembros desde la consola de administración, según el changelog.",
+        "ca": "Des de 1.39.1, els administradors d'empresa poden desactivar el mode d'accés complet dels membres des de la consola d'administració, segons el changelog."
+      },
+      "source": {
+        "url": "https://changelog.qoder.cn/",
+        "official": true,
+        "accessed_at": "2026-11-08"
+      },
+      "verified": {
+        "by": "writer",
+        "at": "2026-11-08",
+        "how": "official_changelog"
+      },
+      "rosmarops_impact": "none"
+    }
+  ],
   "ratings": []
 }
