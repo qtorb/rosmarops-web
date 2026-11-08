@@ -190,7 +190,7 @@ class Repository(unittest.TestCase):
         self.assertEqual(al.check_candidates(agents, json.loads((OBS / "data" / "candidates.json").read_text(encoding="utf-8"))), [])
         program = json.loads((OBS / "data" / "program-agents.json").read_text(encoding="utf-8"))
         # v0.8.0 (07-11): internal/knowledge/ has claude-code, codex, cursor, grok-build, hermes and mcp_catalog.
-        self.assertEqual(al.check_scored(agents, ["antigravity-cli", "claude-code", "codex", "cursor", "github-copilot", "grok-build", "hermes", "mcp_catalog"], program), [])
+        self.assertEqual(al.check_scored(agents, ["antigravity-cli", "claude-code", "cline", "codex", "cursor", "gemini-cli", "github-copilot", "grok-build", "hermes", "mcp_catalog"], program), [])
 
 
 class FocoAlert(unittest.TestCase):

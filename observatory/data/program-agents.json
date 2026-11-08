@@ -7,7 +7,9 @@
     "codex": "codex",
     "grok-build": "grok-build",
     "antigravity-cli": "antigravity-cli",
-    "github-copilot": "github-copilot"
+    "github-copilot": "github-copilot",
+    "gemini-cli": "gemini-cli",
+    "cline": "cline"
   },
   "not_agents": [
     "mcp_catalog"
@@ -17,6 +19,11 @@
       "en": "GitHub Copilot in VS Code",
       "es": "GitHub Copilot en VS Code",
       "ca": "GitHub Copilot a VS Code"
+    },
+    "cline": {
+      "en": "Cline in VS Code",
+      "es": "Cline en VS Code",
+      "ca": "Cline a VS Code"
     }
   }
 }
