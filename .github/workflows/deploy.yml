@@ -29,7 +29,7 @@ jobs:
         run: |
           set -eu
           # Only these files are published. Nothing else on the server is touched or deleted.
-          ls -l site/index.html site/es/index.html site/llms.txt site/assets/consent/* site/assets/visits/* site/assets/brand/* site/assets/methodology/* wp/htaccess-https.txt wp/htaccess-slash.txt wp/htaccess-static.txt site/_static/* wp/mu-plugins/rosmarops-consent.php
+          ls -l site/index.html site/es/index.html site/llms.txt site/assets/consent/* site/assets/visits/* site/assets/brand/* site/assets/methodology/* site/assets/help/* site/glossary/index.html site/es/glosario/index.html site/ca/glossari/index.html wp/htaccess-https.txt wp/htaccess-slash.txt wp/htaccess-static.txt site/_static/* wp/mu-plugins/rosmarops-consent.php
           php -l wp/mu-plugins/rosmarops-consent.php
           php -l wp/mu-plugins/rosmarops-seo.php
           php -l wp/mu-plugins/rosmarops-downloads.php
@@ -39,7 +39,7 @@ jobs:
           php -l wp/mu-plugins/rosmarops-gtm97-drafts.php
           php -l wp/mu-plugins/rosmarops-gtm103-noindex.php
           ls -l wp/daily/shell-en.html wp/daily/shell-es.html wp/daily/shell-ca.html wp/daily/i18n.json
-          ! grep -RIl 'noindex' site/index.html site/es/index.html site/methodology site/faq site/es/metodologia site/es/preguntas-frecuentes site/ca/index.html site/ca/metodologia site/ca/preguntes-frequents site/cloud-access site/es/acceso-en-la-nube site/ca/acces-al-nuvol site/ca/privadesa site/privacy site/es/privacidad site/_static site/macos site/es/macos site/ca/macos site/linux site/es/linux site/ca/linux site/sample-report/index.html site/es/informe-de-ejemplo site/ca/informe-dexemple site/observatory/index.html site/es/observatorio/index.html site/ca/observatori/index.html
+          ! grep -RIl 'noindex' site/index.html site/es/index.html site/methodology site/faq site/es/metodologia site/es/preguntas-frecuentes site/ca/index.html site/ca/metodologia site/ca/preguntes-frequents site/cloud-access site/es/acceso-en-la-nube site/ca/acces-al-nuvol site/ca/privadesa site/privacy site/es/privacidad site/_static site/macos site/es/macos site/ca/macos site/linux site/es/linux site/ca/linux site/sample-report/index.html site/es/informe-de-ejemplo site/ca/informe-dexemple site/observatory/index.html site/es/observatorio/index.html site/ca/observatori/index.html site/glossary site/es/glosario site/ca/glossari
           # Observatory: only the three index pages and the JSON files are published (GTM-11). Agent pages wait for verification.
           ls site/observatory/index.html site/es/observatorio/index.html site/ca/observatori/index.html site/observatory/*.json
 
@@ -135,6 +135,12 @@ jobs:
           put site/es/informe-de-ejemplo/index.html es/informe-de-ejemplo/index.html
           -mkdir ca/informe-dexemple
           put site/ca/informe-dexemple/index.html ca/informe-dexemple/index.html
+          -mkdir glossary
+          put site/glossary/index.html glossary/index.html
+          -mkdir es/glosario
+          put site/es/glosario/index.html es/glosario/index.html
+          -mkdir ca/glossari
+          put site/ca/glossari/index.html ca/glossari/index.html
           -mkdir assets
           -mkdir assets/consent
           put site/assets/consent/cookieconsent.umd.js assets/consent/cookieconsent.umd.js
@@ -143,6 +149,10 @@ jobs:
           put site/assets/consent/LICENSE-cookieconsent.txt assets/consent/LICENSE-cookieconsent.txt
           -mkdir assets/visits
           put site/assets/visits/visits.js assets/visits/visits.js
+          -mkdir assets/help
+          put site/assets/help/help.css assets/help/help.css
+          put site/assets/help/help.js assets/help/help.js
+          put site/assets/help/glossary.json assets/help/glossary.json
           -mkdir assets/observatory
           put site/assets/observatory/today.js assets/observatory/today.js
           -mkdir assets/brand
@@ -440,6 +450,14 @@ jobs:
           curl -s "https://rosmarops.com/ca/?deploy=${GITHUB_SHA::7}" | grep -q '"@id": "https://rosmarops.com/#founder"' && echo "CA founder ok" || (echo "CA home lacks #founder"; exit 1)
           curl -s "https://rosmarops.com/llms.txt?deploy=${GITHUB_SHA::7}" | grep -q '/blog/rosmarops-is-out/' && echo "llms.txt ok" || (echo "llms.txt lacks the launch post"; exit 1)
           curl -s "https://rosmarops.com/robots.txt?deploy=${GITHUB_SHA::7}" | grep -q '^Disallow: /download$' && echo "robots disallows /download" || (echo "robots.txt lacks Disallow: /download"; exit 1)
+          # GTM-118: the glossary in the three languages answers 200 and loads the visit counter; its help assets match.
+          for u in /glossary/ /es/glosario/ /ca/glossari/; do
+            out=$(curl -s -w '\n%{http_code}' "https://rosmarops.com$u?deploy=${GITHUB_SHA::7}")
+            test "$(printf %s "$out" | tail -n1)" = 200 && printf %s "$out" | grep -q '/assets/visits/visits.js' && echo "$u 200 with visits.js" || (echo "$u not 200 or without visits.js"; exit 1)
+          done
+          for f in assets/help/help.css assets/help/help.js assets/help/glossary.json; do
+            curl -s "https://rosmarops.com/$f?deploy=${GITHUB_SHA::7}" | cmp -s - "site/$f" && echo "$f matches" || (echo "$f differs from repo"; exit 1)
+          done
           # Nothing from Google may be in the HTML before consent.
           for u in https://rosmarops.com/ https://rosmarops.com/es/ https://rosmarops.com/blog/ https://rosmarops.com/es/blog/; do
             ! curl -s "$u?deploy=${GITHUB_SHA::7}" | grep -q 'googletagmanager.com/gtag' || (echo "Google tag in HTML of $u"; exit 1)
