@@ -86,7 +86,7 @@ class BlogHome(unittest.TestCase):
         c = blog_categories(["https://rosmarops.com/es", "https://rosmarops.com/es/", "https://rosmarops.com", "https://rosmarops.com/ca"])
         cats = ["novedades-de-rosmarops", "modos-y-aprobaciones", "claves-de-api-y-env", "claude-md-agents-md-y-reglas",
                 "servidores-mcp", "inyeccion-de-prompts-en-agentes", "bots-y-agentes-en-la-nube", "datos-y-privacidad",
-                "nota-de-exposicion", "que-puede-hacer-tu-agente", "metodologia"]
+                "nota-de-exposicion", "loop-engineering", "que-puede-hacer-tu-agente", "metodologia"]
         self.assertEqual(c["https://rosmarops.com/es"], cats)
         self.assertEqual(c["https://rosmarops.com/es/"], cats)
         self.assertIsNone(c["https://rosmarops.com"])

@@ -39,7 +39,8 @@ jobs:
           php -l wp/mu-plugins/rosmarops-gtm97-drafts.php
           php -l wp/mu-plugins/rosmarops-gtm103-noindex.php
           php -l wp/mu-plugins/rosmarops-blog-drafts.php
-          ls -l wp/drafts/*.json wp/drafts/*.html
+          php -l wp/mu-plugins/rosmarops-category-loop-engineering.php
+          ls -l wp/drafts/*.json wp/drafts/*.html wp/drafts/rosmarops-img-13-loop-engineering.jpg
           ls -l wp/daily/shell-en.html wp/daily/shell-es.html wp/daily/shell-ca.html wp/daily/i18n.json
           ! grep -RIl 'noindex' site/index.html site/es/index.html site/methodology site/faq site/es/metodologia site/es/preguntas-frecuentes site/ca/index.html site/ca/metodologia site/ca/preguntes-frequents site/cloud-access site/es/acceso-en-la-nube site/ca/acces-al-nuvol site/ca/privadesa site/privacy site/es/privacidad site/_static site/macos site/es/macos site/ca/macos site/linux site/es/linux site/ca/linux site/sample-report/index.html site/es/informe-de-ejemplo site/ca/informe-dexemple site/observatory/index.html site/es/observatorio/index.html site/ca/observatori/index.html site/glossary site/es/glosario site/ca/glossari
           # Observatory: only the three index pages and the JSON files are published (GTM-11). Agent pages wait for verification.
@@ -210,6 +211,8 @@ jobs:
           put wp/drafts/loop-engineering-ca.json wp-content/mu-plugins/rosmarops-drafts/loop-engineering-ca.json
           put wp/drafts/loop-engineering-ca.html wp-content/mu-plugins/rosmarops-drafts/loop-engineering-ca.html
           put wp/mu-plugins/rosmarops-blog-drafts.php wp-content/mu-plugins/rosmarops-blog-drafts.php
+          put wp/drafts/rosmarops-img-13-loop-engineering.jpg wp-content/mu-plugins/rosmarops-drafts/rosmarops-img-13-loop-engineering.jpg
+          put wp/mu-plugins/rosmarops-category-loop-engineering.php wp-content/mu-plugins/rosmarops-category-loop-engineering.php
           -mkdir wp-content/mu-plugins/rosmarops-daily
           put wp/daily/shell-en.html wp-content/mu-plugins/rosmarops-daily/shell-en.html
           put wp/daily/shell-es.html wp-content/mu-plugins/rosmarops-daily/shell-es.html
@@ -588,7 +591,7 @@ jobs:
           echo "legacy posts with a problem: $bad"
           test "$bad" = 0
 
-      - name: Blog drafts from the repository (one time per draft and site), their logs and their future addresses
+      - name: Blog drafts and the Loop engineering category (one time per site), their logs and the drafts' future addresses
         env:
           SFTP_HOST: ${{ vars.OVH_SFTP_HOST }}
           SFTP_USER: ${{ vars.OVH_SFTP_USER }}
@@ -600,24 +603,27 @@ jobs:
           SFTP_USER=$(printf %s "$SFTP_USER" | tr -d '[:space:]')
           SFTP_PATH=$(printf %s "$SFTP_PATH" | tr -d '[:space:]')
           # rosmarops-blog-drafts.php creates each pending draft on the first request to its site; Albert publishes.
+          # rosmarops-category-loop-engineering.php then creates the category on that site, puts the draft in it and
+          # sets its featured image (once per site).
           for u in https://rosmarops.com/blog/ https://rosmarops.com/es/blog/ https://rosmarops.com/ca/blog/; do
             curl -s -o /dev/null -w "%{http_code} $u\n" "$u?drafts=${GITHUB_SHA::7}"
           done
           sleep 5
           mkdir -p /tmp/drafts
-          printf 'cd %s/wp-content/rosmarops-private\n-get drafts-en.log /tmp/drafts/\n-get drafts-es.log /tmp/drafts/\n-get drafts-ca.log /tmp/drafts/\n' "$SFTP_PATH" > /tmp/bdr
+          printf 'cd %s/wp-content/rosmarops-private\n-get drafts-en.log /tmp/drafts/\n-get drafts-es.log /tmp/drafts/\n-get drafts-ca.log /tmp/drafts/\n-get loopcat-en.log /tmp/drafts/\n-get loopcat-es.log /tmp/drafts/\n-get loopcat-ca.log /tmp/drafts/\n' "$SFTP_PATH" > /tmp/bdr
           sshpass -e sftp -o BatchMode=no -b /tmp/bdr \
             -o StrictHostKeyChecking=yes \
             -o UserKnownHostsFile="$HOME/.ssh/known_hosts" \
             -o PreferredAuthentications=password,keyboard-interactive \
             -o PubkeyAuthentication=no \
             "$SFTP_USER@$SFTP_HOST" || true
-          for l in en es ca; do
-            if [ -f "/tmp/drafts/drafts-$l.log" ]; then echo "--- drafts-$l.log"; cat "/tmp/drafts/drafts-$l.log"; else echo "::warning::drafts-$l.log not found"; fi
-            code=$(curl -s -o /dev/null -w '%{http_code}' "https://rosmarops.com/wp-content/rosmarops-private/drafts-$l.log")
-            [ "$code" != "200" ] && echo "drafts-$l.log closed to the web ($code)" || (echo "::error::drafts-$l.log is reachable from the web"; exit 1)
+          for f in drafts-en drafts-es drafts-ca loopcat-en loopcat-es loopcat-ca; do
+            if [ -f "/tmp/drafts/$f.log" ]; then echo "--- $f.log"; cat "/tmp/drafts/$f.log"; else echo "::warning::$f.log not found"; fi
+            code=$(curl -s -o /dev/null -w '%{http_code}' "https://rosmarops.com/wp-content/rosmarops-private/$f.log")
+            [ "$code" != "200" ] && echo "$f.log closed to the web ($code)" || (echo "::error::$f.log is reachable from the web"; exit 1)
           done
-          # Where each draft will live: its address answers 404 while it is a draft, 200 once Albert publishes it.
+          # Where each post lives: 404 while it is a draft, 200 once published (the loop engineering posts are published by
+          # rosmarops-category-loop-engineering.php, asked by Albert on 08-11).
           for f in wp/drafts/*.json; do
             url=$(python3 -c 'import json,sys; d=json.load(open(sys.argv[1])); b={"en":"https://rosmarops.com","es":"https://rosmarops.com/es","ca":"https://rosmarops.com/ca"}[d["lang"]]; print(b + "/blog/" + d["slug"] + "/")' "$f")
             code=$(curl -s -o /dev/null -w '%{http_code}' "$url?drafts=${GITHUB_SHA::7}")
