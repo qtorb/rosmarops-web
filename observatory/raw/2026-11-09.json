@@ -1,0 +1,476 @@
+{
+  "date": "2026-11-09",
+  "collected_at": "2026-11-09T05:34:37Z",
+  "sources": [
+    {
+      "id": "F1",
+      "opened": true,
+      "reason": null,
+      "latest": "2.1.319",
+      "latest_date": "2026-11-06",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F2",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-06",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F3",
+      "opened": true,
+      "reason": null,
+      "latest": "rust-v0.167.0",
+      "latest_date": "2026-11-05",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F4",
+      "opened": true,
+      "reason": null,
+      "latest": "v2.29.1",
+      "latest_date": "2026-11-06",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F5",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.23.0",
+      "latest_date": "2026-11-05",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F6",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-06",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F7",
+      "opened": true,
+      "reason": null,
+      "latest": "v4.1.26",
+      "latest_date": "2026-10-26",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F8",
+      "opened": true,
+      "reason": null,
+      "latest": "v2.1.0-vscode",
+      "latest_date": "2026-06-19",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F9",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.4.0",
+      "latest_date": "2026-10-27",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F10",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-09",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F11",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.67.0",
+      "latest_date": "2026-11-04",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F12",
+      "opened": true,
+      "reason": null,
+      "latest": "1.0.107",
+      "latest_date": "2026-11-06",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F13",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-06",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F14",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-09",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F15",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-08",
+      "new": [
+        {
+          "date": "2026-11-08",
+          "version": null,
+          "text": "CVE-2026-123493 [MCP]: Vikunja from 2.4.0 before 2.7.1 contains an authentication bypass vulnerability that allows disabled or locked users to retain access through API tokens owned by their bot users. Because token validation only checks the bot's own status, attackers holding pre-minted bot tokens can keep reading and modifying shared projects via the HTTP API, CalDAV, MCP and feeds."
+        },
+        {
+          "date": "2026-11-08",
+          "version": null,
+          "text": "CVE-2026-18484 [MCP]: IBM ContextForge MCP Gateway 1.0.0 through 1.0.11 could allow a remote authenticated attacker to cause a denial of service due to improper slug normalization causing tool name collisions."
+        }
+      ],
+      "ids": [
+        "CVE-2026-123493",
+        "CVE-2026-18484"
+      ],
+      "read_with": "curl"
+    },
+    {
+      "id": "F16",
+      "opened": true,
+      "reason": null,
+      "latest": "v2.2.6",
+      "latest_date": "2026-11-06",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F17",
+      "opened": true,
+      "reason": null,
+      "latest": "1.4.121",
+      "latest_date": "2026-11-05",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F18",
+      "opened": true,
+      "reason": null,
+      "latest": "v3.12.32",
+      "latest_date": "2026-11-08",
+      "new": [
+        {
+          "date": "2026-11-08",
+          "version": "v3.12.32",
+          "text": "New In the Agent Command Center, open the ”…” menu in the session header to see its MCP servers, turn one on or off, or re-authenticate. If a local agent rejects the first prompt, Desktop puts the text back in the composer and shows the reason. You can correct it and resend without retyping. Changed The editor now uses VS Code 1.141.2 and Electron 43.8.3, which includes Chromium security fixes. In IDE mode, opening Devin settings opens an editor tab instead of switching modes. Chat diffs use your editor theme’s diff colors. Shell commands and code blocks in the transcript use its syntax highl…"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F19",
+      "opened": true,
+      "reason": null,
+      "latest": "v1.57.0",
+      "latest_date": "2026-10-27",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F20",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-06",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F21",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-08-19",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F22",
+      "opened": true,
+      "reason": null,
+      "latest": "v2026.11.2",
+      "latest_date": "2026-11-08",
+      "new": [
+        {
+          "date": "2026-11-08",
+          "version": "v2026.11.2",
+          "text": "<!-- openclaw-release-publication:docs-v1 --> ## OpenClaw v2026.11.2 166 commits · 113 pull requests · 64 contributors ### Changes included in this release The release notes and changelog contain the same content, presented in two formats: - [Release notes](https://docs.openclaw.ai/releases/2026.11.2) — formatted for people. - [Changelog](https://raw.githubusercontent.com/openclaw/openclaw/main/CHANGELOG/2026.11.2.md) — plain Markdown for AI agents and tools. ### Thanks [@1052326311](https://github.com/1052326311) [@651juan](https://github.com/651juan) [@abacha](https://github.com/abacha) [@a…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F23",
+      "opened": true,
+      "reason": null,
+      "latest": "1.2.20",
+      "latest_date": "2026-11-05",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F24",
+      "opened": true,
+      "reason": null,
+      "latest": "1.15.39",
+      "latest_date": "2026-11-09",
+      "new": [
+        {
+          "date": "2026-11-09",
+          "version": "1.15.39",
+          "text": "## What's Changed ### Documentation - Document the `apps_not_connected` error on `/kickoff` and `/status` ## Contributors @joaomdmoura"
+        },
+        {
+          "date": "2026-11-08",
+          "version": "1.15.38",
+          "text": "## What's Changed ### Features - Make gpt-6-luna crewAI's default model everywhere - Read spreadsheet URLs in an agent's input with tools over every row - Tag eval usage spans with target and a per-evaluation id - Add --no-open to crewai eval for headless use ### Bug Fixes - Count a crewai eval run that exits with an error as run_failed - Create the project .env owner-only when crewai eval turns tracing on - Upload a failed anonymous run that crewai eval started - Check openai-compatible providers' API key on the first call - Scope memoized crew methods to their instance - Exit non-zero when…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F25",
+      "opened": true,
+      "reason": null,
+      "latest": "python-1.25.0",
+      "latest_date": "2026-11-06",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F26",
+      "opened": true,
+      "reason": null,
+      "latest": "2026-07-28",
+      "latest_date": "2026-07-28",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F27",
+      "opened": true,
+      "reason": null,
+      "latest": "1.145",
+      "latest_date": "2026-11-04",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F28",
+      "opened": true,
+      "reason": null,
+      "latest": "2026.11.06",
+      "latest_date": "2026-11-06",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F29",
+      "opened": true,
+      "reason": null,
+      "latest": "1.4.13",
+      "latest_date": "2026-11-09",
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "date_is_detection": true
+    },
+    {
+      "id": "F31",
+      "opened": true,
+      "reason": null,
+      "latest": "n8n@3.1.0",
+      "latest_date": "2026-11-03",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F32",
+      "opened": true,
+      "reason": null,
+      "latest": "v3.4.15",
+      "latest_date": "2026-11-03",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F33",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.27.0",
+      "latest_date": "2026-11-07",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F34",
+      "opened": true,
+      "reason": null,
+      "latest": "@moonshot-ai/kimi-code@2.5.2",
+      "latest_date": "2026-11-06",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F35",
+      "opened": true,
+      "reason": null,
+      "latest": "4.12.4",
+      "latest_date": "2026-11-06",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F36",
+      "opened": true,
+      "reason": null,
+      "latest": "1.39.1",
+      "latest_date": "2026-11-07",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F37",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.86.2",
+      "latest_date": "2026-02-12",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F38",
+      "opened": true,
+      "reason": null,
+      "latest": "v1.37.0",
+      "latest_date": "2026-11-06",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F39",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-06",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F40",
+      "opened": true,
+      "reason": null,
+      "latest": "2026.10.22",
+      "latest_date": "2026-10-22",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F41",
+      "opened": true,
+      "reason": null,
+      "latest": "26.11.3",
+      "latest_date": "2026-11-03",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F42",
+      "opened": true,
+      "reason": null,
+      "latest": "v7.8.28",
+      "latest_date": "2026-11-07",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F43",
+      "opened": false,
+      "reason": "https://www.perplexity.ai/changelog: HTTP 403",
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F44",
+      "opened": true,
+      "reason": null,
+      "latest": "v1.0.70",
+      "latest_date": "2026-10-23",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    }
+  ],
+  "opened": 42,
+  "total": 43
+}
