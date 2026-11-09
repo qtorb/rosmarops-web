@@ -61,7 +61,6 @@ jobs:
           SFTP_PATH: ${{ vars.OVH_SITE_PATH }}
           SSHPASS: ${{ secrets.OVH_SFTP_PASSWORD }}
           SFTP_HOSTKEY: ${{ vars.OVH_SFTP_HOSTKEY }}
-          IPCHECK_TOKEN: ${{ secrets.ROSMAROPS_IPCHECK_TOKEN }}
         run: |
           set -eu
           # Trim stray spaces or line breaks pasted into the variables.
@@ -267,14 +266,8 @@ jobs:
               fi
             done
           } >> /tmp/batch
-          # GTM-125, temporary: the token of the one-time IP check goes to the server from its secret, never to the repository.
-          if printf %s "$IPCHECK_TOKEN" | grep -Eqx '[0-9a-f]{64}'; then
-            umask 077
-            printf "<?php\ndefine('ROSMAROPS_IPCHECK_TOKEN', '%s');\n" "$IPCHECK_TOKEN" > /tmp/ipcheck-token.php
-            printf '%s\n' "-mkdir wp-content/rosmarops-private" "put /tmp/ipcheck-token.php wp-content/rosmarops-private/ipcheck-token.php" >> /tmp/batch
-          else
-            echo "::warning::ROSMAROPS_IPCHECK_TOKEN is missing or not 64 hex characters; the IP check stays closed"
-          fi
+          # GTM-125: the one-time IP check is over; its token file leaves the server.
+          echo "-rm wp-content/rosmarops-private/ipcheck-token.php" >> /tmp/batch
           # The password travels in the SSHPASS environment variable, never on the command line.
           sshpass -e sftp -o BatchMode=no -b /tmp/batch \
             -o StrictHostKeyChecking=yes \
@@ -668,19 +661,10 @@ jobs:
             echo "$code $url"
           done
 
-      - name: GTM-125 one-time IP check from the runner (temporary)
-        env:
-          IPCHECK_TOKEN: ${{ secrets.ROSMAROPS_IPCHECK_TOKEN }}
+      - name: GTM-125 the IP check is gone
         run: |
-          set -u
-          rm -f /tmp/ipcheck-token.php
-          u="https://rosmarops.com/wp-json/rosmarops/v1/ipcheck"
-          echo "without token: $(curl -s -o /dev/null -w '%{http_code}' "$u")"
-          echo "wrong token: $(curl -s -o /dev/null -w '%{http_code}' "$u?k=$(printf '0%.0s' $(seq 64))")"
-          echo "runner public IP: $(curl -s https://api.ipify.org)"
-          echo "(a) normal:"; curl -s "$u?k=$IPCHECK_TOKEN"; echo
-          echo "(b) X-Forwarded-For 203.0.113.7:"; curl -s -H 'X-Forwarded-For: 203.0.113.7' "$u?k=$IPCHECK_TOKEN"; echo
-          echo "(b') X-Real-IP and Forwarded forged too:"; curl -s -H 'X-Real-IP: 203.0.113.8' -H 'Forwarded: for=203.0.113.9' "$u?k=$IPCHECK_TOKEN"; echo
+          code=$(curl -s -o /dev/null -w '%{http_code}' "https://rosmarops.com/wp-json/rosmarops/v1/ipcheck?k=$(printf '0%.0s' $(seq 64))")
+          echo "ipcheck: $code"; test "$code" = 404
 
       - name: Tell Bing and other IndexNow engines what changed (best effort)
         continue-on-error: true
