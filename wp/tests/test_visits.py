@@ -212,6 +212,13 @@ class Visits(unittest.TestCase):
             self.visit("/methodology/", "", headers={"User-Agent": ua})
         self.assertEqual(self.rows(), [])
 
+    def test_internal_cookie_not_counted(self):
+        # GTM-126: a browser marked with ?rosmarops_internal=1 carries this cookie; only its presence counts.
+        self.visit("/methodology/", "", headers={"Cookie": "rosmarops_internal=1"})
+        self.assertEqual(self.rows(), [])
+        self.visit("/methodology/", "", headers={"Cookie": "other=1"})
+        self.assertEqual(len(self.rows()), 1)
+
     def test_team_not_counted(self):
         self.visit("/methodology/", "", headers={"Cookie": "wordpress_logged_in_0a1b2c=albert%7C1"})
         self.assertEqual(self.rows(), [])
@@ -396,7 +403,7 @@ class SwitchedOff(unittest.TestCase):
 
 NODE_HARNESS = r"""
 const fs = require('fs');
-const [src, visible, referrer, path, on] = process.argv.slice(2);
+const [src, visible, referrer, path, on, search, stored] = process.argv.slice(2);
 let code = fs.readFileSync(src, 'utf8');
 code = code.replace(/var ON = (true|false);/, on === '1' ? 'var ON = true;' : 'var ON = false;');
 const calls = []; const listeners = {};
@@ -405,26 +412,33 @@ const doc = { visibilityState: visible, referrer,
   addEventListener: (ev, fn) => { listeners[ev] = fn; } };
 Object.defineProperty(doc, 'cookie', { get() { touched.push('cookie'); return ''; }, set() { touched.push('cookie'); } });
 const trap = (name) => new Proxy({}, { get() { touched.push(name); return () => null; } });
+// GTM-126: localStorage may only be read, and only the key rosmarops_internal.
+const reads = [];
+const storage = new Proxy({}, { get(t, prop) {
+  if (prop === 'getItem') return (k) => { reads.push(k); return k === 'rosmarops_internal' && stored ? stored : null; };
+  touched.push('localStorage.' + String(prop)); return () => null; } });
 const win = { fetch: (url, opts) => { calls.push({ url, opts }); return Promise.resolve(); } };
 const fn = new Function('window', 'document', 'location', 'fetch', 'localStorage', 'sessionStorage', 'indexedDB', 'URL', code);
-fn(win, doc, { pathname: path }, win.fetch, trap('localStorage'), trap('sessionStorage'), trap('indexedDB'), URL);
-fn(win, doc, { pathname: path }, win.fetch, trap('localStorage'), trap('sessionStorage'), trap('indexedDB'), URL); // included twice
+win.localStorage = storage;
+const loc = { pathname: path, search: search || '' };
+fn(win, doc, loc, win.fetch, storage, trap('sessionStorage'), trap('indexedDB'), URL);
+fn(win, doc, loc, win.fetch, storage, trap('sessionStorage'), trap('indexedDB'), URL); // included twice
 const before = calls.length;
 doc.visibilityState = 'visible';
 if (listeners.visibilitychange) listeners.visibilitychange();
 if (listeners.visibilitychange) listeners.visibilitychange();
-console.log(JSON.stringify({ before, calls, touched }));
+console.log(JSON.stringify({ before, calls, touched, reads }));
 """
 
 
 class Script(unittest.TestCase):
-    def run_js(self, visible, referrer, path, on=True):
+    def run_js(self, visible, referrer, path, on=True, search="", stored=""):
         if not shutil.which("node"):
             self.skipTest("node not on PATH")
         with tempfile.NamedTemporaryFile("w", suffix=".js", delete=False) as f:
             f.write(NODE_HARNESS)
         try:
-            p = subprocess.run(["node", f.name, str(SCRIPT), visible, referrer, path, "1" if on else "0"],
+            p = subprocess.run(["node", f.name, str(SCRIPT), visible, referrer, path, "1" if on else "0", search, stored],
                                capture_output=True, text=True, check=True)
         finally:
             os.unlink(f.name)
@@ -454,8 +468,75 @@ class Script(unittest.TestCase):
     def test_no_storage_in_the_source(self):
         src = SCRIPT.read_text(encoding="utf-8").lower()
         code = re.sub(r"/\*.*?\*/|//[^\n]*", "", src, flags=re.S)
-        for word in ["cookie", "localstorage", "sessionstorage", "indexeddb", "navigator", "screen", "useragent", "date"]:
+        for word in ["cookie", "sessionstorage", "indexeddb", "navigator", "screen", "useragent", "date", "setitem", "removeitem"]:
             self.assertNotIn(word, code, word)
+        # GTM-126: the only use of localStorage is reading the team's mark.
+        self.assertEqual(re.findall(r"localstorage\.\w+\([^)]*\)", code), ["localstorage.getitem('rosmarops_internal')"])
+
+    def test_internal_mark_in_url_sends_nothing(self):
+        r = self.run_js("visible", "", "/methodology/", search="?rosmarops_internal=1")
+        self.assertEqual(r["calls"], [])
+
+    def test_internal_mark_in_storage_sends_nothing(self):
+        r = self.run_js("visible", "", "/methodology/", stored="1")
+        self.assertEqual(r["calls"], [])
+        self.assertEqual(r["touched"], [])
+
+    def test_internal_zero_counts_even_if_marked(self):
+        r = self.run_js("visible", "", "/methodology/", search="?rosmarops_internal=0", stored="1")
+        self.assertEqual(len(r["calls"]), 1)
+
+    def test_no_mark_counts_and_only_reads_the_mark(self):
+        r = self.run_js("visible", "", "/methodology/")
+        self.assertEqual(len(r["calls"]), 1)
+        self.assertEqual(set(r["reads"]), {"rosmarops_internal"})
+
+
+CONSENT = ROOT / "site" / "assets" / "consent" / "consent.js"
+CONSENT_HARNESS = r"""
+const fs = require('fs');
+const [src, search, stored, cookie] = process.argv.slice(2);
+const store = {}; if (stored) store.rosmarops_internal = stored;
+let jar = cookie || ''; const sets = [];
+const ls = { getItem: k => (k in store ? store[k] : null), setItem: (k, v) => { store[k] = v; }, removeItem: k => { delete store[k]; } };
+const doc = { documentElement: { lang: 'en' } };
+Object.defineProperty(doc, 'cookie', { get() { return jar; }, set(v) { sets.push(v); jar = /Max-Age=0/.test(v) ? '' : v.split(';')[0]; } });
+new Function('window', 'document', 'location', 'localStorage', 'URLSearchParams', fs.readFileSync(src, 'utf8'))({}, doc, { search }, ls, URLSearchParams);
+console.log(JSON.stringify({ sets, store }));
+"""
+COOKIE_ON = "rosmarops_internal=1; Path=/; SameSite=Lax; Secure; Max-Age=34560000"
+
+
+class InternalMark(unittest.TestCase):
+    """GTM-126: consent.js sets the cookie rosmarops_internal with the mark, and deletes it with =0."""
+
+    def run_js(self, search="", stored="", cookie=""):
+        if not shutil.which("node"):
+            self.skipTest("node not on PATH")
+        with tempfile.NamedTemporaryFile("w", suffix=".js", delete=False) as f:
+            f.write(CONSENT_HARNESS)
+        try:
+            p = subprocess.run(["node", f.name, str(CONSENT), search, stored, cookie], capture_output=True, text=True, check=True)
+        finally:
+            os.unlink(f.name)
+        return json.loads(p.stdout)
+
+    def test_mark_sets_cookie(self):
+        r = self.run_js("?rosmarops_internal=1")
+        self.assertEqual(r["sets"], [COOKIE_ON])
+        self.assertEqual(r["store"], {"rosmarops_internal": "1"})
+
+    def test_marked_without_cookie_gets_it_once(self):
+        self.assertEqual(self.run_js(stored="1")["sets"], [COOKIE_ON])
+        self.assertEqual(self.run_js(stored="1", cookie="rosmarops_internal=1")["sets"], [])
+
+    def test_zero_deletes_cookie_and_mark(self):
+        r = self.run_js("?rosmarops_internal=0", stored="1", cookie="rosmarops_internal=1")
+        self.assertEqual(r["sets"], ["rosmarops_internal=; Path=/; SameSite=Lax; Secure; Max-Age=0"])
+        self.assertEqual(r["store"], {})
+
+    def test_unmarked_browser_gets_no_cookie(self):
+        self.assertEqual(self.run_js()["sets"], [])
 
 
 class Switch(unittest.TestCase):
