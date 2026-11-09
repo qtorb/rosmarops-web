@@ -40,7 +40,7 @@ jobs:
           php -l wp/mu-plugins/rosmarops-gtm103-noindex.php
           php -l wp/mu-plugins/rosmarops-blog-drafts.php
           php -l wp/mu-plugins/rosmarops-category-loop-engineering.php
-          ls -l wp/drafts/*.json wp/drafts/*.html wp/drafts/rosmarops-img-13-loop-engineering.jpg wp/drafts/rosmarops-img-14-he-terminado.jpg wp/drafts/rosmarops-img-15-el-sistema-aprende.jpg wp/drafts/rosmarops-img-16-novedades-0-10.jpg
+          ls -l wp/drafts/*.json wp/drafts/*.html wp/drafts/rosmarops-img-13-loop-engineering.jpg wp/drafts/rosmarops-img-14-he-terminado.jpg wp/drafts/rosmarops-img-15-el-sistema-aprende.jpg
           ls -l wp/daily/shell-en.html wp/daily/shell-es.html wp/daily/shell-ca.html wp/daily/i18n.json
           ! grep -RIl 'noindex' site/index.html site/es/index.html site/methodology site/faq site/es/metodologia site/es/preguntas-frecuentes site/ca/index.html site/ca/metodologia site/ca/preguntes-frequents site/cloud-access site/es/acceso-en-la-nube site/ca/acces-al-nuvol site/ca/privadesa site/privacy site/es/privacidad site/_static site/macos site/es/macos site/ca/macos site/linux site/es/linux site/ca/linux site/sample-report/index.html site/es/informe-de-ejemplo site/ca/informe-dexemple site/observatory/index.html site/es/observatorio/index.html site/ca/observatori/index.html site/glossary site/es/glosario site/ca/glossari
           # Observatory: only the three index pages and the JSON files are published (GTM-11). Agent pages wait for verification.
@@ -214,7 +214,6 @@ jobs:
           put wp/drafts/rosmarops-img-13-loop-engineering.jpg wp-content/mu-plugins/rosmarops-drafts/rosmarops-img-13-loop-engineering.jpg
           put wp/drafts/rosmarops-img-14-he-terminado.jpg wp-content/mu-plugins/rosmarops-drafts/rosmarops-img-14-he-terminado.jpg
           put wp/drafts/rosmarops-img-15-el-sistema-aprende.jpg wp-content/mu-plugins/rosmarops-drafts/rosmarops-img-15-el-sistema-aprende.jpg
-          put wp/drafts/rosmarops-img-16-novedades-0-10.jpg wp-content/mu-plugins/rosmarops-drafts/rosmarops-img-16-novedades-0-10.jpg
           put wp/drafts/agente-he-terminado-en.html wp-content/mu-plugins/rosmarops-drafts/agente-he-terminado-en.html
           put wp/drafts/agente-he-terminado-en.json wp-content/mu-plugins/rosmarops-drafts/agente-he-terminado-en.json
           put wp/drafts/agente-he-terminado-es.html wp-content/mu-plugins/rosmarops-drafts/agente-he-terminado-es.html
@@ -227,12 +226,6 @@ jobs:
           put wp/drafts/errores-repetidos-es.json wp-content/mu-plugins/rosmarops-drafts/errores-repetidos-es.json
           put wp/drafts/errores-repetidos-ca.html wp-content/mu-plugins/rosmarops-drafts/errores-repetidos-ca.html
           put wp/drafts/errores-repetidos-ca.json wp-content/mu-plugins/rosmarops-drafts/errores-repetidos-ca.json
-          put wp/drafts/novedades-0-10-en.html wp-content/mu-plugins/rosmarops-drafts/novedades-0-10-en.html
-          put wp/drafts/novedades-0-10-en.json wp-content/mu-plugins/rosmarops-drafts/novedades-0-10-en.json
-          put wp/drafts/novedades-0-10-es.html wp-content/mu-plugins/rosmarops-drafts/novedades-0-10-es.html
-          put wp/drafts/novedades-0-10-es.json wp-content/mu-plugins/rosmarops-drafts/novedades-0-10-es.json
-          put wp/drafts/novedades-0-10-ca.html wp-content/mu-plugins/rosmarops-drafts/novedades-0-10-ca.html
-          put wp/drafts/novedades-0-10-ca.json wp-content/mu-plugins/rosmarops-drafts/novedades-0-10-ca.json
           put wp/mu-plugins/rosmarops-category-loop-engineering.php wp-content/mu-plugins/rosmarops-category-loop-engineering.php
           -mkdir wp-content/mu-plugins/rosmarops-daily
           put wp/daily/shell-en.html wp-content/mu-plugins/rosmarops-daily/shell-en.html

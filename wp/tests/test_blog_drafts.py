@@ -16,7 +16,7 @@ DRAFTS = TESTS.parent / "drafts"
 SITES = {"en": "https://rosmarops.com", "es": "https://rosmarops.com/es", "ca": "https://rosmarops.com/ca"}
 ALBERT = {"ID": 3, "display_name": "Albert Garcia Pujadas", "roles": ["administrator"]}
 ADMIN = {"ID": 1, "display_name": "admin6244", "roles": ["administrator"]}
-IDS = {"loop-engineering", "agente-he-terminado", "errores-repetidos", "novedades-0-10"}
+IDS = {"loop-engineering", "agente-he-terminado", "errores-repetidos"}
 NEWS = {"en": "field-notes", "es": "novedades-de-rosmarops", "ca": "notes-de-camp"}
 
 
@@ -127,19 +127,19 @@ class Drafts(unittest.TestCase):
 
     def test_a_missing_category_is_logged_and_left_out(self):
         data = self.db(lang="ca")
-        data["terms"] = [t for t in data["terms"] if t["slug"] != "notes-de-camp"]
+        data["terms"] = [t for t in data["terms"] if t["slug"] != "loop-engineering"]
         log, out = self.run_once(SITES["ca"], data)
-        self.assertIn("category skipped: notes-de-camp does not exist on this site", " ".join(log))
-        self.assertFalse(any(t["slug"] == "notes-de-camp" for t in out["terms"]))
+        self.assertIn("category skipped: loop-engineering does not exist on this site", " ".join(log))
+        self.assertFalse(any(t["slug"] == "loop-engineering" for t in out["terms"]))
 
     def test_a_malformed_extra_skips_that_draft(self):
-        f = self.dir / "novedades-0-10-en.json"
+        f = self.dir / "errores-repetidos-en.json"
         d = json.loads(f.read_text(encoding="utf-8"))
         d["image"] = "../evil.php"
         f.write_text(json.dumps(d), encoding="utf-8")
         log, out = self.run_once(SITES["en"], self.db())
-        self.assertIn("skipped: novedades-0-10-en.json has a category, tag or image that is not well formed", log)
-        self.assertNotIn("rosmarops-0-10", [p["post_name"] for p in out["posts"]])
+        self.assertIn("skipped: errores-repetidos-en.json has a category, tag or image that is not well formed", log)
+        self.assertNotIn("ai-agents-repeated-mistakes", [p["post_name"] for p in out["posts"]])
 
     def test_runs_once(self):
         _, out = self.run_once(SITES["es"], self.db(lang="es"))
