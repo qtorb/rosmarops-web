@@ -1,0 +1,21 @@
+{
+ "id": "errores-repetidos",
+ "lang": "ca",
+ "slug": "agents-dia-errors-repetits",
+ "title": "La IA no aprèn dels seus errors. El teu sistema n'hauria d'aprendre.",
+ "excerpt": "El teu agent no recorda que ahir es va equivocar. Si vols que no torni a passar, qui ha de canviar és el sistema en què treballa. Com convertir un error repetit en un canvi que es quedi, i per què escriure-ho en un fitxer no sempre n'hi ha prou.",
+ "content": "errores-repetidos-ca.html",
+ "seo_title": "Agents d'IA que repeteixen errors: el bucle del sistema",
+ "seo_description": "El teu agent no recorda que ahir es va equivocar. Com convertir un error repetit en un canvi permanent, i per què una regla escrita no sempre n'hi ha prou.",
+ "translations": {
+  "en": "https://rosmarops.com/blog/ai-agents-repeated-mistakes/",
+  "es": "https://rosmarops.com/es/blog/agentes-de-ia-errores-repetidos/"
+ },
+ "category": "loop-engineering",
+ "tags": {
+  "claude-code": "Claude Code",
+  "agents-md": "AGENTS.md"
+ },
+ "image": "rosmarops-img-15-el-sistema-aprende.jpg",
+ "alt": "Un agent d'IA ensopega tres vegades amb el mateix sot; més endavant el sot està tapat i una mà col·loca l'últim bloc d'un mur."
+}

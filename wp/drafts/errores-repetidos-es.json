@@ -1,0 +1,21 @@
+{
+ "id": "errores-repetidos",
+ "lang": "es",
+ "slug": "agentes-de-ia-errores-repetidos",
+ "title": "La IA no aprende de sus errores. Tu sistema debería hacerlo.",
+ "excerpt": "Tu agente no recuerda que ayer se equivocó. Si quieres que no vuelva a pasar, quien tiene que cambiar es el sistema en el que trabaja. Cómo convertir un error repetido en un cambio que se quede, y por qué escribirlo en un fichero no siempre basta.",
+ "content": "errores-repetidos-es.html",
+ "seo_title": "Agentes de IA que repiten errores: el bucle del sistema",
+ "seo_description": "Tu agente no recuerda que ayer se equivocó. Cómo convertir un error repetido en un cambio permanente, y por qué una regla escrita no siempre basta.",
+ "translations": {
+  "en": "https://rosmarops.com/blog/ai-agents-repeated-mistakes/",
+  "ca": "https://rosmarops.com/ca/blog/agents-dia-errors-repetits/"
+ },
+ "category": "loop-engineering",
+ "tags": {
+  "claude-code": "Claude Code",
+  "agents-md": "AGENTS.md"
+ },
+ "image": "rosmarops-img-15-el-sistema-aprende.jpg",
+ "alt": "Un agente de IA tropieza tres veces con el mismo bache; más adelante el bache está tapado y una mano coloca el último bloque de un muro."
+}

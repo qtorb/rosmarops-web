@@ -1,0 +1,109 @@
+<!-- wp:paragraph -->
+<p><em>In three days, RosmarOps went from scoring three AI agents to scoring nine. Here's what changes for you, and what it still doesn't do.</em></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>When I published 0.4.0, RosmarOps scored Claude Code and Cursor. Since then about twenty versions have come out, and most changes aren't visible at first glance. I've picked the three that change most what you see in your report.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Nine agents with a score</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>If you use Codex, Grok Build, GitHub Copilot in VS Code, Antigravity CLI, Gemini CLI or the Cline extension for VS Code, your report now says what that agent can do and gives it a score, just like Claude Code, Cursor and Hermes Agent. They arrived in three batches: Codex and Grok Build in 0.8.0, Copilot and Antigravity CLI in 0.9.0, and Gemini CLI and Cline in 0.10.0.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>A few things worth knowing come with them:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list">
+<!-- wp:list-item -->
+<li><strong>Grok Build loads what you've configured in Claude Code and Cursor by default.</strong> That's why its score also counts what comes from there.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>On Windows, if your organisation sets what Copilot may approve,</strong> the report follows that policy, not your own settings.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>When another model decides, not you.</strong> Some agents let another AI model decide whether an action can go ahead: Codex's auto-review, Antigravity's auto mode or Copilot's Assisted mode. The report says it plainly: a model decides there, not you.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>ChatGPT's and Codex's computer use.</strong> If they can use an app on your desktop without asking, the report says so, in red if that app is a terminal.</li>
+<!-- /wp:list-item -->
+</ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>One warning: with so many new rules, your score may change when you update even if you haven't touched anything on your computer.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">All your computers in one place</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>If you use agents on more than one computer, you can now see them together. You connect each computer once and, after each check, its results reach your space at app.rosmarops.com, encrypted. Since 0.7.5 you sign in with your email and a password, from your browser.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>It's optional, and what leaves is limited:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list">
+<!-- wp:list-item -->
+<li>only the results of each check, never your keys, your files or your configuration;</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>only to app.rosmarops.com;</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>and without your permission, RosmarOps opens no connection. Each send is logged in a file on your computer, `rosmarops-sends.log`.</li>
+<!-- /wp:list-item -->
+</ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>It's an open, free beta, for up to five computers per space. If you're going to use it, install 0.10.1 or later: 0.10.0 couldn't save to the space the results of a computer where Codex or ChatGPT could use many apps without asking.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Findings that don't apply to you</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Not every finding makes sense on every computer. Since 0.8.0, after a check with new findings, a window asks whether any of them doesn't apply to you. If you tick it, it stops counting in your score from the next check. You can bring it back whenever you like, from the same window or with `rosmarops findings`. On Mac and Linux the question appears in the terminal, and never in scheduled checks.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>One thing to keep in mind: setting a finding aside fixes nothing. It only stops counting in the score. The agent's configuration stays the same.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">What it still doesn't do</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list">
+<!-- wp:list-item -->
+<li><strong>Detected isn't scored.</strong> The Cline CLI, Claude Desktop, the Antigravity app and IDE, and Copilot in JetBrains IDEs show up as detected, without a score. They keep their permissions where RosmarOps can't read them, and what wasn't read doesn't count as clean.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>It only reads configuration at rest.</strong> It doesn't see the options you start an agent with, or what it decides while it works.</li>
+<!-- /wp:list-item -->
+</ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>If you already use RosmarOps, update to 0.10.1. If not, <a href="https://rosmarops.com/">here's how to start</a>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><em>Source: the notes of each version, from 0.7.0 to 0.10.1, in the <a href="https://github.com/qtorb/rosmarops/releases">RosmarOps repository</a>.</em></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><em>Written with the help of AI assistants. The choice of what to include and the decision to publish are mine.</em></p>
+<!-- /wp:paragraph -->

@@ -1,0 +1,178 @@
+<!-- wp:paragraph -->
+<p><em>Tu agente no recuerda que ayer se equivocó. Si quieres que no vuelva a pasar, quien tiene que cambiar es el sistema en el que trabaja. Cómo convertir un error repetido en un cambio que se quede, y por qué escribirlo en un fichero no siempre basta.</em></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Hay una sensación que conoce cualquiera que trabaje con agentes de IA. Le corriges un error, te da las gracias, lo arregla. Al día siguiente, en otra sesión, vuelve a cometer exactamente el mismo. Y tú vuelves a explicárselo, con un poco menos de paciencia que la primera vez.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>No es mala fe ni falta de inteligencia. Es que no se acuerda. Cada conversación empieza casi de cero, y lo que tú aprendiste ayer no lo aprendió él. Si quieres que el error no vuelva, la memoria tiene que estar fuera del agente: en el sistema en el que trabaja.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>En UXMachine aprendí esto a principios de septiembre. La única comprobación obligatoria antes de juntar un cambio era que el código estuviera bien escrito, sin errores de sintaxis. El 2 de septiembre, las pruebas fallaron en las diez ramas en las que trabajaban los agentes ese día, y no bloqueó nada, porque nadie había dicho que fallar las pruebas impidiera juntar. Se cambiaron dos cosas. Ahora un cambio solo entra con todas las pruebas en verde, comprobadas sobre la versión real. Y cada control tiene que demostrar, con un fallo hecho a propósito, que de verdad se pone en rojo cuando debe.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">El tercer bucle</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>En esta serie separo tres bucles. El del agente, que dura segundos: llama a una herramienta, lee lo que le devuelve y sigue. El de trabajo, del que hablé en el artículo anterior: alguien de fuera comprueba el resultado y se lo devuelve si falla. Y el del sistema, que dura días o semanas: cuando un fallo se repite, se convierte en un cambio permanente.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Una forma sencilla de verlo: el bucle de trabajo es corregir el examen; el bucle del sistema es cambiar cómo se prepara el siguiente. El primero arregla lo que el agente acaba de hacer. El segundo arregla lo que hace que se equivoque. <strong>Es el único de los tres que consigue que la semana que viene sea más barata que esta.</strong></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">La idea de Hashimoto: que no vuelva a pasar</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Mitchell Hashimoto le ha puesto nombre a esta costumbre: <em>harness engineering</em>, que podríamos traducir como la ingeniería del arnés. Cada vez que un agente comete un error, dedicas un rato a diseñar una solución para que no lo vuelva a cometer nunca.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Cuenta dos maneras de hacerlo:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list {"ordered":true} -->
+<ol class="wp-block-list">
+<!-- wp:list-item -->
+<li><strong>Escribirlo.</strong> Añade una línea al fichero de instrucciones que el agente lee al empezar cada sesión, el AGENTS.md. En uno de los suyos, dice, cada línea sale de un mal comportamiento del agente, y casi todos desaparecieron.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>Darle una herramienta.</strong> Por ejemplo, un pequeño programa que hace capturas de pantalla o que pasa solo las pruebas que importan. Y después lo anota en el AGENTS.md para que el agente sepa que existe.</li>
+<!-- /wp:list-item -->
+</ol>
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Una regla escrita es un deseo</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Aquí conviene no ser demasiado optimista. Escribir una línea en un fichero de instrucciones es lo más fácil, y no siempre lo más eficaz.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Un estudio publicado en febrero, <em>Evaluating AGENTS.md</em>, lo midió con varios agentes y modelos. Los ficheros de instrucciones, en general, no aumentaron las tareas resueltas, y encarecieron cada tarea más de un 20 % de media. Los agentes sí seguían las instrucciones; lo que no ayudaba eran las descripciones generales del proyecto. La conclusión de los autores es prudente: esos ficheros sirven para dejar por escrito lo que tu proyecto hace distinto de lo habitual, y todo lo demás conviene medirlo antes de darlo por bueno.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Ichigo lo resume con una imagen que me gusta mucho. «No toques las migraciones», escrito en un fichero de texto, es un deseo: el agente lo leerá y casi siempre lo cumplirá. Una regla que le quita el permiso de tocarlas es un muro: lo cumplirá aunque se le olvide. Por eso propone este orden cuando algo falla:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list {"ordered":true} -->
+<ol class="wp-block-list">
+<!-- wp:list-item -->
+<li><strong>Primero, la estructura:</strong> que el error no se pueda cometer.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>Después, una comprobación automática</strong> que lo detecte siempre.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>Texto en las instrucciones,</strong> solo donde de verdad hace falta criterio.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>Y una persona que revisa,</strong> al final.</li>
+<!-- /wp:list-item -->
+</ol>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>La razón es casi contable. Una línea en las instrucciones se paga en cada sesión, y el agente puede pasarla por alto. Una comprobación automática, una vez hecha, no cuesta nada.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Arreglarlo donde se produce, no donde se ve</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Hay un error de enfoque muy habitual: arreglar el fallo justo donde se ha visto. En la <a href="https://guia.qtorb.com/#/dos-puertas">Guía AI-First</a> lo escribí así: si algo vuelve después de arreglarlo, es que se arregló donde se observó, no donde se produce. Y «un fallo arreglado donde se observó está escondido, no arreglado».</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>La guía propone una pregunta sencilla antes de dar algo por cerrado: si esto mismo apareciera en otro sitio, ¿lo pararía algo? Si la respuesta es no, todavía no está terminado.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Y hay un contrapeso que también está en la guía: un control que nunca se ha puesto en rojo, o no está probado, o sobra. Por eso cada comprobación nueva debería demostrar, al menos una vez, que detecta el fallo para el que existe.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">De los prompts a una forma de trabajar</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Al principio pensaba que el truco estaba en pedir mejor. Ahora creo que está en decidir antes.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>En la guía, cada encargo dice «qué se hace, qué no se toca, cómo se comprueba y cuándo se para». Y antes de empezar, una línea: «¿qué tendría que pasar para que lo dejara?». Lo demás sale de ahí:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list">
+<!-- wp:list-item -->
+<li><strong>Qué puede tocar.</strong> No le pidas al agente que no toque algo: quítale el permiso. «Lo que un rol puede tocar no se le dice, se le limita.»</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>Quién decide qué.</strong> Para cada papel, dos columnas: qué decide y qué no decide. La segunda es la difícil, y la única que sirve cuando hay prisa.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>Cuándo para.</strong> Una condición de parada escrita antes de empezar. Un plazo no es una condición de parada.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>Quién lo mira antes de que salga.</strong> La entrega se acepta sobre el resultado real, no sobre lo que el agente dice que hizo. Y si no lo puedes mirar tú, alguien tiene que hacerlo, y no puede ser el agente.</li>
+<!-- /wp:list-item -->
+</ul>
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Saber qué alcanza cada agente</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Para poner un muro, primero hay que saber dónde hace falta. Con varios agentes en el mismo ordenador eso no es evidente: cada uno lee sus ficheros, sus herramientas y sus claves, y a veces los de los demás.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Por eso hago <a href="https://rosmarops.com/es/">RosmarOps</a>. Lee la configuración de los agentes que hay en tu ordenador y dibuja un mapa de lo que cada uno puede alcanzar. No cambia nada ni pone límites: te enseña dónde están hoy, para que decidas tú dónde van los muros.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Tres preguntas para la próxima vez que un agente repita un error</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list">
+<!-- wp:list-item -->
+<li>¿Dónde se produce el error, y no solo dónde lo he visto?</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>¿Puedo hacer que no se pueda cometer, o que una comprobación lo detecte siempre, antes de escribirlo en las instrucciones?</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Si aparece en otro sitio, ¿lo pararía algo?</li>
+<!-- /wp:list-item -->
+</ul>
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Lo que no se arregla con reglas</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Un sistema que aprende evita repetir errores. Pero hay un coste que no aparece en ningún error: construir más deprisa de lo que entiendes. De eso trata el último artículo de la serie.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><em>Fuentes: Mitchell Hashimoto, <a href="https://mitchellh.com/writing/my-ai-adoption-journey">«My AI Adoption Journey»</a> (5 de febrero de 2026); Gloaguen, Mündler-Sasahara, Müller, Raychev y Vechev, <a href="https://arxiv.org/abs/2602.11988">«Evaluating AGENTS.md: Are Repository-Level Context Files Helpful for Coding Agents?»</a>, arXiv:2602.11988 (12 de febrero de 2026); Albert Garcia Pujadas, <a href="https://guia.qtorb.com/#/dos-puertas">Guía AI-First</a>; <a href="https://x.com/iiiichigo_chan/status/2118397992239571196">hilo de Ichigo en X</a> (5 de noviembre de 2026).</em></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><em>Escrito con ayuda de asistentes de IA. Los ejemplos, la interpretación y la decisión de publicar son míos.</em></p>
+<!-- /wp:paragraph -->

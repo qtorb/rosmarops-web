@@ -35,6 +35,15 @@ function wp_insert_post($args, $wp_error = false) {
 	return $id;
 }
 function update_post_meta($id, $k, $v) { $GLOBALS['db']['meta'][$id][$k] = $v; return true; }
+function get_term_by($f, $v, $tax) { foreach ($GLOBALS['db']['terms'] ?? [] as $t) { if ($t['taxonomy'] === $tax && $t['slug'] === $v) return (object) $t; } return false; }
+function wp_insert_term($name, $tax, $a) { $id = 500 + count($GLOBALS['db']['terms'] ?? []); $GLOBALS['db']['terms'][] = ['term_id' => $id, 'taxonomy' => $tax, 'slug' => $a['slug'], 'name' => $name]; return ['term_id' => $id]; }
+function wp_set_post_categories($id, $ids, $append) { $GLOBALS['db']['rel'][$id]['category'] = $ids; return true; }
+function wp_set_post_terms($id, $ids, $tax, $append) { $GLOBALS['db']['rel'][$id][$tax] = $ids; return true; }
+function wp_upload_bits($name, $x, $bits) { $f = WP_CONTENT_DIR . '/uploads-' . $name; file_put_contents($f, $bits); return ['file' => $f, 'error' => false]; }
+function wp_insert_attachment($a, $file, $parent, $e) { $id = 900 + count($GLOBALS['db']['attachments'] ?? []); $GLOBALS['db']['attachments'][] = ['ID' => $id, 'file' => basename($file), 'parent' => $parent]; return $id; }
+function wp_generate_attachment_metadata($id, $file) { return []; }
+function wp_update_attachment_metadata($id, $m) { return true; }
+function set_post_thumbnail($id, $att) { $GLOBALS['db']['meta'][$id]['_thumbnail_id'] = $att; return true; }
 require __DIR__ . '/../mu-plugins/rosmarops-blog-drafts.php';
 $GLOBALS['home'] = $argv[1];
 $log = rosmarops_drafts_run();

@@ -1,0 +1,21 @@
+{
+ "id": "agente-he-terminado",
+ "lang": "ca",
+ "slug": "agent-dia-he-acabat",
+ "title": "La feina de debò comença quan l'agent diu «he acabat»",
+ "excerpt": "Un agent d'IA et diu que ha acabat. Com saps si és veritat? El que he après construint UXMachine, i unes quantes preguntes per comprovar la feina del teu agent encara que no siguis programador.",
+ "content": "agente-he-terminado-ca.html",
+ "seo_title": "Verificar què fa un agent d'IA: el bucle de treball",
+ "seo_description": "Que un agent digui «he acabat» no demostra res. Què cal per comprovar la seva feina des de fora, i per què no es pot corregir sol.",
+ "translations": {
+  "en": "https://rosmarops.com/blog/ai-agent-says-done/",
+  "es": "https://rosmarops.com/es/blog/agente-de-ia-he-terminado/"
+ },
+ "category": "loop-engineering",
+ "tags": {
+  "claude-code": "Claude Code",
+  "codex": "Codex"
+ },
+ "image": "rosmarops-img-14-he-terminado.jpg",
+ "alt": "Un agent d'IA ensenya un full amb un visti-plau mentre una mà revisa amb una lupa un altre full on apareix un error."
+}

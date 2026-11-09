@@ -1,0 +1,21 @@
+{
+ "id": "agente-he-terminado",
+ "lang": "es",
+ "slug": "agente-de-ia-he-terminado",
+ "title": "El trabajo de verdad empieza cuando el agente dice «he terminado»",
+ "excerpt": "Un agente de IA te dice que ha terminado. ¿Cómo sabes si es verdad? Lo que he aprendido construyendo UXMachine, y unas cuantas preguntas para comprobar el trabajo de tu agente aunque no seas programador.",
+ "content": "agente-he-terminado-es.html",
+ "seo_title": "Verificar lo que hace un agente de IA: el bucle de trabajo",
+ "seo_description": "Que un agente diga «he terminado» no prueba nada. Qué hace falta para comprobar su trabajo desde fuera, y por qué no puede corregirse solo.",
+ "translations": {
+  "en": "https://rosmarops.com/blog/ai-agent-says-done/",
+  "ca": "https://rosmarops.com/ca/blog/agent-dia-he-acabat/"
+ },
+ "category": "loop-engineering",
+ "tags": {
+  "claude-code": "Claude Code",
+  "codex": "Codex"
+ },
+ "image": "rosmarops-img-14-he-terminado.jpg",
+ "alt": "Un agente de IA enseña una hoja con un visto bueno mientras una mano revisa con una lupa otra hoja donde aparece un error."
+}

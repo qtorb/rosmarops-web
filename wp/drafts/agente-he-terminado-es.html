@@ -1,0 +1,172 @@
+<!-- wp:paragraph -->
+<p><em>Un agente de IA te dice que ha terminado. ¿Cómo sabes si es verdad? Lo que he aprendido construyendo UXMachine, y unas cuantas preguntas para comprobar el trabajo de tu agente aunque no seas programador.</em></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Si llevas unas semanas trabajando con un agente de IA, conoces la escena. Le pides algo, trabaja un rato y al final te dice, muy seguro, que ya está. Que ha hecho los cambios, que las pruebas pasan y que todo funciona. Y tú, que tienes otras cuarenta cosas pendientes, tienes la tentación de creerle.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>En el artículo anterior hablé del <em>loop engineering</em>, la idea de dejar que un agente encadene tareas sin que tú estés delante. Y terminé con una idea que quiero desarrollar ahora: lo difícil no es conseguir que el agente trabaje, sino saber qué ha hecho. Addy Osmani, uno de los primeros en poner nombre a esta forma de trabajar, lo resume en una frase que me apunté: incluso con un buen verificador, «terminado» es una afirmación, no una prueba.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Lo que me pasó con UXMachine</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>A finales de octubre, un agente me entregó un cambio en los textos del informe de UXMachine. Las pruebas automáticas, esos pequeños programas que comprueban que el resto sigue funcionando, estaban todas en verde. Y en su propia descripción del cambio, el agente avisaba de algo importante: aquello no tocaba solo los textos, también movía la forma de medir.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Nadie leyó ese aviso, y el cambio se publicó. Durante unas horas, al comparar dos mediciones de la misma web, algunas reglas podían aparecer como «nuevas» aunque la web no hubiera cambiado. Lo encontró una revisión posterior, unos setenta minutos después. El arreglo llegó con una prueba nueva que falla si vuelve a pasar. Lo conté en <a href="https://uxmachine.app/notas/que-no-puede-comprobar-una-herramienta-automatica">una nota de UXMachine</a>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Lo que más me enseñó de aquello es que el agente no ocultó nada. El aviso estaba en su entrega. <strong>Lo que faltaba no era un agente más sincero, sino algo que leyera lo que decía.</strong></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">El bucle de trabajo, explicado sin tecnicismos</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>En esta serie separo tres bucles, siguiendo a Ichigo. El primero es el del propio agente, que llama a herramientas y lee lo que le devuelven. Este artículo va del segundo, el bucle de trabajo, y se entiende bien con una imagen de colegio.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Si un alumno se corrige su propio examen, saca muy buena nota. Si lo corrige otra persona, la nota se parece más a lo que sabe. El bucle de trabajo es eso: el agente entrega algo, alguien de fuera lo comprueba, le devuelve lo que ha fallado y el agente lo vuelve a intentar.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Ese «alguien de fuera» puede ser una prueba automática, una herramienta que mide el resultado o una persona. Lo importante es que no sea el propio agente. Si quien hace la tarea es también quien la da por buena, no hay bucle de trabajo: hay un alumno que se pone nota.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Por qué el agente no puede corregirse solo</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Osmani lo dice con humor: el modelo que ha escrito el código es demasiado amable cuando corrige sus propios deberes. No es mala fe. El agente tiende a creer que lo que acaba de hacer está bien, igual que nos pasa a nosotros con un texto recién escrito.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>El estudio sobre 36.487 repositorios del que hablé en el artículo anterior recoge un nombre para el fallo más típico: <em>verifier theater</em>, el teatro del verificador. Son comprobaciones que aprueban sin comprobar de verdad. Que en un proceso haya un paso que se llame «verificar» no quiere decir que verifique nada.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>La buena noticia es que, cuando la comprobación está bien hecha, funciona. Mitchell Hashimoto lo cuenta en el relato de cómo ha ido incorporando la IA a su trabajo: si le das a un agente una forma de comprobar lo que ha hecho, la mayoría de las veces corrige sus propios errores y no rompe lo que ya funcionaba.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Cinco preguntas para saber si una comprobación sirve</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Ichigo resume en su hilo lo que separa una comprobación útil de una decorativa. Lo he convertido en preguntas que puedes hacerte sobre tu propia forma de trabajar:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list {"ordered":true} -->
+<ol class="wp-block-list">
+<!-- wp:list-item -->
+<li><strong>¿Puede el agente tocar la comprobación?</strong> Si puede cambiar la prueba o el criterio, antes o después acabará aprobándose. La comprobación tiene que estar fuera de su alcance.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>Cuando falla, ¿dice qué ha fallado?</strong> «Las pruebas no pasan» no sirve de mucho. «Esperaba esto, ha pasado esto otro, y ha sido aquí» permite corregir.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>¿Qué pasa si se atasca?</strong> Además de «bien» y «mal», hace falta una tercera salida: «no avanza». Si después de varios intentos no cambia nada, seguir intentándolo solo gasta.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>¿Hay un límite que se cumpla solo?</strong> Un tope de intentos o de gasto que la herramienta aplica, no uno que le pides por favor. En el estudio, solo 101 de los 256 repositorios revisados tenían alguno.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>¿Quién dice la última palabra?</strong> Un resultado en verde sigue siendo una propuesta hasta que una persona lo acepta.</li>
+<!-- /wp:list-item -->
+</ol>
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Lo que has visto y lo que has supuesto</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>La distinción que más me ha servido es esta: ¿esto lo he visto o lo he supuesto? «La página carga» es algo que has visto. «La página funciona» casi siempre es algo que supones.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Un agente mezcla las dos cosas sin avisar. Lo comprobé el 1 de noviembre con cinco agentes que usaban UXMachine para medir una web. Los cinco midieron bien, y tres contaron mal el resultado: dijeron que no había nada importante y no mencionaron lo que no se había podido comprobar. Es una prueba de un día y con cinco agentes, pero ilustra bien el problema.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Por eso en UXMachine intento separar las dos cosas. Cada observación dice dónde se vio y qué se midió. Lo que sabe que no pudo comprobar, lo dice, en lugar de callarlo. Y que algo deje de aparecer no quiere decir que esté resuelto: si en una de las dos mediciones no se pudo comprobar, UXMachine dice que no son comparables, no que el problema ha desaparecido. Lo expliqué en <a href="https://uxmachine.app/notas/como-saber-si-tu-agente-arreglo-algo">otra nota</a>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Tiene un límite que no quiero esconder: una herramienta solo puede avisar de lo que sabe que no ha comprobado. Lo que no detecta, no lo puede avisar.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Con las pruebas automáticas pasa lo mismo. A finales de septiembre, las pruebas de una parte de UXMachine pasaban en verde, pero se ejecutaban con unas herramientas que la versión publicada no lleva. La primera vez que alguien la hubiera usado de verdad, habría fallado, y ninguna prueba podía verlo. Lo vimos antes de publicar. La solución fue que el programa se niegue a arrancar si encuentra algo que no sabe comprobar, en vez de dejarlo pasar en silencio. <strong>Una prueba en verde dice que algo funciona donde se ha probado, no donde se va a usar.</strong></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Lo que cuesta un resultado fiable</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Un resultado en el que puedes confiar cuesta más que uno que solo parece terminado. Cuesta tiempo de comprobación, vueltas de corrección y, a veces, empezar otra vez.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Ese coste casi nunca se mira. En el estudio, solo 10 de los 256 repositorios revisados apuntaban lo que costaban sus bucles. Sin ese dato es fácil creer que el agente sale gratis, y que cuantas más vueltas dé, mejor.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Antes de dar algo por bueno</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>No hace falta ser programador para hacerse estas cuatro preguntas cada vez que un agente dice que ha terminado:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list">
+<!-- wp:list-item -->
+<li>¿He visto el resultado yo, o solo he leído lo que el agente dice que ha hecho?</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>¿Qué no se ha podido comprobar?</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>¿Quién o qué lo ha comprobado, y podía el agente cambiarlo?</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>¿Se ha probado en el mismo sitio donde se va a usar?</li>
+<!-- /wp:list-item -->
+</ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>Si alguna respuesta es «no lo sé», todavía no está terminado.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Comprobar no basta</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>El bucle de trabajo arregla el resultado de hoy. Pero si mañana el agente comete el mismo error, vuelves a pagar la misma comprobación y la misma corrección. <strong>Comprobar arregla el resultado; no arregla lo que lo produce.</strong></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>De eso trata el siguiente artículo de la serie: <em>La IA no aprende de sus errores. Tu sistema debería hacerlo</em>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><em>Fuentes: Addy Osmani, <a href="https://addyosmani.com/blog/loop-engineering/">«Loop Engineering»</a> (7 de junio de 2026); Mitchell Hashimoto, <a href="https://mitchellh.com/writing/my-ai-adoption-journey">«My AI Adoption Journey»</a> (5 de febrero de 2026); Lulla y otros, <a href="https://arxiv.org/abs/2608.21884v3">«Loop Engineering: Building Blocks, Adoption, and Impact»</a>, arXiv:2608.21884, versión 3 (22 de octubre de 2026); <a href="https://x.com/iiiichigo_chan/status/2118397992239571196">hilo de Ichigo en X</a> (5 de noviembre de 2026); notas de UXMachine del 28 de octubre y del 6 de noviembre de 2026.</em></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><em>Escrito con ayuda de asistentes de IA. Los ejemplos, la interpretación y la decisión de publicar son míos.</em></p>
+<!-- /wp:paragraph -->
