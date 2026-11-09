@@ -1,0 +1,172 @@
+<!-- wp:paragraph -->
+<p><em>Un agent d'IA et diu que ha acabat. Com saps si és veritat? El que he après construint UXMachine, i unes quantes preguntes per comprovar la feina del teu agent encara que no siguis programador.</em></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Si fa unes setmanes que treballes amb un agent d'IA, coneixes l'escena. Li demanes alguna cosa, treballa una estona i al final et diu, molt segur, que ja està. Que ha fet els canvis, que les proves passen i que tot funciona. I tu, que tens quaranta coses més pendents, tens la temptació de creure-te'l.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>A l'article anterior vaig parlar del <em>loop engineering</em>, la idea de deixar que un agent encadeni tasques sense que tu hi siguis al davant. I vaig acabar amb una idea que vull desenvolupar ara: el difícil no és aconseguir que l'agent treballi, sinó saber què ha fet. Addy Osmani, un dels primers a posar nom a aquesta manera de treballar, ho resumeix en una frase que em vaig apuntar: fins i tot amb un bon verificador, «acabat» és una afirmació, no una prova.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">El que em va passar amb UXMachine</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>A finals d'octubre, un agent em va lliurar un canvi en els textos de l'informe d'UXMachine. Les proves automàtiques, aquests petits programes que comproven que la resta continua funcionant, eren totes en verd. I en la seva pròpia descripció del canvi, l'agent avisava d'una cosa important: allò no tocava només els textos, també movia la manera de mesurar.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Ningú no va llegir aquell avís, i el canvi es va publicar. Durant unes hores, en comparar dues mesures del mateix web, algunes regles podien aparèixer com a «noves» encara que el web no hagués canviat. Ho va trobar una revisió posterior, uns setanta minuts després. L'arranjament va arribar amb una prova nova que falla si torna a passar. Ho vaig explicar en <a href="https://uxmachine.app/notas/que-no-puede-comprobar-una-herramienta-automatica">una nota d'UXMachine</a>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>El que més em va ensenyar d'allò és que l'agent no va amagar res. L'avís era al seu lliurament. <strong>El que faltava no era un agent més sincer, sinó alguna cosa que llegís el que deia.</strong></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">El bucle de treball, explicat sense tecnicismes</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>En aquesta sèrie separo tres bucles, seguint Ichigo. El primer és el del mateix agent, que crida eines i llegeix el que li tornen. Aquest article va del segon, el bucle de treball, i s'entén bé amb una imatge d'escola.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Si un alumne es corregeix el seu propi examen, treu molt bona nota. Si el corregeix una altra persona, la nota s'assembla més al que sap. El bucle de treball és això: l'agent lliura alguna cosa, algú de fora la comprova, li torna el que ha fallat i l'agent ho torna a intentar.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Aquest «algú de fora» pot ser una prova automàtica, una eina que mesura el resultat o una persona. L'important és que no sigui el mateix agent. Si qui fa la tasca és també qui la dona per bona, no hi ha bucle de treball: hi ha un alumne que es posa nota.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Per què l'agent no es pot corregir sol</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Osmani ho diu amb humor: el model que ha escrit el codi és massa amable quan corregeix els seus propis deures. No és mala fe. L'agent tendeix a creure que el que acaba de fer està bé, igual que ens passa a nosaltres amb un text acabat d'escriure.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>L'estudi sobre 36.487 repositoris del qual vaig parlar a l'article anterior recull un nom per a l'error més típic: <em>verifier theater</em>, el teatre del verificador. Són comprovacions que aproven sense comprovar de debò. Que en un procés hi hagi un pas que es digui «verificar» no vol dir que verifiqui res.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>La bona notícia és que, quan la comprovació està ben feta, funciona. Mitchell Hashimoto ho explica en el relat de com ha anat incorporant la IA a la seva feina: si li dones a un agent una manera de comprovar el que ha fet, la majoria de vegades corregeix els seus propis errors i no trenca el que ja funcionava.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Cinc preguntes per saber si una comprovació serveix</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Ichigo resumeix al seu fil el que separa una comprovació útil d'una de decorativa. Ho he convertit en preguntes que et pots fer sobre la teva manera de treballar:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list {"ordered":true} -->
+<ol class="wp-block-list">
+<!-- wp:list-item -->
+<li><strong>L'agent pot tocar la comprovació?</strong> Si pot canviar la prova o el criteri, tard o d'hora s'acabarà aprovant. La comprovació ha d'estar fora del seu abast.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>Quan falla, diu què ha fallat?</strong> «Les proves no passen» no serveix gaire. «Esperava això, ha passat això altre, i ha estat aquí» permet corregir.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>Què passa si s'encalla?</strong> A més de «bé» i «malament», cal una tercera sortida: «no avança». Si després de diversos intents no canvia res, continuar intentant-ho només gasta.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>Hi ha un límit que es compleixi sol?</strong> Un topall d'intents o de despesa que aplica l'eina, no un que li demanes per favor. A l'estudi, només 101 dels 256 repositoris revisats en tenien algun.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>Qui diu l'última paraula?</strong> Un resultat en verd continua sent una proposta fins que una persona l'accepta.</li>
+<!-- /wp:list-item -->
+</ol>
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">El que has vist i el que has suposat</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>La distinció que més m'ha servit és aquesta: això ho he vist o ho he suposat? «La pàgina carrega» és una cosa que has vist. «La pàgina funciona» gairebé sempre és una cosa que suposes.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Un agent barreja les dues coses sense avisar. Ho vaig comprovar l'1 de novembre amb cinc agents que feien servir UXMachine per mesurar un web. Tots cinc van mesurar bé, i tres van explicar malament el resultat: van dir que no hi havia res d'important i no van esmentar el que no s'havia pogut comprovar. És una prova d'un dia i amb cinc agents, però il·lustra bé el problema.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Per això a UXMachine intento separar les dues coses. Cada observació diu on es va veure i què es va mesurar. El que sap que no ha pogut comprovar, ho diu, en lloc de callar-ho. I que una cosa deixi d'aparèixer no vol dir que estigui resolta: si en una de les dues mesures no s'ha pogut comprovar, UXMachine diu que no són comparables, no que el problema hagi desaparegut. Ho vaig explicar en <a href="https://uxmachine.app/notas/como-saber-si-tu-agente-arreglo-algo">una altra nota</a>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Té un límit que no vull amagar: una eina només pot avisar del que sap que no ha comprovat. El que no detecta, no ho pot avisar.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Amb les proves automàtiques passa el mateix. A finals de setembre, les proves d'una part d'UXMachine passaven en verd, però s'executaven amb unes eines que la versió publicada no porta. La primera vegada que algú l'hagués fet servir de debò, hauria fallat, i cap prova no ho podia veure. Ho vam veure abans de publicar. La solució va ser que el programa es negui a arrencar si troba alguna cosa que no sap comprovar, en lloc de deixar-la passar en silenci. <strong>Una prova en verd diu que una cosa funciona on s'ha provat, no on es farà servir.</strong></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">El que costa un resultat fiable</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Un resultat en què pots confiar costa més que un que només sembla acabat. Costa temps de comprovació, voltes de correcció i, de vegades, tornar a començar.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Aquest cost gairebé mai no es mira. A l'estudi, només 10 dels 256 repositoris revisats apuntaven el que costaven els seus bucles. Sense aquesta dada és fàcil creure que l'agent surt de franc, i que com més voltes faci, millor.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Abans de donar una cosa per bona</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>No cal ser programador per fer-se aquestes quatre preguntes cada vegada que un agent diu que ha acabat:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list">
+<!-- wp:list-item -->
+<li>He vist el resultat jo, o només he llegit el que l'agent diu que ha fet?</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Què no s'ha pogut comprovar?</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Qui o què ho ha comprovat, i l'agent ho podia canviar?</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>S'ha provat al mateix lloc on es farà servir?</li>
+<!-- /wp:list-item -->
+</ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>Si alguna resposta és «no ho sé», encara no està acabat.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Comprovar no n'hi ha prou</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>El bucle de treball arregla el resultat d'avui. Però si demà l'agent comet el mateix error, tornes a pagar la mateixa comprovació i la mateixa correcció. <strong>Comprovar arregla el resultat; no arregla el que el produeix.</strong></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>D'això tracta el següent article de la sèrie: <em>La IA no aprèn dels seus errors. El teu sistema n'hauria d'aprendre</em>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><em>Fonts: Addy Osmani, <a href="https://addyosmani.com/blog/loop-engineering/">«Loop Engineering»</a> (7 de juny de 2026); Mitchell Hashimoto, <a href="https://mitchellh.com/writing/my-ai-adoption-journey">«My AI Adoption Journey»</a> (5 de febrer de 2026); Lulla i altres, <a href="https://arxiv.org/abs/2608.21884v3">«Loop Engineering: Building Blocks, Adoption, and Impact»</a>, arXiv:2608.21884, versió 3 (22 d'octubre de 2026); <a href="https://x.com/iiiichigo_chan/status/2118397992239571196">fil d'Ichigo a X</a> (5 de novembre de 2026); notes d'UXMachine del 28 d'octubre i del 6 de novembre de 2026.</em></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><em>Escrit amb l'ajuda d'assistents d'IA. Els exemples, la interpretació i la decisió de publicar són meus.</em></p>
+<!-- /wp:paragraph -->

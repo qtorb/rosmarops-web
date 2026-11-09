@@ -1,0 +1,21 @@
+{
+ "id": "agente-he-terminado",
+ "lang": "en",
+ "slug": "ai-agent-says-done",
+ "title": "The real work starts when the agent says \"I'm done\"",
+ "excerpt": "An AI agent tells you it's done. How do you know it's true? What I've learned building UXMachine, and a few questions to check your agent's work even if you're not a programmer.",
+ "content": "agente-he-terminado-en.html",
+ "seo_title": "Checking what an AI agent did: the work loop",
+ "seo_description": "An agent saying \"I'm done\" proves nothing. What it takes to check its work from the outside, and why it can't correct itself.",
+ "translations": {
+  "es": "https://rosmarops.com/es/blog/agente-de-ia-he-terminado/",
+  "ca": "https://rosmarops.com/ca/blog/agent-dia-he-acabat/"
+ },
+ "category": "loop-engineering",
+ "tags": {
+  "claude-code": "Claude Code",
+  "codex": "Codex"
+ },
+ "image": "rosmarops-img-14-he-terminado.jpg",
+ "alt": "An AI agent holds up a sheet with a tick while a hand checks another sheet with a magnifying glass and finds an error."
+}

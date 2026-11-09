@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: RosmarOps blog drafts from the repository (one time per draft and site)
- * Description: Creates, as a DRAFT and never published, each blog post described in wp-content/mu-plugins/rosmarops-drafts/*.json on the site of its language (EN /, ES /es/, CA /ca/), with its title, slug, excerpt, content (the HTML file named in the JSON), The SEO Framework title and description, and the addresses of its translations for hreflang. Asked by Albert on 08-11 so that posts reach WordPress without signing in to the admin. A slug already used by any post or page on that site (in any status) is left alone and logged; nothing is ever updated, published or deleted. Idempotent: an option per draft marks it done, with a lock. The log (slugs, ids and statuses only) goes to the option rosmarops_drafts_log and to wp-content/rosmarops-private/drafts-<lang>.log, which the deploy reads over SFTP. Albert publishes from WordPress. Versioned in qtorb/rosmarops-web; do not edit on the server.
+ * Description: Creates, as a DRAFT and never published, each blog post described in wp-content/mu-plugins/rosmarops-drafts/*.json on the site of its language (EN /, ES /es/, CA /ca/), with its title, slug, excerpt, content (the HTML file named in the JSON), The SEO Framework title and description, the addresses of its translations for hreflang and, when the JSON names them, its category (an existing one, by slug), its tags (created if missing) and its featured image with alt text (a .jpg next to the JSON; added on 09-11 for posts 2 and 3 of the series and the 0.10 news post). Asked by Albert on 08-11 so that posts reach WordPress without signing in to the admin. A slug already used by any post or page on that site (in any status) is left alone and logged; nothing is ever updated, published or deleted. Idempotent: an option per draft marks it done, with a lock. The log (slugs, ids and statuses only) goes to the option rosmarops_drafts_log and to wp-content/rosmarops-private/drafts-<lang>.log, which the deploy reads over SFTP. Albert publishes from WordPress. Versioned in qtorb/rosmarops-web; do not edit on the server.
  */
 
 if (!defined('ABSPATH')) {
@@ -44,6 +44,10 @@ function rosmarops_drafts_for($lang, &$log) {
 			$log[] = "skipped: {$name} has an id, slug or content file outside the allowed characters";
 			continue;
 		}
+		if (!rosmarops_drafts_extras_ok($d)) {
+			$log[] = "skipped: {$name} has a category, tag or image that is not well formed";
+			continue;
+		}
 		$html = rosmarops_drafts_dir() . '/' . $d['content'];
 		if (!is_file($html)) {
 			$log[] = "skipped: {$name}: {$d['content']} not found";
@@ -53,6 +57,93 @@ function rosmarops_drafts_for($lang, &$log) {
 		$out[] = $d;
 	}
 	return $out;
+}
+
+/** Optional fields: category (slug), tags ({slug: name}), image (a .jpg file name) with alt (required with an image). */
+function rosmarops_drafts_extras_ok($d) {
+	if (isset($d['category']) && (!is_string($d['category']) || !preg_match('/^[a-z0-9-]+$/', $d['category']))) {
+		return false;
+	}
+	if (isset($d['tags'])) {
+		if (!is_array($d['tags'])) {
+			return false;
+		}
+		foreach ($d['tags'] as $slug => $tag) {
+			if (!is_string($slug) || !preg_match('/^[a-z0-9-]+$/', $slug) || !is_string($tag) || $tag === '') {
+				return false;
+			}
+		}
+	}
+	if (isset($d['image'])) {
+		if (!is_string($d['image']) || !preg_match('/^[a-z0-9-]+\.jpg$/', $d['image']) || !is_string($d['alt'] ?? null) || $d['alt'] === '') {
+			return false;
+		}
+	}
+	return true;
+}
+
+/** Puts the new draft in its category (only if it exists on this site) and adds its tags (creating missing ones). */
+function rosmarops_drafts_terms($id, $d, &$log) {
+	if (isset($d['category'])) {
+		$cat = get_term_by('slug', $d['category'], 'category');
+		if ($cat) {
+			wp_set_post_categories($id, [(int) $cat->term_id], false);
+			$log[] = "category: {$d['category']} on post {$id}";
+		} else {
+			$log[] = "category skipped: {$d['category']} does not exist on this site; post {$id} keeps the default";
+		}
+	}
+	if (!empty($d['tags'])) {
+		$ids = [];
+		foreach ($d['tags'] as $slug => $tag) {
+			$t = get_term_by('slug', $slug, 'post_tag');
+			if ($t) {
+				$ids[] = (int) $t->term_id;
+				continue;
+			}
+			$res = wp_insert_term($tag, 'post_tag', ['slug' => $slug]);
+			if (is_wp_error($res)) {
+				$log[] = "tag failed: {$slug} not created";
+				continue;
+			}
+			$ids[] = (int) $res['term_id'];
+		}
+		if ($ids) {
+			wp_set_post_terms($id, $ids, 'post_tag', false);
+			$log[] = 'tags: ' . implode(', ', array_keys($d['tags'])) . " on post {$id}";
+		}
+	}
+}
+
+/** Sets the featured image of the new draft from the .jpg named in its JSON, with its alt text. */
+function rosmarops_drafts_image($id, $d, &$log) {
+	if (!isset($d['image'])) {
+		return;
+	}
+	$file = rosmarops_drafts_dir() . '/' . $d['image'];
+	if (!is_file($file)) {
+		$log[] = "image skipped: {$d['image']} not found";
+		return;
+	}
+	$up = wp_upload_bits($d['image'], null, (string) file_get_contents($file));
+	if (!empty($up['error'])) {
+		$log[] = "image failed: {$d['image']} not uploaded";
+		return;
+	}
+	$att = wp_insert_attachment(['post_mime_type' => 'image/jpeg', 'post_title' => $d['title'], 'post_status' => 'inherit'], $up['file'], $id, true);
+	if (is_wp_error($att) || !$att) {
+		$log[] = "image failed: attachment for {$d['image']} not created";
+		return;
+	}
+	foreach (['file.php', 'media.php', 'image.php'] as $inc) { // the admin helpers that build the image sizes
+		if (is_file(ABSPATH . 'wp-admin/includes/' . $inc)) {
+			require_once ABSPATH . 'wp-admin/includes/' . $inc;
+		}
+	}
+	wp_update_attachment_metadata($att, wp_generate_attachment_metadata($att, $up['file']));
+	update_post_meta($att, '_wp_attachment_image_alt', $d['alt']);
+	set_post_thumbnail($id, $att);
+	$log[] = "image: attachment {$att} is the featured image of post {$id}";
 }
 
 /** The author of the drafts: the user named ROSMAROPS_DRAFTS_AUTHOR on this site, else its first administrator. */
@@ -124,6 +215,8 @@ function rosmarops_drafts_run() {
 		}
 		update_option($done, gmdate('c'), false);
 		$log[] = "done: {$d['slug']} created as draft, post {$id}, author {$author}";
+		rosmarops_drafts_terms($id, $d, $log);
+		rosmarops_drafts_image($id, $d, $log);
 	}
 	update_option(ROSMAROPS_DRAFTS_LOG, $log, false);
 	delete_option(ROSMAROPS_DRAFTS_LOCK);

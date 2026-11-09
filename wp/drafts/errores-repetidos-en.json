@@ -1,0 +1,21 @@
+{
+ "id": "errores-repetidos",
+ "lang": "en",
+ "slug": "ai-agents-repeated-mistakes",
+ "title": "AI doesn't learn from its mistakes. Your system should.",
+ "excerpt": "Your agent doesn't remember it got something wrong yesterday. If you want it not to happen again, what has to change is the system it works in. How to turn a repeated mistake into a change that stays, and why writing it in a file isn't always enough.",
+ "content": "errores-repetidos-en.html",
+ "seo_title": "AI agents that repeat mistakes: the system loop",
+ "seo_description": "Your agent doesn't remember yesterday's mistake. How to turn a repeated mistake into a permanent change, and why a written rule isn't always enough.",
+ "translations": {
+  "es": "https://rosmarops.com/es/blog/agentes-de-ia-errores-repetidos/",
+  "ca": "https://rosmarops.com/ca/blog/agents-dia-errors-repetits/"
+ },
+ "category": "loop-engineering",
+ "tags": {
+  "claude-code": "Claude Code",
+  "agents-md": "AGENTS.md"
+ },
+ "image": "rosmarops-img-15-el-sistema-aprende.jpg",
+ "alt": "An AI agent trips three times over the same pothole; further on the pothole is filled and a hand places the last block of a wall."
+}

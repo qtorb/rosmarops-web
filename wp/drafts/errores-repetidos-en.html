@@ -1,0 +1,178 @@
+<!-- wp:paragraph -->
+<p><em>Your agent doesn't remember it got something wrong yesterday. If you want it not to happen again, what has to change is the system it works in. How to turn a repeated mistake into a change that stays, and why writing it in a file isn't always enough.</em></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>There's a feeling anyone who works with AI agents knows. You correct a mistake, it thanks you, it fixes it. The next day, in another session, it makes exactly the same one. And you explain it again, with a little less patience than the first time.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>It isn't bad faith or lack of intelligence. It just doesn't remember. Each conversation starts almost from scratch, and what you learned yesterday, it didn't. If you want the mistake not to come back, the memory has to live outside the agent: in the system it works in.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>I learned this with UXMachine at the beginning of September. The only mandatory check before merging a change was that the code was well written, with no syntax errors. On 2 September, the tests failed on all ten branches the agents were working on that day, and nothing was blocked, because nobody had said that failing tests should stop a merge. Two things changed. Now a change only goes in with all tests green, checked against the real version. And every check has to prove, with a failure made on purpose, that it really turns red when it should.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">The third loop</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>In this series I separate three loops. The agent's loop, which lasts seconds: it calls a tool, reads what comes back and carries on. The work loop, which I wrote about in the previous article: someone outside checks the result and sends it back if it fails. And the system loop, which lasts days or weeks: when a failure repeats, it becomes a permanent change.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>A simple way to see it: the work loop is marking the exam; the system loop is changing how the next one is prepared. The first fixes what the agent has just done. The second fixes what makes it go wrong. <strong>It's the only one of the three that makes next week cheaper than this one.</strong></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Hashimoto's idea: make sure it doesn't happen again</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Mitchell Hashimoto has given this habit a name: <em>harness engineering</em>. Every time an agent makes a mistake, you take some time to engineer a solution so that it never makes that mistake again.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>He describes two ways of doing it:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list {"ordered":true} -->
+<ol class="wp-block-list">
+<!-- wp:list-item -->
+<li><strong>Write it down.</strong> Add a line to the instructions file the agent reads at the start of every session, AGENTS.md. In one of his, he says, each line comes from a bad agent behaviour, and almost all of them went away.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>Give it a tool.</strong> For example, a small program that takes screenshots or runs only the tests that matter. Then note it in AGENTS.md so the agent knows it exists.</li>
+<!-- /wp:list-item -->
+</ol>
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">A written rule is a wish</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>It's worth not being too optimistic here. Writing a line in an instructions file is the easiest thing, and not always the most effective.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>A study published in February, <em>Evaluating AGENTS.md</em>, measured it across several agents and models. Instruction files, in general, did not increase the number of tasks solved, and made each task more than 20% more expensive on average. The agents did follow the instructions; what didn't help were general descriptions of the project. The authors' conclusion is cautious: these files are useful to write down what your project does differently from the usual, and everything else is worth measuring before you trust it.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Ichigo puts it with an image I really like. "Don't touch the migrations", written in a text file, is a wish: the agent will read it and almost always follow it. A rule that takes away its permission to touch them is a wall: it will follow it even if it forgets. That's why he proposes this order when something fails:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list {"ordered":true} -->
+<ol class="wp-block-list">
+<!-- wp:list-item -->
+<li><strong>First, structure:</strong> make the mistake impossible to make.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>Then, an automated check</strong> that always catches it.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>Text in the instructions,</strong> only where judgement is really needed.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>And a person who reviews,</strong> at the end.</li>
+<!-- /wp:list-item -->
+</ol>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>The reason is almost accounting. A line in the instructions is paid for in every session, and the agent can overlook it. An automated check, once built, costs nothing.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Fix it where it's produced, not where it shows</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>There's a very common mistake of approach: fixing the failure exactly where it was seen. In the <a href="https://guia.qtorb.com/#/dos-puertas">AI-First Guide</a> I put it this way: if something comes back after you fixed it, it was fixed where it was observed, not where it's produced. And "a failure fixed where it was observed is hidden, not fixed".</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The guide suggests one simple question before you close something: if this same thing showed up somewhere else, would anything stop it? If the answer is no, it isn't finished yet.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>And there's a counterweight, also in the guide: a check that has never gone red is either untested or unnecessary. That's why every new check should prove, at least once, that it catches the failure it exists for.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">From prompts to a way of working</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>At first I thought the trick was asking better. Now I think it's deciding beforehand.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>In the guide, every task says "what gets done, what isn't touched, how it's checked and when it stops". And before starting, one line: "what would have to happen for me to drop it?". The rest follows from there:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list">
+<!-- wp:list-item -->
+<li><strong>What it can touch.</strong> Don't ask the agent not to touch something: take away the permission. "What a role can touch isn't told to it; it's limited."</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>Who decides what.</strong> For each role, two columns: what it decides and what it doesn't. The second is the hard one, and the only one that helps when you're in a hurry.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>When it stops.</strong> A stop condition written before starting. A deadline is not a stop condition.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>Who looks before it goes out.</strong> A delivery is accepted on the real result, not on what the agent says it did. And if you can't look at it yourself, someone has to, and it can't be the agent.</li>
+<!-- /wp:list-item -->
+</ul>
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Knowing what each agent can reach</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>To put up a wall, you first need to know where it's needed. With several agents on the same computer that isn't obvious: each one reads its own files, tools and keys, and sometimes the others'.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>That's why I'm building <a href="https://rosmarops.com/">RosmarOps</a>. It reads the configuration of the agents on your computer and draws a map of what each one can reach. It doesn't change your agents or set limits: it shows you where they are today, so you decide where the walls go.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Three questions for the next time an agent repeats a mistake</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list">
+<!-- wp:list-item -->
+<li>Where is the mistake produced, and not just where did I see it?</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Can I make it impossible, or have a check always catch it, before writing it into the instructions?</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>If it shows up somewhere else, would anything stop it?</li>
+<!-- /wp:list-item -->
+</ul>
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">What rules don't fix</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>A system that learns avoids repeating mistakes. But there's a cost that doesn't show up as any mistake: building faster than you understand. That's what the last article in the series is about.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><em>Sources: Mitchell Hashimoto, <a href="https://mitchellh.com/writing/my-ai-adoption-journey">"My AI Adoption Journey"</a> (5 February 2026); Gloaguen, Mündler-Sasahara, Müller, Raychev and Vechev, <a href="https://arxiv.org/abs/2602.11988">"Evaluating AGENTS.md: Are Repository-Level Context Files Helpful for Coding Agents?"</a>, arXiv:2602.11988 (12 February 2026); Albert Garcia Pujadas, <a href="https://guia.qtorb.com/#/dos-puertas">AI-First Guide</a> (in Spanish); <a href="https://x.com/iiiichigo_chan/status/2118397992239571196">Ichigo's thread on X</a> (5 November 2026).</em></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><em>Written with the help of AI assistants. The examples, the interpretation and the decision to publish are mine.</em></p>
+<!-- /wp:paragraph -->
