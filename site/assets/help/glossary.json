@@ -39,6 +39,22 @@
   "encrypted": [
    "Encrypted",
    "Turned into something only the holder of the key can read. RosmarOps encrypts your results before sending them."
+  ],
+  "accesskey": [
+   "Access keys",
+   "Access keys are passwords that programs use to get into a service: your cloud, your email, your online shop. They are often stored in files on your computer."
+  ],
+  "classifier": [
+   "Classifier model",
+   "A classifier model is another AI that looks at each action and decides whether it is safe. In Cursor, this mode only works if your account receives that model; if not, it asks you before every command."
+  ],
+  "agentsmd": [
+   "AGENTS.md",
+   "AGENTS.md is a text file with instructions for AI assistants: how to work on that project, what to do and what not to do. Every assistant that reads it follows them."
+  ],
+  "checksum": [
+   "Checksum and attestation",
+   "The checksum is the file's fingerprint: if a single byte changes, the fingerprint changes. The attestation is a GitHub certificate that says which code it was built from and where."
   ]
  },
  "es": {
@@ -81,6 +97,22 @@
   "encrypted": [
    "Cifrado",
    "Convertido en algo que solo puede leer quien tiene la clave. RosmarOps cifra tus resultados antes de enviarlos."
+  ],
+  "accesskey": [
+   "Claves de acceso",
+   "Las claves de acceso son contraseñas que usan los programas para entrar en un servicio: tu nube, tu correo, tu tienda online. Suelen guardarse en ficheros de tu ordenador."
+  ],
+  "classifier": [
+   "Modelo clasificador",
+   "Un modelo clasificador es otra IA que mira cada acción y decide si es segura. En Cursor, este modo solo funciona si tu cuenta recibe ese modelo; si no, te pregunta antes de cada orden."
+  ],
+  "agentsmd": [
+   "AGENTS.md",
+   "AGENTS.md es un fichero de texto con instrucciones para los asistentes de IA: cómo trabajar en ese proyecto, qué hacer y qué no. Cada asistente que lo lee las sigue."
+  ],
+  "checksum": [
+   "Suma de control y atestación",
+   "La suma de control es la huella del fichero: si cambia un solo byte, cambia la huella. La atestación es un certificado de GitHub que dice con qué código y dónde se construyó."
   ]
  },
  "ca": {
@@ -123,6 +155,22 @@
   "encrypted": [
    "Xifrat",
    "Convertit en una cosa que només pot llegir qui té la clau. RosmarOps xifra els teus resultats abans d'enviar-los."
+  ],
+  "accesskey": [
+   "Claus d'accés",
+   "Les claus d'accés són contrasenyes que fan servir els programes per entrar en un servei: el teu núvol, el teu correu, la teva botiga en línia. Sovint es guarden en fitxers del teu ordinador."
+  ],
+  "classifier": [
+   "Model classificador",
+   "Un model classificador és una altra IA que mira cada acció i decideix si és segura. A Cursor, aquest mode només funciona si el teu compte rep aquest model; si no, et pregunta abans de cada ordre."
+  ],
+  "agentsmd": [
+   "AGENTS.md",
+   "AGENTS.md és un fitxer de text amb instruccions per als assistents d'IA: com treballar en aquell projecte, què fer i què no. Cada assistent que el llegeix les segueix."
+  ],
+  "checksum": [
+   "Suma de control i atestació",
+   "La suma de control és l'empremta del fitxer: si canvia un sol byte, canvia l'empremta. L'atestació és un certificat de GitHub que diu amb quin codi i on s'ha construït."
   ]
  }
 }
