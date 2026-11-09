@@ -16,7 +16,8 @@ DRAFTS = TESTS.parent / "drafts"
 SITES = {"en": "https://rosmarops.com", "es": "https://rosmarops.com/es", "ca": "https://rosmarops.com/ca"}
 ALBERT = {"ID": 3, "display_name": "Albert Garcia Pujadas", "roles": ["administrator"]}
 ADMIN = {"ID": 1, "display_name": "admin6244", "roles": ["administrator"]}
-IDS = {"loop-engineering", "agente-he-terminado", "errores-repetidos"}
+IDS = {"loop-engineering", "agente-he-terminado", "errores-repetidos", "harness-engineering"}
+IN_NEWS = {"harness-engineering"}  # the rest of the series goes in loop-engineering
 NEWS = {"en": "field-notes", "es": "novedades-de-rosmarops", "ca": "notes-de-camp"}
 
 
@@ -79,8 +80,8 @@ class Drafts(unittest.TestCase):
                 if pid != "loop-engineering":
                     self.assertTrue((DRAFTS / x["image"]).is_file(), x["image"])
                     self.assertTrue(x["alt"])
-                    self.assertEqual(x["category"], NEWS[l] if pid == "novedades-0-10" else "loop-engineering")
-                    self.assertIn("claude-code", x["tags"])
+                    self.assertTrue(x["tags"])
+                    self.assertEqual(x["category"], NEWS[l] if pid in IN_NEWS else "loop-engineering")
         self.assertIn("arxiv.org/abs/2608.21884v3", (DRAFTS / all_["loop-engineering"]["es"]["content"]).read_text(encoding="utf-8"))
 
     def test_each_site_gets_its_own_drafts_and_only_drafts(self):
@@ -107,7 +108,7 @@ class Drafts(unittest.TestCase):
                     self.assertNotIn("_thumbnail_id", meta)
                     continue
                 rel = out["rel"][str(p["ID"])]
-                self.assertEqual(rel["category"], [11 if pid == "novedades-0-10" else 10])
+                self.assertEqual(rel["category"], [11 if pid in IN_NEWS else 10])
                 slugs = {t["term_id"]: t["slug"] for t in out["terms"] if t["taxonomy"] == "post_tag"}
                 self.assertEqual({slugs[i] for i in rel["post_tag"]}, set(x["tags"]))
                 att = [a for a in out["attachments"] if a["ID"] == meta["_thumbnail_id"]][0]

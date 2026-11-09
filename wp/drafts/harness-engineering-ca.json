@@ -1,0 +1,21 @@
+{
+ "id": "harness-engineering",
+ "lang": "ca",
+ "slug": "harness-engineering-rosmarops",
+ "title": "Cada error d'un agent, una peça del sistema: harness engineering a RosmarOps",
+ "excerpt": "Construeixo amb agents d'IA una eina per fer servir els agents d'IA amb més cura. Aquesta setmana els seus errors van ser els mateixos que RosmarOps busca en els teus. Així hem convertit cadascun en una peça permanent del sistema.",
+ "content": "harness-engineering-ca.html",
+ "seo_title": "Harness engineering: cada error d'un agent, una peça",
+ "seo_description": "Sis errors d'agents d'IA en una setmana i la peça que fa impossible repetir cadascun. Un cas real de metodologia AI-First.",
+ "translations": {
+  "en": "https://rosmarops.com/blog/harness-engineering-rosmarops/",
+  "es": "https://rosmarops.com/es/blog/harness-engineering-rosmarops/"
+ },
+ "category": "notes-de-camp",
+ "tags": {
+  "harness-engineering": "harness engineering",
+  "ai-first": "AI-First"
+ },
+ "image": "rosmarops-img-17-harness-engineering.jpg",
+ "alt": "Un agent d'IA avança per un carril entre cinc arcs; el primer està acabat i els altres només dibuixats. Al darrere hi queden sis marques vermelles, cadascuna unida per una línia a una peça del carril."
+}

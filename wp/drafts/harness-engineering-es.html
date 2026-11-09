@@ -1,0 +1,196 @@
+<!-- wp:paragraph -->
+<p><em>Construyo con agentes de IA una herramienta para usar los agentes de IA con más cuidado. Esta semana sus fallos fueron los mismos que RosmarOps busca en los tuyos. Así convertimos cada uno en una pieza permanente del sistema.</em></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>RosmarOps existe para que veas qué pueden hacer tus agentes de IA sin preguntarte. Y lo construyo, casi entero, con agentes de IA.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Esta semana esa paradoja tuvo una segunda vuelta. Publiqué dos versiones en dos días, la 0.10.1 y la 0.10.2, para arreglar fallos que ninguna prueba había visto. Los encontró mi propio ordenador, que tiene 48 proyectos y casi todos los agentes que RosmarOps conoce. Al mirarlos de cerca vi que <strong>los fallos de RosmarOps eran los mismos que RosmarOps busca en tus agentes</strong>: listas que dejan de coincidir, permisos que nadie sabe quién decidió, errores que se quedan callados y un «he terminado» que nadie comprueba desde fuera.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Arreglarlos era lo fácil. Lo que me interesa contar es qué hacemos para que no vuelvan.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Harness engineering, en una frase</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Mitchell Hashimoto le puso nombre a una costumbre: cada vez que un agente comete un error, dedicas tiempo a construir algo para que no pueda volver a cometerlo. Al conjunto de esas piezas alrededor del agente lo llama <em>harness</em>, el arnés.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Ichigo añade un orden que he adoptado tal cual. Cuando algo falla, la solución se busca en este orden:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list {"ordered":true} -->
+<ol class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Estructura:</strong> que el error sea imposible de cometer.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>Una comprobación automática</strong> que lo cace siempre.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>Texto en las instrucciones,</strong> solo donde de verdad hace falta criterio.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>Una persona que revisa,</strong> al final.</li>
+<!-- /wp:list-item --></ol>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>Una línea en las instrucciones es un deseo: el agente la leerá y casi siempre la cumplirá. Una prueba automática es un muro: la cumple aunque se le olvide.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Seis demonios y su pieza</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p><strong>1. El texto que no cabía.</strong></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Qué pasó:</strong> cuando Codex tiene permiso para usar muchas aplicaciones del escritorio, el aviso las enumera todas. En mi ordenador, el título superaba los 200 caracteres que admite el espacio, y el programa descartaba la revisión entera.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>La pieza (comprobación):</strong> una prueba que lee del propio formato cada límite de longitud y de cantidad, y comprueba que el programa los respeta aunque los datos se pasen. Hoy cubre las listas y los textos del espacio. En la próxima versión, los límites saldrán directamente del formato, para que ningún campo nuevo se quede fuera.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p><strong>2. Las listas que dejaron de coincidir.</strong></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Qué pasó:</strong> el programa sabía decir «a este agente lo detecto, pero no lo puedo puntuar» para la app de Antigravity, pero esa razón no estaba en la lista que acepta el informe. En mi ordenador, el informe no se escribía. Pasó tres veces en una semana, con tres listas distintas.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>La pieza (comprobación):</strong> una prueba de paridad que compara 15 listas del código con las del formato y falla si una se queda atrás. Ya está en la 0.10.2.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p><strong>3. Las pruebas que miraban otro camino.</strong></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Qué pasó:</strong> las pruebas de la nota de fábrica montaban el mapa de agentes a mano, por un camino distinto del que usa el programa de verdad. Estaban en verde porque probaban otra cosa. Así se escapó la regla que faltaba en los ajustes de Cline, que dejaba mi revisión sin nota.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>La pieza (estructura):</strong> una sola forma de montar el mapa, la misma para las pruebas y para el programa, sobre un ordenador de prueba completo con todos los agentes y rutas de Windows. Llega con la 0.10.3, en marcha.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p><strong>4. El «he terminado» sin comprobar.</strong></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Qué pasó:</strong> todo estaba en verde y en mi ordenador no funcionaba. Una prueba en verde dice que algo funciona donde se ha probado, no donde se va a usar.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>La pieza (comprobación y persona):</strong><!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>La 0.10.2 no se publicó hasta que la pasé en mi ordenador y salió con nota y en mi espacio.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Antes de publicarla la revisó un agente que no había escrito ese código, y la aprobó con cinco condiciones que hubo que cumplir.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>El siguiente paso es que la máquina haga esa prueba sola: un Windows limpio que, antes de cada lanzamiento, monta lo que dejan los agentes al instalarse, ejecuta la versión nueva y comprueba que termina, que hay nota y que el envío al espacio funciona. Si falla, la versión no sale.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list --></li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p><strong>5. El silencio.</strong></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Qué pasó:</strong> durante días, el programa tiraba revisiones y solo lo apuntaba en una ventana que se cerraba sola.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>La pieza (comprobación):</strong> ningún error se queda solo en el registro. O aparece en el informe, o la revisión se para y lo dice. La 0.10.2 ya apunta en el registro de envíos cada revisión que no se pudo enviar, y por qué. La regla completa, con una prueba que busca en el código errores que solo se registran, es parte del plan.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p><strong>6. La prisa con buena intención.</strong></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Qué pasó:</strong> un agente añadió un cambio al formato de datos sin pedir permiso. Tenía razón en el fondo, y aun así se saltó una regla. Yo mismo moví una hora en el servidor y dejé mi espacio leyendo datos del día anterior.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>La pieza (instrucción y persona):</strong> cualquier cambio de formato se para y espera mi firma. Hoy es la pieza más débil, porque es una instrucción. El siguiente paso es convertirla en comprobación.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">El harness completo: cinco fases</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Una revisión de ingeniería hecha por un agente que no había escrito el código, comparando el proyecto con las prácticas de referencia de la industria, dejó el plan en cinco fases. Cada una cierra una clase de fallo, no un fallo suelto:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list {"ordered":true} -->
+<ol class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Un solo camino.</strong> Las pruebas montan el mapa igual que el programa real, sobre el ordenador completo. Es la 0.10.3.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>Una versión rota no se publica.</strong> La prueba en Windows antes de cada lanzamiento, y un procedimiento para retirar una versión si hiciera falta.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>Un registro único de agentes.</strong> Hoy, añadir un agente toca unos 18 sitios en 12 ficheros. Con el registro, el agente número 15 no podrá romper a los otros 14.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>Robustez frente a ordenadores reales.</strong> Ficheros mal escritos, rutas larguísimas, codificaciones raras. Lo peor que puede pasar es que algo salga como «no leído», nunca como limpio.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>Proceso y métricas.</strong> Cada cambio con su revisión independiente, cada versión con lo que incluye, y una medida de cuántas versiones hay que retirar y cuánto se tarda en arreglarlas.</li>
+<!-- /wp:list-item --></ol>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>Cuando estén las cinco, otra revisión independiente auditará el código entero.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Lo que me llevo</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>En mi guía AI-First lo escribí así: un fallo arreglado donde se observa está escondido, no arreglado. Esta semana lo he comprobado en mi propio producto. Cada fallo de un agente era una pregunta sobre el sistema en el que trabaja: si mañana vuelve a pasar en otro sitio, ¿algo lo para?</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>El trabajo no es conseguir un agente que no se equivoque. Es construir un arnés donde sus errores no puedan llegar a ti dos veces.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Si usas RosmarOps</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Actualiza a la 0.10.2. Si tu espacio llevaba días sin recibir revisiones, es probable que fuera esto: pasa el programa una vez y debería ponerse al día. Tu nota puede cambiar, porque ahora ve cosas que antes se le escapaban.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><em>Fuentes: Mitchell Hashimoto, <a href="https://mitchellh.com/writing/my-ai-adoption-journey">«My AI Adoption Journey»</a> (5 de febrero de 2026); <a href="https://x.com/iiiichigo_chan/status/2118397992239571196">hilo de Ichigo en X</a> (5 de noviembre de 2026); Albert Garcia Pujadas, <a href="https://guia.qtorb.com/#/dos-puertas">Guía AI-First</a>; notas de las versiones 0.10.1 y 0.10.2 en el <a href="https://github.com/qtorb/rosmarops/releases">repositorio de RosmarOps</a>.</em></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><em>Escrito con ayuda de asistentes de IA. La experiencia, los errores y la decisión de publicar son míos.</em></p>
+<!-- /wp:paragraph -->

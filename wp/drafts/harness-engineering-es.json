@@ -1,0 +1,21 @@
+{
+ "id": "harness-engineering",
+ "lang": "es",
+ "slug": "harness-engineering-rosmarops",
+ "title": "Cada fallo de un agente, una pieza del sistema: harness engineering en RosmarOps",
+ "excerpt": "Construyo con agentes de IA una herramienta para usar los agentes de IA con más cuidado. Esta semana sus fallos fueron los mismos que RosmarOps busca en los tuyos. Así convertimos cada uno en una pieza permanente del sistema.",
+ "content": "harness-engineering-es.html",
+ "seo_title": "Harness engineering: cada fallo de un agente, una pieza",
+ "seo_description": "Seis fallos de agentes de IA en una semana y la pieza que convierte cada uno en un error imposible de repetir. Un caso real de metodología AI-First.",
+ "translations": {
+  "en": "https://rosmarops.com/blog/harness-engineering-rosmarops/",
+  "ca": "https://rosmarops.com/ca/blog/harness-engineering-rosmarops/"
+ },
+ "category": "novedades-de-rosmarops",
+ "tags": {
+  "harness-engineering": "harness engineering",
+  "ai-first": "AI-First"
+ },
+ "image": "rosmarops-img-17-harness-engineering.jpg",
+ "alt": "Un agente de IA avanza por un carril entre cinco arcos; el primero está terminado y los demás solo dibujados. Detrás quedan seis marcas rojas, cada una unida por una línea a una pieza del carril."
+}
