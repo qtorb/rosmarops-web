@@ -50,7 +50,7 @@
   ],
   "agentsmd": [
    "AGENTS.md",
-   "AGENTS.md is a text file with instructions for AI assistants: how to work on that project, what to do and what not to do. Every assistant that reads it follows them."
+   "AGENTS.md is a text file with instructions for AI agents: how to work on that project, what to do and what not to do. Every agent that reads it follows them."
   ],
   "checksum": [
    "Checksum and attestation",
@@ -108,7 +108,7 @@
   ],
   "agentsmd": [
    "AGENTS.md",
-   "AGENTS.md es un fichero de texto con instrucciones para los asistentes de IA: cómo trabajar en ese proyecto, qué hacer y qué no. Cada asistente que lo lee las sigue."
+   "AGENTS.md es un fichero de texto con instrucciones para los agentes de IA: cómo trabajar en ese proyecto, qué hacer y qué no. Cada agente que lo lee las sigue."
   ],
   "checksum": [
    "Suma de control y atestación",
@@ -166,7 +166,7 @@
   ],
   "agentsmd": [
    "AGENTS.md",
-   "AGENTS.md és un fitxer de text amb instruccions per als assistents d'IA: com treballar en aquell projecte, què fer i què no. Cada assistent que el llegeix les segueix."
+   "AGENTS.md és un fitxer de text amb instruccions per als agents d'IA: com treballar en aquell projecte, què fer i què no. Cada agent que el llegeix les segueix."
   ],
   "checksum": [
    "Suma de control i atestació",
