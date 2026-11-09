@@ -411,3 +411,46 @@ if (ROSMAROPS_VISITS_ON) {
 		wp_enqueue_script('rosmarops-visits', ROSMAROPS_VISITS_ORIGIN . '/assets/visits/visits.js', [], '2', true);
 	});
 }
+
+// ------------------------------------------------------------------------------------- one-time IP check (GTM-125, temporary)
+
+/*
+ * GTM-125, step 0: which IP PHP sees behind OVH's load balancer, before counting people per day. Authorised by Albert
+ * on 09-11. GET /wp-json/rosmarops/v1/ipcheck?k=<token> answers with REMOTE_ADDR, HTTP_X_FORWARDED_FOR, HTTP_X_REAL_IP
+ * and HTTP_FORWARDED as they arrive, with Cache-Control: no-store. Without the token, or with a wrong one, the answer
+ * is WordPress's own 404 for a route that does not exist. The token is not in the repository: the deploy writes it
+ * from the GitHub secret ROSMAROPS_IPCHECK_TOKEN to wp-content/rosmarops-private/ipcheck-token.php. Nothing is stored
+ * or logged. Removed right after the test, with that file and the secret.
+ */
+if (!defined('ROSMAROPS_IPCHECK_TOKEN') && defined('WP_CONTENT_DIR') && is_file(WP_CONTENT_DIR . '/rosmarops-private/ipcheck-token.php')) {
+	include WP_CONTENT_DIR . '/rosmarops-private/ipcheck-token.php';
+}
+
+/** The four values as they arrive, or null when the token is missing, wrong or not set on the server. */
+function rosmarops_ipcheck_answer($k, $server, $token) {
+	if (!is_string($token) || preg_match('/^[0-9a-f]{64}$/', $token) !== 1 || !is_string($k) || !hash_equals($token, $k)) {
+		return null;
+	}
+	$out = [];
+	foreach (['REMOTE_ADDR', 'HTTP_X_FORWARDED_FOR', 'HTTP_X_REAL_IP', 'HTTP_FORWARDED'] as $name) {
+		$out[$name] = isset($server[$name]) ? (string) $server[$name] : null;
+	}
+	return $out;
+}
+
+add_action('rest_api_init', function () {
+	register_rest_route('rosmarops/v1', '/ipcheck', [
+		'methods'             => 'GET',
+		'permission_callback' => '__return_true',
+		'callback'            => function ($request) {
+			$token = defined('ROSMAROPS_IPCHECK_TOKEN') ? ROSMAROPS_IPCHECK_TOKEN : null;
+			$out   = rosmarops_ipcheck_answer($request->get_param('k'), $_SERVER, $token);
+			if ($out === null) {
+				return new WP_Error('rest_no_route', 'No route was found matching the URL and request method.', ['status' => 404]);
+			}
+			$res = new WP_REST_Response($out);
+			$res->header('Cache-Control', 'no-store');
+			return $res;
+		},
+	]);
+});
