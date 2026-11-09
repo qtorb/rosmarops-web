@@ -147,6 +147,16 @@ class Downloads(unittest.TestCase):
         self.get("/download?from=home-band&os=windows", headers={"Cookie": "cc_cookie=x"})
         self.assertIn("home-band\ten\twindows\t1", self.rows())
 
+    def test_internal_cookie_redirected_but_not_counted(self):
+        # GTM-126: the cookie rosmarops_internal (a team browser marked with ?rosmarops_internal=1) redirects but does not count.
+        before = mysql(f"SELECT COALESCE(SUM(count), 0) FROM {TABLE}").strip()
+        st, h, _ = self.get("/download?from=home-band&os=windows", headers={"Cookie": "rosmarops_internal=1"})
+        self.assertEqual(st, 302)
+        self.assertEqual(h["Location"], LATEST + "/download/rosmarops.exe")
+        self.assertEqual(mysql(f"SELECT COALESCE(SUM(count), 0) FROM {TABLE}").strip(), before)
+        self.get("/download?from=home-band&os=windows", headers={"Cookie": "rosmarops_internal_other=1"})
+        self.assertEqual(int(mysql(f"SELECT COALESCE(SUM(count), 0) FROM {TABLE}").strip()), int(before) + 1)
+
     def test_robots_redirected_but_not_counted(self):
         # GTM-118: the same user-agent list as visits (ROSMAROPS_VISITS_BOTS); the user agent is never stored.
         bots = ["Googlebot/2.1 (+http://www.google.com/bot.html)", "LinkedInBot/1.0 (compatible; Mozilla/5.0)",

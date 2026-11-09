@@ -61,11 +61,13 @@ function rosmarops_dl_os($raw) {
 
 /**
  * GTM-111: a request from someone on the team, signed in to this WordPress: it carries the session cookie WordPress
- * already sets (wordpress_logged_in_<hash>). Only its presence is checked; nothing is read from it, stored or set.
+ * already sets (wordpress_logged_in_<hash>). GTM-126: or a browser of the team marked with ?rosmarops_internal=1,
+ * which carries the cookie rosmarops_internal set by consent.js. Only their presence is checked; nothing is read from
+ * them, stored or set. Visits and download clicks alike.
  */
 function rosmarops_is_team($cookies) {
 	foreach (array_keys((array) $cookies) as $name) {
-		if (strpos((string) $name, 'wordpress_logged_in_') === 0) {
+		if (strpos((string) $name, 'wordpress_logged_in_') === 0 || (string) $name === 'rosmarops_internal') {
 			return true;
 		}
 	}
@@ -556,7 +558,7 @@ if (ROSMAROPS_VISITS_ON) {
 	});
 	// WordPress pages (blogs, privacy, about): the same script as the static pages.
 	add_action('wp_enqueue_scripts', function () {
-		wp_enqueue_script('rosmarops-visits', ROSMAROPS_VISITS_ORIGIN . '/assets/visits/visits.js', [], '2', true);
+		wp_enqueue_script('rosmarops-visits', ROSMAROPS_VISITS_ORIGIN . '/assets/visits/visits.js', [], '3', true);
 	});
 }
 
