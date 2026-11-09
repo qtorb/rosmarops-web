@@ -25,7 +25,7 @@
 <link rel="stylesheet" href="/assets/consent/cookieconsent.css?v=3.1.0">
 <link rel="icon" href="/wp-content/uploads/2026/10/image-1.png">
 <style>
-:root{--bg:#F6F5F2;--ink:#1B1A18;--ink2:#3A3833;--muted:#66635D;--line:#E3E0D8;--card:#FFFFFF;--accent:#6F8F78;--brand:#2346B8;--on-brand:#FFFFFF;--sage:#3F5E49;--sage-tint:#E7EFE9}
+:root{--bg:#F6F5F2;--ink:#1B1A18;--ink2:#3A3833;--muted:#66635D;--line:#E3E0D8;--card:#FFFFFF;--accent:#6F8F78;--brand:#2346B8;--on-brand:#FFFFFF;--sage:#3F5E49;--sage-tint:#E7EFE9;--risk:#A3361F;--risk-tint:#FBEAE5;--band:#EEECE7}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
 a{color:var(--ink)}a:hover{color:var(--accent)}
@@ -33,73 +33,100 @@ a{color:var(--ink)}a:hover{color:var(--accent)}
 header .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;padding-top:24px;padding-bottom:24px}
 header img{height:40px;width:auto;display:block}
 nav{display:flex;flex-wrap:wrap;gap:24px;font-size:16px}
-main .wrap{display:flex;flex-direction:column;gap:64px;padding-top:48px;padding-bottom:64px}
-.hero{display:flex;flex-direction:column;gap:20px;max-width:760px}
-h1{margin:0;font-size:clamp(34px,6vw,52px);line-height:1.08;font-weight:700;letter-spacing:-.02em}
-.lead{margin:0;font-size:20px;line-height:1.55;color:var(--ink2)}
-h2{margin:0;font-size:14px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
-ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:12px;font-size:17px;line-height:1.55}
 footer{border-top:1px solid var(--line)}
 footer .wrap{padding-top:28px;padding-bottom:28px;font-size:15px;color:var(--muted)}
 footer nav{gap:20px;font-size:15px}
-.dl{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px}
-.btn{display:inline-block;background:var(--ink);color:#fff;text-decoration:none;font-size:17px;font-weight:600;line-height:1;padding:16px 24px;border-radius:12px}
-.btn:hover,.btn:focus-visible{background:var(--accent);color:#fff}
-.dl-note{margin:0;font-size:15px;line-height:1.5;color:var(--muted)}
-.dl-note a{color:var(--muted)}
-.sample p{margin:12px 0 0;max-width:760px;font-size:17px;font-weight:400;line-height:1.55;color:var(--ink)}
-.sample figure{margin:20px 0 0}
-.sample figure{max-width:560px}
-.btn-o{display:inline-block;margin-top:16px;padding:12px 18px;border:1px solid var(--ink);border-radius:12px;background:transparent;color:var(--ink);font-size:15px;font-weight:600;line-height:1;text-decoration:none}
-.btn-o:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
-.sample img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:12px;background:var(--card)}
-.sample figcaption{margin-top:12px;font-size:15px;line-height:1.5;color:var(--muted)}
-.sample figcaption a{color:var(--muted)}
-.h-sec{margin:0;font-size:30px;line-height:1.2;font-weight:700;letter-spacing:-.01em;text-wrap:balance;color:var(--ink);text-transform:none}
-.sec{display:flex;flex-direction:column;gap:20px}
-.btn-sec{display:inline-block;background:transparent;color:var(--ink);border:1px solid var(--ink);text-decoration:none;font-size:17px;font-weight:600;line-height:1;padding:15px 23px;border-radius:12px}
-.btn-sec:hover,.btn-sec:focus-visible{border-color:var(--accent);color:var(--accent)}
-.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin:0;padding:0;list-style:none}
-.steps li{display:flex;flex-direction:column;gap:8px}
-.steps .k{width:32px;height:32px;border-radius:999px;background:var(--ink);color:#fff;font-size:15px;font-weight:700;display:flex;align-items:center;justify-content:center}
-.steps b{font-size:18px;line-height:1.3}
-.steps span:last-child{font-size:15px;line-height:1.5;color:var(--ink2)}
-.space{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:32px;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:32px;align-items:center}
-.space .txt{display:flex;flex-direction:column;gap:14px;min-width:0}
-.pill{align-self:flex-start;font-size:12px;font-weight:700;color:var(--sage);background:var(--sage-tint);padding:4px 10px;border-radius:999px}
-.space p{margin:0;font-size:17px;line-height:1.55;color:var(--ink2)}
-.btn-space{display:inline-block;background:var(--brand);color:var(--on-brand);text-decoration:none;font-size:17px;font-weight:600;line-height:1;padding:16px 24px;border-radius:12px}
-.btn-space:hover,.btn-space:focus-visible{background:var(--ink)}
-.space-note{font-size:15px;color:var(--muted)}
-.pcs{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--bg);margin:0;padding:0;list-style:none}
-.pcs{gap:0}
-.pcs li{display:flex;justify-content:space-between;gap:12px;padding:12px 14px;border-top:1px solid var(--line);font-size:15px}
-.pcs li:first-child{border-top:0}
-.pcs b{font-variant-numeric:tabular-nums}
-.pcs .r{color:#94200B}
-.pcs .y{color:#6B4700}
-.pcs .g{color:#1A5532}
-.trust{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin:0;padding:0;list-style:none}
-.trust li{border-top:2px solid var(--ink);padding-top:14px;display:flex;flex-direction:column;gap:6px}
-.trust b{font-size:18px;line-height:1.3}
-.trust span{font-size:15px;line-height:1.5;color:var(--ink2)}
-.agents{display:flex;flex-direction:column;gap:14px}
-.agents .row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
-.agents .lab{font-size:15px;font-weight:700;min-width:120px}
-.chip{font-size:15px;padding:6px 12px;border-radius:999px;border:1px solid var(--line);background:var(--card)}
-.chip.on{border-color:var(--ink);background:var(--card);color:var(--ink);font-weight:700}
-.band{position:relative;overflow:hidden;background:var(--ink);color:#fff;border-radius:16px;padding:40px 200px 40px 32px;display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between}
-.band .h-sec{color:#fff}
-.band .btn{background:#fff;color:var(--ink)}
-.band .btn:hover,.band .btn:focus-visible{background:var(--accent);color:#fff}
-.band a.lk{color:#fff;font-size:15px}
-.band .h-sec,.band .dl{position:relative;z-index:1}
-.band .sprig{position:absolute;right:32px;top:50%;transform:translateY(-50%);height:150px;width:auto;pointer-events:none}
 .space-link{font-weight:600;border-radius:10px;padding:8px 14px;text-decoration:none;color:var(--brand);border:1px solid var(--brand)}
-.more-link{font-size:15px;color:var(--brand)}
-@media (max-width:699px){.h-sec{font-size:24px}.steps,.trust{grid-template-columns:1fr;gap:16px}.space{grid-template-columns:1fr;padding:22px;gap:22px}.agents .lab{min-width:0;width:100%}.band{padding:28px 22px 120px}.band .sprig{height:96px;right:12px;top:auto;bottom:12px;transform:none}}
 :focus-visible{outline:2px solid var(--brand);outline-offset:2px}
-@media (min-width:1024px){.hero .dl .btn{padding-left:20px;padding-right:20px}.hero .dl .btn-sec{padding-left:19px;padding-right:19px}}
+/* GTM-120: new home. Measures from vigil docs/research/2026-11-09-home-paso-3-en-ca-y-medidas.md §C (light mode only, F5). */
+main{display:block;font-size:17px;line-height:1.55}
+main p{margin:0}
+main h1,main h2,main h3{margin:0;color:var(--ink);text-wrap:balance;letter-spacing:-.01em}
+main h1{font-size:clamp(34px,5.4vw,58px);line-height:1.04;font-weight:800}
+main h2{font-size:clamp(26px,3.4vw,36px);line-height:1.12;font-weight:800}
+main h3{font-size:19px;line-height:1.3;font-weight:700}
+.hw{max-width:1080px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.hb{padding-block:72px}
+.hb.alt{background:var(--band)}
+.eyebrow{font-size:13px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--brand)}
+.hero .eyebrow{color:var(--muted)}
+.hl{font-size:clamp(18px,2vw,21px);line-height:1.55;color:var(--ink2);max-width:58ch}
+.q{display:flex;flex-direction:column;gap:10px;margin-bottom:32px}
+.q.flat{margin-bottom:0}
+.fine{font-size:14px;line-height:1.55;color:var(--muted)}
+.fine a{color:inherit}
+.hero{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:48px;align-items:center;padding-top:40px;padding-bottom:72px}
+.hero-text{display:flex;flex-direction:column;gap:22px;min-width:0}
+.facts{display:flex;flex-direction:column;gap:8px;font-size:18px;line-height:1.55;color:var(--ink2)}
+.facts b{color:var(--ink);font-weight:700}
+.paths{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.path{display:flex;flex-direction:column;gap:4px;min-height:44px;padding:16px 18px;border:1.5px solid var(--ink);border-radius:12px;color:var(--ink);text-decoration:none}
+.path b{font-size:17px}
+.path small{font-size:14px;color:var(--muted)}
+.path:hover{color:var(--ink)}
+.path.primary,.path.primary:hover{background:var(--brand);border-color:var(--brand);color:var(--on-brand)}
+.path.primary small{color:var(--on-brand);opacity:.85}
+.diagram{margin:0;min-width:0;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px}
+.dg{position:relative}
+.dg svg{display:block;width:100%;height:auto}
+.dg-i{position:absolute;left:97.6%;top:0;margin-top:20.45%;transform:translate(-50%,-50%)}
+.legend{display:flex;flex-wrap:wrap;gap:18px;padding:8px 4px 0;font-size:13px;color:var(--muted)}
+.legend i{display:inline-block;width:22px;height:0;margin-right:6px;border-top:3px solid var(--risk);vertical-align:middle}
+.legend i.ask{border-top:3px dashed var(--sage)}
+.agents{display:flex;flex-direction:column;gap:14px}
+.agents .row{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.agents .lab{min-width:220px;font-size:15px;font-weight:700}
+.chip,.chip.on{padding:7px 14px;border:1px solid var(--line);border-radius:999px;background:var(--card);color:var(--ink);font-size:15px;font-weight:400;line-height:1.3}
+.note{margin-top:16px}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.pattern{display:flex;flex-direction:column;gap:10px;padding:22px;background:var(--card);border:1px solid var(--line);border-radius:14px}
+.pattern .tag{align-self:flex-start;padding:4px 10px;border-radius:999px;background:var(--risk-tint);color:var(--risk);font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.pattern p{color:var(--ink2)}
+.pattern .who{font-size:14px;color:var(--muted)}
+.pattern p.fine{color:var(--muted)}
+.more{display:inline-flex;margin-top:24px;padding-bottom:2px;border-bottom:2px solid var(--brand);color:var(--brand);font-weight:700;text-decoration:none}
+.more:hover{color:var(--brand)}
+.sample{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:40px;align-items:center}
+.dl{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
+.hbtn{display:inline-flex;align-items:center;min-height:44px;padding:12px 20px;border:1.5px solid var(--ink);border-radius:10px;color:var(--ink);font-weight:700;line-height:1.2;text-decoration:none}
+.hbtn:hover{color:var(--ink)}
+.hbtn.primary,.hbtn.primary:hover{background:var(--brand);border-color:var(--brand);color:var(--on-brand)}
+.path:focus-visible,.hbtn:focus-visible{outline:3px solid var(--brand);outline-offset:3px}
+.dl-note{font-size:14px;line-height:1.55;color:var(--muted)}
+.dl-note a{color:inherit}
+.report{display:flex;flex-direction:column;gap:18px;padding:24px;background:var(--card);border:1px solid var(--line);border-radius:16px}
+.report .more{align-self:flex-start;margin-top:0}
+.score{display:flex;align-items:center;gap:18px}
+.ring{flex:none;width:84px;height:84px}
+.score b{display:block;font-size:20px;font-weight:700}
+.score small{display:block;font-size:14px;color:var(--muted)}
+.fix{display:flex;flex-direction:column;gap:6px;padding-top:16px;border-top:1px solid var(--line)}
+.fix b{font-weight:700}
+.fix .up{color:var(--sage);font-weight:700;font-variant-numeric:tabular-nums}
+.ex{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:0;padding:0;list-style:none;counter-reset:s}
+.step{display:flex;flex-direction:column;gap:6px;padding-top:16px;border-top:2px solid var(--ink)}
+.step::before{counter-increment:s;content:counter(s);color:var(--brand);font-size:15px;font-weight:800}
+.step p{color:var(--ink2);font-size:16px}
+.trust{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin:0;padding:0;list-style:none}
+.trust li{display:flex;flex-direction:column;gap:6px}
+.trust p{color:var(--ink2);font-size:16px}
+.space{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;align-items:center}
+.pcs{display:flex;flex-direction:column;gap:12px;padding:20px;background:var(--card);border:1px solid var(--line);border-radius:16px}
+.pcs ul{display:flex;flex-direction:column;gap:12px;margin:0;padding:0;list-style:none}
+.pc{display:grid;grid-template-columns:minmax(0,1fr) 120px 40px;gap:12px;align-items:center;font-size:15px}
+.pc .hid{font-family:ui-monospace,"SF Mono",Consolas,monospace}
+.pc small{display:block;font-size:14px;color:var(--muted)}
+.pc svg{width:120px;height:28px}
+.pc b{text-align:right;font-variant-numeric:tabular-nums}
+.close{display:flex;flex-direction:column;align-items:flex-start;gap:18px}
+.close .dl{margin-top:0}
+@media (max-width:820px){
+.hero,.sample,.space{grid-template-columns:1fr;gap:28px}
+.grid2,.steps,.trust,.paths{grid-template-columns:1fr}
+.hb{padding-block:52px}
+.agents .lab{min-width:0;width:100%}
+}
 </style>
 <link rel="stylesheet" href="/assets/help/help.css?v=1">
 </head>
@@ -109,60 +136,96 @@ footer nav{gap:20px;font-size:15px}
 <nav><a href="/ca/blog/">Bloc</a><a href="/ca/blog/que-es-rosmarops/">Quant a</a><a href="/ca/observatori/">Observatori</a><a class="space-link" href="https://app.rosmarops.com/space">El teu espai</a><a href="/" hreflang="en" lang="en" aria-label="English">EN</a><a href="/es/" hreflang="es" lang="es" aria-label="Español">ES</a></nav>
 </div></header>
 
-<main><div class="wrap">
-<section class="hero">
-<h1>Què poden fer els teus agents d'IA.</h1>
-<p class="lead">RosmarOps et mostra fins on arriba cada <span class="gt">agent d&#x27;IA<a class="gi" href="/ca/glossari/#agent" data-gi="agent" aria-label="Què és «agent d&#x27;IA»?"><span aria-hidden="true">i</span></a></span>, al teu ordinador i als teus comptes al núvol, i què cal canviar primer.</p>
-<div class="dl"><a class="btn" href="/ca/descarregar?from=home&amp;os=windows" target="_blank" rel="nofollow noopener">Descarrega per a Windows</a><a class="btn-sec" href="/ca/linux/">Descarrega per a Linux</a><a class="btn-sec" href="/ca/macos/">Descarrega per a Mac</a><p class="dl-note">Gratuït i de codi obert (AGPL-3.0). <a href="https://github.com/qtorb/rosmarops#check-the-download" target="_blank" rel="noopener">Com comprovar que és autèntic</a></p><p class="dl-note">Windows pot avisar que RosmarOps és una aplicació no reconeguda: és nova i encara no està signada. Fes clic a «Més informació» i després a «Executa-la de totes maneres».</p></div>
-</section>
-
-<section class="sample">
-<h2>Un informe d&#x27;exemple</h2>
-<p>Això és el que t&#x27;ensenya RosmarOps, en un ordinador inventat: la nota de cada agent que avalua, el primer que cal arreglar i quant puja la nota si ho arregles, i tota la resta, el més urgent primer.</p>
-<figure><a href="/sample-report/sample-report.es.html" target="_blank" rel="noopener"><picture><source media="(max-width: 699px)" srcset="/assets/sample/sample-thumb-mobile.es.png 1x, /assets/sample/sample-thumb-mobile.es@2x.png 2x" width="390" height="640"><img src="/assets/sample/sample-thumb.es.png" srcset="/assets/sample/sample-thumb.es.png 1x, /assets/sample/sample-thumb.es@2x.png 2x" width="1280" height="640" alt="Informe d&#x27;exemple de RosmarOps en un ordinador inventat: la nota de cada agent, el primer que cal fer i la resta de troballes." loading="lazy" decoding="async"></picture></a><figcaption>Fet amb dades d&#x27;exemple: l&#x27;ordinador, l&#x27;usuari, els projectes i les claus són inventats. <a href="/sample-report/sample-report.es.html">Veure l&#x27;informe complet</a></figcaption></figure>
-<a class="btn-o" href="/sample-report/sample-report.es.html" target="_blank" rel="noopener">Veure l&#x27;informe complet</a>
-</section>
-
-<section class="sec">
-<h2 class="h-sec">Com funciona</h2>
-<ol class="steps"><li><span class="k">1</span><b>Descarrega&#x27;l i obre&#x27;l</b><span>Doble clic. No cal instal·lar res ni crear compte.</span></li><li><span class="k">2</span><b>Llegeix la teva configuració</b><span>Revisa al teu ordinador què poden fer els teus agents d&#x27;IA. Triga uns minuts.</span></li><li><span class="k">3</span><b>Et diu què canviar</b><span>Una nota per agent i el primer que cal arreglar, amb el canvi exacte.</span></li></ol>
-</section>
-
-<section class="space" id="space">
-<div class="txt">
-<span class="pill">Beta oberta</span>
-<h2 class="h-sec">Tots els teus ordinadors i comptes en un sol lloc</h2>
-<p>Connecta cada ordinador i mira&#x27;n els resultats junts, al navegador. Viatgen <span class="gt">xifrats<a class="gi" href="/ca/glossari/#encrypted" data-gi="encrypted" aria-label="Què és «xifrat»?"><span aria-hidden="true">i</span></a></span>, només si tu ho aproves, i pots desconnectar quan vulguis. I respon unes preguntes sobre els teus comptes de Grok, Claude, ChatGPT i els altres agents al núvol per veure&#x27;n també la nota. Gratis durant la beta.</p>
-<div><a class="btn-space" href="https://app.rosmarops.com/space">Crea el teu espai gratis</a></div>
-<span class="space-note">Ja tens RosmarOps? Obre&#x27;l i prem «Connectar».</span>
+<main>
+<section class="hw hero" aria-labelledby="h-0">
+<div class="hero-text">
+<span class="eyebrow">Què ha canviat</span>
+<h1 id="h-0">La IA ja treballa al teu ordinador i al núvol. Mira què pot fer sense preguntar-te.</h1>
+<div class="facts"><p>Els assistents d'IA ja no només responen. Ara llegeixen els teus fitxers, executen programes i actuen en serveis que fas servir, com el teu correu, els teus documents o GitHub.</p><p><b>Alguns ho fan sense preguntar-te.</b></p></div>
+<div class="paths"><a class="path" href="#es-verdad"><b>Vull entendre-ho</b><small>Què fa cada assistent, explicat sense tecnicismes</small></a><a class="path primary" href="#comprobar"><b>Vull comprovar el meu ordinador</b><small>Gratis · Windows, Mac i Linux</small></a></div>
+<p class="fine">És codi obert. RosmarOps només llegeix la teva configuració, i res no surt del teu ordinador sense que ho aprovis.</p>
 </div>
-<ul class="pcs" aria-label="Exemple"><li><span>Portàtil de la feina</span><b class="r">42</b></li><li><span>Ordinador de casa</span><b class="y">68</b></li><li><span>Mac Mini</span><b class="g">91</b></li></ul>
+<figure class="diagram"><div class="dg"><svg viewBox="0 0 460 420" role="img" aria-labelledby="dg-t"><title id="dg-t">Un assistent d'IA al centre, amb línies cap als teus fitxers, les teves claus, els teus programes, internet i els teus serveis en línia. Unes línies indiquen que actua sense preguntar-te i d'altres que et pregunta abans.</title><g font-family="system-ui,-apple-system,Segoe UI,sans-serif"><line x1="230" y1="170" x2="92" y2="70" stroke="var(--risk)" stroke-width="3"/><line x1="230" y1="170" x2="368" y2="70" stroke="var(--risk)" stroke-width="3"/><line x1="230" y1="170" x2="92" y2="270" stroke="var(--sage)" stroke-width="3" stroke-dasharray="7 6"/><line x1="230" y1="170" x2="368" y2="270" stroke="var(--risk)" stroke-width="3"/><line x1="230" y1="170" x2="230" y2="350" stroke="var(--risk)" stroke-width="3"/><circle cx="230" cy="170" r="54" fill="var(--brand)"/><text x="230" y="165" text-anchor="middle" fill="var(--on-brand)" font-size="15" font-weight="700">El teu</text><text x="230" y="185" text-anchor="middle" fill="var(--on-brand)" font-size="13">assistent d'IA</text><g><rect x="22" y="40" width="140" height="56" rx="12" fill="var(--card)" stroke="var(--line)"/><text x="92" y="64" text-anchor="middle" fill="var(--ink)" font-size="15" font-weight="700">Els teus fitxers</text><text x="92" y="84" text-anchor="middle" fill="var(--muted)" font-size="12">tot el disc</text></g><g><rect x="298" y="40" width="140" height="72" rx="12" fill="var(--card)" stroke="var(--line)"/><text x="368" y="64" text-anchor="middle" fill="var(--ink)" font-size="15" font-weight="700">Les teves claus</text><text x="368" y="84" text-anchor="middle" fill="var(--muted)" font-size="12">contrasenyes i</text><text x="368" y="99" text-anchor="middle" fill="var(--muted)" font-size="12">claus d'accés</text></g><g><rect x="22" y="242" width="140" height="56" rx="12" fill="var(--card)" stroke="var(--line)"/><text x="92" y="266" text-anchor="middle" fill="var(--ink)" font-size="15" font-weight="700">Programes</text><text x="92" y="286" text-anchor="middle" fill="var(--muted)" font-size="12">executar-los</text></g><g><rect x="298" y="242" width="140" height="56" rx="12" fill="var(--card)" stroke="var(--line)"/><text x="368" y="266" text-anchor="middle" fill="var(--ink)" font-size="15" font-weight="700">Internet</text><text x="368" y="286" text-anchor="middle" fill="var(--muted)" font-size="12">enviar dades a fora</text></g><g><rect x="130" y="340" width="200" height="56" rx="12" fill="var(--card)" stroke="var(--line)"/><text x="230" y="364" text-anchor="middle" fill="var(--ink)" font-size="15" font-weight="700">Els teus serveis en línia</text><text x="230" y="384" text-anchor="middle" fill="var(--muted)" font-size="12">correu, documents, codi</text></g></g></svg><p class="dg-i"><span class="gt"><a class="gi" href="/ca/glossari/#accesskey" data-gi="accesskey" aria-label="Què és «claus d&#x27;accés»?"><span aria-hidden="true">i</span></a></span></p></div>
+<figcaption class="legend"><span><i></i>sense preguntar-te</span><span><i class="ask"></i>et pregunta abans</span><span>Exemple simplificat d'un assistent tal com ve instal·lat</span></figcaption></figure>
 </section>
-
-<section class="sec">
-<h2 class="h-sec">Per què fiar-te&#x27;n</h2>
-<ul class="trust"><li><b>Res no surt dels teus dispositius sense que tu ho aprovis abans</b><span>Sense el teu permís no es connecta a res. Si connectes el teu espai, només envia els teus resultats, xifrats.</span></li><li><b>Només llegeix</b><span>Mai no canvia els teus fitxers ni els teus agents. Et diu què canviar i ho fas tu.</span></li><li><b>Codi obert i comprovable</b><span>Cada versió porta la suma de control i l&#x27;atestació de GitHub.</span></li></ul>
-<a class="more-link" href="https://github.com/qtorb/rosmarops/blob/master/docs/trust-model.md">Cada promesa i com comprovar-la</a>
-</section>
-
-<section class="sec">
-<h2 class="h-sec">Quins agents avalua avui</h2>
+<section class="hb alt" aria-labelledby="h-1"><div class="hw">
+<div class="q"><span class="eyebrow">Això va amb mi?</span>
+<h2 id="h-1">Si fas servir algun d'aquests assistents, sí.</h2>
+<p class="hl">Són assistents que treballen dins del teu ordinador o del teu editor de codi. RosmarOps els reconeix i t'ensenya què hi poden fer.</p></div>
 <div class="agents">
-<div class="row"><span class="lab">Posa nota</span><!-- agents:scored chips --><span class="chip on">Claude Code</span><span class="chip on">Cursor</span><span class="chip on">Hermes Agent</span><span class="chip on">Codex</span><span class="chip on">Grok Build</span><span class="chip on">Antigravity CLI</span><span class="chip on">GitHub Copilot a VS Code</span><span class="chip on">Cline a VS Code</span><span class="chip on">Gemini CLI</span><!-- /agents:scored --></div>
-<div class="row"><span class="lab">Detecta</span><!-- agents:detected chips --><span class="chip">Continue</span><span class="chip">Antigravity</span><span class="chip">Claude Desktop</span><span class="chip">n8n</span><!-- /agents:detected --></div>
-<div class="row"><span class="lab">Als teus comptes</span><span class="chip on">Grok</span><span class="chip on">Claude</span><span class="chip on">ChatGPT</span><span class="chip on">Codex</span><span class="chip on">Gemini</span><span class="chip on">GitHub Copilot</span><span class="chip on">Comet</span></div>
+<div class="row"><span class="lab">Al teu ordinador</span><!-- agents:scored chips --><span class="chip on">Claude Code</span><span class="chip on">Cursor</span><span class="chip on">Hermes Agent</span><span class="chip on">Codex</span><span class="chip on">Grok Build</span><span class="chip on">Antigravity CLI</span><span class="chip on">GitHub Copilot a VS Code</span><span class="chip on">Cline a VS Code</span><span class="chip on">Gemini CLI</span><!-- /agents:scored --></div>
+<div class="row"><span class="lab">Al núvol, des del teu espai</span><span class="chip">Claude</span><span class="chip">ChatGPT</span><span class="chip">Gemini</span><span class="chip">Grok</span><span class="chip">Codex</span><span class="chip">GitHub Copilot</span><span class="chip">Comet</span></div>
 </div>
-<a class="more-link" href="/ca/observatori/">Com canvien de sèrie, versió a versió: Observatori</a>
-</section>
-
-<section class="band">
-<img class="sprig" src="/assets/brand/rosmarops-sprig-on-dark.svg" alt="" width="127" height="150">
-<h2 class="h-sec">Comença al teu ordinador</h2>
-<div class="dl"><a class="btn" href="/ca/descarregar?from=home-band&amp;os=windows" target="_blank" rel="nofollow noopener">Descarrega per a Windows</a><a class="lk" href="/ca/linux/">Descarrega per a Linux</a><a class="lk" href="/ca/macos/">Descarrega per a Mac (vista prèvia)</a></div>
-</section>
-
-
-</div></main>
+<p class="fine note">Fas servir ChatGPT, Claude o Gemini al navegador? També va amb tu. Al teu espai pots repassar-ne la configuració amb unes preguntes senzilles: quins serveis teus tenen connectats, si poden actuar sols i si entrenen amb les teves converses. Et dona una nota, calculada al teu navegador. <a href="https://app.rosmarops.com/space">Anar al teu espai</a></p>
+</div></section>
+<section class="hb" id="es-verdad" aria-labelledby="h-2"><div class="hw">
+<div class="q"><span class="eyebrow">És veritat?</span>
+<h2 id="h-2">El que fan tal com venen instal·lats</h2>
+<p class="hl">Ho hem comprovat <span class="gt">agent<a class="gi" href="/ca/glossari/#agent" data-gi="agent" aria-label="Què és «agent d&#x27;IA»?"><span aria-hidden="true">i</span></a></span> per agent, al mateix ordinador de referència, llegint-ne el codi i la documentació oficial. Canvia amb cada versió, i ho revisem amb cadascuna de les nostres.</p></div>
+<div class="grid2">
+<article class="pattern"><span class="tag">Decideix un model, no tu</span>
+<h3>Una altra IA aprova el que fa el teu assistent</h3>
+<p>Claude Code i Cursor venen preparats perquè un <span class="gt">model classificador<a class="gi" href="/ca/glossari/#classifier" data-gi="classifier" aria-label="Què és «model classificador»?"><span aria-hidden="true">i</span></a></span> decideixi quines accions tiren endavant, en lloc de preguntar-t'ho cada vegada.</p>
+<p class="who">Claude Code · Cursor</p></article>
+<article class="pattern"><span class="tag">El fitxer que tots llegeixen</span>
+<h3>Un fitxer del teu projecte dona instruccions a diversos assistents alhora</h3>
+<p>Es diu <span class="gt">AGENTS.md<a class="gi" href="/ca/glossari/#agentsmd" data-gi="agentsmd" aria-label="Què és «AGENTS.md»?"><span aria-hidden="true">i</span></a></span> i el llegeixen molts assistents. Si un el canvia, canvia el que fan els altres.</p>
+<p class="who">Cursor · Codex · GitHub Copilot · Cline · Grok Build · Antigravity CLI</p>
+<p class="fine">Claude Code i Hermes Agent també el llegeixen en alguns casos.</p></article>
+<article class="pattern"><span class="tag">Surt a internet</span>
+<h3>Cerquen a internet sense preguntar-te</h3>
+<p>La cerca web ve activada de sèrie. Una cerca pot endur-se a fora part del que l'assistent ha llegit.</p>
+<p class="who">Gemini CLI · Grok Build</p></article>
+<article class="pattern"><span class="tag">No es pot revisar</span>
+<h3>Alguns guarden els permisos on no es poden revisar</h3>
+<p>Els seus permisos viuen dins de l'aplicació, no en un fitxer. Ni tu ni RosmarOps els podeu comprovar al disc, així que RosmarOps els mostra, però no els posa nota, per no endevinar.</p>
+<p class="who">Claude Desktop · app d'Antigravity · Copilot a JetBrains</p></article>
+</div>
+<a class="more" href="/ca/blog/">Llegir al blog com treballen els agents</a>
+</div></section>
+<section class="hb alt" id="comprobar" aria-labelledby="h-3"><div class="hw sample">
+<div class="q flat"><span class="eyebrow">I al meu ordinador?</span>
+<h2 id="h-3">El que veus aquí dalt és tal com venen. El teu pot ser diferent.</h2>
+<p class="hl">Depèn de com els tinguis configurats, de les <span class="gt">claus<a class="gi" href="/ca/glossari/#credential" data-gi="credential" aria-label="Què és «clau o credencial»?"><span aria-hidden="true">i</span></a></span> que hi hagi al teu ordinador i dels altres assistents que facis servir. RosmarOps et dona una nota per assistent, el primer que convé canviar i quant millora si ho fas.</p>
+<div class="dl"><a class="hbtn primary" href="/ca/descarregar?from=home&amp;os=windows" target="_blank" rel="nofollow noopener">Descarrega per a Windows</a><a class="hbtn" href="/ca/macos/">Mac (vista prèvia)</a><a class="hbtn" href="/ca/linux/">Linux</a></div>
+<p class="dl-note">Gratuït i de codi obert (AGPL-3.0). <a href="https://github.com/qtorb/rosmarops#check-the-download" target="_blank" rel="noopener">Com comprovar que és autèntic</a></p><p class="dl-note">Windows pot avisar que RosmarOps és una aplicació no reconeguda: és nova i encara no està signada. Fes clic a «Més informació» i després a «Executa-la de totes maneres».</p></div>
+<div class="report">
+<span class="ex">Exemple · ordinador inventat</span>
+<div class="score"><svg class="ring" viewBox="0 0 84 84" aria-hidden="true"><circle cx="42" cy="42" r="36" fill="none" stroke="var(--line)" stroke-width="8"/><circle cx="42" cy="42" r="36" fill="none" stroke="var(--risk)" stroke-width="8" stroke-linecap="round" stroke-dasharray="24.88 226.19" transform="rotate(-90 42 42)"/><text x="42" y="50" text-anchor="middle" font-size="22" font-weight="800" fill="var(--ink)" font-family="system-ui,-apple-system,Segoe UI,sans-serif">11</text></svg><div><b>Antigravity CLI · Exposat</b><small>De 0 a 100. Com més alta, menys exposat.</small></div></div>
+<div class="fix"><span class="ex">El primer que convé canviar</span>
+<b>La teva clau de Stripe està guardada a git</b>
+<span class="fine">Amb el canvi exacte, a punt per enganxar al teu assistent.</span>
+<span class="up">Si el canvies, la nota puja de 11 a 13</span></div>
+<a class="more" href="/sample-report/sample-report.es.html" target="_blank" rel="noopener">Veure l'informe complet</a>
+</div>
+</div></section>
+<section class="hb" aria-labelledby="h-4"><div class="hw">
+<div class="q"><span class="eyebrow">Com funciona?</span>
+<h2 id="h-4">Tres passos, uns minuts</h2></div>
+<ol class="steps"><li class="step"><h3>Descarrega'l i obre'l</h3><p>No cal instal·lar res ni crear cap compte.</p></li><li class="step"><h3>Llegeix la teva configuració</h3><p>Mira què poden fer els teus assistents al teu ordinador, sense canviar res.</p></li><li class="step"><h3>Et diu què canviar</h3><p>Una nota per assistent i el canvi exacte, per ordre d'importància.</p></li></ol>
+</div></section>
+<section class="hb alt" aria-labelledby="h-5"><div class="hw">
+<div class="q"><span class="eyebrow">Me'n puc refiar?</span>
+<h2 id="h-5">Tres promeses que pots comprovar</h2></div>
+<ul class="trust"><li><h3>Només llegeix</h3><p>No canvia els teus fitxers ni els teus assistents. Et diu què canviar i ho decideixes tu.</p></li><li><h3>Res no surt sense el teu permís</h3><p>Sense el teu permís no es connecta a res. Amb el permís, només envia els teus resultats, <span class="gt">xifrats<a class="gi" href="/ca/glossari/#encrypted" data-gi="encrypted" aria-label="Què és «xifrat»?"><span aria-hidden="true">i</span></a></span>, al teu espai.</p></li><li><h3>Codi obert</h3><p>Pots llegir el codi. Cada versió porta la seva <span class="gt">suma de control<a class="gi" href="/ca/glossari/#checksum" data-gi="checksum" aria-label="Què és «suma de control i atestació»?"><span aria-hidden="true">i</span></a></span> i una atestació de com s'ha construït, perquè comprovis que és la nostra.</p></li></ul>
+<a class="more" href="https://github.com/qtorb/rosmarops/blob/master/docs/trust-model.md">Cada promesa i com comprovar-la</a>
+</div></section>
+<section class="hb" aria-labelledby="h-6"><div class="hw space">
+<div class="q flat"><span class="eyebrow">I després?</span>
+<h2 id="h-6">Segueix com canvia la teva nota, a tots els teus ordinadors</h2>
+<p class="hl">El teu espai guarda cada revisió i t'ensenya què ha millorat, què és nou i què convé fer després. És gratis, en beta oberta.</p>
+<div><a class="hbtn" href="https://app.rosmarops.com/space">Crea el teu espai</a></div></div>
+<div class="pcs">
+<span class="ex">Exemple · ordinadors inventats</span>
+<ul><li class="pc"><span><span class="hid">a3f91c02</span><small>Windows</small></span><svg viewBox="0 0 120 28" aria-hidden="true"><polyline fill="none" stroke="var(--brand)" stroke-width="2.5" points="2,22 30,20 60,14 90,12 118,6"/></svg><b>64</b></li><li class="pc"><span><span class="hid">7be04d19</span><small>Windows</small></span><svg viewBox="0 0 120 28" aria-hidden="true"><polyline fill="none" stroke="var(--brand)" stroke-width="2.5" points="2,18 30,18 60,16 90,10 118,9"/></svg><b>71</b></li><li class="pc"><span><span class="hid">c25e8a60</span><small>macOS</small></span><svg viewBox="0 0 120 28" aria-hidden="true"><polyline fill="none" stroke="var(--brand)" stroke-width="2.5" points="2,10 30,8 60,8 90,6 118,4"/></svg><b>88</b></li></ul>
+</div>
+</div></section>
+<section class="hb alt" aria-labelledby="h-7"><div class="hw close">
+<h2 id="h-7">Comença pel teu ordinador</h2>
+<div class="dl"><a class="hbtn primary" href="/ca/descarregar?from=home-band&amp;os=windows" target="_blank" rel="nofollow noopener">Descarrega per a Windows</a><a class="hbtn" href="/ca/macos/">Mac (vista prèvia)</a><a class="hbtn" href="/ca/linux/">Linux</a></div>
+<p class="fine">Com calculem la nota: <a href="/ca/metodologia/">metodologia</a>. Què no mira: <a href="/ca/metodologia/#limits">límits</a>.</p>
+</div></section>
+</main>
 
 <footer><div class="wrap">
 <nav><a href="/ca/blog/">Bloc</a><a href="/ca/blog/que-es-rosmarops/">Quant a</a><a href="/ca/observatori/">Observatori</a><a href="/ca/metodologia/">Metodologia</a><a href="/ca/preguntes-frequents/">Preguntes freqüents</a><a href="/ca/privadesa/">Privadesa</a><a href="/" hreflang="en" lang="en" aria-label="English">EN</a><a href="/es/" hreflang="es" lang="es" aria-label="Español">ES</a><a href="#" data-cc="show-preferencesModal">Configura les galetes</a></nav>
