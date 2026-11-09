@@ -1,0 +1,22 @@
+{
+ "id": "novedades-0-10",
+ "lang": "ca",
+ "slug": "rosmarops-0-10",
+ "title": "RosmarOps 0.10: nou agents amb nota, tots els teus ordinadors junts i avisos que pots apartar",
+ "excerpt": "En tres dies, RosmarOps ha passat de posar nota a tres agents d'IA a posar-la a nou. Això és el que canvia per a tu, i el que encara no fa.",
+ "content": "novedades-0-10-ca.html",
+ "seo_title": "RosmarOps 0.10: nou agents d'IA amb nota i més",
+ "seo_description": "Codex, Copilot, Gemini CLI, Cline i tres agents més ja tenen nota. A més, un espai per veure tots els teus ordinadors i avisos que pots apartar.",
+ "translations": {
+  "en": "https://rosmarops.com/blog/rosmarops-0-10/",
+  "es": "https://rosmarops.com/es/blog/rosmarops-0-10/"
+ },
+ "category": "notes-de-camp",
+ "tags": {
+  "claude-code": "Claude Code",
+  "codex": "Codex",
+  "cursor": "Cursor"
+ },
+ "image": "rosmarops-img-16-novedades-0-10.jpg",
+ "alt": "Un portàtil amb un mapa de nou agents d'IA, una mà que en col·loca un de nou i, al costat, dos portàtils connectats a un núvol."
+}
