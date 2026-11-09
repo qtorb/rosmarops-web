@@ -1,0 +1,109 @@
+<!-- wp:paragraph -->
+<p><em>En tres días, RosmarOps ha pasado de poner nota a tres agentes de IA a ponerla a nueve. Esto es lo que cambia para ti, y lo que todavía no hace.</em></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Cuando publiqué la 0.4.0, RosmarOps ponía nota a Claude Code y a Cursor. Desde entonces han salido una veintena de versiones, y la mayoría de los cambios no se ven a simple vista. He elegido los tres que más cambian lo que ves en tu informe.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Nueve agentes con nota</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Si usas Codex, Grok Build, GitHub Copilot en VS Code, Antigravity CLI, Gemini CLI o la extensión de Cline para VS Code, tu informe ya dice qué puede hacer ese agente y le pone nota, igual que a Claude Code, Cursor y Hermes Agent. Llegaron en tres tandas: Codex y Grok Build en la 0.8.0, Copilot y Antigravity CLI en la 0.9.0, y Gemini CLI y Cline en la 0.10.0.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Con ellos llegan algunas cosas que conviene saber:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list">
+<!-- wp:list-item -->
+<li><strong>Grok Build carga de serie lo que tienes configurado en Claude Code y en Cursor.</strong> Por eso su nota cuenta también lo que viene de ahí.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>En Windows, si tu organización fija qué puede aprobar Copilot,</strong> el informe sigue esa política y no tus ajustes.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>Cuando decide otro modelo y no tú.</strong> Algunos agentes dejan que otro modelo de IA decida si una acción sigue adelante: la auto-revisión de Codex, el modo auto de Antigravity o el modo Assisted de Copilot. El informe lo dice tal cual: ahí decide un modelo, no tú.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>El uso del ordenador de ChatGPT y Codex.</strong> Si pueden usar una app de tu escritorio sin preguntarte, el informe lo dice, y en rojo si esa app es un terminal.</li>
+<!-- /wp:list-item -->
+</ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>Un aviso: con tantas reglas nuevas, tu nota puede cambiar al actualizar aunque no hayas tocado nada en tu ordenador.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Todos tus ordenadores en un sitio</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Si usas agentes en más de un ordenador, ahora puedes verlos juntos. Conectas cada ordenador una vez y, después de cada revisión, sus resultados llegan cifrados a tu espacio en app.rosmarops.com. Desde la 0.7.5 entras con tu correo y una contraseña, desde el navegador.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Es opcional, y lo que sale está acotado:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list">
+<!-- wp:list-item -->
+<li>solo los resultados de cada revisión, nunca tus claves, tus ficheros ni tu configuración;</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>solo a app.rosmarops.com;</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>y sin tu permiso, RosmarOps no abre ninguna conexión. Cada envío queda anotado en un fichero de tu ordenador, `rosmarops-sends.log`.</li>
+<!-- /wp:list-item -->
+</ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>Es una beta abierta y gratuita, de hasta cinco ordenadores por espacio. Si lo vas a usar, instala la 0.10.3 o posterior: la 0.10.0 no podía guardar en el espacio los resultados de un ordenador donde Codex o ChatGPT podían usar muchas apps sin preguntar.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Avisos que no te aplican</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>No todos los avisos tienen sentido en todos los ordenadores. Desde la 0.8.0, después de una revisión con avisos nuevos, una ventana te pregunta si alguno no te aplica. Si lo marcas, deja de contar en tu nota a partir de la siguiente revisión. Lo puedes recuperar cuando quieras, desde la misma ventana o con `rosmarops findings`. En Mac y Linux la pregunta sale en el terminal, y nunca en las revisiones programadas.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Ojo con una cosa: apartar un aviso no arregla nada. Solo deja de contar en la nota. La configuración del agente sigue igual.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Lo que todavía no hace</h2>
+<!-- /wp:heading -->
+
+<!-- wp:list -->
+<ul class="wp-block-list">
+<!-- wp:list-item -->
+<li><strong>Detectado no es puntuado.</strong> El CLI de Cline, Claude Desktop, la app y el IDE de Antigravity y Copilot en los IDE de JetBrains aparecen como detectados, sin nota. Guardan sus permisos donde RosmarOps no puede leerlos, y lo que no se leyó no cuenta como limpio.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>Solo lee la configuración en reposo.</strong> No ve las opciones con las que arrancas un agente ni lo que decide mientras trabaja.</li>
+<!-- /wp:list-item -->
+</ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>Si ya usas RosmarOps, actualiza a la 0.10.3. Si no, <a href="https://rosmarops.com/es/">aquí tienes cómo empezar</a>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><em>Fuente: las notas de cada versión, de la 0.7.0 a la 0.10.3, en el <a href="https://github.com/qtorb/rosmarops/releases">repositorio de RosmarOps</a>.</em></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><em>Escrito con ayuda de asistentes de IA. La elección de las novedades y la decisión de publicar son mías.</em></p>
+<!-- /wp:paragraph -->
