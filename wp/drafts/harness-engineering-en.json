@@ -1,0 +1,21 @@
+{
+ "id": "harness-engineering",
+ "lang": "en",
+ "slug": "harness-engineering-rosmarops",
+ "title": "Every agent mistake, a piece of the system: harness engineering at RosmarOps",
+ "excerpt": "I build, with AI agents, a tool to use AI agents more carefully. This week its bugs were the same ones RosmarOps looks for in yours. This is how we turned each one into a permanent piece of the system.",
+ "content": "harness-engineering-en.html",
+ "seo_title": "Harness engineering: every agent mistake, a piece",
+ "seo_description": "Six AI-agent mistakes in one week, and the piece that makes each one impossible to repeat. A real case of AI-First methodology.",
+ "translations": {
+  "es": "https://rosmarops.com/es/blog/harness-engineering-rosmarops/",
+  "ca": "https://rosmarops.com/ca/blog/harness-engineering-rosmarops/"
+ },
+ "category": "field-notes",
+ "tags": {
+  "harness-engineering": "harness engineering",
+  "ai-first": "AI-First"
+ },
+ "image": "rosmarops-img-17-harness-engineering.jpg",
+ "alt": "An AI agent moves along a track towards five arches: the first is finished and the other four are only outlined. Behind it are several red marks, joined by lines to pieces already placed beside the track, and a hand sets down the next one."
+}

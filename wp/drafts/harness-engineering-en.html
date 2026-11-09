@@ -1,0 +1,196 @@
+<!-- wp:paragraph -->
+<p><em>I build, with AI agents, a tool to use AI agents more carefully. This week its bugs were the same ones RosmarOps looks for in yours. This is how we turned each one into a permanent piece of the system.</em></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>RosmarOps exists so you can see what your AI agents can do without asking you. And I build it, almost entirely, with AI agents.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>This week that paradox took a second turn. I published two versions in two days, 0.10.1 and 0.10.2, to fix bugs no test had seen. My own computer found them: it has 48 projects and almost every agent RosmarOps knows. Looking at them closely, I saw that <strong>RosmarOps's bugs were the same ones RosmarOps looks for in your agents</strong>: lists that stop matching, permissions nobody knows who decided, errors that stay silent, and an "I'm done" that nobody checks from the outside.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Fixing them was the easy part. What I want to share is what we are doing so they don't come back.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Harness engineering, in one sentence</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Mitchell Hashimoto named a habit: every time an agent makes a mistake, you take the time to build something so it can never make that mistake again. He calls the set of those pieces around the agent the <em>harness</em>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Ichigo adds an order I have adopted as it is. When something fails, the fix is looked for in this order:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list {"ordered":true} -->
+<ol class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Structure:</strong> make the mistake impossible to make.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>An automated check</strong> that always catches it.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>Text in the instructions,</strong> only where judgement is really needed.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>A person who reviews,</strong> at the end.</li>
+<!-- /wp:list-item --></ol>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>A line in the instructions is a wish: the agent will read it and almost always follow it. An automated test is a wall: it holds even if the agent forgets.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Six demons and their piece</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p><strong>1. The text that didn't fit.</strong></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>What happened:</strong> when Codex may use many desktop apps, the finding lists them all. On my computer the title went over the 200 characters the space accepts, and the program dropped the whole review.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>The piece (check):</strong> a test that reads every length and count limit from the format itself and checks that the program respects them even when the data goes over. Today it covers the space's lists and texts. In the next version, the limits will come straight from the format, so no new field is left out.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p><strong>2. The lists that stopped matching.</strong></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>What happened:</strong> the program could say "I detect this agent but can't score it" for the Antigravity app, but that reason wasn't in the list the report accepts. On my computer, the report wasn't written. It happened three times in one week, with three different lists.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>The piece (check):</strong> a parity test that compares 15 lists in the code with the format's and fails if one falls behind. It is already in 0.10.2.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p><strong>3. The tests that looked at another path.</strong></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>What happened:</strong> the factory-score tests built the agents' map by hand, along a different path from the one the real program uses. They were green because they tested something else. That's how the missing rule in Cline's settings slipped through and left my review without a score.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>The piece (structure):</strong> a single way to build the map, the same for the tests and for the program, on a complete test computer with every agent and Windows paths. It arrived with 0.10.3.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p><strong>4. The "I'm done" nobody checked.</strong></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>What happened:</strong> everything was green and it didn't work on my computer. A green test says something works where it was tested, not where it will be used.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>The piece (check and person):</strong><!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>0.10.2 wasn't published until I ran it on my computer and it came out with a score and in my space.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Before publishing, an agent that hadn't written that code reviewed it and approved it with five conditions that had to be met.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>The next step is for the machine to do that test on its own: a clean Windows that, before every release, sets up what the agents leave when installed, runs the new version and checks that it finishes, that there is a score and that sending to the space works. If it fails, the version doesn't ship.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list --></li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p><strong>5. The silence.</strong></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>What happened:</strong> for days, the program dropped reviews and only noted it in a window that closed by itself.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>The piece (check):</strong> no error stays only in the log. Either it shows in the report, or the review stops and says so. 0.10.2 already writes to the sends log every review that couldn't be sent, and why. The full rule, with a test that searches the code for errors that are only logged, is part of the plan.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p><strong>6. Haste with good intentions.</strong></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>What happened:</strong> an agent added a change to the data format without asking. It was right in substance, and still it broke a rule. I myself moved a time on the server and left my space reading the previous day's data.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>The piece (instruction and person):</strong> any format change stops and waits for my signature. Today it is the weakest piece, because it's an instruction. The next step is to turn it into a check.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">The full harness: five phases</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>An engineering review by an agent that hadn't written the code, comparing the project with the industry's reference practices, left a plan in five phases. Each one closes a class of bug, not a single bug:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list {"ordered":true} -->
+<ol class="wp-block-list"><!-- wp:list-item -->
+<li><strong>A single path.</strong> The tests build the map the same way as the real program, on the complete computer. That's 0.10.3.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>A broken version doesn't ship.</strong> The Windows test before every release, and a procedure to withdraw a version if needed.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>A single registry of agents.</strong> Today, adding an agent touches about 18 places in 12 files. With the registry, agent number 15 won't be able to break the other 14.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>Robustness on real computers.</strong> Badly written files, very long paths, unusual encodings. The worst that can happen is that something shows as "not read", never as clean.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>Process and metrics.</strong> Every change with its independent review, every version with what it includes, and a measure of how many versions have to be withdrawn and how long the fix takes.</li>
+<!-- /wp:list-item --></ol>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>When all five are in place, another independent review will audit the whole code.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">What I take away</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>In my AI-First guide I put it this way: a failure fixed where it was observed is hidden, not fixed. This week I've seen it in my own product. Every agent mistake was a question about the system it works in: if tomorrow it happens again somewhere else, does anything stop it?</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The job isn't to get an agent that never makes mistakes. It's to build a harness where its mistakes can't reach you twice.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">If you use RosmarOps</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Update to 0.10.3. If your space hadn't received reviews for days, or showed different figures from your report, run the program once and it should catch up. Your score may change, because it now sees things that used to slip through.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><em>Sources: Mitchell Hashimoto, <a href="https://mitchellh.com/writing/my-ai-adoption-journey">"My AI Adoption Journey"</a> (5 February 2026); <a href="https://x.com/iiiichigo_chan/status/2118397992239571196">Ichigo's thread on X</a> (5 November 2026); Albert Garcia Pujadas, <a href="https://guia.qtorb.com/#/dos-puertas">AI-First Guide</a> (in Spanish); notes of versions 0.10.1, 0.10.2 and 0.10.3 in the <a href="https://github.com/qtorb/rosmarops/releases">RosmarOps repository</a>.</em></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><em>Written with the help of AI assistants. The experience, the mistakes and the decision to publish are mine.</em></p>
+<!-- /wp:paragraph -->
