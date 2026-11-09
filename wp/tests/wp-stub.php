@@ -34,6 +34,16 @@ $GLOBALS['wpdb'] = new StubWpdb(getenv('DB_PREFIX') ?: 'wptest_');
 // GTM-111 visits: the switch, the static pages folder and the published posts come from the test.
 define('ROSMAROPS_VISITS_ON', (bool) getenv('VISITS_ON')); // the test decides, whatever the plugin's default
 if (getenv('VISITS_DOCROOT')) { define('ROSMAROPS_VISITS_DOCROOT', getenv('VISITS_DOCROOT')); }
+// GTM-125 people per day: the test fixes the UTC day; network options live in a real table, like wp_sitemeta.
+if (getenv('VISITS_TODAY')) { define('ROSMAROPS_VISITS_TODAY', getenv('VISITS_TODAY')); }
+function __opt_table() { return $GLOBALS['wpdb']->base_prefix . 'stub_sitemeta'; }
+function __opt_q($sql) { $db = $GLOBALS['wpdb']->raw(); $db->query('CREATE TABLE IF NOT EXISTS `' . __opt_table() . '` (k VARCHAR(191) PRIMARY KEY, v LONGTEXT)'); return $db->query($sql); }
+function get_site_option($k, $d = false) { $db = $GLOBALS['wpdb']->raw(); $r = __opt_q("SELECT v FROM `" . __opt_table() . "` WHERE k = '" . $db->real_escape_string($k) . "'"); $row = $r ? $r->fetch_row() : null; return $row ? unserialize($row[0]) : $d; }
+function add_site_option($k, $v) { $db = $GLOBALS['wpdb']->raw(); try { return (bool) __opt_q("INSERT INTO `" . __opt_table() . "` VALUES ('" . $db->real_escape_string($k) . "', '" . $db->real_escape_string(serialize($v)) . "')"); } catch (Throwable $e) { return false; } }
+function update_site_option($k, $v) { $db = $GLOBALS['wpdb']->raw(); return (bool) __opt_q("REPLACE INTO `" . __opt_table() . "` VALUES ('" . $db->real_escape_string($k) . "', '" . $db->real_escape_string(serialize($v)) . "')"); }
+function delete_site_option($k) { $db = $GLOBALS['wpdb']->raw(); return (bool) __opt_q("DELETE FROM `" . __opt_table() . "` WHERE k = '" . $db->real_escape_string($k) . "'"); }
+function wp_next_scheduled($hook) { return $GLOBALS['__scheduled'][$hook] ?? false; }
+function wp_schedule_event($ts, $rec, $hook) { $GLOBALS['__scheduled'][$hook] = $ts; return true; }
 function url_to_postid($url) { return in_array($url, array_filter(explode(' ', (string) getenv('VISITS_POSTS'))), true) ? 7 : 0; }
 function wp_enqueue_script(...$a) { $GLOBALS['__enqueued'][] = $a; }
 require __DIR__ . '/../mu-plugins/rosmarops-downloads.php';
