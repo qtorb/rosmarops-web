@@ -47,12 +47,12 @@ def db_available():
 
 
 class Server:
-    def __init__(self, on, docroot, posts=""):
+    def __init__(self, on, docroot, posts="", today=""):
         s = socket.socket()
         s.bind(("127.0.0.1", 0))
         self.port = s.getsockname()[1]
         s.close()
-        env = dict(os.environ, DB_PREFIX=PREFIX, VISITS_DOCROOT=str(docroot), VISITS_POSTS=posts)
+        env = dict(os.environ, DB_PREFIX=PREFIX, VISITS_DOCROOT=str(docroot), VISITS_POSTS=posts, VISITS_TODAY=today)
         if on:
             env["VISITS_ON"] = "1"
         self.proc = subprocess.Popen(["php", "-S", f"127.0.0.1:{self.port}", str(TESTS / "router.php")],
@@ -228,7 +228,7 @@ class Visits(unittest.TestCase):
         self.assertEqual(st, 200)
         self.assertEqual(h.get("Cache-Control"), "public, max-age=3600")
         d = json.loads(body)
-        self.assertEqual(set(d), {"generated_at", "rows"})
+        self.assertEqual(set(d), {"generated_at", "rows", "people"})  # GTM-125 adds people; the rest is as before
         self.assertEqual([(r["page"], r["lang"], r["ref"], r["count"]) for r in d["rows"]], [("/methodology/", "en", "github", 1)])
         self.assertEqual(set(d["rows"][0]), {"day", "page", "lang", "ref", "count"})
         for m in ["PUT", "DELETE", "PATCH"]:
@@ -250,6 +250,132 @@ class Visits(unittest.TestCase):
         dump = mysql(f"SELECT * FROM {TABLE}")
         for leak in ["127.0.0.1", "Mozilla", "Chrome", "google.com"]:
             self.assertNotIn(leak, dump)
+
+
+PRINTS = PREFIX + "rosmarops_visits_prints"
+PEOPLE = PREFIX + "rosmarops_people"
+OPTIONS = PREFIX + "stub_sitemeta"
+UA2 = "Mozilla/5.0 (Macintosh; Intel Mac OS X 14_5) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Safari/605.1.15"
+
+
+@unittest.skipUnless(db_available(), "no MySQL/MariaDB reachable")
+class People(unittest.TestCase):
+    """GTM-125: different people per UTC day, from a daily-key HMAC of IP and user agent that is never stored."""
+
+    def setUp(self):
+        self.drop()
+        self.tmp = tempfile.mkdtemp()
+        for p in ["", "methodology", "es/metodologia"]:
+            d = Path(self.tmp, p)
+            d.mkdir(parents=True, exist_ok=True)
+            (d / "index.html").write_text("<html></html>")
+        self.srv = None
+        self.day("2026-11-09")
+
+    def tearDown(self):
+        self.srv.stop()
+        shutil.rmtree(self.tmp)
+        self.drop()
+
+    def drop(self):
+        mysql(f"DROP TABLE IF EXISTS {TABLE}, {PRINTS}, {PEOPLE}, {OPTIONS}")
+
+    def day(self, d):
+        if self.srv:
+            self.srv.stop()
+        self.srv = Server(True, self.tmp, today=d)
+
+    def visit(self, page, ref="", ua=UA, headers=None, cookie=None):
+        h = {"Origin": ORIGIN, "User-Agent": ua, "Content-Type": "application/json"}
+        h.update(headers or {})
+        if cookie:
+            h["Cookie"] = cookie
+        return self.srv.req("/wp-json/rosmarops/v1/visits", "POST", json.dumps({"p": page, "r": ref}), h)
+
+    def people(self):
+        return mysql(f"SELECT day, lang, ref, count FROM {PEOPLE} ORDER BY day, lang, ref").splitlines()
+
+    def visits_total(self):
+        return int(mysql(f"SELECT COALESCE(SUM(count), 0) FROM {TABLE}").strip())
+
+    def key(self):
+        out = mysql(f"SELECT v FROM {OPTIONS} WHERE k = 'rosmarops_people_key'").strip()
+        return out
+
+    def test_same_ip_and_browser_twice_is_one_person_and_two_visits(self):
+        self.visit("/", "www.google.com")
+        self.visit("/methodology/", "")
+        self.assertEqual(self.visits_total(), 2)
+        # the person is counted with the language and referrer kind of the first visit of the day
+        self.assertEqual(self.people(), ["2026-11-09\ten\tgoogle\t1"])
+
+    def test_another_browser_is_another_person(self):
+        self.visit("/")
+        self.visit("/es/metodologia/", ua=UA2)
+        self.assertEqual(self.people(), ["2026-11-09\ten\tdirect\t1", "2026-11-09\tes\tdirect\t1"])
+
+    def test_new_day_new_key_and_empty_prints(self):
+        self.visit("/")
+        k1 = self.key()
+        self.assertIn("2026-11-09", k1)
+        self.assertEqual(int(mysql(f"SELECT COUNT(*) FROM {PRINTS}").strip()), 1)
+        self.day("2026-11-10")
+        self.srv.req("/wp-json/rosmarops/v1/visits")  # nothing changes on a read
+        self.assertEqual(self.key(), k1)
+        self.visit("/methodology/", ua=UA2)  # first counted visit of the new day, from someone else
+        k2 = self.key()
+        self.assertIn("2026-11-10", k2)
+        self.assertNotEqual(k1, k2)
+        old_hex = re.search(r"[0-9a-f]{64}", k1).group(0)
+        everything = mysql(f"SELECT * FROM {OPTIONS}") + mysql(f"SELECT * FROM {PRINTS}") + mysql(f"SELECT * FROM {PEOPLE}")
+        self.assertNotIn(old_hex, everything)  # the old key no longer exists
+        self.assertEqual(int(mysql(f"SELECT COUNT(*) FROM {PRINTS}").strip()), 1)  # only today's fingerprint
+        self.assertEqual(int(mysql(f"SELECT COUNT(*) FROM {OPTIONS}").strip()), 1)  # just the key, no lock left
+        # the same person as yesterday counts again today
+        self.visit("/")
+        self.assertEqual(self.people(), ["2026-11-09\ten\tdirect\t1", "2026-11-10\ten\tdirect\t2"])
+
+    def test_cron_rotation_without_visits(self):
+        self.visit("/")
+        k1 = self.key()
+        code = ("require %s; do_action('rosmarops_people_rotate');" % json.dumps(str(TESTS / "wp-stub.php")))
+        env = dict(os.environ, DB_PREFIX=PREFIX, VISITS_ON="1", VISITS_TODAY="2026-11-10", VISITS_DOCROOT=self.tmp)
+        subprocess.run(["php", "-r", code], env=env, check=True, capture_output=True)
+        self.assertNotEqual(self.key(), k1)
+        self.assertEqual(mysql(f"SELECT COUNT(*) FROM {PRINTS}").strip(), "0")
+
+    def test_ip_and_browser_appear_nowhere(self):
+        self.visit("/", "www.google.com")
+        self.visit("/methodology/", ua=UA2)
+        dump = "".join(mysql(f"SELECT * FROM {t}") for t in (TABLE, PRINTS, PEOPLE, OPTIONS))
+        for leak in ["127.0.0.1", "Mozilla", "Chrome", "Safari", "Macintosh", "Windows NT"]:
+            self.assertNotIn(leak, dump, leak)
+        self.assertEqual([c.split("\t")[0] for c in mysql(f"SHOW COLUMNS FROM {PRINTS}").splitlines()], ["h"])
+        src = PLUGIN.read_text(encoding="utf-8")
+        block = src[src.index("people per day (GTM-125)"):src.index("if (ROSMAROPS_VISITS_ON) {")]
+        for w in ("error_log", "file_put_contents", "setcookie", "set_transient", "update_option(", "add_option("):
+            self.assertNotIn(w, block, w)
+
+    def test_robots_team_and_prefetch_count_no_people(self):
+        self.visit("/", ua="Googlebot/2.1 (+http://www.google.com/bot.html)")
+        self.visit("/", headers={"Sec-Purpose": "prefetch"})
+        self.visit("/", cookie="wordpress_logged_in_abc=1")
+        self.visit("/", headers={"Origin": "https://example.com"})
+        for t in (TABLE, PRINTS, PEOPLE):
+            if mysql(f"SHOW TABLES LIKE '{t}'").strip():
+                self.assertEqual(mysql(f"SELECT COUNT(*) FROM {t}").strip(), "0", t)
+        self.visit("/")  # and a person reading does count, so the four above were filtered, not broken
+        self.assertEqual(self.people(), ["2026-11-09\ten\tdirect\t1"])
+
+    def test_endpoint_adds_people_and_keeps_the_rest(self):
+        self.visit("/", "www.google.com")
+        self.visit("/")
+        st, h, body = self.srv.req("/wp-json/rosmarops/v1/visits")
+        d = json.loads(body)
+        self.assertEqual(sorted(d), ["generated_at", "people", "rows"])
+        self.assertEqual(d["rows"], [{"day": "2026-11-09", "page": "/", "lang": "en", "ref": "direct", "count": 1},
+                                     {"day": "2026-11-09", "page": "/", "lang": "en", "ref": "google", "count": 1}])
+        self.assertEqual(d["people"], [{"day": "2026-11-09", "lang": "en", "ref": "google", "count": 1}])
 
 
 @unittest.skipUnless(db_available(), "no MySQL/MariaDB reachable")
