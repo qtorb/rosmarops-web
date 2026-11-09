@@ -1,0 +1,196 @@
+<!-- wp:paragraph -->
+<p><em>Construeixo amb agents d'IA una eina per fer servir els agents d'IA amb més cura. Aquesta setmana els seus errors van ser els mateixos que RosmarOps busca en els teus. Així hem convertit cadascun en una peça permanent del sistema.</em></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>RosmarOps existeix perquè vegis què poden fer els teus agents d'IA sense preguntar-te. I el construeixo, gairebé sencer, amb agents d'IA.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Aquesta setmana aquesta paradoxa va fer una segona volta. Vaig publicar dues versions en dos dies, la 0.10.1 i la 0.10.2, per arreglar errors que cap prova havia vist. Els va trobar el meu propi ordinador, que té 48 projectes i gairebé tots els agents que RosmarOps coneix. En mirar-los de prop vaig veure que <strong>els errors de RosmarOps eren els mateixos que RosmarOps busca en els teus agents</strong>: llistes que deixen de coincidir, permisos que ningú sap qui va decidir, errors que callen i un «he acabat» que ningú comprova des de fora.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Arreglar-los era el fàcil. El que vull explicar és què fem perquè no tornin.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Harness engineering, en una frase</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Mitchell Hashimoto va posar nom a un costum: cada vegada que un agent comet un error, dediques temps a construir alguna cosa perquè no el pugui tornar a cometre. Al conjunt d'aquestes peces al voltant de l'agent l'anomena <em>harness</em>, l'arnès.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Ichigo hi afegeix un ordre que he adoptat tal qual. Quan alguna cosa falla, la solució es busca en aquest ordre:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list {"ordered":true} -->
+<ol class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Estructura:</strong> que l'error sigui impossible de cometre.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>Una comprovació automàtica</strong> que el cacï sempre.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>Text a les instruccions,</strong> només on de debò cal criteri.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>Una persona que revisa,</strong> al final.</li>
+<!-- /wp:list-item --></ol>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>Una línia a les instruccions és un desig: l'agent la llegirà i gairebé sempre la complirà. Una prova automàtica és un mur: es compleix encara que se li oblidi.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Sis dimonis i la seva peça</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p><strong>1. El text que no hi cabia.</strong></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Què va passar:</strong> quan Codex té permís per fer servir moltes aplicacions de l'escriptori, l'avís les enumera totes. Al meu ordinador, el títol superava els 200 caràcters que admet l'espai, i el programa descartava la revisió sencera.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>La peça (comprovació):</strong> una prova que llegeix del mateix format cada límit de llargada i de quantitat, i comprova que el programa els respecta encara que les dades els superin. Avui cobreix les llistes i els textos de l'espai. A la propera versió, els límits sortiran directament del format, perquè cap camp nou quedi fora.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p><strong>2. Les llistes que van deixar de coincidir.</strong></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Què va passar:</strong> el programa sabia dir «aquest agent el detecto, però no el puc puntuar» per a l'app d'Antigravity, però aquest motiu no era a la llista que accepta l'informe. Al meu ordinador, l'informe no s'escrivia. Va passar tres vegades en una setmana, amb tres llistes diferents.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>La peça (comprovació):</strong> una prova de paritat que compara 15 llistes del codi amb les del format i falla si una es queda enrere. Ja és a la 0.10.2.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p><strong>3. Les proves que miraven un altre camí.</strong></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Què va passar:</strong> les proves de la nota de fàbrica muntaven el mapa d'agents a mà, per un camí diferent del que fa servir el programa de debò. Estaven en verd perquè provaven una altra cosa. Així es va escapar la regla que faltava als ajustos de Cline, que deixava la meva revisió sense nota.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>La peça (estructura):</strong> una sola manera de muntar el mapa, la mateixa per a les proves i per al programa, sobre un ordinador de prova complet amb tots els agents i rutes de Windows. Va arribar amb la 0.10.3.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p><strong>4. L'«he acabat» sense comprovar.</strong></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Què va passar:</strong> tot estava en verd i al meu ordinador no funcionava. Una prova en verd diu que una cosa funciona on s'ha provat, no on es farà servir.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>La peça (comprovació i persona):</strong><!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>La 0.10.2 no es va publicar fins que la vaig passar al meu ordinador i va sortir amb nota i al meu espai.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Abans de publicar-la la va revisar un agent que no havia escrit aquell codi, i la va aprovar amb cinc condicions que s'havien de complir.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>El pas següent és que la màquina faci aquesta prova sola: un Windows net que, abans de cada llançament, munta el que deixen els agents en instal·lar-se, executa la versió nova i comprova que acaba, que hi ha nota i que l'enviament a l'espai funciona. Si falla, la versió no surt.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list --></li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p><strong>5. El silenci.</strong></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Què va passar:</strong> durant dies, el programa llençava revisions i només ho apuntava en una finestra que es tancava sola.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>La peça (comprovació):</strong> cap error es queda només al registre. O apareix a l'informe, o la revisió s'atura i ho diu. La 0.10.2 ja apunta al registre d'enviaments cada revisió que no s'ha pogut enviar, i per què. La regla completa, amb una prova que busca al codi errors que només es registren, forma part del pla.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p><strong>6. Les presses amb bona intenció.</strong></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Què va passar:</strong> un agent va afegir un canvi al format de dades sense demanar permís. Tenia raó en el fons, i tot i així es va saltar una regla. Jo mateix vaig moure una hora al servidor i vaig deixar el meu espai llegint dades del dia anterior.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>La peça (instrucció i persona):</strong> qualsevol canvi de format s'atura i espera la meva signatura. Avui és la peça més feble, perquè és una instrucció. El pas següent és convertir-la en comprovació.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">L'arnès complet: cinc fases</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Una revisió d'enginyeria feta per un agent que no havia escrit el codi, comparant el projecte amb les pràctiques de referència de la indústria, va deixar el pla en cinc fases. Cadascuna tanca una classe d'error, no un error solt:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list {"ordered":true} -->
+<ol class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Un sol camí.</strong> Les proves munten el mapa igual que el programa real, sobre l'ordinador complet. És la 0.10.3.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>Una versió trencada no es publica.</strong> La prova a Windows abans de cada llançament, i un procediment per retirar una versió si calgués.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>Un registre únic d'agents.</strong> Avui, afegir un agent toca uns 18 llocs en 12 fitxers. Amb el registre, l'agent número 15 no podrà trencar els altres 14.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>Robustesa davant d'ordinadors reals.</strong> Fitxers mal escrits, rutes llarguíssimes, codificacions estranyes. El pitjor que pot passar és que alguna cosa surti com a «no llegit», mai com a net.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>Procés i mètriques.</strong> Cada canvi amb la seva revisió independent, cada versió amb el que inclou, i una mesura de quantes versions cal retirar i quant es triga a arreglar-les.</li>
+<!-- /wp:list-item --></ol>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>Quan hi siguin les cinc, una altra revisió independent auditarà el codi sencer.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">El que me n'emporto</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>A la meva guia AI-First ho vaig escriure així: un error arreglat on s'observa està amagat, no arreglat. Aquesta setmana ho he comprovat al meu propi producte. Cada error d'un agent era una pregunta sobre el sistema on treballa: si demà torna a passar en un altre lloc, alguna cosa l'atura?</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>La feina no és aconseguir un agent que no s'equivoqui. És construir un arnès on els seus errors no et puguin arribar dues vegades.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Si fas servir RosmarOps</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Actualitza a la 0.10.3. Si el teu espai feia dies que no rebia revisions, o et mostrava xifres diferents de les del teu informe, passa el programa una vegada i s'hauria de posar al dia. La teva nota pot canviar, perquè ara veu coses que abans se li escapaven.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><em>Fonts: Mitchell Hashimoto, <a href="https://mitchellh.com/writing/my-ai-adoption-journey">«My AI Adoption Journey»</a> (5 de febrer de 2026); <a href="https://x.com/iiiichigo_chan/status/2118397992239571196">fil d'Ichigo a X</a> (5 de novembre de 2026); Albert Garcia Pujadas, <a href="https://guia.qtorb.com/#/dos-puertas">Guia AI-First</a> (en castellà); notes de les versions 0.10.1, 0.10.2 i 0.10.3 al <a href="https://github.com/qtorb/rosmarops/releases">repositori de RosmarOps</a>.</em></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><em>Escrit amb l'ajuda d'assistents d'IA. L'experiència, els errors i la decisió de publicar són meus.</em></p>
+<!-- /wp:paragraph -->
