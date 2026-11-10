@@ -104,6 +104,8 @@ jobs:
           python -m unittest wp/tests/test_gtm124_agente.py
           python -m unittest wp/tests/test_download_sources.py
           python -m unittest wp/tests/test_static_about.py
+          php -l wp/mu-plugins/rosmarops-consent.php
+          python -m unittest wp/tests/test_consent_footer.py
 
       - name: Home download buttons by system, with the one-line check in Chromium (GTM-129, GTM-129b)
         run: |
