@@ -19,7 +19,7 @@
       "status": "evaluated",
       "since_version": "0.10.0"
     },
-    "reviewed_at": "2026-10-28",
+    "reviewed_at": "2026-11-10",
     "sources": [
       {
         "field": "kinds",
@@ -39,6 +39,82 @@
   "versions": [],
   "changes": [],
   "ratings": [],
+  "capabilities": [
+    {
+      "id": "cap-read-any",
+      "action": "read_files",
+      "scope": "any_path",
+      "default": "allow",
+      "source": {
+        "url": "https://docs.cline.bot/features/auto-approve",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "via": "tools"
+    },
+    {
+      "id": "cap-write-any",
+      "action": "write_files",
+      "scope": "any_path",
+      "default": "allow",
+      "source": {
+        "url": "https://docs.cline.bot/features/auto-approve",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "note": {
+        "en": "A fresh install reads and edits files without asking.",
+        "es": "Recién instalado, lee y edita ficheros sin preguntar.",
+        "ca": "Acabat d'instal·lar, llegeix i edita fitxers sense preguntar."
+      },
+      "via": "tools"
+    },
+    {
+      "id": "cap-shell",
+      "action": "execute_commands",
+      "scope": "all_commands",
+      "default": "ask",
+      "source": {
+        "url": "https://docs.cline.bot/features/auto-approve",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "via": "shell"
+    },
+    {
+      "id": "cap-browser",
+      "action": "network",
+      "scope": "any_destination",
+      "default": "allow",
+      "source": {
+        "url": "https://docs.cline.bot/features/auto-approve",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "note": {
+        "en": "Its browser tool runs without asking.",
+        "es": "Su herramienta de navegador funciona sin preguntar.",
+        "ca": "La seva eina de navegador funciona sense preguntar."
+      },
+      "via": "tools"
+    },
+    {
+      "id": "cap-mcp",
+      "action": "use_mcp_tools",
+      "scope": "all_mcp_tools",
+      "default": "allow",
+      "source": {
+        "url": "https://docs.cline.bot/features/auto-approve",
+        "official": true,
+        "accessed_at": "2026-11-07"
+      },
+      "note": {
+        "en": "One setting, on by default, approves every MCP tool.",
+        "es": "Un solo ajuste, activado de serie, aprueba todas las herramientas MCP.",
+        "ca": "Un sol ajust, activat de sèrie, aprova totes les eines MCP."
+      }
+    }
+  ],
   "surfaces": [
     {
       "surface": "mcp",

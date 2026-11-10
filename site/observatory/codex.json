@@ -21,9 +21,99 @@
       "status": "evaluated",
       "since_version": "0.8.0"
     },
-    "reviewed_at": "2026-10-28"
+    "reviewed_at": "2026-11-10"
   },
   "versions": [],
   "changes": [],
-  "ratings": []
+  "ratings": [],
+  "default_mode": {
+    "name": "on_request",
+    "who_decides": "user",
+    "source": {
+      "url": "https://github.com/openai/codex/blob/67f0994/codex-rs/protocol/src/protocol.rs#L1154-L1156",
+      "official": true,
+      "accessed_at": "2026-11-01"
+    },
+    "note": {
+      "en": "Starts in the Auto preset: it works inside the project without asking and asks you before going further.",
+      "es": "Empieza en el modo Auto: trabaja dentro del proyecto sin preguntar y te pregunta antes de ir más allá.",
+      "ca": "Comença en el mode Auto: treballa dins del projecte sense preguntar i et pregunta abans d'anar més enllà."
+    },
+    "basis": "documented_default"
+  },
+  "capabilities": [
+    {
+      "id": "cap-read-any",
+      "action": "read_files",
+      "scope": "any_path",
+      "default": "allow",
+      "source": {
+        "url": "https://learn.chatgpt.com/docs/agent-approvals-security",
+        "official": true,
+        "accessed_at": "2026-11-01"
+      },
+      "note": {
+        "en": "It reads every file your user account can read, not only the project.",
+        "es": "Lee todos los ficheros que puede leer tu usuario, no solo los del proyecto.",
+        "ca": "Llegeix tots els fitxers que pot llegir el teu usuari, no només els del projecte."
+      },
+      "via": "tools"
+    },
+    {
+      "id": "cap-write-working",
+      "action": "write_files",
+      "scope": "working_directories",
+      "default": "allow",
+      "source": {
+        "url": "https://learn.chatgpt.com/docs/agent-approvals-security",
+        "official": true,
+        "accessed_at": "2026-11-01"
+      }
+    },
+    {
+      "id": "cap-write-outside",
+      "action": "write_files",
+      "scope": "outside_working_directories",
+      "default": "ask",
+      "source": {
+        "url": "https://learn.chatgpt.com/docs/agent-approvals-security",
+        "official": true,
+        "accessed_at": "2026-11-01"
+      }
+    },
+    {
+      "id": "cap-write-protected",
+      "action": "write_files",
+      "scope": "protected_paths",
+      "default": "ask",
+      "source": {
+        "url": "https://github.com/openai/codex/blob/67f0994/codex-rs/protocol/src/permissions.rs#L40-L43",
+        "official": true,
+        "accessed_at": "2026-11-01"
+      }
+    },
+    {
+      "id": "cap-shell-sandbox",
+      "action": "execute_commands",
+      "scope": "all_commands",
+      "default": "allow",
+      "via": "sandboxed_shell",
+      "source": {
+        "url": "https://github.com/openai/codex/blob/67f0994/codex-rs/protocol/src/protocol.rs#L1154-L1156",
+        "official": true,
+        "accessed_at": "2026-11-01"
+      }
+    },
+    {
+      "id": "cap-network",
+      "action": "network",
+      "scope": "any_destination",
+      "default": "ask",
+      "source": {
+        "url": "https://learn.chatgpt.com/docs/agent-approvals-security",
+        "official": true,
+        "accessed_at": "2026-11-01"
+      }
+    }
+  ]
 }

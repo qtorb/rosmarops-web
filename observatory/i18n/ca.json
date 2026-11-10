@@ -201,6 +201,8 @@
   "summary.cap.use_mcp_tools.all_mcp_tools": "fer servir totes les eines dels seus servidors MCP, complements que li donen eines extra, com l'accés a altres serveis",
   "summary.cap.read_files.other_agents_credentials": "agafar en préstec els inicis de sessió d'altres agents si no en té un de propi",
   "summary.cap.write_files.other_agents_credentials": "reescriure els fitxers de credencials d'aquests agents en renovar un inici de sessió prestat",
+  "summary.cap.execute_commands.all_commands.sandboxed_shell": "executar ordres al seu terminal, dins del seu entorn aïllat (sandbox)",
+  "summary.cap.network.any_destination": "cercar a internet",
   "summary.since": " (des de {agent} {version})",
   "summary.who.user": "et pregunta a tu abans del que necessita permís",
   "summary.who.another_model": "el que normalment necessitaria el teu permís ho aprova o ho bloqueja un altre model d'IA, no tu",

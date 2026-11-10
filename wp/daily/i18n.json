@@ -229,8 +229,12 @@
   "_published": [
     "antigravity",
     "claude-code",
+    "cline",
+    "codex",
     "cursor",
+    "gemini-cli",
     "github-copilot",
+    "grok-build",
     "hermes-agent",
     "kanvas"
   ],

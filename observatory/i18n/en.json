@@ -201,6 +201,8 @@
   "summary.cap.use_mcp_tools.all_mcp_tools": "use every tool of its MCP servers, add-ons that give it extra tools, such as access to other services",
   "summary.cap.read_files.other_agents_credentials": "borrow other agents' logins when it has none of its own",
   "summary.cap.write_files.other_agents_credentials": "rewrite those agents' credential files when it refreshes a borrowed login",
+  "summary.cap.execute_commands.all_commands.sandboxed_shell": "run commands in its terminal, inside its isolated environment (sandbox)",
+  "summary.cap.network.any_destination": "search the web",
   "summary.since": " (since {agent} {version})",
   "summary.who.user": "it asks you before what needs permission",
   "summary.who.another_model": "what would otherwise need your permission is approved or blocked by another AI model, not by you",

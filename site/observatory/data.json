@@ -22,11 +22,87 @@
           "status": "evaluated",
           "since_version": "0.10.0"
         },
-        "reviewed_at": "2026-10-28"
+        "reviewed_at": "2026-11-10"
       },
       "versions": [],
       "changes": [],
-      "ratings": []
+      "ratings": [],
+      "capabilities": [
+        {
+          "id": "cap-read-any",
+          "action": "read_files",
+          "scope": "any_path",
+          "default": "allow",
+          "source": {
+            "url": "https://docs.cline.bot/features/auto-approve",
+            "official": true,
+            "accessed_at": "2026-11-07"
+          },
+          "via": "tools"
+        },
+        {
+          "id": "cap-write-any",
+          "action": "write_files",
+          "scope": "any_path",
+          "default": "allow",
+          "source": {
+            "url": "https://docs.cline.bot/features/auto-approve",
+            "official": true,
+            "accessed_at": "2026-11-07"
+          },
+          "note": {
+            "en": "A fresh install reads and edits files without asking.",
+            "es": "Recién instalado, lee y edita ficheros sin preguntar.",
+            "ca": "Acabat d'instal·lar, llegeix i edita fitxers sense preguntar."
+          },
+          "via": "tools"
+        },
+        {
+          "id": "cap-shell",
+          "action": "execute_commands",
+          "scope": "all_commands",
+          "default": "ask",
+          "source": {
+            "url": "https://docs.cline.bot/features/auto-approve",
+            "official": true,
+            "accessed_at": "2026-11-07"
+          },
+          "via": "shell"
+        },
+        {
+          "id": "cap-browser",
+          "action": "network",
+          "scope": "any_destination",
+          "default": "allow",
+          "source": {
+            "url": "https://docs.cline.bot/features/auto-approve",
+            "official": true,
+            "accessed_at": "2026-11-07"
+          },
+          "note": {
+            "en": "Its browser tool runs without asking.",
+            "es": "Su herramienta de navegador funciona sin preguntar.",
+            "ca": "La seva eina de navegador funciona sense preguntar."
+          },
+          "via": "tools"
+        },
+        {
+          "id": "cap-mcp",
+          "action": "use_mcp_tools",
+          "scope": "all_mcp_tools",
+          "default": "allow",
+          "source": {
+            "url": "https://docs.cline.bot/features/auto-approve",
+            "official": true,
+            "accessed_at": "2026-11-07"
+          },
+          "note": {
+            "en": "One setting, on by default, approves every MCP tool.",
+            "es": "Un solo ajuste, activado de serie, aprueba todas las herramientas MCP.",
+            "ca": "Un sol ajust, activat de sèrie, aprova totes les eines MCP."
+          }
+        }
+      ]
     },
     {
       "schema_version": 1,
@@ -47,7 +123,7 @@
           "status": "evaluated",
           "since_version": "0.10.0"
         },
-        "reviewed_at": "2026-10-30"
+        "reviewed_at": "2026-11-10"
       },
       "versions": [
         {
@@ -61,7 +137,80 @@
         }
       ],
       "changes": [],
-      "ratings": []
+      "ratings": [],
+      "default_mode": {
+        "name": "default",
+        "who_decides": "user",
+        "source": {
+          "url": "https://geminicli.com/docs/reference/configuration",
+          "official": true,
+          "accessed_at": "2026-11-07"
+        },
+        "basis": "documented_default"
+      },
+      "capabilities": [
+        {
+          "id": "cap-read-working",
+          "action": "read_files",
+          "scope": "working_directories",
+          "default": "allow",
+          "source": {
+            "url": "https://geminicli.com/docs/reference/configuration",
+            "official": true,
+            "accessed_at": "2026-11-07"
+          }
+        },
+        {
+          "id": "cap-write-working",
+          "action": "write_files",
+          "scope": "working_directories",
+          "default": "ask",
+          "source": {
+            "url": "https://geminicli.com/docs/reference/configuration",
+            "official": true,
+            "accessed_at": "2026-11-07"
+          }
+        },
+        {
+          "id": "cap-shell",
+          "action": "execute_commands",
+          "scope": "all_commands",
+          "default": "ask",
+          "source": {
+            "url": "https://geminicli.com/docs/reference/configuration",
+            "official": true,
+            "accessed_at": "2026-11-07"
+          },
+          "via": "shell"
+        },
+        {
+          "id": "cap-web-search",
+          "action": "network",
+          "scope": "any_destination",
+          "default": "allow",
+          "source": {
+            "url": "https://geminicli.com/docs/reference/configuration",
+            "official": true,
+            "accessed_at": "2026-11-07"
+          },
+          "note": {
+            "en": "Google web search runs without asking. What it searches for can carry part of your work off the computer. Fetching a web page asks.",
+            "es": "La búsqueda web de Google funciona sin preguntar. Lo que busca puede llevarse parte de tu trabajo fuera del ordenador. Abrir una página web pregunta.",
+            "ca": "La cerca web de Google funciona sense preguntar. El que cerca pot endur-se part de la teva feina fora de l'ordinador. Obrir una pàgina web pregunta."
+          }
+        },
+        {
+          "id": "cap-mcp",
+          "action": "use_mcp_tools",
+          "scope": "all_mcp_tools",
+          "default": "ask",
+          "source": {
+            "url": "https://geminicli.com/docs/reference/configuration",
+            "official": true,
+            "accessed_at": "2026-11-07"
+          }
+        }
+      ]
     },
     {
       "schema_version": 1,
@@ -244,11 +393,101 @@
           "status": "evaluated",
           "since_version": "0.8.0"
         },
-        "reviewed_at": "2026-10-28"
+        "reviewed_at": "2026-11-10"
       },
       "versions": [],
       "changes": [],
-      "ratings": []
+      "ratings": [],
+      "default_mode": {
+        "name": "on_request",
+        "who_decides": "user",
+        "source": {
+          "url": "https://github.com/openai/codex/blob/67f0994/codex-rs/protocol/src/protocol.rs#L1154-L1156",
+          "official": true,
+          "accessed_at": "2026-11-01"
+        },
+        "note": {
+          "en": "Starts in the Auto preset: it works inside the project without asking and asks you before going further.",
+          "es": "Empieza en el modo Auto: trabaja dentro del proyecto sin preguntar y te pregunta antes de ir más allá.",
+          "ca": "Comença en el mode Auto: treballa dins del projecte sense preguntar i et pregunta abans d'anar més enllà."
+        },
+        "basis": "documented_default"
+      },
+      "capabilities": [
+        {
+          "id": "cap-read-any",
+          "action": "read_files",
+          "scope": "any_path",
+          "default": "allow",
+          "source": {
+            "url": "https://learn.chatgpt.com/docs/agent-approvals-security",
+            "official": true,
+            "accessed_at": "2026-11-01"
+          },
+          "note": {
+            "en": "It reads every file your user account can read, not only the project.",
+            "es": "Lee todos los ficheros que puede leer tu usuario, no solo los del proyecto.",
+            "ca": "Llegeix tots els fitxers que pot llegir el teu usuari, no només els del projecte."
+          },
+          "via": "tools"
+        },
+        {
+          "id": "cap-write-working",
+          "action": "write_files",
+          "scope": "working_directories",
+          "default": "allow",
+          "source": {
+            "url": "https://learn.chatgpt.com/docs/agent-approvals-security",
+            "official": true,
+            "accessed_at": "2026-11-01"
+          }
+        },
+        {
+          "id": "cap-write-outside",
+          "action": "write_files",
+          "scope": "outside_working_directories",
+          "default": "ask",
+          "source": {
+            "url": "https://learn.chatgpt.com/docs/agent-approvals-security",
+            "official": true,
+            "accessed_at": "2026-11-01"
+          }
+        },
+        {
+          "id": "cap-write-protected",
+          "action": "write_files",
+          "scope": "protected_paths",
+          "default": "ask",
+          "source": {
+            "url": "https://github.com/openai/codex/blob/67f0994/codex-rs/protocol/src/permissions.rs#L40-L43",
+            "official": true,
+            "accessed_at": "2026-11-01"
+          }
+        },
+        {
+          "id": "cap-shell-sandbox",
+          "action": "execute_commands",
+          "scope": "all_commands",
+          "default": "allow",
+          "via": "sandboxed_shell",
+          "source": {
+            "url": "https://github.com/openai/codex/blob/67f0994/codex-rs/protocol/src/protocol.rs#L1154-L1156",
+            "official": true,
+            "accessed_at": "2026-11-01"
+          }
+        },
+        {
+          "id": "cap-network",
+          "action": "network",
+          "scope": "any_destination",
+          "default": "ask",
+          "source": {
+            "url": "https://learn.chatgpt.com/docs/agent-approvals-security",
+            "official": true,
+            "accessed_at": "2026-11-01"
+          }
+        }
+      ]
     },
     {
       "schema_version": 1,
@@ -269,11 +508,91 @@
           "status": "evaluated",
           "since_version": "0.8.0"
         },
-        "reviewed_at": "2026-11-07"
+        "reviewed_at": "2026-11-10"
       },
       "versions": [],
       "changes": [],
-      "ratings": []
+      "ratings": [],
+      "default_mode": {
+        "name": "default",
+        "who_decides": "user",
+        "source": {
+          "url": "https://github.com/xai-org/grok-build/blob/2bdd1d6a6369de0e8c68132ea4539e9abd9e14a8/crates/codegen/xai-grok-pager/docs/user-guide/22-permissions-and-safety.md",
+          "official": true,
+          "accessed_at": "2026-11-01"
+        },
+        "basis": "documented_default"
+      },
+      "capabilities": [
+        {
+          "id": "cap-read-any",
+          "action": "read_files",
+          "scope": "any_path",
+          "default": "allow",
+          "source": {
+            "url": "https://github.com/xai-org/grok-build/blob/2bdd1d6a6369de0e8c68132ea4539e9abd9e14a8/crates/codegen/xai-grok-pager/docs/user-guide/22-permissions-and-safety.md",
+            "official": true,
+            "accessed_at": "2026-11-01"
+          },
+          "note": {
+            "en": "Its file tools read with no folder limit.",
+            "es": "Sus herramientas de ficheros leen sin límite de carpeta.",
+            "ca": "Les seves eines de fitxers llegeixen sense límit de carpeta."
+          },
+          "via": "tools"
+        },
+        {
+          "id": "cap-write",
+          "action": "write_files",
+          "scope": "any_path",
+          "default": "ask",
+          "source": {
+            "url": "https://github.com/xai-org/grok-build/blob/2bdd1d6a6369de0e8c68132ea4539e9abd9e14a8/crates/codegen/xai-grok-pager/docs/user-guide/22-permissions-and-safety.md",
+            "official": true,
+            "accessed_at": "2026-11-01"
+          },
+          "via": "tools"
+        },
+        {
+          "id": "cap-shell-readonly",
+          "action": "execute_commands",
+          "scope": "read_only_commands",
+          "default": "allow",
+          "source": {
+            "url": "https://github.com/xai-org/grok-build/blob/2bdd1d6a6369de0e8c68132ea4539e9abd9e14a8/crates/codegen/xai-grok-pager/docs/user-guide/22-permissions-and-safety.md",
+            "official": true,
+            "accessed_at": "2026-11-01"
+          }
+        },
+        {
+          "id": "cap-shell",
+          "action": "execute_commands",
+          "scope": "all_commands",
+          "default": "ask",
+          "source": {
+            "url": "https://github.com/xai-org/grok-build/blob/2bdd1d6a6369de0e8c68132ea4539e9abd9e14a8/crates/codegen/xai-grok-pager/docs/user-guide/22-permissions-and-safety.md",
+            "official": true,
+            "accessed_at": "2026-11-01"
+          },
+          "via": "shell"
+        },
+        {
+          "id": "cap-web-search",
+          "action": "network",
+          "scope": "any_destination",
+          "default": "allow",
+          "source": {
+            "url": "https://github.com/xai-org/grok-build/blob/2bdd1d6a6369de0e8c68132ea4539e9abd9e14a8/crates/codegen/xai-grok-pager/docs/user-guide/22-permissions-and-safety.md",
+            "official": true,
+            "accessed_at": "2026-11-01"
+          },
+          "note": {
+            "en": "Web search runs without asking. What it searches for can carry part of your work off the computer. Fetching a web page asks.",
+            "es": "La búsqueda web funciona sin preguntar. Lo que busca puede llevarse parte de tu trabajo fuera del ordenador. Abrir una página web pregunta.",
+            "ca": "La cerca web funciona sense preguntar. El que cerca pot endur-se part de la teva feina fora de l'ordinador. Obrir una pàgina web pregunta."
+          }
+        }
+      ]
     },
     {
       "schema_version": 1,

@@ -17,9 +17,89 @@
       "status": "evaluated",
       "since_version": "0.8.0"
     },
-    "reviewed_at": "2026-11-07"
+    "reviewed_at": "2026-11-10"
   },
   "versions": [],
   "changes": [],
-  "ratings": []
+  "ratings": [],
+  "default_mode": {
+    "name": "default",
+    "who_decides": "user",
+    "source": {
+      "url": "https://github.com/xai-org/grok-build/blob/2bdd1d6a6369de0e8c68132ea4539e9abd9e14a8/crates/codegen/xai-grok-pager/docs/user-guide/22-permissions-and-safety.md",
+      "official": true,
+      "accessed_at": "2026-11-01"
+    },
+    "basis": "documented_default"
+  },
+  "capabilities": [
+    {
+      "id": "cap-read-any",
+      "action": "read_files",
+      "scope": "any_path",
+      "default": "allow",
+      "source": {
+        "url": "https://github.com/xai-org/grok-build/blob/2bdd1d6a6369de0e8c68132ea4539e9abd9e14a8/crates/codegen/xai-grok-pager/docs/user-guide/22-permissions-and-safety.md",
+        "official": true,
+        "accessed_at": "2026-11-01"
+      },
+      "note": {
+        "en": "Its file tools read with no folder limit.",
+        "es": "Sus herramientas de ficheros leen sin límite de carpeta.",
+        "ca": "Les seves eines de fitxers llegeixen sense límit de carpeta."
+      },
+      "via": "tools"
+    },
+    {
+      "id": "cap-write",
+      "action": "write_files",
+      "scope": "any_path",
+      "default": "ask",
+      "source": {
+        "url": "https://github.com/xai-org/grok-build/blob/2bdd1d6a6369de0e8c68132ea4539e9abd9e14a8/crates/codegen/xai-grok-pager/docs/user-guide/22-permissions-and-safety.md",
+        "official": true,
+        "accessed_at": "2026-11-01"
+      },
+      "via": "tools"
+    },
+    {
+      "id": "cap-shell-readonly",
+      "action": "execute_commands",
+      "scope": "read_only_commands",
+      "default": "allow",
+      "source": {
+        "url": "https://github.com/xai-org/grok-build/blob/2bdd1d6a6369de0e8c68132ea4539e9abd9e14a8/crates/codegen/xai-grok-pager/docs/user-guide/22-permissions-and-safety.md",
+        "official": true,
+        "accessed_at": "2026-11-01"
+      }
+    },
+    {
+      "id": "cap-shell",
+      "action": "execute_commands",
+      "scope": "all_commands",
+      "default": "ask",
+      "source": {
+        "url": "https://github.com/xai-org/grok-build/blob/2bdd1d6a6369de0e8c68132ea4539e9abd9e14a8/crates/codegen/xai-grok-pager/docs/user-guide/22-permissions-and-safety.md",
+        "official": true,
+        "accessed_at": "2026-11-01"
+      },
+      "via": "shell"
+    },
+    {
+      "id": "cap-web-search",
+      "action": "network",
+      "scope": "any_destination",
+      "default": "allow",
+      "source": {
+        "url": "https://github.com/xai-org/grok-build/blob/2bdd1d6a6369de0e8c68132ea4539e9abd9e14a8/crates/codegen/xai-grok-pager/docs/user-guide/22-permissions-and-safety.md",
+        "official": true,
+        "accessed_at": "2026-11-01"
+      },
+      "note": {
+        "en": "Web search runs without asking. What it searches for can carry part of your work off the computer. Fetching a web page asks.",
+        "es": "La búsqueda web funciona sin preguntar. Lo que busca puede llevarse parte de tu trabajo fuera del ordenador. Abrir una página web pregunta.",
+        "ca": "La cerca web funciona sense preguntar. El que cerca pot endur-se part de la teva feina fora de l'ordinador. Obrir una pàgina web pregunta."
+      }
+    }
+  ]
 }
