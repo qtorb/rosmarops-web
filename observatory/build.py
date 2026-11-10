@@ -381,6 +381,8 @@ def page(lang, t, *, path, title, description, alternates, jsonld, body, og_type
         '<footer><div class="wrap">\n<nav>'
         + links
         + f'<a href="{esc(t.text("site.footer.privacy_url"))}">{t("site.footer.privacy")}</a>'
+        + f'<a href="{esc(t.text("site.footer.legal_url"))}">{t("site.footer.legal")}</a>'  # GTM-130
+        + f'<a href="{esc(t.text("site.footer.terms_url"))}">{t("site.footer.terms")}</a>'
         + f'<a href="#" data-cc="show-preferencesModal">{t("site.footer.cookies")}</a>'
         + "</nav>\n</div></footer>"
     )
@@ -1009,11 +1011,11 @@ ABOUT_PAGES = {
 }
 ABOUT_NAV = {
     "en": ('<a href="/blog/">Blog</a><a href="/blog/about/">About</a><a href="/observatory/">Observatory</a><a href="/methodology/">Methodology</a><a href="/faq/">FAQ</a>',
-           '<a href="/privacy/">Privacy</a><a href="#" data-cc="show-preferencesModal">Cookie settings</a>', "/"),
+           '<a href="/privacy/">Privacy</a><a href="/legal-notice/">Legal notice</a><a href="/terms/">Terms</a><a href="#" data-cc="show-preferencesModal">Cookie settings</a>', "/"),
     "es": ('<a href="/es/blog/">Blog</a><a href="/es/blog/que-es-rosmarops/">Acerca de</a><a href="/es/observatorio/">Observatorio</a><a href="/es/metodologia/">Metodología</a><a href="/es/preguntas-frecuentes/">Preguntas</a>',
-           '<a href="/es/privacidad/">Privacidad</a><a href="#" data-cc="show-preferencesModal">Configurar cookies</a>', "/es/"),
+           '<a href="/es/privacidad/">Privacidad</a><a href="/es/aviso-legal/">Aviso legal</a><a href="/es/terminos/">Términos</a><a href="#" data-cc="show-preferencesModal">Configurar cookies</a>', "/es/"),
     "ca": ('<a href="/ca/blog/">Bloc</a><a href="/ca/blog/que-es-rosmarops/">Quant a</a><a href="/ca/observatori/">Observatori</a><a href="/ca/metodologia/">Metodologia</a><a href="/ca/preguntes-frequents/">Preguntes</a>',
-           '<a href="/ca/privadesa/">Privadesa</a><a href="#" data-cc="show-preferencesModal">Configura les galetes</a>', "/ca/"),
+           '<a href="/ca/privadesa/">Privadesa</a><a href="/ca/avis-legal/">Avís legal</a><a href="/ca/termes/">Termes</a><a href="#" data-cc="show-preferencesModal">Configura les galetes</a>', "/ca/"),
 }
 ABOUT_SWITCH_LABEL = {"en": "English", "es": "Español", "ca": "Català"}
 
