@@ -104,6 +104,7 @@ jobs:
           python -m unittest wp/tests/test_gtm124_agente.py
           python -m unittest wp/tests/test_download_sources.py
           python -m unittest wp/tests/test_static_about.py
+          python -m unittest wp/tests/test_download_os.py
 
       - name: Download and visit counters against MySQL (GTM-18, GTM-111)
         run: |
