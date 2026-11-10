@@ -1,0 +1,671 @@
+{
+  "date": "2026-11-10",
+  "collected_at": "2026-11-10T05:34:41Z",
+  "sources": [
+    {
+      "id": "F1",
+      "opened": true,
+      "reason": null,
+      "latest": "2.1.322",
+      "latest_date": "2026-11-10",
+      "new": [
+        {
+          "date": "2026-11-10",
+          "version": "2.1.322",
+          "text": "Added fast mode on Vertex in the global, us and eu regions, falling back to standard speed if Vertex refuses it"
+        },
+        {
+          "date": "2026-11-09",
+          "version": "2.1.321",
+          "text": "Added Added Claude Fable 5.2 (claude-fable-5-2), now the default Fable model — 1M context, $8/$40 per Mtok with $0.20/Mtok cache reads Added --settings <file> to claude remote-control, which applies a settings file to every session it starts; if the file changes, no new session starts until you restart claude remote-control [VSCode] Added a warning above the prompt box when both an auth token and an API key are set, matching the terminal’s startup warning Changed Updated the session-feedback message and the allowedProviders setting description to name Ultra alongside Pro and Max, and the forc…"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F2",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-06",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F3",
+      "opened": true,
+      "reason": null,
+      "latest": "rust-v0.167.0",
+      "latest_date": "2026-11-05",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F4",
+      "opened": true,
+      "reason": null,
+      "latest": "v2.30.0",
+      "latest_date": "2026-11-09",
+      "new": [
+        {
+          "date": "2026-11-09",
+          "version": "v2.30.0",
+          "text": "### Knowledge Work interface and a setup tailored to your work This release adds a Knowledge Work layout with a simpler interface for research, writing, and everyday tasks. When you first sign in, Antigravity now asks what kind of work you do and suggests ways to start. Voice mode and remote agents have also finished rolling out. It includes 27 improvements and 25 fixes. Improvements(27) You can now switch to a simpler Knowledge Work layout for research, writing, and everyday tasks in Settings > General > Interface Layout, except on business and enterprise accounts. It hides code changes and…"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F5",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.23.1",
+      "latest_date": "2026-11-10",
+      "new": [
+        {
+          "date": "2026-11-10",
+          "version": "v0.23.1",
+          "text": "# Hermes Agent v0.23.1 **Release Date:** November 9, 2026 > Patch release. This tag rolls up the ~618 PRs merged since v0.23.0 into a stable release for the GitHub release (CLI and installers), the Microsoft Store app, Docker and Hermes Cloud. Full curated notes for this window ship with v0.24.0. **What this patch ships for plugin users:** since the plugin catalog's site deploy on November 9, the published `plugin-catalog.json` was larger than the 2 MiB cap clients accept, so every install silently fell back to the catalog it shipped with. `hermes plugins install <name>` could not find plugin…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F6",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-09",
+      "new": [
+        {
+          "date": "2026-11-09",
+          "version": null,
+          "text": "Nov.09 Release Claude Fable 5.2 in GitHub Copilot copilot ###"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F7",
+      "opened": true,
+      "reason": null,
+      "latest": "v4.1.26",
+      "latest_date": "2026-10-26",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F8",
+      "opened": true,
+      "reason": null,
+      "latest": "v2.1.0-vscode",
+      "latest_date": "2026-06-19",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F9",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.5.0",
+      "latest_date": "2026-11-09",
+      "new": [
+        {
+          "date": "2026-11-09",
+          "version": "v0.5.0",
+          "text": "Kanvas 0.5.0 is the stable release of the features tested in 0.5.0rc1, with image previews for new tasks and notes. Install with `uv tool install kanvas-board` or `pipx install kanvas-board`. To upgrade an existing uv installation, run `uv tool upgrade kanvas-board`, then `kanvas init` in each project to refresh its agent copy. Changes since 0.4.0: - Images in descriptions and notes: paste or drop PNG, JPEG, GIF or WebP images, click them to view full size, and keep them alongside the board in `kanvas-files/`. Agents can attach screenshots with `attach`; exported snapshots include their image…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F10",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-10",
+      "new": [
+        {
+          "date": "2026-11-09",
+          "version": null,
+          "text": "MAL-0000-ghsa-malware-af28ace408ef7f1c @bestcoolman/dev-mcp: Malware in @bestcoolman/dev-mcp"
+        },
+        {
+          "date": "2026-11-09",
+          "version": null,
+          "text": "MAL-0000-ossf-package-analysis-3c2359d61951f070 @massnerder/x402-scraper-mcp: Malicious code in @massnerder/x402-scraper-mcp (npm)"
+        }
+      ],
+      "ids": [
+        "MAL-0000-ghsa-malware-af28ace408ef7f1c",
+        "MAL-0000-ossf-package-analysis-3c2359d61951f070"
+      ],
+      "read_with": "git"
+    },
+    {
+      "id": "F11",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.67.0",
+      "latest_date": "2026-11-04",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F12",
+      "opened": true,
+      "reason": null,
+      "latest": "1.0.108",
+      "latest_date": "2026-11-09",
+      "new": [
+        {
+          "date": "2026-11-09",
+          "version": "1.0.108",
+          "text": "- Add `sandbox.userPolicy.filesystem.enumeratePaths` in `settings.json` for Windows enumerate-only directory grants - Add /index commands and enable managed shared tgrep indexing by default for eligible repositories - PDF attachments on Grok 4.7 and Grok 4.6 fall back to file references instead of failing the turn - With the sandbox on, a running local MCP server is now restarted after `/cd`, so it follows the new directory's denied paths instead of keeping those of the directory the session left. - A file attachment sent through the SDK that points at a named pipe, socket or device is now ta…"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F13",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-06",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F14",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-10",
+      "new": [
+        {
+          "date": "2026-11-09",
+          "version": null,
+          "text": "MAL-2026-19052 @bestcoolman/dev-mcp: Malicious code in @bestcoolman/dev-mcp (npm)"
+        },
+        {
+          "date": "2026-11-09",
+          "version": null,
+          "text": "GHSA-5xjx-9qx6-jcrv @anthropic-ai/claude-code: Claude Code: TOCTOU Race in Edit Tool Allows File Writes Outside the Workspace"
+        },
+        {
+          "date": "2026-11-09",
+          "version": null,
+          "text": "GHSA-h7c4-q426-7jh9 @tsparticles/mcp-server: tsParticles: A single anonymous MCP session can monopolize HTTP mode and deny new clients"
+        },
+        {
+          "date": "2026-11-09",
+          "version": null,
+          "text": "GHSA-447x-qqwf-m7xq @tsparticles/mcp-server: tsParticles: Unbounded HTTP Request Body Buffering in @tsparticles/mcp-server Leads to Remote DoS"
+        },
+        {
+          "date": "2026-11-09",
+          "version": null,
+          "text": "GHSA-4p8p-pjpq-2w7h @tsparticles/mcp-server: tsParticles: Malformed JSON requests can terminate the @tsparticles/mcp-server HTTP process"
+        },
+        {
+          "date": "2026-11-09",
+          "version": null,
+          "text": "MAL-2026-18780 @massnerder/x402-scraper-mcp: Malicious code in @massnerder/x402-scraper-mcp (npm)"
+        },
+        {
+          "date": "2026-11-09",
+          "version": null,
+          "text": "GHSA-9vhv-g5hf-m7m7 fast-agent-mcp: fast-agent: `fast-agent serve` binds HTTP to 0.0.0.0 with no authentication by default; with --shell this is unauthenticated remote command execution"
+        }
+      ],
+      "ids": [
+        "GHSA-447x-qqwf-m7xq",
+        "GHSA-4p8p-pjpq-2w7h",
+        "GHSA-5xjx-9qx6-jcrv",
+        "GHSA-9vhv-g5hf-m7m7",
+        "GHSA-h7c4-q426-7jh9",
+        "MAL-2026-18780",
+        "MAL-2026-19052"
+      ],
+      "read_with": "curl"
+    },
+    {
+      "id": "F15",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-09",
+      "new": [
+        {
+          "date": "2026-11-09",
+          "version": null,
+          "text": "CVE-2026-123779 [MCP]: Direct Request ('Forced Browsing') vulnerability in Apache Axis2/Java. The exposeServiceMetadata service parameter was enforced only on the ?wsdl, ?wsdl2 and ?xsd queries. For a service that had disabled it, the packaged .wsdl and .xsd file routes, the named-WSDL ?wsdl=NAME route of the standalone HTTP server, the OpenAPI, Swagger UI and MCP catalog endpoints, the services listing, WS-MetadataExchange GetMetadata and the ping module still disclosed its metadata to anonymous callers, including operation names and request and response schemas. This issue affects Apache Ax…"
+        },
+        {
+          "date": "2026-11-09",
+          "version": null,
+          "text": "CVE-2026-119613 [MCP]: Generation of Error Message Containing Sensitive Information vulnerability in ash-project ash_ai allows a caller of an AshAi tool to read internal error details, including module names and data values, by making a tool call fail. AshAi.ToToolError gained an implementation for Ash.Error.Unknown.UnknownError that returns the error's error field as is, and AshAi.Tool.Errors.format/1 sends that text to MCP clients (tool calls and resource reads in AshAi.Mcp.Server) and to the model in AshAi.ToolLoop. Ash stores the full Exception.format/2 output of a raised exception, or in…"
+        },
+        {
+          "date": "2026-11-09",
+          "version": null,
+          "text": "CVE-2026-121576 [MCP]: Incorrect Privilege Assignment vulnerability in AtlasAiDev MCP Server for WordPress ai-workflow-automation-ai-agent-hub allows Privilege Escalation.This issue affects MCP Server for WordPress: from n/a through 2.0.1."
+        },
+        {
+          "date": "2026-11-09",
+          "version": null,
+          "text": "CVE-2026-123809 [MCP]: Dynatrace MCP Server is an MCP server for Dynatrace Observability. Prior to 2.0.0, the create_workflow_for_notification tool inserts the caller-controlled teamName, problemType, and channel values into a Dynatrace workflow without neutralizing Jinja2 expressions. A caller can place template expressions such as event() in those values, and the workflow engine evaluates them when the persistent workflow runs. When the workflow has a valid Slack connector, the resulting Slack action can disclose event or tenant metadata to an attacker-selected channel; the shipped placehol…"
+        },
+        {
+          "date": "2026-11-09",
+          "version": null,
+          "text": "CVE-2026-123810 [MCP]: Dynatrace MCP Server is an MCP server for Dynatrace Observability. Prior to 2.1.1, several read capabilities interpolate caller-controlled values into DQL without sufficient validation or escaping. The src/capabilities/find-monitored-entity-by-name.ts capability embeds entityNames in string searches, src/capabilities/list-problems.ts, src/capabilities/list-vulnerabilities.ts, and src/capabilities/list-exceptions.ts embed timeframe values, and src/capabilities/get-events-for-cluster.ts embeds timeframe, clusterId, and kubernetesEntityId. Crafted values can close string l…"
+        },
+        {
+          "date": "2026-11-09",
+          "version": null,
+          "text": "CVE-2026-123811 [MCP]: Dynatrace MCP Server is an MCP server for Dynatrace Observability. Prior to 2.0.0, a server started with the --http option accepts JSON-RPC tools/call requests without authentication, session validation, or Host and Origin protections before dispatching them under the server's configured Dynatrace credentials. A network-reachable caller can invoke execute_dql to read logs, security events, user sessions, and other Grail data, or invoke create_dynatrace_notebook to create tenant-visible notebooks. The send_event path is not affected because its requestHumanApproval gate…"
+        },
+        {
+          "date": "2026-11-09",
+          "version": null,
+          "text": "CVE-2026-123812 [MCP]: Dynatrace MCP Server is an MCP server for Dynatrace Observability. Prior to 1.8.7, the create_dynatrace_notebook registration in src/index.ts performs a persistent document-write action without calling requestHumanApproval, although the project's other write tools use that gate to obtain operator consent. A caller can create tenant-visible notebooks containing attacker-controlled Markdown or DQL content, and tenant users may later execute embedded DQL when opening the notebook. The tool also lacks a destructiveHint annotation that would signal its side effects to MCP cl…"
+        },
+        {
+          "date": "2026-11-09",
+          "version": null,
+          "text": "CVE-2026-82436 [Claude Code]: Description `DefaultStateSerializer`, used to persist and restore stateful bolt checkpoints, configured Kryo with class registration disabled and an instantiation strategy that constructs objects without invoking their constructors, then deserialized whatever bytes the state store returned. A party able to write to the topology's keyspace in the state store, for example a co-tenant of a shared Redis instance or anyone with network access to it, could therefore place a serialized object graph that executes code inside the worker JVM when the state is restored. Thi…"
+        },
+        {
+          "date": "2026-11-09",
+          "version": null,
+          "text": "CVE-2026-125101 [Cursor]: FFmpeg through 9.0.2 contains an information disclosure vulnerability in the VMnc decoder in libavcodec/vmnc.c that restores an unwritten cursor save area into later frames. Attackers can supply a crafted VMnc stream where a frame fails after loading a cursor shape, causing uninitialized heap bytes from screendta to appear in decoded output."
+        },
+        {
+          "date": "2026-11-09",
+          "version": null,
+          "text": "CVE-2026-125178 [Cursor]: FFmpeg through 9.0.2 contains an out-of-bounds heap read vulnerability in tdsc_load_cursor() in libavcodec/tdsc.c, which stores cursor dimensions before validating them. Attackers can supply a crafted AVI file with oversized TDSC cursor dimensions so tdsc_paint_cursor() reads past the cursor buffer, crashing the decoder or leaking heap memory into frames."
+        },
+        {
+          "date": "2026-11-09",
+          "version": null,
+          "text": "CVE-2026-87857 [Cursor]: Temporal Server does not bind a workflow-history pagination token to the namespace and workflow named in the request that presents it. GetWorkflowExecutionHistory and GetWorkflowExecutionHistoryReverse authorize the caller against the namespace in the request, then select history from the branch recorded inside the caller-supplied next_page_token. The normal history continuation carries a run identifier, event bounds, a persistence cursor, and a branch token, but no namespace or workflow identity, and it is serialized as unauthenticated protobuf bytes. An authenticate…"
+        }
+      ],
+      "ids": [
+        "CVE-2026-119613",
+        "CVE-2026-121576",
+        "CVE-2026-123779",
+        "CVE-2026-123809",
+        "CVE-2026-123810",
+        "CVE-2026-123811",
+        "CVE-2026-123812",
+        "CVE-2026-125101",
+        "CVE-2026-125178",
+        "CVE-2026-82436",
+        "CVE-2026-87857"
+      ],
+      "read_with": "curl"
+    },
+    {
+      "id": "F16",
+      "opened": true,
+      "reason": null,
+      "latest": "v2.2.6",
+      "latest_date": "2026-11-06",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F17",
+      "opened": true,
+      "reason": null,
+      "latest": "1.4.121",
+      "latest_date": "2026-11-05",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F18",
+      "opened": true,
+      "reason": null,
+      "latest": "v3.12.43",
+      "latest_date": "2026-11-09",
+      "new": [
+        {
+          "date": "2026-11-09",
+          "version": "v3.12.43",
+          "text": "Changed Devin Local keeps working more often: a response that stops at the output limit before a tool call continues the turn, and GPT models no longer stop to ask for input they can work out. Image reads in Devin Local take an image_size. The default sends 70% of the original’s longest side, at least 1024 px. Fixed Follow-up prompts in a Devin Local session are no longer blocked when your Devin Cloud usage is restricted. Files in a gitignored directory are no longer listed as created. In the IDE, dragging a file or folder from the Explorer or an editor tab onto the Devin Local panel adds it…"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F19",
+      "opened": true,
+      "reason": null,
+      "latest": "v1.58.1",
+      "latest_date": "2026-11-10",
+      "new": [
+        {
+          "date": "2026-11-10",
+          "version": "v1.58.1",
+          "text": "## 🐛 **Bug Fixes** - Reword compaction prompt that Opus 5.5 refuses as distillation [#13340](https://github.com/aaif-goose/goose/pull/13340) - Refresh Databricks OAuth tokens before they expire [#13328](https://github.com/aaif-goose/goose/pull/13328)"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F20",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-06",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F21",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-08-19",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F22",
+      "opened": true,
+      "reason": null,
+      "latest": "v2026.11.2",
+      "latest_date": "2026-11-08",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F23",
+      "opened": true,
+      "reason": null,
+      "latest": "1.2.20",
+      "latest_date": "2026-11-05",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F24",
+      "opened": true,
+      "reason": null,
+      "latest": "1.15.39",
+      "latest_date": "2026-11-09",
+      "new": [
+        {
+          "date": "2026-11-09",
+          "version": "1.15.39",
+          "text": "## What's Changed ### Documentation - Document the `apps_not_connected` error on `/kickoff` and `/status` ## Contributors @joaomdmoura"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F25",
+      "opened": true,
+      "reason": null,
+      "latest": "python-1.25.0",
+      "latest_date": "2026-11-06",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F26",
+      "opened": true,
+      "reason": null,
+      "latest": "2026-07-28",
+      "latest_date": "2026-07-28",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F27",
+      "opened": true,
+      "reason": null,
+      "latest": "1.145",
+      "latest_date": "2026-11-04",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F28",
+      "opened": true,
+      "reason": null,
+      "latest": "2026.11.09",
+      "latest_date": "2026-11-09",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F29",
+      "opened": true,
+      "reason": null,
+      "latest": "1.4.13",
+      "latest_date": "2026-11-10",
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "date_is_detection": true
+    },
+    {
+      "id": "F31",
+      "opened": true,
+      "reason": null,
+      "latest": "n8n@3.1.0",
+      "latest_date": "2026-11-03",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F32",
+      "opened": true,
+      "reason": null,
+      "latest": "v3.4.17",
+      "latest_date": "2026-11-09",
+      "new": [
+        {
+          "date": "2026-11-09",
+          "version": "v3.4.17",
+          "text": "TRAE v3.4.17 版本正式发布。以下是变更细节： 体验优化 优化模型选择菜单的尺寸与滚动布局，小窗口或模型列表较长时仍可便捷访问底部操作。 问题修复 修复删除项目中的最后一个任务后，空项目仍残留在任务列表的问题。"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F33",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.27.1",
+      "latest_date": "2026-11-09",
+      "new": [
+        {
+          "date": "2026-11-09",
+          "version": "v0.27.1",
+          "text": "<!-- qwen-release-notes:v1 --> ## Highlights _See the complete change list below._ ## Breaking Changes No known breaking changes. ## Complete Change List ### Features - feat(core): name the active shell in the startup context ([#16491](https://github.com/QwenLM/qwen-code/pull/16491)) by @2SinceJuly - feat(qqbot): add opt-in forwardBotMessages for bot-authored messages ([#15904](https://github.com/QwenLM/qwen-code/pull/15904)) by @Eric-GoodBoy-Tech - feat(agents): make default background execution configurable ([#15178](https://github.com/QwenLM/qwen-code/pull/15178)) by @ZedingZhang - feat(cl…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F34",
+      "opened": true,
+      "reason": null,
+      "latest": "@moonshot-ai/kimi-code@2.5.2",
+      "latest_date": "2026-11-06",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F35",
+      "opened": true,
+      "reason": null,
+      "latest": "v2.182.0",
+      "latest_date": "2026-11-09",
+      "new": [
+        {
+          "date": "2026-11-09",
+          "version": "v2.182.0",
+          "text": "# 🚀 CodeBuddy Code v2.182.0 发布 ## 📦 版本信息 组件版本 CodeBuddy Code CLIv2.182.0 Agent SDK JSv0.3.302 Agent SDK Pythonv0.3.301 ## ✨ 新功能 ### 会话目标更可控 宿主管家的会话目标支持冷恢复：运行中编辑目标会复用当前轮次继续推进，暂停和清除只停止自动续跑，不会打断正在执行的工作；敏感文件审批在出现异常或超时时也会遵守你配置的策略。 ### 底栏状态项可按需显示 底栏的状态信息现在可以配置显示粒度，只需在设置里指定 tui.statusLine： 可选 model reasoning agents shortcuts permission thinking shells git-branch context-remaining tokens 不设置时保持默认全显，设置为空数组则隐藏全部可配置项 新增 git-branch 分支段，显示当前工作目录的分支，非 git 目录自动隐藏 ### 新增 /new 命令 /new 会在保留终端已有内容的前提下开启全新对话，并沿用当前会话设置；之前的对话仍可通过 /resume 找回。/clear 继续按原行为清屏后开启新对话。 ### 桌面端 osascript 审批执行 macOS 桌面端固定支持在沙箱外执行单条 osascr…"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F36",
+      "opened": true,
+      "reason": null,
+      "latest": "1.39.2",
+      "latest_date": "2026-11-09",
+      "new": [
+        {
+          "date": "2026-11-09",
+          "version": "1.39.2",
+          "text": "### 日常优化 #### 修复 修复由于 Electron 升级引入的 markdown 预览报错。"
+        },
+        {
+          "date": "2026-11-09",
+          "version": "1.1.86",
+          "text": "CLI 1.1.86 ### 命令规则企业管控 命令规则支持企业管控"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F37",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.86.2",
+      "latest_date": "2026-02-12",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F38",
+      "opened": true,
+      "reason": null,
+      "latest": "v1.38.0",
+      "latest_date": "2026-11-10",
+      "new": [
+        {
+          "date": "2026-11-10",
+          "version": "v1.38.0",
+          "text": "## 1.38.0 (2026-11-10) <!-- Release notes generated using configuration in .github/release.yml at main --> ## What's Changed ### Features * feat: edit executable plugin configuration in automation help by @ak684 in https://github.com/OpenHands/OpenHands/pull/19453 * feat: display conversation budgets with semantic meter fills by @enyst in https://github.com/OpenHands/OpenHands/pull/18533 * feat: add Paper theme to Agent Canvas by @enyst in https://github.com/OpenHands/OpenHands/pull/19445 * feat(chat): show a resolved banner for project conversations by @enyst in https://github.com/OpenHands/…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F39",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-09",
+      "new": [
+        {
+          "date": "2026-11-09",
+          "version": null,
+          "text": "### Portals on Your Runner Portals now work on your local machines too. Open what Amp builds there, regardless of where you are."
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F40",
+      "opened": true,
+      "reason": null,
+      "latest": "2026.10.22",
+      "latest_date": "2026-10-22",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F41",
+      "opened": true,
+      "reason": null,
+      "latest": "26.11.3",
+      "latest_date": "2026-11-09",
+      "new": [
+        {
+          "date": "2026-11-09",
+          "version": "26.11.3",
+          "text": "Claude Fable 5.2 support ### Release 26.11.3 (3959.5)"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F42",
+      "opened": true,
+      "reason": null,
+      "latest": "v7.8.28",
+      "latest_date": "2026-11-07",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F43",
+      "opened": false,
+      "reason": "https://www.perplexity.ai/changelog: HTTP 403",
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F44",
+      "opened": true,
+      "reason": null,
+      "latest": "v1.0.77",
+      "latest_date": "2026-11-05",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    }
+  ],
+  "opened": 42,
+  "total": 43
+}

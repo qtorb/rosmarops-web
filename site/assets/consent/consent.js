@@ -7,6 +7,30 @@
  */
 (function () {
   'use strict';
+  // Albert's own visits are not counted (requested by Albert, 01-11): opening any page once with
+  // ?rosmarops_internal=1 marks this browser, and GA never loads in it; ?rosmarops_internal=0 removes the mark.
+  // The mark is one localStorage key on this origin. GTM-126 (Albert, 09-11): it also sets the first-party cookie
+  // rosmarops_internal=1, so our own server leaves this browser out of the visit and download counts (it only looks
+  // at whether the cookie is there); =0 deletes it. Runs before the banner library loads, on every page.
+  var INTERNAL_KEY = 'rosmarops_internal';
+  var INTERNAL_COOKIE = INTERNAL_KEY + '=1; Path=/; SameSite=Lax; Secure; Max-Age=34560000';
+  function hasInternalCookie() {
+    return (';' + document.cookie).replace(/\s/g, '').indexOf(';' + INTERNAL_KEY + '=1') !== -1;
+  }
+  function isInternal() {
+    try {
+      var p = new URLSearchParams(location.search).get(INTERNAL_KEY);
+      if (p === '1') localStorage.setItem(INTERNAL_KEY, '1');
+      else if (p === '0') localStorage.removeItem(INTERNAL_KEY);
+      var on = localStorage.getItem(INTERNAL_KEY) === '1';
+      if (on && !hasInternalCookie()) document.cookie = INTERNAL_COOKIE;
+      if (p === '0' && hasInternalCookie()) document.cookie = INTERNAL_KEY + '=; Path=/; SameSite=Lax; Secure; Max-Age=0';
+      return on;
+    } catch (err) {
+      return false;
+    }
+  }
+  var internal = isInternal();
   if (!window.CookieConsent) return;
 
   var GA_ID = 'G-6RVHZ8ERGW';
@@ -18,21 +42,6 @@
     en: 'https://rosmarops.com/privacy/'
   }[lang];
 
-  // Albert's own visits are not counted (requested by Albert, 01-11): opening any page once with
-  // ?rosmarops_internal=1 marks this browser, and GA never loads in it; ?rosmarops_internal=0 removes the mark.
-  // The mark is one localStorage key on this origin, never sent anywhere.
-  var INTERNAL_KEY = 'rosmarops_internal';
-  function isInternal() {
-    try {
-      var p = new URLSearchParams(location.search).get(INTERNAL_KEY);
-      if (p === '1') localStorage.setItem(INTERNAL_KEY, '1');
-      else if (p === '0') localStorage.removeItem(INTERNAL_KEY);
-      return localStorage.getItem(INTERNAL_KEY) === '1';
-    } catch (err) {
-      return false;
-    }
-  }
-  var internal = isInternal();
 
   function loadGA() {
     if (internal) return;

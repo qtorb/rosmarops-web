@@ -268,6 +268,8 @@ jobs:
               fi
             done
           } >> /tmp/batch
+          # GTM-125: the one-time IP check is over; its token file leaves the server.
+          echo "-rm wp-content/rosmarops-private/ipcheck-token.php" >> /tmp/batch
           # The password travels in the SSHPASS environment variable, never on the command line.
           sshpass -e sftp -o BatchMode=no -b /tmp/batch \
             -o StrictHostKeyChecking=yes \
@@ -700,6 +702,11 @@ jobs:
             echo "$n $u"; [ "$n" = 0 ] || bad=$((bad+1))
           done
           echo "posts that still have the word: $bad"
+
+      - name: GTM-125 the IP check is gone
+        run: |
+          code=$(curl -s -o /dev/null -w '%{http_code}' "https://rosmarops.com/wp-json/rosmarops/v1/ipcheck?k=$(printf '0%.0s' $(seq 64))")
+          echo "ipcheck: $code"; test "$code" = 404
 
       - name: Tell Bing and other IndexNow engines what changed (best effort)
         continue-on-error: true

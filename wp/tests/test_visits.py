@@ -47,12 +47,12 @@ def db_available():
 
 
 class Server:
-    def __init__(self, on, docroot, posts=""):
+    def __init__(self, on, docroot, posts="", today=""):
         s = socket.socket()
         s.bind(("127.0.0.1", 0))
         self.port = s.getsockname()[1]
         s.close()
-        env = dict(os.environ, DB_PREFIX=PREFIX, VISITS_DOCROOT=str(docroot), VISITS_POSTS=posts)
+        env = dict(os.environ, DB_PREFIX=PREFIX, VISITS_DOCROOT=str(docroot), VISITS_POSTS=posts, VISITS_TODAY=today)
         if on:
             env["VISITS_ON"] = "1"
         self.proc = subprocess.Popen(["php", "-S", f"127.0.0.1:{self.port}", str(TESTS / "router.php")],
@@ -212,6 +212,13 @@ class Visits(unittest.TestCase):
             self.visit("/methodology/", "", headers={"User-Agent": ua})
         self.assertEqual(self.rows(), [])
 
+    def test_internal_cookie_not_counted(self):
+        # GTM-126: a browser marked with ?rosmarops_internal=1 carries this cookie; only its presence counts.
+        self.visit("/methodology/", "", headers={"Cookie": "rosmarops_internal=1"})
+        self.assertEqual(self.rows(), [])
+        self.visit("/methodology/", "", headers={"Cookie": "other=1"})
+        self.assertEqual(len(self.rows()), 1)
+
     def test_team_not_counted(self):
         self.visit("/methodology/", "", headers={"Cookie": "wordpress_logged_in_0a1b2c=albert%7C1"})
         self.assertEqual(self.rows(), [])
@@ -228,7 +235,7 @@ class Visits(unittest.TestCase):
         self.assertEqual(st, 200)
         self.assertEqual(h.get("Cache-Control"), "public, max-age=3600")
         d = json.loads(body)
-        self.assertEqual(set(d), {"generated_at", "rows"})
+        self.assertEqual(set(d), {"generated_at", "rows", "people"})  # GTM-125 adds people; the rest is as before
         self.assertEqual([(r["page"], r["lang"], r["ref"], r["count"]) for r in d["rows"]], [("/methodology/", "en", "github", 1)])
         self.assertEqual(set(d["rows"][0]), {"day", "page", "lang", "ref", "count"})
         for m in ["PUT", "DELETE", "PATCH"]:
@@ -252,6 +259,132 @@ class Visits(unittest.TestCase):
             self.assertNotIn(leak, dump)
 
 
+PRINTS = PREFIX + "rosmarops_visits_prints"
+PEOPLE = PREFIX + "rosmarops_people"
+OPTIONS = PREFIX + "stub_sitemeta"
+UA2 = "Mozilla/5.0 (Macintosh; Intel Mac OS X 14_5) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Safari/605.1.15"
+
+
+@unittest.skipUnless(db_available(), "no MySQL/MariaDB reachable")
+class People(unittest.TestCase):
+    """GTM-125: different people per UTC day, from a daily-key HMAC of IP and user agent that is never stored."""
+
+    def setUp(self):
+        self.drop()
+        self.tmp = tempfile.mkdtemp()
+        for p in ["", "methodology", "es/metodologia"]:
+            d = Path(self.tmp, p)
+            d.mkdir(parents=True, exist_ok=True)
+            (d / "index.html").write_text("<html></html>")
+        self.srv = None
+        self.day("2026-11-09")
+
+    def tearDown(self):
+        self.srv.stop()
+        shutil.rmtree(self.tmp)
+        self.drop()
+
+    def drop(self):
+        mysql(f"DROP TABLE IF EXISTS {TABLE}, {PRINTS}, {PEOPLE}, {OPTIONS}")
+
+    def day(self, d):
+        if self.srv:
+            self.srv.stop()
+        self.srv = Server(True, self.tmp, today=d)
+
+    def visit(self, page, ref="", ua=UA, headers=None, cookie=None):
+        h = {"Origin": ORIGIN, "User-Agent": ua, "Content-Type": "application/json"}
+        h.update(headers or {})
+        if cookie:
+            h["Cookie"] = cookie
+        return self.srv.req("/wp-json/rosmarops/v1/visits", "POST", json.dumps({"p": page, "r": ref}), h)
+
+    def people(self):
+        return mysql(f"SELECT day, lang, ref, count FROM {PEOPLE} ORDER BY day, lang, ref").splitlines()
+
+    def visits_total(self):
+        return int(mysql(f"SELECT COALESCE(SUM(count), 0) FROM {TABLE}").strip())
+
+    def key(self):
+        out = mysql(f"SELECT v FROM {OPTIONS} WHERE k = 'rosmarops_people_key'").strip()
+        return out
+
+    def test_same_ip_and_browser_twice_is_one_person_and_two_visits(self):
+        self.visit("/", "www.google.com")
+        self.visit("/methodology/", "")
+        self.assertEqual(self.visits_total(), 2)
+        # the person is counted with the language and referrer kind of the first visit of the day
+        self.assertEqual(self.people(), ["2026-11-09\ten\tgoogle\t1"])
+
+    def test_another_browser_is_another_person(self):
+        self.visit("/")
+        self.visit("/es/metodologia/", ua=UA2)
+        self.assertEqual(self.people(), ["2026-11-09\ten\tdirect\t1", "2026-11-09\tes\tdirect\t1"])
+
+    def test_new_day_new_key_and_empty_prints(self):
+        self.visit("/")
+        k1 = self.key()
+        self.assertIn("2026-11-09", k1)
+        self.assertEqual(int(mysql(f"SELECT COUNT(*) FROM {PRINTS}").strip()), 1)
+        self.day("2026-11-10")
+        self.srv.req("/wp-json/rosmarops/v1/visits")  # nothing changes on a read
+        self.assertEqual(self.key(), k1)
+        self.visit("/methodology/", ua=UA2)  # first counted visit of the new day, from someone else
+        k2 = self.key()
+        self.assertIn("2026-11-10", k2)
+        self.assertNotEqual(k1, k2)
+        old_hex = re.search(r"[0-9a-f]{64}", k1).group(0)
+        everything = mysql(f"SELECT * FROM {OPTIONS}") + mysql(f"SELECT * FROM {PRINTS}") + mysql(f"SELECT * FROM {PEOPLE}")
+        self.assertNotIn(old_hex, everything)  # the old key no longer exists
+        self.assertEqual(int(mysql(f"SELECT COUNT(*) FROM {PRINTS}").strip()), 1)  # only today's fingerprint
+        self.assertEqual(int(mysql(f"SELECT COUNT(*) FROM {OPTIONS}").strip()), 1)  # just the key, no lock left
+        # the same person as yesterday counts again today
+        self.visit("/")
+        self.assertEqual(self.people(), ["2026-11-09\ten\tdirect\t1", "2026-11-10\ten\tdirect\t2"])
+
+    def test_cron_rotation_without_visits(self):
+        self.visit("/")
+        k1 = self.key()
+        code = ("require %s; do_action('rosmarops_people_rotate');" % json.dumps(str(TESTS / "wp-stub.php")))
+        env = dict(os.environ, DB_PREFIX=PREFIX, VISITS_ON="1", VISITS_TODAY="2026-11-10", VISITS_DOCROOT=self.tmp)
+        subprocess.run(["php", "-r", code], env=env, check=True, capture_output=True)
+        self.assertNotEqual(self.key(), k1)
+        self.assertEqual(mysql(f"SELECT COUNT(*) FROM {PRINTS}").strip(), "0")
+
+    def test_ip_and_browser_appear_nowhere(self):
+        self.visit("/", "www.google.com")
+        self.visit("/methodology/", ua=UA2)
+        dump = "".join(mysql(f"SELECT * FROM {t}") for t in (TABLE, PRINTS, PEOPLE, OPTIONS))
+        for leak in ["127.0.0.1", "Mozilla", "Chrome", "Safari", "Macintosh", "Windows NT"]:
+            self.assertNotIn(leak, dump, leak)
+        self.assertEqual([c.split("\t")[0] for c in mysql(f"SHOW COLUMNS FROM {PRINTS}").splitlines()], ["h"])
+        src = PLUGIN.read_text(encoding="utf-8")
+        block = src[src.index("people per day (GTM-125)"):src.index("if (ROSMAROPS_VISITS_ON) {")]
+        for w in ("error_log", "file_put_contents", "setcookie", "set_transient", "update_option(", "add_option("):
+            self.assertNotIn(w, block, w)
+
+    def test_robots_team_and_prefetch_count_no_people(self):
+        self.visit("/", ua="Googlebot/2.1 (+http://www.google.com/bot.html)")
+        self.visit("/", headers={"Sec-Purpose": "prefetch"})
+        self.visit("/", cookie="wordpress_logged_in_abc=1")
+        self.visit("/", headers={"Origin": "https://example.com"})
+        for t in (TABLE, PRINTS, PEOPLE):
+            if mysql(f"SHOW TABLES LIKE '{t}'").strip():
+                self.assertEqual(mysql(f"SELECT COUNT(*) FROM {t}").strip(), "0", t)
+        self.visit("/")  # and a person reading does count, so the four above were filtered, not broken
+        self.assertEqual(self.people(), ["2026-11-09\ten\tdirect\t1"])
+
+    def test_endpoint_adds_people_and_keeps_the_rest(self):
+        self.visit("/", "www.google.com")
+        self.visit("/")
+        st, h, body = self.srv.req("/wp-json/rosmarops/v1/visits")
+        d = json.loads(body)
+        self.assertEqual(sorted(d), ["generated_at", "people", "rows"])
+        self.assertEqual(d["rows"], [{"day": "2026-11-09", "page": "/", "lang": "en", "ref": "direct", "count": 1},
+                                     {"day": "2026-11-09", "page": "/", "lang": "en", "ref": "google", "count": 1}])
+        self.assertEqual(d["people"], [{"day": "2026-11-09", "lang": "en", "ref": "google", "count": 1}])
+
+
 @unittest.skipUnless(db_available(), "no MySQL/MariaDB reachable")
 class SwitchedOff(unittest.TestCase):
     def test_off_means_no_route_and_no_table(self):
@@ -270,7 +403,7 @@ class SwitchedOff(unittest.TestCase):
 
 NODE_HARNESS = r"""
 const fs = require('fs');
-const [src, visible, referrer, path, on] = process.argv.slice(2);
+const [src, visible, referrer, path, on, search, stored] = process.argv.slice(2);
 let code = fs.readFileSync(src, 'utf8');
 code = code.replace(/var ON = (true|false);/, on === '1' ? 'var ON = true;' : 'var ON = false;');
 const calls = []; const listeners = {};
@@ -279,26 +412,33 @@ const doc = { visibilityState: visible, referrer,
   addEventListener: (ev, fn) => { listeners[ev] = fn; } };
 Object.defineProperty(doc, 'cookie', { get() { touched.push('cookie'); return ''; }, set() { touched.push('cookie'); } });
 const trap = (name) => new Proxy({}, { get() { touched.push(name); return () => null; } });
+// GTM-126: localStorage may only be read, and only the key rosmarops_internal.
+const reads = [];
+const storage = new Proxy({}, { get(t, prop) {
+  if (prop === 'getItem') return (k) => { reads.push(k); return k === 'rosmarops_internal' && stored ? stored : null; };
+  touched.push('localStorage.' + String(prop)); return () => null; } });
 const win = { fetch: (url, opts) => { calls.push({ url, opts }); return Promise.resolve(); } };
 const fn = new Function('window', 'document', 'location', 'fetch', 'localStorage', 'sessionStorage', 'indexedDB', 'URL', code);
-fn(win, doc, { pathname: path }, win.fetch, trap('localStorage'), trap('sessionStorage'), trap('indexedDB'), URL);
-fn(win, doc, { pathname: path }, win.fetch, trap('localStorage'), trap('sessionStorage'), trap('indexedDB'), URL); // included twice
+win.localStorage = storage;
+const loc = { pathname: path, search: search || '' };
+fn(win, doc, loc, win.fetch, storage, trap('sessionStorage'), trap('indexedDB'), URL);
+fn(win, doc, loc, win.fetch, storage, trap('sessionStorage'), trap('indexedDB'), URL); // included twice
 const before = calls.length;
 doc.visibilityState = 'visible';
 if (listeners.visibilitychange) listeners.visibilitychange();
 if (listeners.visibilitychange) listeners.visibilitychange();
-console.log(JSON.stringify({ before, calls, touched }));
+console.log(JSON.stringify({ before, calls, touched, reads }));
 """
 
 
 class Script(unittest.TestCase):
-    def run_js(self, visible, referrer, path, on=True):
+    def run_js(self, visible, referrer, path, on=True, search="", stored=""):
         if not shutil.which("node"):
             self.skipTest("node not on PATH")
         with tempfile.NamedTemporaryFile("w", suffix=".js", delete=False) as f:
             f.write(NODE_HARNESS)
         try:
-            p = subprocess.run(["node", f.name, str(SCRIPT), visible, referrer, path, "1" if on else "0"],
+            p = subprocess.run(["node", f.name, str(SCRIPT), visible, referrer, path, "1" if on else "0", search, stored],
                                capture_output=True, text=True, check=True)
         finally:
             os.unlink(f.name)
@@ -328,8 +468,75 @@ class Script(unittest.TestCase):
     def test_no_storage_in_the_source(self):
         src = SCRIPT.read_text(encoding="utf-8").lower()
         code = re.sub(r"/\*.*?\*/|//[^\n]*", "", src, flags=re.S)
-        for word in ["cookie", "localstorage", "sessionstorage", "indexeddb", "navigator", "screen", "useragent", "date"]:
+        for word in ["cookie", "sessionstorage", "indexeddb", "navigator", "screen", "useragent", "date", "setitem", "removeitem"]:
             self.assertNotIn(word, code, word)
+        # GTM-126: the only use of localStorage is reading the team's mark.
+        self.assertEqual(re.findall(r"localstorage\.\w+\([^)]*\)", code), ["localstorage.getitem('rosmarops_internal')"])
+
+    def test_internal_mark_in_url_sends_nothing(self):
+        r = self.run_js("visible", "", "/methodology/", search="?rosmarops_internal=1")
+        self.assertEqual(r["calls"], [])
+
+    def test_internal_mark_in_storage_sends_nothing(self):
+        r = self.run_js("visible", "", "/methodology/", stored="1")
+        self.assertEqual(r["calls"], [])
+        self.assertEqual(r["touched"], [])
+
+    def test_internal_zero_counts_even_if_marked(self):
+        r = self.run_js("visible", "", "/methodology/", search="?rosmarops_internal=0", stored="1")
+        self.assertEqual(len(r["calls"]), 1)
+
+    def test_no_mark_counts_and_only_reads_the_mark(self):
+        r = self.run_js("visible", "", "/methodology/")
+        self.assertEqual(len(r["calls"]), 1)
+        self.assertEqual(set(r["reads"]), {"rosmarops_internal"})
+
+
+CONSENT = ROOT / "site" / "assets" / "consent" / "consent.js"
+CONSENT_HARNESS = r"""
+const fs = require('fs');
+const [src, search, stored, cookie] = process.argv.slice(2);
+const store = {}; if (stored) store.rosmarops_internal = stored;
+let jar = cookie || ''; const sets = [];
+const ls = { getItem: k => (k in store ? store[k] : null), setItem: (k, v) => { store[k] = v; }, removeItem: k => { delete store[k]; } };
+const doc = { documentElement: { lang: 'en' } };
+Object.defineProperty(doc, 'cookie', { get() { return jar; }, set(v) { sets.push(v); jar = /Max-Age=0/.test(v) ? '' : v.split(';')[0]; } });
+new Function('window', 'document', 'location', 'localStorage', 'URLSearchParams', fs.readFileSync(src, 'utf8'))({}, doc, { search }, ls, URLSearchParams);
+console.log(JSON.stringify({ sets, store }));
+"""
+COOKIE_ON = "rosmarops_internal=1; Path=/; SameSite=Lax; Secure; Max-Age=34560000"
+
+
+class InternalMark(unittest.TestCase):
+    """GTM-126: consent.js sets the cookie rosmarops_internal with the mark, and deletes it with =0."""
+
+    def run_js(self, search="", stored="", cookie=""):
+        if not shutil.which("node"):
+            self.skipTest("node not on PATH")
+        with tempfile.NamedTemporaryFile("w", suffix=".js", delete=False) as f:
+            f.write(CONSENT_HARNESS)
+        try:
+            p = subprocess.run(["node", f.name, str(CONSENT), search, stored, cookie], capture_output=True, text=True, check=True)
+        finally:
+            os.unlink(f.name)
+        return json.loads(p.stdout)
+
+    def test_mark_sets_cookie(self):
+        r = self.run_js("?rosmarops_internal=1")
+        self.assertEqual(r["sets"], [COOKIE_ON])
+        self.assertEqual(r["store"], {"rosmarops_internal": "1"})
+
+    def test_marked_without_cookie_gets_it_once(self):
+        self.assertEqual(self.run_js(stored="1")["sets"], [COOKIE_ON])
+        self.assertEqual(self.run_js(stored="1", cookie="rosmarops_internal=1")["sets"], [])
+
+    def test_zero_deletes_cookie_and_mark(self):
+        r = self.run_js("?rosmarops_internal=0", stored="1", cookie="rosmarops_internal=1")
+        self.assertEqual(r["sets"], ["rosmarops_internal=; Path=/; SameSite=Lax; Secure; Max-Age=0"])
+        self.assertEqual(r["store"], {})
+
+    def test_unmarked_browser_gets_no_cookie(self):
+        self.assertEqual(self.run_js()["sets"], [])
 
 
 class Switch(unittest.TestCase):

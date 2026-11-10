@@ -3,7 +3,7 @@
  * Plugin Name: RosmarOps downloads and visits
  * Description: Download counter (GTM-18; os added by the 2026-10-29 direct-download decision). /download, /es/descargar and /ca/descarregar add one to an aggregate count (UTC day, source page, language, os) and redirect to GitHub: to the file for ?os=windows|mac-arm|mac-intel|linux-amd64|linux-arm64 (Linux added by GTM-83), otherwise to the latest release. Stores no IP address, cookie, user agent or referrer; requests with the WordPress session cookie (the team, signed in) are not counted (GTM-111), nor requests from robots, by the same user-agent list as visits (GTM-118; the user agent is looked at, never stored). Public read-only totals at /wp-json/rosmarops/v1/downloads. Versioned in qtorb/rosmarops-web; do not edit on the server.
  *
- * GTM-111: visit counter, behind ROSMAROPS_VISITS_ON (off). Pages send their path and the referrer's domain with JavaScript (/assets/visits/visits.js); the server adds one to (UTC day, page, language, referrer kind), with closed lists. It stores no IP address, cookie, user agent, exact time or identifier. Public read-only totals at /wp-json/rosmarops/v1/visits.
+ * GTM-111: visit counter, behind ROSMAROPS_VISITS_ON (off). Pages send their path and the referrer's domain with JavaScript (/assets/visits/visits.js); the server adds one to (UTC day, page, language, referrer kind), with closed lists. It stores no IP address, cookie, user agent, exact time or identifier. GTM-125: different people per UTC day, from an HMAC of IP and user agent with a key of the day; only today's fingerprints and key exist, both replaced at the day change, and the IP and user agent are never stored. Public read-only totals (visits in rows, people in people) at /wp-json/rosmarops/v1/visits.
  */
 
 if (!defined('ABSPATH')) {
@@ -61,11 +61,13 @@ function rosmarops_dl_os($raw) {
 
 /**
  * GTM-111: a request from someone on the team, signed in to this WordPress: it carries the session cookie WordPress
- * already sets (wordpress_logged_in_<hash>). Only its presence is checked; nothing is read from it, stored or set.
+ * already sets (wordpress_logged_in_<hash>). GTM-126: or a browser of the team marked with ?rosmarops_internal=1,
+ * which carries the cookie rosmarops_internal set by consent.js. Only their presence is checked; nothing is read from
+ * them, stored or set. Visits and download clicks alike.
  */
 function rosmarops_is_team($cookies) {
 	foreach (array_keys((array) $cookies) as $name) {
-		if (strpos((string) $name, 'wordpress_logged_in_') === 0) {
+		if (strpos((string) $name, 'wordpress_logged_in_') === 0 || (string) $name === 'rosmarops_internal') {
 			return true;
 		}
 	}
@@ -360,7 +362,14 @@ function rosmarops_visits_handle($body, $server, $cookies) {
 	$page = rosmarops_visits_page($in['p'] ?? null);
 	// GTM-118: for "other", the language comes from the prefix of the path the browser sent (/es/, /ca/ or none).
 	$from = ($page === 'other' && is_string($in['p'] ?? null)) ? rtrim($in['p'], '/') . '/' : $page;
-	return rosmarops_visits_count($page, rosmarops_visits_lang($from), rosmarops_visits_ref($in['r'] ?? null));
+	$lang = rosmarops_visits_lang($from);
+	$ref  = rosmarops_visits_ref($in['r'] ?? null);
+	$day  = rosmarops_visits_today();
+	if (!rosmarops_visits_count($page, $lang, $ref, $day)) {
+		return false;
+	}
+	rosmarops_people_count($server, $lang, $ref, $day);
+	return true;
 }
 
 /** Aggregate rows of the last ROSMAROPS_DL_DAYS days (UTC), oldest first. */
@@ -380,6 +389,137 @@ function rosmarops_visits_rows($today = null) {
 	return $rows;
 }
 
+// ------------------------------------------------------------------------------------------ people per day (GTM-125)
+
+/*
+ * GTM-125: different people per UTC day, without cookies and without storing IP addresses (the cookieless method of
+ * analytics like Plausible, in our own counter; decided by Albert on 09-11). Only for visits that already count, so the
+ * same rules for robots, the team and prefetch apply. For each one, the server computes
+ * hash_hmac('sha256', REMOTE_ADDR . '|' . user agent, key of the day). REMOTE_ADDR is the visitor's IP on OVH: the
+ * one-time check of 09-11 showed it, and that OVH overwrites X-Forwarded-For with the same value; X-Real-IP and
+ * Forwarded arrive as the client sends them and are never used. The IP and the user agent are used only to compute the
+ * fingerprint and are stored nowhere. The key is 32 random bytes per UTC day, in a network option with its date; on a
+ * new day a new key replaces it (the old one no longer exists) and the fingerprints table is emptied. That table holds
+ * only today's fingerprints (one column, unique); a fingerprint not yet in it is one more person for (day, language,
+ * referrer kind) of that first visit. Those counts are kept with no time limit, like the visits.
+ */
+const ROSMAROPS_PEOPLE_KEY  = 'rosmarops_people_key';
+const ROSMAROPS_PEOPLE_LOCK = 'rosmarops_people_rotating';
+const ROSMAROPS_PEOPLE_CRON = 'rosmarops_people_rotate';
+
+/** Today's UTC day (a test can fix it with ROSMAROPS_VISITS_TODAY). */
+function rosmarops_visits_today() {
+	return defined('ROSMAROPS_VISITS_TODAY') ? ROSMAROPS_VISITS_TODAY : gmdate('Y-m-d');
+}
+
+function rosmarops_people_prints_table() {
+	global $wpdb;
+	return $wpdb->base_prefix . 'rosmarops_visits_prints';
+}
+
+function rosmarops_people_table() {
+	global $wpdb;
+	return $wpdb->base_prefix . 'rosmarops_people';
+}
+
+function rosmarops_people_create_tables() {
+	global $wpdb;
+	$p = rosmarops_people_prints_table();
+	$t = rosmarops_people_table();
+	$wpdb->query("CREATE TABLE IF NOT EXISTS `$p` (h CHAR(64) NOT NULL, PRIMARY KEY (h)) " . $wpdb->get_charset_collate());
+	$wpdb->query(
+		"CREATE TABLE IF NOT EXISTS `$t` (
+			day DATE NOT NULL,
+			lang CHAR(2) NOT NULL,
+			ref VARCHAR(16) NOT NULL,
+			count INT UNSIGNED NOT NULL DEFAULT 0,
+			PRIMARY KEY (day, lang, ref)
+		) " . $wpdb->get_charset_collate()
+	);
+}
+
+/**
+ * The key of $day (raw bytes), making it on the first request of a new day: the fingerprints table is emptied and the
+ * new key replaces the old one, which then no longer exists. Null while another request is making it.
+ */
+function rosmarops_people_key($day) {
+	$cur = get_site_option(ROSMAROPS_PEOPLE_KEY);
+	if (is_array($cur) && ($cur['day'] ?? '') === $day && preg_match('/^[0-9a-f]{64}$/', (string) ($cur['key'] ?? '')) === 1) {
+		return hex2bin($cur['key']);
+	}
+	if (!add_site_option(ROSMAROPS_PEOPLE_LOCK, time())) {
+		if (time() - (int) get_site_option(ROSMAROPS_PEOPLE_LOCK) < 60) {
+			return null;
+		}
+		update_site_option(ROSMAROPS_PEOPLE_LOCK, time()); // a rotation that died more than a minute ago: take over
+	}
+	global $wpdb;
+	$p        = rosmarops_people_prints_table();
+	$suppress = $wpdb->suppress_errors(true);
+	if ($wpdb->query("DELETE FROM `$p`") === false) {
+		rosmarops_people_create_tables();
+	}
+	$wpdb->suppress_errors($suppress);
+	$key = bin2hex(random_bytes(32));
+	update_site_option(ROSMAROPS_PEOPLE_KEY, ['day' => $day, 'key' => $key]);
+	delete_site_option(ROSMAROPS_PEOPLE_LOCK);
+	return hex2bin($key);
+}
+
+/** The fingerprint of a request for $key: neither the IP nor the user agent can be read back from it. */
+function rosmarops_people_print($server, $key) {
+	$ip = (string) ($server['REMOTE_ADDR'] ?? '');
+	if ($ip === '' || !is_string($key) || strlen($key) !== 32) {
+		return null;
+	}
+	return hash_hmac('sha256', $ip . '|' . (string) ($server['HTTP_USER_AGENT'] ?? ''), $key);
+}
+
+/** After a counted visit: one more person for (day, language, referrer kind) if this fingerprint is new today. */
+function rosmarops_people_count($server, $lang, $ref, $day) {
+	$h = rosmarops_people_print($server, rosmarops_people_key($day));
+	if ($h === null) {
+		return false;
+	}
+	global $wpdb;
+	$p        = rosmarops_people_prints_table();
+	$t        = rosmarops_people_table();
+	$suppress = $wpdb->suppress_errors(true);
+	$ins      = $wpdb->prepare("INSERT IGNORE INTO `$p` (h) VALUES (%s)", $h);
+	$new      = $wpdb->query($ins);
+	if ($new === false) {
+		rosmarops_people_create_tables();
+		$new = $wpdb->query($ins);
+	}
+	$ok = false;
+	if ((int) $new === 1) {
+		$ok = $wpdb->query($wpdb->prepare(
+			"INSERT INTO `$t` (day, lang, ref, count) VALUES (%s, %s, %s, 1) ON DUPLICATE KEY UPDATE count = count + 1",
+			$day,
+			$lang,
+			$ref
+		)) !== false;
+	}
+	$wpdb->suppress_errors($suppress);
+	return $ok;
+}
+
+/** People per (day, language, referrer kind) of the last ROSMAROPS_DL_DAYS days (UTC), oldest first. */
+function rosmarops_people_rows($today = null) {
+	global $wpdb;
+	$t        = rosmarops_people_table();
+	$today    = $today ?? rosmarops_visits_today();
+	$since    = gmdate('Y-m-d', strtotime($today . ' UTC') - (ROSMAROPS_DL_DAYS - 1) * 86400);
+	$suppress = $wpdb->suppress_errors(true);
+	$res      = $wpdb->get_results($wpdb->prepare("SELECT day, lang, ref, count FROM `$t` WHERE day >= %s ORDER BY day, lang, ref", $since), ARRAY_A);
+	$wpdb->suppress_errors($suppress);
+	$rows = [];
+	foreach ((array) $res as $r) {
+		$rows[] = ['day' => $r['day'], 'lang' => $r['lang'], 'ref' => $r['ref'], 'count' => (int) $r['count']];
+	}
+	return $rows;
+}
+
 if (ROSMAROPS_VISITS_ON) {
 	add_action('rest_api_init', function () {
 		register_rest_route('rosmarops/v1', '/visits', [
@@ -389,6 +529,7 @@ if (ROSMAROPS_VISITS_ON) {
 				$res = new WP_REST_Response([
 					'generated_at' => gmdate('Y-m-d\TH:i:s\Z'),
 					'rows'         => rosmarops_visits_rows(),
+					'people'       => rosmarops_people_rows(),
 				]);
 				$res->header('Cache-Control', 'public, max-age=3600');
 				return $res;
@@ -406,8 +547,17 @@ if (ROSMAROPS_VISITS_ON) {
 			},
 		]);
 	});
+	// GTM-125: the key and the fingerprints of the day before go at the start of each UTC day even with no visit.
+	add_action(ROSMAROPS_PEOPLE_CRON, function () {
+		rosmarops_people_key(rosmarops_visits_today());
+	});
+	add_action('init', function () {
+		if (function_exists('wp_next_scheduled') && !wp_next_scheduled(ROSMAROPS_PEOPLE_CRON)) {
+			wp_schedule_event((intdiv(time(), 86400) + 1) * 86400 + 60, 'daily', ROSMAROPS_PEOPLE_CRON); // just after 00:00 UTC
+		}
+	});
 	// WordPress pages (blogs, privacy, about): the same script as the static pages.
 	add_action('wp_enqueue_scripts', function () {
-		wp_enqueue_script('rosmarops-visits', ROSMAROPS_VISITS_ORIGIN . '/assets/visits/visits.js', [], '2', true);
+		wp_enqueue_script('rosmarops-visits', ROSMAROPS_VISITS_ORIGIN . '/assets/visits/visits.js', [], '3', true);
 	});
 }
