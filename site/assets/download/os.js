@@ -6,7 +6,7 @@
 (function () {
   'use strict';
   var LABELS = {
-    mac: { es: 'Descargar para Mac (vista previa)', en: 'Download for Mac (preview)', ca: 'Descarrega per a Mac (vista prèvia)' },
+    mac: { es: 'Descargar para Mac', en: 'Download for Mac', ca: 'Descarrega per a Mac' },
     linux: { es: 'Descargar para Linux', en: 'Download for Linux', ca: 'Descarrega per a Linux' }
   };
 

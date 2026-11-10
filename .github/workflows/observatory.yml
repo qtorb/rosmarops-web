@@ -104,7 +104,15 @@ jobs:
           python -m unittest wp/tests/test_gtm124_agente.py
           python -m unittest wp/tests/test_download_sources.py
           python -m unittest wp/tests/test_static_about.py
-          python -m unittest wp/tests/test_download_os.py
+
+      - name: Home download buttons by system, with the one-line check in Chromium (GTM-129, GTM-129b)
+        run: |
+          set -euo pipefail
+          # Same Playwright as sample-captures.yml, installed for this check only.
+          npm install --no-save playwright@1.63.0
+          npx playwright install --with-deps chromium
+          NODE_PATH="$PWD/node_modules" python -m unittest -v wp/tests/test_download_os.py 2>&1 | tee /tmp/dlos.txt
+          ! grep -q "skipped" /tmp/dlos.txt || { echo "::error::the one-line check was skipped"; exit 1; }
 
       - name: Download and visit counters against MySQL (GTM-18, GTM-111)
         run: |
