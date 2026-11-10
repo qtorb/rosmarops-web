@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RosmarOps for security teams · RosmarOps</title>
+<meta name="description" content="Which files RosmarOps opens, which processes it starts, what it writes, when it connects, how to check the binary and how to allow it.">
+<link rel="canonical" href="https://rosmarops.com/security-teams/">
+<link rel="alternate" hreflang="en" href="https://rosmarops.com/security-teams/">
+<link rel="alternate" hreflang="es" href="https://rosmarops.com/es/equipos-de-seguridad/">
+<link rel="alternate" hreflang="ca" href="https://rosmarops.com/ca/equips-de-seguretat/">
+<link rel="alternate" hreflang="x-default" href="https://rosmarops.com/security-teams/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="RosmarOps">
+<meta property="og:title" content="RosmarOps for security teams · RosmarOps">
+<meta property="og:description" content="Which files RosmarOps opens, which processes it starts, what it writes, when it connects, how to check the binary and how to allow it.">
+<meta property="og:url" content="https://rosmarops.com/security-teams/">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://rosmarops.com/assets/brand/rosmarops-social.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="RosmarOps logo">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "@id": "https://rosmarops.com/security-teams/#page", "url": "https://rosmarops.com/security-teams/", "name": "RosmarOps for security teams", "inLanguage": "en", "isPartOf": {"@id": "https://rosmarops.com/#website"}}</script>
+<link rel="stylesheet" href="/assets/consent/cookieconsent.css?v=3.1.0">
+<link rel="icon" href="/wp-content/uploads/2026/10/image-1.png">
+<style>
+:root{--bg:#F6F5F2;--ink:#1B1A18;--ink2:#3A3833;--muted:#66635D;--line:#E3E0D8;--card:#FFFFFF;--accent:#6F8F78}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+a{color:var(--ink)}a:hover{color:var(--accent)}
+.wrap{max-width:1040px;margin:0 auto;padding:0 16px}
+header .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;padding-top:24px;padding-bottom:24px}
+header img{height:40px;width:auto;display:block}
+nav{display:flex;flex-wrap:wrap;gap:24px;font-size:16px}
+main .wrap{display:flex;flex-direction:column;gap:64px;padding-top:48px;padding-bottom:64px}
+.hero{display:flex;flex-direction:column;gap:20px;max-width:760px}
+h1{margin:0;font-size:clamp(34px,6vw,52px);line-height:1.08;font-weight:700;letter-spacing:-.02em}
+.lead{margin:0;font-size:20px;line-height:1.55;color:var(--ink2)}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:16px}
+h2{margin:0;font-size:14px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:12px;font-size:17px;line-height:1.55}
+.status{border-top:1px solid var(--line);padding-top:32px;display:flex;flex-direction:column;gap:12px;max-width:760px}
+.status p{margin:0;font-size:17px;line-height:1.55}
+footer{border-top:1px solid var(--line)}
+footer .wrap{padding-top:28px;padding-bottom:28px;font-size:15px;color:var(--muted)}
+footer nav{gap:20px;font-size:15px}
+.doc{max-width:760px;display:flex;flex-direction:column;gap:18px;font-size:18px;line-height:1.65}
+.doc h1{font-size:clamp(30px,5vw,44px);line-height:1.12}
+.doc h2{font-size:22px;letter-spacing:0;text-transform:none;color:var(--ink);margin-top:20px}
+.doc p,.doc ul{margin:0}.doc ul{font-size:18px;gap:8px}
+.doc .meta{font-size:15px;color:var(--muted)}
+.doc .formula{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 20px;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:16px;overflow-wrap:anywhere}
+.doc code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:.92em}
+.faq h2{margin-top:24px}
+.doc a{overflow-wrap:anywhere}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<a href="/"><img src="/assets/brand/rosmarops-logo.png" srcset="/assets/brand/rosmarops-logo.png 1x, /assets/brand/rosmarops-logo@2x.png 2x" width="512" height="131" alt="RosmarOps"></a>
+<nav><a href="/blog/">Blog</a><a href="/blog/about/">About</a><a href="/observatory/">Observatory</a><a href="/methodology/">Methodology</a><a href="/faq/">FAQ</a><a href="/es/equipos-de-seguridad/" hreflang="es" lang="es" aria-label="Español">ES</a><a href="/ca/equips-de-seguretat/" hreflang="ca" lang="ca" aria-label="Català">CA</a></nav>
+</div></header>
+
+<main><div class="wrap">
+<article class="doc"><h1>RosmarOps for security teams</h1>
+<p>RosmarOps is a read-only program that checks what AI agents can do on a computer. To do that it opens credential files and starts PowerShell, which is exactly what a credential stealer does. So this page sets out exactly what it does, so you can check it before you allow it.</p>
+<h2 id="ficheros">1. Which files it opens and why</h2>
+<ul><li><strong>The configuration of AI agents:</strong> Claude Code, Cursor, Cline, GitHub Copilot, Codex, Grok Build, Antigravity CLI, Gemini CLI and Hermes Agent. Their permissions, MCP servers, hooks, skills and instructions (<code>AGENTS.md</code>, <code>CLAUDE.md</code>, <code>GEMINI.md</code> and similar). The full list, file by file, is in the README: <a href="https://github.com/qtorb/rosmarops#what-it-reads" rel="noopener">https://github.com/qtorb/rosmarops#what-it-reads</a></li><li><strong>Credential files</strong>, to know which keys each agent can read:<ul><li>the <code>.env</code> files in repositories;</li><li>those of npm, AWS, GitHub CLI, git, Railway and Supabase;</li><li>the agents' own session files.</li></ul></li><li><strong>Repositories:</strong> the files tracked by git and their history, to find saved keys, plus their hooks and workflows.</li><li><strong>On Windows:</strong> scheduled tasks, Microsoft Defender exclusions and some registry policy keys that configure agents. It only reads them.</li></ul>
+<p>It never shows a whole key: the report shows the first 4 and the last 4 characters. It doesn't open files larger than 2 MB. It skips <code>node_modules</code>, <code>.git</code> and the other dependency and build folders.</p>
+<h2 id="procesos">2. Which processes it starts</h2>
+<p>On Windows:</p>
+<ul><li><code>powershell.exe -NonInteractive -NoProfile</code>, with no window, for read-only queries (<code>Get-ScheduledTask</code>, <code>Get-MpPreference</code>, <code>Get-ItemProperty</code>). It also uses it to show its own windows and alerts: connecting the space, sending a problem, choosing the projects folder and the notification when it finishes.</li><li><code>code --list-extensions</code>, to know which AI extensions VS Code has.</li><li><code>git</code>, only with local read commands (<code>rev-parse</code>, <code>ls-files</code>, <code>rev-list</code>, <code>config</code>) and with hooks turned off.</li><li><code>explorer.exe</code>, to open the report in the browser.</li></ul>
+<p>On macOS and Linux it starts <code>git</code> the same way, and the system command to open the report and show the notification (<code>open</code>, <code>xdg-open</code>, <code>notify-send</code>).</p>
+<p>It installs no services, drivers or scheduled tasks. It doesn't change the registry or any program's configuration.</p>
+<h2 id="escritura">3. What it writes and where</h2>
+<p>Only inside <code>%USERPROFILE%\.rosmarops</code> (on macOS and Linux, <code>~/.rosmarops</code>):</p>
+<ul><li>its state, <code>state.json</code>;</li><li>the reports, in HTML and JSON;</li><li>in the <code>data</code> folder, the send log (<code>rosmarops-sends.log</code>) and the local list of problems it runs into.</li></ul>
+<p>Nothing else.</p>
+<h2 id="red">4. When it connects and where to</h2>
+<p><strong>By default, never.</strong> It connects only in two cases, always over HTTPS and only to <code>app.rosmarops.com</code>, port 443:</p>
+<ul><li>if the person connects the computer to their space: it sends their results, encrypted, after each check;</li><li>if the person presses «Send» when the program runs into a problem: it sends the list of error codes, with no paths, names or keys. This is from version 0.11.0.</li></ul>
+<p>Every send is listed in <code>rosmarops-sends.log</code>.</p>
+<p>It honours <code>HTTPS_PROXY</code>. If you block <code>app.rosmarops.com</code>, everything else works the same: the check and the report need no network.</p>
+<h2 id="garantias">5. How this is guaranteed</h2>
+<p>Every promise on this page has an automated test in the code, which runs on every change:</p>
+<ul><li>no network outside that single host;</li><li>no writes outside its folder;</li><li>no key ever leaves in full.</li></ul>
+<p>They are listed one by one in the trust model: <a href="https://github.com/qtorb/rosmarops/blob/master/docs/trust-model.md" rel="noopener">https://github.com/qtorb/rosmarops/blob/master/docs/trust-model.md</a></p>
+<p>The code is open source (AGPL-3.0): <a href="https://github.com/qtorb/rosmarops" rel="noopener">https://github.com/qtorb/rosmarops</a></p>
+<h2 id="comprobar">6. How to check the binary</h2>
+<p>It isn't signed with a code-signing certificate yet. To know it is the one built in the repository:</p>
+<ol><li><strong>Checksum.</strong> Every release publishes <code>SHA256SUMS.txt</code>. On Windows:
+<p class="formula"><code>Get-FileHash rosmarops.exe -Algorithm SHA256</code></p>
+and compare the result with the <code>rosmarops.exe</code> line.</li><li><strong>GitHub attestation.</strong> It ties the binary to the exact commit and the workflow that built it:
+<p class="formula"><code>gh attestation verify rosmarops.exe --repo qtorb/rosmarops</code></p></li><li><strong>Reproducible build.</strong> You can build it yourself from the release tag and get the same checksum. The steps are in the README: <a href="https://github.com/qtorb/rosmarops#build-it-yourself" rel="noopener">https://github.com/qtorb/rosmarops#build-it-yourself</a></li></ol>
+<h2 id="alertas">7. Which alerts may fire and why</h2>
+<ul><li><strong>«Credential access»</strong>, because it opens files such as <code>.aws/credentials</code>, <code>.git-credentials</code> or the agents' session files. That's what it measures: which keys each agent can read.</li><li><strong>«PowerShell started by an unsigned program»</strong>, because that's how it runs its read-only queries and shows its windows.</li><li><strong>«Defender exclusions queried»</strong> (<code>Get-MpPreference</code>), because it tells you when a new exclusion appears, which is something malware also does.</li><li><strong>«Uncommon program» or SmartScreen</strong>, because it is new, has no reputation yet and isn't signed.</li><li><strong>Many file reads in a short time</strong>, because it walks through projects looking for keys.</li></ul>
+<p>None of these alerts comes with writes outside <code>.rosmarops</code> or connections to any other destination. If you see either, it isn't RosmarOps as we publish it.</p>
+<h2 id="autorizar">8. How to allow it</h2>
+<ol><li>Check the binary as in section 6.</li><li>Allow it by its SHA-256 hash, not by its path. That way, a modified copy doesn't inherit the permission. Every new version has a new hash.</li><li>If you want, try it first on a test computer and look in your EDR at what it opens, starts and writes. It should match this page.</li><li>If you never want it to connect, block <code>app.rosmarops.com</code>. It works the same.</li></ol>
+<h2 id="contacto">9. Contact</h2>
+<p>To report a security issue: <a href="https://github.com/qtorb/rosmarops/blob/master/SECURITY.md" rel="noopener">https://github.com/qtorb/rosmarops/blob/master/SECURITY.md</a></p>
+<p>For anything else: <a href="mailto:legal@rosmarops.com">legal@rosmarops.com</a></p>
+</article>
+</div></main>
+
+<footer><div class="wrap">
+<nav><a href="/blog/">Blog</a><a href="/blog/about/">About</a><a href="/observatory/">Observatory</a><a href="/methodology/">Methodology</a><a href="/faq/">FAQ</a><a href="/es/equipos-de-seguridad/" hreflang="es" lang="es" aria-label="Español">ES</a><a href="/ca/equips-de-seguretat/" hreflang="ca" lang="ca" aria-label="Català">CA</a><a href="/privacy/">Privacy</a><a href="/legal-notice/">Legal notice</a><a href="/terms/">Terms</a><a href="#" data-cc="show-preferencesModal">Cookie settings</a></nav>
+</div></footer>
+<script src="/assets/consent/cookieconsent.umd.js?v=3.1.0" defer></script>
+<script src="/assets/consent/consent.js?v=5" defer></script><script src="/assets/visits/visits.js?v=3" defer></script>
+</body>
+</html>
