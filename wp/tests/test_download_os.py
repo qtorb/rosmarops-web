@@ -18,7 +18,7 @@ SCRIPT = ROOT / "site" / "assets" / "download" / "os.js"
 HOMES = {"en": ROOT / "site" / "index.html", "es": ROOT / "site" / "es" / "index.html", "ca": ROOT / "site" / "ca" / "index.html"}
 BASE = {"en": "", "es": "/es", "ca": "/ca"}
 DL = {"en": "/download", "es": "/es/descargar", "ca": "/ca/descarregar"}
-MAC = {"en": "Download for Mac (preview)", "es": "Descargar para Mac (vista previa)", "ca": "Descarrega per a Mac (vista prèvia)"}
+MAC = {"en": "Download for Mac", "es": "Descargar para Mac", "ca": "Descarrega per a Mac"}
 LINUX = {"en": "Download for Linux", "es": "Descargar para Linux", "ca": "Descarrega per a Linux"}
 
 AGENTS = {
@@ -123,7 +123,7 @@ class DownloadOs(unittest.TestCase):
         # The only change to the pages is the script tag; the blocks and notes are exactly the served ones.
         for lang, page in HOMES.items():
             html = page.read_text(encoding="utf-8")
-            self.assertEqual(html.count('<script src="/assets/download/os.js?v=1" defer></script>'), 1, lang)
+            self.assertEqual(html.count('<script src="/assets/download/os.js?v=2" defer></script>'), 1, lang)
             self.assertEqual(html.count('<div class="dl">'), 2, lang)
             self.assertEqual(len(re.findall(r'<p class="dl-note">Windows', html)), 1, lang)
 
@@ -135,3 +135,20 @@ class DownloadOs(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+
+class MacOneLine(unittest.TestCase):
+    """GTM-129b: on the Spanish home, with a Mac agent at 1280 px, the three buttons of each .dl block share one line.
+    Runs wp/tests/download-os-layout.js with Node Playwright; skipped where Playwright is not installed."""
+
+    def test_es_mac_1280_buttons_on_one_line(self):
+        if not shutil.which("node") or subprocess.run(["node", "-e", "require('playwright')"], capture_output=True).returncode:
+            self.skipTest("node playwright not installed")
+        p = subprocess.run(["node", str(Path(__file__).parent / "download-os-layout.js"), str(ROOT / "site"), "/es/", "1280"],
+                           capture_output=True, text=True, check=True, timeout=120)
+        blocks = json.loads(p.stdout)
+        self.assertEqual(len(blocks), 2)
+        for block in blocks:
+            self.assertEqual(len({top for _, top in block}), 1, block)
+            self.assertEqual([t for t, _ in block], ["Descargar para Mac", "Windows", "Linux"])
