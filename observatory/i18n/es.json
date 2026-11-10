@@ -201,6 +201,8 @@
   "summary.cap.use_mcp_tools.all_mcp_tools": "usar todas las herramientas de sus servidores MCP, complementos que le dan herramientas extra, como el acceso a otros servicios",
   "summary.cap.read_files.other_agents_credentials": "tomar prestados los inicios de sesión de otros agentes si no tiene uno propio",
   "summary.cap.write_files.other_agents_credentials": "reescribir los ficheros de credenciales de esos agentes al renovar un inicio de sesión prestado",
+  "summary.cap.execute_commands.all_commands.sandboxed_shell": "ejecutar órdenes en su terminal, dentro de su entorno aislado (sandbox)",
+  "summary.cap.network.any_destination": "buscar en internet",
   "summary.since": " (desde {agent} {version})",
   "summary.who.user": "te pregunta a ti antes de lo que necesita permiso",
   "summary.who.another_model": "lo que normalmente necesitaría tu permiso lo aprueba o lo bloquea otro modelo de IA, no tú",

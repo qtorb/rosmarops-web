@@ -158,7 +158,8 @@ def has_page(a):
 
 # Agent pages are generated for review whenever there is content, but stay noindex,
 # unlinked and out of the deploy until their id is listed here (after product advisor verification).
-PUBLISHED_AGENT_PAGES = {"claude-code", "cursor", "kanvas", "hermes-agent", "antigravity", "github-copilot"}  # verified by the product advisor, ES/CA signed by Albert (2026-10-28; antigravity and github-copilot 2026-10-30)
+PUBLISHED_AGENT_PAGES = {"claude-code", "cursor", "kanvas", "hermes-agent", "antigravity", "github-copilot",  # verified by the product advisor, ES/CA signed by Albert (2026-10-28; antigravity and github-copilot 2026-10-30)
+                         "codex", "gemini-cli", "grok-build", "cline"}  # verified by the product advisor, ES/CA signed by Albert (2026-11-10)
 
 
 def texts(a):
