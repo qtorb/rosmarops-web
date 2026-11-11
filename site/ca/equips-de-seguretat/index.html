@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RosmarOps per a equips de seguretat · RosmarOps</title>
+<meta name="description" content="Quins fitxers obre RosmarOps, quins processos llança, què escriu, quan es connecta, com comprovar el binari i com autoritzar-lo.">
+<link rel="canonical" href="https://rosmarops.com/ca/equips-de-seguretat/">
+<link rel="alternate" hreflang="en" href="https://rosmarops.com/security-teams/">
+<link rel="alternate" hreflang="es" href="https://rosmarops.com/es/equipos-de-seguridad/">
+<link rel="alternate" hreflang="ca" href="https://rosmarops.com/ca/equips-de-seguretat/">
+<link rel="alternate" hreflang="x-default" href="https://rosmarops.com/security-teams/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="RosmarOps">
+<meta property="og:title" content="RosmarOps per a equips de seguretat · RosmarOps">
+<meta property="og:description" content="Quins fitxers obre RosmarOps, quins processos llança, què escriu, quan es connecta, com comprovar el binari i com autoritzar-lo.">
+<meta property="og:url" content="https://rosmarops.com/ca/equips-de-seguretat/">
+<meta property="og:locale" content="ca_ES">
+<meta property="og:image" content="https://rosmarops.com/assets/brand/rosmarops-social.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Logotip de RosmarOps">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "@id": "https://rosmarops.com/ca/equips-de-seguretat/#page", "url": "https://rosmarops.com/ca/equips-de-seguretat/", "name": "RosmarOps per a equips de seguretat", "inLanguage": "ca", "isPartOf": {"@id": "https://rosmarops.com/#website"}}</script>
+<link rel="stylesheet" href="/assets/consent/cookieconsent.css?v=3.1.0">
+<link rel="icon" href="/wp-content/uploads/2026/10/image-1.png">
+<style>
+:root{--bg:#F6F5F2;--ink:#1B1A18;--ink2:#3A3833;--muted:#66635D;--line:#E3E0D8;--card:#FFFFFF;--accent:#6F8F78}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+a{color:var(--ink)}a:hover{color:var(--accent)}
+.wrap{max-width:1040px;margin:0 auto;padding:0 16px}
+header .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;padding-top:24px;padding-bottom:24px}
+header img{height:40px;width:auto;display:block}
+nav{display:flex;flex-wrap:wrap;gap:24px;font-size:16px}
+main .wrap{display:flex;flex-direction:column;gap:64px;padding-top:48px;padding-bottom:64px}
+.hero{display:flex;flex-direction:column;gap:20px;max-width:760px}
+h1{margin:0;font-size:clamp(34px,6vw,52px);line-height:1.08;font-weight:700;letter-spacing:-.02em}
+.lead{margin:0;font-size:20px;line-height:1.55;color:var(--ink2)}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:16px}
+h2{margin:0;font-size:14px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:12px;font-size:17px;line-height:1.55}
+.status{border-top:1px solid var(--line);padding-top:32px;display:flex;flex-direction:column;gap:12px;max-width:760px}
+.status p{margin:0;font-size:17px;line-height:1.55}
+footer{border-top:1px solid var(--line)}
+footer .wrap{padding-top:28px;padding-bottom:28px;font-size:15px;color:var(--muted)}
+footer nav{gap:20px;font-size:15px}
+.doc{max-width:760px;display:flex;flex-direction:column;gap:18px;font-size:18px;line-height:1.65}
+.doc h1{font-size:clamp(30px,5vw,44px);line-height:1.12}
+.doc h2{font-size:22px;letter-spacing:0;text-transform:none;color:var(--ink);margin-top:20px}
+.doc p,.doc ul{margin:0}.doc ul{font-size:18px;gap:8px}
+.doc .meta{font-size:15px;color:var(--muted)}
+.doc .formula{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 20px;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:16px;overflow-wrap:anywhere}
+.doc code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:.92em}
+.faq h2{margin-top:24px}
+.doc a{overflow-wrap:anywhere}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<a href="/ca/"><img src="/assets/brand/rosmarops-logo.png" srcset="/assets/brand/rosmarops-logo.png 1x, /assets/brand/rosmarops-logo@2x.png 2x" width="512" height="131" alt="RosmarOps"></a>
+<nav><a href="/ca/blog/">Bloc</a><a href="/ca/blog/que-es-rosmarops/">Quant a</a><a href="/ca/observatori/">Observatori</a><a href="/ca/metodologia/">Metodologia</a><a href="/ca/preguntes-frequents/">Preguntes</a><a href="/security-teams/" hreflang="en" lang="en" aria-label="English">EN</a><a href="/es/equipos-de-seguridad/" hreflang="es" lang="es" aria-label="Español">ES</a></nav>
+</div></header>
+
+<main><div class="wrap">
+<article class="doc"><h1>RosmarOps per a equips de seguretat</h1>
+<p>RosmarOps és un programa de només lectura que revisa què poden fer els agents d'IA en un ordinador. Per fer-ho obre fitxers de credencials i llança PowerShell, que és just el que fa un lladre de credencials. Per això aquesta pàgina explica exactament què fa, perquè ho puguis comprovar abans d'autoritzar-lo.</p>
+<h2 id="ficheros">1. Quins fitxers obre i per què</h2>
+<ul><li><strong>La configuració dels agents d'IA:</strong> Claude Code, Cursor, Cline, GitHub Copilot, Codex, Grok Build, Antigravity CLI, Gemini CLI i Hermes Agent. Els seus permisos, servidors MCP, hooks, skills i instruccions (<code>AGENTS.md</code>, <code>CLAUDE.md</code>, <code>GEMINI.md</code> i similars). La llista completa, fitxer a fitxer, és al README: <a href="https://github.com/qtorb/rosmarops#what-it-reads" rel="noopener">https://github.com/qtorb/rosmarops#what-it-reads</a></li><li><strong>Fitxers de credencials</strong>, per saber quines claus pot llegir cada agent:<ul><li>els <code>.env</code> dels repositoris;</li><li>els de npm, AWS, GitHub CLI, git, Railway i Supabase;</li><li>els de sessió dels mateixos agents.</li></ul></li><li><strong>Els repositoris:</strong> els fitxers seguits per git i el seu historial, per trobar claus desades, a més dels seus hooks i workflows.</li><li><strong>A Windows:</strong> les tasques programades, les exclusions de Microsoft Defender i algunes claus de directives del registre que configuren agents. Només les llegeix.</li></ul>
+<p>Mai no ensenya una clau sencera: l'informe mostra els 4 primers i els 4 últims caràcters. No obre fitxers de més de 2 MB. Se salta <code>node_modules</code>, <code>.git</code> i les altres carpetes de dependències i compilació.</p>
+<h2 id="procesos">2. Quins processos llança</h2>
+<p>A Windows:</p>
+<ul><li><code>powershell.exe -NonInteractive -NoProfile</code>, sense finestra, per a consultes de només lectura (<code>Get-ScheduledTask</code>, <code>Get-MpPreference</code>, <code>Get-ItemProperty</code>). També el fa servir per mostrar les seves pròpies finestres i avisos: connectar l'espai, enviar un problema, triar la carpeta de projectes i la notificació en acabar.</li><li><code>code --list-extensions</code>, per saber quines extensions d'IA té VS Code.</li><li><code>git</code>, només amb ordres locals de lectura (<code>rev-parse</code>, <code>ls-files</code>, <code>rev-list</code>, <code>config</code>) i amb els hooks desactivats.</li><li><code>explorer.exe</code>, per obrir l'informe al navegador.</li></ul>
+<p>A macOS i Linux llança <code>git</code> igual, i l'ordre del sistema per obrir l'informe i mostrar la notificació (<code>open</code>, <code>xdg-open</code>, <code>notify-send</code>).</p>
+<p>No instal·la serveis, controladors ni tasques programades. No canvia el registre ni la configuració de cap programa.</p>
+<h2 id="escritura">3. Què escriu i on</h2>
+<p>Només dins de <code>%USERPROFILE%\.rosmarops</code> (a macOS i Linux, <code>~/.rosmarops</code>):</p>
+<ul><li>el seu estat, <code>state.json</code>;</li><li>els informes, en HTML i JSON;</li><li>a la carpeta <code>data</code>, el registre d'enviaments (<code>rosmarops-sends.log</code>) i la llista local de problemes que troba.</li></ul>
+<p>Res més.</p>
+<h2 id="red">4. Quan es connecta i on</h2>
+<p><strong>Per defecte, mai.</strong> Només es connecta en dos casos, sempre per HTTPS i només a <code>app.rosmarops.com</code>, port 443:</p>
+<ul><li>si la persona connecta l'ordinador al seu espai: envia els seus resultats, xifrats, després de cada revisió;</li><li>si la persona prem «Enviar» quan el programa troba un problema: envia la llista de codis d'error, sense rutes, noms ni claus. Això és des de la versió 0.11.0.</li></ul>
+<p>Cada enviament queda a <code>rosmarops-sends.log</code>.</p>
+<p>Respecta <code>HTTPS_PROXY</code>. Si bloqueges <code>app.rosmarops.com</code>, tota la resta funciona igual: la revisió i l'informe no necessiten xarxa.</p>
+<h2 id="garantias">5. Com es garanteix</h2>
+<p>Cada promesa d'aquesta pàgina té una prova automàtica al codi, que s'executa a cada canvi:</p>
+<ul><li>que no hi ha xarxa fora d'aquest únic host;</li><li>que no escriu fora de la seva carpeta;</li><li>que cap clau no surt sencera.</li></ul>
+<p>Les tens, una per una, al model de confiança: <a href="https://github.com/qtorb/rosmarops/blob/master/docs/trust-model.md" rel="noopener">https://github.com/qtorb/rosmarops/blob/master/docs/trust-model.md</a></p>
+<p>El codi és obert (AGPL-3.0): <a href="https://github.com/qtorb/rosmarops" rel="noopener">https://github.com/qtorb/rosmarops</a></p>
+<h2 id="comprobar">6. Com comprovar el binari</h2>
+<p>Encara no està signat amb un certificat de signatura de codi. Per saber que és el que es va compilar al repositori:</p>
+<ol><li><strong>Suma de control.</strong> Cada versió publica <code>SHA256SUMS.txt</code>. A Windows:
+<p class="formula"><code>Get-FileHash rosmarops.exe -Algorithm SHA256</code></p>
+i compara el resultat amb la línia de <code>rosmarops.exe</code>.</li><li><strong>Atestació de GitHub.</strong> Uneix el binari al commit exacte i al workflow que el va compilar:
+<p class="formula"><code>gh attestation verify rosmarops.exe --repo qtorb/rosmarops</code></p></li><li><strong>Compilació reproduïble.</strong> El pots compilar tu mateix des de l'etiqueta de la versió i obtenir la mateixa suma. Els passos són al README: <a href="https://github.com/qtorb/rosmarops#build-it-yourself" rel="noopener">https://github.com/qtorb/rosmarops#build-it-yourself</a></li></ol>
+<h2 id="alertas">7. Quines alertes poden saltar i per què</h2>
+<ul><li><strong>«Accés a credencials»</strong>, perquè obre fitxers com <code>.aws/credentials</code>, <code>.git-credentials</code> o els de sessió dels agents. És el que mesura: quines claus pot llegir cada agent.</li><li><strong>«PowerShell llançat per un programa sense signar»</strong>, perquè és així com fa les seves consultes de només lectura i mostra les seves finestres.</li><li><strong>«Consulta de les exclusions de Defender»</strong> (<code>Get-MpPreference</code>), perquè avisa quan apareix una exclusió nova, que és una cosa que també fa el programari maliciós.</li><li><strong>«Programa poc comú» o SmartScreen</strong>, perquè és nou, encara no té reputació i no està signat.</li><li><strong>Moltes lectures de fitxers en poc temps</strong>, perquè recorre els projectes buscant claus.</li></ul>
+<p>Cap d'aquestes alertes no va acompanyada d'escriptures fora de <code>.rosmarops</code> ni de connexions a cap altra destinació. Si en veus alguna de les dues, no és RosmarOps tal com el publiquem.</p>
+<h2 id="autorizar">8. Com autoritzar-lo</h2>
+<ol><li>Comprova el binari com a l'apartat 6.</li><li>Autoritza'l per la seva empremta SHA-256, no per la seva ruta. Així, una còpia modificada no hereta el permís. Cada versió nova té una empremta nova.</li><li>Si vols, prova'l abans en un ordinador de proves i mira al teu EDR què obre, què llança i què escriu. Ha de coincidir amb aquesta pàgina.</li><li>Si no vols que es connecti mai, bloqueja <code>app.rosmarops.com</code>. Funciona igual.</li></ol>
+<h2 id="contacto">9. Contacte</h2>
+<p>Per avisar d'una fallada de seguretat: <a href="https://github.com/qtorb/rosmarops/blob/master/SECURITY.md" rel="noopener">https://github.com/qtorb/rosmarops/blob/master/SECURITY.md</a></p>
+<p>Per a qualsevol altra pregunta: <a href="mailto:legal@rosmarops.com">legal@rosmarops.com</a></p>
+</article>
+</div></main>
+
+<footer><div class="wrap">
+<nav><a href="/ca/blog/">Bloc</a><a href="/ca/blog/que-es-rosmarops/">Quant a</a><a href="/ca/observatori/">Observatori</a><a href="/ca/metodologia/">Metodologia</a><a href="/ca/preguntes-frequents/">Preguntes freqüents</a><a href="/ca/privadesa/">Privadesa</a><a href="/ca/avis-legal/">Avís legal</a><a href="/ca/termes/">Termes</a><a href="/security-teams/" hreflang="en" lang="en" aria-label="English">EN</a><a href="/es/equipos-de-seguridad/" hreflang="es" lang="es" aria-label="Español">ES</a><a href="#" data-cc="show-preferencesModal">Configura les galetes</a></nav>
+</div></footer>
+<script src="/assets/consent/cookieconsent.umd.js?v=3.1.0" defer></script>
+<script src="/assets/consent/consent.js?v=5" defer></script><script src="/assets/visits/visits.js?v=3" defer></script>
+</body>
+</html>
