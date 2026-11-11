@@ -1,0 +1,707 @@
+{
+  "date": "2026-11-11",
+  "collected_at": "2026-11-11T05:34:27Z",
+  "sources": [
+    {
+      "id": "F1",
+      "opened": true,
+      "reason": null,
+      "latest": "2.1.322",
+      "latest_date": "2026-11-10",
+      "new": [
+        {
+          "date": "2026-11-10",
+          "version": "2.1.322",
+          "text": "Added fast mode on Vertex in the global, us and eu regions, falling back to standard speed if Vertex refuses it"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F2",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-06",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F3",
+      "opened": true,
+      "reason": null,
+      "latest": "rust-v0.167.1",
+      "latest_date": "2026-11-10",
+      "new": [
+        {
+          "date": "2026-11-10",
+          "version": "rust-v0.167.1",
+          "text": "## Changelog Full Changelog: https://github.com/openai/codex/compare/rust-v0.167.0...rust-v0.167.1"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F4",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-10",
+      "new": [
+        {
+          "date": "2026-11-10",
+          "version": null,
+          "text": "### Gemini 4 Carbon Gemini 4 Carbon is our strongest model for long-horizon software engineering, knowledge work, scientific discovery, and cybersecurity. Gemini 4 Carbon: Read on the Antigravity blog ### v1.0.261102.0 Latest"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F5",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.23.1",
+      "latest_date": "2026-11-10",
+      "new": [
+        {
+          "date": "2026-11-10",
+          "version": "v0.23.1",
+          "text": "# Hermes Agent v0.23.1 **Release Date:** November 9, 2026 > Patch release. This tag rolls up the ~618 PRs merged since v0.23.0 into a stable release for the GitHub release (CLI and installers), the Microsoft Store app, Docker and Hermes Cloud. Full curated notes for this window ship with v0.24.0. **What this patch ships for plugin users:** since the plugin catalog's site deploy on November 9, the published `plugin-catalog.json` was larger than the 2 MiB cap clients accept, so every install silently fell back to the catalog it shipped with. `hermes plugins install <name>` could not find plugin…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F6",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-10",
+      "new": [
+        {
+          "date": "2026-11-10",
+          "version": null,
+          "text": "Nov.10 Improvement GitHub App support for Enterprise Copilot seat management copilot enterprise management tools ... +1 ###"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F7",
+      "opened": true,
+      "reason": null,
+      "latest": "v4.1.26",
+      "latest_date": "2026-10-26",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F8",
+      "opened": true,
+      "reason": null,
+      "latest": "v2.1.0-vscode",
+      "latest_date": "2026-06-19",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F9",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.5.0",
+      "latest_date": "2026-11-09",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F10",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-11",
+      "new": [
+        {
+          "date": "2026-11-10",
+          "version": null,
+          "text": "MAL-0000-ghsa-malware-5d30fa4c52f79899 @lemili9804/mcp-weather-server: Malware in @lemili9804/mcp-weather-server"
+        },
+        {
+          "date": "2026-11-10",
+          "version": null,
+          "text": "MAL-0000-ghsa-malware-cd858623f60706d2 @rclaude/win32-x64: Malware in @rclaude/win32-x64"
+        },
+        {
+          "date": "2026-11-10",
+          "version": null,
+          "text": "MAL-0000-ghsa-malware-3205c915b20c02b2 agent-trace-kit: Malware in agent-trace-kit"
+        },
+        {
+          "date": "2026-11-10",
+          "version": null,
+          "text": "MAL-0000-ghsa-malware-83dc469ccff23b05 mcp-contract-tester: Malware in mcp-contract-tester"
+        }
+      ],
+      "ids": [
+        "MAL-0000-ghsa-malware-3205c915b20c02b2",
+        "MAL-0000-ghsa-malware-5d30fa4c52f79899",
+        "MAL-0000-ghsa-malware-83dc469ccff23b05",
+        "MAL-0000-ghsa-malware-cd858623f60706d2"
+      ],
+      "read_with": "git"
+    },
+    {
+      "id": "F11",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.68.0",
+      "latest_date": "2026-11-10",
+      "new": [
+        {
+          "date": "2026-11-10",
+          "version": "v0.68.0",
+          "text": "## What's Changed * Changelog for v0.67.0-preview.0 by @gemini-cli-robot in https://github.com/google-gemini/gemini-cli/pull/29990 * Changelog for v0.66.0 by @gemini-cli-robot in https://github.com/google-gemini/gemini-cli/pull/29992 * docs(readme): clarify Gemini CLI scope, limitations, and tool landscape by @LyalinDotCom in https://github.com/google-gemini/gemini-cli/pull/29995 * fix(cli): bound inline history re-render after terminal width changes by @jvargassanchez-dot in https://github.com/google-gemini/gemini-cli/pull/29904 * fix(ui): handle surrogate pairs when truncating in sanitizeFo…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F12",
+      "opened": true,
+      "reason": null,
+      "latest": "1.0.109",
+      "latest_date": "2026-11-10",
+      "new": [
+        {
+          "date": "2026-11-10",
+          "version": "1.0.109",
+          "text": "- Add IPv4/IPv6 CIDR support for sandbox host allow and deny rules in settings. - Add support for Claude Fable 5.2 in the model picker under New models - copilot help input now says that Backspace at the start of shell input leaves shell mode and keeps the typed text, not only on an empty prompt - /subagents keeps its Overridden and Status columns readable on narrow terminals and aligns agent names with wide characters - Removing a built-in MCP server with `copilot mcp remove` or `/mcp delete` explains how to disable it instead - Selecting a directory next to your home directory in `/cd ~` or…"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F13",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-06",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F14",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-11",
+      "new": [
+        {
+          "date": "2026-11-10",
+          "version": null,
+          "text": "MAL-2026-19095 @rclaude/win32-x64: Malicious code in @rclaude/win32-x64 (npm)"
+        },
+        {
+          "date": "2026-11-10",
+          "version": null,
+          "text": "GHSA-wr5m-5jph-8m96 mongoose, mongoose, mongoose, mongoose: Mongoose: Discriminator key values matching inherited properties (e.g. __t: 'constructor') bypass schema casting and can poison collections"
+        },
+        {
+          "date": "2026-11-10",
+          "version": null,
+          "text": "GHSA-6972-9mcm-vhwj mongoose, mongoose, mongoose, mongoose: Mongoose: Prototype pollution via Schema.prototype.virtual()"
+        },
+        {
+          "date": "2026-11-10",
+          "version": null,
+          "text": "GHSA-8332-j7wj-wjw4 mongoose, mongoose, mongoose, mongoose: Mongoose walks into inherited properties when hydrating, setting, and merging, allowing overwrites of built-in functions (denial of service) and shared schema state"
+        },
+        {
+          "date": "2026-11-10",
+          "version": null,
+          "text": "GHSA-gg4r-jv3p-qx3c mongoose, mongoose, mongoose, mongoose: Mongoose: Connection-level sanitizeFilter not applied"
+        },
+        {
+          "date": "2026-11-10",
+          "version": null,
+          "text": "GHSA-pcrw-h46h-c93h mongoose, mongoose, mongoose, mongoose: Mongoose: sanitizeFilter not applied on countDocuments"
+        },
+        {
+          "date": "2026-11-10",
+          "version": null,
+          "text": "MAL-2026-19085 @lemili9804/mcp-weather-server: Malicious code in @lemili9804/mcp-weather-server (npm)"
+        },
+        {
+          "date": "2026-11-10",
+          "version": null,
+          "text": "MAL-2026-19082 mcp-contract-tester: Malicious code in mcp-contract-tester (npm)"
+        },
+        {
+          "date": "2026-11-10",
+          "version": null,
+          "text": "MAL-2026-19080 agent-trace-kit: Malicious code in agent-trace-kit (npm)"
+        },
+        {
+          "date": "2026-11-10",
+          "version": null,
+          "text": "GHSA-2h4w-29cv-2cmv ag2, autogen: AG2: Newline injection in SandboxShellTool bypasses allowed=[...] and readonly=True, enabling arbitrary command execution"
+        }
+      ],
+      "ids": [
+        "GHSA-2h4w-29cv-2cmv",
+        "GHSA-6972-9mcm-vhwj",
+        "GHSA-8332-j7wj-wjw4",
+        "GHSA-gg4r-jv3p-qx3c",
+        "GHSA-pcrw-h46h-c93h",
+        "GHSA-wr5m-5jph-8m96",
+        "MAL-2026-19080",
+        "MAL-2026-19082",
+        "MAL-2026-19085",
+        "MAL-2026-19095"
+      ],
+      "read_with": "curl"
+    },
+    {
+      "id": "F15",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-10",
+      "new": [
+        {
+          "date": "2026-11-10",
+          "version": null,
+          "text": "CVE-2026-124503 [MCP]: A vulnerability was identified in sooperset mcp-atlassian up to 0.24.0. This issue affects the function validate_safe_path of the file src/mcp_atlassian/utils/io.py. The manipulation of the argument path leads to path traversal. The attack may be initiated remotely. The exploit is publicly available and might be used. Upgrading to version 0.24.1 is capable of addressing this issue. Upgrading the affected component is recommended. This CVE was requested by the vendor."
+        },
+        {
+          "date": "2026-11-10",
+          "version": null,
+          "text": "CVE-2026-112136 [MCP]: A vulnerability has been identified in Mendix Studio Pro 11 (All versions >= V11.15.0 < V11.16.0), Mendix Studio Pro 11.12 (All versions >= V11.12.6 < V11.12.7). The affected products MCP Server does not properly restrict its HTTP listener to the loopback interface, leaving it potentially exposed to remote systems. This could allow an attacker with network access to interact with the MCP Server remotely."
+        },
+        {
+          "date": "2026-11-10",
+          "version": null,
+          "text": "CVE-2026-112137 [MCP]: A vulnerability has been identified in Mendix Studio Pro 11 (All versions >= V11.15.0 < V11.16.0), Mendix Studio Pro 11.12 (All versions >= V11.12.6 < V11.12.7). The affected products MCP Server does not properly validate Content-Type and Origin headers on incoming HTTP requests, leaving it vulnerable to Cross-Site Request Forgery (CSRF). This could allow a malicious web page to trick a user's browser into sending unauthorized requests and executing unintended actions on the local MCP Server."
+        },
+        {
+          "date": "2026-11-10",
+          "version": null,
+          "text": "CVE-2026-125320 [MCP]: pgEdge Postgres MCP Server enables SQL queries against PostgreSQL databases through Model Context Protocol compatible clients. Prior to 1.1.0, the HTTP transport did not validate the Origin header on incoming requests. A user who visited an attacker-controlled page could be targeted through DNS rebinding, allowing the page to reach a locally running server and read schemas and query results from configured databases. The issue affected deployments with the HTTP transport enabled on a machine that also ran a browser, while the default stdio transport was not reachable th…"
+        },
+        {
+          "date": "2026-11-10",
+          "version": null,
+          "text": "CVE-2026-125321 [MCP]: pgEdge Postgres MCP Server enables SQL queries against PostgreSQL databases through Model Context Protocol compatible clients. Prior to 1.1.0, deployments exposing the nondefault HTTP transport with authentication enabled used the leftmost caller-supplied X-Forwarded-For value as the client address for login rate limiting. ExtractIPAddress in internal/auth/middleware.go supplied that value to IsAllowed and RecordFailedAttempt in internal/auth/rate_limiter.go, allowing an unauthenticated caller to rotate addresses to evade throttling or assert another user's address to c…"
+        },
+        {
+          "date": "2026-11-10",
+          "version": null,
+          "text": "CVE-2026-125322 [MCP]: pgEdge Postgres MCP Server enables SQL queries against PostgreSQL databases through Model Context Protocol compatible clients. Prior to 1.1.0, the where parameter of the count_rows tool accepted subqueries against tables other than the table named in the tool call. A caller could use predicates and the returned row count as an inference oracle to extract data from any other table that the connected database role could read. The database privilege boundary remained intact, and the flaw did not grant access to tables outside that role's existing SELECT privileges. This is…"
+        },
+        {
+          "date": "2026-11-10",
+          "version": null,
+          "text": "CVE-2026-109492 [MCP]: Authorization bypass through user-controlled key in Microsoft MCP Gateway allows an authorized attacker to elevate privileges over a network."
+        },
+        {
+          "date": "2026-11-10",
+          "version": null,
+          "text": "CVE-2026-83953 [Copilot]: Improper neutralization of special elements used in a command ('command injection') in Github Copilot allows an authorized attacker to disclose information locally."
+        }
+      ],
+      "ids": [
+        "CVE-2026-109492",
+        "CVE-2026-112136",
+        "CVE-2026-112137",
+        "CVE-2026-124503",
+        "CVE-2026-125320",
+        "CVE-2026-125321",
+        "CVE-2026-125322",
+        "CVE-2026-83953"
+      ],
+      "read_with": "curl"
+    },
+    {
+      "id": "F16",
+      "opened": true,
+      "reason": null,
+      "latest": "v2.2.7",
+      "latest_date": "2026-11-10",
+      "new": [
+        {
+          "date": "2026-11-10",
+          "version": "v2.2.7",
+          "text": "### Highlights - **GitHub Copilot Auto**: Pick **Auto** in the model picker when your Copilot account has an Auto pool, and Copilot's router chooses the model for each session at the Auto discount. If routing fails, OpenCode falls back to the account's default chat model. ([#62997](https://github.com/anomalyco/opencode/pull/62997)) - **Side Panel Tab Shortcuts**: Right-click a side panel tab and choose **Close tabs to the right**. `⌘W` now closes side panel tabs wherever focus is, `⌥⌘W` or `Ctrl+Alt+W` always closes the session tab, and `⌘⇧T` reopens the last closed tab of either kind where i…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F17",
+      "opened": true,
+      "reason": null,
+      "latest": "4.7",
+      "latest_date": "2026-11-10",
+      "new": [
+        {
+          "date": "2026-11-10",
+          "version": null,
+          "text": "General ## Enterprise Management preview: one policy for every Kiro client Write one policy in the AWS console and Kiro applies it in the IDE, the CLI, Kiro Web, and Kiro Crew LTS. In preview for new Kiro profiles created in US East (N. Virginia). Kiro Enterprise Management is in preview. It is available to newly created Kiro profiles in US East (N. Virginia) (us-east-1): create a profile there and the Controls page is already in your console, with no setup step. Support for existing profiles and for profiles in Europe comes later. Administrators write one policy in the AWS console, and every…"
+        },
+        {
+          "date": "2026-11-10",
+          "version": "4.7",
+          "text": "1.4.154IDE ## Approve for Me and Chat Permission Modes This release adds Approve for me to chat: Kiro approves routine actions for you, blocks risky ones, and asks when unsure. Where it is available, the Autopilot toggle becomes a permission mode menu with Supervised, Accept file changes, and Approve for me. It also brings organization-managed settings, Memory view sorting and filtering, and workflow run improvements, plus fixes for stopped turns, spec tasks, and workspace trust. ## Let Kiro approve routine actions for you In a chat where Approve for me is available, the Autopilot toggle beco…"
+        },
+        {
+          "date": "2026-11-10",
+          "version": "3.2.0",
+          "text": "3.2.0CLI ## Full-Screen Diagram Viewer and Sign-In to More MCP Servers This release adds a full-screen viewer for Mermaid diagrams that are too wide for your terminal, and signs you in to more MCP servers with no OAuth configuration. It also lets you run one more iteration or finish a workflow loop that used all its iterations, tells you when workflows are not available in autonomous mode, asks before a V2 shell command sets XDG_CONFIG_HOME or HOME, and fixes file search, custom agent, workflow, spec, Hook, clipboard, help text, and session issues. ## Open wide diagrams on their own screen Wh…"
+        },
+        {
+          "date": "2026-11-10",
+          "version": "3.2.0",
+          "text": "3.2.0CLI ## Full-Screen Diagram Viewer and Sign-In to More MCP Servers This release adds a full-screen viewer for Mermaid diagrams that are too wide for your terminal, and signs you in to more MCP servers with no OAuth configuration. It also lets you run one more iteration or finish a workflow loop that used all its iterations, tells you when workflows are not available in autonomous mode, asks before a V2 shell command sets XDG_CONFIG_HOME or HOME, and fixes file search, custom agent, workflow, spec, Hook, clipboard, help text, and session issues. ## Open wide diagrams on their own screen Wh…"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F18",
+      "opened": true,
+      "reason": null,
+      "latest": "v3.12.43",
+      "latest_date": "2026-11-09",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F19",
+      "opened": true,
+      "reason": null,
+      "latest": "v1.59.0",
+      "latest_date": "2026-11-10",
+      "new": [
+        {
+          "date": "2026-11-10",
+          "version": "v1.59.0",
+          "text": "## ✨ Features - Minimal deferred MCP tools in ToolExecutionOperation [#13378](https://github.com/aaif-goose/goose/pull/13378) - Configurable and per-start voice instructions for live-voice [#13375](https://github.com/aaif-goose/goose/pull/13375) - Configurable GPT-Live endpoint, model and key [#13360](https://github.com/aaif-goose/goose/pull/13360) - Filter session/list by client tags (ACP) [#13173](https://github.com/aaif-goose/goose/pull/13173) - Stop, approval, and tool hook operations for goose-agent (GDK) [#13169](https://github.com/aaif-goose/goose/pull/13169) - Resume completed delegat…"
+        },
+        {
+          "date": "2026-11-10",
+          "version": "v1.58.1",
+          "text": "## 🐛 **Bug Fixes** - Reword compaction prompt that Opus 5.5 refuses as distillation [#13340](https://github.com/aaif-goose/goose/pull/13340) - Refresh Databricks OAuth tokens before they expire [#13328](https://github.com/aaif-goose/goose/pull/13328)"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F20",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-09",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F21",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-08-19",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F22",
+      "opened": true,
+      "reason": null,
+      "latest": "v2026.11.3",
+      "latest_date": "2026-11-10",
+      "new": [
+        {
+          "date": "2026-11-10",
+          "version": "v2026.11.3",
+          "text": "## 2026.11.3 ### Highlights - **Private task results:** Keep private subagent completions out of streamed chat replies. (#188490) Thanks @fuller-stack-dev. - **Reliable child-task handoffs:** Allow a parent to hand off to replacement work after cancelling a child, without leaving the cancelled child's completion receipt blocking the handoff. (#178893; related #178565) Thanks @brianmcguire and @letsc4. - **Visible tool failures:** Report unanswered tool failures instead of silently ending a user-addressed turn as a success. (#182458; related #99645) Authored by @steipete. Thanks @rdleclerc. -…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F23",
+      "opened": true,
+      "reason": null,
+      "latest": "1.2.20",
+      "latest_date": "2026-11-05",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F24",
+      "opened": true,
+      "reason": null,
+      "latest": "1.15.39",
+      "latest_date": "2026-11-09",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F25",
+      "opened": true,
+      "reason": null,
+      "latest": "python-1.25.0",
+      "latest_date": "2026-11-06",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F26",
+      "opened": true,
+      "reason": null,
+      "latest": "2026-07-28",
+      "latest_date": "2026-07-28",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F27",
+      "opened": true,
+      "reason": null,
+      "latest": "1.145",
+      "latest_date": "2026-11-04",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F28",
+      "opened": true,
+      "reason": null,
+      "latest": "2026.11.10",
+      "latest_date": "2026-11-10",
+      "new": [
+        {
+          "date": "2026-11-10",
+          "version": null,
+          "text": "CVE-2026-125350 Google Chromium: Google Chromium Use-After-Free Vulnerability. Google Chromium contains a use-after-free vulnerability in the XML component that could allow a remote attacker to execute arbitrary code inside the sandbox via a specially crafted webpage. This vulnerability could affect multiple web browsers that utilize Chromium, including, but not limited to, Google Chrome, Microsoft Edge, and Opera."
+        }
+      ],
+      "ids": [
+        "CVE-2026-125350"
+      ],
+      "read_with": "curl"
+    },
+    {
+      "id": "F29",
+      "opened": true,
+      "reason": null,
+      "latest": "1.4.13",
+      "latest_date": "2026-11-11",
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "date_is_detection": true
+    },
+    {
+      "id": "F31",
+      "opened": true,
+      "reason": null,
+      "latest": "n8n@3.2.0",
+      "latest_date": "2026-11-10",
+      "new": [
+        {
+          "date": "2026-11-10",
+          "version": "n8n@3.2.0",
+          "text": "<!-- release-prerelease --> # [3.2.0](https://github.com/n8n-io/n8n/compare/n8n@2.47.0...n8n@3.2.0) (2026-11-10) ### Bug Fixes * **ai-builder:** Return the raw body when fetch-url reads JSON, XML, CSV or YAML ([#42949](https://github.com/n8n-io/n8n/issues/42949)) ([6640010](https://github.com/n8n-io/n8n/commit/66400107e7d8b8b707b3a474747e0430c813b464)) * Align workflow history header dividers ([#43167](https://github.com/n8n-io/n8n/issues/43167)) ([73698d6](https://github.com/n8n-io/n8n/commit/73698d60f823b73c5b23c61d491bcb95eb19ccc8)) * Community package supportedNodesApiVersion v3 compatibi…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F32",
+      "opened": true,
+      "reason": null,
+      "latest": "v3.4.17",
+      "latest_date": "2026-11-09",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F33",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.27.2",
+      "latest_date": "2026-11-10",
+      "new": [
+        {
+          "date": "2026-11-10",
+          "version": "v0.27.2",
+          "text": "<!-- qwen-release-notes:v1 --> ## Highlights - Web Shell can configure WeChat, QQ, and Email channels, including QR login, scan progress, identity display, and logout where supported. ([#16736](https://github.com/QwenLM/qwen-code/pull/16736), [#16724](https://github.com/QwenLM/qwen-code/pull/16724), [#16746](https://github.com/QwenLM/qwen-code/pull/16746)) - Mods can run one-off $.model.complete calls, rewrite displayed AssistantMessage text via ui.render, and persist plugin values with $.store. ([#16737](https://github.com/QwenLM/qwen-code/pull/16737), [#16794](https://github.com/QwenLM/qwen…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F34",
+      "opened": true,
+      "reason": null,
+      "latest": "@moonshot-ai/kimi-code@2.5.3",
+      "latest_date": "2026-11-10",
+      "new": [
+        {
+          "date": "2026-11-10",
+          "version": "@moonshot-ai/kimi-code@2.5.3",
+          "text": "### Patch Changes - [#4762](https://github.com/MoonshotAI/kimi-code/pull/4762) [`e1912c8`](https://github.com/MoonshotAI/kimi-code/commit/e1912c801391c91d917be56a66c1e2e2e12ad2f0) Thanks [@sailist](https://github.com/sailist)! - Make steering interrupt active model requests and continue in the same turn, and add POST /api/v1/sessions/{session_id}/steer for one-request message steering. - [#4808](https://github.com/MoonshotAI/kimi-code/pull/4808) [`e3c3a12`](https://github.com/MoonshotAI/kimi-code/commit/e3c3a1205ea2fdf1de2067a3b00dd6dececea29c) Thanks [@liruifengv](https://github.com/liruifen…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F35",
+      "opened": true,
+      "reason": null,
+      "latest": "v2.182.0",
+      "latest_date": "2026-11-09",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F36",
+      "opened": true,
+      "reason": null,
+      "latest": "1.39.2",
+      "latest_date": "2026-11-09",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F37",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.86.2",
+      "latest_date": "2026-02-12",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F38",
+      "opened": true,
+      "reason": null,
+      "latest": "v1.38.0",
+      "latest_date": "2026-11-10",
+      "new": [
+        {
+          "date": "2026-11-10",
+          "version": "v1.38.0",
+          "text": "## 1.38.0 (2026-11-10) <!-- Release notes generated using configuration in .github/release.yml at main --> ## What's Changed ### Features * feat: edit executable plugin configuration in automation help by @ak684 in https://github.com/OpenHands/OpenHands/pull/19453 * feat: display conversation budgets with semantic meter fills by @enyst in https://github.com/OpenHands/OpenHands/pull/18533 * feat: add Paper theme to Agent Canvas by @enyst in https://github.com/OpenHands/OpenHands/pull/19445 * feat(chat): show a resolved banner for project conversations by @enyst in https://github.com/OpenHands/…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F39",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-10",
+      "new": [
+        {
+          "date": "2026-11-10",
+          "version": null,
+          "text": "### Boxes Always-on computers for the things you build with Amp."
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F40",
+      "opened": true,
+      "reason": null,
+      "latest": "2026.11.05",
+      "latest_date": "2026-11-05",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F41",
+      "opened": true,
+      "reason": null,
+      "latest": "26.11.1",
+      "latest_date": "2026-11-10",
+      "new": [
+        {
+          "date": "2026-11-10",
+          "version": "26.11.1",
+          "text": "Gemini 4 Carbon support Custom themes: personalize the appearance of Junie CLI Subagent interaction: send messages directly to running subagents Fixed Windows issues with PowerShell 7 and GitBash startup, image pasting, terminal icons Fixed remote MCP authentication ### Release 26.11.3 (3959.6)"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F42",
+      "opened": true,
+      "reason": null,
+      "latest": "v7.8.28",
+      "latest_date": "2026-11-07",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F43",
+      "opened": false,
+      "reason": "https://www.perplexity.ai/changelog: HTTP 403",
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F44",
+      "opened": true,
+      "reason": null,
+      "latest": "v1.0.77",
+      "latest_date": "2026-11-05",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    }
+  ],
+  "opened": 42,
+  "total": 43
+}
