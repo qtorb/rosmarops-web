@@ -41,6 +41,7 @@ jobs:
           php -l wp/mu-plugins/rosmarops-blog-drafts.php
           php -l wp/mu-plugins/rosmarops-category-loop-engineering.php
           php -l wp/mu-plugins/rosmarops-gtm124-agente.php
+          php -l wp/mu-plugins/rosmarops-schedule-he-terminado.php
           ls -l wp/drafts/*.json wp/drafts/*.html wp/drafts/rosmarops-img-13-loop-engineering.jpg wp/drafts/rosmarops-img-14-he-terminado.jpg wp/drafts/rosmarops-img-15-el-sistema-aprende.jpg wp/drafts/rosmarops-img-17-harness-engineering.jpg wp/drafts/rosmarops-img-16-novedades-0-10.jpg
           ls -l wp/daily/shell-en.html wp/daily/shell-es.html wp/daily/shell-ca.html wp/daily/i18n.json
           ! grep -RIl 'noindex' site/index.html site/es/index.html site/methodology site/faq site/es/metodologia site/es/preguntas-frecuentes site/ca/index.html site/ca/metodologia site/ca/preguntes-frequents site/cloud-access site/es/acceso-en-la-nube site/ca/acces-al-nuvol site/ca/privadesa site/privacy site/es/privacidad site/legal-notice site/es/aviso-legal site/ca/avis-legal site/terms site/es/terminos site/ca/termes site/security-teams site/es/equipos-de-seguridad site/ca/equips-de-seguretat site/_static site/macos site/es/macos site/ca/macos site/linux site/es/linux site/ca/linux site/sample-report/index.html site/es/informe-de-ejemplo site/ca/informe-dexemple site/observatory/index.html site/es/observatorio/index.html site/ca/observatori/index.html site/glossary site/es/glosario site/ca/glossari
@@ -263,6 +264,7 @@ jobs:
           put wp/drafts/novedades-0-10-ca.json wp-content/mu-plugins/rosmarops-drafts/novedades-0-10-ca.json
           put wp/mu-plugins/rosmarops-category-loop-engineering.php wp-content/mu-plugins/rosmarops-category-loop-engineering.php
           put wp/mu-plugins/rosmarops-gtm124-agente.php wp-content/mu-plugins/rosmarops-gtm124-agente.php
+          put wp/mu-plugins/rosmarops-schedule-he-terminado.php wp-content/mu-plugins/rosmarops-schedule-he-terminado.php
           -mkdir wp-content/mu-plugins/rosmarops-daily
           put wp/daily/shell-en.html wp-content/mu-plugins/rosmarops-daily/shell-en.html
           put wp/daily/shell-es.html wp-content/mu-plugins/rosmarops-daily/shell-es.html
@@ -722,6 +724,37 @@ jobs:
             echo "$n $u"; [ "$n" = 0 ] || bad=$((bad+1))
           done
           echo "posts that still have the word: $bad"
+
+      - name: Post 2 of the agents series scheduled for 12-11 06:00 Madrid (one time per site) and its logs
+        env:
+          SFTP_HOST: ${{ vars.OVH_SFTP_HOST }}
+          SFTP_USER: ${{ vars.OVH_SFTP_USER }}
+          SFTP_PATH: ${{ vars.OVH_SITE_PATH }}
+          SSHPASS: ${{ secrets.OVH_SFTP_PASSWORD }}
+        run: |
+          set -eu
+          SFTP_HOST=$(printf %s "$SFTP_HOST" | tr -d '[:space:]')
+          SFTP_USER=$(printf %s "$SFTP_USER" | tr -d '[:space:]')
+          SFTP_PATH=$(printf %s "$SFTP_PATH" | tr -d '[:space:]')
+          # rosmarops-schedule-he-terminado.php runs on the first request to each site after the upload; once done it never runs again.
+          for u in https://rosmarops.com/blog/ https://rosmarops.com/es/blog/ https://rosmarops.com/ca/blog/; do
+            curl -s -o /dev/null -w "%{http_code} $u\n" "$u?sched2=${GITHUB_SHA::7}"
+          done
+          sleep 5
+          mkdir -p /tmp/sched2
+          printf 'cd %s/wp-content/rosmarops-private\n-get sched2-en.log /tmp/sched2/\n-get sched2-es.log /tmp/sched2/\n-get sched2-ca.log /tmp/sched2/\n' "$SFTP_PATH" > /tmp/bs2
+          sshpass -e sftp -o BatchMode=no -b /tmp/bs2 \
+            -o StrictHostKeyChecking=yes \
+            -o UserKnownHostsFile="$HOME/.ssh/known_hosts" \
+            -o PreferredAuthentications=password,keyboard-interactive \
+            -o PubkeyAuthentication=no \
+            "$SFTP_USER@$SFTP_HOST" || true
+          for f in sched2-en sched2-es sched2-ca; do
+            if [ -f "/tmp/sched2/$f.log" ]; then echo "--- $f.log"; cat "/tmp/sched2/$f.log"; else echo "::warning::$f.log not found"; fi
+            code=$(curl -s -o /dev/null -w '%{http_code}' "https://rosmarops.com/wp-content/rosmarops-private/$f.log")
+            [ "$code" != "200" ] && echo "$f.log closed to the web ($code)" || (echo "::error::$f.log is reachable from the web"; exit 1)
+          done
+          if grep -h '^\(skipped\|failed\):' /tmp/sched2/*.log 2>/dev/null; then echo "::warning::post 2 was not scheduled on some site; see the logs"; fi
 
       - name: GTM-125 the IP check is gone
         run: |

@@ -102,6 +102,8 @@ jobs:
           python -m unittest wp/tests/test_category_loop_engineering.py
           php -l wp/mu-plugins/rosmarops-gtm124-agente.php
           python -m unittest wp/tests/test_gtm124_agente.py
+          php -l wp/mu-plugins/rosmarops-schedule-he-terminado.php
+          python -m unittest wp/tests/test_schedule_he_terminado.py
           python -m unittest wp/tests/test_download_sources.py
           python -m unittest wp/tests/test_static_about.py
           php -l wp/mu-plugins/rosmarops-consent.php
