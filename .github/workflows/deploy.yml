@@ -29,7 +29,7 @@ jobs:
         run: |
           set -eu
           # Only these files are published. Nothing else on the server is touched or deleted.
-          ls -l site/index.html site/es/index.html site/llms.txt site/assets/consent/* site/assets/visits/* site/assets/brand/* site/assets/methodology/* site/assets/help/* site/assets/download/os.js site/glossary/index.html site/es/glosario/index.html site/ca/glossari/index.html wp/htaccess-https.txt wp/htaccess-slash.txt wp/htaccess-static.txt site/_static/* wp/mu-plugins/rosmarops-consent.php
+          ls -l site/index.html site/es/index.html site/llms.txt site/assets/consent/* site/assets/visits/* site/assets/brand/* site/assets/methodology/* site/assets/help/* site/assets/download/os.js site/assets/video/* site/glossary/index.html site/es/glosario/index.html site/ca/glossari/index.html wp/htaccess-https.txt wp/htaccess-slash.txt wp/htaccess-static.txt site/_static/* wp/mu-plugins/rosmarops-consent.php
           php -l wp/mu-plugins/rosmarops-consent.php
           php -l wp/mu-plugins/rosmarops-seo.php
           php -l wp/mu-plugins/rosmarops-downloads.php
@@ -177,6 +177,13 @@ jobs:
           put site/assets/help/glossary.json assets/help/glossary.json
           -mkdir assets/download
           put site/assets/download/os.js assets/download/os.js
+          -mkdir assets/video
+          put site/assets/video/decide-tu-es.mp4 assets/video/decide-tu-es.mp4
+          put site/assets/video/decide-tu-es.jpg assets/video/decide-tu-es.jpg
+          put site/assets/video/decide-tu-en.mp4 assets/video/decide-tu-en.mp4
+          put site/assets/video/decide-tu-en.jpg assets/video/decide-tu-en.jpg
+          put site/assets/video/decide-tu-ca.mp4 assets/video/decide-tu-ca.mp4
+          put site/assets/video/decide-tu-ca.jpg assets/video/decide-tu-ca.jpg
           -mkdir assets/observatory
           put site/assets/observatory/today.js assets/observatory/today.js
           -mkdir assets/brand
