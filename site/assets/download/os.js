@@ -1,11 +1,12 @@
-/* RosmarOps home: the download buttons follow the visitor's system (GTM-129, signed by Albert 10-11; GTM-137, 12-11).
-   Each download row (.dlrow) has a main button (Windows as served) and the Microsoft Store badge (.store); under it,
-   the line of other systems (.os-o items: Windows with its own link and counter, Mac page, Linux page).
-   Without JavaScript, or on an unknown system, a phone or a tablet, nothing changes: the HTML as served (Windows
-   first, the three systems in the line) is the default and what search engines see. On Windows the line leaves out
-   Windows. On a Mac (no touch screen) the main button goes to the Mac page and the line leaves out Mac; on Linux (not
-   Android) the same with Linux; on both, the Store badge and its line (GTM-135b) are hidden. Reads only what the
-   browser already says about its platform; stores and sends nothing. */
+/* RosmarOps home: the download rows follow the visitor's system (GTM-129, 10-11; GTM-137, 12-11).
+   Each download row (.dlrow) has the Microsoft Store badge (.store), which is the Windows download (Albert, 12-11: no
+   Windows button), and a main button (.osmain) that is hidden as served. Under it, the line of other systems (.os-o
+   items: Windows, to the Store with its counter; the Mac page; the Linux page).
+   Without JavaScript, or on an unknown system, a phone or a tablet, nothing changes: the HTML as served (the Store
+   badge, the three systems in the line) is the default and what search engines see. On Windows the line leaves out
+   Windows. On a Mac (no touch screen) the main button appears and goes to the Mac page, the line leaves out Mac and
+   the Store badge and its line are hidden; on Linux (not Android) the same with Linux. Reads only what the browser
+   already says about its platform; stores and sends nothing. */
 (function () {
   'use strict';
   var LABELS = {
@@ -39,16 +40,15 @@
       if (key === os) items[i].hidden = true;
     }
     if (os === 'windows') return items.length;
-    // Mac or Linux: the main button goes to that system's page.
+    // Mac or Linux: the main button appears and goes to that system's page.
     var rows = doc.querySelectorAll('.dlrow');
     var done = 0;
     for (var j = 0; j < rows.length; j++) {
-      var main = rows[j].querySelector('.primary');
+      var main = rows[j].querySelector('.osmain');
       if (!main || !pages[os]) continue;
       main.setAttribute('href', pages[os]);
-      main.removeAttribute('target');
-      main.removeAttribute('rel');
       main.textContent = LABELS[os][lang];
+      main.hidden = false;
       done++;
     }
     // The Microsoft Store badge and its line are for Windows only (GTM-135b).

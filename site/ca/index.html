@@ -55,7 +55,7 @@ main h3{font-size:19px;line-height:1.3;font-weight:700}
 .q.flat{margin-bottom:0}
 .fine{font-size:14px;line-height:1.55;color:var(--muted)}
 .fine a{color:inherit}
-.hero{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:48px;align-items:center;padding-top:40px;padding-bottom:72px}
+.hero{display:grid;grid-template-columns:minmax(0,1fr) 400px;gap:48px;align-items:center;padding-top:40px;padding-bottom:72px}
 .hero-text{display:flex;flex-direction:column;gap:22px;min-width:0}
 .facts{display:flex;flex-direction:column;gap:8px;font-size:18px;line-height:1.55;color:var(--ink2)}
 .facts b{color:var(--ink);font-weight:700}
@@ -131,7 +131,7 @@ main h3{font-size:19px;line-height:1.3;font-weight:700}
 .get{display:flex;flex-direction:column;align-items:flex-start;margin-top:2px}
 .dlrow{display:flex;align-items:center;gap:20px}
 .dlrow .hbtn{justify-content:center}
-.store[hidden]{display:none}.sbadge{display:inline-block;line-height:0;flex:none}.sbadge img{display:block;height:44px;width:auto}
+.store[hidden],.osmain[hidden]{display:none}.sbadge{display:inline-block;line-height:0;flex:none}.sbadge img{display:block;height:44px;width:auto}
 .oth{margin-top:16px;font-size:15px;line-height:1.55;color:var(--muted)}
 .oth a{color:var(--brand)}.oth a:hover{color:var(--brand)}
 .os-o[hidden]{display:none}.os-o:not([hidden])~.os-o:not([hidden])::before{content:" · ";color:var(--muted)}
@@ -163,8 +163,8 @@ main h3{font-size:19px;line-height:1.3;font-weight:700}
 <span class="eyebrow">Què ha canviat</span>
 <h1 id="h-0">La IA ja treballa al teu ordinador i al núvol. Mira què pot fer sense demanar-te permís.</h1>
 <div class="facts"><p>Els <span class="gt">agents d'IA<a class="gi" href="/ca/glossari/#agent" data-gi="agent" aria-label="Què és «agent d&#x27;IA»?"><span aria-hidden="true">i</span></a></span> ja no només responen. Ara llegeixen els teus fitxers, executen programes i actuen en serveis que fas servir, com el teu correu, els teus documents o GitHub.</p><p><b>Alguns ho fan sense demanar-te permís.</b></p></div>
-<div class="get"><div class="dlrow"><a class="hbtn primary" href="/ca/descarregar?from=home&amp;os=windows" target="_blank" rel="nofollow noopener">Descarrega per a Windows</a><a class="store sbadge" href="/ca/descarregar?from=home&amp;os=store" target="_blank" rel="nofollow noopener"><img src="/assets/store/microsoft-store-ca.svg" width="161" height="44" alt="Descarrega del Microsoft Store"></a></div>
-<p class="oth">Gratuït · Un altre sistema? <span class="os-o" data-os="windows"><a href="/ca/descarregar?from=home&amp;os=windows" target="_blank" rel="nofollow noopener">Windows</a></span><span class="os-o" data-os="mac"><a href="/ca/macos/">Mac (vista prèvia)</a></span><span class="os-o" data-os="linux"><a href="/ca/linux/">Linux</a></span> · <a href="/ca/equips-de-seguretat/#comprobar">Com comprovar que és autèntic</a></p>
+<div class="get"><div class="dlrow"><a class="hbtn primary osmain" href="/ca/macos/" hidden></a><a class="store sbadge" href="/ca/descarregar?from=home&amp;os=store" target="_blank" rel="nofollow noopener"><img src="/assets/store/microsoft-store-ca.svg" width="161" height="44" alt="Descarrega del Microsoft Store"></a></div>
+<p class="oth">Gratuït · Un altre sistema? <span class="os-o" data-os="windows"><a href="/ca/descarregar?from=home&amp;os=store" target="_blank" rel="nofollow noopener">Windows</a></span><span class="os-o" data-os="mac"><a href="/ca/macos/">Mac (vista prèvia)</a></span><span class="os-o" data-os="linux"><a href="/ca/linux/">Linux</a></span> · <a href="/ca/equips-de-seguretat/#comprobar">Com comprovar que és autèntic</a></p>
 <a class="vlink" href="#video"><svg class="play" viewBox="0 0 18 18" width="18" height="18" aria-hidden="true"><path d="M5 3.5v11l9-5.5z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg><span>Mira com funciona, en vídeo</span></a>
 <p class="trustline">És codi obert. RosmarOps només llegeix la teva configuració, i res no surt del teu ordinador sense que ho aprovis.</p></div>
 </div>
@@ -221,8 +221,8 @@ main h3{font-size:19px;line-height:1.3;font-weight:700}
 </div></section>
 <section class="hb alt" aria-labelledby="h-7"><div class="hw close">
 <h2 id="h-7">Comença pel teu ordinador</h2>
-<div class="get"><div class="dlrow"><a class="hbtn primary" href="/ca/descarregar?from=home-band&amp;os=windows" target="_blank" rel="nofollow noopener">Descarrega per a Windows</a><a class="store sbadge" href="/ca/descarregar?from=home-band&amp;os=store" target="_blank" rel="nofollow noopener"><img src="/assets/store/microsoft-store-ca.svg" width="161" height="44" alt="Descarrega del Microsoft Store"></a></div>
-<p class="oth">Gratuït · Un altre sistema? <span class="os-o" data-os="windows"><a href="/ca/descarregar?from=home-band&amp;os=windows" target="_blank" rel="nofollow noopener">Windows</a></span><span class="os-o" data-os="mac"><a href="/ca/macos/">Mac (vista prèvia)</a></span><span class="os-o" data-os="linux"><a href="/ca/linux/">Linux</a></span></p>
+<div class="get"><div class="dlrow"><a class="hbtn primary osmain" href="/ca/macos/" hidden></a><a class="store sbadge" href="/ca/descarregar?from=home-band&amp;os=store" target="_blank" rel="nofollow noopener"><img src="/assets/store/microsoft-store-ca.svg" width="161" height="44" alt="Descarrega del Microsoft Store"></a></div>
+<p class="oth">Gratuït · Un altre sistema? <span class="os-o" data-os="windows"><a href="/ca/descarregar?from=home-band&amp;os=store" target="_blank" rel="nofollow noopener">Windows</a></span><span class="os-o" data-os="mac"><a href="/ca/macos/">Mac (vista prèvia)</a></span><span class="os-o" data-os="linux"><a href="/ca/linux/">Linux</a></span></p>
 <p class="store store-note">O instal·la'l des de la Microsoft Store. La versió de la Store pot arribar uns dies més tard.</p></div>
 <p class="spaceline">Després, segueix com canvia la teva nota a tots els teus ordinadors: <a href="https://app.rosmarops.com/space">crea el teu espai gratuït</a>.</p>
 <p class="fine">Com calculem la nota: <a href="/ca/metodologia/">metodologia</a>. Què no mira: <a href="/ca/metodologia/#limits">límits</a>.</p>
@@ -236,6 +236,6 @@ main h3{font-size:19px;line-height:1.3;font-weight:700}
 <script src="/assets/consent/cookieconsent.umd.js?v=3.1.0" defer></script>
 <script src="/assets/consent/consent.js?v=5" defer></script><script src="/assets/visits/visits.js?v=3" defer></script>
 <script src="/assets/help/help.js?v=1" defer></script>
-<script src="/assets/download/os.js?v=4" defer></script>
+<script src="/assets/download/os.js?v=5" defer></script>
 </body>
 </html>

@@ -61,7 +61,7 @@ main h3{font-size:19px;line-height:1.3;font-weight:700}
 .q.flat{margin-bottom:0}
 .fine{font-size:14px;line-height:1.55;color:var(--muted)}
 .fine a{color:inherit}
-.hero{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:48px;align-items:center;padding-top:40px;padding-bottom:72px}
+.hero{display:grid;grid-template-columns:minmax(0,1fr) 400px;gap:48px;align-items:center;padding-top:40px;padding-bottom:72px}
 .hero-text{display:flex;flex-direction:column;gap:22px;min-width:0}
 .facts{display:flex;flex-direction:column;gap:8px;font-size:18px;line-height:1.55;color:var(--ink2)}
 .facts b{color:var(--ink);font-weight:700}
@@ -137,7 +137,7 @@ main h3{font-size:19px;line-height:1.3;font-weight:700}
 .get{display:flex;flex-direction:column;align-items:flex-start;margin-top:2px}
 .dlrow{display:flex;align-items:center;gap:20px}
 .dlrow .hbtn{justify-content:center}
-.store[hidden]{display:none}.sbadge{display:inline-block;line-height:0;flex:none}.sbadge img{display:block;height:44px;width:auto}
+.store[hidden],.osmain[hidden]{display:none}.sbadge{display:inline-block;line-height:0;flex:none}.sbadge img{display:block;height:44px;width:auto}
 .oth{margin-top:16px;font-size:15px;line-height:1.55;color:var(--muted)}
 .oth a{color:var(--brand)}.oth a:hover{color:var(--brand)}
 .os-o[hidden]{display:none}.os-o:not([hidden])~.os-o:not([hidden])::before{content:" · ";color:var(--muted)}
@@ -169,8 +169,8 @@ main h3{font-size:19px;line-height:1.3;font-weight:700}
 <span class="eyebrow">Qué ha cambiado</span>
 <h1 id="h-0">La IA ya trabaja en tu ordenador y en la nube. Mira qué puede hacer sin pedirte permiso.</h1>
 <div class="facts"><p>Los <span class="gt">agentes de IA<a class="gi" href="/es/glosario/#agent" data-gi="agent" aria-label="¿Qué es «agente de IA»?"><span aria-hidden="true">i</span></a></span> ya no solo contestan. Ahora leen tus ficheros, ejecutan programas y actúan en servicios que usas, como tu correo, tus documentos o GitHub.</p><p><b>Algunos lo hacen sin pedirte permiso.</b></p></div>
-<div class="get"><div class="dlrow"><a class="hbtn primary" href="/es/descargar?from=home&amp;os=windows" target="_blank" rel="nofollow noopener">Descargar para Windows</a><a class="store sbadge" href="/es/descargar?from=home&amp;os=store" target="_blank" rel="nofollow noopener"><img src="/assets/store/microsoft-store-es.svg" width="161" height="44" alt="Descargar desde Microsoft Store"></a></div>
-<p class="oth">Gratis · ¿Otro sistema? <span class="os-o" data-os="windows"><a href="/es/descargar?from=home&amp;os=windows" target="_blank" rel="nofollow noopener">Windows</a></span><span class="os-o" data-os="mac"><a href="/es/macos/">Mac (vista previa)</a></span><span class="os-o" data-os="linux"><a href="/es/linux/">Linux</a></span> · <a href="/es/equipos-de-seguridad/#comprobar">Cómo comprobar que es auténtico</a></p>
+<div class="get"><div class="dlrow"><a class="hbtn primary osmain" href="/es/macos/" hidden></a><a class="store sbadge" href="/es/descargar?from=home&amp;os=store" target="_blank" rel="nofollow noopener"><img src="/assets/store/microsoft-store-es.svg" width="161" height="44" alt="Descargar desde Microsoft Store"></a></div>
+<p class="oth">Gratis · ¿Otro sistema? <span class="os-o" data-os="windows"><a href="/es/descargar?from=home&amp;os=store" target="_blank" rel="nofollow noopener">Windows</a></span><span class="os-o" data-os="mac"><a href="/es/macos/">Mac (vista previa)</a></span><span class="os-o" data-os="linux"><a href="/es/linux/">Linux</a></span> · <a href="/es/equipos-de-seguridad/#comprobar">Cómo comprobar que es auténtico</a></p>
 <a class="vlink" href="#video"><svg class="play" viewBox="0 0 18 18" width="18" height="18" aria-hidden="true"><path d="M5 3.5v11l9-5.5z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg><span>Ver cómo funciona, en vídeo</span></a>
 <p class="trustline">Es código abierto. RosmarOps solo lee tu configuración, y nada sale de tu ordenador sin que lo apruebes.</p></div>
 </div>
@@ -227,8 +227,8 @@ main h3{font-size:19px;line-height:1.3;font-weight:700}
 </div></section>
 <section class="hb alt" aria-labelledby="h-7"><div class="hw close">
 <h2 id="h-7">Empieza por tu ordenador</h2>
-<div class="get"><div class="dlrow"><a class="hbtn primary" href="/es/descargar?from=home-band&amp;os=windows" target="_blank" rel="nofollow noopener">Descargar para Windows</a><a class="store sbadge" href="/es/descargar?from=home-band&amp;os=store" target="_blank" rel="nofollow noopener"><img src="/assets/store/microsoft-store-es.svg" width="161" height="44" alt="Descargar desde Microsoft Store"></a></div>
-<p class="oth">Gratis · ¿Otro sistema? <span class="os-o" data-os="windows"><a href="/es/descargar?from=home-band&amp;os=windows" target="_blank" rel="nofollow noopener">Windows</a></span><span class="os-o" data-os="mac"><a href="/es/macos/">Mac (vista previa)</a></span><span class="os-o" data-os="linux"><a href="/es/linux/">Linux</a></span></p>
+<div class="get"><div class="dlrow"><a class="hbtn primary osmain" href="/es/macos/" hidden></a><a class="store sbadge" href="/es/descargar?from=home-band&amp;os=store" target="_blank" rel="nofollow noopener"><img src="/assets/store/microsoft-store-es.svg" width="161" height="44" alt="Descargar desde Microsoft Store"></a></div>
+<p class="oth">Gratis · ¿Otro sistema? <span class="os-o" data-os="windows"><a href="/es/descargar?from=home-band&amp;os=store" target="_blank" rel="nofollow noopener">Windows</a></span><span class="os-o" data-os="mac"><a href="/es/macos/">Mac (vista previa)</a></span><span class="os-o" data-os="linux"><a href="/es/linux/">Linux</a></span></p>
 <p class="store store-note">O instálalo desde la Microsoft Store. La versión de la Store puede llegar unos días más tarde.</p></div>
 <p class="spaceline">Después, sigue cómo cambia tu nota en todos tus ordenadores: <a href="https://app.rosmarops.com/space">crea tu espacio gratis</a>.</p>
 <p class="fine">Cómo calculamos la nota: <a href="/es/metodologia/">metodología</a>. Qué no mira: <a href="/es/metodologia/#limites">límites</a>.</p>
@@ -267,6 +267,6 @@ main h3{font-size:19px;line-height:1.3;font-weight:700}
 <script src="/assets/consent/cookieconsent.umd.js?v=3.1.0" defer></script>
 <script src="/assets/consent/consent.js?v=5" defer></script><script src="/assets/visits/visits.js?v=3" defer></script>
 <script src="/assets/help/help.js?v=1" defer></script>
-<script src="/assets/download/os.js?v=4" defer></script>
+<script src="/assets/download/os.js?v=5" defer></script>
 </body>
 </html>
