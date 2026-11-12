@@ -2,7 +2,7 @@
    Without JavaScript, on an unknown system, on Windows, on a phone or on a tablet, nothing changes: the HTML as
    served (Windows first) is the default and what search engines see. On a Mac (no touch screen) the Mac page goes
    first; on Linux (not Android) the Linux page goes first; Windows stays second with its own link and counter
-   (from, os). Reads only what the browser already says about its platform; stores and sends nothing. */
+   (from, os); the Windows warning and the Microsoft Store badge with its line (GTM-135b) are hidden. Reads only what the browser already says about its platform; stores and sends nothing. */
 (function () {
   'use strict';
   var LABELS = {
@@ -55,6 +55,9 @@
     for (var j = 0; j < notes.length; j++) {
       if (/^\s*Windows\b/.test(notes[j].textContent || '')) notes[j].hidden = true;
     }
+    // GTM-135b: the Microsoft Store badge and its line are for Windows only.
+    var stores = doc.querySelectorAll('.store');
+    for (var k = 0; k < stores.length; k++) stores[k].hidden = true;
     return done;
   }
 
