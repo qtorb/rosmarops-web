@@ -563,8 +563,7 @@ def build_index(lang, t, agents, candidates):
 <p class="eyebrow">{t("index.eyebrow")}</p>
 <h1>{t("index.h1")}</h1>
 <p class="lead">{t("index.lead")}</p>
-<p class="note">{t("index.daily_line", link=daily_link)}</p>
-<div class="actions"><a class="btn primary" href="{map_page.MAP_PATH[lang]}">{esc(map_page.load()[2]["texts"][lang]["title"].split(":")[0])}</a><a class="btn secondary" href="{DAILY_PATH[lang]}">{t("index.cta_daily")}</a><a class="btn secondary" href="#method">{t("index.cta_method")}</a><a class="btn secondary" href="{JSON_BASE}data.json">{t("index.cta_data")}</a></div>
+<div class="actions"><a class="btn primary" href="{map_page.MAP_PATH[lang]}">{esc(map_page.load()[2]["texts"][lang]["title"].split(":")[0])}</a><a class="btn secondary" href="{DAILY_PATH[lang]}">{t("index.cta_daily")}</a></div>
 </section>
 
 <section id="today" aria-labelledby="today-h2" data-src="{DAILY_PATH[lang]}today.html" hidden>
