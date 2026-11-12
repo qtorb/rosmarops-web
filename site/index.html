@@ -61,7 +61,7 @@ main h3{font-size:19px;line-height:1.3;font-weight:700}
 .q.flat{margin-bottom:0}
 .fine{font-size:14px;line-height:1.55;color:var(--muted)}
 .fine a{color:inherit}
-.hero{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:48px;align-items:center;padding-top:40px;padding-bottom:72px}
+.hero{display:grid;grid-template-columns:minmax(0,1fr) 400px;gap:48px;align-items:center;padding-top:40px;padding-bottom:72px}
 .hero-text{display:flex;flex-direction:column;gap:22px;min-width:0}
 .facts{display:flex;flex-direction:column;gap:8px;font-size:18px;line-height:1.55;color:var(--ink2)}
 .facts b{color:var(--ink);font-weight:700}
@@ -92,7 +92,6 @@ main h3{font-size:19px;line-height:1.3;font-weight:700}
 .pattern p.fine{color:var(--muted)}
 .more{display:inline-flex;margin-top:24px;padding-bottom:2px;border-bottom:2px solid var(--brand);color:var(--brand);font-weight:700;text-decoration:none}
 .more:hover{color:var(--brand)}
-.sample{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:40px;align-items:center}
 .dl{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
 .hbtn{display:inline-flex;align-items:center;min-height:44px;padding:12px 20px;border:1.5px solid var(--ink);border-radius:10px;color:var(--ink);font-weight:700;line-height:1.2;text-decoration:none}
 .hbtn:hover{color:var(--ink)}
@@ -128,13 +127,33 @@ main h3{font-size:19px;line-height:1.3;font-weight:700}
 .close{display:flex;flex-direction:column;align-items:flex-start;gap:18px}
 .close .dl{margin-top:0}
 @media (max-width:820px){
-.hero,.sample,.space{grid-template-columns:1fr;gap:28px}
+.hero,.space{grid-template-columns:1fr;gap:28px}
 .grid2,.steps,.trust,.paths{grid-template-columns:1fr}
 .hb{padding-block:52px}
 .agents .lab{min-width:0;width:100%}
 }
 .video .vt{text-align:center;margin:0 0 24px}.vid{display:block;width:min(360px,100%);height:auto;aspect-ratio:9/16;margin:0 auto;border-radius:16px;background:#111116}.vtx{max-width:560px;margin:20px auto 0;color:var(--ink2)}.vtx summary{cursor:pointer;text-align:center;font-weight:600}.vtx p{margin:10px 0 0;line-height:1.55}
-.store[hidden]{display:none}.store{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;margin-top:12px}.store a{display:inline-block;line-height:0}.store img{display:block;height:44px;width:auto}.store-note{margin:0;font-size:14px;line-height:1.55;color:var(--muted)}</style>
+/* GTM-137: home nueva (vigil docs/research/2026-11-12-home-nueva-especificacion.md §2). Tokens: small 15px, body 17px, space-4 16px, space-5 20px, space-6 24px, space-8 48px. */
+.get{display:flex;flex-direction:column;align-items:flex-start;margin-top:2px}
+.dlrow{display:flex;flex-wrap:wrap;align-items:center;gap:12px}
+.sbadge{display:inline-block;line-height:0;flex:none}.sbadge img{display:block;height:52px;width:auto}
+.hbtn.sec{height:52px;min-height:0;padding:0 24px;border:1px solid var(--ink);border-radius:12px;background:transparent;color:var(--ink);font-size:17px;font-weight:700;justify-content:center}
+.hbtn.sec:hover{color:var(--ink);background:var(--card)}
+.gh{margin-top:16px;font-size:15px;line-height:1.55;color:var(--muted);max-width:60ch}.gh a{color:var(--brand)}.gh a:hover{color:var(--brand)}
+.vlink{display:inline-flex;align-items:center;gap:8px;margin-top:20px;font-size:17px;font-weight:600;color:var(--brand);text-decoration:none}
+.vlink:hover{color:var(--brand);text-decoration:underline}.vlink .play{flex:none;width:18px;height:18px}
+.trustline{margin-top:16px;font-size:15px;line-height:1.55;color:var(--muted)}
+.close .get{margin-top:0}
+.spaceline{margin-top:2px;font-size:15px;line-height:1.55;color:var(--ink2)}.spaceline a{color:var(--brand);font-weight:600}.spaceline a:hover{color:var(--brand)}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.nine{margin-top:20px;font-size:15px;line-height:1.55;color:var(--ink2)}.nine a{color:var(--brand)}.nine a:hover{color:var(--brand)}
+.sample{display:grid;grid-template-columns:minmax(0,1fr) 420px;grid-template-areas:"text card" "steps card" "link card";column-gap:48px;align-content:center;align-items:start}
+.sample>.q{grid-area:text}.sample>.report{grid-area:card;align-self:center}
+.steps3{grid-area:steps;margin-top:16px;font-size:15px;line-height:1.55;color:var(--muted)}
+.sample>.more.rep{grid-area:link;justify-self:start}
+@media (max-width:820px){.sample{grid-template-columns:minmax(0,1fr);grid-template-areas:"text" "card" "steps" "link";gap:0}.sample>.report{margin-top:28px}}
+@media (max-width:699px){.dlrow{flex-direction:column;align-items:stretch;width:100%}.dlrow .sbadge{align-self:flex-start}.get{align-items:stretch}.get>.gh,.get>.vlink,.get>.trustline{align-self:flex-start}.grid3{grid-template-columns:minmax(0,1fr)}}
+</style>
 <link rel="stylesheet" href="/assets/help/help.css?v=1">
 </head>
 <body>
@@ -144,37 +163,23 @@ main h3{font-size:19px;line-height:1.3;font-weight:700}
 </div></header>
 
 <main>
-<section class="hw hero" aria-labelledby="h-0">
+<section class="hw hero" id="comprobar" aria-labelledby="h-0">
 <div class="hero-text">
 <span class="eyebrow">What has changed</span>
 <h1 id="h-0">AI now works on your computer and in the cloud. See what it can do without asking your permission.</h1>
 <div class="facts"><p><span class="gt">AI agents<a class="gi" href="/glossary/#agent" data-gi="agent" aria-label="What is “AI agent”?"><span aria-hidden="true">i</span></a></span> no longer just answer. They now read your files, run programs and act in services you use, like your email, your documents or GitHub.</p><p><b>Some do it without asking your permission.</b></p></div>
-<div class="paths"><a class="path" href="#es-verdad"><b>I want to understand it</b><small>What each agent does, explained without jargon</small></a><a class="path primary" href="#comprobar"><b>I want to check my computer</b><small>Free · Windows, Mac and Linux</small></a></div>
-<p class="fine">It's open source. RosmarOps only reads your configuration, and nothing leaves your computer unless you approve it.</p>
+<div class="get"><div class="dlrow"><a class="sbadge" href="/download?from=home&amp;os=store" target="_blank" rel="nofollow noopener"><img src="/assets/store/microsoft-store-en.svg" width="161" height="44" alt="Download from the Microsoft Store"></a><a class="hbtn sec" href="/macos/">Mac (preview)</a><a class="hbtn sec" href="/linux/">Linux</a></div>
+<p class="gh">Want the latest version right away? Download it from <a href="/download?from=home&amp;os=windows" target="_blank" rel="nofollow noopener">GitHub</a>. Windows will show a warning because the program isn't signed yet. · <a class="auth" href="/security-teams/#comprobar">How to check it's authentic</a></p>
+<p class="trustline">It's open source. RosmarOps only reads your configuration, and nothing leaves your computer unless you approve it.</p></div>
 </div>
 <figure class="diagram"><div class="dg"><svg viewBox="0 0 460 420" role="img" aria-labelledby="dg-t"><title id="dg-t">An AI agent in the center, with lines to your files, your keys, your programs, the internet and your online services. Some lines show that it acts without asking your permission, others that it asks you first.</title><g font-family="system-ui,-apple-system,Segoe UI,sans-serif"><line x1="230" y1="170" x2="92" y2="70" stroke="var(--risk)" stroke-width="3"/><line x1="230" y1="170" x2="368" y2="70" stroke="var(--risk)" stroke-width="3"/><line x1="230" y1="170" x2="92" y2="270" stroke="var(--sage)" stroke-width="3" stroke-dasharray="7 6"/><line x1="230" y1="170" x2="368" y2="270" stroke="var(--risk)" stroke-width="3"/><line x1="230" y1="170" x2="230" y2="350" stroke="var(--risk)" stroke-width="3"/><circle cx="230" cy="170" r="54" fill="var(--brand)"/><text x="230" y="165" text-anchor="middle" fill="var(--on-brand)" font-size="15" font-weight="700">Your AI</text><text x="230" y="185" text-anchor="middle" fill="var(--on-brand)" font-size="13">agent</text><g><rect x="22" y="40" width="140" height="56" rx="12" fill="var(--card)" stroke="var(--line)"/><text x="92" y="64" text-anchor="middle" fill="var(--ink)" font-size="15" font-weight="700">Your files</text><text x="92" y="84" text-anchor="middle" fill="var(--muted)" font-size="12">the whole disk</text></g><g><rect x="298" y="40" width="140" height="72" rx="12" fill="var(--card)" stroke="var(--line)"/><text x="368" y="64" text-anchor="middle" fill="var(--ink)" font-size="15" font-weight="700">Your keys</text><text x="368" y="84" text-anchor="middle" fill="var(--muted)" font-size="12">passwords and</text><text x="368" y="99" text-anchor="middle" fill="var(--muted)" font-size="12">access keys</text></g><g><rect x="22" y="242" width="140" height="56" rx="12" fill="var(--card)" stroke="var(--line)"/><text x="92" y="266" text-anchor="middle" fill="var(--ink)" font-size="15" font-weight="700">Programs</text><text x="92" y="286" text-anchor="middle" fill="var(--muted)" font-size="12">run them</text></g><g><rect x="298" y="242" width="140" height="56" rx="12" fill="var(--card)" stroke="var(--line)"/><text x="368" y="266" text-anchor="middle" fill="var(--ink)" font-size="15" font-weight="700">Internet</text><text x="368" y="286" text-anchor="middle" fill="var(--muted)" font-size="12">send data out</text></g><g><rect x="130" y="340" width="200" height="56" rx="12" fill="var(--card)" stroke="var(--line)"/><text x="230" y="364" text-anchor="middle" fill="var(--ink)" font-size="15" font-weight="700">Your online services</text><text x="230" y="384" text-anchor="middle" fill="var(--muted)" font-size="12">email, documents, code</text></g></g></svg><p class="dg-i"><span class="gt"><a class="gi" href="/glossary/#accesskey" data-gi="accesskey" aria-label="What is “access keys”?"><span aria-hidden="true">i</span></a></span></p></div>
 <figcaption class="legend"><span><i></i>without asking your permission</span><span><i class="ask"></i>asks you first</span><span>Simplified example of an agent as it comes installed</span></figcaption></figure>
 </section>
-<section class="hb video" aria-labelledby="h-v"><div class="hw">
-<h2 id="h-v" class="vt">Use AI agents. You decide.</h2>
-<video class="vid" controls playsinline preload="none" width="1080" height="1920" poster="/assets/video/decide-tu-en.jpg" aria-label="Video: Use AI agents. You decide."><source src="/assets/video/decide-tu-en.mp4" type="video/mp4"></video>
-<details class="vtx"><summary>Read the video text</summary><p>Your AI agents do more and more for you.</p><p>Do you know what they can do without asking your permission?</p><p>RosmarOps shows you, agent by agent: your files, your keys, programs, the internet and your online services, and whether it does it without asking your permission or asks you first. Simplified example of an agent.</p><p>RosmarOps checks your computer and tells you what to change. Example · made-up computer: your agent, 11 out of 100, exposed. The first thing worth changing: your Stripe key is saved in git. With the exact change, ready to copy and paste into your agent. If you change it, the score goes up from 11 to 13.</p><p>It’s open source. RosmarOps only reads your configuration, and nothing leaves your computer unless you approve it.</p><p>Use AI agents. You decide. See what it can do without asking your permission. rosmarops.com · Free</p></details>
-</div></section>
-<section class="hb alt" aria-labelledby="h-1"><div class="hw">
-<div class="q"><span class="eyebrow">Is this for me?</span>
-<h2 id="h-1">If you use any of these agents, yes.</h2>
-<p class="hl">They are agents that work inside your computer or your code editor. RosmarOps recognizes them and shows you what they can do there.</p></div>
-<div class="agents">
-<div class="row"><span class="lab">On your computer</span><!-- agents:scored chips --><span class="chip on">Claude Code</span><span class="chip on">Cursor</span><span class="chip on">Hermes Agent</span><span class="chip on">Codex</span><span class="chip on">Grok Build</span><span class="chip on">Antigravity CLI</span><span class="chip on">GitHub Copilot in VS Code</span><span class="chip on">Cline in VS Code</span><span class="chip on">Gemini CLI</span><!-- /agents:scored --></div>
-<div class="row"><span class="lab">In the cloud, from your space</span><span class="chip">Claude</span><span class="chip">ChatGPT</span><span class="chip">Gemini</span><span class="chip">Grok</span><span class="chip">Codex</span><span class="chip">GitHub Copilot</span><span class="chip">Comet</span></div>
-</div>
-<p class="fine note">Do you use ChatGPT, Claude or Gemini in the browser? This is for you too. In your space you can go through their settings with a few simple questions: which of your services they have connected, whether they can act on their own and whether they train on your conversations. It gives you a score, calculated in your browser. <a href="https://app.rosmarops.com/space">Go to your space</a></p>
-</div></section>
 <section class="hb" id="es-verdad" aria-labelledby="h-2"><div class="hw">
 <div class="q"><span class="eyebrow">Is it true?</span>
 <h2 id="h-2">What they do as they come installed</h2>
 <p class="hl">We checked them one by one, on the same reference computer, reading their code and their official documentation. It changes with every version, and we review it with each of ours.</p></div>
-<div class="grid2">
+<div class="grid3">
 <article class="pattern"><span class="tag">A model decides, not you</span>
 <h3>Another AI approves what your agent does</h3>
 <p>Claude Code and Cursor come set up so that a <span class="gt">classifier model<a class="gi" href="/glossary/#classifier" data-gi="classifier" aria-label="What is “classifier model”?"><span aria-hidden="true">i</span></a></span> decides which actions go ahead, instead of asking you each time.</p>
@@ -188,20 +193,14 @@ main h3{font-size:19px;line-height:1.3;font-weight:700}
 <h3>They search the internet without asking your permission</h3>
 <p>Web search comes turned on by default. A search can send out part of what the agent has read.</p>
 <p class="who">Gemini CLI · Grok Build</p></article>
-<article class="pattern"><span class="tag">Can't be reviewed</span>
-<h3>Some keep their permissions where they can't be reviewed</h3>
-<p>Their permissions live inside the app, not in a file. Neither you nor RosmarOps can check them on disk, so RosmarOps lists them but doesn't score them, so as not to guess.</p>
-<p class="who">Claude Desktop · Antigravity app · Copilot in JetBrains</p></article>
 </div>
+<p class="nine">RosmarOps checks these nine: Claude Code · Cursor · GitHub Copilot in VS Code · Codex · Gemini CLI · Cline · Grok Build · Antigravity CLI · Hermes Agent. Do you use ChatGPT, Claude or Gemini in the browser? This is for you too. <a href="https://app.rosmarops.com/space">Go to your space</a></p>
 <a class="more" href="/blog/">Read on the blog how agents work</a>
 </div></section>
-<section class="hb alt" id="comprobar" aria-labelledby="h-3"><div class="hw sample">
+<section class="hb alt" aria-labelledby="h-3"><div class="hw sample">
 <div class="q flat"><span class="eyebrow">And on my computer?</span>
 <h2 id="h-3">What you see above is how they come. Yours may be different.</h2>
-<p class="hl">It depends on how you have set them up, on the <span class="gt">keys<a class="gi" href="/glossary/#credential" data-gi="credential" aria-label="What is “key or credential”?"><span aria-hidden="true">i</span></a></span> stored on your computer and on the other agents you use. RosmarOps gives you a score for each agent, the first thing worth changing and how much it improves if you do.</p>
-<div class="dl"><a class="hbtn primary" href="/download?from=home&amp;os=windows" target="_blank" rel="nofollow noopener">Download for Windows</a><a class="hbtn" href="/macos/">Mac (preview)</a><a class="hbtn" href="/linux/">Linux</a></div>
-<div class="store"><a href="/download?from=home&amp;os=store" target="_blank" rel="nofollow noopener"><img src="/assets/store/microsoft-store-en.svg" width="161" height="44" alt="Download from the Microsoft Store"></a><p class="store-note">Or install it from the Microsoft Store. The Store version can arrive a few days later.</p></div>
-<p class="dl-note">Free and open source (AGPL-3.0). <a href="/security-teams/#comprobar">How to check it's authentic</a></p><p class="dl-note">Windows may warn that RosmarOps is an unrecognised app: it is new and not signed yet. Click «More info» and then «Run anyway».</p></div>
+<p class="hl">It depends on how you have set them up, on the <span class="gt">keys<a class="gi" href="/glossary/#credential" data-gi="credential" aria-label="What is “key or credential”?"><span aria-hidden="true">i</span></a></span> stored on your computer and on the other agents you use. RosmarOps gives you a score for each agent, the first thing worth changing and how much it improves if you do.</p></div>
 <div class="report">
 <span class="ex">Example · made-up computer</span>
 <div class="score"><svg class="ring" viewBox="0 0 84 84" aria-hidden="true"><circle cx="42" cy="42" r="36" fill="none" stroke="var(--line)" stroke-width="8"/><circle cx="42" cy="42" r="36" fill="none" stroke="var(--risk)" stroke-width="8" stroke-linecap="round" stroke-dasharray="24.88 226.19" transform="rotate(-90 42 42)"/><text x="42" y="50" text-anchor="middle" font-size="22" font-weight="800" fill="var(--ink)" font-family="system-ui,-apple-system,Segoe UI,sans-serif">11</text></svg><div><b>Antigravity CLI · Exposed</b><small>From 0 to 100. The higher, the less exposed.</small></div></div>
@@ -209,34 +208,21 @@ main h3{font-size:19px;line-height:1.3;font-weight:700}
 <b>Your Stripe key is saved in git</b>
 <span class="fine">With the exact change, ready to copy and paste into your agent.</span>
 <span class="up">If you change it, the score goes up from 11 to 13</span></div>
-<a class="more" href="/sample-report/sample-report.en.html" target="_blank" rel="noopener">See the full report</a>
 </div>
+<p class="steps3">Three steps, a few minutes: download it and open it, with nothing to install and no account to create · it reads your configuration without changing anything · it tells you what to change, in order of importance.</p>
+<a class="more rep" href="/sample-report/sample-report.en.html" target="_blank" rel="noopener">See the full report</a>
 </div></section>
-<section class="hb" aria-labelledby="h-4"><div class="hw">
-<div class="q"><span class="eyebrow">How does it work?</span>
-<h2 id="h-4">Three steps, a few minutes</h2></div>
-<ol class="steps"><li class="step"><h3>Download it and open it</h3><p>There's nothing to install and no account to create.</p></li><li class="step"><h3>It reads your configuration</h3><p>It looks at what your agents can do on your computer, without changing anything.</p></li><li class="step"><h3>It tells you what to change</h3><p>A score for each agent and the exact change, in order of importance.</p></li></ol>
-</div></section>
-<section class="hb alt" aria-labelledby="h-5"><div class="hw">
+<section class="hb" aria-labelledby="h-5"><div class="hw">
 <div class="q"><span class="eyebrow">Can I trust it?</span>
 <h2 id="h-5">Three promises you can check</h2></div>
 <ul class="trust"><li><h3>It only reads</h3><p>It doesn't change your files or your agents. It tells you what to change, and you decide.</p></li><li><h3>Nothing leaves without your permission</h3><p>Without your permission it doesn't connect to anything. With it, it only sends your results, <span class="gt">encrypted<a class="gi" href="/glossary/#encrypted" data-gi="encrypted" aria-label="What is “encrypted”?"><span aria-hidden="true">i</span></a></span>, to your space.</p></li><li><h3>Open source</h3><p>You can read the code. Every version comes with its <span class="gt">checksum<a class="gi" href="/glossary/#checksum" data-gi="checksum" aria-label="What is “checksum and attestation”?"><span aria-hidden="true">i</span></a></span> and an attestation of how it was built, so you can check that it's ours.</p></li></ul>
 <a class="more" href="https://github.com/qtorb/rosmarops/blob/master/docs/trust-model.md">Every promise and how to check it</a>
 </div></section>
-<section class="hb" aria-labelledby="h-6"><div class="hw space">
-<div class="q flat"><span class="eyebrow">And after that?</span>
-<h2 id="h-6">Follow how your score changes, across all your computers</h2>
-<p class="hl">Your space keeps every check and shows you what has improved, what is new and what is worth doing next. It's free, in open beta.</p>
-<div><a class="hbtn" href="https://app.rosmarops.com/space">Create your space</a></div></div>
-<div class="pcs">
-<span class="ex">Example · made-up computers</span>
-<ul><li class="pc"><span><span class="hid">a3f91c02</span><small>Windows</small></span><svg viewBox="0 0 120 28" aria-hidden="true"><polyline fill="none" stroke="var(--brand)" stroke-width="2.5" points="2,22 30,20 60,14 90,12 118,6"/></svg><b>64</b></li><li class="pc"><span><span class="hid">7be04d19</span><small>Windows</small></span><svg viewBox="0 0 120 28" aria-hidden="true"><polyline fill="none" stroke="var(--brand)" stroke-width="2.5" points="2,18 30,18 60,16 90,10 118,9"/></svg><b>71</b></li><li class="pc"><span><span class="hid">c25e8a60</span><small>macOS</small></span><svg viewBox="0 0 120 28" aria-hidden="true"><polyline fill="none" stroke="var(--brand)" stroke-width="2.5" points="2,10 30,8 60,8 90,6 118,4"/></svg><b>88</b></li></ul>
-</div>
-</div></section>
 <section class="hb alt" aria-labelledby="h-7"><div class="hw close">
 <h2 id="h-7">Start with your computer</h2>
-<div class="dl"><a class="hbtn primary" href="/download?from=home-band&amp;os=windows" target="_blank" rel="nofollow noopener">Download for Windows</a><a class="hbtn" href="/macos/">Mac (preview)</a><a class="hbtn" href="/linux/">Linux</a></div>
-<div class="store"><a href="/download?from=home-band&amp;os=store" target="_blank" rel="nofollow noopener"><img src="/assets/store/microsoft-store-en.svg" width="161" height="44" alt="Download from the Microsoft Store"></a><p class="store-note">Or install it from the Microsoft Store. The Store version can arrive a few days later.</p></div>
+<div class="get"><div class="dlrow"><a class="sbadge" href="/download?from=home-band&amp;os=store" target="_blank" rel="nofollow noopener"><img src="/assets/store/microsoft-store-en.svg" width="161" height="44" alt="Download from the Microsoft Store"></a><a class="hbtn sec" href="/macos/">Mac (preview)</a><a class="hbtn sec" href="/linux/">Linux</a></div>
+<p class="gh">Want the latest version right away? Download it from <a href="/download?from=home-band&amp;os=windows" target="_blank" rel="nofollow noopener">GitHub</a>. Windows will show a warning because the program isn't signed yet.</p></div>
+<p class="spaceline">Then follow how your score changes across all your computers: <a href="https://app.rosmarops.com/space">create your free space</a>.</p>
 <p class="fine">How we calculate the score: <a href="/methodology/">methodology</a>. What it doesn't look at: <a href="/methodology/#limits">limits</a>.</p>
 </div></section>
 </main>
@@ -273,6 +259,5 @@ main h3{font-size:19px;line-height:1.3;font-weight:700}
 <script src="/assets/consent/cookieconsent.umd.js?v=3.1.0" defer></script>
 <script src="/assets/consent/consent.js?v=5" defer></script><script src="/assets/visits/visits.js?v=3" defer></script>
 <script src="/assets/help/help.js?v=1" defer></script>
-<script src="/assets/download/os.js?v=3" defer></script>
 </body>
 </html>

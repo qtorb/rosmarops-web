@@ -175,7 +175,8 @@ class Repository(unittest.TestCase):
         agents = al.load_agents()
         for page, lang in al.PAGES.items():
             text = (ROOT / page).read_text(encoding="utf-8")
-            self.assertIn("<!-- agents:scored", text, page)
+            if page not in al.NO_MARKERS:  # GTM-137: the homes' list is a signed literal sentence
+                self.assertIn("<!-- agents:scored", text, page)
             self.assertEqual(al.render_text(text, lang, agents, page), text, f"{page}: run python3 observatory/build.py")
 
     def test_no_list_outside_markers(self):
