@@ -26,6 +26,7 @@ Can I use it on a work computer? Yes, but tell your security team first. To look
 - Observatory: what each AI coding agent can do on your computer, with dated, sourced data: https://rosmarops.com/observatory/
 - [Observatorio (español)](https://rosmarops.com/es/observatorio/) and [observatori (català)](https://rosmarops.com/ca/observatori/)
 <!-- observatory agents:start -->
+- [AI agent map: what each one can do without asking you](https://rosmarops.com/observatory/ai-agent-map/): each scored agent's default class from A to D, its six axes and its factory score, from the engine's data at each release
 - [Cline on Windows: what it can do on your computer](https://rosmarops.com/observatory/cline/): observatory page, with its data at https://rosmarops.com/observatory/cline.json
 - [Gemini CLI on Windows: what it can do on your computer](https://rosmarops.com/observatory/gemini-cli/): observatory page, with its data at https://rosmarops.com/observatory/gemini-cli.json
 - [GitHub Copilot on Windows: what it can do on your computer](https://rosmarops.com/observatory/github-copilot/): observatory page, with its data at https://rosmarops.com/observatory/github-copilot.json

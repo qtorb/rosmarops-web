@@ -465,6 +465,7 @@ def item_list(lang, items):
 
 
 def build_index(lang, t, agents, candidates):
+    import map_page  # GTM-138: the map's button, with the first part of its signed title
     path = INDEX_PATH[lang]
     reviewed = max(a["agent"]["reviewed_at"] for a in agents)
     modified = max(date_modified(a) for a in agents)
@@ -562,7 +563,7 @@ def build_index(lang, t, agents, candidates):
 <h1>{t("index.h1")}</h1>
 <p class="lead">{t("index.lead")}</p>
 <p class="note">{t("index.daily_line", link=daily_link)}</p>
-<div class="actions"><a class="btn primary" href="{DAILY_PATH[lang]}">{t("index.cta_daily")}</a><a class="btn secondary" href="#method">{t("index.cta_method")}</a><a class="btn secondary" href="{JSON_BASE}data.json">{t("index.cta_data")}</a></div>
+<div class="actions"><a class="btn primary" href="{DAILY_PATH[lang]}">{t("index.cta_daily")}</a><a class="btn secondary" href="{map_page.MAP_PATH[lang]}">{esc(map_page.load()[2]["texts"][lang]["title"].split(":")[0])}</a><a class="btn secondary" href="#method">{t("index.cta_method")}</a><a class="btn secondary" href="{JSON_BASE}data.json">{t("index.cta_data")}</a></div>
 </section>
 
 <section id="today" aria-labelledby="today-h2" data-src="{DAILY_PATH[lang]}today.html" hidden>
@@ -900,6 +901,11 @@ def build_sitemap(agents):
     alts = "".join(f'<xhtml:link rel="alternate" hreflang="{l}" href="{BASE}{INDEX_PATH[l]}"/>' for l in LANGS)
     alts += f'<xhtml:link rel="alternate" hreflang="x-default" href="{BASE}{INDEX_PATH["en"]}"/>'
     lines = [SM_START] + [f"  <url><loc>{BASE}{INDEX_PATH[l]}</loc><lastmod>{lastmod}</lastmod>{alts}</url>" for l in LANGS]
+    import map_page  # GTM-138: the map, with the generation date of the engine's data
+    malts = "".join(f'<xhtml:link rel="alternate" hreflang="{l}" href="{BASE}{map_page.MAP_PATH[l]}"/>' for l in LANGS)
+    malts += f'<xhtml:link rel="alternate" hreflang="x-default" href="{BASE}{map_page.MAP_PATH["en"]}"/>'
+    mlast = map_page.load()[0]["generated_at"][:10]
+    lines += [f"  <url><loc>{BASE}{map_page.MAP_PATH[l]}</loc><lastmod>{mlast}</lastmod>{malts}</url>" for l in LANGS]
     dalts = "".join(f'<xhtml:link rel="alternate" hreflang="{l}" href="{BASE}{DAILY_PATH[l]}"/>' for l in LANGS)
     dalts += f'<xhtml:link rel="alternate" hreflang="x-default" href="{BASE}{DAILY_PATH["en"]}"/>'
     lines += [f"  <url><loc>{BASE}{DAILY_PATH[l]}</loc>{dalts}</url>" for l in LANGS]
@@ -929,7 +935,8 @@ def build_llms(agents, t_en):
     if not f.exists():
         return
     txt = f.read_text(encoding="utf-8")
-    lines = [LL_START]
+    import map_page  # GTM-138
+    lines = [LL_START, f"- [{map_page.load()[2]['texts']['en']['title'].split(' · ')[0]}]({BASE}{map_page.MAP_PATH['en']}): each scored agent's default class from A to D, its six axes and its factory score, from the engine's data at each release"]
     for a in agents:
         if is_published(a):
             ag = a["agent"]
@@ -1095,12 +1102,12 @@ def build_static_about():
 # ---------------------------------------------------------------- map (GTM-138)
 
 def build_map(lang, t, agents):
-    """The Observatory map, hidden: noindex, out of the sitemap and linked from nowhere (GTM-138). Data and texts in
-    observatory/map_page.py; the deploy uploads it by name (agent pages with noindex are not uploaded)."""
+    """The Observatory map (GTM-138), published by Albert on 12-11: indexable, in the sitemap and llms.txt, linked from
+    the home and the Observatory index. Data and texts in observatory/map_page.py."""
     import map_page
     T, body = map_page.body(lang, t, [a["agent"] for a in agents])
     html_out = page(lang, t, path=map_page.MAP_PATH[lang], title=T["title"], description=T["description"],
-                    alternates=map_page.MAP_PATH, jsonld=[], body=body, noindex=True,
+                    alternates=map_page.MAP_PATH, jsonld=[], body=body, noindex=False,
                     extra_head=[f"<style>{map_page.CSS}</style>"])
     html_out = html_out.replace('<main><div class="wrap">\n' + body + '\n</div></main>', "<main>\n" + body + "\n</main>", 1)
     html_out = html_out.replace("</body>", map_page.SCRIPT + "\n</body>", 1)

@@ -1,4 +1,4 @@
-"""GTM-138: the Observatory map page (observatory/map_page.py): phrases, rules, and that it stays hidden.
+"""GTM-138: the Observatory map page (observatory/map_page.py): phrases, rules, and its publication (Albert, 12-11).
 
 Run from the repository root:  python3 -m unittest observatory/tests/test_map_page.py
 """
@@ -57,11 +57,11 @@ class Rules(unittest.TestCase):
                                "sends_out": "you", "changes_other_agents": "nobody"})
 
 
-class HiddenPage(unittest.TestCase):
-    def test_noindex_and_cta(self):
+class PublishedPage(unittest.TestCase):
+    def test_indexable_and_cta(self):
         for lang, f in PAGES.items():
             html = f.read_text(encoding="utf-8")
-            self.assertIn('<meta name="robots" content="noindex">', html, lang)
+            self.assertNotIn('name="robots"', html, lang)
             self.assertIn(f'{mp.DOWNLOAD[lang]}?from=observatory-map"', html, lang)
             self.assertEqual(html.count('class="m-row"'), 9, lang)
             title = json.loads(mp.MAP_TEXTS.read_text(encoding="utf-8"))["texts"][lang]["title"]
@@ -70,18 +70,16 @@ class HiddenPage(unittest.TestCase):
             for l, p in mp.MAP_PATH.items():  # links between languages
                 self.assertIn(f'<link rel="alternate" hreflang="{l}" href="https://rosmarops.com{p}">', html, (lang, l))
 
-    def test_not_in_sitemap_llms_or_any_link(self):
+    def test_in_sitemap_llms_and_linked_from_home_and_observatory(self):
         sitemap = (ROOT / "site" / "sitemap-pages.xml").read_text(encoding="utf-8")
-        llms = (ROOT / "site" / "llms.txt").read_text(encoding="utf-8")
         for p in mp.MAP_PATH.values():
-            self.assertNotIn(p, sitemap)
-            self.assertNotIn(p, llms)
-        rx = re.compile(r'href="(?:https://rosmarops\.com)?(' + "|".join(re.escape(p) for p in mp.MAP_PATH.values()) + r')"')
-        own = set(PAGES.values())
-        for f in list((ROOT / "site").rglob("*.html")) + list((ROOT / "wp").rglob("*.html")) + list((ROOT / "wp").rglob("*.php")):
-            if f in own:
-                continue
-            self.assertIsNone(rx.search(f.read_text(encoding="utf-8", errors="ignore")), f)
+            self.assertIn(f"<loc>https://rosmarops.com{p}</loc>", sitemap)
+        self.assertIn(mp.MAP_PATH["en"], (ROOT / "site" / "llms.txt").read_text(encoding="utf-8"))
+        homes = {"en": "site/index.html", "es": "site/es/index.html", "ca": "site/ca/index.html"}
+        obs = {"en": "site/observatory/index.html", "es": "site/es/observatorio/index.html", "ca": "site/ca/observatori/index.html"}
+        for lang, p in mp.MAP_PATH.items():
+            for f in (homes[lang], obs[lang]):
+                self.assertIn(f'href="{p}"', (ROOT / f).read_text(encoding="utf-8"), (lang, f))
 
     def test_what_waits_for_the_engine_is_not_shown(self):
         cat = json.loads(mp.MAP_TEXTS.read_text(encoding="utf-8"))
