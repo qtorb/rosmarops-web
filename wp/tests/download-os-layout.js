@@ -31,6 +31,9 @@ srv.listen(0, '127.0.0.1', async () => {
     await pg.route('**/wp-json/**', r => r.abort());
     await pg.route('**/assets/visits/**', r => r.abort());
     await pg.goto(`http://127.0.0.1:${srv.address().port}${page_}`, { waitUntil: 'load' });
+    // LAYOUT_FONT: measure with one font instead of the machine's system-ui (whose width differs between Linux
+    // distributions), e.g. "Liberation Sans", which has Arial's metrics, as a stand-in for Windows.
+    if (process.env.LAYOUT_FONT) await pg.addStyleTag({ content: `*{font-family:"${process.env.LAYOUT_FONT}",Arial,sans-serif !important}` });
     await pg.waitForTimeout(200);
     console.log(JSON.stringify(await pg.evaluate(() => {
       const vis = e => getComputedStyle(e).display !== 'none' && !e.hidden;

@@ -150,11 +150,12 @@ class DownloadOs(unittest.TestCase):
 class Layout(unittest.TestCase):
     """GTM-129b and GTM-137 in Chromium (wp/tests/download-os-layout.js); skipped where Playwright is not installed."""
 
-    def layout(self, path, width, agent):
+    def layout(self, path, width, agent, font=None):
         if not shutil.which("node") or subprocess.run(["node", "-e", "require('playwright')"], capture_output=True).returncode:
             self.skipTest("node playwright not installed")
+        env = dict(os.environ, LAYOUT_FONT=font) if font else None
         p = subprocess.run(["node", str(Path(__file__).parent / "download-os-layout.js"), str(ROOT / "site"), path, str(width), agent],
-                           capture_output=True, text=True, check=True, timeout=120)
+                           capture_output=True, text=True, check=True, timeout=120, env=env)
         return json.loads(p.stdout)
 
     def test_es_mac_1280_main_button_on_one_line_without_the_store(self):
@@ -165,9 +166,11 @@ class Layout(unittest.TestCase):
         self.assertEqual(r["others"], [["Windows", "Linux"]] * 2)
 
     def test_windows_1280_row_above_800_px_and_side_by_side(self):
-        # GTM-137 §2.1: the drawing must not push the download row below 800 px at 1280.
+        # GTM-137 §2.1: the drawing must not push the download row below 800 px at 1280. Measured with Arial's metrics
+        # (Liberation Sans, installed with the CI browser), as a stand-in for Windows: with the runner's own system-ui
+        # (DejaVu Sans, wider) the H1 takes two more lines and the row ends near 865 px.
         for path, lang in (("/", "en"), ("/es/", "es"), ("/ca/", "ca")):
-            r = self.layout(path, 1280, "windows")
+            r = self.layout(path, 1280, "windows", font="Liberation Sans")
             self.assertLess(r["heroRowBottom"], 800, lang)
             for row in r["rows"]:
                 self.assertEqual(row[0][0], WIN[lang])
