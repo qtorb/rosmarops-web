@@ -1,0 +1,19 @@
+{
+ "id": "microsoft-store",
+ "lang": "ca",
+ "slug": "rosmarops-microsoft-store",
+ "title": "RosmarOps ja és a la Microsoft Store",
+ "excerpt": "Microsoft ha aprovat RosmarOps a la seva Store. A Windows ja s'instal·la amb un clic i sense la finestra blava de «Windows ha protegit el teu ordinador». Així ha anat, i què porta la 0.11.",
+ "content": "microsoft-store-ca.html",
+ "seo_title": "RosmarOps, a la Microsoft Store: sense la finestra blava",
+ "seo_description": "RosmarOps ja és a la Microsoft Store: a Windows s'instal·la amb un clic, sense l'avís «Windows ha protegit el teu ordinador». I què porta la 0.11.",
+ "translations": {
+  "en": "https://rosmarops.com/blog/rosmarops-microsoft-store/",
+  "es": "https://rosmarops.com/es/blog/rosmarops-microsoft-store/"
+ },
+ "category": "notes-de-camp",
+ "tags": {
+  "microsoft-store": "Microsoft Store",
+  "windows": "Windows"
+ }
+}

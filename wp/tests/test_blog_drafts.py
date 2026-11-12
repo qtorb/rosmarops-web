@@ -16,8 +16,9 @@ DRAFTS = TESTS.parent / "drafts"
 SITES = {"en": "https://rosmarops.com", "es": "https://rosmarops.com/es", "ca": "https://rosmarops.com/ca"}
 ALBERT = {"ID": 3, "display_name": "Albert Garcia Pujadas", "roles": ["administrator"]}
 ADMIN = {"ID": 1, "display_name": "admin6244", "roles": ["administrator"]}
-IDS = {"loop-engineering", "agente-he-terminado", "errores-repetidos", "harness-engineering", "novedades-0-10"}
-IN_NEWS = {"harness-engineering", "novedades-0-10"}  # the rest of the series goes in loop-engineering
+IDS = {"loop-engineering", "agente-he-terminado", "errores-repetidos", "harness-engineering", "novedades-0-10", "microsoft-store"}
+IN_NEWS = {"harness-engineering", "novedades-0-10", "microsoft-store"}
+NO_IMAGE = {"microsoft-store"}  # GTM-139: news post without a featured image (optional in the plugin)  # the rest of the series goes in loop-engineering
 NEWS = {"en": "field-notes", "es": "novedades-de-rosmarops", "ca": "notes-de-camp"}
 
 
@@ -78,8 +79,11 @@ class Drafts(unittest.TestCase):
                 self.assertNotIn("](", html, "markdown link left in the HTML")
                 self.assertNotIn("**", html)
                 if pid != "loop-engineering":
-                    self.assertTrue((DRAFTS / x["image"]).is_file(), x["image"])
-                    self.assertTrue(x["alt"])
+                    if pid in NO_IMAGE:
+                        self.assertNotIn("image", x)
+                    else:
+                        self.assertTrue((DRAFTS / x["image"]).is_file(), x["image"])
+                        self.assertTrue(x["alt"])
                     self.assertTrue(x["tags"])
                     self.assertEqual(x["category"], NEWS[l] if pid in IN_NEWS else "loop-engineering")
         self.assertIn("arxiv.org/abs/2608.21884v3", (DRAFTS / all_["loop-engineering"]["es"]["content"]).read_text(encoding="utf-8"))
@@ -111,6 +115,9 @@ class Drafts(unittest.TestCase):
                 self.assertEqual(rel["category"], [11 if pid in IN_NEWS else 10])
                 slugs = {t["term_id"]: t["slug"] for t in out["terms"] if t["taxonomy"] == "post_tag"}
                 self.assertEqual({slugs[i] for i in rel["post_tag"]}, set(x["tags"]))
+                if pid in NO_IMAGE:
+                    self.assertNotIn("_thumbnail_id", meta)
+                    continue
                 att = [a for a in out["attachments"] if a["ID"] == meta["_thumbnail_id"]][0]
                 self.assertEqual((att["file"], att["parent"]), ("uploads-" + x["image"], p["ID"]))
                 self.assertEqual(out["meta"][str(att["ID"])]["_wp_attachment_image_alt"], x["alt"])
