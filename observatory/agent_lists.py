@@ -42,6 +42,7 @@ PAGES = {
 }
 # GTM-137 (12-11): the homes have no generated list; their list of the nine scored agents is a literal sentence signed
 # by Albert (T3), allowed in agent-list-exclusions.json. render() leaves them alone; check_pages() still reads them.
+# Pending (Albert, 12-11): generate it again; until then «nine» and the names are kept by hand.
 NO_MARKERS = {"site/index.html", "site/es/index.html", "site/ca/index.html"}
 AND = {"en": " and ", "es": " y ", "ca": " i "}
 KINDS = {"scored": "evaluated", "detected": "detected"}
