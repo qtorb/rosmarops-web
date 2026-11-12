@@ -290,6 +290,13 @@ jobs:
             echo "put site/es/observatorio/index.html es/observatorio/index.html"
             echo "-mkdir ca/observatori"
             echo "put site/ca/observatori/index.html ca/observatori/index.html"
+            # GTM-138: the map, hidden (noindex, out of the sitemap, linked from nowhere), uploaded by name.
+            echo "-mkdir observatory/ai-agent-map"
+            echo "put site/observatory/ai-agent-map/index.html observatory/ai-agent-map/index.html"
+            echo "-mkdir es/observatorio/mapa-agentes-ia"
+            echo "put site/es/observatorio/mapa-agentes-ia/index.html es/observatorio/mapa-agentes-ia/index.html"
+            echo "-mkdir ca/observatori/mapa-agents-ia"
+            echo "put site/ca/observatori/mapa-agents-ia/index.html ca/observatori/mapa-agents-ia/index.html"
             # Agent pages: only the published ones (no noindex).
             for f in $(find site/observatory site/es/observatorio site/ca/observatori -mindepth 2 -name index.html); do
               if ! grep -q '<meta name="robots" content="noindex">' "$f"; then

@@ -80,6 +80,8 @@ jobs:
           # Agents with a knowledge file in this release become "evaluated" since it; the 13 pages and the Observatory
           # are generated again. What needs Albert (an unmapped knowledge file, an agent no longer scored) goes in the PR.
           python3 observatory/agent_lists.py release "$TAG" | tee "$RUNNER_TEMP/agents.txt"
+          # GTM-138: the map reads the engine's two JSON files of this release (copied, never written by hand).
+          python3 observatory/map_page.py fetch "$TAG"
           python3 observatory/build.py
 
       - name: Install Playwright, Chromium and optipng
@@ -119,7 +121,7 @@ jobs:
           git add site/sample-report/VERSION site/sample-report/sample-report.en.html site/sample-report/sample-report.es.html \
             site/assets/sample/ site/index.html site/sample-report/index.html site/es/index.html \
             site/es/informe-de-ejemplo/index.html site/ca/index.html site/ca/informe-dexemple/index.html \
-            observatory/data/agents site wp/daily wp/pages
+            observatory/data/agents observatory/data/map site wp/daily wp/pages
           git commit -m "Sample report, captures and agent lists for $TAG (automatic, for review)"
           git push origin "$branch"
           raw="https://github.com/${GITHUB_REPOSITORY}/raw/$branch/site/assets/sample"

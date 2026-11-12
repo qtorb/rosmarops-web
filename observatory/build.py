@@ -1091,6 +1091,21 @@ def build_static_about():
 """
         (out / f"about-{lang}.html").write_text(page, encoding="utf-8")
 
+
+# ---------------------------------------------------------------- map (GTM-138)
+
+def build_map(lang, t, agents):
+    """The Observatory map, hidden: noindex, out of the sitemap and linked from nowhere (GTM-138). Data and texts in
+    observatory/map_page.py; the deploy uploads it by name (agent pages with noindex are not uploaded)."""
+    import map_page
+    T, body = map_page.body(lang, t, [a["agent"] for a in agents])
+    html_out = page(lang, t, path=map_page.MAP_PATH[lang], title=T["title"], description=T["description"],
+                    alternates=map_page.MAP_PATH, jsonld=[], body=body, noindex=True,
+                    extra_head=[f"<style>{map_page.CSS}</style>"])
+    html_out = html_out.replace('<main><div class="wrap">\n' + body + '\n</div></main>', "<main>\n" + body + "\n</main>", 1)
+    html_out = html_out.replace("</body>", map_page.SCRIPT + "\n</body>", 1)
+    write(map_page.MAP_PATH[lang], html_out)
+
 def main():
     global DATA, SITE
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
@@ -1118,6 +1133,8 @@ def main():
     for lang in LANGS:
         t = T(cats[lang])
         build_index(lang, t, agents, candidates)
+        pages += 1
+        build_map(lang, t, agents)
         pages += 1
         for a in agents:
             if has_page(a):

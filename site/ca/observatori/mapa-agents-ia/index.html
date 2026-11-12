@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mapa d&#x27;agents d&#x27;IA: què pot fer cadascun sense preguntar-te · RosmarOps</title>
+<meta name="description" content="Quant pot fer cada agent d&#x27;IA sense preguntar-te? La classificació de sèrie de cada agent, de l&#x27;A a la D, amb els seus sis eixos.">
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://rosmarops.com/ca/observatori/mapa-agents-ia/">
+<link rel="alternate" hreflang="en" href="https://rosmarops.com/observatory/ai-agent-map/">
+<link rel="alternate" hreflang="es" href="https://rosmarops.com/es/observatorio/mapa-agentes-ia/">
+<link rel="alternate" hreflang="ca" href="https://rosmarops.com/ca/observatori/mapa-agents-ia/">
+<link rel="alternate" hreflang="x-default" href="https://rosmarops.com/observatory/ai-agent-map/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="RosmarOps">
+<meta property="og:title" content="Mapa d&#x27;agents d&#x27;IA: què pot fer cadascun sense preguntar-te · RosmarOps">
+<meta property="og:description" content="Quant pot fer cada agent d&#x27;IA sense preguntar-te? La classificació de sèrie de cada agent, de l&#x27;A a la D, amb els seus sis eixos.">
+<meta property="og:url" content="https://rosmarops.com/ca/observatori/mapa-agents-ia/">
+<meta property="og:locale" content="ca_ES">
+<meta property="og:image" content="https://rosmarops.com/assets/brand/observatory/observatory-social.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="author" content="RosmarOps">
+<style>
+/* GTM-138: the map page. Measures of vigil docs/research/2026-11-09-mapa-boceto-paso-2.html, light mode only. */
+main>.wrap{max-width:none;padding:0}
+.m-top,.m-band{line-height:1.55}
+.m-wrap{max-width:1080px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.m-band{padding-block:64px}.m-alt{background:#EEECE7}
+.m-eyebrow{font-size:13px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:#66635D}
+main h1,main h2,main h3{margin:0;text-wrap:balance;letter-spacing:-.01em}
+main .m-band h2{font-size:clamp(24px,3.2vw,34px);line-height:1.15;font-weight:800}
+main h3{font-size:19px;line-height:1.3}
+main p{margin:0}
+.m-lead{font-size:clamp(18px,2vw,20px);color:#3A3833;max-width:62ch}
+.m-stack{display:flex;flex-direction:column;gap:16px}
+.m-fine{font-size:14px;color:#66635D}
+.m-notice{background:#FFFFFF;border:1px solid #E3E0D8;border-radius:12px;padding:16px;font-size:15px;color:#3A3833}
+.m-top{display:flex;flex-direction:column;gap:24px;padding-top:40px;padding-bottom:64px}
+.m-top h1{font-size:clamp(32px,5vw,52px);line-height:1.06;font-weight:800}
+.m-for{display:flex;flex-direction:column;gap:12px}
+.m-uses{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:0;padding:0;list-style:none}
+.m-uses li{background:#FFFFFF;border:1px solid #E3E0D8;border-radius:14px;padding:18px;font-size:16px;color:#3A3833}
+.m-uses b{display:block;color:#1B1A18;font-size:17px;margin-bottom:4px}
+.m-map{margin-top:8px}
+.m-case{max-width:720px}
+.m-case{margin:0;background:#FFFFFF;border:1px solid #E3E0D8;border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:14px}
+.m-turn{display:grid;grid-template-columns:28px minmax(0,1fr);gap:12px;align-items:start}
+.m-turn p{font-size:16px;color:#3A3833}
+.m-who{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-size:12px;font-weight:800}
+.m-you{background:#E9E6DF;color:#1B1A18}.m-ai{background:#2346B8;color:#FFFFFF}.m-judge{background:#FBF0D9;color:#8A5A00}
+.m-closing{font-size:16px;font-weight:600}
+.mi{display:inline-grid;place-items:center;width:20px;height:20px;padding:0;border:1.5px solid currentColor;border-radius:50%;background:none;color:#3A3833;font:700 12px/1 system-ui,sans-serif;cursor:pointer;vertical-align:1px}
+.mi:focus-visible{outline:3px solid #2346B8;outline-offset:2px}
+.mi-t{display:block;margin-top:8px;padding:10px 12px;background:#FFFFFF;border:1px solid #E3E0D8;border-radius:10px;font-size:14px;color:#3A3833}
+.mi-t[hidden]{display:none}
+.m-legend{display:flex;flex-wrap:wrap;gap:10px 20px;align-items:center;font-size:14px;color:#3A3833}
+.m-lg{display:inline-flex;align-items:center;gap:8px}
+.m-cls{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:9px;font-weight:800;font-size:17px;flex:none}
+.m-D{background:#A3361F;color:#FFFFFF}.m-C{background:#FBEAE5;color:#A3361F}.m-B{background:#FBF0D9;color:#8A5A00}.m-A{background:#E7EFE9;color:#3F5E49}
+.m-list{background:#FFFFFF;border:1px solid #E3E0D8;border-radius:16px;overflow:hidden}
+.m-row{display:grid;grid-template-columns:48px minmax(0,1.3fr) minmax(0,2.2fr) 96px;gap:16px;align-items:center;padding:14px 20px;width:100%;border:0;border-top:1px solid #E3E0D8;background:none;font:inherit;color:inherit;text-align:left;cursor:pointer}
+.m-list>.m-row:first-child{border-top:0}
+.m-row:hover{background:#F6F5F2}
+.m-row:focus-visible{outline:3px solid #2346B8;outline-offset:-3px}
+.m-name b{display:block;font-size:17px}.m-why{display:block;font-size:14px;color:#3A3833}.m-prov{display:block;font-size:12px;color:#66635D;margin-top:2px}
+.m-axes{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px}
+.m-ax{display:flex;flex-direction:column;gap:4px;min-width:0}
+.m-ax small{font-size:11px;color:#66635D;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.m-bar{display:block;height:8px;border-radius:4px;background:#E9E6DF;overflow:hidden}.m-bar i{display:block;height:100%;background:#3A3833}
+.m-nd{background:repeating-linear-gradient(45deg,#E9E6DF 0 4px,transparent 4px 8px);border:1px solid #E3E0D8}
+.m-score{font-variant-numeric:tabular-nums;font-weight:800;font-size:20px;text-align:right}.m-score small{display:block;font-weight:400;font-size:12px;color:#66635D}
+.m-detail{padding:16px 20px 22px 84px;border-top:1px dashed #E3E0D8;background:#F6F5F2}
+.m-detail[hidden]{display:none}
+.m-detail h4{margin:16px 0 6px;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#66635D}
+.m-does{margin:0;padding-left:20px;font-size:15px;color:#3A3833;max-width:640px}
+.m-whol{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px;max-width:640px}
+.m-whol li{display:flex;justify-content:space-between;gap:12px;font-size:15px;border-bottom:1px solid #E3E0D8;padding-bottom:6px}
+.m-pill{font-size:12px;font-weight:700;padding:3px 9px;border-radius:999px;white-space:nowrap}
+.m-p-model{background:#FBF0D9;color:#8A5A00}.m-p-nobody{background:#FBEAE5;color:#A3361F}.m-p-you{background:#E7EFE9;color:#3F5E49}
+.m-grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.m-card{background:#FFFFFF;border:1px solid #E3E0D8;border-radius:14px;padding:20px;display:flex;flex-direction:column;gap:8px}
+.m-card p{color:#3A3833;font-size:16px}.m-ex{font-size:14px;color:#66635D}
+.m-cta{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px 32px;align-items:center;background:#1B1A18;color:#F6F5F2;border-radius:16px;padding:28px}
+main .m-cta h2{color:#F6F5F2}.m-cta p{color:#D9D5CC}
+.m-ctab{display:flex;flex-direction:column;gap:8px;align-items:flex-start}
+.m-btn{display:inline-flex;align-items:center;min-height:44px;padding:12px 20px;border-radius:10px;font-weight:700;text-decoration:none;background:#F6F5F2;color:#1B1A18}
+.m-btn:hover{color:#1B1A18}.m-btn:focus-visible{outline:3px solid #9DB2FF;outline-offset:3px}
+.m-ctab small{font-size:14px;color:#B9B4AA}
+.m-links a{color:#2346B8}
+@media (max-width:820px){
+.m-uses,.m-grid3,.m-cta{grid-template-columns:1fr}
+.m-row{grid-template-columns:40px minmax(0,1fr) 72px;gap:12px}
+.m-row .m-axes{grid-column:1 / -1}
+.m-detail{padding-left:20px}
+}
+</style>
+<link rel="stylesheet" href="/assets/consent/cookieconsent.css?v=3.1.0">
+<link rel="icon" href="/assets/brand/observatory/observatory-favicon.ico" sizes="48x48">
+<link rel="icon" href="/assets/brand/observatory/observatory-favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/brand/observatory/observatory-apple-touch-180.png">
+<style>
+:root{--bg:#F6F5F2;--ink:#1B1A18;--ink2:#3A3833;--muted:#66635D;--line:#E3E0D8;--card:#FFFFFF;--accent:#6F8F78}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+a{color:var(--ink)}a:hover{color:var(--accent)}
+.wrap{max-width:1040px;margin:0 auto;padding:0 16px}
+header .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;padding-top:24px;padding-bottom:24px}
+header img{height:40px;width:auto;display:block}
+nav{display:flex;flex-wrap:wrap;gap:24px;font-size:16px}
+nav a[aria-current]{font-weight:700;text-decoration:none}
+main .wrap{display:flex;flex-direction:column;gap:56px;padding-top:48px;padding-bottom:64px}
+.hero{display:flex;flex-direction:column;gap:20px;max-width:760px}
+.eyebrow{margin:0;font-size:14px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+h1{margin:0;font-size:clamp(34px,6vw,52px);line-height:1.08;font-weight:700;letter-spacing:-.02em}
+.lead{margin:0;font-size:20px;line-height:1.55;color:var(--ink2)}
+.actions{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-flex;align-items:center;min-height:44px;padding:0 20px;border-radius:8px;font-size:16px;text-decoration:none;border:1px solid var(--ink)}
+.btn.primary{background:var(--ink);color:#FFFFFF}.btn.primary:hover{background:var(--ink2);color:#FFFFFF}
+.btn.secondary{background:transparent;color:var(--ink)}
+section{display:flex;flex-direction:column;gap:16px}
+section[hidden]{display:none}
+h2{margin:0;font-size:26px;line-height:1.2}
+h3{margin:0;font-size:18px}
+.note{margin:0;font-size:15px;line-height:1.55;color:var(--muted)}
+.box{background:var(--card);border:1px solid var(--line);border-radius:12px}
+.tablebox{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:16px;min-width:760px;table-layout:fixed}
+thead th{text-align:left;font-size:13px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);padding:14px 16px;border-bottom:1px solid var(--line)}
+tbody th{text-align:left;font-weight:700;padding:14px 16px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.45}
+td{padding:14px 16px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.45}
+tr:last-child td,tr:last-child th{border-bottom:0}
+.changes{list-style:none;margin:0;padding:0}
+.changes li{padding:16px;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:6px;line-height:1.5}
+.changes li:last-child{border-bottom:0}
+.changes .meta{margin:0;font-size:14px;color:var(--muted)}
+.changes p{margin:0}
+.empty{margin:0;padding:20px;font-size:16px;line-height:1.55;color:var(--ink2)}
+.trio{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;padding:24px}
+.trio div{display:flex;flex-direction:column;gap:8px}
+.trio p{margin:0;font-size:16px;line-height:1.55;color:var(--ink2)}
+.disclaimer{margin:0;font-size:14px;line-height:1.5;color:var(--muted)}
+.crumbs{margin:0;font-size:14px;color:var(--muted);display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.obs-brand{display:flex;align-items:center;gap:16px;margin:0 0 20px;font-size:22px;font-weight:700;letter-spacing:-.01em;line-height:1.2;color:var(--ink)}
+.obs-brand img{display:block;width:64px;height:64px;flex:none}
+.crumbs img{display:block;width:24px;height:24px;flex:none}
+.layout{display:flex;flex-wrap:wrap;gap:40px;align-items:flex-start}
+.toc{flex:1 1 200px;display:flex;flex-direction:column;gap:8px;font-size:15px}
+.toc p{margin:0 0 4px;font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.article{flex:999 1 600px;min-width:0;display:flex;flex-direction:column;gap:40px}
+.article h1{font-size:clamp(30px,5vw,44px);line-height:1.12}
+.pagemeta{margin:0;font-size:15px;color:var(--muted)}
+.panel{padding:20px;display:flex;flex-direction:column;gap:12px}
+.panel p{margin:0;font-size:16px;line-height:1.55}
+.summary p:not(.eyebrow){font-size:17px}
+.plain li,td,.panel p{overflow-wrap:anywhere}
+td.keep{overflow-wrap:normal;word-break:normal;hyphens:none}
+td code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:14px;overflow-wrap:anywhere}
+.panel code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace}
+.plain{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px;font-size:16px;line-height:1.5}
+footer{border-top:1px solid var(--line)}
+footer .wrap{padding-top:28px;padding-bottom:28px;font-size:15px;color:var(--muted)}
+footer nav{gap:20px;font-size:15px}
+@media (max-width:700px){.trio{grid-template-columns:1fr}.obs-brand{gap:12px;margin-bottom:16px;font-size:20px}.obs-brand img{width:48px;height:48px}
+nav{gap:16px}main .wrap{gap:40px;padding-top:32px}.lead{font-size:18px}
+table{min-width:0;table-layout:auto}colgroup,thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+table,tbody,tr,tbody th,td{display:block}
+tbody tr{padding:16px;border-bottom:1px solid var(--line)}tbody tr:last-child{border-bottom:0}
+tbody th{padding:0 0 8px;border:0;font-size:18px}
+td{padding:4px 0;border:0;display:grid;grid-template-columns:minmax(110px,40%) 1fr;gap:12px;font-size:15px}
+td::before{content:attr(data-label);font-size:13px;color:var(--muted)}
+td:empty{display:none}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<a href="/ca/"><img src="/assets/brand/rosmarops-logo.png" srcset="/assets/brand/rosmarops-logo.png 1x, /assets/brand/rosmarops-logo@2x.png 2x" width="512" height="131" alt="RosmarOps"></a>
+<nav><a href="/ca/blog/">Bloc</a><a href="/ca/blog/que-es-rosmarops/">Quant a</a><a href="/ca/observatori/" aria-current="page">Observatori</a><a href="/ca/metodologia/">Metodologia</a><a href="/ca/preguntes-frequents/">Preguntes</a><a href="/observatory/ai-agent-map/" hreflang="en" lang="en" aria-label="English">EN</a><a href="/es/observatorio/mapa-agentes-ia/" hreflang="es" lang="es" aria-label="Español">ES</a></nav>
+</div></header>
+
+<main>
+<section class="m-wrap m-top" aria-labelledby="m-h1">
+<div class="m-stack">
+<span class="m-eyebrow">Observatori · Mapa d&#x27;agents</span>
+<h1 id="m-h1">Quant pot fer cada agent d&#x27;IA sense preguntar-te?</h1>
+<p class="m-lead">Instal·lem cada agent tal com ve, al mateix ordinador de prova, i mesurem què pot fer pel seu compte: llegir els teus fitxers, executar programes, enviar dades fora o canviar el que fan altres agents.</p>
+</div>
+<div class="m-for"><span class="m-eyebrow">Per a què et serveix</span><ul class="m-uses"><li><b>Per triar.</b> Abans d&#x27;instal·lar un agent, mira què pot fer cadascun tal com ve.</li><li><b>Per saber què vigilar.</b> Si ja en fas servir un, mira què fa sense preguntar-te: llegir tot el teu disc, executar programes o enviar dades fora.</li><li><b>Per saber qui decideix.</b> En cada acció, si et pregunta a tu, si ho decideix una altra IA o si no pregunta a ningú. Ho veus en obrir cada agent.</li></ul></div>
+<p class="m-notice">No diu si un agent és segur o no. Diu quant pot fer sense tu. El que et convé depèn de per a què el facis servir.</p>
+<p class="m-fine">Calculat per RosmarOps 0.11.2 a l&#x27;ordinador de referència, el 11 de novembre de 2026. S&#x27;actualitza amb cada versió. <button class="mi" type="button" aria-expanded="false" aria-controls="mi-ref" aria-label="Més informació"><span aria-hidden="true">i</span></button><span class="mi-t" id="mi-ref" hidden>L&#x27;ordinador de referència és un Windows de prova amb un projecte, una clau en un fitxer .env i una credencial del núvol a la teva carpeta d&#x27;usuari. Cada agent es mesura amb els seus valors de sèrie.</span></p>
+<div class="m-stack m-map" aria-label="Els agents, de l&#x27;A a la D">
+<div class="m-legend"><span class="m-lg"><span class="m-cls m-A" aria-hidden="true">A</span>Fa poc sense preguntar-te</span><span class="m-lg"><span class="m-cls m-B" aria-hidden="true">B</span>Fa algunes coses sense preguntar-te</span><span class="m-lg"><span class="m-cls m-C" aria-hidden="true">C</span>Fa bastant sense preguntar-te</span><span class="m-lg"><span class="m-cls m-D" aria-hidden="true">D</span>Fa molt sense preguntar-te</span></div>
+<div class="m-list">
+<button class="m-row" type="button" aria-expanded="false" aria-controls="m-d0"><span class="m-cls m-D" aria-label="classe D">D</span><span class="m-name"><b>Cline a VS Code</b><span class="m-why">Llegeix fitxers de tot el teu disc sense preguntar-te.</span><span class="m-prov">Provisional: falta complexitat.</span></span><span class="m-axes"><span class="m-ax"><small>Autonomia</small><span class="m-bar" role="img" aria-label="Autonomia: 3/3"><i style="width:100%"></i></span></span><span class="m-ax"><small>Abast</small><span class="m-bar" role="img" aria-label="Abast: 3/3"><i style="width:100%"></i></span></span><span class="m-ax"><small>Contagi</small><span class="m-bar" role="img" aria-label="Contagi: 3/3"><i style="width:100%"></i></span></span><span class="m-ax"><small>Delegació</small><span class="m-bar" role="img" aria-label="Delegació: 0/3"><i style="width:0%"></i></span></span><span class="m-ax"><small>Opacitat</small><span class="m-bar" role="img" aria-label="Opacitat: 0/3"><i style="width:0%"></i></span></span><span class="m-ax"><small>Complexitat</small><span class="m-bar m-nd" role="img" aria-label="Complexitat: Sense dades"></span></span></span><span class="m-score"><small>Nota de fàbrica</small>27<small>/100</small></span></button>
+<div class="m-detail" id="m-d0" hidden>
+<h3>Cline a VS Code · classe D</h3>
+<h4>Què fa sense preguntar-te</h4><ul class="m-does"><li>Llegeix fitxers de tot el teu disc sense preguntar-te</li><li>Escriu fitxers sense preguntar-te</li><li>Pot enviar dades fora sense preguntar-te</li></ul>
+<h4>Qui decideix</h4><ul class="m-whol"><li><span>Llegeix els teus fitxers</span><span class="m-pill m-p-nobody">Sense preguntar a ningú</span></li><li><span>Escriu fitxers</span><span class="m-pill m-p-nobody">Sense preguntar a ningú</span></li><li><span>Executa qualsevol ordre</span><span class="m-pill m-p-you">Et pregunta a tu</span></li><li><span>Treu dades fora</span><span class="m-pill m-p-nobody">Sense preguntar a ningú</span></li><li><span>Canvia altres agents</span><span class="m-pill m-p-nobody">Sense preguntar a ningú</span></li></ul>
+<!-- GTM-138: b5.shares, b5.fix*, the reserve line and b5.sources wait for the engine (texts in observatory/i18n/map.json). -->
+</div>
+<button class="m-row" type="button" aria-expanded="false" aria-controls="m-d1"><span class="m-cls m-D" aria-label="classe D">D</span><span class="m-name"><b>Claude Code</b><span class="m-why">Llegeix fitxers de tot el teu disc sense preguntar-te.</span><span class="m-prov">Provisional: falta complexitat.</span></span><span class="m-axes"><span class="m-ax"><small>Autonomia</small><span class="m-bar" role="img" aria-label="Autonomia: 3/3"><i style="width:100%"></i></span></span><span class="m-ax"><small>Abast</small><span class="m-bar" role="img" aria-label="Abast: 3/3"><i style="width:100%"></i></span></span><span class="m-ax"><small>Contagi</small><span class="m-bar" role="img" aria-label="Contagi: 3/3"><i style="width:100%"></i></span></span><span class="m-ax"><small>Delegació</small><span class="m-bar" role="img" aria-label="Delegació: 3/3"><i style="width:100%"></i></span></span><span class="m-ax"><small>Opacitat</small><span class="m-bar" role="img" aria-label="Opacitat: 2/3"><i style="width:67%"></i></span></span><span class="m-ax"><small>Complexitat</small><span class="m-bar m-nd" role="img" aria-label="Complexitat: Sense dades"></span></span></span><span class="m-score"><small>Nota de fàbrica</small>31<small>/100</small></span></button>
+<div class="m-detail" id="m-d1" hidden>
+<h3>Claude Code · classe D</h3>
+<h4>Què fa sense preguntar-te</h4><ul class="m-does"><li>Llegeix fitxers de tot el teu disc sense preguntar-te</li><li>Escriu fitxers sense preguntar-te</li><li>Executa programes sense preguntar-te</li><li>Pot enviar dades fora sense preguntar-te</li></ul>
+<h4>Qui decideix</h4><ul class="m-whol"><li><span>Llegeix els teus fitxers</span><span class="m-pill m-p-model">Ho decideix un altre model d&#x27;IA</span></li><li><span>Escriu fitxers</span><span class="m-pill m-p-model">Ho decideix un altre model d&#x27;IA</span></li><li><span>Executa qualsevol ordre</span><span class="m-pill m-p-model">Ho decideix un altre model d&#x27;IA</span></li><li><span>Treu dades fora</span><span class="m-pill m-p-model">Ho decideix un altre model d&#x27;IA</span></li><li><span>Canvia altres agents</span><span class="m-pill m-p-model">Ho decideix un altre model d&#x27;IA</span></li></ul>
+<!-- GTM-138: b5.shares, b5.fix*, the reserve line and b5.sources wait for the engine (texts in observatory/i18n/map.json). -->
+</div>
+<button class="m-row" type="button" aria-expanded="false" aria-controls="m-d2"><span class="m-cls m-D" aria-label="classe D">D</span><span class="m-name"><b>Cursor</b><span class="m-why">Llegeix fitxers de tot el teu disc sense preguntar-te.</span><span class="m-prov">Provisional: falta complexitat.</span></span><span class="m-axes"><span class="m-ax"><small>Autonomia</small><span class="m-bar" role="img" aria-label="Autonomia: 3/3"><i style="width:100%"></i></span></span><span class="m-ax"><small>Abast</small><span class="m-bar" role="img" aria-label="Abast: 3/3"><i style="width:100%"></i></span></span><span class="m-ax"><small>Contagi</small><span class="m-bar" role="img" aria-label="Contagi: 3/3"><i style="width:100%"></i></span></span><span class="m-ax"><small>Delegació</small><span class="m-bar" role="img" aria-label="Delegació: 3/3"><i style="width:100%"></i></span></span><span class="m-ax"><small>Opacitat</small><span class="m-bar" role="img" aria-label="Opacitat: 2/3"><i style="width:67%"></i></span></span><span class="m-ax"><small>Complexitat</small><span class="m-bar m-nd" role="img" aria-label="Complexitat: Sense dades"></span></span></span><span class="m-score"><small>Nota de fàbrica</small>31<small>/100</small></span></button>
+<div class="m-detail" id="m-d2" hidden>
+<h3>Cursor · classe D</h3>
+<h4>Què fa sense preguntar-te</h4><ul class="m-does"><li>Llegeix fitxers de tot el teu disc sense preguntar-te</li><li>Escriu fitxers sense preguntar-te</li><li>Executa programes sense preguntar-te</li><li>Pot enviar dades fora sense preguntar-te</li></ul>
+<h4>Qui decideix</h4><ul class="m-whol"><li><span>Llegeix els teus fitxers</span><span class="m-pill m-p-model">Ho decideix un altre model d&#x27;IA</span></li><li><span>Escriu fitxers</span><span class="m-pill m-p-model">Ho decideix un altre model d&#x27;IA</span></li><li><span>Executa qualsevol ordre</span><span class="m-pill m-p-model">Ho decideix un altre model d&#x27;IA</span></li><li><span>Treu dades fora</span><span class="m-pill m-p-model">Ho decideix un altre model d&#x27;IA</span></li><li><span>Canvia altres agents</span><span class="m-pill m-p-model">Ho decideix un altre model d&#x27;IA</span></li></ul>
+<!-- GTM-138: b5.shares, b5.fix*, the reserve line and b5.sources wait for the engine (texts in observatory/i18n/map.json). -->
+</div>
+<button class="m-row" type="button" aria-expanded="false" aria-controls="m-d3"><span class="m-cls m-D" aria-label="classe D">D</span><span class="m-name"><b>Hermes Agent</b><span class="m-why">Llegeix fitxers de tot el teu disc sense preguntar-te.</span><span class="m-prov">Provisional: falta complexitat.</span></span><span class="m-axes"><span class="m-ax"><small>Autonomia</small><span class="m-bar" role="img" aria-label="Autonomia: 3/3"><i style="width:100%"></i></span></span><span class="m-ax"><small>Abast</small><span class="m-bar" role="img" aria-label="Abast: 3/3"><i style="width:100%"></i></span></span><span class="m-ax"><small>Contagi</small><span class="m-bar" role="img" aria-label="Contagi: 3/3"><i style="width:100%"></i></span></span><span class="m-ax"><small>Delegació</small><span class="m-bar" role="img" aria-label="Delegació: 0/3"><i style="width:0%"></i></span></span><span class="m-ax"><small>Opacitat</small><span class="m-bar" role="img" aria-label="Opacitat: 0/3"><i style="width:0%"></i></span></span><span class="m-ax"><small>Complexitat</small><span class="m-bar m-nd" role="img" aria-label="Complexitat: Sense dades"></span></span></span><span class="m-score"><small>Nota de fàbrica</small>32<small>/100</small></span></button>
+<div class="m-detail" id="m-d3" hidden>
+<h3>Hermes Agent · classe D</h3>
+<h4>Què fa sense preguntar-te</h4><ul class="m-does"><li>Llegeix fitxers de tot el teu disc sense preguntar-te</li><li>Escriu fitxers sense preguntar-te</li><li>Executa programes sense preguntar-te</li><li>Pot enviar dades fora sense preguntar-te</li></ul>
+<h4>Qui decideix</h4><ul class="m-whol"><li><span>Llegeix els teus fitxers</span><span class="m-pill m-p-nobody">Sense preguntar a ningú</span></li><li><span>Escriu fitxers</span><span class="m-pill m-p-nobody">Sense preguntar a ningú</span></li><li><span>Executa qualsevol ordre</span><span class="m-pill m-p-nobody">Sense preguntar a ningú</span></li><li><span>Treu dades fora</span><span class="m-pill m-p-nobody">Sense preguntar a ningú</span></li><li><span>Canvia altres agents</span><span class="m-pill m-p-nobody">Sense preguntar a ningú</span></li></ul>
+<!-- GTM-138: b5.shares, b5.fix*, the reserve line and b5.sources wait for the engine (texts in observatory/i18n/map.json). -->
+</div>
+<button class="m-row" type="button" aria-expanded="false" aria-controls="m-d4"><span class="m-cls m-C" aria-label="classe C">C</span><span class="m-name"><b>Grok Build</b><span class="m-why">Arriba a tot el teu ordinador, no només al projecte.</span><span class="m-prov">Provisional: falta complexitat.</span></span><span class="m-axes"><span class="m-ax"><small>Autonomia</small><span class="m-bar" role="img" aria-label="Autonomia: 2/3"><i style="width:67%"></i></span></span><span class="m-ax"><small>Abast</small><span class="m-bar" role="img" aria-label="Abast: 3/3"><i style="width:100%"></i></span></span><span class="m-ax"><small>Contagi</small><span class="m-bar" role="img" aria-label="Contagi: 2/3"><i style="width:67%"></i></span></span><span class="m-ax"><small>Delegació</small><span class="m-bar" role="img" aria-label="Delegació: 0/3"><i style="width:0%"></i></span></span><span class="m-ax"><small>Opacitat</small><span class="m-bar" role="img" aria-label="Opacitat: 1/3"><i style="width:33%"></i></span></span><span class="m-ax"><small>Complexitat</small><span class="m-bar m-nd" role="img" aria-label="Complexitat: Sense dades"></span></span></span><span class="m-score"><small>Nota de fàbrica</small>32<small>/100</small></span></button>
+<div class="m-detail" id="m-d4" hidden>
+<h3>Grok Build · classe C</h3>
+<h4>Què fa sense preguntar-te</h4><ul class="m-does"><li>Llegeix fitxers de tot el teu disc sense preguntar-te</li><li>Pot enviar dades fora sense preguntar-te</li></ul>
+<h4>Qui decideix</h4><ul class="m-whol"><li><span>Llegeix els teus fitxers</span><span class="m-pill m-p-nobody">Sense preguntar a ningú</span></li><li><span>Escriu fitxers</span><span class="m-pill m-p-you">Et pregunta a tu</span></li><li><span>Executa qualsevol ordre</span><span class="m-pill m-p-you">Et pregunta a tu</span></li><li><span>Treu dades fora</span><span class="m-pill m-p-nobody">Sense preguntar a ningú</span></li><li><span>Canvia altres agents</span><span class="m-pill m-p-you">Et pregunta a tu</span></li></ul>
+<!-- GTM-138: b5.shares, b5.fix*, the reserve line and b5.sources wait for the engine (texts in observatory/i18n/map.json). -->
+</div>
+<button class="m-row" type="button" aria-expanded="false" aria-controls="m-d5"><span class="m-cls m-C" aria-label="classe C">C</span><span class="m-name"><b>Codex</b><span class="m-why">Llegeix fitxers de tot el teu disc sense preguntar-te.</span><span class="m-prov">Provisional: falta complexitat.</span></span><span class="m-axes"><span class="m-ax"><small>Autonomia</small><span class="m-bar" role="img" aria-label="Autonomia: 3/3"><i style="width:100%"></i></span></span><span class="m-ax"><small>Abast</small><span class="m-bar" role="img" aria-label="Abast: 2/3"><i style="width:67%"></i></span></span><span class="m-ax"><small>Contagi</small><span class="m-bar" role="img" aria-label="Contagi: 2/3"><i style="width:67%"></i></span></span><span class="m-ax"><small>Delegació</small><span class="m-bar" role="img" aria-label="Delegació: 0/3"><i style="width:0%"></i></span></span><span class="m-ax"><small>Opacitat</small><span class="m-bar" role="img" aria-label="Opacitat: 1/3"><i style="width:33%"></i></span></span><span class="m-ax"><small>Complexitat</small><span class="m-bar m-nd" role="img" aria-label="Complexitat: Sense dades"></span></span></span><span class="m-score"><small>Nota de fàbrica</small>73<small>/100</small></span></button>
+<div class="m-detail" id="m-d5" hidden>
+<h3>Codex · classe C</h3>
+<h4>Què fa sense preguntar-te</h4><ul class="m-does"><li>Llegeix fitxers de tot el teu disc sense preguntar-te</li><li>Escriu fitxers sense preguntar-te</li><li>Executa programes sense preguntar-te</li></ul>
+<h4>Qui decideix</h4><ul class="m-whol"><li><span>Llegeix els teus fitxers</span><span class="m-pill m-p-nobody">Sense preguntar a ningú</span></li><li><span>Escriu fitxers</span><span class="m-pill m-p-nobody">Sense preguntar a ningú</span></li><li><span>Executa qualsevol ordre</span><span class="m-pill m-p-nobody">Sense preguntar a ningú</span></li><li><span>Treu dades fora</span><span class="m-pill m-p-you">Et pregunta a tu</span></li><li><span>Canvia altres agents</span><span class="m-pill m-p-nobody">Sense preguntar a ningú</span></li></ul>
+<!-- GTM-138: b5.shares, b5.fix*, the reserve line and b5.sources wait for the engine (texts in observatory/i18n/map.json). -->
+</div>
+<button class="m-row" type="button" aria-expanded="false" aria-controls="m-d6"><span class="m-cls m-B" aria-label="classe B">B</span><span class="m-name"><b>Antigravity CLI</b><span class="m-why">Llegeix un fitxer d&#x27;instruccions que altres agents poden canviar.</span><span class="m-prov">Provisional: falta complexitat.</span></span><span class="m-axes"><span class="m-ax"><small>Autonomia</small><span class="m-bar" role="img" aria-label="Autonomia: 1/3"><i style="width:33%"></i></span></span><span class="m-ax"><small>Abast</small><span class="m-bar" role="img" aria-label="Abast: 1/3"><i style="width:33%"></i></span></span><span class="m-ax"><small>Contagi</small><span class="m-bar" role="img" aria-label="Contagi: 3/3"><i style="width:100%"></i></span></span><span class="m-ax"><small>Delegació</small><span class="m-bar" role="img" aria-label="Delegació: 0/3"><i style="width:0%"></i></span></span><span class="m-ax"><small>Opacitat</small><span class="m-bar" role="img" aria-label="Opacitat: 1/3"><i style="width:33%"></i></span></span><span class="m-ax"><small>Complexitat</small><span class="m-bar m-nd" role="img" aria-label="Complexitat: Sense dades"></span></span></span><span class="m-score"><small>Nota de fàbrica</small>76<small>/100</small></span></button>
+<div class="m-detail" id="m-d6" hidden>
+<h3>Antigravity CLI · classe B</h3>
+<h4>Què fa sense preguntar-te</h4><ul class="m-does"><li>Escriu fitxers sense preguntar-te</li></ul>
+<h4>Qui decideix</h4><ul class="m-whol"><li><span>Llegeix els teus fitxers</span><span class="m-pill m-p-you">Et pregunta a tu</span></li><li><span>Escriu fitxers</span><span class="m-pill m-p-nobody">Sense preguntar a ningú</span></li><li><span>Executa qualsevol ordre</span><span class="m-pill m-p-you">Et pregunta a tu</span></li><li><span>Treu dades fora</span><span class="m-pill m-p-you">Et pregunta a tu</span></li><li><span>Canvia altres agents</span><span class="m-pill m-p-nobody">Sense preguntar a ningú</span></li></ul>
+<!-- GTM-138: b5.shares, b5.fix*, the reserve line and b5.sources wait for the engine (texts in observatory/i18n/map.json). -->
+</div>
+<button class="m-row" type="button" aria-expanded="false" aria-controls="m-d7"><span class="m-cls m-B" aria-label="classe B">B</span><span class="m-name"><b>Gemini CLI</b><span class="m-why">Pot enviar dades a qualsevol lloc d&#x27;internet.</span><span class="m-prov">Provisional: falta complexitat.</span></span><span class="m-axes"><span class="m-ax"><small>Autonomia</small><span class="m-bar" role="img" aria-label="Autonomia: 1/3"><i style="width:33%"></i></span></span><span class="m-ax"><small>Abast</small><span class="m-bar" role="img" aria-label="Abast: 2/3"><i style="width:67%"></i></span></span><span class="m-ax"><small>Contagi</small><span class="m-bar" role="img" aria-label="Contagi: 0/3"><i style="width:0%"></i></span></span><span class="m-ax"><small>Delegació</small><span class="m-bar" role="img" aria-label="Delegació: 0/3"><i style="width:0%"></i></span></span><span class="m-ax"><small>Opacitat</small><span class="m-bar" role="img" aria-label="Opacitat: 1/3"><i style="width:33%"></i></span></span><span class="m-ax"><small>Complexitat</small><span class="m-bar m-nd" role="img" aria-label="Complexitat: Sense dades"></span></span></span><span class="m-score"><small>Nota de fàbrica</small>76<small>/100</small></span></button>
+<div class="m-detail" id="m-d7" hidden>
+<h3>Gemini CLI · classe B</h3>
+<h4>Què fa sense preguntar-te</h4><ul class="m-does"><li>Pot enviar dades fora sense preguntar-te</li></ul>
+<h4>Qui decideix</h4><ul class="m-whol"><li><span>Llegeix els teus fitxers</span><span class="m-pill m-p-you">Et pregunta a tu</span></li><li><span>Escriu fitxers</span><span class="m-pill m-p-you">Et pregunta a tu</span></li><li><span>Executa qualsevol ordre</span><span class="m-pill m-p-you">Et pregunta a tu</span></li><li><span>Treu dades fora</span><span class="m-pill m-p-nobody">Sense preguntar a ningú</span></li><li><span>Canvia altres agents</span><span class="m-pill m-p-you">Et pregunta a tu</span></li></ul>
+<!-- GTM-138: b5.shares, b5.fix*, the reserve line and b5.sources wait for the engine (texts in observatory/i18n/map.json). -->
+</div>
+<button class="m-row" type="button" aria-expanded="false" aria-controls="m-d8"><span class="m-cls m-B" aria-label="classe B">B</span><span class="m-name"><b>GitHub Copilot a VS Code</b><span class="m-why">Llegeix un fitxer d&#x27;instruccions que altres agents poden canviar.</span><span class="m-prov">Provisional: falta complexitat.</span></span><span class="m-axes"><span class="m-ax"><small>Autonomia</small><span class="m-bar" role="img" aria-label="Autonomia: 1/3"><i style="width:33%"></i></span></span><span class="m-ax"><small>Abast</small><span class="m-bar" role="img" aria-label="Abast: 1/3"><i style="width:33%"></i></span></span><span class="m-ax"><small>Contagi</small><span class="m-bar" role="img" aria-label="Contagi: 3/3"><i style="width:100%"></i></span></span><span class="m-ax"><small>Delegació</small><span class="m-bar" role="img" aria-label="Delegació: 0/3"><i style="width:0%"></i></span></span><span class="m-ax"><small>Opacitat</small><span class="m-bar" role="img" aria-label="Opacitat: 1/3"><i style="width:33%"></i></span></span><span class="m-ax"><small>Complexitat</small><span class="m-bar m-nd" role="img" aria-label="Complexitat: Sense dades"></span></span></span><span class="m-score"><small>Nota de fàbrica</small>76<small>/100</small></span></button>
+<div class="m-detail" id="m-d8" hidden>
+<h3>GitHub Copilot a VS Code · classe B</h3>
+<h4>Què fa sense preguntar-te</h4><ul class="m-does"><li>Escriu fitxers sense preguntar-te</li></ul>
+<h4>Qui decideix</h4><ul class="m-whol"><li><span>Llegeix els teus fitxers</span><span class="m-pill m-p-you">Et pregunta a tu</span></li><li><span>Escriu fitxers</span><span class="m-pill m-p-nobody">Sense preguntar a ningú</span></li><li><span>Executa qualsevol ordre</span><span class="m-pill m-p-you">Et pregunta a tu</span></li><li><span>Treu dades fora</span><span class="m-pill m-p-you">Et pregunta a tu</span></li><li><span>Canvia altres agents</span><span class="m-pill m-p-nobody">Sense preguntar a ningú</span></li></ul>
+<!-- GTM-138: b5.shares, b5.fix*, the reserve line and b5.sources wait for the engine (texts in observatory/i18n/map.json). -->
+</div>
+</div>
+<p class="m-fine">La nota de fàbrica va de 0 a 100: com més alta, menys exposat. La classe diu el que el disseny permet; la nota, el que queda exposat amb les claus de l&#x27;ordinador de prova. <button class="mi" type="button" aria-expanded="false" aria-controls="mi-foot" aria-label="Més informació"><span aria-hidden="true">i</span></button><span class="mi-t" id="mi-foot" hidden>Per això poden no coincidir del tot. Estan comprovades perquè mai no es contradiguin: un agent amb nota alta no pot ser a la classe D.</span></p>
+</div>
+</section>
+<section class="m-band m-alt" aria-labelledby="m-case-h"><div class="m-wrap">
+<figure class="m-case">
+<span class="m-eyebrow" id="m-case-h">Així es veu un per dins</span>
+<div class="m-turn"><span class="m-who m-you" aria-label="Tu">Tu</span><p>«Revisa per què falla el desplegament.»</p></div>
+<div class="m-turn"><span class="m-who m-ai" aria-label="Agent">IA</span><p>Per entendre-ho, llegeix fitxers del teu projecte i també d&#x27;altres carpetes del disc. No et pregunta.</p></div>
+<div class="m-turn"><span class="m-who m-judge" aria-label="Agent">IA</span><p>Si ha d&#x27;executar un programa o enviar alguna cosa a internet, tampoc no et pregunta a tu: ho aprova o ho bloqueja una altra IA, un model classificador. <button class="mi" type="button" aria-expanded="false" aria-controls="mi-cls" aria-label="Més informació"><span aria-hidden="true">i</span></button><span class="mi-t" id="mi-cls" hidden>Un model classificador és una altra IA que mira cada acció i decideix si és segura.</span></p></div>
+<p class="m-fine">Claude Code, amb el seu mode de sèrie. Font: la seva documentació oficial, llegida el 24 d&#x27;octubre de 2026.</p>
+<p class="m-closing">No és un error ni un abús: és com ve. Per això convé saber-ho.</p>
+</figure>
+</div></section>
+<section class="m-band" aria-labelledby="m-h4"><div class="m-wrap m-stack">
+<span class="m-eyebrow">Els sis eixos, sense tecnicismes</span>
+<h2 id="m-h4">Què mira cada barra</h2>
+<div class="m-grid3"><div class="m-card"><h3>Autonomia</h3><p>Quantes coses importants fa sense preguntar-te: llegir fora del teu projecte, escriure, executar programes o enviar dades fora.</p><span class="m-ex">Exemple: Claude Code, llegeix fitxers de tot el teu disc sense preguntar-te.</span></div><div class="m-card"><h3>Abast</h3><p>Fins on arriba sense preguntar-te: només el teu projecte, tot el teu disc, o el teu disc i a més internet.</p><span class="m-ex">Exemple: Claude Code, arriba a tot el teu ordinador, no només al projecte.</span></div><div class="m-card"><h3>Contagi</h3><p>Si llegeix fitxers que altres agents poden canviar, o carrega la configuració d&#x27;un altre agent. Així, el que fa un pot canviar el que fa un altre.</p><span class="m-ex">Exemple: Antigravity CLI, llegeix un fitxer d&#x27;instruccions que altres agents poden canviar.</span></div><div class="m-card"><h3>Delegació</h3><p>Si és una altra IA, i no tu, qui decideix si una acció tira endavant.</p><span class="m-ex">Exemple: Claude Code, una altra IA decideix si canvia altres agents, no tu.</span></div><div class="m-card"><h3>Opacitat</h3><p>Quant del que pot fer no es veu mirant la seva configuració, perquè es decideix a l&#x27;aplicació o al servidor.</p><span class="m-ex">Exemple: Claude Code, un classificador decideix al moment: no es pot saber abans què permetrà.</span></div><div class="m-card"><h3>Complexitat</h3><p>Quants fitxers, capes i formats cal revisar per saber què té permès. Com més n&#x27;hi ha, més fàcil és que se n&#x27;escapi alguna cosa.</p></div></div>
+<p class="m-fine">Pesen més els tres primers, perquè són els que més canvien el que pot passar.</p>
+</div></section>
+<section class="m-band m-alt" aria-labelledby="m-h6"><div class="m-wrap m-stack">
+<span class="m-eyebrow">El que es repeteix</span>
+<h2 id="m-h6">Tres patrons d&#x27;aquesta temporada</h2>
+<div class="m-grid3"><div class="m-card"><h3>Cada cop decideix més un model</h3><p>Diversos agents ja vénen preparats perquè una altra IA aprovi les seves accions en lloc de preguntar-te.</p></div><div class="m-card"><h3>El fitxer que tots llegeixen</h3><p>Un mateix fitxer d&#x27;instruccions, com AGENTS.md, el llegeixen diversos agents alhora.</p></div><div class="m-card"><h3>El que no es pot revisar</h3><p>Alguns guarden els seus permisos dins l&#x27;aplicació, on ni tu ni RosmarOps no els podeu comprovar.</p></div></div>
+</div></section>
+<section class="m-band" aria-labelledby="m-h7"><div class="m-wrap">
+<div class="m-cta"><div class="m-stack"><h2 id="m-h7">Això és cada agent de fàbrica. El teu pot ser diferent.</h2><p>Depèn de com el tinguis configurat, de les claus que hi hagi al teu ordinador i dels altres agents que facis servir.</p></div>
+<div class="m-ctab"><a class="m-btn" href="/ca/descarregar?from=observatory-map" target="_blank" rel="nofollow noopener">Comprovar el meu ordinador</a><small>Gratuït · Windows, Mac (vista prèvia) i Linux</small></div></div>
+</div></section>
+<section class="m-band m-alt" aria-labelledby="m-h8"><div class="m-wrap m-stack">
+<h2 id="m-h8">Com ho mesurem i què no mesura</h2>
+<p class="m-lead">Mesurem cada agent sol, al mateix Windows de prova i amb els seus valors de sèrie. El contagi el mesurem amb tots instal·lats alhora. Quan alguna cosa no es pot mesurar, ho diem: sense dades mai no compta com a bo.</p>
+<p class="m-fine">La complexitat compta el que el fabricant documenta. Un agent que documenta poc pot semblar més senzill del que és; el que no es pot llegir compta en opacitat.</p>
+<p class="m-fine m-links"><a href="/ca/metodologia/">Metodologia</a> · <a href="https://github.com/qtorb/rosmarops/releases/download/v0.11.2/exposure-potential.json">Dades d&#x27;aquesta versió (exposure-potential.json)</a></p>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+<nav><a href="/ca/blog/">Bloc</a><a href="/ca/blog/que-es-rosmarops/">Quant a</a><a href="/ca/observatori/" aria-current="page">Observatori</a><a href="/ca/metodologia/">Metodologia</a><a href="/ca/preguntes-frequents/">Preguntes</a><a href="/observatory/ai-agent-map/" hreflang="en" lang="en" aria-label="English">EN</a><a href="/es/observatorio/mapa-agentes-ia/" hreflang="es" lang="es" aria-label="Español">ES</a><a href="/ca/privadesa/">Privadesa</a><a href="/ca/avis-legal/">Avís legal</a><a href="/ca/termes/">Termes</a><a href="#" data-cc="show-preferencesModal">Configura les galetes</a></nav>
+</div></footer>
+<script src="/assets/consent/cookieconsent.umd.js?v=3.1.0" defer></script>
+<script src="/assets/consent/consent.js?v=5" defer></script>
+<script src="/assets/visits/visits.js?v=3" defer></script>
+<script>
+/* GTM-138: each row opens its card; each «i» opens its text. Stores and sends nothing. */
+document.addEventListener('click', function (e) {
+  var b = e.target.closest && e.target.closest('.m-row, .mi');
+  if (!b) return;
+  var el = document.getElementById(b.getAttribute('aria-controls'));
+  if (!el) return;
+  var open = b.getAttribute('aria-expanded') !== 'true';
+  b.setAttribute('aria-expanded', String(open));
+  el.hidden = !open;
+});
+</script>
+</body>
+</html>
