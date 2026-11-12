@@ -1,4 +1,4 @@
-// GTM-129b, GTM-137: the download rows of a home in Chromium, with a Mac or Windows agent.
+// GTM-137: the download rows of a home in Chromium, with a Windows, Mac or Linux agent (the same for all of them).
 // node download-os-layout.js <site dir> <path> <width> <mac|windows>
 //   → prints JSON {rows: [[[text, top, height], ...], ...], others: [[visible items], ...], heroRowBottom, overflow}
 const http = require('http'), fs = require('fs'), path = require('path');
@@ -8,6 +8,7 @@ const types = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '
 const AGENTS = {
   mac: ['Mozilla/5.0 (Macintosh; Intel Mac OS X 14_5) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Safari/605.1.15', 'macOS', 'MacIntel'],
   windows: ['Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36', 'Windows', 'Win32'],
+  linux: ['Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0', 'Linux', 'Linux x86_64'],
 };
 const srv = http.createServer((req, res) => {
   let p = decodeURIComponent(req.url.split('?')[0]);
@@ -41,7 +42,7 @@ srv.listen(0, '127.0.0.1', async () => {
         const r = a.getBoundingClientRect();
         return [a.textContent || (a.querySelector('img') || {}).alt || '', Math.round(r.top + scrollY), Math.round(r.height)];
       }));
-      const others = [...document.querySelectorAll('.oth')].map(o => [...o.querySelectorAll('.os-o')].filter(vis).map(s => s.textContent));
+      const others = [...document.querySelectorAll('.gh')].map(o => [...o.querySelectorAll('a')].filter(vis).map(a => a.textContent));
       const first = document.querySelector('.dlrow').getBoundingClientRect();
       return { rows, others, heroRowBottom: Math.round(first.bottom + scrollY), overflow: document.documentElement.scrollWidth > innerWidth };
     })));

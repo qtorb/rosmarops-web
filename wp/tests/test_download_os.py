@@ -1,8 +1,9 @@
-"""GTM-129 and GTM-137: the home's download rows follow the visitor's system (site/assets/download/os.js), run in node
-against the real rows of the three homes with a minimal DOM, and in Chromium for the layout. Without JavaScript the
-HTML stays as served: Windows first, the Store badge, and the three systems in the line of other systems.
+"""GTM-137 (Albert, 12-11 17:49): the home's download rows are the same for every visitor, with no system detection:
+the Microsoft Store badge (Windows), «Mac (preview)» and «Linux», at the same height, and under them the GitHub
+legend (T1) with the direct Windows download. Checks the served HTML of the three homes, and the layout in Chromium
+with Windows, Mac and Linux agents. (Formerly the tests of site/assets/download/os.js, GTM-129, removed by GTM-137.)
 
-Run from the repository root:  python3 -m unittest wp/tests/test_download_os.py   (needs node on PATH)
+Run from the repository root:  python3 -m unittest wp/tests/test_download_os.py   (Chromium part needs node playwright)
 """
 
 import json
@@ -10,149 +11,55 @@ import os
 import re
 import shutil
 import subprocess
-import tempfile
 import unittest
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-SCRIPT = ROOT / "site" / "assets" / "download" / "os.js"
 HOMES = {"en": ROOT / "site" / "index.html", "es": ROOT / "site" / "es" / "index.html", "ca": ROOT / "site" / "ca" / "index.html"}
+PATHS = {"en": "/", "es": "/es/", "ca": "/ca/"}
 BASE = {"en": "", "es": "/es", "ca": "/ca"}
 DL = {"en": "/download", "es": "/es/descargar", "ca": "/ca/descarregar"}
-WIN = {"en": "Download for Windows", "es": "Descargar para Windows", "ca": "Descarrega per a Windows"}
-MAC = {"en": "Download for Mac", "es": "Descargar para Mac", "ca": "Descarrega per a Mac"}
-LINUX = {"en": "Download for Linux", "es": "Descargar para Linux", "ca": "Descarrega per a Linux"}
-SRC = ("home", "home-band")
+MAC = {"en": "Mac (preview)", "es": "Mac (vista previa)", "ca": "Mac (vista prèvia)"}
 STORE = {"en": "Download from the Microsoft Store", "es": "Descargar desde Microsoft Store", "ca": "Descarrega del Microsoft Store"}
-
-AGENTS = {
-    "windows": {"platform": "Win32", "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36", "maxTouchPoints": 0},
-    "windows-chrome": {"userAgentData": {"platform": "Windows"}, "platform": "Win32", "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/130.0", "maxTouchPoints": 0},
-    "mac": {"platform": "MacIntel", "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 14_5) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Safari/605.1.15", "maxTouchPoints": 0},
-    "mac-chrome": {"userAgentData": {"platform": "macOS"}, "platform": "MacIntel", "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) Chrome/130.0", "maxTouchPoints": 0},
-    "linux": {"platform": "Linux x86_64", "userAgent": "Mozilla/5.0 (X11; Linux x86_64; rv:132.0) Gecko/20100101 Firefox/132.0", "maxTouchPoints": 0},
-    "android": {"userAgentData": {"platform": "Android"}, "platform": "Linux armv8l", "userAgent": "Mozilla/5.0 (Linux; Android 14; Pixel 8) AppleWebKit/537.36 Chrome/130.0 Mobile Safari/537.36", "maxTouchPoints": 5},
-    "android-old": {"platform": "Linux armv8l", "userAgent": "Mozilla/5.0 (Linux; Android 14; Pixel 8) AppleWebKit/537.36 Chrome/130.0 Mobile Safari/537.36", "maxTouchPoints": 5},
-    "ipad": {"platform": "MacIntel", "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Mobile/15E148 Safari/604.1", "maxTouchPoints": 5},
-    "iphone": {"platform": "iPhone", "userAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 17_5 like Mac OS X) AppleWebKit/605.1.15 Version/17.5 Mobile/15E148 Safari/604.1", "maxTouchPoints": 5},
-    "chromeos": {"userAgentData": {"platform": "Chrome OS"}, "platform": "Linux x86_64", "userAgent": "Mozilla/5.0 (X11; CrOS x86_64 14541.0.0) Chrome/130.0", "maxTouchPoints": 0},
-}
-
-# A minimal DOM: the .dlrow rows (their <a> with attributes and text), the .os-o items and the .store elements.
-HARNESS = r"""
-const [src, page, nav] = process.argv.slice(2);
-const html = require('fs').readFileSync(page, 'utf8');
-const unesc = s => s.replace(/&amp;/g, '&').replace(/&#x27;/g, "'").replace(/&quot;/g, '"');
-function parseAttrs(s) { const a = {}; s.replace(/([\w-]+)="([^"]*)"/g, (m, k, v) => { a[k] = unesc(v); }); return a; }
-function el(attrs, text, kids, hidden) {
-  return { attrs, textContent: text, hidden: !!hidden, kids: kids || [],
-    getAttribute(k) { return k in this.attrs ? this.attrs[k] : null; },
-    setAttribute(k, v) { this.attrs[k] = v; }, removeAttribute(k) { delete this.attrs[k]; },
-    querySelector(q) { return this.kids.find(c => q === 'a' || (q[0] === '.' && new RegExp('\\b' + q.slice(1) + '\\b').test(c.attrs['class'] || ''))) || null; } };
-}
-const anchors = s => { const out = []; s.replace(/<a ([^>]*)>(.*?)<\/a>/g, (m, at, tx) => { out.push(el(parseAttrs(at), unesc(tx.replace(/<[^>]+>/g, '')), [], /(^|\s)hidden(\s|$)/.test(at.replace(/"[^"]*"/g, '""')))); }); return out; };
-const rows = [], items = [], stores = [];
-html.replace(/<div class="dlrow">(.*?)<\/div>/g, (m, inner) => { rows.push(el({}, '', anchors(inner))); });
-html.replace(/<span class="os-o" data-os="(\w+)">(.*?)<\/span>/g, (m, k, inner) => { items.push(el({ 'data-os': k }, '', anchors(inner))); });
-html.replace(/<(a|p) class="store[^"]*"([^>]*)>/g, (m, tag, rest) => { stores.push(el({ tag }, '')); });
-const lang = (html.match(/<html lang="([^"]+)"/) || [])[1];
-const doc = { documentElement: { lang }, querySelectorAll(q) { return q === '.dlrow' ? rows : q === '.os-o' ? items : q === '.store' ? stores : []; } };
-const mod = { exports: {} };
-new Function('module', 'navigator', 'document', require('fs').readFileSync(src, 'utf8'))(mod, {}, {});
-const os = mod.exports.detect(JSON.parse(nav));
-mod.exports.apply(doc, os);
-console.log(JSON.stringify({ os,
-  mains: rows.map(r => { const a = r.querySelector('.osmain'); return { text: a.textContent, href: a.attrs.href, hidden: a.hidden }; }),
-  others: items.map(i => ({ os: i.attrs['data-os'], hidden: i.hidden, href: i.kids[0].attrs.href, text: i.kids[0].textContent })),
-  stores: stores.map(s => ({ tag: s.attrs.tag, hidden: s.hidden })) }));
-"""
+AUTH = {"en": "How to check it's authentic", "es": "Cómo comprobar que es auténtico", "ca": "Com comprovar que és autèntic"}
+SRC = ("home", "home-band")
 
 
-class DownloadOs(unittest.TestCase):
-    def run_js(self, lang, agent):
-        if not shutil.which("node"):
-            self.skipTest("node not on PATH")
-        with tempfile.NamedTemporaryFile("w", suffix=".js", delete=False) as f:
-            f.write(HARNESS)
-        try:
-            p = subprocess.run(["node", f.name, str(SCRIPT), str(HOMES[lang]), json.dumps(AGENTS[agent])],
-                               capture_output=True, text=True, check=True)
-        finally:
-            os.unlink(f.name)
-        return json.loads(p.stdout)
+class ServedHtml(unittest.TestCase):
+    def rows(self, html):
+        return re.findall(r'<div class="dlrow">(.*?)</div>\n<p class="gh">(.*?)</p>', html)
 
-    def hidden_main(self, lang):
-        # As served there is no Windows button (Albert, 12-11): the Store badge is the Windows download, and the main
-        # button waits hidden for a Mac or Linux visitor.
-        return {"text": "", "href": f"{BASE[lang]}/macos/", "hidden": True}
-
-    def others(self, lang, hide=None):
-        b = BASE[lang]
-        names = {"en": "Mac (preview)", "es": "Mac (vista previa)", "ca": "Mac (vista prèvia)"}[lang]
-        out = []
-        for src in SRC:
-            out += [{"os": "windows", "hidden": hide == "windows", "href": f"{DL[lang]}?from={src}&os=store", "text": "Windows"},
-                    {"os": "mac", "hidden": hide == "mac", "href": f"{b}/macos/", "text": names},
-                    {"os": "linux", "hidden": hide == "linux", "href": f"{b}/linux/", "text": "Linux"}]
-        return out
-
-    def test_unknown_phones_and_tablets_keep_the_served_html(self):
-        for lang in HOMES:
-            for agent in ("android", "android-old", "ipad", "iphone", "chromeos"):
-                r = self.run_js(lang, agent)
-                self.assertEqual(r["os"], "", (lang, agent))
-                self.assertEqual(r["mains"], [self.hidden_main(lang)] * 2, (lang, agent))
-                self.assertEqual(r["others"], self.others(lang), (lang, agent))  # the three systems
-                self.assertFalse(any(s["hidden"] for s in r["stores"]), (lang, agent))
-
-    def test_windows(self):
-        for lang in HOMES:
-            for agent in ("windows", "windows-chrome"):
-                r = self.run_js(lang, agent)
-                self.assertEqual(r["os"], "windows", agent)
-                self.assertEqual(r["mains"], [self.hidden_main(lang)] * 2, (lang, agent))
-                self.assertEqual(r["others"], self.others(lang, hide="windows"), (lang, agent))  # Mac and Linux
-                self.assertEqual(len(r["stores"]), 3, lang)  # badge in each row and the Store line of the close
-                self.assertFalse(any(s["hidden"] for s in r["stores"]), (lang, agent))
-
-    def test_mac(self):
-        for lang in HOMES:
-            for agent in ("mac", "mac-chrome"):
-                r = self.run_js(lang, agent)
-                self.assertEqual(r["os"], "mac")
-                self.assertEqual(r["mains"], [{"text": MAC[lang], "href": f"{BASE[lang]}/macos/", "hidden": False}] * 2, (lang, agent))
-                self.assertEqual(r["others"], self.others(lang, hide="mac"), (lang, agent))  # Windows (the Store, counted) and Linux
-                self.assertTrue(all(s["hidden"] for s in r["stores"]), (lang, agent))
-
-    def test_linux(self):
-        for lang in HOMES:
-            r = self.run_js(lang, "linux")
-            self.assertEqual(r["os"], "linux")
-            self.assertEqual(r["mains"], [{"text": LINUX[lang], "href": f"{BASE[lang]}/linux/", "hidden": False}] * 2, lang)
-            self.assertEqual(r["others"], self.others(lang, hide="linux"), lang)
-            self.assertTrue(all(s["hidden"] for s in r["stores"]), lang)
-
-    def test_without_javascript_the_html_is_as_served(self):
+    def test_three_options_and_the_github_legend(self):
         for lang, page in HOMES.items():
             html = page.read_text(encoding="utf-8")
-            self.assertEqual(html.count('<script src="/assets/download/os.js?v=5" defer></script>'), 1, lang)
-            self.assertEqual(html.count('<div class="dlrow">'), 2, lang)
-            self.assertEqual(html.count('<p class="oth">'), 2, lang)
-            self.assertEqual(html.count('class="os-o"'), 6, lang)
-            for src in SRC:
-                self.assertEqual(html.count(f'{DL[lang]}?from={src}&amp;os=store'), 2, (lang, src))  # badge and «Windows»
-                self.assertNotIn(f'{DL[lang]}?from={src}&amp;os=windows', html, (lang, src))  # no Windows button
-            self.assertIn(".store[hidden],.osmain[hidden]{display:none}", html, lang)
-            self.assertIn(".os-o[hidden]{display:none}", html, lang)
+            rows = self.rows(html)
+            self.assertEqual(len(rows), 2, lang)
+            for (row, gh), src in zip(rows, SRC):
+                links = re.findall(r'<a ([^>]*)>(.*?)</a>', row)
+                self.assertEqual([re.search(r'href="([^"]*)"', a).group(1) for a, _ in links],
+                                 [f"{DL[lang]}?from={src}&amp;os=store", f"{BASE[lang]}/macos/", f"{BASE[lang]}/linux/"], (lang, src))
+                self.assertIn(f'alt="{STORE[lang]}"', links[0][1], (lang, src))
+                self.assertEqual([t for _, t in links[1:]], [MAC[lang], "Linux"], (lang, src))
+                gh_links = re.findall(r'<a [^>]*href="([^"]*)"[^>]*>(.*?)</a>', gh)
+                self.assertEqual(gh_links[0], (f"{DL[lang]}?from={src}&amp;os=windows", "GitHub"), (lang, src))
+                # «How to check it's authentic» only under the hero row.
+                self.assertEqual(len(gh_links), 2 if src == "home" else 1, (lang, src))
+                if src == "home":
+                    self.assertEqual(gh_links[1][1], AUTH[lang].replace("'", "'"), lang)
 
-    def test_nothing_stored_or_sent(self):
-        code = re.sub(r"/\*.*?\*/|//[^\n]*", "", SCRIPT.read_text(encoding="utf-8"), flags=re.S).lower()
-        for w in ("fetch", "xmlhttprequest", "sendbeacon", "cookie", "localstorage", "sessionstorage", "indexeddb"):
-            self.assertNotIn(w, code, w)
+    def test_no_system_detection_and_no_windows_button(self):
+        for lang, page in HOMES.items():
+            html = page.read_text(encoding="utf-8")
+            self.assertNotIn("os.js", html, lang)
+            self.assertIsNone(re.search(r"<[^>]*\shidden[\s>=]", re.search(r"<main>.*</main>", html, re.S).group(0)), lang)  # nothing hidden by system
+            self.assertNotIn({"en": "Download for Windows", "es": "Descargar para Windows", "ca": "Descarrega per a Windows"}[lang], html, lang)
+            self.assertNotIn({"en": "Or install it from the Microsoft Store", "es": "O instálalo desde la Microsoft Store",
+                              "ca": "O instal·la'l des de la Microsoft Store"}[lang], html, lang)
+        self.assertFalse((ROOT / "site" / "assets" / "download" / "os.js").exists())
 
 
 class Layout(unittest.TestCase):
-    """GTM-129b and GTM-137 in Chromium (wp/tests/download-os-layout.js); skipped where Playwright is not installed."""
+    """In Chromium (wp/tests/download-os-layout.js); skipped where Playwright is not installed."""
 
     def layout(self, path, width, agent, font=None):
         if not shutil.which("node") or subprocess.run(["node", "-e", "require('playwright')"], capture_output=True).returncode:
@@ -162,33 +69,27 @@ class Layout(unittest.TestCase):
                            capture_output=True, text=True, check=True, timeout=120, env=env)
         return json.loads(p.stdout)
 
-    def test_es_mac_1280_main_button_on_one_line_without_the_store(self):
-        r = self.layout("/es/", 1280, "mac")
-        self.assertEqual([[t for t, _, _ in row] for row in r["rows"]], [["Descargar para Mac"]] * 2)
-        for row in r["rows"]:
-            self.assertLessEqual(row[0][2], 50, row)  # one line
-        self.assertEqual(r["others"], [["Windows", "Linux"]] * 2)
+    def test_1280_same_row_for_everyone_above_800_px(self):
+        # GTM-137 §2.1: the drawing must not push the download row below 800 px at 1280. Measured with the runner's own
+        # system-ui (DejaVu Sans on Ubuntu, the widest seen) and with Liberation Sans (Arial's metrics).
+        for lang, path in PATHS.items():
+            for agent in ("windows", "mac", "linux"):
+                for font in (None, "Liberation Sans"):
+                    r = self.layout(path, 1280, agent, font=font)
+                    self.assertLess(r["heroRowBottom"], 800, (lang, agent, font))
+                    for row in r["rows"]:
+                        self.assertEqual([t for t, _, _ in row], [STORE[lang], MAC[lang], "Linux"], (lang, agent, font))
+                        self.assertEqual(len({h for _, _, h in row}), 1, row)  # the same height
+                        self.assertEqual(len({top for _, top, _ in row}), 1, row)  # on one line
+                    self.assertEqual(r["others"], [["GitHub", AUTH[lang]], ["GitHub"]], (lang, agent))
 
-    def test_windows_1280_row_above_800_px_with_the_store_badge(self):
-        # GTM-137 §2.1: the drawing must not push the download row below 800 px at 1280, on every system. Measured with
-        # the runner's own system-ui (DejaVu Sans on Ubuntu, the widest we have seen) and with Liberation Sans (Arial's
-        # metrics); the drawing column is 400 px so that the H1 keeps its size and the row stays above 800 with both.
-        for (path, lang), font in [(pl, f) for pl in (("/", "en"), ("/es/", "es"), ("/ca/", "ca")) for f in (None, "Liberation Sans")]:
-            r = self.layout(path, 1280, "windows", font=font)
-            self.assertLess(r["heroRowBottom"], 800, (lang, font))
-            for row in r["rows"]:
-                self.assertEqual([t for t, _, _ in row], [STORE[lang]], row)  # only the Store badge
-            self.assertEqual(r["others"], [["Mac (preview)" if lang == "en" else "Mac (vista previa)" if lang == "es" else "Mac (vista prèvia)", "Linux"]] * 2)
-
-    def test_mac_and_linux_1280_row_above_800_px(self):
-        for path in ("/", "/es/", "/ca/"):
-            for font in (None, "Liberation Sans"):
-                self.assertLess(self.layout(path, 1280, "mac", font=font)["heroRowBottom"], 800, (path, font))
-
-    def test_390_no_horizontal_scroll(self):
-        for path in ("/", "/es/", "/ca/"):
+    def test_390_one_per_line_and_no_horizontal_scroll(self):
+        for lang, path in PATHS.items():
             for agent in ("windows", "mac"):
-                self.assertFalse(self.layout(path, 390, agent)["overflow"], (path, agent))
+                r = self.layout(path, 390, agent)
+                self.assertFalse(r["overflow"], (lang, agent))
+                for row in r["rows"]:
+                    self.assertEqual(len({top for _, top, _ in row}), 3, row)
 
 
 if __name__ == "__main__":
