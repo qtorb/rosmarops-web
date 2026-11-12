@@ -1,0 +1,19 @@
+{
+ "id": "microsoft-store",
+ "lang": "en",
+ "slug": "rosmarops-microsoft-store",
+ "title": "RosmarOps is now on the Microsoft Store",
+ "excerpt": "Microsoft has approved RosmarOps on its Store. On Windows it now installs in one click and without the blue «Windows protected your PC» window. Here's how it went, and what 0.11 brings.",
+ "content": "microsoft-store-en.html",
+ "seo_title": "RosmarOps on the Microsoft Store: no more blue window",
+ "seo_description": "RosmarOps is now on the Microsoft Store: on Windows it installs in one click, without the «Windows protected your PC» warning. And what 0.11 brings.",
+ "translations": {
+  "es": "https://rosmarops.com/es/blog/rosmarops-microsoft-store/",
+  "ca": "https://rosmarops.com/ca/blog/rosmarops-microsoft-store/"
+ },
+ "category": "field-notes",
+ "tags": {
+  "microsoft-store": "Microsoft Store",
+  "windows": "Windows"
+ }
+}
