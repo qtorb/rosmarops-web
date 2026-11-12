@@ -650,6 +650,8 @@ def build_index(lang, t, agents, candidates):
 
 # ---------------------------------------------------------------- agent page
 
+MAP_LINK_AGENTS = {"claude-code", "hermes-agent"}  # GTM-145: only these two, signed by Albert 12-11 23:50
+
 def build_agent(lang, t, a):
     ag = a["agent"]
     path = agent_path(lang, ag["id"])
@@ -657,8 +659,12 @@ def build_agent(lang, t, a):
     reviewed = t.date(ag["reviewed_at"])
     tool = "agent_tooling" in ag["kinds"]
     sfx = "_tool" if tool else ""
-    title = t.text("agent.title" + sfx, agent=ag["name"])
-    desc = t.text("agent.description" + sfx, agent=ag["name"], vendor=ag["vendor"], date=reviewed)
+    # GTM-145 (signed by Albert, 12-11 23:50): a few agents have their own title, and Claude Code its own description,
+    # naming what people search for (Search Console, GTM-143); the rest keep the template.
+    tkey = "agent.title" + sfx + "." + ag["id"]
+    title = t.text(tkey if tkey in t.c else "agent.title" + sfx, agent=ag["name"])
+    dkey = "agent.description" + sfx + "." + ag["id"]
+    desc = t.text(dkey if dkey in t.c else "agent.description" + sfx, agent=ag["name"], vendor=ag["vendor"], date=reviewed)
     st = ag["rosmarops"]
     rosm = t("agent.rosmarops_" + st["status"], version=st.get("since_version", ""))
     lv = latest_version(a)
@@ -743,13 +749,18 @@ def build_agent(lang, t, a):
             for c in a["capabilities"]
         )
         cols = "<colgroup>" + "".join(f'<col style="width:{w}%">' for w in (15, 19, 15, 33, 18)) + "</colgroup>"
+        map_link = ""
+        if ag["id"] in MAP_LINK_AGENTS:  # GTM-145: to the agent's row in the map, which opens on arrival
+            import map_page
+            name = map_page.agent_names([ag], lang)[ag["id"]]
+            map_link = f'\n<p class="note"><a href="{map_page.MAP_PATH[lang]}#{ag["id"]}">{t("agent.map_link", agent=name)}</a></p>'
         caps_html = f'''<section id="capabilities" aria-labelledby="caps-h">
 <h2 id="caps-h">{t("agent.caps_h2")}</h2>
 <p class="note">{t("agent.caps_note")}</p>
 <div class="box tablebox"><table>{cols}
 <thead><tr><th scope="col">{t("agent.th_action")}</th><th scope="col">{t("agent.th_scope")}</th><th scope="col">{t("agent.th_default")}</th><th scope="col">{t("agent.th_note")}</th><th scope="col">{t("agent.th_source")}</th></tr></thead>
 <tbody>{rows}</tbody></table></div>
-<p class="note">{t("agent.caps_ask_note")}</p>
+<p class="note">{t("agent.caps_ask_note")}</p>{map_link}
 </section>'''
 
     storage_html = ""

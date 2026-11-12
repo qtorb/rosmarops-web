@@ -91,5 +91,42 @@ class PublishedPage(unittest.TestCase):
             self.assertNotIn(T["b5.sources"].split("{")[0].strip(), html, lang)
 
 
+class StableAnchors(unittest.TestCase):
+    """GTM-145 (Albert, 12-11 23:50): each row has the agent's Observatory id as a stable anchor; the Claude Code and
+    Hermes Agent pages link to it; three agents have their own title, none longer than 65 characters."""
+
+    FICHAS = {"en": "site/observatory/{}/index.html", "es": "site/es/observatorio/{}/index.html",
+              "ca": "site/ca/observatori/{}/index.html"}
+
+    def test_rows_have_the_agent_id_and_it_does_not_depend_on_the_order(self):
+        ep, _, _ = mp.load()
+        want = sorted(mp.AGENT_FILE.get(a["product"], a["product"]) for a in ep["agents"] if a.get("evaluated"))
+        for lang, f in PAGES.items():
+            ids = re.findall(r'<button class="m-row" id="([^"]+)"', f.read_text(encoding="utf-8"))
+            self.assertEqual(sorted(ids), want, lang)
+            self.assertNotIn("m-d", "".join(ids), lang)
+
+    def test_the_two_pages_link_to_their_row_and_the_others_do_not(self):
+        for lang, tpl in self.FICHAS.items():
+            map_html = PAGES[lang].read_text(encoding="utf-8")
+            for agent in ("claude-code", "hermes-agent", "kanvas", "cursor"):
+                html = (ROOT / tpl.format(agent)).read_text(encoding="utf-8")
+                links = re.findall(r'href="' + re.escape(mp.MAP_PATH[lang]) + r'#([^"]+)"', html)
+                if agent in ("claude-code", "hermes-agent"):
+                    self.assertEqual(links, [agent], (lang, agent))
+                    self.assertIn(f'<button class="m-row" id="{agent}"', map_html, (lang, agent))
+                else:
+                    self.assertEqual(links, [], (lang, agent))
+
+    def test_signed_titles_fit(self):
+        import html as h
+        for lang, tpl in self.FICHAS.items():
+            for agent in ("claude-code", "hermes-agent", "kanvas"):
+                page = (ROOT / tpl.format(agent)).read_text(encoding="utf-8")
+                title = h.unescape(re.search(r"<title>([^<]*)</title>", page).group(1))
+                self.assertLessEqual(len(title), 65, (lang, agent, title))
+                self.assertNotIn("RosmarOps", title, (lang, agent))
+
+
 if __name__ == "__main__":
     unittest.main()
