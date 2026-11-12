@@ -1,11 +1,6 @@
 [
   {
     "page": "site/es/index.html",
-    "contains": "En la nube, desde tu espacio",
-    "reason": "Cloud row of the home (GTM-120, F1): products reviewed in the space's account review, not the agents RosmarOps reads on the computer."
-  },
-  {
-    "page": "site/es/index.html",
     "contains": "Claude Code y Cursor vienen preparados para que un",
     "reason": "Home block 2 (GTM-120): which agents come with each default, as checked on the reference computer; not a list of agents RosmarOps scores or detects."
   },
@@ -26,18 +21,8 @@
   },
   {
     "page": "site/es/index.html",
-    "contains": "Claude Desktop · app de Antigravity · Copilot en JetBrains",
-    "reason": "Home block 2 (GTM-120): which agents come with each default, as checked on the reference computer; not a list of agents RosmarOps scores or detects."
-  },
-  {
-    "page": "site/es/index.html",
     "contains": "Claude Code y Hermes Agent también lo leen en algunos casos.",
     "reason": "Home block 2 (GTM-120): which agents come with each default, as checked on the reference computer; not a list of agents RosmarOps scores or detects."
-  },
-  {
-    "page": "site/index.html",
-    "contains": "In the cloud, from your space",
-    "reason": "Cloud row of the home (GTM-120, F1): products reviewed in the space's account review, not the agents RosmarOps reads on the computer."
   },
   {
     "page": "site/index.html",
@@ -61,18 +46,8 @@
   },
   {
     "page": "site/index.html",
-    "contains": "Claude Desktop · Antigravity app · Copilot in JetBrains",
-    "reason": "Home block 2 (GTM-120): which agents come with each default, as checked on the reference computer; not a list of agents RosmarOps scores or detects."
-  },
-  {
-    "page": "site/index.html",
     "contains": "Claude Code and Hermes Agent also read it in some cases.",
     "reason": "Home block 2 (GTM-120): which agents come with each default, as checked on the reference computer; not a list of agents RosmarOps scores or detects."
-  },
-  {
-    "page": "site/ca/index.html",
-    "contains": "Al núvol, des del teu espai",
-    "reason": "Cloud row of the home (GTM-120, F1): products reviewed in the space's account review, not the agents RosmarOps reads on the computer."
   },
   {
     "page": "site/ca/index.html",
@@ -96,13 +71,23 @@
   },
   {
     "page": "site/ca/index.html",
-    "contains": "Claude Desktop · app d'Antigravity · Copilot a JetBrains",
+    "contains": "Claude Code i Hermes Agent també el llegeixen en alguns casos.",
     "reason": "Home block 2 (GTM-120): which agents come with each default, as checked on the reference computer; not a list of agents RosmarOps scores or detects."
   },
   {
+    "page": "site/es/index.html",
+    "contains": "RosmarOps revisa estos nueve:",
+    "reason": "Home «¿Es verdad?» (GTM-137, T3): the nine scored agents as a literal sentence signed by Albert on 12-11, in its own order and wording; kept by hand, not generated."
+  },
+  {
+    "page": "site/index.html",
+    "contains": "RosmarOps checks these nine:",
+    "reason": "Home «¿Es verdad?» (GTM-137, T3): the nine scored agents as a literal sentence signed by Albert on 12-11, in its own order and wording; kept by hand, not generated."
+  },
+  {
     "page": "site/ca/index.html",
-    "contains": "Claude Code i Hermes Agent també el llegeixen en alguns casos.",
-    "reason": "Home block 2 (GTM-120): which agents come with each default, as checked on the reference computer; not a list of agents RosmarOps scores or detects."
+    "contains": "RosmarOps revisa aquests nou:",
+    "reason": "Home «¿Es verdad?» (GTM-137, T3): the nine scored agents as a literal sentence signed by Albert on 12-11, in its own order and wording; kept by hand, not generated."
   },
   {
     "page": "site/methodology/index.html",

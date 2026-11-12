@@ -40,6 +40,9 @@ PAGES = {
     "site/llms.txt": "en",
     "wp/pages/about-en.html": "en", "wp/pages/que-es-rosmarops-es.html": "es", "wp/pages/que-es-rosmarops-ca.html": "ca",
 }
+# GTM-137 (12-11): the homes have no generated list; their list of the nine scored agents is a literal sentence signed
+# by Albert (T3), allowed in agent-list-exclusions.json. render() leaves them alone; check_pages() still reads them.
+NO_MARKERS = {"site/index.html", "site/es/index.html", "site/ca/index.html"}
 AND = {"en": " and ", "es": " y ", "ca": " i "}
 KINDS = {"scored": "evaluated", "detected": "detected"}
 MARKER = re.compile(r"<!-- agents:(scored|detected)(?: (\w+))? -->(.*?)<!-- /agents:\1 -->", re.S)
@@ -129,6 +132,8 @@ def render(root=ROOT, agents=None):
         f = root / page
         old = f.read_text(encoding="utf-8")
         if not MARKER.search(old):
+            if page in NO_MARKERS:
+                continue
             raise SystemExit(f"{page}: no <!-- agents:... --> markers")
         new = render_text(old, lang, agents, page)
         if new != old:

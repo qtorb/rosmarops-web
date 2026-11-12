@@ -1,8 +1,11 @@
-/* RosmarOps home: the download buttons follow the visitor's system (GTM-129, signed by Albert 10-11).
-   Without JavaScript, on an unknown system, on Windows, on a phone or on a tablet, nothing changes: the HTML as
-   served (Windows first) is the default and what search engines see. On a Mac (no touch screen) the Mac page goes
-   first; on Linux (not Android) the Linux page goes first; Windows stays second with its own link and counter
-   (from, os); the Windows warning and the Microsoft Store badge with its line (GTM-135b) are hidden. Reads only what the browser already says about its platform; stores and sends nothing. */
+/* RosmarOps home: the download buttons follow the visitor's system (GTM-129, signed by Albert 10-11; GTM-137, 12-11).
+   Each download row (.dlrow) has a main button (Windows as served) and the Microsoft Store badge (.store); under it,
+   the line of other systems (.os-o items: Windows with its own link and counter, Mac page, Linux page).
+   Without JavaScript, or on an unknown system, a phone or a tablet, nothing changes: the HTML as served (Windows
+   first, the three systems in the line) is the default and what search engines see. On Windows the line leaves out
+   Windows. On a Mac (no touch screen) the main button goes to the Mac page and the line leaves out Mac; on Linux (not
+   Android) the same with Linux; on both, the Store badge and its line (GTM-135b) are hidden. Reads only what the
+   browser already says about its platform; stores and sends nothing. */
 (function () {
   'use strict';
   var LABELS = {
@@ -18,44 +21,37 @@
     var touch = (nav.maxTouchPoints || 0) > 0;
     if (/mac/i.test(p) && !touch) return 'mac';
     if (/linux/i.test(p) && !/android/i.test(p + ' ' + ua)) return 'linux';
+    if (/\bwin(dows|32|64)\b/i.test(p) && !/windows phone/i.test(ua)) return 'windows';
     return '';
   }
 
-  function find(block, test) {
-    var links = block.getElementsByTagName('a');
-    for (var i = 0; i < links.length; i++) if (test(links[i].getAttribute('href') || '')) return links[i];
-    return null;
-  }
-
   function apply(doc, os) {
-    if (os !== 'mac' && os !== 'linux') return 0;
+    if (os !== 'mac' && os !== 'linux' && os !== 'windows') return 0;
     var l2 = (doc.documentElement.lang || 'en').slice(0, 2).toLowerCase();
     var lang = (l2 === 'es' || l2 === 'ca') ? l2 : 'en';
-    var blocks = doc.querySelectorAll('.dl');
+    // The line of other systems: the visitor's own system is not repeated.
+    var items = doc.querySelectorAll('.os-o');
+    var pages = {};
+    for (var i = 0; i < items.length; i++) {
+      var key = items[i].getAttribute('data-os');
+      var a = items[i].querySelector('a');
+      if (a && !pages[key]) pages[key] = a.getAttribute('href');
+      if (key === os) items[i].hidden = true;
+    }
+    if (os === 'windows') return items.length;
+    // Mac or Linux: the main button goes to that system's page.
+    var rows = doc.querySelectorAll('.dlrow');
     var done = 0;
-    for (var i = 0; i < blocks.length; i++) {
-      var b = blocks[i];
-      var win = find(b, function (h) { return /[?&]os=windows(&|$)/.test(h); });
-      var mac = find(b, function (h) { return /\/macos\/$/.test(h); });
-      var lin = find(b, function (h) { return /\/linux\/$/.test(h); });
-      if (!win || !mac || !lin) continue;
-      var first = os === 'mac' ? mac : lin;
-      var third = os === 'mac' ? lin : mac;
-      first.className = 'hbtn primary';
-      first.textContent = LABELS[os][lang];
-      win.className = 'hbtn';
-      win.textContent = 'Windows';
-      b.appendChild(first);
-      b.appendChild(win);
-      b.appendChild(third);
+    for (var j = 0; j < rows.length; j++) {
+      var main = rows[j].querySelector('.primary');
+      if (!main || !pages[os]) continue;
+      main.setAttribute('href', pages[os]);
+      main.removeAttribute('target');
+      main.removeAttribute('rel');
+      main.textContent = LABELS[os][lang];
       done++;
     }
-    // The note about the Windows warning only concerns Windows.
-    var notes = doc.querySelectorAll('.dl-note');
-    for (var j = 0; j < notes.length; j++) {
-      if (/^\s*Windows\b/.test(notes[j].textContent || '')) notes[j].hidden = true;
-    }
-    // GTM-135b: the Microsoft Store badge and its line are for Windows only.
+    // The Microsoft Store badge and its line are for Windows only (GTM-135b).
     var stores = doc.querySelectorAll('.store');
     for (var k = 0; k < stores.length; k++) stores[k].hidden = true;
     return done;
