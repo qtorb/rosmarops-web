@@ -1,0 +1,570 @@
+{
+  "date": "2026-11-12",
+  "collected_at": "2026-11-12T05:34:27Z",
+  "sources": [
+    {
+      "id": "F1",
+      "opened": true,
+      "reason": null,
+      "latest": "2.1.322",
+      "latest_date": "2026-11-10",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F2",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-06",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F3",
+      "opened": true,
+      "reason": null,
+      "latest": "rust-v0.167.2",
+      "latest_date": "2026-11-11",
+      "new": [
+        {
+          "date": "2026-11-11",
+          "version": "rust-v0.167.2",
+          "text": "## New Features - Codex now sends tool updates incrementally by default on Google Cloud Vertex AI. To opt out, set `incremental_tools_legacy_gcp = false` under `[features]` in `config.toml`. ([#60617](https://github.com/openai/codex/pull/60617), [#60848](https://github.com/openai/codex/pull/60848)) ## Changelog Full Changelog: https://github.com/openai/codex/compare/rust-v0.167.1...rust-v0.167.2"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F4",
+      "opened": true,
+      "reason": null,
+      "latest": "v1.5.5",
+      "latest_date": "2026-11-10",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F5",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.23.1",
+      "latest_date": "2026-11-10",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F6",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-10",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F7",
+      "opened": true,
+      "reason": null,
+      "latest": "v4.1.26",
+      "latest_date": "2026-10-26",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F8",
+      "opened": true,
+      "reason": null,
+      "latest": "v2.1.0-vscode",
+      "latest_date": "2026-06-19",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F9",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.5.0",
+      "latest_date": "2026-11-09",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F10",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-12",
+      "new": [
+        {
+          "date": "2026-11-12",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-0495a09022e152fe @rfewqa-fes/mnm-doc-mcp: Off-registry HTTP tarball dependency from bare IP"
+        },
+        {
+          "date": "2026-11-11",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-108ea237ed659c21 mcp-teamviewer: mcp-teamviewer beacons installer identity to OAST collector on import"
+        },
+        {
+          "date": "2026-11-11",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-4b500a7a820f13ea teamviewer-mcp-server: teamviewer-mcp-server exfiltrates host identity via DNS to oast.me on import"
+        }
+      ],
+      "ids": [
+        "MAL-0000-amazon-inspector-0495a09022e152fe",
+        "MAL-0000-amazon-inspector-108ea237ed659c21",
+        "MAL-0000-amazon-inspector-4b500a7a820f13ea"
+      ],
+      "read_with": "git"
+    },
+    {
+      "id": "F11",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.68.0",
+      "latest_date": "2026-11-10",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F12",
+      "opened": true,
+      "reason": null,
+      "latest": "1.0.109",
+      "latest_date": "2026-11-10",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F13",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-06",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F14",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-12",
+      "new": [
+        {
+          "date": "2026-11-12",
+          "version": null,
+          "text": "MAL-2026-19148 @rfewqa-fes/mnm-doc-mcp: Malicious code in @rfewqa-fes/mnm-doc-mcp (npm)"
+        }
+      ],
+      "ids": [
+        "MAL-2026-19148"
+      ],
+      "read_with": "curl"
+    },
+    {
+      "id": "F15",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-11",
+      "new": [
+        {
+          "date": "2026-11-11",
+          "version": null,
+          "text": "CVE-2026-126658 [MCP]: ByteStash 1.5.10 before 1.6.2 contains an insufficient session expiration vulnerability that allows holders of API keys to keep access after account deactivation because validateApiKey never checks account status. Attackers holding a deactivated account's API key can read, create, modify and delete its snippets via /api/snippets and use every MCP tool via /mcp."
+        },
+        {
+          "date": "2026-11-11",
+          "version": null,
+          "text": "CVE-2026-126776 [MCP]: SiYuan 3.7.0 before 3.8.10 on Windows contains a path traversal vulnerability in kernel/util/webfetch.go that allows attackers to write files outside the import directory via backslash-encoded filenames. Attackers controlling a URL fetched by the MCP web_fetch or http_request tools can use %5C-encoded ..\\ sequences to write chosen response bytes to directories above temp/import that are writable by the SiYuan user."
+        },
+        {
+          "date": "2026-11-11",
+          "version": null,
+          "text": "CVE-2026-100307 [MCP]: Missing authorization in the external management API in Amazon mcp-gateway-registry 1.0.9 through 1.24.7 might allow an authenticated remote user to assign the registry administrator scope to their own identity group and obtain administrative control of every registered gateway asset via a crafted group import request. To remediate this issue, users should upgrade to version 1.25.0."
+        },
+        {
+          "date": "2026-11-11",
+          "version": null,
+          "text": "CVE-2026-125926 [MCP]: Server-side request forgery (SSRF) in the server registration and update API in Amazon mcp-gateway-registry before 1.35.0 might allow an authenticated remote user to send requests from the gateway to internal network services and cloud instance metadata endpoints and read the responses via a crafted request. To remediate this issue, users should upgrade to version 1.35.0."
+        },
+        {
+          "date": "2026-11-11",
+          "version": null,
+          "text": "CVE-2026-65957 [MCP]: Helio is an MCP proxy that sits between AI agents and the tools they use. Prior to version 0.8.0, the dashboard sideband (default 127.0.0.1:3100) validated CORS request origins by matching the hostname against a private-network string prefix (10., 172.16.–172.31., 192.168.) rather than validating an IP address. A public DNS name such as 192.168.attacker.com, 10.evil.io, or 172.16.pwn.example also satisfies that prefix, so the proxy echoed the attacker origin in Access-Control-Allow-Origin. This issue has been patched in version 0.8.0."
+        },
+        {
+          "date": "2026-11-11",
+          "version": null,
+          "text": "CVE-2026-65968 [MCP]: ideon is a self-hosted visual workspace. Prior to version 0.9.4, validateUrlForSSRF() / safeFetch() in lib/oauth/ssrf-protection.ts (and the parallel validateMcpUrl() in lib/security/validators.ts) perform SSRF host-blocking by string/regex matching on new URL(url).hostname. Their IPv6 branch only recognises the textual forms ::1, fe80:/fc00:/fd00: prefixes, and the dotted-decimal IPv4-mapped form ::ffff:127.x. It does not recognise the WHATWG-canonical IPv4-mapped-IPv6 host that Node emits for a mapped address, which is hex-compressed and bracket-wrapped: [::ffff:7f00:1…"
+        },
+        {
+          "date": "2026-11-11",
+          "version": null,
+          "text": "CVE-2026-67545 [MCP]: Heym builds and runs agentic systems and business-process automations on self-hosted infrastructure. Prior to version 0.0.73, the HTTP workflow node in Heym makes outbound HTTP requests to user-supplied URLs without validation of the target host or IP address. If a workflow author has already configured an HTTP node that targets internal addresses such as cloud metadata endpoints or private network hosts, and exposed the workflow with anonymous execution, an unauthenticated attacker can trigger the preconfigured SSRF sink. The same project has comprehensive SSRF protecti…"
+        },
+        {
+          "date": "2026-11-11",
+          "version": null,
+          "text": "CVE-2026-67546 [MCP]: Heym builds and runs agentic systems and business-process automations on self-hosted infrastructure. Prior to version 0.0.75, the same POST /api/mcp/fetch-tools endpoint (any authenticated user, lowest role) also accepts the stdio transport, which spawns the attacker-supplied command with attacker-supplied args and an environment merged over os.environ. The process executes on the shared backend host before MCP protocol validation fails — so side effects fire regardless of whether the command speaks MCP. This is a distinct weakness class and exploit primitive from the SS…"
+        }
+      ],
+      "ids": [
+        "CVE-2026-100307",
+        "CVE-2026-125926",
+        "CVE-2026-126658",
+        "CVE-2026-126776",
+        "CVE-2026-65957",
+        "CVE-2026-65968",
+        "CVE-2026-67545",
+        "CVE-2026-67546"
+      ],
+      "read_with": "curl"
+    },
+    {
+      "id": "F16",
+      "opened": true,
+      "reason": null,
+      "latest": "v2.2.7",
+      "latest_date": "2026-11-10",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F17",
+      "opened": true,
+      "reason": null,
+      "latest": "3.2.1",
+      "latest_date": "2026-11-11",
+      "new": [
+        {
+          "date": "2026-11-11",
+          "version": "3.2.1",
+          "text": "## Full-Screen Diagram Viewer and Sign-In to More MCP Servers This release adds a full-screen viewer for Mermaid diagrams that are too wide for your terminal, and signs you in to more MCP servers with no OAuth configuration. It also lets you run one more iteration or finish a workflow loop that used all its iterations, tells you when workflows are not available in autonomous mode, asks before a V2 shell command sets XDG_CONFIG_HOME or HOME, and fixes file search, custom agent, workflow, spec, Hook, clipboard, help text, and session issues. ## Open wide diagrams on their own screen When an oth…"
+        },
+        {
+          "date": "2026-11-11",
+          "version": "3.2.1",
+          "text": "## Full-Screen Diagram Viewer and Sign-In to More MCP Servers This release adds a full-screen viewer for Mermaid diagrams that are too wide for your terminal, and signs you in to more MCP servers with no OAuth configuration. It also lets you run one more iteration or finish a workflow loop that used all its iterations, tells you when workflows are not available in autonomous mode, asks before a V2 shell command sets XDG_CONFIG_HOME or HOME, and fixes file search, custom agent, workflow, spec, Hook, clipboard, help text, and session issues. ## Open wide diagrams on their own screen When an oth…"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F18",
+      "opened": true,
+      "reason": null,
+      "latest": "v3.12.43",
+      "latest_date": "2026-11-09",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F19",
+      "opened": true,
+      "reason": null,
+      "latest": "v1.59.0",
+      "latest_date": "2026-11-10",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F20",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-11",
+      "new": [
+        {
+          "date": "2026-11-11",
+          "version": null,
+          "text": "Customizable Sidebar Navigation ShortcutsThe keys for Option-hold sidebar session navigation can be changed in Settings › Keyboard shortcuts.Filter Sessions by Service UserThe sessions list’s Created by filter includes service users, and sessions created by a service user show its name in Properties.Improved Visibility of Stacked PRsImproved visibility of stacked PRs within the UI, with an option for stack order preference (shared with Devin Review).Design ModeSelecting an element in Design Mode opens a compact prompt bar with per-property editing. Draw spotlight boxes or pencil annotations i…"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F21",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-08-19",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F22",
+      "opened": true,
+      "reason": null,
+      "latest": "v2026.11.3",
+      "latest_date": "2026-11-10",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F23",
+      "opened": true,
+      "reason": null,
+      "latest": "1.2.20",
+      "latest_date": "2026-11-05",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F24",
+      "opened": true,
+      "reason": null,
+      "latest": "1.15.40",
+      "latest_date": "2026-11-11",
+      "new": [
+        {
+          "date": "2026-11-11",
+          "version": "1.15.40",
+          "text": "## What's Changed ### Features - Remove chromadb from the embedding function layer. - Add exact historical state lookup by row id. - Wire jsonl into rag data type discovery. - Scaffold standalone agents as JSON by default. - Add backend record lifecycle and pagination tests. ### Bug Fixes - Run after_llm_call hooks on async calls. - Stop an agent whose apps CrewAI AMP cannot resolve. ### Documentation - Update Arize agent evaluation guide URL. ## Contributors @AadeshSalecha, @Kiko0301, @Vidit-Ostwal, @arizedatngo, @bballhaus, @chang-amy, @factory-droid[bot], @joaomdmoura, @lorenzejay, @sallyw…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F25",
+      "opened": true,
+      "reason": null,
+      "latest": "python-1.25.0",
+      "latest_date": "2026-11-06",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F26",
+      "opened": true,
+      "reason": null,
+      "latest": "2026-07-28",
+      "latest_date": "2026-07-28",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F27",
+      "opened": true,
+      "reason": null,
+      "latest": "1.146",
+      "latest_date": "2026-11-11",
+      "new": [
+        {
+          "date": "2026-11-11",
+          "version": "1.146",
+          "text": "## Downloads for 1.146.0 Windows x64Arm64 macOS UniversalIntelApple silicon Linux .deb.rpm.tar.gzArm instructionsSnap ## Release highlights Save your brainpower for the work that needs it. Inbox mode keeps the right sessions on your radar while agents take on model comparisons. Shape your agent workspace around the task with chat windows and extensions. Inbox mode (Experimental): Focus on sessions that need your attention across all your projects, and snooze others for later. Model comparison (Preview): Compare results with Copilot Fusion in the mix, or let an agent run comparisons for you. C…"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F28",
+      "opened": true,
+      "reason": null,
+      "latest": "2026.11.10",
+      "latest_date": "2026-11-10",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F29",
+      "opened": true,
+      "reason": null,
+      "latest": "1.4.13",
+      "latest_date": "2026-11-12",
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "date_is_detection": true
+    },
+    {
+      "id": "F31",
+      "opened": true,
+      "reason": null,
+      "latest": "n8n@3.2.0",
+      "latest_date": "2026-11-10",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F32",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-12",
+      "new": [
+        {
+          "date": "2026-11-12",
+          "version": null,
+          "text": "文档对您有帮助吗? 有帮助无帮助 上一篇 设备数量限制 下一篇 从《world.execute(me);》开始，用 TRAE 做 MV"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F33",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.27.2",
+      "latest_date": "2026-11-10",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F34",
+      "opened": true,
+      "reason": null,
+      "latest": "@moonshot-ai/kimi-code@2.5.3",
+      "latest_date": "2026-11-10",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F35",
+      "opened": true,
+      "reason": null,
+      "latest": "v2.183.0",
+      "latest_date": "2026-11-11",
+      "new": [
+        {
+          "date": "2026-11-11",
+          "version": "v2.183.0",
+          "text": "# 🚀 CodeBuddy Code v2.183.0 发布 ## 📦 版本信息 组件版本 CodeBuddy Code CLIv2.183.0 Agent SDK JSv0.3.303 Agent SDK Pythonv0.3.302 ## ✨ 新功能 ### 打开智能体时可选择是否自动恢复 Web UI 设置新增「打开智能体时自动恢复执行」开关： 默认开启，保持点开已结束的智能体即自动恢复执行 关闭后打开只查看历史，需点「重新运行」或发送消息才恢复 刷新页面或重连远端不再隐式拉起已停止的智能体 ### 资源管理器支持多根工作区 Web UI 资源管理器可同时打开多个目录，分区展示、独立折叠和刷新。「添加目录」以追加方式加入工作区，并自动同步访问权限；「打开目录」保持原有替换行为。 ### 会话内展示定时任务执行结果 定时任务触发后，对话中会出现执行结果条，展示状态、耗时和失败原因，并可一键跳转到「执行记录」详情；刷新或重新打开会话后结果条依然保留。 ### btw 侧聊支持 Markdown 侧聊回答按 Markdown 渲染标题、列表、代码块和链接，与主聊天观感一致。 ### 目标恢复可不自起新一轮 宿主恢复会话目标时可以选择只恢复、不立即起新一轮：目标暂停期间用户发送的普通消息本身就作为这一轮，结束后接着推进目标，不再与自动续跑抢跑。 ## 🔧 改进优化 远程添加 SSH…"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F36",
+      "opened": true,
+      "reason": null,
+      "latest": "1.39.2",
+      "latest_date": "2026-11-09",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F37",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.86.2",
+      "latest_date": "2026-02-12",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F38",
+      "opened": true,
+      "reason": null,
+      "latest": "v1.39.0",
+      "latest_date": "2026-11-11",
+      "new": [
+        {
+          "date": "2026-11-11",
+          "version": "v1.39.0",
+          "text": "## 1.39.0 (2026-11-11) <!-- Release notes generated using configuration in .github/release.yml at main --> ## What's Changed ### Features * feat(automations): filter the dashboard by owner with a Service accounts option by @hieptl in https://github.com/OpenHands/OpenHands/pull/19472 * feat(chat): move the message hover timestamp closer to its message by @ak684 in https://github.com/OpenHands/OpenHands/pull/19623 * feat(conversation): keep Stop hook feedback out of the chat by @ak684 in https://github.com/OpenHands/OpenHands/pull/19619 * feat(themes): print Paper as aged newsprint, with readab…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F39",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-10",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F40",
+      "opened": true,
+      "reason": null,
+      "latest": "2026.11.05",
+      "latest_date": "2026-11-05",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F41",
+      "opened": true,
+      "reason": null,
+      "latest": "26.11.1",
+      "latest_date": "2026-11-10",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F42",
+      "opened": true,
+      "reason": null,
+      "latest": "v7.8.28",
+      "latest_date": "2026-11-07",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F43",
+      "opened": false,
+      "reason": "https://www.perplexity.ai/changelog: HTTP 403",
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F44",
+      "opened": true,
+      "reason": null,
+      "latest": "v1.0.77",
+      "latest_date": "2026-11-05",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    }
+  ],
+  "opened": 42,
+  "total": 43
+}
