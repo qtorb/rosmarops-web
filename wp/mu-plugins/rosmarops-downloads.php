@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: RosmarOps downloads and visits
- * Description: Download counter (GTM-18; os added by the 2026-10-29 direct-download decision). /download, /es/descargar and /ca/descarregar add one to an aggregate count (UTC day, source page, language, os) and redirect to GitHub: to the file for ?os=windows|mac-arm|mac-intel|linux-amd64|linux-arm64 (Linux added by GTM-83), otherwise to the latest release. Stores no IP address, cookie, user agent or referrer; requests with the WordPress session cookie (the team, signed in) are not counted (GTM-111), nor requests from robots, by the same user-agent list as visits (GTM-118; the user agent is looked at, never stored). Public read-only totals at /wp-json/rosmarops/v1/downloads. Versioned in qtorb/rosmarops-web; do not edit on the server.
+ * Description: Download counter (GTM-18; os added by the 2026-10-29 direct-download decision). /download, /es/descargar and /ca/descarregar add one to an aggregate count (UTC day, source page, language, os) and redirect to GitHub: to the file for ?os=windows|mac-arm|mac-intel|linux-amd64|linux-arm64 (Linux added by GTM-83), to the Microsoft Store listing for ?os=store (GTM-135), otherwise to the latest release. Stores no IP address, cookie, user agent or referrer; requests with the WordPress session cookie (the team, signed in) are not counted (GTM-111), nor requests from robots, by the same user-agent list as visits (GTM-118; the user agent is looked at, never stored). Public read-only totals at /wp-json/rosmarops/v1/downloads. Versioned in qtorb/rosmarops-web; do not edit on the server.
  *
  * GTM-111: visit counter, behind ROSMAROPS_VISITS_ON (off). Pages send their path and the referrer's domain with JavaScript (/assets/visits/visits.js); the server adds one to (UTC day, page, language, referrer kind), with closed lists. It stores no IP address, cookie, user agent, exact time or identifier. GTM-125: different people per UTC day, from an HMAC of IP and user agent with a key of the day; only today's fingerprints and key exist, both replaced at the day change, and the IP and user agent are never stored. Public read-only totals (visits in rows, people in people) at /wp-json/rosmarops/v1/visits.
  */
@@ -19,6 +19,8 @@ const ROSMAROPS_DL_OS     = [
 	'mac-intel' => 'https://github.com/qtorb/rosmarops/releases/latest/download/rosmarops-macos-intel',
 	'linux-amd64' => 'https://github.com/qtorb/rosmarops/releases/latest/download/rosmarops-linux-amd64',
 	'linux-arm64' => 'https://github.com/qtorb/rosmarops/releases/latest/download/rosmarops-linux-arm64',
+	// GTM-135: the Microsoft Store listing (signed by Albert 12-11). Same counter, os = store; no new column or data.
+	'store'     => 'https://apps.microsoft.com/detail/9P5WDLVWLN8R?mode=direct',
 ];
 const ROSMAROPS_DL_FROM   = [
 	'home', 'home-band', 'faq', 'about', 'macos-page', 'linux-page',

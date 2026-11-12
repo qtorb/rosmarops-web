@@ -95,6 +95,7 @@ class Downloads(unittest.TestCase):
             "/ca/descarregar?from=macos-page&os=mac-intel": LATEST + "/download/rosmarops-macos-intel",
             "/es/descargar?from=linux-page&os=linux-amd64": LATEST + "/download/rosmarops-linux-amd64",
             "/download?from=linux-page&os=linux-arm64": LATEST + "/download/rosmarops-linux-arm64",
+            "/es/descargar?from=home&os=store": "https://apps.microsoft.com/detail/9P5WDLVWLN8R?mode=direct",
             "/download?from=home": LATEST,
             "/download?from=home&os=linux": LATEST,
             "/download/?from=blog-v040": LATEST,
@@ -125,6 +126,15 @@ class Downloads(unittest.TestCase):
         self.get("/es/descargar?from=linux-page&os=linux-amd64")
         self.get("/ca/descarregar?from=linux-page&os=linux-arm64")
         self.assertEqual(self.rows(), ["linux-page\tca\tlinux-arm64\t1", "linux-page\tes\tlinux-amd64\t1"])
+
+    def test_store_counts_as_a_download_with_os_store(self):
+        # GTM-135: the Microsoft Store badge goes through the same counter, os = store, no new column.
+        mysql(f"DROP TABLE {TABLE}")
+        st, h, _ = self.get("/download?from=home-band&os=store")
+        self.assertEqual(st, 302)
+        self.assertEqual(h.get("Location"), "https://apps.microsoft.com/detail/9P5WDLVWLN8R?mode=direct")
+        self.get("/es/descargar?from=home&os=store")
+        self.assertEqual(self.rows(), ["home\tes\tstore\t1", "home-band\ten\tstore\t1"])
 
     def test_fresh_table(self):
         mysql(f"DROP TABLE {TABLE}")
