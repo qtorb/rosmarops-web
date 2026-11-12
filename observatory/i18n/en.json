@@ -80,6 +80,11 @@
 
   "agent.title": "{agent} on Windows: what it can do · RosmarOps",
   "agent.description": "What {agent} by {vendor} can do on your computer by default, where it keeps its keys, and its dated security changes with sources. Reviewed {date}.",
+  "agent.title.claude-code": "Claude Code on Windows: settings.json, .claude.json, auto mode",
+  "agent.title.hermes-agent": "Hermes Agent on Windows: %LOCALAPPDATA%\\hermes, config.yaml",
+  "agent.title_tool.kanvas": "Kanvas by XMihura on Windows: what files it leaves and where",
+  "agent.description.claude-code": "What settings.json and .claude.json hold, what auto mode decides for you and which files can hold API keys. Reviewed {date}.",
+  "agent.map_link": "See {agent} on the AI agent map",
   "agent.h1": "{agent} on Windows: what it can do on your computer",
   "agent.meta": "{vendor} · {kinds} · Reviewed on {date}",
   "agent.latest_version": "Latest version observed: {version}",

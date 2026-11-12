@@ -196,7 +196,7 @@ def body(lang, t_site, agents_files):
 <h4>{esc(T["b5.who"])}</h4><ul class="m-whol">{who}</ul>
 <!-- GTM-138: b5.shares, b5.fix*, the reserve line and b5.sources wait for the engine (texts in observatory/i18n/map.json). -->
 </div>'''
-        rows.append(f'''<button class="m-row" type="button" aria-expanded="false" aria-controls="m-d{i}"><span class="m-cls m-{c}" aria-label="{esc(t("b3.class", **{"class": c}))}">{c}</span><span class="m-name"><b>{esc(n)}</b>{why}{prov}</span><span class="m-axes">{"".join(bars)}</span>{score}</button>
+        rows.append(f'''<button class="m-row" id="{esc(AGENT_FILE.get(p, p))}" type="button" aria-expanded="false" aria-controls="m-d{i}"><span class="m-cls m-{c}" aria-label="{esc(t("b3.class", **{"class": c}))}">{c}</span><span class="m-name"><b>{esc(n)}</b>{why}{prov}</span><span class="m-axes">{"".join(bars)}</span>{score}</button>
 {card}''')
     # 1-5 (GTM-138, second block): what it measures, what it's for, the notice, the data line and the map, then the case.
     out.append(f'''<section class="m-wrap m-top" aria-labelledby="m-h1">
@@ -347,6 +347,19 @@ document.addEventListener('click', function (e) {
   b.setAttribute('aria-expanded', String(open));
   el.hidden = !open;
 });
+/* GTM-145: a link to #<agent> (the agent's Observatory id) opens that agent's row. */
+function openFromHash() {
+  var id = decodeURIComponent(location.hash.slice(1));
+  var b = id && document.getElementById(id);
+  if (!b || !b.classList.contains('m-row')) return;
+  var el = document.getElementById(b.getAttribute('aria-controls'));
+  if (!el) return;
+  b.setAttribute('aria-expanded', 'true');
+  el.hidden = false;
+  b.scrollIntoView({block: 'start'});
+}
+openFromHash();
+window.addEventListener('hashchange', openFromHash);
 </script>"""
 
 

@@ -80,6 +80,11 @@
 
   "agent.title": "{agent} a Windows: què pot fer · RosmarOps",
   "agent.description": "Què pot fer de sèrie {agent}, de {vendor}, al teu ordinador, on guarda les claus i els seus canvis de seguretat datats, amb font. Revisat el {date}.",
+  "agent.title.claude-code": "Claude Code a Windows: settings.json, .claude.json i mode auto",
+  "agent.title.hermes-agent": "Hermes Agent a Windows: %LOCALAPPDATA%\\hermes i config.yaml",
+  "agent.title_tool.kanvas": "Kanvas de XMihura a Windows: quins fitxers deixa i on",
+  "agent.description.claude-code": "Què guarden settings.json i .claude.json, què decideix el mode auto per tu i quins fitxers poden tenir claus. Revisat el {date}.",
+  "agent.map_link": "Veure {agent} al mapa d'agents d'IA",
   "agent.h1": "{agent} a Windows: què pot fer al teu ordinador",
   "agent.meta": "{vendor} · {kinds} · Revisat el {date}",
   "agent.latest_version": "Última versió observada: {version}",
