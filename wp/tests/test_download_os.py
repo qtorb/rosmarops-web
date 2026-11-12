@@ -53,14 +53,17 @@ html.replace(/<div class="dl">(.*?)<\/div>/g, (m, inner) => {
 });
 const notes = [];
 html.replace(/<p class="dl-note">(.*?)<\/p>/g, (m, inner) => { notes.push(el({}, unesc(inner.replace(/<[^>]+>/g, '')))); });
+const stores = [];
+html.replace(/<div class="store">(.*?)<\/div>/g, (m, inner) => { stores.push(el({}, unesc(inner.replace(/<[^>]+>/g, '')))); });
 const lang = (html.match(/<html lang="([^"]+)"/) || [])[1];
-const doc = { documentElement: { lang }, querySelectorAll(q) { return q === '.dl' ? blocks : q === '.dl-note' ? notes : []; } };
+const doc = { documentElement: { lang }, querySelectorAll(q) { return q === '.dl' ? blocks : q === '.dl-note' ? notes : q === '.store' ? stores : []; } };
 const mod = { exports: {} };
 new Function('module', 'navigator', 'document', require('fs').readFileSync(src, 'utf8'))(mod, {}, {});
 const os = mod.exports.detect(JSON.parse(nav));
 mod.exports.apply(doc, os);
 console.log(JSON.stringify({ os, blocks: blocks.map(b => b.kids.map(k => ({ cls: k.className, text: k.textContent,
-  href: k.attrs.href, target: k.attrs.target || null, rel: k.attrs.rel || null }))), notes: notes.map(n => ({ text: n.textContent.slice(0, 20), hidden: n.hidden })) }));
+  href: k.attrs.href, target: k.attrs.target || null, rel: k.attrs.rel || null }))), notes: notes.map(n => ({ text: n.textContent.slice(0, 20), hidden: n.hidden })),
+  stores: stores.map(n => ({ text: n.textContent.slice(0, 20), hidden: n.hidden })) }));
 """
 
 
@@ -93,6 +96,7 @@ class DownloadOs(unittest.TestCase):
                 self.assertEqual(r["os"], "", (lang, agent))
                 self.assertEqual(r["blocks"], self.served(lang), (lang, agent))
                 self.assertFalse(any(n["hidden"] for n in r["notes"]), (lang, agent))
+                self.assertEqual([n["hidden"] for n in r["stores"]], [False, False], (lang, agent))  # GTM-135b: Store badge stays
 
     def test_mac(self):
         for lang in HOMES:
@@ -106,6 +110,7 @@ class DownloadOs(unittest.TestCase):
                         self.windows_btn(lang, src, ("hbtn", "Windows")),
                         {"cls": "hbtn", "text": "Linux", "href": f"{b}/linux/", "target": None, "rel": None}], (lang, agent, src))
                 self.assertEqual([n["hidden"] for n in r["notes"]], [False, True], lang)  # only the Windows warning goes
+                self.assertEqual([n["hidden"] for n in r["stores"]], [True, True], (lang, agent))  # GTM-135b: no Store badge on a Mac
 
     def test_linux(self):
         for lang in HOMES:
@@ -118,12 +123,15 @@ class DownloadOs(unittest.TestCase):
                     self.windows_btn(lang, src, ("hbtn", "Windows")),
                     {"cls": "hbtn", "text": {"en": "Mac (preview)", "es": "Mac (vista previa)", "ca": "Mac (vista prèvia)"}[lang], "href": f"{b}/macos/", "target": None, "rel": None}], (lang, src))
             self.assertEqual([n["hidden"] for n in r["notes"]], [False, True], lang)
+            self.assertEqual([n["hidden"] for n in r["stores"]], [True, True], lang)  # GTM-135b: no Store badge on Linux
 
     def test_without_javascript_the_html_is_as_served(self):
         # The only change to the pages is the script tag; the blocks and notes are exactly the served ones.
         for lang, page in HOMES.items():
             html = page.read_text(encoding="utf-8")
-            self.assertEqual(html.count('<script src="/assets/download/os.js?v=2" defer></script>'), 1, lang)
+            self.assertEqual(html.count('<script src="/assets/download/os.js?v=3" defer></script>'), 1, lang)
+            self.assertEqual(html.count('<div class="store">'), 2, lang)
+            self.assertEqual(html.count('.store[hidden]{display:none}'), 1, lang)  # display:flex must not beat [hidden]
             self.assertEqual(html.count('<div class="dl">'), 2, lang)
             self.assertEqual(len(re.findall(r'<p class="dl-note">Windows', html)), 1, lang)
 
