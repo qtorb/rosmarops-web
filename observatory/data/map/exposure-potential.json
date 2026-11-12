@@ -1,8 +1,8 @@
 {
   "format": "exposure-potential.v1",
-  "rosmarops_version": "v0.11.2",
-  "commit": "533c7e84a5778e9dad129e4ab2b169eddd2de828",
-  "generated_at": "2026-11-11T22:44:35Z",
+  "rosmarops_version": "v0.11.3",
+  "commit": "e46f267258f651ffd22c59242d3b9091025705ec",
+  "generated_at": "2026-11-12T21:42:27Z",
   "reference_computer": "R2",
   "contagion_computer": "R2-all",
   "contagion_computer_source": "r2_fixtures",
