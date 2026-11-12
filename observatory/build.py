@@ -237,10 +237,11 @@ def software_app(a):
 # ---------------------------------------------------------------- page shell
 
 CSS = """
-:root{--bg:#F6F5F2;--ink:#1B1A18;--ink2:#3A3833;--muted:#66635D;--line:#E3E0D8;--card:#FFFFFF;--accent:#6F8F78}
+:root{--bg:#F6F5F2;--ink:#1B1A18;--ink2:#3A3833;--muted:#4F4C46;--line:#E3E0D8;--card:#FFFFFF;--brand:#2346B8;--on-ink:#FFFFFF}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
-a{color:var(--ink)}a:hover{color:var(--accent)}
+a{color:var(--ink)}a:hover{color:var(--brand)}
+:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
 .wrap{max-width:1040px;margin:0 auto;padding:0 16px}
 header .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;padding-top:24px;padding-bottom:24px}
 header img{height:40px;width:auto;display:block}
@@ -252,8 +253,8 @@ main .wrap{display:flex;flex-direction:column;gap:56px;padding-top:48px;padding-
 h1{margin:0;font-size:clamp(34px,6vw,52px);line-height:1.08;font-weight:700;letter-spacing:-.02em}
 .lead{margin:0;font-size:20px;line-height:1.55;color:var(--ink2)}
 .actions{display:flex;flex-wrap:wrap;gap:12px}
-.btn{display:inline-flex;align-items:center;min-height:44px;padding:0 20px;border-radius:8px;font-size:16px;text-decoration:none;border:1px solid var(--ink)}
-.btn.primary{background:var(--ink);color:#FFFFFF}.btn.primary:hover{background:var(--ink2);color:#FFFFFF}
+.btn{display:inline-flex;align-items:center;min-height:44px;padding:16px 24px;border-radius:12px;font-size:17px;font-weight:600;line-height:1;text-decoration:none;border:1px solid var(--ink)}
+.btn.primary{background:var(--ink);color:var(--on-ink)}.btn.primary:hover{background:var(--ink2);color:var(--on-ink)}
 .btn.secondary{background:transparent;color:var(--ink)}
 section{display:flex;flex-direction:column;gap:16px}
 section[hidden]{display:none}
@@ -562,8 +563,7 @@ def build_index(lang, t, agents, candidates):
 <p class="eyebrow">{t("index.eyebrow")}</p>
 <h1>{t("index.h1")}</h1>
 <p class="lead">{t("index.lead")}</p>
-<p class="note">{t("index.daily_line", link=daily_link)}</p>
-<div class="actions"><a class="btn primary" href="{map_page.MAP_PATH[lang]}">{esc(map_page.load()[2]["texts"][lang]["title"].split(":")[0])}</a><a class="btn secondary" href="{DAILY_PATH[lang]}">{t("index.cta_daily")}</a><a class="btn secondary" href="#method">{t("index.cta_method")}</a><a class="btn secondary" href="{JSON_BASE}data.json">{t("index.cta_data")}</a></div>
+<div class="actions"><a class="btn primary" href="{map_page.MAP_PATH[lang]}">{esc(map_page.load()[2]["texts"][lang]["title"].split(":")[0])}</a><a class="btn secondary" href="{DAILY_PATH[lang]}">{t("index.cta_daily")}</a></div>
 </section>
 
 <section id="today" aria-labelledby="today-h2" data-src="{DAILY_PATH[lang]}today.html" hidden>
