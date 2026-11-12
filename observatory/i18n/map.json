@@ -2,7 +2,7 @@
  "_about": "GTM-138: texts of the Observatory map, signed by Albert (ES 12-11 09:10 and 10:35; EN, CA, phrases and axis names when GTM-138 was pasted, 12-11; «What it's for» and the new eyebrow of the real case with the second GTM-138 block, 12-11). Sources: vigil docs/research/2026-11-09-mapa-paso-3-textos-es.md and 2026-11-12-mapa-paso-3-en-ca-y-frases.md. Action and decider labels: the program's html.ov.row.* / html.ov.legend.* / html.ov.decider.nobody (EN, ES), CA from the advisor (12-11). Do not edit by hand without a signature.",
  "texts": {
   "es": {
-   "title": "Mapa de agentes · Observatorio de RosmarOps",
+   "title": "Mapa de agentes de IA: qué puede hacer cada uno sin preguntarte · RosmarOps",
    "description": "¿Cuánto puede hacer cada agente de IA sin preguntarte? La clasificación de serie de cada agente, de A a D, con sus seis ejes.",
    "b1.eyebrow": "Observatorio · Mapa de agentes",
    "b1.h1": "¿Cuánto puede hacer cada agente de IA sin preguntarte?",
@@ -95,7 +95,7 @@
    "for.3": "En cada acción, si te pregunta a ti, si lo decide otra IA o si no pregunta a nadie. Lo ves al abrir cada agente."
   },
   "en": {
-   "title": "Agent map · RosmarOps Observatory",
+   "title": "AI agent map: what each one can do without asking you · RosmarOps",
    "description": "How much can each AI agent do without asking you? Each agent's default ranking, from A to D, with its six axes.",
    "b1.eyebrow": "Observatory · Agent map",
    "b1.h1": "How much can each AI agent do without asking you?",
@@ -188,7 +188,7 @@
    "for.3": "For each action, whether it asks you, another AI decides or it asks nobody. You see it when you open each agent."
   },
   "ca": {
-   "title": "Mapa d'agents · Observatori de RosmarOps",
+   "title": "Mapa d'agents d'IA: què pot fer cadascun sense preguntar-te · RosmarOps",
    "description": "Quant pot fer cada agent d'IA sense preguntar-te? La classificació de sèrie de cada agent, de l'A a la D, amb els seus sis eixos.",
    "b1.eyebrow": "Observatori · Mapa d'agents",
    "b1.h1": "Quant pot fer cada agent d'IA sense preguntar-te?",

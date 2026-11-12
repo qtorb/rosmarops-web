@@ -64,6 +64,11 @@ class HiddenPage(unittest.TestCase):
             self.assertIn('<meta name="robots" content="noindex">', html, lang)
             self.assertIn(f'{mp.DOWNLOAD[lang]}?from=observatory-map"', html, lang)
             self.assertEqual(html.count('class="m-row"'), 9, lang)
+            title = json.loads(mp.MAP_TEXTS.read_text(encoding="utf-8"))["texts"][lang]["title"]
+            self.assertIn(f"<title>{title}</title>", html.replace("&#x27;", "'"), lang)
+            self.assertIn(f'<meta property="og:title" content="{title}">', html.replace("&#x27;", "'"), lang)
+            for l, p in mp.MAP_PATH.items():  # links between languages
+                self.assertIn(f'<link rel="alternate" hreflang="{l}" href="https://rosmarops.com{p}">', html, (lang, l))
 
     def test_not_in_sitemap_llms_or_any_link(self):
         sitemap = (ROOT / "site" / "sitemap-pages.xml").read_text(encoding="utf-8")

@@ -383,7 +383,7 @@ class Agents(unittest.TestCase):
                 self.assertIn(f'<span data-agent="{aid}">{norm(cell)}</span>', body, (lang, aid))
             for page in (SITE / index).glob("*/index.html"):
                 aid = page.parent.name
-                if aid in ("map", "mapa"):  # GTM-138: the map page, not an agent page
+                if aid in ("ai-agent-map", "mapa-agentes-ia", "mapa-agents-ia"):  # GTM-138: the map page, not an agent page
                     continue
                 st = page.read_text(encoding="utf-8")
                 status, body = self.route(f"{prefix}history-{aid}.html")
