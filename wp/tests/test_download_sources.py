@@ -45,7 +45,7 @@ class Sources(unittest.TestCase):
         import build
         agents = build.load_agents()
         want = {f"observatory-{a['agent']['id']}" for a in agents if build.is_published(a)}
-        have = {v for v in closed_list() if v.startswith("observatory-")}
+        have = {v for v in closed_list() if v.startswith("observatory-")} - {"observatory-map"}  # GTM-138: the map
         self.assertEqual(have, want)
 
     def test_team_cookie(self):

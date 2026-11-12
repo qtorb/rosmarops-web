@@ -186,6 +186,18 @@ def check_sample(tag, digests, sample=SAMPLE):
     return errs
 
 
+def check_map(tag, digests, folder):
+    """GTM-138: the map's two engine files are the latest release's (copied by map_page.py fetch in the release PR)."""
+    errs = []
+    for name in ("exposure-potential.json", "factory-scores.json"):
+        want = digests.get(name)
+        if not want:
+            errs.append(f"release {tag} has no {name}")
+        elif not (folder / name).exists() or sha256(folder / name) != want:
+            errs.append(f"observatory/data/map/{name} is not the one in release {tag}")
+    return errs
+
+
 def split(text):
     out = []
     for line in text.splitlines():
@@ -264,6 +276,7 @@ def run_checks(tag, digests, knowledge, root=ROOT):
     errs = check_candidates(agents, json.loads((root / "observatory" / "data" / "candidates.json").read_text(encoding="utf-8")))
     errs += check_scored(agents, knowledge, json.loads((root / "observatory" / "data" / "program-agents.json").read_text(encoding="utf-8")))
     errs += check_sample(tag, digests, root / "site" / "sample-report")
+    errs += check_map(tag, digests, root / "observatory" / "data" / "map")
     errs += check_pages(agents, json.loads((root / "observatory" / "data" / "agent-list-exclusions.json").read_text(encoding="utf-8")), root)
     return errs
 

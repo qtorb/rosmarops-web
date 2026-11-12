@@ -1,0 +1,448 @@
+{
+  "format": "exposure-potential.v1",
+  "rosmarops_version": "v0.11.2",
+  "commit": "533c7e84a5778e9dad129e4ab2b169eddd2de828",
+  "generated_at": "2026-11-11T22:44:35Z",
+  "reference_computer": "R2",
+  "contagion_computer": "R2-all",
+  "contagion_computer_source": "r2_fixtures",
+  "rules_version": "0",
+  "knowledge_version": "antigravity-cli@2026-11-01;claude-code@2026-10-24;cline@2026-11-03;codex@2026-11-01;cursor@2026-10-25;gemini-cli@2026-11-08;github-copilot@2026-11-01;grok-build@2026-11-08;hermes@2026-10-29",
+  "class_rule": "weighted_v1",
+  "weights": {
+    "autonomy": 2,
+    "reach": 2,
+    "contagion": 2,
+    "delegation": 1,
+    "opacity": 1,
+    "complexity": 1
+  },
+  "agents": [
+    {
+      "product": "claude-code",
+      "evaluated": true,
+      "axes": {
+        "autonomy": {
+          "level": 3,
+          "inputs": [
+            "reads_files:machine",
+            "writes_files",
+            "runs_commands",
+            "sends_out"
+          ]
+        },
+        "reach": {
+          "level": 3,
+          "inputs": [
+            "machine",
+            "sends_out:any_destination"
+          ]
+        },
+        "contagion": {
+          "level": 3,
+          "inputs": [
+            "C1:shared_instructions",
+            "C3:config"
+          ]
+        },
+        "delegation": {
+          "level": 3,
+          "inputs": [
+            "changes_other_agents:model",
+            "reads_files:model",
+            "runs_commands:model",
+            "sends_out:model",
+            "writes_files:model"
+          ]
+        },
+        "opacity": {
+          "level": 2,
+          "inputs": [
+            "auto_classifier_permits",
+            "auto_mode_available",
+            "ui_mode_choice_unknown"
+          ]
+        },
+        "complexity": {
+          "level": null,
+          "no_data": "registry_missing"
+        }
+      },
+      "class": "D",
+      "class_status": "provisional",
+      "missing_axes": [
+        "complexity"
+      ],
+      "factory_band": "exposed"
+    },
+    {
+      "product": "cursor",
+      "evaluated": true,
+      "axes": {
+        "autonomy": {
+          "level": 3,
+          "inputs": [
+            "reads_files:machine",
+            "writes_files",
+            "runs_commands",
+            "sends_out"
+          ]
+        },
+        "reach": {
+          "level": 3,
+          "inputs": [
+            "machine",
+            "sends_out:any_destination"
+          ]
+        },
+        "contagion": {
+          "level": 3,
+          "inputs": [
+            "C1:shared_instructions",
+            "C2:reads_config_of",
+            "C3:instructions",
+            "C3:config"
+          ]
+        },
+        "delegation": {
+          "level": 3,
+          "inputs": [
+            "changes_other_agents:model",
+            "reads_files:model",
+            "runs_commands:model",
+            "sends_out:model",
+            "writes_files:model"
+          ]
+        },
+        "opacity": {
+          "level": 2,
+          "inputs": [
+            "auto_classifier_permits",
+            "config_file_protection_scope_unknown",
+            "ide_run_mode_not_readable",
+            "team_policy_unknown"
+          ]
+        },
+        "complexity": {
+          "level": null,
+          "no_data": "registry_missing"
+        }
+      },
+      "class": "D",
+      "class_status": "provisional",
+      "missing_axes": [
+        "complexity"
+      ],
+      "factory_band": "exposed"
+    },
+    {
+      "product": "codex",
+      "evaluated": true,
+      "axes": {
+        "autonomy": {
+          "level": 3,
+          "inputs": [
+            "reads_files:machine",
+            "writes_files",
+            "runs_commands"
+          ]
+        },
+        "reach": {
+          "level": 2,
+          "inputs": [
+            "machine"
+          ]
+        },
+        "contagion": {
+          "level": 2,
+          "inputs": [
+            "C1:shared_instructions",
+            "C3:instructions"
+          ]
+        },
+        "delegation": {
+          "level": 0
+        },
+        "opacity": {
+          "level": 1,
+          "inputs": [
+            "launch_flags_not_readable"
+          ]
+        },
+        "complexity": {
+          "level": null,
+          "no_data": "registry_missing"
+        }
+      },
+      "class": "C",
+      "class_status": "provisional",
+      "missing_axes": [
+        "complexity"
+      ],
+      "factory_band": "open_gaps"
+    },
+    {
+      "product": "github-copilot",
+      "evaluated": true,
+      "axes": {
+        "autonomy": {
+          "level": 1,
+          "inputs": [
+            "writes_files"
+          ]
+        },
+        "reach": {
+          "level": 1,
+          "inputs": [
+            "same_project_or_sandbox"
+          ]
+        },
+        "contagion": {
+          "level": 3,
+          "inputs": [
+            "C1:shared_instructions",
+            "C3:config"
+          ]
+        },
+        "delegation": {
+          "level": 0
+        },
+        "opacity": {
+          "level": 1,
+          "inputs": [
+            "ui_mode_choice_unknown"
+          ]
+        },
+        "complexity": {
+          "level": null,
+          "no_data": "registry_missing"
+        }
+      },
+      "class": "B",
+      "class_status": "provisional",
+      "missing_axes": [
+        "complexity"
+      ],
+      "factory_band": "open_gaps"
+    },
+    {
+      "product": "gemini-cli",
+      "evaluated": true,
+      "axes": {
+        "autonomy": {
+          "level": 1,
+          "inputs": [
+            "sends_out"
+          ]
+        },
+        "reach": {
+          "level": 2,
+          "inputs": [
+            "sends_out:any_destination"
+          ]
+        },
+        "contagion": {
+          "level": 0
+        },
+        "delegation": {
+          "level": 0
+        },
+        "opacity": {
+          "level": 1,
+          "inputs": [
+            "launch_flags_not_readable"
+          ]
+        },
+        "complexity": {
+          "level": null,
+          "no_data": "registry_missing"
+        }
+      },
+      "class": "B",
+      "class_status": "provisional",
+      "missing_axes": [
+        "complexity"
+      ],
+      "factory_band": "open_gaps"
+    },
+    {
+      "product": "cline",
+      "evaluated": true,
+      "axes": {
+        "autonomy": {
+          "level": 3,
+          "inputs": [
+            "reads_files:machine",
+            "writes_files",
+            "sends_out"
+          ]
+        },
+        "reach": {
+          "level": 3,
+          "inputs": [
+            "machine",
+            "sends_out:any_destination"
+          ]
+        },
+        "contagion": {
+          "level": 3,
+          "inputs": [
+            "C1:shared_instructions",
+            "C3:config"
+          ]
+        },
+        "delegation": {
+          "level": 0
+        },
+        "opacity": {
+          "level": 0
+        },
+        "complexity": {
+          "level": null,
+          "no_data": "registry_missing"
+        }
+      },
+      "class": "D",
+      "class_status": "provisional",
+      "missing_axes": [
+        "complexity"
+      ],
+      "factory_band": "exposed"
+    },
+    {
+      "product": "grok-build",
+      "evaluated": true,
+      "axes": {
+        "autonomy": {
+          "level": 2,
+          "inputs": [
+            "reads_files:machine",
+            "sends_out"
+          ]
+        },
+        "reach": {
+          "level": 3,
+          "inputs": [
+            "machine",
+            "sends_out:any_destination"
+          ]
+        },
+        "contagion": {
+          "level": 2,
+          "inputs": [
+            "C1:shared_instructions",
+            "C2:reads_config_of"
+          ]
+        },
+        "delegation": {
+          "level": 0
+        },
+        "opacity": {
+          "level": 1,
+          "inputs": [
+            "launch_flags_not_readable"
+          ]
+        },
+        "complexity": {
+          "level": null,
+          "no_data": "registry_missing"
+        }
+      },
+      "class": "C",
+      "class_status": "provisional",
+      "missing_axes": [
+        "complexity"
+      ],
+      "factory_band": "exposed"
+    },
+    {
+      "product": "hermes",
+      "evaluated": true,
+      "axes": {
+        "autonomy": {
+          "level": 3,
+          "inputs": [
+            "reads_files:machine",
+            "writes_files",
+            "runs_commands",
+            "sends_out"
+          ]
+        },
+        "reach": {
+          "level": 3,
+          "inputs": [
+            "machine",
+            "sends_out:any_destination"
+          ]
+        },
+        "contagion": {
+          "level": 3,
+          "inputs": [
+            "C1:shared_instructions",
+            "C3:config"
+          ]
+        },
+        "delegation": {
+          "level": 0
+        },
+        "opacity": {
+          "level": 0
+        },
+        "complexity": {
+          "level": null,
+          "no_data": "registry_missing"
+        }
+      },
+      "class": "D",
+      "class_status": "provisional",
+      "missing_axes": [
+        "complexity"
+      ],
+      "factory_band": "exposed"
+    },
+    {
+      "product": "antigravity-cli",
+      "evaluated": true,
+      "axes": {
+        "autonomy": {
+          "level": 1,
+          "inputs": [
+            "writes_files"
+          ]
+        },
+        "reach": {
+          "level": 1,
+          "inputs": [
+            "same_project_or_sandbox"
+          ]
+        },
+        "contagion": {
+          "level": 3,
+          "inputs": [
+            "C1:shared_instructions",
+            "C3:config"
+          ]
+        },
+        "delegation": {
+          "level": 0
+        },
+        "opacity": {
+          "level": 1,
+          "inputs": [
+            "launch_flags_not_readable"
+          ]
+        },
+        "complexity": {
+          "level": null,
+          "no_data": "registry_missing"
+        }
+      },
+      "class": "B",
+      "class_status": "provisional",
+      "missing_axes": [
+        "complexity"
+      ],
+      "factory_band": "open_gaps"
+    }
+  ]
+}
