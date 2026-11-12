@@ -44,7 +44,7 @@ jobs:
           php -l wp/mu-plugins/rosmarops-schedule-he-terminado.php
           ls -l wp/drafts/*.json wp/drafts/*.html wp/drafts/rosmarops-img-13-loop-engineering.jpg wp/drafts/rosmarops-img-14-he-terminado.jpg wp/drafts/rosmarops-img-15-el-sistema-aprende.jpg wp/drafts/rosmarops-img-17-harness-engineering.jpg wp/drafts/rosmarops-img-16-novedades-0-10.jpg
           ls -l wp/daily/shell-en.html wp/daily/shell-es.html wp/daily/shell-ca.html wp/daily/i18n.json
-          ! grep -RIl 'noindex' site/index.html site/es/index.html site/methodology site/faq site/es/metodologia site/es/preguntas-frecuentes site/ca/index.html site/ca/metodologia site/ca/preguntes-frequents site/cloud-access site/es/acceso-en-la-nube site/ca/acces-al-nuvol site/ca/privadesa site/privacy site/es/privacidad site/legal-notice site/es/aviso-legal site/ca/avis-legal site/terms site/es/terminos site/ca/termes site/security-teams site/es/equipos-de-seguridad site/ca/equips-de-seguretat site/_static site/macos site/es/macos site/ca/macos site/linux site/es/linux site/ca/linux site/sample-report/index.html site/es/informe-de-ejemplo site/ca/informe-dexemple site/observatory/index.html site/es/observatorio/index.html site/ca/observatori/index.html site/glossary site/es/glosario site/ca/glossari
+          ! grep -RIl 'noindex' site/index.html site/es/index.html site/methodology site/faq site/es/metodologia site/es/preguntas-frecuentes site/ca/index.html site/ca/metodologia site/ca/preguntes-frequents site/cloud-access site/es/acceso-en-la-nube site/ca/acces-al-nuvol site/ca/privadesa site/privacy site/es/privacidad site/legal-notice site/es/aviso-legal site/ca/avis-legal site/terms site/es/terminos site/ca/termes site/security-teams site/es/equipos-de-seguridad site/ca/equips-de-seguretat site/_static site/macos site/es/macos site/ca/macos site/linux site/es/linux site/ca/linux site/sample-report/index.html site/es/informe-de-ejemplo site/ca/informe-dexemple site/observatory/index.html site/es/observatorio/index.html site/ca/observatori/index.html site/glossary site/es/glosario site/ca/glossari site/observatory/ai-agent-map site/es/observatorio/mapa-agentes-ia site/ca/observatori/mapa-agents-ia
           # Observatory: only the three index pages and the JSON files are published (GTM-11). Agent pages wait for verification.
           ls site/observatory/index.html site/es/observatorio/index.html site/ca/observatori/index.html site/observatory/*.json
 
@@ -290,7 +290,7 @@ jobs:
             echo "put site/es/observatorio/index.html es/observatorio/index.html"
             echo "-mkdir ca/observatori"
             echo "put site/ca/observatori/index.html ca/observatori/index.html"
-            # GTM-138: the map, hidden (noindex, out of the sitemap, linked from nowhere), uploaded by name.
+            # GTM-138: the map (published 12-11), uploaded by name.
             echo "-mkdir observatory/ai-agent-map"
             echo "put site/observatory/ai-agent-map/index.html observatory/ai-agent-map/index.html"
             echo "-mkdir es/observatorio/mapa-agentes-ia"
