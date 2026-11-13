@@ -214,3 +214,22 @@ class FocoAlert(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class HomeNine(unittest.TestCase):
+    """GTM-153: the homes' «RosmarOps checks these nine: …» sentence is generated: names with «dots», number with
+    «count», in each language, and it follows the agents' status."""
+
+    def test_dots_and_count_follow_the_scored_agents(self):
+        import agent_lists as al
+        agents = al.load_agents()
+        for lang, page in (("en", "site/index.html"), ("es", "site/es/index.html"), ("ca", "site/ca/index.html")):
+            text = (al.ROOT / page).read_text(encoding="utf-8")
+            scored = al.names(agents, "scored", lang)
+            self.assertIn(f"<!-- agents:scored count -->{al.COUNT_WORDS[lang][len(scored)]}<!-- /agents:scored -->", text, lang)
+            self.assertIn("<!-- agents:scored dots -->" + " · ".join(scored) + "<!-- /agents:scored -->", text, lang)
+            # one agent fewer: both the number and the names change
+            fewer = [dict(a, rosmarops=dict(a["rosmarops"], status="detected")) if a["name"] == "Gemini CLI" else a for a in agents]
+            out = al.render_text(text, lang, fewer, page)
+            self.assertIn(f"<!-- agents:scored count -->{al.COUNT_WORDS[lang][len(scored) - 1]}<!-- /agents:scored -->", out, lang)
+            self.assertNotIn("Gemini CLI<!-- /agents:scored -->", out, lang)
