@@ -128,5 +128,17 @@ class StableAnchors(unittest.TestCase):
                 self.assertNotIn("RosmarOps", title, (lang, agent))
 
 
+class ShareImage(unittest.TestCase):
+    def test_each_language_shares_its_own_map_image(self):
+        # GTM-152: observatory/map_social.py makes them; no agent data in them, so they don't go stale.
+        for lang, f in PAGES.items():
+            html = f.read_text(encoding="utf-8")
+            self.assertIn(f'<meta property="og:image" content="https://rosmarops.com/assets/brand/observatory/map-social-{lang}.png">', html, lang)
+            self.assertIn('<meta property="og:image:alt"', html, lang)
+            self.assertTrue((ROOT / "site" / "assets" / "brand" / "observatory" / f"map-social-{lang}.png").is_file(), lang)
+        other = (ROOT / "site" / "observatory" / "index.html").read_text(encoding="utf-8")
+        self.assertIn("observatory-social.png", other)
+
+
 if __name__ == "__main__":
     unittest.main()
