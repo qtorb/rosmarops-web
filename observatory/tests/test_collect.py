@@ -920,14 +920,14 @@ class SourcesFile(unittest.TestCase):
         ids = [s["id"] for s in SOURCES["sources"]]
         self.assertEqual(ids, IDS)
         self.assertEqual(IDS[:29], [f"F{i}" for i in range(1, 30)])
-        self.assertEqual(IDS[29:], ["F31", "F32", "F33", "F34", "F35", "F36", "F37", "F38", "F39", "F40", "F41", "F42", "F43", "F44"])
+        self.assertEqual(IDS[29:], ["F31", "F32", "F33", "F34", "F35", "F36", "F37", "F38", "F39", "F40", "F41", "F42", "F43", "F44", "F45"])
         for s in SOURCES["sources"]:
             self.assertEqual(set(s), {"id", "name", "scope", "method", "read", "public_url", "fragile", "notes"}, s["id"])
             self.assertIn(s["method"], collect.METHODS, s["id"])
             self.assertEqual(s["fragile"], s["id"] in ("F8", "F19", "F43"), s["id"])
             self.assertNotIn("raw.githubusercontent.com", s["public_url"], s["id"])
             if s["name"] not in ("Hermes Agent", "Muse Code", "n8n", "TRAE", "Qwen Code", "Kimi Code", "CodeBuddy", "Qoder CN",
-                                 "Aider", "OpenHands", "Amp", "Warp", "Junie", "Kilo Code", "Comet", "Grok Build"):
+                                 "Aider", "OpenHands", "Amp", "Warp", "Junie", "Kilo Code", "Comet", "Grok Build", "Grok Bot"):
                 self.assertEqual(s["public_url"], checked[s["name"]], s["id"])
         self.assertEqual(len(set(SOURCES["scope_terms"])), len(SOURCES["scope_terms"]))
         self.assertTrue({"muse", "n8n"} <= set(SOURCES["scope_terms"]))

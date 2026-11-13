@@ -23,7 +23,8 @@
     "crewai",
     "autogen",
     "muse",
-    "n8n"
+    "n8n",
+    "grok"
   ],
   "sources": [
     {
@@ -770,6 +771,20 @@
       "public_url": "https://x.ai/changelog/build",
       "fragile": false,
       "notes": "GTM-99. xAI's dated changelog of Grok Build, «## Grok Build 1.0.70» headings with their date. The site answers 403 to curl and 200 to Python's client (07-11)."
+    },
+    {
+      "id": "F45",
+      "name": "Grok Bot",
+      "scope": "grok-bot",
+      "method": "changelog-web",
+      "read": {
+        "urls": [
+          "https://x.ai/changelog/bot"
+        ]
+      },
+      "public_url": "https://x.ai/changelog/bot",
+      "fragile": false,
+      "notes": "GTM-159 (Albert, 13-11): xAI's changelog of Grok Bot, the desktop and mobile app whose Bots work in Cursor's cloud and, if allowed, on your own computer. Same host as F44."
     }
   ]
 }
