@@ -43,7 +43,8 @@ jobs:
           php -l wp/mu-plugins/rosmarops-gtm124-agente.php
           php -l wp/mu-plugins/rosmarops-schedule-he-terminado.php
           php -l wp/mu-plugins/rosmarops-schedule-microsoft-store.php
-          ls -l wp/drafts/*.json wp/drafts/*.html wp/drafts/rosmarops-img-13-loop-engineering.jpg wp/drafts/rosmarops-img-14-he-terminado.jpg wp/drafts/rosmarops-img-15-el-sistema-aprende.jpg wp/drafts/rosmarops-img-17-harness-engineering.jpg wp/drafts/rosmarops-img-16-novedades-0-10.jpg
+          php -l wp/mu-plugins/rosmarops-store-image.php
+          ls -l wp/drafts/*.json wp/drafts/*.html wp/drafts/rosmarops-img-13-loop-engineering.jpg wp/drafts/rosmarops-img-14-he-terminado.jpg wp/drafts/rosmarops-img-15-el-sistema-aprende.jpg wp/drafts/rosmarops-img-17-harness-engineering.jpg wp/drafts/rosmarops-img-16-novedades-0-10.jpg wp/drafts/rosmarops-img-18-microsoft-store.jpg
           ls -l wp/daily/shell-en.html wp/daily/shell-es.html wp/daily/shell-ca.html wp/daily/i18n.json
           ! grep -RIl 'noindex' site/index.html site/es/index.html site/methodology site/faq site/es/metodologia site/es/preguntas-frecuentes site/ca/index.html site/ca/metodologia site/ca/preguntes-frequents site/cloud-access site/es/acceso-en-la-nube site/ca/acces-al-nuvol site/ca/privadesa site/privacy site/es/privacidad site/legal-notice site/es/aviso-legal site/ca/avis-legal site/terms site/es/terminos site/ca/termes site/security-teams site/es/equipos-de-seguridad site/ca/equips-de-seguretat site/_static site/macos site/es/macos site/ca/macos site/linux site/es/linux site/ca/linux site/sample-report/index.html site/es/informe-de-ejemplo site/ca/informe-dexemple site/observatory/index.html site/es/observatorio/index.html site/ca/observatori/index.html site/glossary site/es/glosario site/ca/glossari site/observatory/ai-agent-map site/es/observatorio/mapa-agentes-ia site/ca/observatori/mapa-agents-ia
           # Observatory: only the three index pages and the JSON files are published (GTM-11). Agent pages wait for verification.
@@ -248,6 +249,7 @@ jobs:
           put wp/drafts/rosmarops-img-15-el-sistema-aprende.jpg wp-content/mu-plugins/rosmarops-drafts/rosmarops-img-15-el-sistema-aprende.jpg
           put wp/drafts/rosmarops-img-17-harness-engineering.jpg wp-content/mu-plugins/rosmarops-drafts/rosmarops-img-17-harness-engineering.jpg
           put wp/drafts/rosmarops-img-16-novedades-0-10.jpg wp-content/mu-plugins/rosmarops-drafts/rosmarops-img-16-novedades-0-10.jpg
+          put wp/drafts/rosmarops-img-18-microsoft-store.jpg wp-content/mu-plugins/rosmarops-drafts/rosmarops-img-18-microsoft-store.jpg
           put wp/drafts/agente-he-terminado-en.html wp-content/mu-plugins/rosmarops-drafts/agente-he-terminado-en.html
           put wp/drafts/agente-he-terminado-en.json wp-content/mu-plugins/rosmarops-drafts/agente-he-terminado-en.json
           put wp/drafts/agente-he-terminado-es.html wp-content/mu-plugins/rosmarops-drafts/agente-he-terminado-es.html
@@ -282,6 +284,7 @@ jobs:
           put wp/mu-plugins/rosmarops-gtm124-agente.php wp-content/mu-plugins/rosmarops-gtm124-agente.php
           put wp/mu-plugins/rosmarops-schedule-he-terminado.php wp-content/mu-plugins/rosmarops-schedule-he-terminado.php
           put wp/mu-plugins/rosmarops-schedule-microsoft-store.php wp-content/mu-plugins/rosmarops-schedule-microsoft-store.php
+          put wp/mu-plugins/rosmarops-store-image.php wp-content/mu-plugins/rosmarops-store-image.php
           -mkdir wp-content/mu-plugins/rosmarops-daily
           put wp/daily/shell-en.html wp-content/mu-plugins/rosmarops-daily/shell-en.html
           put wp/daily/shell-es.html wp-content/mu-plugins/rosmarops-daily/shell-es.html
@@ -798,6 +801,25 @@ jobs:
             [ "$code" != "200" ] && echo "$f.log closed to the web ($code)" || (echo "::error::$f.log is reachable from the web"; exit 1)
           done
           if grep -h '^\(skipped\|failed\):' /tmp/sched3/*.log 2>/dev/null; then echo "::warning::the Microsoft Store post was not scheduled on some site; see the logs"; fi
+          # rosmarops-store-image.php (GTM-146) runs on the first request to each site after the upload; once done it never runs again.
+          for u in https://rosmarops.com/blog/ https://rosmarops.com/es/blog/ https://rosmarops.com/ca/blog/; do
+            curl -s -o /dev/null -w "%{http_code} $u\n" "$u?storeimg=${GITHUB_SHA::7}"
+          done
+          sleep 5
+          mkdir -p /tmp/storeimg
+          printf 'cd %s/wp-content/rosmarops-private\n-get storeimg-en.log /tmp/storeimg/\n-get storeimg-es.log /tmp/storeimg/\n-get storeimg-ca.log /tmp/storeimg/\n' "$SFTP_PATH" > /tmp/bsi
+          sshpass -e sftp -o BatchMode=no -b /tmp/bsi \
+            -o StrictHostKeyChecking=yes \
+            -o UserKnownHostsFile="$HOME/.ssh/known_hosts" \
+            -o PreferredAuthentications=password,keyboard-interactive \
+            -o PubkeyAuthentication=no \
+            "$SFTP_USER@$SFTP_HOST" || true
+          for f in storeimg-en storeimg-es storeimg-ca; do
+            if [ -f "/tmp/storeimg/$f.log" ]; then echo "--- $f.log"; cat "/tmp/storeimg/$f.log"; else echo "::warning::$f.log not found"; fi
+            code=$(curl -s -o /dev/null -w '%{http_code}' "https://rosmarops.com/wp-content/rosmarops-private/$f.log")
+            [ "$code" != "200" ] && echo "$f.log closed to the web ($code)" || (echo "::error::$f.log is reachable from the web"; exit 1)
+          done
+          if grep -h '^\(skipped\|failed\):' /tmp/storeimg/*.log 2>/dev/null; then echo "::warning::the Microsoft Store post has no new featured image on some site; see the logs"; fi
 
       - name: GTM-125 the IP check is gone
         run: |
