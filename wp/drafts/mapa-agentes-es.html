@@ -1,0 +1,77 @@
+<!-- wp:paragraph -->
+<p><em>He medido nueve agentes de IA tal como vienen instalados. El mapa del Observatorio enseña cuánto puede hacer cada uno sin preguntarte, y por qué.</em></p>
+<!-- /wp:paragraph -->
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Por qué un mapa</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>Cuando instalas un agente de IA, no viene con una ficha que diga qué puede hacer sin preguntarte. Esa información existe, pero está repartida entre la documentación, los ficheros de configuración y el código de cada fabricante. El mapa la junta en un sitio.</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Cómo lo medimos</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>Instalamos cada agente tal como viene, en el mismo Windows de prueba y con sus valores de serie. Medimos seis cosas, de 0 a 3: autonomía, alcance, contagio, delegación, opacidad y complejidad. De ahí sale una clase, de la A («hace poco sin preguntarte») a la D («hace mucho sin preguntarte»), y una nota de fábrica de 0 a 100: cuanto más alta, menos expuesto.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>No lo calculo a mano: lo calcula RosmarOps con cada versión, y los datos se publican.</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Lo que sale hoy</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>Con RosmarOps 0.11.4, el 13 de noviembre:</p>
+<!-- /wp:paragraph -->
+<!-- wp:list -->
+<ul class="wp-block-list">
+<!-- wp:list-item -->
+<li><strong>Clase D:</strong> Claude Code, Cursor, Cline en VS Code y Hermes Agent.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>Clase C:</strong> Codex y Grok Build.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>Clase B:</strong> GitHub Copilot en VS Code, Gemini CLI y Antigravity CLI.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>Clase A:</strong> ninguno.</li>
+<!-- /wp:list-item -->
+</ul>
+<!-- /wp:list -->
+<!-- wp:paragraph -->
+<p>Todas las clases son provisionales, porque todavía no medimos la complejidad. Cuando falta un dato, no cuenta como bueno.</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Tres cosas que se repiten</h2>
+<!-- /wp:heading -->
+<!-- wp:list -->
+<ul class="wp-block-list">
+<!-- wp:list-item -->
+<li><strong>Cada vez decide más un modelo.</strong> Varios agentes ya vienen preparados para que otra IA apruebe sus acciones en lugar de preguntarte.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>El fichero que todos leen.</strong> Un mismo fichero de instrucciones, como AGENTS.md, lo leen varios agentes a la vez.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>Lo que no se puede revisar.</strong> Algunos guardan sus permisos dentro de la aplicación, donde ni tú ni RosmarOps podéis comprobarlos.</li>
+<!-- /wp:list-item -->
+</ul>
+<!-- /wp:list -->
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Lo que el mapa no dice</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>No dice si un agente es seguro o no. Dice cuánto puede hacer sin ti. Lo que te conviene depende de para qué lo uses.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>Y es cada agente de fábrica. El tuyo puede ser distinto: depende de cómo lo tengas configurado, de las claves que haya en tu ordenador y de los demás agentes que uses. Para verlo está RosmarOps: en Windows, desde la <a href="/es/descargar?from=blog-map&amp;os=store">Microsoft Store</a>; en <a href="/es/macos/">Mac (vista previa)</a> y en <a href="/es/linux/">Linux</a>, desde la web.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p><a href="https://rosmarops.com/es/observatorio/mapa-agentes-ia/">Mira el mapa de agentes de IA</a>. Y si ves algo que no cuadra, cuéntamelo.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p><em>Fuente: el <a href="https://rosmarops.com/es/observatorio/mapa-agentes-ia/">mapa de agentes de IA</a> del Observatorio, calculado por RosmarOps 0.11.4 el 13 de noviembre de 2026, y <a href="https://github.com/qtorb/rosmarops/releases/download/v0.11.4/exposure-potential.json">sus datos</a>.</em></p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p><em>Escrito con ayuda de agentes de IA. La medición es de RosmarOps; la decisión de publicar, mía.</em></p>
+<!-- /wp:paragraph -->

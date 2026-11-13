@@ -1,0 +1,20 @@
+{
+ "id": "mapa-agentes",
+ "lang": "es",
+ "slug": "mapa-agentes-ia",
+ "title": "El mapa de agentes de IA: qué puede hacer cada uno sin preguntarte",
+ "excerpt": "He medido nueve agentes de IA tal como vienen instalados. El mapa del Observatorio enseña cuánto puede hacer cada uno sin preguntarte, y por qué.",
+ "content": "mapa-agentes-es.html",
+ "seo_title": "Mapa de agentes de IA: qué hacen sin preguntarte",
+ "seo_description": "Nueve agentes de IA medidos tal como vienen, en el mismo Windows: su clase de la A a la D, sus seis ejes y su nota de fábrica. Y lo que el mapa no dice.",
+ "translations": {
+  "en": "https://rosmarops.com/blog/ai-agent-map/",
+  "ca": "https://rosmarops.com/ca/blog/mapa-agents-ia/"
+ },
+ "category": "novedades-de-rosmarops",
+ "tags": {
+  "observatorio": "Observatorio",
+  "claude-code": "Claude Code",
+  "cursor": "Cursor"
+ }
+}
