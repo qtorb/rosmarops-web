@@ -52,8 +52,7 @@ def for_file(path):
         out.append(message(date, "fichero no válido", ["Errores:"] + [f"- {e}" for e in errs], ref))
         return out
     if data.get("status") == "incomplete":
-        out.append(message(date, "revisión incompleta", ["Ese día no se publica nada."]
-                           + [f"- {h['reason']} ({h['source_url']})" for h in data.get("held", [])], ref))
+        out.append(message(date, "revisión incompleta", incomplete_lines(date, data), ref))
     elif data.get("held"):
         lines = ["Puntos retenidos:"]
         for h in data["held"]:
@@ -61,6 +60,33 @@ def for_file(path):
             lines += [f"- {h['text_en']}", f"  {rule}: {h['reason']}", f"  fuente: {h['source_url']}"]
         out.append(message(date, "retenidos", lines, ref))
     return out
+
+
+def incomplete_lines(date, data, raw_dir=None):
+    """GTM-155: since GTM-90 an incomplete day still publishes what came from the sources that opened. Say how many
+    points went out, which sources could not be read and why, and what was held, grouped by reason."""
+    items = data.get("items", [])
+    lines = [f"Publicados: {len(items)} {'punto' if len(items) == 1 else 'puntos'} de las fuentes que se abrieron."]
+    raw = read_raw(RAW_DIR if raw_dir is None else raw_dir, date) or {}
+    reasons = {}
+    try:
+        names = {s["id"]: s["name"] for s in json.loads(SOURCES.read_text(encoding="utf-8"))["sources"]}
+    except (OSError, ValueError, KeyError):
+        names = {}
+    for s in raw.get("sources", []) if isinstance(raw, dict) else []:
+        if not s.get("opened"):
+            reasons[names.get(s.get("id"), s.get("id"))] = s.get("reason") or "sin motivo"
+    lines += ["", "Sin leer:"] + [f"- {n}: {reasons.get(n, 'sin motivo en el raw')}" for n in data.get("not_checked", [])]
+    groups = {"Fuera por tope (R9):": [], "Fuera de alcance (R11):": [], "Otros retenidos:": []}
+    for h in data.get("held", []):
+        key = ("Fuera por tope (R9):" if "tope" in h.get("reason", "") else
+               "Fuera de alcance (R11):" if h.get("rule") == 11 else "Otros retenidos:")
+        groups[key].append(h)
+    for title, hs in groups.items():
+        if hs:
+            lines += ["", title] + [f"- {h['source_url']}" + ("" if "tope" in h.get("reason", "") else f": {h['reason']}")
+                                    for h in hs]
+    return lines
 
 
 def plain(subject, lines):
