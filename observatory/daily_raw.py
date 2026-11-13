@@ -39,6 +39,8 @@ def coverage(raw, sources):
     by_id = {s["id"]: s for s in raw["sources"]}
     checked, not_checked = [], []
     for src in sources:
+        if src.get("paused"):  # GTM-157: neither checked nor not checked
+            continue
         r = by_id.get(src["id"])
         if r and r["opened"]:
             checked.append({"name": src["name"], "url": src["public_url"],
