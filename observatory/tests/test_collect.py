@@ -224,16 +224,41 @@ class ChangelogWeb(Base):
         self.assertEqual((r["latest"], r["latest_date"], r["new"]), ("v2.1.12", "2026-01-10", []))
         self.assertIn("changelog page failed", r["reason"])
 
-    def test_two_pages_and_calendar_versions(self):
-        pages = {
-            "https://cursor.com/changelog": "<html><body><p>Jan 13, 2026</p><h1>Agent SDK</h1><p>Agents as code.</p></body></html>",
-            "https://cursor.com/docs/cli/changelog": "<html><body><h2>v2026.01.14</h2><h3>Hooks</h3><p>Hooks fire for subagents.</p>"
-                                                     "<h2>v2026.01.02</h2><p>Old.</p></body></html>",
-        }
-        with self.web(pages):
+    CURSOR_RSS = ('<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/">'
+                  '<channel><title>Cursor Changelog</title><item><title>Agent SDK</title><link>https://cursor.com/changelog/agent-sdk</link>'
+                  '<pubDate>Tue, 13 Jan 2026 00:00:00 GMT</pubDate><content:encoded><![CDATA[<p>Agents as code.</p>]]></content:encoded></item>'
+                  '<item><title>Old thing</title><pubDate>Fri, 02 Jan 2026 00:00:00 GMT</pubDate><description>Old.</description></item>'
+                  '</channel></rss>')
+    CURSOR_CLI = ("<html><body><h2>v2026.01.14</h2><h3>Hooks</h3><p>Hooks fire for subagents.</p>"
+                  "<h2>v2026.01.02</h2><p>Old.</p></body></html>")
+
+    def test_rss_cli_page_and_calendar_versions(self):
+        # GTM-158: Cursor's changelog from its RSS feed (no versions: the title is the label), the CLI from its page
+        pages = {"https://cursor.com/changelog/rss.xml": self.CURSOR_RSS, "https://cursor.com/docs/cli/changelog": self.CURSOR_CLI}
+        adv = [{"date": "2026-01-12", "version": "GHSA-abcd-efgh-ijkl", "title": "x", "labels": [],
+                "text": "GHSA-abcd-efgh-ijkl CVE-2026-0001: x"}]
+        with self.web(pages), mock.patch.object(collect, "repo_advisories", return_value=adv) as ra:
             r = collect.read_changelog_web(src("F2"), L, TERMS)
+        ra.assert_called_once_with("cursor/cursor")
+        self.assertTrue(r["opened"])
         self.assertEqual((r["latest"], r["latest_date"]), ("v2026.01.14", "2026-01-14"))
-        self.assertEqual([e["date"] for e in r["new"]], ["2026-01-14", "2026-01-13"])
+        self.assertEqual([(e["date"], e["version"]) for e in r["new"]],
+                         [("2026-01-14", "v2026.01.14"), ("2026-01-13", "Agent SDK"), ("2026-01-12", "GHSA-abcd-efgh-ijkl")])
+        self.assertIn("Agents as code.", r["new"][1]["text"])
+        self.assertEqual(r["ids"], ["CVE-2026-0001", "GHSA-abcd-efgh-ijkl"])
+
+    def test_advisories_failure_never_closes_cursor(self):
+        pages = {"https://cursor.com/changelog/rss.xml": self.CURSOR_RSS, "https://cursor.com/docs/cli/changelog": self.CURSOR_CLI}
+        collect.API_ERRORS.clear()
+        with self.web(pages), mock.patch.object(collect, "retry", side_effect=lambda what, fn: (_ for _ in ()).throw(collect.ReadError("HTTP 404"))
+                                                 if what.startswith("GitHub advisories") else fn()):
+            r = collect.read_changelog_web(src("F2"), L, TERMS)
+        self.assertTrue(r["opened"])
+        self.assertTrue(any("404" in e for e in collect.API_ERRORS))
+
+    def test_rss_with_doctype_is_refused(self):
+        with self.assertRaises(collect.ReadError):
+            collect.rss_entries('<?xml version="1.0"?><!DOCTYPE x [<!ENTITY a "b">]><rss><channel></channel></rss>')
 
     def test_time_datetime_attribute(self):
         page = ('<html><body><article><time datetime="2026-01-14T10:00:00Z">Jan.14</time><h3>Copilot agent hooks</h3>'

@@ -16,6 +16,7 @@ repository, never checked out.
 
 import csv
 import datetime
+import email.utils
 import fnmatch
 import html
 import io
@@ -24,6 +25,7 @@ import os
 import re
 import subprocess
 import sys
+import xml.etree.ElementTree as ET
 import tempfile
 import time
 import urllib.error
@@ -452,12 +454,75 @@ def index_entries(spec, since):
     return out
 
 
+CONTENT_NS = "{http://purl.org/rss/1.0/modules/content/}encoded"
+REPO_ADVISORIES = "https://api.github.com/repos/{repo}/security-advisories?state=published&per_page=20"
+
+
+def repo_advisories(repo):
+    """GTM-158: published security advisories of a GitHub repository (Cursor's own, cursor/cursor), as entries dated by
+    published_at, labelled by their GHSA id, with the CVE id in the text when there is one. Read with the workflow's
+    token like github_releases. A failure never closes the source: it goes to API_ERRORS and returns []."""
+    headers = {"User-Agent": UA, "Accept": "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28"}
+    token = os.environ.get("GH_TOKEN") or os.environ.get("GITHUB_TOKEN")
+    if token:
+        headers["Authorization"] = "Bearer " + token
+
+    def once():
+        req = urllib.request.Request(REPO_ADVISORIES.format(repo=repo), headers=headers)
+        try:
+            with urllib.request.urlopen(req, timeout=TIMEOUT) as r:
+                return json.loads(r.read().decode("utf-8", errors="replace"))
+        except urllib.error.HTTPError as e:
+            raise ReadError(f"HTTP {e.code}: {e.read().decode('utf-8', errors='replace')[:200]}") from None
+    try:
+        data = retry(f"GitHub advisories {repo}", once)
+    except (ReadError, ValueError, TypeError) as e:
+        API_ERRORS.append(str(e)[:300])
+        return []
+    out = []
+    for a in data if isinstance(data, list) else []:
+        if not isinstance(a, dict) or not a.get("ghsa_id") or not a.get("published_at"):
+            continue
+        ids = " ".join(x for x in (a["ghsa_id"], a.get("cve_id")) if x)
+        out.append({"date": a["published_at"][:10], "version": a["ghsa_id"], "title": a.get("summary") or "",
+                    "labels": [], "text": f"{ids}: {a.get('summary') or ''} {a.get('description') or ''}".strip()})
+    return out
+
+
+def rss_entries(body):
+    """Entries of an RSS 2.0 feed (GTM-158, Cursor's changelog since it dropped version numbers): one per <item>, dated
+    by pubDate, titled by <title> (also used as its version label, since the feed has no versions), text from
+    content:encoded or description. A feed that declares a DOCTYPE or entities is refused, not parsed."""
+    if re.search(r"<!DOCTYPE|<!ENTITY", body[:4000], re.I):
+        raise ReadError("feed declares a DOCTYPE or entities; not parsed")
+    try:
+        root = ET.fromstring(body)
+    except ET.ParseError as e:
+        raise ReadError(f"feed is not XML: {e}") from None
+    out = []
+    for it in root.iter("item"):
+        try:
+            date = email.utils.parsedate_to_datetime(it.findtext("pubDate") or "").date().isoformat()
+        except (TypeError, ValueError):
+            continue
+        title = (it.findtext("title") or "").strip()
+        body_html = it.findtext(CONTENT_NS) or it.findtext("description") or ""
+        text = " ".join(page_lines(body_html)) if body_html else ""
+        out.append({"date": date, "version": title[:60] or None, "title": title, "labels": [],
+                    "text": (title + ". " + text).strip()})
+    return out
+
+
 def read_changelog_web(src, since, terms):
     r = src["read"]
     res = blank(src, "curl")
     try:
         all_entries = []
-        for url in r["urls"]:
+        if r.get("rss"):  # GTM-158: an official RSS feed, read before the pages
+            all_entries += rss_entries(http_get(r["rss"]))
+        if r.get("advisories"):  # GTM-158: the vendor's own GitHub security advisories; never closes the source
+            all_entries += repo_advisories(r["advisories"])
+        for url in r.get("urls", []):
             if isinstance(url, dict):  # a dated version index whose notes live one page per version (GTM-93)
                 all_entries += index_entries(url, since)
             else:

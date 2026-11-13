@@ -52,14 +52,15 @@
       "scope": "cursor",
       "method": "changelog-web",
       "read": {
+        "rss": "https://cursor.com/changelog/rss.xml",
         "urls": [
-          "https://cursor.com/changelog",
           "https://cursor.com/docs/cli/changelog"
-        ]
+        ],
+        "advisories": "cursor/cursor"
       },
       "public_url": "https://cursor.com/changelog",
       "fragile": false,
-      "notes": null
+      "notes": "GTM-158 (Albert, 13-11): the changelog is read from its official RSS feed (the page dropped version numbers on 06-11), the CLI changelog from its page, and Cursor's own published GitHub security advisories (cursor/cursor) are added; a failure of the advisories never closes the source."
     },
     {
       "id": "F3",
