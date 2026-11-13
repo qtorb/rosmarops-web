@@ -40,10 +40,17 @@ PAGES = {
     "site/llms.txt": "en",
     "wp/pages/about-en.html": "en", "wp/pages/que-es-rosmarops-es.html": "es", "wp/pages/que-es-rosmarops-ca.html": "ca",
 }
-# GTM-137 (12-11): the homes have no generated list; their list of the nine scored agents is a literal sentence signed
-# by Albert (T3), allowed in agent-list-exclusions.json. render() leaves them alone; check_pages() still reads them.
-# Pending (Albert, 12-11): generate it again; until then «nine» and the names are kept by hand.
-NO_MARKERS = {"site/index.html", "site/es/index.html", "site/ca/index.html"}
+# GTM-137 (12-11) left the homes' «RosmarOps checks these nine: …» sentence by hand; GTM-153 (13-11) generates it
+# again: the names with the «dots» style and the number, spelled out, with the «count» style.
+NO_MARKERS = set()
+COUNT_WORDS = {  # the «count» style: how many agents, spelled out, as the homes say it («these nine»)
+    "en": ["", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve",
+           "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen", "twenty"],
+    "es": ["", "uno", "dos", "tres", "cuatro", "cinco", "seis", "siete", "ocho", "nueve", "diez", "once", "doce",
+           "trece", "catorce", "quince", "dieciséis", "diecisiete", "dieciocho", "diecinueve", "veinte"],
+    "ca": ["", "un", "dos", "tres", "quatre", "cinc", "sis", "set", "vuit", "nou", "deu", "onze", "dotze", "tretze",
+           "catorze", "quinze", "setze", "disset", "divuit", "dinou", "vint"],
+}
 AND = {"en": " and ", "es": " y ", "ca": " i "}
 KINDS = {"scored": "evaluated", "detected": "detected"}
 MARKER = re.compile(r"<!-- agents:(scored|detected)(?: (\w+))? -->(.*?)<!-- /agents:\1 -->", re.S)
@@ -84,6 +91,14 @@ def join(items, lang):
 
 
 def render_list(items, lang, kind, style, page):
+    if style == "count":
+        if len(items) >= len(COUNT_WORDS[lang]):
+            raise ValueError(f"no word for {len(items)} agents in {lang}: add it to COUNT_WORDS")
+        return COUNT_WORDS[lang][len(items)]
+    if style == "dots":
+        if len(items) < 2:
+            raise ValueError(f"an agent list needs at least two names, got {items}")
+        return html.escape(" · ".join(items), quote=False)
     if style == "chips":
         cls = "chip on" if kind == "scored" else "chip"
         return "".join(f'<span class="{cls}">{html.escape(n)}</span>' for n in items)
@@ -97,6 +112,8 @@ def render_text(text, lang, agents, page):
     so the copies change together."""
     mirrors = []
     for m in MARKER.finditer(text):
+        if m.group(2) in ("dots", "count"):
+            continue  # GTM-153: only in the homes' visible sentence, never copied to a meta or JSON-LD
         if m.group(2) == "chips":
             olds = [html.unescape(n) for n in re.findall(r"<span[^>]*>([^<]*)</span>", m.group(3))]
             old = join(olds, lang) if len(olds) >= 2 else ""
