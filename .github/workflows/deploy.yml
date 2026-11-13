@@ -229,6 +229,9 @@ jobs:
           put site/assets/brand/observatory/observatory-mark.svg assets/brand/observatory/observatory-mark.svg
           put site/assets/brand/observatory/observatory-mark-512.png assets/brand/observatory/observatory-mark-512.png
           put site/assets/brand/observatory/observatory-social.png assets/brand/observatory/observatory-social.png
+          put site/assets/brand/observatory/map-social-en.png assets/brand/observatory/map-social-en.png
+          put site/assets/brand/observatory/map-social-es.png assets/brand/observatory/map-social-es.png
+          put site/assets/brand/observatory/map-social-ca.png assets/brand/observatory/map-social-ca.png
           -mkdir wp-content/mu-plugins
           put wp/mu-plugins/rosmarops-consent.php wp-content/mu-plugins/rosmarops-consent.php
           put wp/mu-plugins/rosmarops-seo.php wp-content/mu-plugins/rosmarops-seo.php

@@ -326,7 +326,8 @@ def nav_links(t, lang, alternates, current_obs=True):
     return "".join(parts)
 
 
-def page(lang, t, *, path, title, description, alternates, jsonld, body, og_type="website", noindex=None, published=None, modified=None, extra_head=None):
+def page(lang, t, *, path, title, description, alternates, jsonld, body, og_type="website", noindex=None, published=None, modified=None, extra_head=None,
+         og_image="observatory-social.png", og_image_alt=None):
     url = BASE + path
     head = [
         "<!doctype html>",
@@ -350,9 +351,13 @@ def page(lang, t, *, path, title, description, alternates, jsonld, body, og_type
         f'<meta property="og:description" content="{esc(description)}">',
         f'<meta property="og:url" content="{url}">',
         f'<meta property="og:locale" content="{OG_LOCALE[lang]}">',
-        '<meta property="og:image" content="https://rosmarops.com/assets/brand/observatory/observatory-social.png">',
+        f'<meta property="og:image" content="https://rosmarops.com/assets/brand/observatory/{og_image}">',
         '<meta property="og:image:width" content="1200">',
         '<meta property="og:image:height" content="630">',
+    ]
+    if og_image_alt:
+        head.append(f'<meta property="og:image:alt" content="{esc(og_image_alt)}">')
+    head += [
         '<meta name="twitter:card" content="summary_large_image">',
         '<meta name="author" content="RosmarOps">',
     ]
@@ -1119,7 +1124,8 @@ def build_map(lang, t, agents):
     T, body = map_page.body(lang, t, [a["agent"] for a in agents])
     html_out = page(lang, t, path=map_page.MAP_PATH[lang], title=T["title"], description=T["description"],
                     alternates=map_page.MAP_PATH, jsonld=[], body=body, noindex=False,
-                    extra_head=[f"<style>{map_page.CSS}</style>"])
+                    extra_head=[f"<style>{map_page.CSS}</style>"],
+                    og_image=f"map-social-{lang}.png", og_image_alt=T["b1.h1"])  # GTM-152, made by observatory/map_social.py
     html_out = html_out.replace('<main><div class="wrap">\n' + body + '\n</div></main>', "<main>\n" + body + "\n</main>", 1)
     html_out = html_out.replace("</body>", map_page.SCRIPT + "\n</body>", 1)
     write(map_page.MAP_PATH[lang], html_out)
