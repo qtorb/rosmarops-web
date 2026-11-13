@@ -280,6 +280,12 @@ jobs:
           put wp/drafts/microsoft-store-es.json wp-content/mu-plugins/rosmarops-drafts/microsoft-store-es.json
           put wp/drafts/microsoft-store-ca.html wp-content/mu-plugins/rosmarops-drafts/microsoft-store-ca.html
           put wp/drafts/microsoft-store-ca.json wp-content/mu-plugins/rosmarops-drafts/microsoft-store-ca.json
+          put wp/drafts/mapa-agentes-en.html wp-content/mu-plugins/rosmarops-drafts/mapa-agentes-en.html
+          put wp/drafts/mapa-agentes-en.json wp-content/mu-plugins/rosmarops-drafts/mapa-agentes-en.json
+          put wp/drafts/mapa-agentes-es.html wp-content/mu-plugins/rosmarops-drafts/mapa-agentes-es.html
+          put wp/drafts/mapa-agentes-es.json wp-content/mu-plugins/rosmarops-drafts/mapa-agentes-es.json
+          put wp/drafts/mapa-agentes-ca.html wp-content/mu-plugins/rosmarops-drafts/mapa-agentes-ca.html
+          put wp/drafts/mapa-agentes-ca.json wp-content/mu-plugins/rosmarops-drafts/mapa-agentes-ca.json
           put wp/mu-plugins/rosmarops-category-loop-engineering.php wp-content/mu-plugins/rosmarops-category-loop-engineering.php
           put wp/mu-plugins/rosmarops-gtm124-agente.php wp-content/mu-plugins/rosmarops-gtm124-agente.php
           put wp/mu-plugins/rosmarops-schedule-he-terminado.php wp-content/mu-plugins/rosmarops-schedule-he-terminado.php

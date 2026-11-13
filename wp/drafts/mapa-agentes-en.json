@@ -1,0 +1,20 @@
+{
+ "id": "mapa-agentes",
+ "lang": "en",
+ "slug": "ai-agent-map",
+ "title": "The AI agent map: what each one can do without asking you",
+ "excerpt": "I measured nine AI agents as they come installed. The Observatory map shows how much each one can do without asking you, and why.",
+ "content": "mapa-agentes-en.html",
+ "seo_title": "AI agent map: what each one does without asking",
+ "seo_description": "Nine AI agents measured as they come, on one Windows machine: their class from A to D, their six axes and their factory score. And what the map doesn't say.",
+ "translations": {
+  "es": "https://rosmarops.com/es/blog/mapa-agentes-ia/",
+  "ca": "https://rosmarops.com/ca/blog/mapa-agents-ia/"
+ },
+ "category": "field-notes",
+ "tags": {
+  "observatory": "Observatory",
+  "claude-code": "Claude Code",
+  "cursor": "Cursor"
+ }
+}

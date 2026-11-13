@@ -1,0 +1,77 @@
+<!-- wp:paragraph -->
+<p><em>I measured nine AI agents as they come installed. The Observatory map shows how much each one can do without asking you, and why.</em></p>
+<!-- /wp:paragraph -->
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Why a map</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>When you install an AI agent, it doesn't come with a sheet saying what it can do without asking you. That information exists, but it is spread across each vendor's documentation, configuration files and code. The map puts it in one place.</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading -->
+<h2 class="wp-block-heading">How we measure it</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>We install each agent as it comes, on the same test Windows machine and with its default settings. We measure six things, from 0 to 3: autonomy, reach, contagion, delegation, opacity and complexity. That gives a class, from A (“does little without asking you”) to D (“does a lot without asking you”), and a factory score from 0 to 100: the higher, the less exposed.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>I don't work it out by hand: RosmarOps calculates it with each release, and the data is published.</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading -->
+<h2 class="wp-block-heading">What it shows today</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>With RosmarOps 0.11.4, on 13 November:</p>
+<!-- /wp:paragraph -->
+<!-- wp:list -->
+<ul class="wp-block-list">
+<!-- wp:list-item -->
+<li><strong>Class D:</strong> Claude Code, Cursor, Cline in VS Code and Hermes Agent.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>Class C:</strong> Codex and Grok Build.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>Class B:</strong> GitHub Copilot in VS Code, Gemini CLI and Antigravity CLI.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>Class A:</strong> none.</li>
+<!-- /wp:list-item -->
+</ul>
+<!-- /wp:list -->
+<!-- wp:paragraph -->
+<p>Every class is provisional, because we don't measure complexity yet. When a piece of data is missing, it never counts as good.</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Three things that keep coming up</h2>
+<!-- /wp:heading -->
+<!-- wp:list -->
+<ul class="wp-block-list">
+<!-- wp:list-item -->
+<li><strong>A model decides more and more.</strong> Several agents now come ready for another AI to approve their actions instead of asking you.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>The file everyone reads.</strong> One instructions file, like AGENTS.md, is read by several agents at once.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>What can't be checked.</strong> Some keep their permissions inside the app, where neither you nor RosmarOps can check them.</li>
+<!-- /wp:list-item -->
+</ul>
+<!-- /wp:list -->
+<!-- wp:heading -->
+<h2 class="wp-block-heading">What the map doesn't say</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>It doesn't say whether an agent is safe. It says how much it can do without you. What suits you depends on what you use it for.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>And it is each agent out of the box. Yours may be different: it depends on how you have set it up, on the keys on your computer and on the other agents you use. That is what RosmarOps is for: on Windows, from the <a href="/download?from=blog-map&amp;os=store">Microsoft Store</a>; on <a href="/macos/">Mac (preview)</a> and <a href="/linux/">Linux</a>, from the website.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p><a href="https://rosmarops.com/observatory/ai-agent-map/">See the AI agent map</a>. And if something doesn't add up, tell me.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p><em>Source: the Observatory's <a href="https://rosmarops.com/observatory/ai-agent-map/">AI agent map</a>, calculated by RosmarOps 0.11.4 on 13 November 2026, and <a href="https://github.com/qtorb/rosmarops/releases/download/v0.11.4/exposure-potential.json">its data</a>.</em></p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p><em>Written with help from AI agents. The measurement is RosmarOps's; the decision to publish is mine.</em></p>
+<!-- /wp:paragraph -->

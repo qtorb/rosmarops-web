@@ -1,0 +1,20 @@
+{
+ "id": "mapa-agentes",
+ "lang": "ca",
+ "slug": "mapa-agents-ia",
+ "title": "El mapa d'agents d'IA: què pot fer cadascun sense preguntar-te",
+ "excerpt": "He mesurat nou agents d'IA tal com vénen instal·lats. El mapa de l'Observatori ensenya quant pot fer cadascun sense preguntar-te, i per què.",
+ "content": "mapa-agentes-ca.html",
+ "seo_title": "Mapa d'agents d'IA: què fan sense preguntar-te",
+ "seo_description": "Nou agents d'IA mesurats tal com vénen, al mateix Windows: la seva classe de l'A a la D, els seus sis eixos i la seva nota de fàbrica. I el que el mapa no diu.",
+ "translations": {
+  "en": "https://rosmarops.com/blog/ai-agent-map/",
+  "es": "https://rosmarops.com/es/blog/mapa-agentes-ia/"
+ },
+ "category": "notes-de-camp",
+ "tags": {
+  "observatori": "Observatori",
+  "claude-code": "Claude Code",
+  "cursor": "Cursor"
+ }
+}

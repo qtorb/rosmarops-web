@@ -16,9 +16,9 @@ DRAFTS = TESTS.parent / "drafts"
 SITES = {"en": "https://rosmarops.com", "es": "https://rosmarops.com/es", "ca": "https://rosmarops.com/ca"}
 ALBERT = {"ID": 3, "display_name": "Albert Garcia Pujadas", "roles": ["administrator"]}
 ADMIN = {"ID": 1, "display_name": "admin6244", "roles": ["administrator"]}
-IDS = {"loop-engineering", "agente-he-terminado", "errores-repetidos", "harness-engineering", "novedades-0-10", "microsoft-store"}
-IN_NEWS = {"harness-engineering", "novedades-0-10", "microsoft-store"}
-NO_IMAGE = {"microsoft-store"}  # GTM-139: news post without a featured image (optional in the plugin)  # the rest of the series goes in loop-engineering
+IDS = {"loop-engineering", "agente-he-terminado", "errores-repetidos", "harness-engineering", "novedades-0-10", "microsoft-store", "mapa-agentes"}
+IN_NEWS = {"harness-engineering", "novedades-0-10", "microsoft-store", "mapa-agentes"}
+NO_IMAGE = {"microsoft-store", "mapa-agentes"}  # GTM-139: news post without a featured image (optional in the plugin)  # the rest of the series goes in loop-engineering
 NEWS = {"en": "field-notes", "es": "novedades-de-rosmarops", "ca": "notes-de-camp"}
 
 
