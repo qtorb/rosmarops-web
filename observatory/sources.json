@@ -743,6 +743,7 @@
       "id": "F43",
       "name": "Comet",
       "scope": "comet",
+      "paused": {"since": "2026-11-13", "reason": "www.perplexity.ai answers HTTP 403 to the GitHub runners since 07-11; no other official source with Comet's notes (GTM-157, Albert 13-11)"},
       "method": "changelog-web",
       "read": {
         "urls": [

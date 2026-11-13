@@ -821,6 +821,8 @@ def collect(sources_file=SOURCES, raw_dir=RAW_DIR, now=None, progress=None):
     PREVIOUS.update(previous_versions(raw_dir, TODAY))
     out = []
     for s in cfg["sources"]:
+        if s.get("paused"):  # GTM-157: a paused source is not read and is not in the raw file (Albert, 13-11)
+            continue
         t0 = time.monotonic()
         out.append(collect_source(s, since, terms))
         if progress:

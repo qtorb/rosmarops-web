@@ -25,6 +25,7 @@ import daily_check  # noqa: E402
 SOURCES = json.loads((ROOT / "observatory" / "sources.json").read_text(encoding="utf-8"))
 TERMS = SOURCES["scope_terms"]
 IDS = [s["id"] for s in SOURCES["sources"]]
+ACTIVE = [s["id"] for s in SOURCES["sources"] if not s.get("paused")]
 L = "2026-01-12"
 TODAY = "2026-01-15"
 
@@ -850,8 +851,8 @@ class WholeRun(Base):
                 out = collect.collect(raw_dir=d, now=datetime.datetime(2026, 1, 15, 5, 30, tzinfo=datetime.timezone.utc))
         self.assertEqual(set(seen), {"2026-01-12"})
         self.assertEqual((out["date"], out["collected_at"], out["opened"], out["total"]),
-                         ("2026-01-15", "2026-01-15T05:30:00Z", len(IDS) - 1, len(IDS)))
-        self.assertEqual([s["id"] for s in out["sources"]], IDS)
+                         ("2026-01-15", "2026-01-15T05:30:00Z", len(ACTIVE) - 1, len(ACTIVE)))
+        self.assertEqual([s["id"] for s in out["sources"]], ACTIVE)  # GTM-157: paused sources are not read
         validate(self, out)
 
     def test_l_defaults_to_seven_days(self):
@@ -894,10 +895,12 @@ class SourcesFile(unittest.TestCase):
         checked = {c["name"]: c["url"] for c in daily["checked"]}
         ids = [s["id"] for s in SOURCES["sources"]]
         self.assertEqual(ids, IDS)
+        # GTM-157 (Albert, 13-11): Comet is paused; it stays in the file, the collector skips it
+        self.assertEqual([s["id"] for s in SOURCES["sources"] if s.get("paused")], ["F43"])
         self.assertEqual(IDS[:29], [f"F{i}" for i in range(1, 30)])
         self.assertEqual(IDS[29:], ["F31", "F32", "F33", "F34", "F35", "F36", "F37", "F38", "F39", "F40", "F41", "F42", "F43", "F44"])
         for s in SOURCES["sources"]:
-            self.assertEqual(set(s), {"id", "name", "scope", "method", "read", "public_url", "fragile", "notes"}, s["id"])
+            self.assertEqual(set(s) - {"paused"}, {"id", "name", "scope", "method", "read", "public_url", "fragile", "notes"}, s["id"])
             self.assertIn(s["method"], collect.METHODS, s["id"])
             self.assertEqual(s["fragile"], s["id"] in ("F8", "F19", "F43"), s["id"])
             self.assertNotIn("raw.githubusercontent.com", s["public_url"], s["id"])

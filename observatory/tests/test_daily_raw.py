@@ -42,7 +42,7 @@ class FromRaw(unittest.TestCase):
         d = daily_raw.build(D, raw(), SOURCES, copy.deepcopy(ITEMS), [], NOW)
         self.assertEqual(d["status"], "published")
         self.assertNotIn("not_checked", d)
-        self.assertEqual(len(d["checked"]), len(SOURCES))
+        self.assertEqual(len(d["checked"]), len([s for s in SOURCES if not s.get("paused")]))  # GTM-157
         self.assertEqual(d["checked"][0], {"name": "Claude Code", "url": SOURCES[0]["public_url"],
                                            "latest_seen": "1.0.0", "latest_date": "2026-01-14"})
         self.assertEqual(check(d), [])
