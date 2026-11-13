@@ -1950,7 +1950,7 @@
       "ratings": [],
       "default_mode": {
         "name": "ask_every_time",
-        "who_decides": "user",
+        "who_decides": "unknown",
         "source": {
           "url": "https://docs.x.ai/grok-bot/approvals-security-and-privacy",
           "official": true,

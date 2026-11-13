@@ -130,6 +130,7 @@
   "who.another_model": "otro modelo de IA",
   "who.nobody": "nadie, lo hace sin preguntar",
   "who.rule": "una regla que pones tú",
+  "who.unknown": "no está documentado",
   "agent.caps_h2": "Qué puede hacer de serie",
   "agent.caps_note": "Según la documentación o el código fuente del fabricante, antes de que cambies ningún ajuste.",
   "agent.th_action": "Acción",
@@ -210,6 +211,7 @@
   "summary.who.another_model": "lo que normalmente necesitaría tu permiso lo aprueba o lo bloquea otro modelo de IA, no tú",
   "summary.who.nobody": "no pregunta a nadie",
   "summary.who.rule": "una regla que pones tú decide qué puede hacer sin preguntarte",
+  "summary.who.unknown": "la documentación no dice quién da el permiso",
 
   "common.disclaimer": "Leído de la documentación y el código fuente del fabricante, cada dato con su fecha y su fuente. No es una garantía de seguridad ni un consejo.",
   "common.date": "{day} de {month} de {year}",
