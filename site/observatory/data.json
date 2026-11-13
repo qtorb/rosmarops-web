@@ -1958,9 +1958,9 @@
         },
         "basis": "documented_default",
         "note": {
-          "en": "For work on your own computer. In the cloud, Auto Review is on by default: for each action it either lets it run or has the Bot ask you first.",
-          "es": "Para el trabajo en tu propio ordenador. En la nube, Auto Review viene activado de serie: en cada acción, o la deja seguir o hace que el Bot te pregunte antes.",
-          "ca": "Per a la feina al teu propi ordinador. Al núvol, Auto Review ve activat de sèrie: en cada acció, o la deixa continuar o fa que el Bot et pregunti abans."
+          "en": "For work on your own computer. Auto Review, where another AI model decides, is on by default: for each action it either lets it run or has the Bot ask you first. The documentation does not say whether it also applies to work on your computer.",
+          "es": "Para el trabajo en tu propio ordenador. Auto Review, en el que decide otro modelo de IA, viene activado de serie: en cada acción, o la deja seguir o hace que el Bot te pregunte antes. La documentación no dice si también se aplica al trabajo en tu ordenador.",
+          "ca": "Per a la feina al teu propi ordinador. Auto Review, en què decideix un altre model d'IA, ve activat de sèrie: en cada acció, o la deixa continuar o fa que el Bot et pregunti abans. La documentació no diu si també s'aplica a la feina al teu ordinador."
         }
       },
       "capabilities": [
