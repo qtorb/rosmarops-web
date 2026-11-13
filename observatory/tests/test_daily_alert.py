@@ -38,7 +38,23 @@ class Alert(unittest.TestCase):
     def test_incomplete(self):
         d = copy.deepcopy(self.d)
         d.update(status="incomplete", items=[], not_checked=["F3 OpenAI Codex"])
-        self.assertIn("revisión incompleta", self.msgs(d)[0]["Subject"])
+        m = self.msgs(d)[0]
+        self.assertIn("revisión incompleta", m["Subject"])
+        # GTM-155: an incomplete day still publishes; the alert never says it doesn't
+        self.assertNotIn("no se publica nada", m["TextBody"])
+        self.assertIn("Publicados: 0 puntos", m["TextBody"])
+        self.assertIn("Sin leer:\n- F3 OpenAI Codex", m["TextBody"])
+
+    def test_incomplete_groups_held_by_reason(self):
+        d = copy.deepcopy(self.d)
+        d.update(status="incomplete", not_checked=["Comet"])
+        d["held"] = [{"text_en": "", "source_url": "https://kiro.dev/changelog/", "rule": 9, "reason": "fuera por tope"},
+                     {"text_en": "", "source_url": "https://nvd.nist.gov/vuln/detail/CVE-2026-1", "rule": 11,
+                      "reason": "PostgreSQL, matched by the word cursor"}]
+        body = self.msgs(d)[0]["TextBody"]
+        self.assertIn(f"Publicados: {len(d['items'])}", body)
+        self.assertIn("Fuera por tope (R9):\n- https://kiro.dev/changelog/\n", body)
+        self.assertIn("Fuera de alcance (R11):\n- https://nvd.nist.gov/vuln/detail/CVE-2026-1: PostgreSQL", body)
 
     def test_invalid(self):
         d = copy.deepcopy(self.d)
