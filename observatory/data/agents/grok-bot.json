@@ -1,0 +1,124 @@
+{
+ "schema_version": 1,
+ "agent": {
+  "id": "grok-bot",
+  "name": "Grok Bot",
+  "vendor": "xAI",
+  "kinds": [
+   "desktop_app",
+   "cloud"
+  ],
+  "platforms": [
+   "windows",
+   "macos",
+   "linux"
+  ],
+  "local_footprint": "partial",
+  "rosmarops": {
+   "status": "not_supported"
+  },
+  "reviewed_at": "2026-11-13"
+ },
+ "versions": [],
+ "changes": [],
+ "ratings": [],
+ "default_mode": {
+  "name": "ask_every_time",
+  "who_decides": "user",
+  "source": {
+   "url": "https://docs.x.ai/grok-bot/approvals-security-and-privacy",
+   "official": true,
+   "accessed_at": "2026-11-13"
+  },
+  "basis": "documented_default",
+  "note": {
+   "en": "For work on your own computer. In the cloud, Auto Review is on by default: for each action it either lets it run or has the Bot ask you first.",
+   "es": "Para el trabajo en tu propio ordenador. En la nube, Auto Review viene activado de serie: en cada acción, o la deja seguir o hace que el Bot te pregunte antes.",
+   "ca": "Per a la feina al teu propi ordinador. Al núvol, Auto Review ve activat de sèrie: en cada acció, o la deixa continuar o fa que el Bot et pregunti abans."
+  }
+ },
+ "capabilities": [
+  {
+   "id": "cap-local-read",
+   "action": "read_files",
+   "scope": "any_path",
+   "default": "ask",
+   "source": {
+    "url": "https://docs.x.ai/grok-bot/security",
+    "official": true,
+    "accessed_at": "2026-11-13"
+   },
+   "note": {
+    "en": "Only on your own computer, through the desktop app, and only while «Execution on this computer» allows it. The default is «Ask every time»; xAI recommends «Never allow» unless a Bot needs your local files.",
+    "es": "Solo en tu propio ordenador, a través de la app de escritorio, y solo si «Execution on this computer» lo permite. De serie es «Ask every time»; xAI recomienda «Never allow» salvo que un Bot necesite tus ficheros locales.",
+    "ca": "Només al teu propi ordinador, a través de l'app d'escriptori, i només si «Execution on this computer» ho permet. De sèrie és «Ask every time»; xAI recomana «Never allow» tret que un Bot necessiti els teus fitxers locals."
+   }
+  },
+  {
+   "id": "cap-local-commands",
+   "action": "execute_commands",
+   "scope": "all_commands",
+   "default": "ask",
+   "source": {
+    "url": "https://docs.x.ai/grok-bot/security",
+    "official": true,
+    "accessed_at": "2026-11-13"
+   },
+   "note": {
+    "en": "Only on your own computer, through the desktop app, and only while «Execution on this computer» allows it. The default is «Ask every time»; xAI recommends «Never allow» unless a Bot needs your local files.",
+    "es": "Solo en tu propio ordenador, a través de la app de escritorio, y solo si «Execution on this computer» lo permite. De serie es «Ask every time»; xAI recomienda «Never allow» salvo que un Bot necesite tus ficheros locales.",
+    "ca": "Només al teu propi ordinador, a través de l'app d'escriptori, i només si «Execution on this computer» ho permet. De sèrie és «Ask every time»; xAI recomana «Never allow» tret que un Bot necessiti els teus fitxers locals."
+   }
+  },
+  {
+   "id": "cap-local-move-files",
+   "action": "write_files",
+   "scope": "any_path",
+   "default": "ask",
+   "source": {
+    "url": "https://docs.x.ai/grok-bot/security",
+    "official": true,
+    "accessed_at": "2026-11-13"
+   },
+   "note": {
+    "en": "It moves files between its cloud computer and yours, under the same «Execution on this computer» setting.",
+    "es": "Mueve ficheros entre su ordenador en la nube y el tuyo, con el mismo ajuste «Execution on this computer».",
+    "ca": "Mou fitxers entre el seu ordinador al núvol i el teu, amb el mateix ajust «Execution on this computer»."
+   }
+  }
+ ],
+ "storage": [
+  {
+   "id": "sto-install",
+   "kind": "local_settings",
+   "path_windows": "%LOCALAPPDATA%\\Programs",
+   "secrets": "unknown",
+   "source": {
+    "url": "https://docs.x.ai/grok-bot/deployment",
+    "official": true,
+    "accessed_at": "2026-11-13"
+   },
+   "note": {
+    "en": "Where the desktop app installs, per user. Where it keeps its settings and session is not documented.",
+    "es": "Donde se instala la app de escritorio, por usuario. Dónde guarda sus ajustes y su sesión no está documentado.",
+    "ca": "On s'instal·la l'app d'escriptori, per usuari. On desa els ajustos i la sessió no està documentat."
+   }
+  },
+  {
+   "id": "sto-connectors",
+   "kind": "account_credentials",
+   "path_windows": "Cursor's backend (not on this computer)",
+   "secrets": "none",
+   "source": {
+    "url": "https://docs.x.ai/grok-bot/security-faq",
+    "official": true,
+    "accessed_at": "2026-11-13"
+   },
+   "note": {
+    "en": "Connector tokens stay on Cursor's backend, according to xAI; tokens are never stored on the computer.",
+    "es": "Los tokens de los conectores se quedan en el backend de Cursor, según xAI; nunca se guardan en el ordenador.",
+    "ca": "Els tokens dels connectors es queden al backend de Cursor, segons xAI; mai no es desen a l'ordinador."
+   }
+  }
+ ]
+}
