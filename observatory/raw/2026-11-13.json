@@ -1,0 +1,714 @@
+{
+  "date": "2026-11-13",
+  "collected_at": "2026-11-13T05:34:22Z",
+  "sources": [
+    {
+      "id": "F1",
+      "opened": true,
+      "reason": null,
+      "latest": "2.1.323",
+      "latest_date": "2026-11-12",
+      "new": [
+        {
+          "date": "2026-11-12",
+          "version": "2.1.323",
+          "text": "Added Added Code Mode, an experimental opt-in in which Claude writes JavaScript to call its tools; see https://code.claude.com/docs/en/code-mode to turn it on, or to turn it off for an organization Added engines[\"claude-code\"] to plugin.json: plugins outside their stated Claude Code version range are not installed, updated or loaded, and install and update pick the newest version that fits Added type checking of a plugin’s TypeScript hooks module to claude plugin validate; each finding is a warning, and --strict fails on it Added to claude plugin validate the $ nouns a mod’s engine.create hoo…"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F2",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-06",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F3",
+      "opened": false,
+      "reason": "new version without notes: rust-v0.169.0",
+      "latest": "rust-v0.169.0",
+      "latest_date": "2026-11-13",
+      "new": [
+        {
+          "date": "2026-11-13",
+          "version": "rust-v0.169.0",
+          "text": "notes not available"
+        },
+        {
+          "date": "2026-11-12",
+          "version": "rust-v0.168.0",
+          "text": "## New Features - Browse model providers under Sessions → Model providers and choose the default for new chats. (#59541, #59722) - Enable `features.tui_workspace` to view a side conversation beside the main chat. Drag the divider to resize the panes or press `leader z` to zoom the focused pane. (#58992, #59527, #59595) - Attach recordings when using an audio-capable model. Codex skips confirmed rejected recordings on later turns and uses clip duration to keep more short recordings in context. (#59234, #59268) - Enable `features.image_generation_animation` to generate or edit animated GIFs wit…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F4",
+      "opened": true,
+      "reason": null,
+      "latest": "v1.5.7",
+      "latest_date": "2026-11-12",
+      "new": [
+        {
+          "date": "2026-11-12",
+          "version": null,
+          "text": "### Gemini 4 Hydrogen Gemini 4 Hydrogen brings fast, dependable coding and agentic execution across four reasoning effort levels, alongside Orchestrator for dynamic multi-model planning and execution with Gemini 4 Carbon. Gemini 4 Hydrogen: Read on the Antigravity blog ### v2.31.2 Latest"
+        },
+        {
+          "date": "2026-11-12",
+          "version": "v1.5.7",
+          "text": "### Default Agent Mode set to Auto, UI freeze fixes, and improved permission enforcement. Antigravity CLI 1.5.7 sets the default Agent Mode to Auto and resolves multiple issues including UI freezes during long output rendering, Windows browser sign-in failures, enterprise gateway compatibility for Gemini 4 Carbon, and strict enforcement of admin permission policies. Improvements(1) Changed the default Agent Mode from Default to Auto: sessions with no saved mode, including headless -p runs, now start in Auto wherever Auto mode is available and in Default elsewhere; to keep the previous behavio…"
+        },
+        {
+          "date": "2026-11-12",
+          "version": "v2.7.0",
+          "text": "### Clickable terminal context pills, quick-access menus, clearer diff review commands, and multi-window sign-in sync Terminal selections now become clickable context pills in the Agent panel, new menus put Antigravity actions one click away, and diff review commands now say which changes they apply to. This release also fixes several diff review, Auto Save, and sign-in issues. Improvements(3) Added clickable terminal context pills: send a terminal selection or output to the chat (Ctrl+L on Windows and Linux, Cmd+L on macOS), see a snippet preview in the composer, and click the pill to jump b…"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F5",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.23.1",
+      "latest_date": "2026-11-10",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F6",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-10",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F7",
+      "opened": true,
+      "reason": null,
+      "latest": "v4.1.26",
+      "latest_date": "2026-10-26",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F8",
+      "opened": true,
+      "reason": null,
+      "latest": "v2.1.0-vscode",
+      "latest_date": "2026-06-19",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F9",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.5.0",
+      "latest_date": "2026-11-09",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F10",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-13",
+      "new": [
+        {
+          "date": "2026-11-12",
+          "version": null,
+          "text": "MAL-0000-ghsa-malware-f00b5dc6f4d1c905 @go-gost/mcp-darwin-x64: Malware in @go-gost/mcp-darwin-x64"
+        },
+        {
+          "date": "2026-11-12",
+          "version": null,
+          "text": "MAL-0000-ghsa-malware-a04c69fab6f8174c @rclaude/darwin-x64: Malware in @rclaude/darwin-x64"
+        },
+        {
+          "date": "2026-11-12",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-0495a09022e152fe @rfewqa-fes/mnm-doc-mcp: Off-registry HTTP tarball dependency from bare IP"
+        },
+        {
+          "date": "2026-11-13",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-4ab651b6042b8ef6 helper-agent: helper-agent postinstall beacons to webhook.site and mutates a localhost service"
+        },
+        {
+          "date": "2026-11-13",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-f01dff7c435620ec helper-agent: Postinstall beacon to webhook.site collector (dependency-confusion canary)"
+        },
+        {
+          "date": "2026-11-13",
+          "version": null,
+          "text": "MAL-2026-19224 helper-agent: Malicious code in helper-agent (npm)"
+        },
+        {
+          "date": "2026-11-13",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-6f389c95da49d7d8 my-mcp-server-driving-license-ocr: MCP OCR tool forwards caller-supplied driving-license images to a hardcoded bare-IP endpoint over plaintext HTTP"
+        }
+      ],
+      "ids": [
+        "MAL-0000-amazon-inspector-0495a09022e152fe",
+        "MAL-0000-amazon-inspector-4ab651b6042b8ef6",
+        "MAL-0000-amazon-inspector-6f389c95da49d7d8",
+        "MAL-0000-amazon-inspector-f01dff7c435620ec",
+        "MAL-0000-ghsa-malware-a04c69fab6f8174c",
+        "MAL-0000-ghsa-malware-f00b5dc6f4d1c905",
+        "MAL-2026-19224"
+      ],
+      "read_with": "git"
+    },
+    {
+      "id": "F11",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.68.0",
+      "latest_date": "2026-11-10",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F12",
+      "opened": true,
+      "reason": null,
+      "latest": "1.0.110",
+      "latest_date": "2026-11-12",
+      "new": [
+        {
+          "date": "2026-11-12",
+          "version": "1.0.110",
+          "text": "- Experimental: answer git, ssh, and sudo password prompts from agent commands in a masked dialog (enable with /experimental on) - Avoid unnecessary error popups during Microsoft Entra sign-in when an organization account is available - Screen readers identify the current session and announce when sessions need attention or are idle in the Sessions list - /usage model rows wrap at the terminal width instead of breaking at 100 columns - The / command picker no longer lists, preselects or runs a skill for a word that the skill's description hides inside a terminal escape sequence; only words th…"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F13",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-12",
+      "new": [
+        {
+          "date": "2026-11-12",
+          "version": null,
+          "text": "Claude Meetings is rolling out in beta on Team and Enterprise plans in Claude and Claude Desktop. You can add Claude to a Google Meet call as a visible participant that takes notes, answers questions, and builds artifacts, such as docs, whiteboards, and slides, during the call. For more information, see Use Claude Meetings."
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F14",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-13",
+      "new": [
+        {
+          "date": "2026-11-13",
+          "version": null,
+          "text": "MAL-2026-19224 helper-agent: Malicious code in helper-agent (npm)"
+        },
+        {
+          "date": "2026-11-12",
+          "version": null,
+          "text": "MAL-2026-19196 @rclaude/darwin-x64: Malicious code in @rclaude/darwin-x64 (npm)"
+        },
+        {
+          "date": "2026-11-12",
+          "version": null,
+          "text": "MAL-2026-19159 @go-gost/mcp-darwin-x64: Malicious code in @go-gost/mcp-darwin-x64 (npm)"
+        },
+        {
+          "date": "2026-11-12",
+          "version": null,
+          "text": "MAL-2026-19148 @rfewqa-fes/mnm-doc-mcp: Malicious code in @rfewqa-fes/mnm-doc-mcp (npm)"
+        },
+        {
+          "date": "2026-11-13",
+          "version": null,
+          "text": "MAL-2026-19204 my-mcp-server-driving-license-ocr: Malicious code in my-mcp-server-driving-license-ocr (PyPI)"
+        }
+      ],
+      "ids": [
+        "MAL-2026-19148",
+        "MAL-2026-19159",
+        "MAL-2026-19196",
+        "MAL-2026-19204",
+        "MAL-2026-19224"
+      ],
+      "read_with": "curl"
+    },
+    {
+      "id": "F15",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-13",
+      "new": [
+        {
+          "date": "2026-11-13",
+          "version": null,
+          "text": "CVE-2026-126360 [MCP]: OpenTelemetry Python provides the Python API and SDK for OpenTelemetry. Prior to 1.45.2, TraceContextTextMapPropagator.extract() in opentelemetry-api can perform quadratic-time regular-expression backtracking on a malformed traceparent value containing a trace-context prefix, a long whitespace sequence, and an embedded newline. Exploitation requires an attacker-controlled carrier that preserves embedded newlines and permits a sufficiently large value, because conforming HTTP header values cannot contain embedded newlines. JSON-based carriers, including applicable MCP re…"
+        },
+        {
+          "date": "2026-11-12",
+          "version": null,
+          "text": "CVE-2026-123139 [MCP]: Improper verification of the source of a communication channel vulnerability in Opera Neon on macOS and Windows allows a malicious browser extension to take control of the browser by sending commands through MCP Hub to the built-in Browser Operator extension. This issue affects Opera Neon MCP Hub extension: 0.0.1."
+        },
+        {
+          "date": "2026-11-12",
+          "version": null,
+          "text": "CVE-2026-126196 [MCP]: pgEdge Postgres MCP Server enables SQL queries against PostgreSQL databases through Model Context Protocol compatible clients. Prior to 1.1.0, query_database on a read_only connection could send unrecognized statements through pgx Exec without bind parameters, selecting PostgreSQL's simple query protocol and allowing multiple semicolon-separated statements in one request. A caller could combine transaction or session state changes with database writes, and pooled session state could leave later calls writable, when the connecting role held write privileges. The flaw aff…"
+        },
+        {
+          "date": "2026-11-12",
+          "version": null,
+          "text": "CVE-2026-126197 [MCP]: pgEdge Postgres MCP Server enables SQL queries against PostgreSQL databases through Model Context Protocol compatible clients. Prior to 1.1.0, custom pl-do tools interpolated JSON arguments into a PostgreSQL DO block delimited by fixed dollar-quote tags. An argument containing $mcp_custom_tool$ could terminate the block and inject arbitrary SQL statements, while $mcp_args$ could inject procedural code into a plpgsql block. Because the statement used the simple query protocol, injected text could include additional statements and transaction control, bypassing read_only…"
+        },
+        {
+          "date": "2026-11-12",
+          "version": null,
+          "text": "CVE-2026-126198 [MCP]: pgEdge Postgres MCP Server enables SQL queries against PostgreSQL databases through Model Context Protocol compatible clients. Prior to 1.1.0, the bundled clients, including the CLI and web client, decided whether to request write confirmation by checking only for the query_database tool name instead of server-published write annotations. Custom pl-do, pl-func, and writing sql tools therefore ran without confirmation on allow_writes connections, including when a model followed instructions in retrieved content. The affected control is a bundled-client warning rather tha…"
+        },
+        {
+          "date": "2026-11-12",
+          "version": null,
+          "text": "CVE-2026-126199 [MCP]: pgEdge Postgres MCP Server enables SQL queries against PostgreSQL databases through Model Context Protocol compatible clients. Prior to 1.1.0, the bundled CLI and web clients classified query_database statements only by their first keyword before deciding whether to display a write confirmation. SELECT INTO, data-modifying common table expressions beginning with WITH, and EXPLAIN ANALYZE of a write were treated as reads and could execute without confirmation on an allow_writes connection. Read-only connections remain protected by PostgreSQL transaction access mode, and…"
+        },
+        {
+          "date": "2026-11-12",
+          "version": null,
+          "text": "CVE-2026-120143 [Cursor]: Use after free in PostgreSQL trigger functions allows an object creator to execute arbitrary code as the operating system user running the database, via a cursor over a transition table. Versions before PostgreSQL 18.7, 17.12, 16.16, 15.20, and 14.25 are affected."
+        },
+        {
+          "date": "2026-11-12",
+          "version": null,
+          "text": "CVE-2026-126207 [Cursor]: Loofah is a general library for manipulating and transforming HTML/XML documents and fragments, built on top of Nokogiri. Prior to 2.25.3, Loofah::HTML5::Scrub.scrub_css checks only the first parse of a style attribute, then rebuilds CSS with identifier escapes decoded so escaped parentheses, property names, comments, or quotes can become a live url() without a second safety check. An attacker can use list-style to make a viewer's browser request an attacker-chosen URL when content renders, or cursor to make the request on hover. The request can disclose the viewer's…"
+        }
+      ],
+      "ids": [
+        "CVE-2026-120143",
+        "CVE-2026-123139",
+        "CVE-2026-126196",
+        "CVE-2026-126197",
+        "CVE-2026-126198",
+        "CVE-2026-126199",
+        "CVE-2026-126207",
+        "CVE-2026-126360"
+      ],
+      "read_with": "curl"
+    },
+    {
+      "id": "F16",
+      "opened": true,
+      "reason": null,
+      "latest": "v2.2.7",
+      "latest_date": "2026-11-10",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F17",
+      "opened": true,
+      "reason": null,
+      "latest": "3.3.0",
+      "latest_date": "2026-11-12",
+      "new": [
+        {
+          "date": "2026-11-12",
+          "version": null,
+          "text": "Mobile ## Kiro Mobile for Android Kiro Mobile is now available on Google Play, so you can work in Kiro cloud sessions from your Android phone. Your laptop doesn't need to stay on. Sign in with your Kiro account, and your sessions, connected repositories, and model choices are already there. Kiro Mobile requires a Pro, Pro+, Pro Max, or Power plan. ## Follow, Steer, and Review Sessions from Your Phone Loading image... Loading image... Start a cloud session, or pick up one you started in Kiro Web, the IDE, or the CLI. Choose your repositories and a model, and turn on Build with spec to plan fir…"
+        },
+        {
+          "date": "2026-11-12",
+          "version": "3.3.0",
+          "text": "3.3.0CLI ## Copy Earlier Responses and Choose When Compaction Starts This release adds /copy N and /copy last N, so you can copy an earlier response or the last few messages, and lets you choose the context usage at which automatic compaction starts. It also shows each sub-agent's task in the agent monitor, moves the /model search, sort, and edit controls to Up, keeps a V2 agent's allow rules from widening when it is upgraded to V3, reloads a stalled workflow session after an agent restart, and fixes headless, resume, /memories, /goal, voice, clipboard, session, and search display issues. ##…"
+        },
+        {
+          "date": "2026-11-12",
+          "version": null,
+          "text": "General ## Audit Kiro Tool Calls with AWS CloudTrail Kiro now records calls to Kiro service MCP tools in AWS CloudTrail for Kiro profiles in US East (N. Virginia) (us-east-1) and Europe (Frankfurt) (eu-central-1). Security and audit teams can see who made a request, which tool was called, when it ran, and whether it completed. CloudTrail logs privileged tool calls as management events by default. Administrators can also log tool listings and read-only tool calls by enabling data events. Events redact tool arguments and omit results. This logging covers Kiro service tools only, not MCP servers…"
+        },
+        {
+          "date": "2026-11-12",
+          "version": "3.3.0",
+          "text": "3.3.0CLI ## Copy Earlier Responses and Choose When Compaction Starts This release adds /copy N and /copy last N, so you can copy an earlier response or the last few messages, and lets you choose the context usage at which automatic compaction starts. It also shows each sub-agent's task in the agent monitor, moves the /model search, sort, and edit controls to Up, keeps a V2 agent's allow rules from widening when it is upgraded to V3, reloads a stalled workflow session after an agent restart, and fixes headless, resume, /memories, /goal, voice, clipboard, session, and search display issues. ##…"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F18",
+      "opened": true,
+      "reason": null,
+      "latest": "v3.12.59",
+      "latest_date": "2026-11-12",
+      "new": [
+        {
+          "date": "2026-11-12",
+          "version": "v3.12.59",
+          "text": "Fixed The integrated terminal no longer draws text at a very small size with wide gaps between letters when GPU acceleration is on."
+        },
+        {
+          "date": "2026-11-12",
+          "version": "v3.12.57",
+          "text": "Changed Devin Desktop now uses Electron 43.8.8, which includes Chromium security fixes and the Node.js 24.22.1 security update. Fixed The model picker in a Devin Local chat no longer ignores clicks while Devin Desktop refreshes your account status after launch. A Devin Local tab no longer tries to create a Cloud session in some enterprise accounts. Devin Local no longer corrupts files that are not valid UTF-8 text. Approving a plan in Devin Local implements the plan file as saved at that moment. Images sent to GPT and Gemini models in Devin Local are sized to the limits of those models (2048…"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F19",
+      "opened": true,
+      "reason": null,
+      "latest": "v1.59.0",
+      "latest_date": "2026-11-10",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F20",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-12",
+      "new": [
+        {
+          "date": "2026-11-12",
+          "version": null,
+          "text": "### Sessions & Workspace Same-kind requests merge into one cardWhen Devin asks for several things of the same kind at once (credentials, approvals, network access), they appear together in one compact card instead of a stack of cards.“Reminder set” rowWhen Devin sets itself a reminder, the session shows a “Reminder set” row with the time or schedule and a link to the reminder.Repo file links show as pillsBare links to a file on github.com or gitlab.com appear in chat as a short pill naming the file, lines and commit instead of the full URL.Drag an open session by its headerDrag an open sessio…"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F21",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-08-19",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F22",
+      "opened": true,
+      "reason": null,
+      "latest": "v2026.11.3",
+      "latest_date": "2026-11-10",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F23",
+      "opened": true,
+      "reason": null,
+      "latest": "1.2.21",
+      "latest_date": "2026-11-12",
+      "new": [
+        {
+          "date": "2026-11-12",
+          "version": "1.2.21",
+          "text": "Changes since 1.2.20 * release(langgraph): 1.2.21 (#9683) * chore(deps): bump the minor-and-patch group across 1 directory with 9 updates (#9530) * fix(langgraph): match whole namespace segments in get_subgraphs (#9615) * fix(langgraph): read an undeclared subgraph namespace with the parent graph (#9614) * docs(langgraph): say each interrupt() call has its own id in UnknownInterruptError (#9600) * chore(deps): bump filelock and langgraph-api for security fixes (#9606)"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F24",
+      "opened": true,
+      "reason": null,
+      "latest": "1.15.41",
+      "latest_date": "2026-11-12",
+      "new": [
+        {
+          "date": "2026-11-12",
+          "version": "1.15.41",
+          "text": "## What's Changed ### Features - Allow approved private URL hosts. ### Bug Fixes - Fix projects to depend on PyMuPDF 2.x. - Drop a real storage URL from the URL read tests. - Keep earlier step outputs across a human-feedback resume. - Strip cache_breakpoint marker on the LiteLLM path. ### Documentation - Snapshot and changelog for v1.15.40. ## Contributors @Vidit-Ostwal, @gabemilani, @github-actions[bot], @lorenzejay"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F25",
+      "opened": false,
+      "reason": "new version without notes: python-1.26.0",
+      "latest": "python-1.26.0",
+      "latest_date": "2026-11-12",
+      "new": [
+        {
+          "date": "2026-11-12",
+          "version": "python-1.26.0",
+          "text": "notes not available"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F26",
+      "opened": true,
+      "reason": null,
+      "latest": "2026-07-28",
+      "latest_date": "2026-07-28",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F27",
+      "opened": true,
+      "reason": null,
+      "latest": "1.146",
+      "latest_date": "2026-11-11",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F28",
+      "opened": true,
+      "reason": null,
+      "latest": "2026.11.10",
+      "latest_date": "2026-11-10",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F29",
+      "opened": true,
+      "reason": null,
+      "latest": "1.4.18",
+      "latest_date": "2026-11-13",
+      "new": [
+        {
+          "date": "2026-11-13",
+          "version": "1.4.18",
+          "text": "### Improvements Sessions take less disk space: the goal reminder no longer saves a separate log file for each check. To keep those logs, set plugins.goal-reminder.child_session_log to \"retained\" in settings.json Sessions take less disk space: the verify reminder no longer saves a separate log file for each check. To keep those logs, set plugins.verify-reminder.child_session_log to \"retained\" in settings.json ### Fixes Reading an image file or getting an image from an MCP tool no longer breaks the session on a model that cannot view images; the result says the image was not attached Agent ses…"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl",
+      "date_is_detection": true
+    },
+    {
+      "id": "F31",
+      "opened": true,
+      "reason": null,
+      "latest": "n8n@3.2.0",
+      "latest_date": "2026-11-10",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F32",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-12",
+      "new": [
+        {
+          "date": "2026-11-12",
+          "version": null,
+          "text": "文档对您有帮助吗? 有帮助无帮助 上一篇 设备数量限制 下一篇 从《world.execute(me);》开始，用 TRAE 做 MV"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F33",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.27.3",
+      "latest_date": "2026-11-13",
+      "new": [
+        {
+          "date": "2026-11-13",
+          "version": "v0.27.3",
+          "text": "<!-- qwen-release-notes:v1 --> ## Highlights _See the complete change list below._ ## Breaking Changes No known breaking changes. ## Complete Change List ### Features - Added chips above the Web Shell composer for unfinished background workflows, shells, monitors, and local agents, replacing the status-bar task pill. ([#16813](https://github.com/QwenLM/qwen-code/pull/16813)) by @qqqys - Added Chinese localization for GitHub channel event prompts in PR-bound sessions when the channel UI language is Chinese, while other languages remain English. ([#16773](https://github.com/QwenLM/qwen-code/pul…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F34",
+      "opened": true,
+      "reason": null,
+      "latest": "@moonshot-ai/kimi-code@2.6.0",
+      "latest_date": "2026-11-12",
+      "new": [
+        {
+          "date": "2026-11-12",
+          "version": "@moonshot-ai/kimi-code@2.6.0",
+          "text": "### Minor Changes - [#4752](https://github.com/MoonshotAI/kimi-code/pull/4752) [`5aa81c5`](https://github.com/MoonshotAI/kimi-code/commit/5aa81c5e22de5a446290e33ce02ddc259b0f5c36) Thanks [@sailist](https://github.com/sailist)! - Align `fs:suggest` with local fd completion, using bounded scans and at most 20 results with optional streamed previews, while including hidden and gitignored paths by default and placing regular files first at equal match quality. - [#4618](https://github.com/MoonshotAI/kimi-code/pull/4618) [`e6ae8ed`](https://github.com/MoonshotAI/kimi-code/commit/e6ae8ed4bdd0a99a3f…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F35",
+      "opened": true,
+      "reason": null,
+      "latest": "v2.184.0",
+      "latest_date": "2026-11-13",
+      "new": [
+        {
+          "date": "2026-11-13",
+          "version": "v2.184.0",
+          "text": "# 🚀 CodeBuddy Code v2.184.0 发布 ## 📦 版本信息 组件版本 CodeBuddy Code CLIv2.184.0 Agent SDK JSv0.3.304 Agent SDK Pythonv0.3.303 ## ✨ 新功能 ### macOS osascript 沙箱外执行开关 非 WorkBuddy 宿主可通过 CODEBUDDY_CLI_CAPABILITIES=sandbox.native-osascript 显式开启 macOS 单条字面量 osascript 命令的沙箱外执行能力，沿用现有审批和会话授权机制；WorkBuddy Desktop 默认行为不变。 ### Read 工具返回行区间元数据 每次成功读取文件都会返回本次行区间与文件总行数。截断语义对齐主流实现：部分读取给出清晰的截断提示与下一页参数；单行超长、整文件超出 token 上限、offset 越过文件末尾等边界场景行为统一；ACP 与沙箱通道返回一致；提示中的路径在工作目录外使用绝对路径，不再出现冗长相对路径。 ### 模型调用指标（model_calls） 流式 JSON 的 usage_update 事件新增 model_calls：按 step 下发每次模型调用的耗时、首字延迟、结果、尝试次数、结束原因与实际使用的模型，随会话记录落盘并在恢复会话时回放。客户端在 _…"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F36",
+      "opened": true,
+      "reason": null,
+      "latest": "1.1.88",
+      "latest_date": "2026-11-12",
+      "new": [
+        {
+          "date": "2026-11-12",
+          "version": "1.1.88",
+          "text": "CLI 1.1.88 ### 稳定性提升与使用体验优化 优化标题生成提示词 修复TUI /new /clear 新建会话后无法调用 MCP 工具的问题 修复后台刷新工具或系统提示词后，回合结束时的输入推荐有时不显示的问题"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F37",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.86.2",
+      "latest_date": "2026-02-12",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F38",
+      "opened": true,
+      "reason": null,
+      "latest": "v1.40.0",
+      "latest_date": "2026-11-12",
+      "new": [
+        {
+          "date": "2026-11-12",
+          "version": "v1.40.0",
+          "text": "## 1.40.0 (2026-11-12) <!-- Release notes generated using configuration in .github/release.yml at main --> ## What's Changed ### Features * feat: improve Codex subscription authentication guidance by @xunjizhe in https://github.com/OpenHands/OpenHands/pull/17194 ### Bug Fixes * fix(chat): keep messages at tied history page boundaries by @enyst in https://github.com/OpenHands/OpenHands/pull/19649 * fix(chat): prevent delayed echoes from deleting newer drafts by @marcello-pichini in https://github.com/OpenHands/OpenHands/pull/19382 * fix(chat): activate the home model pick when a self-hosted in…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F39",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-12",
+      "new": [
+        {
+          "date": "2026-11-12",
+          "version": null,
+          "text": "### Bye Bye, Dial We said Amp does not have a model selector. Now it has one, and the Dial is gone."
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F40",
+      "opened": true,
+      "reason": null,
+      "latest": "2026.11.05",
+      "latest_date": "2026-11-05",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F41",
+      "opened": true,
+      "reason": null,
+      "latest": "26.11.1",
+      "latest_date": "2026-11-10",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F42",
+      "opened": true,
+      "reason": null,
+      "latest": "v7.8.28",
+      "latest_date": "2026-11-07",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F43",
+      "opened": false,
+      "reason": "https://www.perplexity.ai/changelog: HTTP 403",
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F44",
+      "opened": true,
+      "reason": null,
+      "latest": "v1.0.77",
+      "latest_date": "2026-11-05",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    }
+  ],
+  "opened": 40,
+  "total": 43
+}
