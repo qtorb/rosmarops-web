@@ -2,11 +2,11 @@
  "id": "novedades-0-11",
  "lang": "en",
  "slug": "rosmarops-0-11",
- "title": "RosmarOps 0.11.6: nine agents with a score, all your projects and fewer interruptions",
+ "title": "RosmarOps 0.11.6: nine agents with a score, your projects across your whole folder and fewer interruptions",
  "excerpt": "RosmarOps now scores nine AI agents, looks for your projects across your whole folder, only interrupts you when something changes, and tells you inside Claude Code. Here's what you get with 0.11.6, and what it still doesn't do.",
  "content": "novedades-0-11-en.html",
  "seo_title": "RosmarOps 0.11.6: what's new for people using AI agents",
- "seo_description": "Nine AI agents with a score, all your projects, notices only when something changes and RosmarOps inside Claude Code. And what it still doesn't do.",
+ "seo_description": "Nine AI agents scored, your projects across your whole folder, notices only when something changes and RosmarOps inside Claude Code. And its limits.",
  "translations": {
   "es": "https://rosmarops.com/es/blog/rosmarops-0-11/",
   "ca": "https://rosmarops.com/ca/blog/rosmarops-0-11/"
