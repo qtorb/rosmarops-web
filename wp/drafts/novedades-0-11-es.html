@@ -1,8 +1,8 @@
 <!-- wp:paragraph -->
-<p><em>RosmarOps ya pone nota a nueve agentes de IA, busca todos tus proyectos, solo te interrumpe cuando algo cambia y te avisa dentro de Claude Code. Esto es lo que ganas con la 0.11.6, y lo que todavía no hace.</em></p>
+<p><em>RosmarOps ya pone nota a nueve agentes de IA, busca tus proyectos en toda tu carpeta, solo te interrumpe cuando algo cambia y te avisa dentro de Claude Code. Esto es lo que ganas con la 0.11.6, y lo que todavía no hace.</em></p>
 <!-- /wp:paragraph -->
 <!-- wp:paragraph -->
-<p>Cuando publiqué la 0.4.0, RosmarOps ponía nota a Claude Code y a Cursor. Hoy va por la 0.11.6. No voy a contarlo versión a versión: estas son las cinco cosas que más cambian lo que puedes hacer con tu informe.</p>
+<p>Cuando publiqué la 0.4.0, RosmarOps ponía nota a Claude Code y a Cursor. Hoy va por la 0.11.6. Y ya no es solo para Windows: funciona en Linux, y en macOS en vista previa. No voy a contarlo versión a versión: estas son las cinco cosas que más cambian lo que puedes hacer con tu informe.</p>
 <!-- /wp:paragraph -->
 <!-- wp:heading -->
 <h2 class="wp-block-heading">Nueve agentes con nota, y quién decide en cada uno</h2>
@@ -12,6 +12,9 @@
 <!-- /wp:paragraph -->
 <!-- wp:paragraph -->
 <p>Y no solo dice qué puede hacer, sino quién lo aprueba: tú, nadie, u otro modelo de IA, como la auto-revisión de Codex o el modo auto de Antigravity. En «Supuestos del análisis» explica, agente por agente, qué supone y qué no puede leer desde el disco, como una opción que le pases al arrancarlo o un modo que elijas en pantalla.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>También dice a qué servicios está conectado cada agente, como pagos, código, correo o documentos, y te avisa cuando puede actuar en ellos sin preguntarte. Y si el uso del ordenador de ChatGPT o de Codex puede usar una app sin preguntarte, lo dice: en rojo si esa app es una terminal.</p>
 <!-- /wp:paragraph -->
 <!-- wp:heading -->
 <h2 class="wp-block-heading">Todos tus proyectos, y dónde está cada aviso</h2>
@@ -31,7 +34,7 @@
 <li><strong>La revisión semanal solo te avisa cuando algo ha cambiado.</strong> Si todo sigue igual, no te interrumpe, y el informe se escribe como siempre.</li>
 <!-- /wp:list-item -->
 <!-- wp:list-item -->
-<li><strong>Puedes apartar los avisos que no te aplican.</strong> Dejan de contar en tu nota y los recuperas cuando quieras. Apartar un aviso no arregla nada: la configuración del agente sigue igual.</li>
+<li><strong>Puedes descartar los avisos que no te afectan,</strong> por ejemplo una clave de prueba. Dejan de contar en tu nota desde la próxima revisión y los recuperas cuando quieras. Descartar un aviso no arregla nada: la configuración del agente sigue igual.</li>
 <!-- /wp:list-item -->
 <!-- wp:list-item -->
 <li><strong>Si lo instalaste desde la <a href="https://rosmarops.com/es/blog/rosmarops-microsoft-store/">Microsoft Store</a>,</strong> se actualiza sin parar tu revisión semanal.</li>
@@ -60,7 +63,7 @@
 <h2 class="wp-block-heading">Lo que sale de tu ordenador</h2>
 <!-- /wp:heading -->
 <!-- wp:paragraph -->
-<p>RosmarOps lee la configuración en reposo y no cambia nada. Solo envía algo cuando tú lo apruebas: tus resultados, si conectas tu espacio, y un aviso de problema, si algo falla y pulsas «Enviar» o marcaste que los envíe sin preguntarte. Ese aviso lleva códigos de error, la versión, el sistema y el día, y puedes leer el texto exacto antes. Nunca lleva tus ficheros, rutas, claves ni configuración. Cada envío queda anotado en <code>rosmarops-sends.log</code>, en tu ordenador.</p>
+<p>RosmarOps lee la configuración en reposo y no cambia nada. Solo envía algo cuando tú lo apruebas: tus resultados, si conectas tu espacio, y un aviso de problema, si algo falla y pulsas «Enviar» o marcaste que los envíe sin preguntarte. Ese aviso lleva códigos de error, la parte de la revisión y el agente afectados, la versión, el sistema, el idioma y el día y, si quieres, un comentario o tu correo. Puedes leer el texto exacto antes de enviarlo. Nunca lleva tus ficheros, rutas, nombres de usuario o de ordenador, claves ni configuración. Cada envío queda anotado en <code>rosmarops-sends.log</code>, en tu ordenador.</p>
 <!-- /wp:paragraph -->
 <!-- wp:heading -->
 <h2 class="wp-block-heading">Lo que todavía no hace</h2>
@@ -69,6 +72,9 @@
 <ul class="wp-block-list">
 <!-- wp:list-item -->
 <li><strong>Detectado no es puntuado.</strong> Continue, Antigravity, Claude Desktop y n8n aparecen como detectados, sin nota. Lo que no se leyó no cuenta como limpio.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>Todavía no avisa cuando GitHub Copilot, Gemini CLI, Cline o Antigravity CLI cargan un servidor MCP externo del catálogo.</strong> Sí lo hace con los otros cinco agentes.</li>
 <!-- /wp:list-item -->
 <!-- wp:list-item -->
 <li><strong>Solo lee la configuración en reposo.</strong> No ve las opciones con las que arrancas un agente ni lo que decide mientras trabaja.</li>
