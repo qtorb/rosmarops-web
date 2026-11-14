@@ -1,15 +1,15 @@
 {
  "id": "novedades-0-11",
  "lang": "ca",
- "slug": "rosmarops-0-11",
- "title": "RosmarOps 0.11.6: nou agents amb nota, els teus projectes a tota la teva carpeta i menys interrupcions",
+ "slug": "novetats-de-rosmarops-novembre-2026",
+ "title": "El nou de RosmarOps: nou agents amb nota, els teus projectes a tota la teva carpeta i menys interrupcions",
  "excerpt": "RosmarOps ja posa nota a nou agents d'IA, busca els teus projectes a tota la teva carpeta, només t'interromp quan alguna cosa canvia i t'avisa dins de Claude Code. Això és el que guanyes amb la 0.11.6, i el que encara no fa.",
  "content": "novedades-0-11-ca.html",
- "seo_title": "RosmarOps 0.11.6: el nou per a qui fa servir agents d'IA",
+ "seo_title": "El nou de RosmarOps per a qui fa servir agents d'IA",
  "seo_description": "Nou agents d'IA amb nota, els teus projectes a tota la carpeta, avisos només quan alguna cosa canvia i RosmarOps dins de Claude Code. I el que encara no fa.",
  "translations": {
-  "en": "https://rosmarops.com/blog/rosmarops-0-11/",
-  "es": "https://rosmarops.com/es/blog/rosmarops-0-11/"
+  "en": "https://rosmarops.com/blog/whats-new-in-rosmarops-november-2026/",
+  "es": "https://rosmarops.com/es/blog/novedades-de-rosmarops-noviembre-2026/"
  },
  "category": "notes-de-camp",
  "tags": {
