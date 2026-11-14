@@ -4,6 +4,7 @@ Run from the repository root:  python3 -m unittest wp/tests/test_blog_drafts.py 
 """
 
 import json
+import re
 import os
 import shutil
 import subprocess
@@ -61,6 +62,18 @@ class Drafts(unittest.TestCase):
     @staticmethod
     def db(posts=(), users=(ADMIN, ALBERT), lang="en", options=None):
         return {"options": options or {}, "posts": list(posts), "users": list(users), "meta": {}, "terms": site_terms(lang)}
+
+    def test_no_program_version_in_title_or_address(self):
+        """Albert, 14-11 (GTM-164): no post names a specific version of the program in its title, SEO title or slug.
+        novedades-0-10 is the old draft that was never published."""
+        # 0.11, v0.11.6 or 1.2 in text, 0-11 in a slug; not 36.487 (a count) nor 2026 (a year).
+        version = re.compile(r"(?<![\d.,])v?\d{1,2}\.\d{1,2}(\.\d{1,3})?(?![\d.,]?\d)|(^|-)v?\d{1,2}-\d{1,2}(-\d{1,3})?(-|$)")
+        for did, by_lang in descriptions().items():
+            if did == "novedades-0-10":
+                continue
+            for lang, d in by_lang.items():
+                for k in ("title", "seo_title", "slug"):
+                    self.assertIsNone(version.search(d[k]), (did, lang, k, d[k]))
 
     def test_descriptions_are_complete_and_link_each_other(self):
         all_ = descriptions()
