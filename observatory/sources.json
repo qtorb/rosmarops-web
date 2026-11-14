@@ -785,6 +785,30 @@
       "public_url": "https://x.ai/changelog/bot",
       "fragile": false,
       "notes": "GTM-159 (Albert, 13-11): xAI's changelog of Grok Bot, the desktop and mobile app whose Bots work in Cursor's cloud and, if allowed, on your own computer. Same host as F44."
+    },
+    {
+      "id": "F46",
+      "name": "Grok Bot: xAI documentation index",
+      "scope": "grok-bot",
+      "method": "page-watch",
+      "read": {
+        "url": "https://docs.x.ai/llms.txt"
+      },
+      "public_url": "https://docs.x.ai/llms.txt",
+      "fragile": false,
+      "notes": "GTM-160 (Albert, 14-11): watch only, after CTO-47. Not a changelog: the collector compares today's lines and links that mention Grok Bot with read, rules, settings, connectors, OAuth or scope against every earlier day; a new one goes to new, dated the day it was seen. It never goes to checked or not_checked of the daily."
+    },
+    {
+      "id": "F47",
+      "name": "Grok Bot: Cursor API documentation",
+      "scope": "grok-bot",
+      "method": "page-watch",
+      "read": {
+        "url": "https://cursor.com/docs/api"
+      },
+      "public_url": "https://cursor.com/docs/api",
+      "fragile": false,
+      "notes": "GTM-160 (Albert, 14-11): watch only, after CTO-47. Not a changelog: the collector compares today's lines and links that mention Grok Bot with read, rules, settings, connectors, OAuth or scope against every earlier day; a new one goes to new, dated the day it was seen. It never goes to checked or not_checked of the daily."
     }
   ]
 }

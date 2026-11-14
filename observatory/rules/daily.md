@@ -1,6 +1,6 @@
 # Reglas de la tarea diaria del Observatorio
 
-La tarea programada que escribe `observatory/daily/D.json` lee este fichero en cada ejecución y cumple las tres secciones. Firmado por Albert: R1–R13 en GTM-22 (29-10-2026); registro de cambios en GTM-89 (04-11-2026). Cambiar este fichero es un PR que firma Albert.
+La tarea programada que escribe `observatory/daily/D.json` lee este fichero en cada ejecución y cumple las tres secciones. Firmado por Albert: R1–R13 en GTM-22 (29-10-2026); registro de cambios en GTM-89 (04-11-2026); vigilancia de Grok Bot en GTM-160 (14-11-2026). Cambiar este fichero es un PR que firma Albert.
 
 ## Fuente de datos (GTM-90)
 
@@ -62,3 +62,12 @@ Después de escribir y validar `observatory/daily/D.json`, la misma tarea añade
 8. Valida cada fichero de agente tocado con el esquema antes del commit. Si no valida, no lo subas y dilo en el día a día; `D.json` se sube igualmente.
 9. Un único commit en main de qtorb/rosmarops-web con `observatory/daily/D.json` y los ficheros de agente tocados. Solo se escribe en `changes[]` de `observatory/data/agents/*.json`; la copia de vigil (`data/observatory/agents/`) queda congelada y no se toca.
 10. Antigravity y Antigravity CLI (decisión de Albert del 07-11, GTM-107): la fuente F4 (`https://antigravity.google/docs/changelog`) trae todas las pestañas. Desde el 07-11, un cambio de la pestaña CLI va al registro de `antigravity-cli` (`subject` «Antigravity CLI»), y los de las demás pestañas (App, IDE, IDE Extensions, SDK) siguen yendo a `antigravity`. Los cambios ya registrados en `antigravity` antes del 07-11 se quedan donde están: no se mueven ni se copian.
+
+## Vigilancia del acceso de lectura a Grok Bot (GTM-160)
+
+Firmado por Albert el 14-11 07:57, tras CTO-47: hoy ni xAI ni Cursor documentan una API ni un acceso OAuth para que otra aplicación lea las reglas, los conectores, Auto-review o «Execution on this computer» de Grok Bot. F46 (`https://docs.x.ai/llms.txt`) y F47 (`https://cursor.com/docs/api`) vigilan si aparece.
+
+1. F46 y F47 tienen `method` «page-watch». No van a `checked` ni a `not_checked` y no cuentan para R10. `daily_raw.py skeleton` ya los deja fuera.
+2. Cada entrada de `new` de F46 o F47 es una página o ruta que ningún día anterior tenía y que menciona Grok Bot junto a read, rules, settings, connectors, OAuth o scope. Su `date` es el día en que el recolector la vio (`date_is_detection`).
+3. Al día a día: va la primera de `items`, antes de los cupos de R9, con `subject` «Grok Bot». Cuenta para el máximo de 5: si hay más, el último sale a held con reason «fuera por tope» y rule 9. El redactor abre hoy la página (R1). `source_url` es la dirección de la página que trae la entrada, sin el `.md` final en las de docs.x.ai; si la entrada no trae dirección, la de la fuente. Valen R2–R13. R12 se aplica con la fecha de detección.
+4. Al registro de cambios: entra en `changes[]` de `observatory/data/agents/grok-bot.json` aunque no haya versión. Campos: `id` chg-grok-bot-<fecha>-<palabra>; sin `version`; `date` = la fecha de detección; `category` «agent_scope»; `rosmarops_impact` «knowledge»; `verified` {by: "writer", at: hoy, how: "official_doc"}. `before` dice que la documentación oficial no tenía esa página o ruta, y `after` qué dice la página nueva, sin juicios. El resto de las reglas del registro (5–9) se aplica igual.
