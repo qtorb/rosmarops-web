@@ -17,6 +17,7 @@ D = "2026-01-15"
 NOW = datetime.datetime(2026, 1, 15, 7, 20, tzinfo=datetime.timezone.utc)
 ITEMS = json.loads((ROOT / "observatory" / "tests" / "daily" / f"{D}.json").read_text(encoding="utf-8"))["items"][:1]
 SOURCES = daily_raw.load_sources()
+PUBLIC = [s for s in SOURCES if s["method"] != "page-watch"]
 
 
 def raw(closed=()):
@@ -42,7 +43,7 @@ class FromRaw(unittest.TestCase):
         d = daily_raw.build(D, raw(), SOURCES, copy.deepcopy(ITEMS), [], NOW)
         self.assertEqual(d["status"], "published")
         self.assertNotIn("not_checked", d)
-        self.assertEqual(len(d["checked"]), len(SOURCES))
+        self.assertEqual(len(d["checked"]), len(PUBLIC))
         self.assertEqual(d["checked"][0], {"name": "Claude Code", "url": SOURCES[0]["public_url"],
                                            "latest_seen": "1.0.0", "latest_date": "2026-01-14"})
         self.assertEqual(check(d), [])
@@ -71,7 +72,21 @@ class FromRaw(unittest.TestCase):
         d = daily_raw.no_raw(D, SOURCES, NOW)
         self.assertEqual((d["status"], d["items"], d["checked"]), ("incomplete", [], []))
         self.assertEqual(d["held"], [{"text_en": "", "source_url": "", "rule": 10, "reason": f"no raw for {D}"}])
-        self.assertEqual(d["not_checked"], [s["name"] for s in SOURCES])
+        self.assertEqual(d["not_checked"], [s["name"] for s in PUBLIC])
+        self.assertEqual(check(d), [])
+
+    def test_page_watch_sources_stay_out_of_the_daily(self):
+        """GTM-160: F46 and F47 only watch for a Grok Bot read access; they never show in checked or not_checked."""
+        watch = [s for s in SOURCES if s["method"] == "page-watch"]
+        self.assertEqual([s["id"] for s in watch], ["F46", "F47"])
+        names = {s["name"] for s in watch}
+        d = daily_raw.build(D, raw(closed=("F46", "F47")), SOURCES, [], [], NOW)
+        self.assertEqual(d["status"], "no_changes")
+        self.assertNotIn("not_checked", d)
+        self.assertFalse(names & {c["name"] for c in d["checked"]})
+        d = daily_raw.build(D, raw(), SOURCES, [], [], NOW)
+        self.assertFalse(names & {c["name"] for c in d["checked"]})
+        self.assertFalse(names & set(daily_raw.no_raw(D, SOURCES, NOW)["not_checked"]))
         self.assertEqual(check(d), [])
 
     def test_every_public_url_passes_the_host_check(self):
