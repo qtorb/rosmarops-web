@@ -1,0 +1,22 @@
+{
+ "id": "novedades-0-11",
+ "lang": "es",
+ "slug": "rosmarops-0-11",
+ "title": "RosmarOps 0.11.6: nueve agentes con nota, tus proyectos en toda tu carpeta y menos interrupciones",
+ "excerpt": "RosmarOps ya pone nota a nueve agentes de IA, busca tus proyectos en toda tu carpeta, solo te interrumpe cuando algo cambia y te avisa dentro de Claude Code. Esto es lo que ganas con la 0.11.6, y lo que todavía no hace.",
+ "content": "novedades-0-11-es.html",
+ "seo_title": "RosmarOps 0.11.6: lo nuevo para quien usa agentes de IA",
+ "seo_description": "Nueve agentes de IA con nota, tus proyectos en toda tu carpeta, avisos solo cuando algo cambia y RosmarOps dentro de Claude Code. Y lo que aún no hace.",
+ "translations": {
+  "en": "https://rosmarops.com/blog/rosmarops-0-11/",
+  "ca": "https://rosmarops.com/ca/blog/rosmarops-0-11/"
+ },
+ "category": "novedades-de-rosmarops",
+ "tags": {
+  "claude-code": "Claude Code",
+  "codex": "Codex",
+  "cursor": "Cursor"
+ },
+ "image": "rosmarops-img-16-novedades-0-10.jpg",
+ "alt": "Un portátil con un mapa de nueve agentes de IA, una mano que coloca uno nuevo y, al lado, dos portátiles conectados a una nube."
+}

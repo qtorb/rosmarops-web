@@ -1,0 +1,95 @@
+<!-- wp:paragraph -->
+<p><em>RosmarOps ja posa nota a nou agents d'IA, busca els teus projectes a tota la teva carpeta, només t'interromp quan alguna cosa canvia i t'avisa dins de Claude Code. Això és el que guanyes amb la 0.11.6, i el que encara no fa.</em></p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>Quan vaig publicar la 0.4.0, RosmarOps posava nota a Claude Code i a Cursor. Avui va per la 0.11.6. I ja no és només per a Windows: funciona a Linux, i a macOS en vista prèvia. No ho explicaré versió a versió: aquestes són les cinc coses que més canvien el que pots fer amb el teu informe.</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Nou agents amb nota, i qui decideix en cadascun</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>Si fas servir Codex, Grok Build, GitHub Copilot a VS Code, Antigravity CLI, Gemini CLI o Cline a VS Code, el teu informe diu què pot fer aquest agent i li posa nota, igual que a Claude Code, Cursor i Hermes Agent.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>I no només diu què pot fer, sinó qui ho aprova: tu, ningú, o un altre model d'IA, com la revisió automàtica de Codex o el mode auto d'Antigravity. A «Supuestos del análisis» (l'informe surt en castellà o en anglès) explica, agent per agent, què suposa i què no pot llegir des del disc, com una opció que li passis en arrencar-lo o un mode que triïs a la pantalla.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>També diu a quins serveis està connectat cada agent, com pagaments, codi, correu o documents, i t'avisa quan hi pot actuar sense preguntar-te. I si l'ús de l'ordinador de ChatGPT o de Codex pot fer servir una app sense preguntar-te, ho diu: en vermell si aquesta app és un terminal.</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Els teus projectes a tota la teva carpeta, i on és cada avís</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>Abans RosmarOps només mirava unes poques carpetes, i només la primera vegada. Ara busca els teus projectes de git a tota la teva carpeta d'usuari, fins a sis nivells, a cada revisió. Només llista noms de carpetes: mai no obre cap fitxer per trobar-los, ni entra en carpetes ocultes o del sistema, altres discos, carpetes de xarxa o carpetes al núvol que no siguin al teu ordinador.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>Cada avís diu on és a la primera, a «Qué hacer primero» i a cada fila. I una clau que només és al teu historial de git ho diu així, amb el projecte, el commit i el fitxer, en lloc de semblar una falsa alarma.</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Menys interrupcions</h2>
+<!-- /wp:heading -->
+<!-- wp:list -->
+<ul class="wp-block-list">
+<!-- wp:list-item -->
+<li><strong>La revisió setmanal només t'avisa quan alguna cosa ha canviat.</strong> Si tot segueix igual, no t'interromp, i l'informe s'escriu com sempre.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>Pots descartar els avisos que no t'afecten,</strong> per exemple una clau de prova. Deixen de comptar a la teva nota des de la propera revisió i els recuperes quan vulguis. Descartar un avís no arregla res: la configuració de l'agent segueix igual.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>Si el vas instal·lar des de la <a href="https://rosmarops.com/ca/blog/rosmarops-microsoft-store/">Microsoft Store</a>,</strong> s'actualitza sense aturar la teva revisió setmanal.</li>
+<!-- /wp:list-item -->
+</ul>
+<!-- /wp:list -->
+<!-- wp:heading -->
+<h2 class="wp-block-heading">RosmarOps dins de Claude Code</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>És el més nou. Cada vegada que obres un projecte a Claude Code, RosmarOps et pot dir què porta o què ha canviat des de l'última vegada: permisos, hooks, servidors MCP i skills. T'ho diu a tu, no a Claude, i només llegeix. Si no tens una línia d'estat pròpia a Claude Code, també hi pot mostrar la teva última revisió.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>RosmarOps no canvia els ajustos de Claude Code. Per activar-ho, l'informe et dona un text per enganxar a Claude Code, que t'ensenya el canvi i et pregunta abans de desar-lo. El trobaràs a «Más información».</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Tots els teus ordinadors al teu espai</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>Si fas servir agents en més d'un ordinador, els pots veure junts al teu espai d'app.rosmarops.com. Connectes cada ordinador una vegada i, després de cada revisió, els seus resultats hi arriben xifrats. Només els resultats: mai les teves claus, els teus fitxers ni la teva configuració. És una beta oberta i gratuïta, de fins a cinc ordinadors per espai.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>Connectar és més fàcil: RosmarOps t'ensenya un codi, per si obres el correu per entrar en un altre navegador o al mòbil.</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading -->
+<h2 class="wp-block-heading">El que surt del teu ordinador</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>RosmarOps llegeix la configuració en repòs i no canvia res. Només envia alguna cosa quan tu ho aproves: els teus resultats, si connectes el teu espai, i un avís de problema, si alguna cosa falla i prems «Enviar» o vas marcar que els enviï sense preguntar-te. Aquest avís porta codis d'error, la part de la revisió i l'agent afectats, la versió, el sistema, l'idioma i el dia i, si vols, un comentari o el teu correu. Pots llegir el text exacte abans d'enviar-lo. Mai no porta els teus fitxers, rutes, noms d'usuari o d'ordinador, claus ni configuració. Cada enviament queda anotat a <code>rosmarops-sends.log</code>, al teu ordinador.</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading -->
+<h2 class="wp-block-heading">El que encara no fa</h2>
+<!-- /wp:heading -->
+<!-- wp:list -->
+<ul class="wp-block-list">
+<!-- wp:list-item -->
+<li><strong>Detectat no és puntuat.</strong> Continue, Antigravity, Claude Desktop i n8n apareixen com a detectats, sense nota. El que no s'ha llegit no compta com a net.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>Encara no avisa quan GitHub Copilot, Gemini CLI, Cline o Antigravity CLI carreguen un servidor MCP extern del catàleg.</strong> Sí que ho fa amb els altres cinc agents.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>Només llegeix la configuració en repòs.</strong> No veu les opcions amb què arrenques un agent ni el que decideix mentre treballa.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>La teva nota pot canviar en actualitzar</strong> encara que no hagis tocat res: ara compta coses que abans se li escapaven.</li>
+<!-- /wp:list-item -->
+</ul>
+<!-- /wp:list -->
+<!-- wp:paragraph -->
+<p>Si ja fas servir RosmarOps, actualitza a la 0.11.6. Si no, <a href="https://rosmarops.com/ca/">aquí tens com començar</a>.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p><em>Font: les notes de cada versió, de la 0.5.0 a la 0.11.6, al <a href="https://github.com/qtorb/rosmarops/releases">repositori de RosmarOps</a>.</em></p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p><em>Escrit amb ajuda d'agents d'IA. La tria de les novetats i la decisió de publicar són meves.</em></p>
+<!-- /wp:paragraph -->
