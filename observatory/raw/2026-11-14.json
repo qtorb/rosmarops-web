@@ -1,0 +1,733 @@
+{
+  "date": "2026-11-14",
+  "collected_at": "2026-11-14T05:34:16Z",
+  "sources": [
+    {
+      "id": "F1",
+      "opened": true,
+      "reason": null,
+      "latest": "2.1.325",
+      "latest_date": "2026-11-13",
+      "new": [
+        {
+          "date": "2026-11-13",
+          "version": "2.1.325",
+          "text": "Added Added a spinner tip in VS Code and similar integrated terminals about re-running a notebook cell, shown once Claude has read or edited a Jupyter notebook Added a line under the error shown when your organization’s policy blocks a request, saying how to continue: run /rewind and change the message, or run /clear Added a note for Claude when a sandboxed git checkout, git stash or autostash pull cannot update protected files such as those in .claude [VSCode] Added prompt suggestions wherever the terminal shows them: Tab accepts the suggested next prompt; promptSuggestionEnabled: false in C…"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F2",
+      "opened": true,
+      "reason": null,
+      "latest": "Voice Chat with Agents",
+      "latest_date": "2026-11-06",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F3",
+      "opened": true,
+      "reason": null,
+      "latest": "rust-v0.169.0",
+      "latest_date": "2026-11-13",
+      "new": [
+        {
+          "date": "2026-11-13",
+          "version": "rust-v0.169.0",
+          "text": "## New Features - The opt-in terminal workspace supports multiple side-chat tabs. Switch between them with the keyboard or mouse, and reopen saved local side chats after restarting Codex. (#59784, #60152, #60181) - Search older tasks from the agent command center by name, prompt preview, or working directory. (#60286) - Turn on **Collapse turn details** in the full-screen transcript to fold completed activity beneath each prompt while keeping answers visible and tool output searchable. (#60554, #60555, #60556, #60557) - Add or edit custom model providers from the terminal. With custom gateway…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F4",
+      "opened": true,
+      "reason": null,
+      "latest": "v2.32.0",
+      "latest_date": "2026-11-13",
+      "new": [
+        {
+          "date": "2026-11-13",
+          "version": "v2.32.0",
+          "text": "### Dynamic Workflows and new themes This release adds Dynamic Workflows, letting agents orchestrate parallel subagents and multi-step tasks in Python using the runtime bundled with the app. It also introduces Everforest Light and Dark themes, prompt navigation shortcuts, and stronger protections for agent-controlled browser tabs. It includes 11 improvements and 13 fixes. Improvements(11) You can now use Dynamic Workflows to orchestrate parallel subagents and multi-step tasks in Python using the Python runtime bundled with the app. You can now choose Everforest Light and Everforest Dark in th…"
+        },
+        {
+          "date": "2026-11-13",
+          "version": "v1.5.8",
+          "text": "### Gemini 4 Hydrogen & Carbon models, click-to-expand in full screen mode, and security fixes. Version 1.5.8 adds support for Gemini 4 Hydrogen and Gemini 4 Carbon models, introduces click-to-expand in full screen rendering mode, adds context window usage updates to ACP sessions, and delivers important security, Windows compatibility, and reliability fixes. Improvements(5) Added Gemini 4 Hydrogen (Low, Medium, High, and XHigh) and Gemini 4 Carbon (Low, Medium, and High) to /model and --model when you connect with a GEMINI_API_KEY, added Gemini 4 Hydrogen (Low, Medium, High, and XHigh) when y…"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F5",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.23.1",
+      "latest_date": "2026-11-10",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F6",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-13",
+      "new": [
+        {
+          "date": "2026-11-13",
+          "version": null,
+          "text": "Nov.13 Retired Upcoming deprecation of selected GitHub Copilot models in December copilot ###"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F7",
+      "opened": true,
+      "reason": null,
+      "latest": "v4.1.26",
+      "latest_date": "2026-10-26",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F8",
+      "opened": true,
+      "reason": null,
+      "latest": "v2.1.0-vscode",
+      "latest_date": "2026-06-19",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F9",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.5.0",
+      "latest_date": "2026-11-09",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F10",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-13",
+      "new": [
+        {
+          "date": "2026-11-13",
+          "version": null,
+          "text": "MAL-0000-ghsa-malware-a9e0b2b9dc1114db @claudecode/cli: Malware in @claudecode/cli"
+        },
+        {
+          "date": "2026-11-13",
+          "version": null,
+          "text": "MAL-0000-ghsa-malware-f91948fabd49378c @rclaude/darwin-arm64: Malware in @rclaude/darwin-arm64"
+        },
+        {
+          "date": "2026-11-13",
+          "version": null,
+          "text": "MAL-0000-ghsa-malware-62ca3d05baadbd79 dowload_ebok_les_heritiers_by_pierre_bourdieu_jean_claude_passeron_7aha3: Malware in dowload_ebok_les_heritiers_by_pierre_bourdieu_jean_claude_passeron_7aha3"
+        },
+        {
+          "date": "2026-11-13",
+          "version": null,
+          "text": "MAL-0000-ghsa-malware-17705efd30b1bb43 dowload_ebok_oranges_by_john_mcphee_6dfq3: Malware in dowload_ebok_oranges_by_john_mcphee_6dfq3"
+        },
+        {
+          "date": "2026-11-13",
+          "version": null,
+          "text": "MAL-0000-ghsa-malware-1b84887257829ec6 dowload_ebok_the_agent_runner_by_simon_conway_70ch1: Malware in dowload_ebok_the_agent_runner_by_simon_conway_70ch1"
+        },
+        {
+          "date": "2026-11-13",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-4ab651b6042b8ef6 helper-agent: helper-agent postinstall beacons to webhook.site and mutates a localhost service"
+        },
+        {
+          "date": "2026-11-13",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-f01dff7c435620ec helper-agent: Postinstall beacon to webhook.site collector (dependency-confusion canary)"
+        },
+        {
+          "date": "2026-11-13",
+          "version": null,
+          "text": "MAL-2026-19224 helper-agent: Malicious code in helper-agent (npm)"
+        },
+        {
+          "date": "2026-11-13",
+          "version": null,
+          "text": "MAL-0000-ghsa-malware-e2545042ca50e39e karma365-mcp: Malware in karma365-mcp"
+        },
+        {
+          "date": "2026-11-13",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-6f389c95da49d7d8 my-mcp-server-driving-license-ocr: MCP OCR tool forwards caller-supplied driving-license images to a hardcoded bare-IP endpoint over plaintext HTTP"
+        }
+      ],
+      "ids": [
+        "MAL-0000-amazon-inspector-4ab651b6042b8ef6",
+        "MAL-0000-amazon-inspector-6f389c95da49d7d8",
+        "MAL-0000-amazon-inspector-f01dff7c435620ec",
+        "MAL-0000-ghsa-malware-17705efd30b1bb43",
+        "MAL-0000-ghsa-malware-1b84887257829ec6",
+        "MAL-0000-ghsa-malware-62ca3d05baadbd79",
+        "MAL-0000-ghsa-malware-a9e0b2b9dc1114db",
+        "MAL-0000-ghsa-malware-e2545042ca50e39e",
+        "MAL-0000-ghsa-malware-f91948fabd49378c",
+        "MAL-2026-19224"
+      ],
+      "read_with": "git"
+    },
+    {
+      "id": "F11",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.68.0",
+      "latest_date": "2026-11-10",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F12",
+      "opened": true,
+      "reason": null,
+      "latest": "1.0.112",
+      "latest_date": "2026-11-13",
+      "new": [
+        {
+          "date": "2026-11-13",
+          "version": "1.0.112",
+          "text": "- A failed /compact now shows the model provider's error message without an internal host-rethrow prefix - A prompt the CLI does not send yet, such as one entered while managed account policy is still loading, keeps its pasted text, so pressing Enter again sends the paste instead of the literal [Paste #N - M lines] placeholder - The /plugin manager no longer shows a repository plugin that did not load as enabled, and plugin lists no longer say its directory was not found when its source points outside the marketplace - `copilot help sandbox` now says that on macOS, sandbox host rules block di…"
+        },
+        {
+          "date": "2026-11-13",
+          "version": "1.0.111",
+          "text": "- Add regular expression support to enterprise-managed Shell, Bash, and PowerShell permission rules - Add --host-allow-session-creation to let remote clients create sessions on CLI hosts for one launch without changing saved settings - Refresh /usage premium request usage so percentages stay current. - Prevent duplicate MCP OAuth reconnects and keep servers in needs-auth after canceled authorization - Markdown tables containing a wide symbol followed by the text variation selector, such as ⌛︎, render with correctly aligned rows - The `footer.showCodeChanges` setting description now says it sh…"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F13",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-12",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F14",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-14",
+      "new": [
+        {
+          "date": "2026-11-13",
+          "version": null,
+          "text": "MAL-2026-19792 dowload_ebok_les_heritiers_by_pierre_bourdieu_jean_claude_passeron_7aha3: Malicious code in dowload_ebok_les_heritiers_by_pierre_bourdieu_jean_claude_passeron_7aha3 (npm)"
+        },
+        {
+          "date": "2026-11-13",
+          "version": null,
+          "text": "MAL-2026-19602 dowload_ebok_the_agent_runner_by_simon_conway_70ch1: Malicious code in dowload_ebok_the_agent_runner_by_simon_conway_70ch1 (npm)"
+        },
+        {
+          "date": "2026-11-13",
+          "version": null,
+          "text": "MAL-2026-19539 dowload_ebok_oranges_by_john_mcphee_6dfq3: Malicious code in dowload_ebok_oranges_by_john_mcphee_6dfq3 (npm)"
+        },
+        {
+          "date": "2026-11-13",
+          "version": null,
+          "text": "MAL-2026-19243 @claudecode/cli: Malicious code in @claudecode/cli (npm)"
+        },
+        {
+          "date": "2026-11-13",
+          "version": null,
+          "text": "MAL-2026-19235 karma365-mcp: Malicious code in karma365-mcp (npm)"
+        },
+        {
+          "date": "2026-11-13",
+          "version": null,
+          "text": "MAL-2026-19234 @rclaude/darwin-arm64: Malicious code in @rclaude/darwin-arm64 (npm)"
+        },
+        {
+          "date": "2026-11-13",
+          "version": null,
+          "text": "MAL-2026-19224 helper-agent: Malicious code in helper-agent (npm)"
+        },
+        {
+          "date": "2026-11-13",
+          "version": null,
+          "text": "MAL-2026-19204 my-mcp-server-driving-license-ocr: Malicious code in my-mcp-server-driving-license-ocr (PyPI)"
+        }
+      ],
+      "ids": [
+        "MAL-2026-19204",
+        "MAL-2026-19224",
+        "MAL-2026-19234",
+        "MAL-2026-19235",
+        "MAL-2026-19243",
+        "MAL-2026-19539",
+        "MAL-2026-19602",
+        "MAL-2026-19792"
+      ],
+      "read_with": "curl"
+    },
+    {
+      "id": "F15",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-13",
+      "new": [
+        {
+          "date": "2026-11-13",
+          "version": null,
+          "text": "CVE-2026-126360 [MCP]: OpenTelemetry Python provides the Python API and SDK for OpenTelemetry. Prior to 1.45.2, TraceContextTextMapPropagator.extract() in opentelemetry-api can perform quadratic-time regular-expression backtracking on a malformed traceparent value containing a trace-context prefix, a long whitespace sequence, and an embedded newline. Exploitation requires an attacker-controlled carrier that preserves embedded newlines and permits a sufficiently large value, because conforming HTTP header values cannot contain embedded newlines. JSON-based carriers, including applicable MCP re…"
+        },
+        {
+          "date": "2026-11-13",
+          "version": null,
+          "text": "CVE-2026-126386 [MCP]: n8n before 1.123.89, 2.x before 2.45.5, 2.46.x before 2.46.1, and 3.x before 3.0.1 contains an open redirect vulnerability in the unauthenticated MCP OAuth dynamic client registration flow, which accepts arbitrary redirect_uri values via the /mcp-oauth/register endpoint. Attackers can send victims crafted /mcp-oauth/authorize URLs that redirect them to attacker-controlled sites before instance checks run, enabling phishing."
+        },
+        {
+          "date": "2026-11-13",
+          "version": null,
+          "text": "CVE-2026-126393 [MCP]: SiYuan before 3.8.10 contains a server-side request forgery vulnerability in the skill-install download path because fetchBytes performs only a parse-time hostname check instead of using ssrfSafeClient. Attackers can supply a skill URL via the MCP skill install action that redirects or DNS-rebinds to loopback addresses, reaching internal services and metadata endpoints."
+        },
+        {
+          "date": "2026-11-13",
+          "version": null,
+          "text": "CVE-2026-124726 [MCP]: Relative Path Traversal, with Unintended Proxy vulnerability in Apache APISIX. A caller of the MCP endpoint can invoke endpoints the OpenAPI document never declared, under the declared tool's HTTP method, using the credentials the Route adds. This issue affects Apache APISIX: from 3.19.0 before 3.20.0. Users are recommended to upgrade to version 3.20.0, which fixes the issue."
+        },
+        {
+          "date": "2026-11-13",
+          "version": null,
+          "text": "CVE-2026-110178 [MCP]: IBM ContextForge MCP Gateway 1.0.0 through 1.0.11 is vulnerable to improper access control in the bulk import path. A remote authenticated attacker holding a team-scoped `admin.import` permission can overwrite the endpoint URL, request headers, and authentication credentials of public tools, resources, and prompts owned by other tenants by sending a crafted POST request to `/v1/import` with `conflict_strategy=update`, redirecting subsequent AI gateway invocations to an attacker-controlled host."
+        },
+        {
+          "date": "2026-11-13",
+          "version": null,
+          "text": "CVE-2026-110189 [MCP]: IBM ContextForge MCP Gateway 1.0.8 through 1.0.11, and v1.1.0 is vulnerable to denial of service due to an incomplete denylist in the jq filter guard module (CWE-184). An authenticated remote attacker can supply a crafted `jsonpath_filter` value containing `halt`, `halt_error`, or unbounded-loop built-ins that bypass the safety check, causing gateway worker process termination or sustained resource exhaustion."
+        },
+        {
+          "date": "2026-11-13",
+          "version": null,
+          "text": "CVE-2026-110194 [MCP]: IBM ContextForge MCP Gateway 1.0.0 through 1.0.11 is vulnerable to server-side request forgery (SSRF). This may allow an authenticated attacker to send unauthorized requests from the system, potentially leading to network enumeration or facilitating other attacks."
+        },
+        {
+          "date": "2026-11-13",
+          "version": null,
+          "text": "CVE-2026-110195 [MCP]: IBM ContextForge MCP Gateway 1.0.0 through 1.0.11 could allow an authenticated caller to bypass upstream credential-level authorization policies due to an insufficiently specific cache key in the RFC 8693 token exchange cache, enabling reuse of cached upstream bearer tokens across different credentials belonging to the same user."
+        },
+        {
+          "date": "2026-11-13",
+          "version": null,
+          "text": "CVE-2026-110199 [MCP]: IBM ContextForge MCP Gateway 1.0.0 through 1.0.11 is vulnerable to cross-site scripting. This vulnerability allows a privileged user to embed arbitrary JavaScript code in the Web UI thus altering the intended functionality potentially leading to credentials disclosure within a trusted session."
+        },
+        {
+          "date": "2026-11-13",
+          "version": null,
+          "text": "CVE-2026-110278 [MCP]: IBM ContextForge MCP Gateway 1.0.0 through 1.1.0 could allow an attacker to replay identity propagation claims signatures or expose sensitive user identity information to third-party MCP servers due to static signature payloads and missing per-gateway configuration checks during tool invocation."
+        },
+        {
+          "date": "2026-11-13",
+          "version": null,
+          "text": "CVE-2026-110279 [MCP]: IBM ContextForge MCP Gateway 1.0.0 through 1.1.0 is vulnerable to improper credential handling because the X-Upstream-Authorization request header can override the gateway-managed upstream credential for OAuth (authorization_code and client_credentials), bearer and basic authenticated gateways, which could allow an authenticated user to cause upstream requests to be made with a different credential and bypass per-user permission and audit attribution."
+        },
+        {
+          "date": "2026-11-13",
+          "version": null,
+          "text": "CVE-2026-94407 [MCP]: IBM ContextForge MCP Gateway 1.0.0 through 1.0.11 is potentially vulnerable to denial of service due to uncontrolled regular expression complexity (CWE-400 / ReDoS). An authenticated user with tool-registration privileges can embed catastrophically backtracking regex patterns in a tool's JSON Schema `pattern` field; when ContextForge validates arguments against that schema, the validation call may consume unbounded CPU, potentially degrading gateway availability."
+        }
+      ],
+      "ids": [
+        "CVE-2026-110178",
+        "CVE-2026-110189",
+        "CVE-2026-110194",
+        "CVE-2026-110195",
+        "CVE-2026-110199",
+        "CVE-2026-110278",
+        "CVE-2026-110279",
+        "CVE-2026-124726",
+        "CVE-2026-126360",
+        "CVE-2026-126386",
+        "CVE-2026-126393",
+        "CVE-2026-94407"
+      ],
+      "read_with": "curl"
+    },
+    {
+      "id": "F16",
+      "opened": true,
+      "reason": null,
+      "latest": "v2.3.0",
+      "latest_date": "2026-11-13",
+      "new": [
+        {
+          "date": "2026-11-13",
+          "version": "v2.3.0",
+          "text": "### Highlights - **Background Subagents by Default**: Subagents now return immediately, continue in the background, and report back whenever they become idle. You can keep working in the parent session while multiple subagents run concurrently. ([#63382](https://github.com/anomalyco/opencode/pull/63382)) - **Quieter Transcripts by Default**: The TUI now summarizes each run of tool calls and thoughts into one collapsible activity row, so the answer is easier to follow. To see every step again, set **Verbosity** to `medium` or `high` in settings, or set `session.verbosity` in your TUI config; a…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F17",
+      "opened": true,
+      "reason": null,
+      "latest": "1.4.178",
+      "latest_date": "2026-11-12",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F18",
+      "opened": true,
+      "reason": null,
+      "latest": "v3.12.59",
+      "latest_date": "2026-11-12",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F19",
+      "opened": true,
+      "reason": null,
+      "latest": "v1.59.1",
+      "latest_date": "2026-11-14",
+      "new": [
+        {
+          "date": "2026-11-14",
+          "version": "v1.59.1",
+          "text": "notes not available"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F20",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-12",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F21",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-08-19",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F22",
+      "opened": true,
+      "reason": null,
+      "latest": "v2026.11.3",
+      "latest_date": "2026-11-10",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F23",
+      "opened": true,
+      "reason": null,
+      "latest": "1.2.22",
+      "latest_date": "2026-11-14",
+      "new": [
+        {
+          "date": "2026-11-14",
+          "version": "1.2.22",
+          "text": "Changes since 1.2.21 * release(langgraph): 1.2.22 (#9702) * release(checkpoint-postgres): 3.2.1 (#9700) * release(prebuilt): 1.1.2 (#9701) * release(checkpoint): 4.3.2 (#9699) * fix(langgraph): stream a child graph on its own thread to a caller streaming subgraphs (#9698) * perf(langgraph): skip message conversion in add_messages for plain messages (#9631) * perf(langgraph): filter pending writes to the given tasks before reading their statuses (#9634) * perf(langgraph): match update keys against a set on wide states (#9632) * perf(langgraph): check only failed futures for the runner stop con…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F24",
+      "opened": true,
+      "reason": null,
+      "latest": "1.15.41",
+      "latest_date": "2026-11-12",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F25",
+      "opened": true,
+      "reason": null,
+      "latest": "python-1.26.0",
+      "latest_date": "2026-11-12",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F26",
+      "opened": true,
+      "reason": null,
+      "latest": "2026-07-28",
+      "latest_date": "2026-07-28",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F27",
+      "opened": true,
+      "reason": null,
+      "latest": "1.146",
+      "latest_date": "2026-11-11",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F28",
+      "opened": true,
+      "reason": null,
+      "latest": "2026.11.13",
+      "latest_date": "2026-11-13",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F29",
+      "opened": true,
+      "reason": null,
+      "latest": "1.4.18",
+      "latest_date": "2026-11-14",
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "date_is_detection": true
+    },
+    {
+      "id": "F31",
+      "opened": true,
+      "reason": null,
+      "latest": "n8n@3.2.2",
+      "latest_date": "2026-11-13",
+      "new": [
+        {
+          "date": "2026-11-13",
+          "version": "n8n@3.2.2",
+          "text": "<!-- release-prerelease --> ## [3.2.2](https://github.com/n8n-io/n8n/compare/n8n@2.48.0...n8n@3.2.2) (2026-11-13) ### Bug Fixes"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F32",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-12",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F33",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.27.3",
+      "latest_date": "2026-11-13",
+      "new": [
+        {
+          "date": "2026-11-13",
+          "version": "v0.27.3",
+          "text": "<!-- qwen-release-notes:v1 --> ## Highlights _See the complete change list below._ ## Breaking Changes No known breaking changes. ## Complete Change List ### Features - Added chips above the Web Shell composer for unfinished background workflows, shells, monitors, and local agents, replacing the status-bar task pill. ([#16813](https://github.com/QwenLM/qwen-code/pull/16813)) by @qqqys - Added Chinese localization for GitHub channel event prompts in PR-bound sessions when the channel UI language is Chinese, while other languages remain English. ([#16773](https://github.com/QwenLM/qwen-code/pul…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F34",
+      "opened": true,
+      "reason": null,
+      "latest": "@moonshot-ai/kimi-code@2.6.2",
+      "latest_date": "2026-11-13",
+      "new": [
+        {
+          "date": "2026-11-13",
+          "version": "@moonshot-ai/kimi-code@2.6.2",
+          "text": "### Patch Changes - [#4875](https://github.com/MoonshotAI/kimi-code/pull/4875) [`4c72e1d`](https://github.com/MoonshotAI/kimi-code/commit/4c72e1d53b33c69c5f3e2bd293cb117577becbd7) Thanks [@7Sageer](https://github.com/7Sageer)! - Support optional `search_url` and `feedback_url` fields on custom registry (`api.json`) providers for `WebSearch` and `/feedback`. - [#4876](https://github.com/MoonshotAI/kimi-code/pull/4876) [`d532f4f`](https://github.com/MoonshotAI/kimi-code/commit/d532f4f9adf8633a515d0628bc97247dd91dcfbc) Thanks [@7Sageer](https://github.com/7Sageer)! - Remove the text-only \"No att…"
+        },
+        {
+          "date": "2026-11-13",
+          "version": "@moonshot-ai/kimi-code@2.6.1",
+          "text": "### Patch Changes - [#4888](https://github.com/MoonshotAI/kimi-code/pull/4888) [`0341ca4`](https://github.com/MoonshotAI/kimi-code/commit/0341ca4f81e11fd57df2fa7ac98f42ee8afb80ae) Thanks [@wbxl2000](https://github.com/wbxl2000)! - Fix multi-second loading delays when reopening long sessions. - [#4907](https://github.com/MoonshotAI/kimi-code/pull/4907) [`397248f`](https://github.com/MoonshotAI/kimi-code/commit/397248f6de1dedf5230e5783e41636390a9fdbe3) Thanks [@sailist](https://github.com/sailist)! - Fix long sessions stalling with empty replies instead of compacting when tool results include n…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F35",
+      "opened": true,
+      "reason": null,
+      "latest": "v2.184.0",
+      "latest_date": "2026-11-13",
+      "new": [
+        {
+          "date": "2026-11-13",
+          "version": "v2.184.0",
+          "text": "# 🚀 CodeBuddy Code v2.184.0 发布 ## 📦 版本信息 组件版本 CodeBuddy Code CLIv2.184.0 Agent SDK JSv0.3.304 Agent SDK Pythonv0.3.303 ## ✨ 新功能 ### macOS osascript 沙箱外执行开关 非 WorkBuddy 宿主可通过 CODEBUDDY_CLI_CAPABILITIES=sandbox.native-osascript 显式开启 macOS 单条字面量 osascript 命令的沙箱外执行能力，沿用现有审批和会话授权机制；WorkBuddy Desktop 默认行为不变。 ### Read 工具返回行区间元数据 每次成功读取文件都会返回本次行区间与文件总行数。截断语义对齐主流实现：部分读取给出清晰的截断提示与下一页参数；单行超长、整文件超出 token 上限、offset 越过文件末尾等边界场景行为统一；ACP 与沙箱通道返回一致；提示中的路径在工作目录外使用绝对路径，不再出现冗长相对路径。 ### 模型调用指标（model_calls） 流式 JSON 的 usage_update 事件新增 model_calls：按 step 下发每次模型调用的耗时、首字延迟、结果、尝试次数、结束原因与实际使用的模型，随会话记录落盘并在恢复会话时回放。客户端在 _…"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F36",
+      "opened": true,
+      "reason": null,
+      "latest": "1.40.1",
+      "latest_date": "2026-11-13",
+      "new": [
+        {
+          "date": "2026-11-13",
+          "version": "1.40.1",
+          "text": "### 会话标签页新增运行状态显示 功能 会话运行状态直观可见：在标签页中直接查看会话运行状态，便于掌握任务进度并及时介入。 会话标签页支持快捷键切换：通过快捷键左右切换会话标签页，便于快速浏览和处理多个任务。 从 IDE 访问官网无需重复登录：从 IDE 打开官网相关页面时，可复用客户端登录态，减少重复认证。 本地与远端插件分别安装：在 WSL/SSH 远端窗口中，插件仅安装到远端环境；在本地窗口中，插件安装到本地，避免安装位置混淆。 新增“打开浏览器”入口：可在 IDE 的“更多操作”中一键打开浏览器，便捷访问外部页面。 企业版用量信息更完整：用量面板新增 Enterprise 标签与额度刷新周期，便于了解当前套餐和额度刷新规则。 优化 优化失败重试时的提示与交互反馈，支持切换模型后使用新模型重试。 支持在会话流中快速点击预览 .md 文件，提升 Markdown 内容的阅读体验。 优化 Auto 模式下的代码搜索，减少不必要的搜索操作，提升任务执行效率。 优化编辑器打开流程，减少界面卡顿，使文件打开更流畅。 优化 Windows 历史会话恢复流程，缩短等待时间。 完善异常重试与恢复机制，减少任务在异常后停滞的情况，提升 Agent 运行稳定性。 提升配置保存与同步的可靠性，减少多窗口操作时设置被覆盖、插件开关状态丢失等问题。 修复 修复部分情况下重启后登录态与工作区信任丢失…"
+        },
+        {
+          "date": "2026-11-13",
+          "version": "1.1.89",
+          "text": "CLI 1.1.89 ### 企业 BYOK 模型支持与技能调用控制 sdk 与 remember 技能现在仅允许用户显式调用 支持企业 BYOK 模型直接连接模型推理"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F37",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.86.2",
+      "latest_date": "2026-02-12",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F38",
+      "opened": true,
+      "reason": null,
+      "latest": "v1.40.0",
+      "latest_date": "2026-11-12",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F39",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-12",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F40",
+      "opened": true,
+      "reason": null,
+      "latest": "2026.11.05",
+      "latest_date": "2026-11-05",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F41",
+      "opened": true,
+      "reason": null,
+      "latest": "26.11.1",
+      "latest_date": "2026-11-10",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F42",
+      "opened": true,
+      "reason": null,
+      "latest": "v7.8.28",
+      "latest_date": "2026-11-07",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F43",
+      "opened": false,
+      "reason": "https://www.perplexity.ai/changelog: HTTP 403",
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F44",
+      "opened": true,
+      "reason": null,
+      "latest": "v1.0.77",
+      "latest_date": "2026-11-05",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F45",
+      "opened": true,
+      "reason": null,
+      "latest": "v1.0.1",
+      "latest_date": "2026-11-11",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    }
+  ],
+  "opened": 43,
+  "total": 44
+}
