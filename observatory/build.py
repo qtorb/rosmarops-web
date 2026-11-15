@@ -182,6 +182,10 @@ def translated(a):
     return all(isinstance(t, dict) and all(t.get(l) for l in LANGS) for t in texts(a))
 
 
+# GTM-169 A6 (signed by Albert 15-11): shown in the cloud family, like Codex cloud.
+CLOUD_FAMILY = {"grok-bot"}
+
+
 def is_published(a):
     # Never in any language until every text has en, es and ca (schema v1.3 rule).
     return has_page(a) and translated(a) and a["agent"]["id"] in PUBLISHED_AGENT_PAGES
@@ -240,7 +244,7 @@ def software_app(a):
 # ---------------------------------------------------------------- page shell
 
 CSS = """
-:root{--bg:#F6F5F2;--ink:#1B1A18;--ink2:#3A3833;--muted:#4F4C46;--line:#E3E0D8;--card:#FFFFFF;--brand:#2346B8;--on-ink:#FFFFFF}
+:root{--bg:#F6F5F2;--ink:#1B1A18;--ink2:#3A3833;--muted:#4F4C46;--line:#E3E0D8;--card:#FFFFFF;--paper:#FFFFFF;--brand:#2346B8;--brand-tint:#E6ECFB;--brand-on:#1E3C9E;--on-ink:#FFFFFF}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
 a{color:var(--ink)}a:hover{color:var(--brand)}
@@ -476,6 +480,7 @@ def item_list(lang, items):
 def build_index(lang, t, agents, candidates):
     import map_page  # GTM-138: the map's button, with the first part of its signed title
     import sandbox_page  # GTM-167: the link to the sandbox comparison, with its signed title
+    import company_page  # GTM-169: the Observatory by company
     path = INDEX_PATH[lang]
     reviewed = max(a["agent"]["reviewed_at"] for a in agents)
     modified = max(date_modified(a) for a in agents)
@@ -488,60 +493,13 @@ def build_index(lang, t, agents, candidates):
         ag = a["agent"]
         if "framework" in ag["kinds"] or "agent_tooling" in ag["kinds"]:
             return "tooling"
-        if ag["local_footprint"] == "no" or "personal_agent" in ag["kinds"]:
+        if ag["local_footprint"] == "no" or "personal_agent" in ag["kinds"] or ag["id"] in CLOUD_FAMILY:
             return "cloud"
         return "local"
-
-    def table(items, first_col, followed=False):
-        cols = "<colgroup>" + "".join(f'<col style="width:{w}%">' for w in (15, 15, 21, 17, 16, 16)) + "</colgroup>"
-        head = cols + (
-            f'<thead><tr><th scope="col">{t(first_col)}</th><th scope="col">{t("index.th_vendor")}</th>'
-            f'<th scope="col">{t("index.th_type")}</th><th scope="col">{t("index.th_platforms")}</th>'
-            f'<th scope="col">{t("index.th_rosmarops")}</th><th scope="col">{t("index.th_last_change")}</th></tr></thead>'
-        )
-        return f'<div class="box tablebox"><table>\n{head}\n<tbody>\n' + "\n".join(row(a, followed) for a in items) + "\n</tbody>\n</table></div>"
-
-    def row(a, followed=False):
-        ag = a["agent"]
-        name = esc(ag["name"])
-        if is_published(a):
-            name = f'<a href="{agent_path(lang, ag["id"])}">{name}</a>'
-        lc = latest_change(a)
-        last = (
-            f'{esc(t.date(lc["date"]))} · {esc(t.text("category." + lc["category"]))}' if lc else t("index.no_change")
-        )
-        return (
-            "<tr>"
-            f'<th scope="row">{name}</th>'
-            f'<td data-label="{t("index.th_vendor")}">{esc(ag["vendor"])}</td>'
-            f'<td data-label="{t("index.th_type")}">{esc(kinds_text(t, a))}</td>'
-            f'<td data-label="{t("index.th_platforms")}">{esc(platforms_text(t, a))}</td>'
-            f'<td data-label="{t("index.th_rosmarops")}">{t("status.followed") if followed else esc(status_text(t, a))}</td>'
-            f'<td data-label="{t("index.th_last_change")}" data-last="{esc(ag["id"])}">{last}</td>'
-            "</tr>"
-        )
 
     agent_list = [a for a in agents if family(a) == "local"]
     tool_list = [a for a in agents if family(a) == "tooling"]
     cloud_list = [a for a in agents if family(a) == "cloud"]
-    tools_section = ""
-    if tool_list:
-        tools_section = f"""
-
-<section aria-labelledby="tools">
-<h2 id="tools">{t("index.tooling_h2")}</h2>
-<p class="note">{t("index.tooling_note")}</p>
-{table(tool_list, "index.th_tool", followed=True)}
-</section>"""
-    cloud_section = ""
-    if cloud_list:
-        cloud_section = f"""
-
-<section aria-labelledby="cloud">
-<h2 id="cloud">{t("index.cloud_h2")}</h2>
-<p class="note">{t("index.cloud_note")}</p>
-{table(cloud_list, "index.th_agent", followed=True)}
-</section>"""
     candidates_section = ""
     if candidates:
         cand_items = "".join(
@@ -565,30 +523,41 @@ def build_index(lang, t, agents, candidates):
         changes = f'<p class="empty box" data-live-target>{t("index.changes_empty")}</p>'
 
     daily_link = Markup(f'<a href="{DAILY_PATH[lang]}">{t("index.daily_link")}</a>')
-    cloud_link = Markup(f'<a href="{CLOUD_PATH[lang]}">{t("index.cloud_link")}</a>')
 
-    body = f"""<section class="hero">
+    CT = company_page.texts()[lang]
+
+    def family_label(a):
+        return t.text({"local": "index.agents_h2", "tooling": "index.tooling_h2", "cloud": "index.cloud_h2"}[family(a)])
+
+    def status_html(a):
+        return t("status.followed") if family(a) != "local" else esc(status_text(t, a))
+
+    def last_html(a):
+        lc = latest_change(a)
+        return f'{esc(t.date(lc["date"]))} · {esc(t.text("category." + lc["category"]))}' if lc else t("index.no_change")
+
+    companies = company_page.grid(lang, agents, family_label=family_label, status_html=status_html, last_html=last_html,
+                                  href=lambda a: agent_path(lang, a["agent"]["id"]) if is_published(a) else None)
+
+    body = f"""<section class="hero co-hero">
 <p class="obs-brand"><img src="/assets/brand/observatory/observatory-mark.svg" width="64" height="64" alt="">{t("site.observatory_brand")}</p>
-<p class="eyebrow">{t("index.eyebrow")}</p>
-<h1>{t("index.h1")}</h1>
-<p class="lead">{t("index.lead")}</p>
+<p class="co-k">{esc(CT["eyebrow"])}</p>
+<h1>{esc(CT["h1"])}</h1>
+<p class="lead">{esc(CT["lead"])}</p>
 <div class="actions"><a class="btn primary" href="{map_page.MAP_PATH[lang]}">{esc(map_page.load()[2]["texts"][lang]["title"].split(":")[0])}</a><a class="btn secondary" href="{DAILY_PATH[lang]}">{t("index.cta_daily")}</a></div>
-<p class="note"><a href="{sandbox_page.SANDBOX_PATH[lang]}">{esc(sandbox_page.texts()[lang]["title"])}</a></p>
+<p class="note"><a href="{sandbox_page.SANDBOX_PATH[lang]}">{esc(sandbox_page.texts()[lang]["title"])}</a> · <a href="{company_page.GUIDE_PATH[lang]}">{esc(CT["guide.title"])}</a></p>
 </section>
 
 <section id="today" aria-labelledby="today-h2" data-src="{DAILY_PATH[lang]}today.html" hidden>
 <h2 id="today-h2">{t("index.today_h2")}</h2>
 <p class="note today-all"><a href="{DAILY_PATH[lang]}">{t("index.today_all")}</a></p>
 </section>
-<script src="/assets/observatory/today.js?v=2" defer></script>
+<script src="/assets/observatory/today.js?v=3" defer></script>
 
-<section aria-labelledby="agents" data-last-src="{DAILY_PATH[lang]}last-change.html">
-<h2 id="agents">{t("index.agents_h2")}</h2>
-<p class="note">{t("index.agents_scope", link=cloud_link)}</p>
-{table(agent_list, "index.th_agent")}
+<section id="companies" aria-label="{esc(CT["grid_label"])}" data-last-src="{DAILY_PATH[lang]}last-change.html">
+{companies}
 <p class="note">{t("index.status_note")}</p>
-<p class="note">{t("index.pages_note")}</p>
-</section>{tools_section}{cloud_section}
+</section>
 
 <section aria-labelledby="changes" data-live="{DAILY_PATH[lang]}changes.html">
 <h2 id="changes">{t("index.changes_h2")}</h2>
@@ -655,7 +624,8 @@ def build_index(lang, t, agents, candidates):
             "numberOfItems": len(tool_list),
             "itemListElement": item_list(lang, tool_list),
         })
-    write(path, page(lang, t, path=path, title=title, description=desc, alternates=INDEX_PATH, jsonld=jsonld, body=body, modified=modified))
+    write(path, page(lang, t, path=path, title=title, description=desc, alternates=INDEX_PATH, jsonld=jsonld, body=body, modified=modified,
+                      extra_head=[f"<style>{company_page.CSS}</style>"]))
 
 
 # ---------------------------------------------------------------- agent page
@@ -663,6 +633,7 @@ def build_index(lang, t, agents, candidates):
 MAP_LINK_AGENTS = {"claude-code", "hermes-agent"}  # GTM-145: only these two, signed by Albert 12-11 23:50
 
 def build_agent(lang, t, a):
+    import company_page  # GTM-169: «Try it in a test environment»
     ag = a["agent"]
     path = agent_path(lang, ag["id"])
     alternates = {l: agent_path(l, ag["id"]) for l in LANGS}
@@ -841,11 +812,15 @@ def build_agent(lang, t, a):
         toc_items.append(("#capabilities", "agent.caps_h2"))
     if storage_html:
         toc_items.append(("#storage", "agent.storage_h2"))
-    toc_items += [("#rosmarops", "agent.rosmarops_h2" + sfx), ("#history", "agent.history_h2")]
+    toc_items.append(("#rosmarops", "agent.rosmarops_h2" + sfx))
+    try_html = company_page.try_section(lang, a)  # GTM-169
+    if try_html:
+        toc_items.append(("#try", None))
+    toc_items.append(("#history", "agent.history_h2"))
     if versions_html:
         toc_items.append(("#versions", "agent.versions_h2"))
     toc_items += [("#sources", "agent.sources_h2"), ("#reply", "agent.reply_h2")]
-    toc = "".join(f'<a href="{h}">{t(k)}</a>' for h, k in toc_items)
+    toc = "".join(f'<a href="{h}">{t(k) if k else esc(company_page.texts()[lang]["try.title"])}</a>' for h, k in toc_items)
 
     body = f"""<div class="layout">
 <nav class="toc" aria-label="{t("agent.toc")}"><p>{t("agent.toc")}</p>{toc}</nav>
@@ -864,13 +839,14 @@ def build_agent(lang, t, a):
 <p>{rosm}</p>
 <div class="actions"><a class="btn primary" href="{esc(t.text("site.download_url") + ("?from=observatory-" + ag["id"] if is_published(a) else ""))}" target="_blank" rel="nofollow noopener">{t("agent.cta_download")}</a></div>
 </section>
+{try_html}
 
 <section id="history" aria-labelledby="history-h" data-live="{DAILY_PATH[lang]}history-{esc(ag["id"])}.html">
 <h2 id="history-h">{t("agent.history_h2")}</h2>
 <p class="note">{t("agent.history_note")}</p>
 {history}
 </section>
-<script src="/assets/observatory/today.js?v=2" defer></script>
+<script src="/assets/observatory/today.js?v=3" defer></script>
 {versions_html}
 <section id="sources" aria-labelledby="sources-h">
 <h2 id="sources-h">{t("agent.sources_h2")}</h2>
@@ -914,7 +890,8 @@ def build_agent(lang, t, a):
             ],
         },
     ]
-    write(path, page(lang, t, path=path, title=title, description=desc, alternates=alternates, jsonld=jsonld, body=body, og_type="article", noindex=not is_published(a), published=published, modified=date_modified(a)))
+    write(path, page(lang, t, path=path, title=title, description=desc, alternates=alternates, jsonld=jsonld, body=body, og_type="article", noindex=not is_published(a), published=published, modified=date_modified(a),
+                      extra_head=[f"<style>{company_page.CSS}</style>"]))
 
 
 # ---------------------------------------------------------------- data files

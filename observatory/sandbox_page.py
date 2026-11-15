@@ -82,7 +82,7 @@ def body(lang, agents, agent_href):
         name_html = f'<a href="{esc(href)}">{name}</a>' if href else name
         trs.append(
             "<tr>"
-            f'<th scope="row">{name_html}</th>'
+            f'<th scope="row" id="{esc(aid)}">{name_html}</th>'
             + "".join(f'<td data-label="{esc(T["col." + s])}">{cell(a, s)}</td>' for s in SYSTEMS)
             + f'<td data-label="{esc(T["col.source"])}">{sources(a)}</td>'
             "</tr>"

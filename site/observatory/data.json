@@ -210,6 +210,19 @@
           "linux": {
             "value": "unknown"
           }
+        },
+        "read_only": {
+          "value": "yes",
+          "source": {
+            "url": "https://docs.cline.bot/core-workflows/plan-and-act",
+            "official": true,
+            "accessed_at": "2026-11-15"
+          }
+        },
+        "asks_first": {
+          "commands": {
+            "value": "unknown"
+          }
         }
       }
     },
@@ -356,6 +369,19 @@
           },
           "linux": {
             "value": "unknown"
+          }
+        },
+        "read_only": {
+          "value": "unknown"
+        },
+        "asks_first": {
+          "commands": {
+            "value": "by_default",
+            "source": {
+              "url": "https://geminicli.com/docs/reference/configuration/",
+              "official": true,
+              "accessed_at": "2026-11-15"
+            }
           }
         }
       }
@@ -721,6 +747,19 @@
               "accessed_at": "2026-11-15"
             }
           }
+        },
+        "read_only": {
+          "value": "yes",
+          "source": {
+            "url": "https://antigravity.google/docs/cli/modes",
+            "official": true,
+            "accessed_at": "2026-11-15"
+          }
+        },
+        "asks_first": {
+          "commands": {
+            "value": "unknown"
+          }
         }
       }
     },
@@ -935,6 +974,32 @@
               "accessed_at": "2026-11-15"
             }
           }
+        },
+        "read_only": {
+          "value": "yes",
+          "source": {
+            "url": "https://code.visualstudio.com/docs/agents/run/agent-harnesses.md",
+            "official": true,
+            "accessed_at": "2026-11-15"
+          }
+        },
+        "asks_first": {
+          "commands": {
+            "value": "by_default",
+            "source": {
+              "url": "https://code.visualstudio.com/docs/agents/run/approvals.md",
+              "official": true,
+              "accessed_at": "2026-11-15"
+            }
+          },
+          "edits": {
+            "value": "no",
+            "source": {
+              "url": "https://code.visualstudio.com/docs/agents/run/security.md",
+              "official": true,
+              "accessed_at": "2026-11-15"
+            }
+          }
         }
       }
     },
@@ -1108,6 +1173,24 @@
               "accessed_at": "2026-11-15"
             }
           }
+        },
+        "read_only": {
+          "value": "yes",
+          "source": {
+            "url": "https://learn.chatgpt.com/docs/agent-approvals-security",
+            "official": true,
+            "accessed_at": "2026-11-15"
+          }
+        },
+        "asks_first": {
+          "commands": {
+            "value": "no",
+            "source": {
+              "url": "https://learn.chatgpt.com/docs/agent-approvals-security",
+              "official": true,
+              "accessed_at": "2026-11-15"
+            }
+          }
         }
       }
     },
@@ -1253,6 +1336,24 @@
             "value": "off_by_default",
             "source": {
               "url": "https://docs.x.ai/build/features/sandbox.md",
+              "official": true,
+              "accessed_at": "2026-11-15"
+            }
+          }
+        },
+        "read_only": {
+          "value": "yes",
+          "source": {
+            "url": "https://docs.x.ai/build/features/plan-mode.md",
+            "official": true,
+            "accessed_at": "2026-11-15"
+          }
+        },
+        "asks_first": {
+          "commands": {
+            "value": "by_default",
+            "source": {
+              "url": "https://docs.x.ai/build/features/permissions.md",
               "official": true,
               "accessed_at": "2026-11-15"
             }
@@ -1592,6 +1693,27 @@
             "value": "container_only",
             "source": {
               "url": "https://github.com/NousResearch/hermes-agent/blob/main/website/docs/user-guide/configuration.md",
+              "official": true,
+              "accessed_at": "2026-11-15"
+            }
+          }
+        },
+        "read_only": {
+          "value": "unknown"
+        },
+        "asks_first": {
+          "commands": {
+            "value": "another_model",
+            "source": {
+              "url": "https://github.com/NousResearch/hermes-agent/blob/main/website/docs/user-guide/security.md",
+              "official": true,
+              "accessed_at": "2026-11-15"
+            }
+          },
+          "edits": {
+            "value": "no",
+            "source": {
+              "url": "https://github.com/NousResearch/hermes-agent/blob/main/website/docs/user-guide/security.md",
               "official": true,
               "accessed_at": "2026-11-15"
             }
@@ -2019,6 +2141,24 @@
               "accessed_at": "2026-11-15"
             }
           }
+        },
+        "read_only": {
+          "value": "yes",
+          "source": {
+            "url": "https://code.claude.com/docs/en/permission-modes",
+            "official": true,
+            "accessed_at": "2026-11-15"
+          }
+        },
+        "asks_first": {
+          "commands": {
+            "value": "another_model",
+            "source": {
+              "url": "https://code.claude.com/docs/en/permission-modes",
+              "official": true,
+              "accessed_at": "2026-11-15"
+            }
+          }
         }
       }
     },
@@ -2301,6 +2441,27 @@
             "value": "on_by_default",
             "source": {
               "url": "https://cursor.com/docs/agent/security/run-modes.md",
+              "official": true,
+              "accessed_at": "2026-11-15"
+            }
+          }
+        },
+        "read_only": {
+          "value": "yes",
+          "source": {
+            "url": "https://cursor.com/help/ai-features/ask-mode.md",
+            "official": true,
+            "accessed_at": "2026-11-15"
+          }
+        },
+        "asks_first": {
+          "commands": {
+            "value": "unknown"
+          },
+          "edits": {
+            "value": "no",
+            "source": {
+              "url": "https://cursor.com/docs/agent/security.md",
               "official": true,
               "accessed_at": "2026-11-15"
             }

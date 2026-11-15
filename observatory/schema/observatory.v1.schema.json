@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://rosmarops.com/schemas/observatory.v1.schema.json",
-  "title": "RosmarOps observatory, one agent file (v1.11: optional protections (sandbox and network_cut per system); v1.10: capabilities[].default gains conflicting, with conflict; v1.9: who_decides gains unknown; v1.8: optional surfaces[] and reads_from[], agent.sources[] and agent.notes[], verified.how gains official_code; v1.7: kinds gains framework and personal_agent, who_decides gains rule, platforms gains python, optional agent.model; v1.6: capability scope other_agents_credentials; v1.5: change category agent_scope; v1.4: optional default_mode.basis and capabilities[].via; v1.3: prose fields are {en, es, ca} objects; v1.2: kinds gains agent_tooling; v1.1: optional default_mode, capabilities and storage)",
+  "title": "RosmarOps observatory, one agent file (v1.12: protections gains read_only and asks_first (commands, optional edits); v1.11: optional protections (sandbox and network_cut per system); v1.10: capabilities[].default gains conflicting, with conflict; v1.9: who_decides gains unknown; v1.8: optional surfaces[] and reads_from[], agent.sources[] and agent.notes[], verified.how gains official_code; v1.7: kinds gains framework and personal_agent, who_decides gains rule, platforms gains python, optional agent.model; v1.6: capability scope other_agents_credentials; v1.5: change category agent_scope; v1.4: optional default_mode.basis and capabilities[].via; v1.3: prose fields are {en, es, ca} objects; v1.2: kinds gains agent_tooling; v1.1: optional default_mode, capabilities and storage)",
   "description": "One file per agent: data/observatory/agents/<id>.json. No user-facing prose beyond short technical sentences; every fact carries its source and date. Never data from users' machines.",
   "type": "object",
   "additionalProperties": false,
@@ -741,7 +741,7 @@
         "sandbox",
         "network_cut"
       ],
-      "description": "v1.11 (GTM-167, signed by Albert 15-11): sandbox and network cut-off per system, as codes with their source, from GTM-164 v2. Read-only and asks-first come later.",
+      "description": "v1.11 (GTM-167, signed by Albert 15-11): sandbox and network cut-off per system, as codes with their source, from GTM-164 v2. v1.12 (GTM-169, signed by Albert 15-11 16:03): read_only and asks_first (commands; edits only where GTM-164 v2 gives a second line).",
       "properties": {
         "sandbox": {
           "type": "object",
@@ -780,6 +780,24 @@
             },
             "linux": {
               "$ref": "#/$defs/protection_cell"
+            }
+          }
+        },
+        "read_only": {
+          "$ref": "#/$defs/read_only_cell"
+        },
+        "asks_first": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "commands"
+          ],
+          "properties": {
+            "commands": {
+              "$ref": "#/$defs/asks_first_cell"
+            },
+            "edits": {
+              "$ref": "#/$defs/asks_first_cell"
             }
           }
         }
@@ -917,6 +935,94 @@
         }
       ],
       "description": "One protection on one system (GTM-167): its value, with the source it comes from; unknown has no source and shows «—»."
+    },
+    "read_only_cell": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "value"
+      ],
+      "properties": {
+        "value": {
+          "enum": [
+            "yes",
+            "no",
+            "unknown"
+          ]
+        },
+        "source": {
+          "$ref": "#/$defs/source"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "value": {
+                "const": "unknown"
+              }
+            }
+          },
+          "then": {
+            "not": {
+              "required": [
+                "source"
+              ]
+            }
+          },
+          "else": {
+            "required": [
+              "source"
+            ]
+          }
+        }
+      ],
+      "description": "Read-only mode (GTM-169): yes, no or unknown; unknown has no source and shows «—»."
+    },
+    "asks_first_cell": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "value"
+      ],
+      "properties": {
+        "value": {
+          "enum": [
+            "by_default",
+            "if_configured",
+            "another_model",
+            "no",
+            "unknown"
+          ]
+        },
+        "source": {
+          "$ref": "#/$defs/source"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "value": {
+                "const": "unknown"
+              }
+            }
+          },
+          "then": {
+            "not": {
+              "required": [
+                "source"
+              ]
+            }
+          },
+          "else": {
+            "required": [
+              "source"
+            ]
+          }
+        }
+      ],
+      "description": "Asks you first (GTM-169): who approves by default; unknown has no source and shows «—» (rule f: contradiction → unknown)."
     }
   }
 }

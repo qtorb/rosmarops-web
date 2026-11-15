@@ -426,6 +426,19 @@
           "accessed_at": "2026-11-15"
         }
       }
+    },
+    "read_only": {
+      "value": "yes",
+      "source": {
+        "url": "https://antigravity.google/docs/cli/modes",
+        "official": true,
+        "accessed_at": "2026-11-15"
+      }
+    },
+    "asks_first": {
+      "commands": {
+        "value": "unknown"
+      }
     }
   }
 }

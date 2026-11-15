@@ -207,6 +207,19 @@
       "linux": {
         "value": "unknown"
       }
+    },
+    "read_only": {
+      "value": "yes",
+      "source": {
+        "url": "https://docs.cline.bot/core-workflows/plan-and-act",
+        "official": true,
+        "accessed_at": "2026-11-15"
+      }
+    },
+    "asks_first": {
+      "commands": {
+        "value": "unknown"
+      }
     }
   }
 }
