@@ -1,5 +1,5 @@
 {
-  "_about": "GTM-169: texts of the Observatory by company (front page), the protections strip, «RosmarOps recommends it to start with» and «Try it in a test environment», literal from vigil docs/briefs/GTM-169.md (signed by Albert 15-11 16:03). EN and CA eyebrow «RosmarOps Observatory» and the no-class phrase (the map's «nodata») signed by Albert 15-11 with GTM-169. Do not edit by hand without a signature.",
+  "_about": "GTM-169: texts of the Observatory by company (front page), the protections strip, «RosmarOps recommends it to start with» and «Try it in a test environment», literal from vigil docs/briefs/GTM-169.md (signed by Albert 15-11 16:03). EN and CA eyebrow «RosmarOps Observatory» and the no-class phrase (the map's «nodata») signed by Albert 15-11 with GTM-169. Do not edit by hand without a signature. Corrections of 15-11 (GTM-169 A1–A3), signed by Albert.",
   "texts": {
     "es": {
       "eyebrow": "Observatorio de RosmarOps",
@@ -36,17 +36,18 @@
       "rec.v2.network": "Trae el corte de red encendido de serie en los tres sistemas.",
       "rec.how": "Cómo lo decidimos",
       "try.title": "Pruébalo en un entorno de pruebas",
-      "try.intro": "Una carpeta vacía no basta: la mayoría de agentes pueden leer toda tu carpeta personal, claves incluidas. Así se aísla {agent}:",
+      "try.intro": "Una carpeta vacía no basta: la mayoría de agentes pueden leer toda tu carpeta personal, claves incluidas. Así limitas lo que podría tocar {agent}:",
       "try.on_by_default": "{system}: su caja de arena viene encendida. Ábrelo en una carpeta de pruebas.",
       "try.off_by_default": "{system}: enciende su caja de arena, como explica {doc}.",
       "try.container_only": "{system}: ábrelo dentro de un contenedor (Docker), como explica {doc}.",
       "try.doc": "su documentación",
       "try.other_account": "{system}: ábrelo con otra cuenta de usuario del ordenador, sin tus carpetas ni tus claves.",
       "try.claude_code": "{system}: usa su perfil Lectura, que no le deja leer fuera del proyecto. Te lo da el informe de RosmarOps.",
-      "try.notice": "Un sandbox limita lo que podría tocar; no lo vuelve inofensivo. Con la red abierta, lo que lea podría salir.",
+      "try.notice": "Un sandbox limita lo que podría tocar; no lo vuelve inofensivo. En muchos agentes limita lo que escribe y adónde se conecta, pero no lo que lee. Con la red abierta, lo que lea podría salir.",
       "try.close": "Después, ejecuta RosmarOps en ese mismo entorno: ves qué podría tocar el agente.",
       "try.guide": "La guía completa",
-      "guide.title": "Cómo probar un agente de IA en un entorno de pruebas"
+      "guide.title": "Cómo probar un agente de IA en un entorno de pruebas",
+      "try.claude_code_sandbox": "{system}: usa su perfil Lectura y, además, enciende su caja de arena, como explica {doc}."
     },
     "en": {
       "eyebrow": "RosmarOps Observatory",
@@ -83,17 +84,18 @@
       "rec.v2.network": "Its network cut is on by default on all three systems.",
       "rec.how": "How we decide",
       "try.title": "Try it in a test environment",
-      "try.intro": "An empty folder isn't enough: most agents can read your whole home folder, keys included. This is how to isolate {agent}:",
+      "try.intro": "An empty folder isn't enough: most agents can read your whole home folder, keys included. This is how to limit what {agent} could touch:",
       "try.on_by_default": "{system}: its sandbox is on by default. Open it in a test folder.",
       "try.off_by_default": "{system}: turn on its sandbox, as {doc} explains.",
       "try.container_only": "{system}: open it inside a container (Docker), as {doc} explains.",
       "try.doc": "its documentation",
       "try.other_account": "{system}: open it from another user account on the computer, without your folders or keys.",
       "try.claude_code": "{system}: use its Read only profile, which stops it reading outside the project. RosmarOps's report gives it to you.",
-      "try.notice": "A sandbox limits what it could touch; it doesn't make it harmless. With the network open, what it reads could get out.",
+      "try.notice": "A sandbox limits what it could touch; it doesn't make it harmless. In many agents it limits what it writes and where it connects, but not what it reads. With the network open, what it reads could get out.",
       "try.close": "Then run RosmarOps in that same environment: you see what the agent could touch.",
       "try.guide": "The full guide",
-      "guide.title": "How to try an AI agent in a test environment"
+      "guide.title": "How to try an AI agent in a test environment",
+      "try.claude_code_sandbox": "{system}: use its Read only profile and also turn on its sandbox, as {doc} explains."
     },
     "ca": {
       "eyebrow": "RosmarOps Observatory",
@@ -130,17 +132,18 @@
       "rec.v2.network": "Porta el tall de xarxa encès de sèrie als tres sistemes.",
       "rec.how": "Com ho decidim",
       "try.title": "Prova'l en un entorn de proves",
-      "try.intro": "Una carpeta buida no n'hi ha prou: la majoria d'agents poden llegir tota la teva carpeta personal, claus incloses. Així s'aïlla {agent}:",
+      "try.intro": "Una carpeta buida no n'hi ha prou: la majoria d'agents poden llegir tota la teva carpeta personal, claus incloses. Així limites el que podria tocar {agent}:",
       "try.on_by_default": "{system}: la seva caixa de sorra ve encesa. Obre'l en una carpeta de proves.",
       "try.off_by_default": "{system}: encén la seva caixa de sorra, com explica {doc}.",
       "try.container_only": "{system}: obre'l dins d'un contenidor (Docker), com explica {doc}.",
       "try.doc": "la seva documentació",
       "try.other_account": "{system}: obre'l amb un altre compte d'usuari de l'ordinador, sense les teves carpetes ni les teves claus.",
       "try.claude_code": "{system}: fes servir el seu perfil Lectura, que no el deixa llegir fora del projecte. Te'l dona l'informe de RosmarOps.",
-      "try.notice": "Un sandbox limita el que podria tocar; no el fa inofensiu. Amb la xarxa oberta, el que llegeixi podria sortir.",
+      "try.notice": "Un sandbox limita el que podria tocar; no el fa inofensiu. En molts agents limita el que escriu i on es connecta, però no el que llegeix. Amb la xarxa oberta, el que llegeixi podria sortir.",
       "try.close": "Després, executa RosmarOps en aquest mateix entorn: veus què podria tocar l'agent.",
       "try.guide": "La guia completa",
-      "guide.title": "Com provar un agent d'IA en un entorn de proves"
+      "guide.title": "Com provar un agent d'IA en un entorn de proves",
+      "try.claude_code_sandbox": "{system}: fes servir el seu perfil Lectura i, a més, encén la seva caixa de sorra, com explica {doc}."
     }
   }
 }

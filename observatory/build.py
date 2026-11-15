@@ -182,6 +182,10 @@ def translated(a):
     return all(isinstance(t, dict) and all(t.get(l) for l in LANGS) for t in texts(a))
 
 
+# GTM-169 A6 (signed by Albert 15-11): shown in the cloud family, like Codex cloud.
+CLOUD_FAMILY = {"grok-bot"}
+
+
 def is_published(a):
     # Never in any language until every text has en, es and ca (schema v1.3 rule).
     return has_page(a) and translated(a) and a["agent"]["id"] in PUBLISHED_AGENT_PAGES
@@ -489,7 +493,7 @@ def build_index(lang, t, agents, candidates):
         ag = a["agent"]
         if "framework" in ag["kinds"] or "agent_tooling" in ag["kinds"]:
             return "tooling"
-        if ag["local_footprint"] == "no" or "personal_agent" in ag["kinds"]:
+        if ag["local_footprint"] == "no" or "personal_agent" in ag["kinds"] or ag["id"] in CLOUD_FAMILY:
             return "cloud"
         return "local"
 

@@ -44,8 +44,7 @@
 .co-cls{min-width:26px;height:26px;display:inline-grid;place-items:center;font-weight:700;font-size:17px;border:1.5px dashed var(--ink);border-radius:7px;color:var(--ink);box-sizing:border-box}
 .co-cls.co-none{border:1.5px solid var(--line);color:var(--muted)}
 .co-meta{margin:0;font-size:12.5px;color:var(--muted)}
-.pr{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin:4px 0 0}
-@media (max-width:520px){.pr{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.pr{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:4px 0 0}
 .pr-i{display:flex;flex-direction:column;gap:2px;min-width:0}
 .pr-n{display:flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;color:var(--ink2);text-decoration:none}
 .pr-n:hover{color:var(--brand)}.pr-n svg{width:18px;height:18px;flex:none}
@@ -174,9 +173,9 @@ td:empty{display:none}}
 </section>
 <section id="try" class="box panel try" aria-labelledby="try-h">
 <h2 id="try-h">Try it in a test environment</h2>
-<p>An empty folder isn&#x27;t enough: most agents can read your whole home folder, keys included. This is how to isolate Gemini CLI:</p>
+<p>An empty folder isn&#x27;t enough: most agents can read your whole home folder, keys included. This is how to limit what Gemini CLI could touch:</p>
 <ul><li>Windows: turn on its sandbox, as <a href="https://geminicli.com/docs/cli/sandbox/" rel="noopener">its documentation</a> explains.</li><li>macOS: turn on its sandbox, as <a href="https://geminicli.com/docs/cli/sandbox/" rel="noopener">its documentation</a> explains.</li><li>Linux: open it inside a container (Docker), as <a href="https://geminicli.com/docs/cli/sandbox/" rel="noopener">its documentation</a> explains.</li></ul>
-<p>A sandbox limits what it could touch; it doesn&#x27;t make it harmless. With the network open, what it reads could get out.</p>
+<p>A sandbox limits what it could touch; it doesn&#x27;t make it harmless. In many agents it limits what it writes and where it connects, but not what it reads. With the network open, what it reads could get out.</p>
 <p>Then run RosmarOps in that same environment: you see what the agent could touch.</p>
 <p><a href="/try-an-ai-agent/">The full guide</a></p>
 </section>

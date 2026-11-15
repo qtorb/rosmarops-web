@@ -44,8 +44,7 @@
 .co-cls{min-width:26px;height:26px;display:inline-grid;place-items:center;font-weight:700;font-size:17px;border:1.5px dashed var(--ink);border-radius:7px;color:var(--ink);box-sizing:border-box}
 .co-cls.co-none{border:1.5px solid var(--line);color:var(--muted)}
 .co-meta{margin:0;font-size:12.5px;color:var(--muted)}
-.pr{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin:4px 0 0}
-@media (max-width:520px){.pr{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.pr{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:4px 0 0}
 .pr-i{display:flex;flex-direction:column;gap:2px;min-width:0}
 .pr-n{display:flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;color:var(--ink2);text-decoration:none}
 .pr-n:hover{color:var(--brand)}.pr-n svg{width:18px;height:18px;flex:none}
@@ -181,9 +180,9 @@ td:empty{display:none}}
 </section>
 <section id="try" class="box panel try" aria-labelledby="try-h">
 <h2 id="try-h">Prova&#x27;l en un entorn de proves</h2>
-<p>Una carpeta buida no n&#x27;hi ha prou: la majoria d&#x27;agents poden llegir tota la teva carpeta personal, claus incloses. Així s&#x27;aïlla Hermes Agent:</p>
+<p>Una carpeta buida no n&#x27;hi ha prou: la majoria d&#x27;agents poden llegir tota la teva carpeta personal, claus incloses. Així limites el que podria tocar Hermes Agent:</p>
 <ul><li>Windows: obre&#x27;l dins d&#x27;un contenidor (Docker), com explica <a href="https://github.com/NousResearch/hermes-agent/blob/main/website/docs/user-guide/configuration.md" rel="noopener">la seva documentació</a>.</li><li>macOS: obre&#x27;l dins d&#x27;un contenidor (Docker), com explica <a href="https://github.com/NousResearch/hermes-agent/blob/main/website/docs/user-guide/configuration.md" rel="noopener">la seva documentació</a>.</li><li>Linux: obre&#x27;l dins d&#x27;un contenidor (Docker), com explica <a href="https://github.com/NousResearch/hermes-agent/blob/main/website/docs/user-guide/configuration.md" rel="noopener">la seva documentació</a>.</li></ul>
-<p>Un sandbox limita el que podria tocar; no el fa inofensiu. Amb la xarxa oberta, el que llegeixi podria sortir.</p>
+<p>Un sandbox limita el que podria tocar; no el fa inofensiu. En molts agents limita el que escriu i on es connecta, però no el que llegeix. Amb la xarxa oberta, el que llegeixi podria sortir.</p>
 <p>Després, executa RosmarOps en aquest mateix entorn: veus què podria tocar l&#x27;agent.</p>
 <p><a href="/ca/provar-un-agent-dia/">La guia completa</a></p>
 </section>

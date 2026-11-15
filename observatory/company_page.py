@@ -60,8 +60,7 @@ CSS = """
 .co-cls{min-width:26px;height:26px;display:inline-grid;place-items:center;font-weight:700;font-size:17px;border:1.5px dashed var(--ink);border-radius:7px;color:var(--ink);box-sizing:border-box}
 .co-cls.co-none{border:1.5px solid var(--line);color:var(--muted)}
 .co-meta{margin:0;font-size:12.5px;color:var(--muted)}
-.pr{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin:4px 0 0}
-@media (max-width:520px){.pr{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.pr{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:4px 0 0}
 .pr-i{display:flex;flex-direction:column;gap:2px;min-width:0}
 .pr-n{display:flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;color:var(--ink2);text-decoration:none}
 .pr-n:hover{color:var(--brand)}.pr-n svg{width:18px;height:18px;flex:none}
@@ -222,7 +221,8 @@ def try_section(lang, a):
         system = SYSTEM_NAME[s]
         if v in ("off_by_default", "container_only"):
             doc = f'<a href="{esc(c["source"]["url"])}" rel="noopener">{esc(T["try.doc"])}</a>'
-            line = fill(esc(T["try." + v]), system=esc(system), doc=doc)
+            key = "try.claude_code_sandbox" if ag["id"] == "claude-code" and v == "off_by_default" else "try." + v  # GTM-169 A2
+            line = fill(esc(T[key]), system=esc(system), doc=doc)
         elif v == "on_by_default":
             line = esc(fill(T["try.on_by_default"], system=system))
         elif ag["id"] == "claude-code":
