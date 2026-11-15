@@ -53,7 +53,9 @@
       "via": "tools",
       "conflict": {
         "text": {
-          "es": "La documentación de Cline dice que todo pide tu aprobación. Su código, de serie, aprueba leer, editar y ejecutar órdenes sin preguntar. No hemos comprobado cuál de las dos se cumple en una instalación nueva."
+          "en": "Cline's documentation says everything asks for your approval. Its code, by default, approves reading, editing, running commands, using the browser and using MCP servers without asking. We haven't checked which of the two holds on a fresh install.",
+          "es": "La documentación de Cline dice que todo pide tu aprobación. Su código, de serie, aprueba leer, editar, ejecutar órdenes, usar el navegador y usar servidores MCP sin preguntar. No hemos comprobado cuál de las dos se cumple en una instalación nueva.",
+          "ca": "La documentació de Cline diu que tot demana la teva aprovació. El seu codi, de sèrie, aprova llegir, editar, executar ordres, fer servir el navegador i fer servir servidors MCP sense preguntar. No hem comprovat quina de les dues es compleix en una instal·lació nova."
         },
         "sources": [
           {
@@ -70,7 +72,7 @@
               "official": true,
               "accessed_at": "2026-11-15"
             },
-            "quote": "DEFAULT_AUTO_APPROVAL_SETTINGS … readFiles: true, readFilesExternally: true, editFiles: true, editFilesExternally: true, executeSafeCommands: false, executeAllCommands: true"
+            "quote": "DEFAULT_AUTO_APPROVAL_SETTINGS … readFiles: true, readFilesExternally: true, editFiles: true, editFilesExternally: true, executeSafeCommands: false, executeAllCommands: true, useBrowser: true, useMcp: true"
           }
         ]
       }
@@ -88,7 +90,9 @@
       "via": "tools",
       "conflict": {
         "text": {
-          "es": "La documentación de Cline dice que todo pide tu aprobación. Su código, de serie, aprueba leer, editar y ejecutar órdenes sin preguntar. No hemos comprobado cuál de las dos se cumple en una instalación nueva."
+          "en": "Cline's documentation says everything asks for your approval. Its code, by default, approves reading, editing, running commands, using the browser and using MCP servers without asking. We haven't checked which of the two holds on a fresh install.",
+          "es": "La documentación de Cline dice que todo pide tu aprobación. Su código, de serie, aprueba leer, editar, ejecutar órdenes, usar el navegador y usar servidores MCP sin preguntar. No hemos comprobado cuál de las dos se cumple en una instalación nueva.",
+          "ca": "La documentació de Cline diu que tot demana la teva aprovació. El seu codi, de sèrie, aprova llegir, editar, executar ordres, fer servir el navegador i fer servir servidors MCP sense preguntar. No hem comprovat quina de les dues es compleix en una instal·lació nova."
         },
         "sources": [
           {
@@ -105,7 +109,7 @@
               "official": true,
               "accessed_at": "2026-11-15"
             },
-            "quote": "DEFAULT_AUTO_APPROVAL_SETTINGS … readFiles: true, readFilesExternally: true, editFiles: true, editFilesExternally: true, executeSafeCommands: false, executeAllCommands: true"
+            "quote": "DEFAULT_AUTO_APPROVAL_SETTINGS … readFiles: true, readFilesExternally: true, editFiles: true, editFilesExternally: true, executeSafeCommands: false, executeAllCommands: true, useBrowser: true, useMcp: true"
           }
         ]
       }
@@ -123,7 +127,9 @@
       "via": "shell",
       "conflict": {
         "text": {
-          "es": "La documentación de Cline dice que todo pide tu aprobación. Su código, de serie, aprueba leer, editar y ejecutar órdenes sin preguntar. No hemos comprobado cuál de las dos se cumple en una instalación nueva."
+          "en": "Cline's documentation says everything asks for your approval. Its code, by default, approves reading, editing, running commands, using the browser and using MCP servers without asking. We haven't checked which of the two holds on a fresh install.",
+          "es": "La documentación de Cline dice que todo pide tu aprobación. Su código, de serie, aprueba leer, editar, ejecutar órdenes, usar el navegador y usar servidores MCP sin preguntar. No hemos comprobado cuál de las dos se cumple en una instalación nueva.",
+          "ca": "La documentació de Cline diu que tot demana la teva aprovació. El seu codi, de sèrie, aprova llegir, editar, executar ordres, fer servir el navegador i fer servir servidors MCP sense preguntar. No hem comprovat quina de les dues es compleix en una instal·lació nova."
         },
         "sources": [
           {
@@ -140,7 +146,7 @@
               "official": true,
               "accessed_at": "2026-11-15"
             },
-            "quote": "DEFAULT_AUTO_APPROVAL_SETTINGS … readFiles: true, readFilesExternally: true, editFiles: true, editFilesExternally: true, executeSafeCommands: false, executeAllCommands: true"
+            "quote": "DEFAULT_AUTO_APPROVAL_SETTINGS … readFiles: true, readFilesExternally: true, editFiles: true, editFilesExternally: true, executeSafeCommands: false, executeAllCommands: true, useBrowser: true, useMcp: true"
           }
         ]
       }
@@ -149,33 +155,73 @@
       "id": "cap-browser",
       "action": "network",
       "scope": "any_destination",
-      "default": "allow",
+      "default": "conflicting",
       "source": {
-        "url": "https://docs.cline.bot/features/auto-approve",
+        "url": "https://github.com/cline/cline/blob/94eecbbe1a2f899c66b118d13656651b0a884e1f/apps/vscode/src/shared/AutoApprovalSettings.ts#L28-L44",
         "official": true,
-        "accessed_at": "2026-11-07"
+        "accessed_at": "2026-11-15"
       },
-      "note": {
-        "en": "Its browser tool runs without asking.",
-        "es": "Su herramienta de navegador funciona sin preguntar.",
-        "ca": "La seva eina de navegador funciona sense preguntar."
-      },
-      "via": "tools"
+      "via": "tools",
+      "conflict": {
+        "text": {
+          "en": "Cline's documentation says everything asks for your approval. Its code, by default, approves reading, editing, running commands, using the browser and using MCP servers without asking. We haven't checked which of the two holds on a fresh install.",
+          "es": "La documentación de Cline dice que todo pide tu aprobación. Su código, de serie, aprueba leer, editar, ejecutar órdenes, usar el navegador y usar servidores MCP sin preguntar. No hemos comprobado cuál de las dos se cumple en una instalación nueva.",
+          "ca": "La documentació de Cline diu que tot demana la teva aprovació. El seu codi, de sèrie, aprova llegir, editar, executar ordres, fer servir el navegador i fer servir servidors MCP sense preguntar. No hem comprovat quina de les dues es compleix en una instal·lació nova."
+        },
+        "sources": [
+          {
+            "source": {
+              "url": "https://docs.cline.bot/cline-overview",
+              "official": true,
+              "accessed_at": "2026-11-15"
+            },
+            "quote": "Every action requires your explicit approval. You're always in control."
+          },
+          {
+            "source": {
+              "url": "https://github.com/cline/cline/blob/94eecbbe1a2f899c66b118d13656651b0a884e1f/apps/vscode/src/shared/AutoApprovalSettings.ts#L28-L44",
+              "official": true,
+              "accessed_at": "2026-11-15"
+            },
+            "quote": "DEFAULT_AUTO_APPROVAL_SETTINGS … readFiles: true, readFilesExternally: true, editFiles: true, editFilesExternally: true, executeSafeCommands: false, executeAllCommands: true, useBrowser: true, useMcp: true"
+          }
+        ]
+      }
     },
     {
       "id": "cap-mcp",
       "action": "use_mcp_tools",
       "scope": "all_mcp_tools",
-      "default": "allow",
+      "default": "conflicting",
       "source": {
-        "url": "https://docs.cline.bot/features/auto-approve",
+        "url": "https://github.com/cline/cline/blob/94eecbbe1a2f899c66b118d13656651b0a884e1f/apps/vscode/src/shared/AutoApprovalSettings.ts#L28-L44",
         "official": true,
-        "accessed_at": "2026-11-07"
+        "accessed_at": "2026-11-15"
       },
-      "note": {
-        "en": "One setting, on by default, approves every MCP tool.",
-        "es": "Un solo ajuste, activado de serie, aprueba todas las herramientas MCP.",
-        "ca": "Un sol ajust, activat de sèrie, aprova totes les eines MCP."
+      "conflict": {
+        "text": {
+          "en": "Cline's documentation says everything asks for your approval. Its code, by default, approves reading, editing, running commands, using the browser and using MCP servers without asking. We haven't checked which of the two holds on a fresh install.",
+          "es": "La documentación de Cline dice que todo pide tu aprobación. Su código, de serie, aprueba leer, editar, ejecutar órdenes, usar el navegador y usar servidores MCP sin preguntar. No hemos comprobado cuál de las dos se cumple en una instalación nueva.",
+          "ca": "La documentació de Cline diu que tot demana la teva aprovació. El seu codi, de sèrie, aprova llegir, editar, executar ordres, fer servir el navegador i fer servir servidors MCP sense preguntar. No hem comprovat quina de les dues es compleix en una instal·lació nova."
+        },
+        "sources": [
+          {
+            "source": {
+              "url": "https://docs.cline.bot/cline-overview",
+              "official": true,
+              "accessed_at": "2026-11-15"
+            },
+            "quote": "Every action requires your explicit approval. You're always in control."
+          },
+          {
+            "source": {
+              "url": "https://github.com/cline/cline/blob/94eecbbe1a2f899c66b118d13656651b0a884e1f/apps/vscode/src/shared/AutoApprovalSettings.ts#L28-L44",
+              "official": true,
+              "accessed_at": "2026-11-15"
+            },
+            "quote": "DEFAULT_AUTO_APPROVAL_SETTINGS … readFiles: true, readFilesExternally: true, editFiles: true, editFilesExternally: true, executeSafeCommands: false, executeAllCommands: true, useBrowser: true, useMcp: true"
+          }
+        ]
       }
     }
   ],
