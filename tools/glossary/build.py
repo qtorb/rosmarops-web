@@ -61,6 +61,11 @@ ASSETS = ('<link rel="stylesheet" href="/assets/help/help.css?v=1">\n',
           '<script src="/assets/help/help.js?v=1" defer></script>\n')
 
 
+def anchor(t, lang):
+    """The term's anchor on the glossary page of a language: its id, or its own anchor per language (GTM-167)."""
+    return t.get('anchors', {}).get(lang, t['id'])
+
+
 def term(tid, lang):
     for t in TERMS:
         if t['id'] == tid:
@@ -142,7 +147,7 @@ def glossary_page(lang):
                '<link rel="alternate" hreflang="x-default" href="https://rosmarops.com%s">' % GLOSS['en'], s, count=1)
     ld = {"@context": "https://schema.org", "@type": "DefinedTermSet", "@id": url + "#set", "name": title,
           "inLanguage": lang, "url": url,
-          "hasDefinedTerm": [{"@type": "DefinedTerm", "@id": url + "#" + t['id'], "name": t[lang][0],
+          "hasDefinedTerm": [{"@type": "DefinedTerm", "@id": url + "#" + anchor(t, lang), "name": t[lang][0],
                               "description": t[lang][1]} for t in TERMS]}
     s = re.sub(r'<script type="application/ld\+json">.*?</script>',
                lambda m: '<script type="application/ld+json">' + json.dumps(ld, ensure_ascii=False) + '</script>', s, count=1, flags=re.S)
@@ -151,7 +156,7 @@ def glossary_page(lang):
     for l2, hrefs in meth.items():
         for h in hrefs:
             s = s.replace('href="%s" hreflang="%s"' % (h, l2), 'href="%s" hreflang="%s"' % (GLOSS[l2], l2))
-    items = ''.join('<dt id="%s">%s</dt>\n<dd>%s</dd>\n' % (t['id'], html.escape(t[lang][0]), html.escape(t[lang][1])) for t in TERMS)
+    items = ''.join('<dt id="%s">%s</dt>\n<dd>%s</dd>\n' % (anchor(t, lang), html.escape(t[lang][0]), html.escape(t[lang][1])) for t in TERMS)
     body = ('<article class="doc"><h1>%s</h1>\n<p>%s</p>\n<dl class="gloss">\n%s</dl>\n</article>\n'
             % (html.escape(title), html.escape(intro), items))
     s = re.sub(r'<article class="doc">.*?</article>\n?', lambda m: body, s, count=1, flags=re.S)
