@@ -281,6 +281,27 @@
           "accessed_at": "2026-11-15"
         }
       }
+    },
+    "read_only": {
+      "value": "yes",
+      "source": {
+        "url": "https://cursor.com/help/ai-features/ask-mode.md",
+        "official": true,
+        "accessed_at": "2026-11-15"
+      }
+    },
+    "asks_first": {
+      "commands": {
+        "value": "unknown"
+      },
+      "edits": {
+        "value": "no",
+        "source": {
+          "url": "https://cursor.com/docs/agent/security.md",
+          "official": true,
+          "accessed_at": "2026-11-15"
+        }
+      }
     }
   }
 }

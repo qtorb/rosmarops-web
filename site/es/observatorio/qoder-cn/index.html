@@ -27,12 +27,46 @@
 <meta property="og:updated_time" content="2026-11-08">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","@id":"https://rosmarops.com/es/observatorio/qoder-cn/#article","headline":"Qoder CN en Windows: qué puede hacer en tu ordenador","description":"Qué puede hacer de serie Qoder CN, de Alibaba, en tu ordenador, dónde guarda sus claves y sus cambios de seguridad fechados, con fuente. Revisado el 6 de noviembre de 2026.","inLanguage":"es","datePublished":"2026-11-07","dateModified":"2026-11-08","mainEntityOfPage":"https://rosmarops.com/es/observatorio/qoder-cn/","about":{"@type":"SoftwareApplication","name":"Qoder CN","applicationCategory":"DeveloperApplication","operatingSystem":"Windows, macOS, Linux","author":{"@type":"Organization","name":"Alibaba"}},"publisher":{"@type":"Organization","@id":"https://rosmarops.com/#org","name":"RosmarOps","url":"https://rosmarops.com/"},"isBasedOn":"https://rosmarops.com/observatory/qoder-cn.json"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"RosmarOps","item":"https://rosmarops.com/es/"},{"@type":"ListItem","position":2,"name":"Observatorio","item":"https://rosmarops.com/es/observatorio/"},{"@type":"ListItem","position":3,"name":"Qoder CN","item":"https://rosmarops.com/es/observatorio/qoder-cn/"}]}</script>
+<style>
+.co-k{margin:0;font-size:14px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.co-hero h1{font-size:34px;line-height:1.15}
+.co-hero .lead{font-size:17px;color:var(--ink2);max-width:65ch}
+.co-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start}
+@media (max-width:760px){.co-grid{grid-template-columns:minmax(0,1fr)}}
+.co{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:16px 18px;min-width:0}
+.co header{display:flex;align-items:baseline;justify-content:space-between;gap:12px;border-bottom:1px solid var(--line);padding:0 0 8px}
+.co h3{margin:0;font-size:20px}.co-n{font-size:13px;color:var(--muted);white-space:nowrap}
+.co-list{list-style:none;margin:0;padding:0}
+.co-p{display:flex;flex-direction:column;gap:6px;padding:12px 0;border-bottom:1px solid var(--line)}
+.co-p:last-child{border-bottom:0;padding-bottom:0}
+.co-pn{font-size:16px;font-weight:700}
+.co-tag{font-size:12px;color:var(--brand-on);background:var(--brand-tint);border-radius:999px;padding:1px 8px;width:max-content;max-width:100%}
+.co-cl{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--ink2)}
+.co-cls{min-width:26px;height:26px;display:inline-grid;place-items:center;font-weight:700;font-size:17px;border:1.5px dashed var(--ink);border-radius:7px;color:var(--ink);box-sizing:border-box}
+.co-cls.co-none{border:1.5px solid var(--line);color:var(--muted)}
+.co-meta{margin:0;font-size:12.5px;color:var(--muted)}
+.pr{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin:4px 0 0}
+@media (max-width:520px){.pr{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.pr-i{display:flex;flex-direction:column;gap:2px;min-width:0}
+.pr-n{display:flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;color:var(--ink2);text-decoration:none}
+.pr-n:hover{color:var(--brand)}.pr-n svg{width:18px;height:18px;flex:none}
+.pr-v{font-size:12.5px;color:var(--muted);line-height:1.4}
+.pr-v a{color:var(--muted)}
+.rec{background:var(--brand-tint);border-left:3px solid var(--brand);border-radius:10px;padding:10px 14px;display:flex;flex-direction:column;gap:4px}
+.rec-t{margin:0;font-size:14px;font-weight:700;color:var(--ink)}
+.rec-d,.rec-how{margin:0;font-size:12.5px;color:var(--muted)}
+.rec ul{list-style:none;margin:0;padding:0;font-size:13px;color:var(--ink2);line-height:1.45}
+.rec ul a{color:var(--ink2)}
+.co-rest{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:16px 18px;display:flex;flex-direction:column;gap:6px}
+.co-rest p{margin:0;font-size:15px;line-height:1.6;color:var(--ink2)}
+.try ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px}
+</style>
 <link rel="stylesheet" href="/assets/consent/cookieconsent.css?v=3.1.0">
 <link rel="icon" href="/assets/brand/observatory/observatory-favicon.ico" sizes="48x48">
 <link rel="icon" href="/assets/brand/observatory/observatory-favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/assets/brand/observatory/observatory-apple-touch-180.png">
 <style>
-:root{--bg:#F6F5F2;--ink:#1B1A18;--ink2:#3A3833;--muted:#4F4C46;--line:#E3E0D8;--card:#FFFFFF;--brand:#2346B8;--on-ink:#FFFFFF}
+:root{--bg:#F6F5F2;--ink:#1B1A18;--ink2:#3A3833;--muted:#4F4C46;--line:#E3E0D8;--card:#FFFFFF;--paper:#FFFFFF;--brand:#2346B8;--brand-tint:#E6ECFB;--brand-on:#1E3C9E;--on-ink:#FFFFFF}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
 a{color:var(--ink)}a:hover{color:var(--brand)}
@@ -130,12 +164,13 @@ td:empty{display:none}}
 <div class="actions"><a class="btn primary" href="/es/descargar" target="_blank" rel="nofollow noopener">Revisa el tuyo: descarga RosmarOps</a></div>
 </section>
 
+
 <section id="history" aria-labelledby="history-h" data-live="/es/observatorio/diario/history-qoder-cn.html">
 <h2 id="history-h">Historial de cambios de seguridad</h2>
 <p class="note">Solo cambios que afectan a lo que puede hacer en tu ordenador o con tus cuentas. Nada se borra: las correcciones quedan anotadas.</p>
 <ol class="changes box" data-live-target><li><p class="meta">7 de noviembre de 2026 · versión 1.39.1 · Permisos</p><p><strong>Antes:</strong> <span>Antes de 1.39.1, el changelog no recoge en Qoder CN un ajuste de la consola de administración para que los administradores de empresa desactiven el modo de acceso completo de los miembros.</span></p><p><strong>Ahora:</strong> <span>Desde 1.39.1, los administradores de empresa pueden desactivar el modo de acceso completo de los miembros desde la consola de administración, según el changelog.</span></p><p class="meta">Recogido automáticamente el 8 de noviembre de 2026 del registro de cambios oficial. <a href="https://changelog.qoder.cn/" rel="noopener">Fuente oficial</a></p></li></ol>
 </section>
-<script src="/assets/observatory/today.js?v=2" defer></script>
+<script src="/assets/observatory/today.js?v=3" defer></script>
 
 <section id="sources" aria-labelledby="sources-h">
 <h2 id="sources-h">Fuentes y datos</h2>

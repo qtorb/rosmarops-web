@@ -209,6 +209,32 @@
           "accessed_at": "2026-11-15"
         }
       }
+    },
+    "read_only": {
+      "value": "yes",
+      "source": {
+        "url": "https://code.visualstudio.com/docs/agents/run/agent-harnesses.md",
+        "official": true,
+        "accessed_at": "2026-11-15"
+      }
+    },
+    "asks_first": {
+      "commands": {
+        "value": "by_default",
+        "source": {
+          "url": "https://code.visualstudio.com/docs/agents/run/approvals.md",
+          "official": true,
+          "accessed_at": "2026-11-15"
+        }
+      },
+      "edits": {
+        "value": "no",
+        "source": {
+          "url": "https://code.visualstudio.com/docs/agents/run/security.md",
+          "official": true,
+          "accessed_at": "2026-11-15"
+        }
+      }
     }
   }
 }

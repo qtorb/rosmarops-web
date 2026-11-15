@@ -26,12 +26,46 @@
 <meta property="og:updated_time" content="2026-11-10">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","@id":"https://rosmarops.com/es/observatorio/gemini-cli/#article","headline":"Gemini CLI en Windows: qué puede hacer en tu ordenador","description":"Qué puede hacer de serie Gemini CLI, de Google, en tu ordenador, dónde guarda sus claves y sus cambios de seguridad fechados, con fuente. Revisado el 10 de noviembre de 2026.","inLanguage":"es","datePublished":"2026-11-10","dateModified":"2026-11-10","mainEntityOfPage":"https://rosmarops.com/es/observatorio/gemini-cli/","about":{"@type":"SoftwareApplication","name":"Gemini CLI","applicationCategory":"DeveloperApplication","operatingSystem":"Windows, macOS, Linux","author":{"@type":"Organization","name":"Google"}},"publisher":{"@type":"Organization","@id":"https://rosmarops.com/#org","name":"RosmarOps","url":"https://rosmarops.com/"},"isBasedOn":"https://rosmarops.com/observatory/gemini-cli.json"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"RosmarOps","item":"https://rosmarops.com/es/"},{"@type":"ListItem","position":2,"name":"Observatorio","item":"https://rosmarops.com/es/observatorio/"},{"@type":"ListItem","position":3,"name":"Gemini CLI","item":"https://rosmarops.com/es/observatorio/gemini-cli/"}]}</script>
+<style>
+.co-k{margin:0;font-size:14px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.co-hero h1{font-size:34px;line-height:1.15}
+.co-hero .lead{font-size:17px;color:var(--ink2);max-width:65ch}
+.co-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start}
+@media (max-width:760px){.co-grid{grid-template-columns:minmax(0,1fr)}}
+.co{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:16px 18px;min-width:0}
+.co header{display:flex;align-items:baseline;justify-content:space-between;gap:12px;border-bottom:1px solid var(--line);padding:0 0 8px}
+.co h3{margin:0;font-size:20px}.co-n{font-size:13px;color:var(--muted);white-space:nowrap}
+.co-list{list-style:none;margin:0;padding:0}
+.co-p{display:flex;flex-direction:column;gap:6px;padding:12px 0;border-bottom:1px solid var(--line)}
+.co-p:last-child{border-bottom:0;padding-bottom:0}
+.co-pn{font-size:16px;font-weight:700}
+.co-tag{font-size:12px;color:var(--brand-on);background:var(--brand-tint);border-radius:999px;padding:1px 8px;width:max-content;max-width:100%}
+.co-cl{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--ink2)}
+.co-cls{min-width:26px;height:26px;display:inline-grid;place-items:center;font-weight:700;font-size:17px;border:1.5px dashed var(--ink);border-radius:7px;color:var(--ink);box-sizing:border-box}
+.co-cls.co-none{border:1.5px solid var(--line);color:var(--muted)}
+.co-meta{margin:0;font-size:12.5px;color:var(--muted)}
+.pr{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin:4px 0 0}
+@media (max-width:520px){.pr{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.pr-i{display:flex;flex-direction:column;gap:2px;min-width:0}
+.pr-n{display:flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;color:var(--ink2);text-decoration:none}
+.pr-n:hover{color:var(--brand)}.pr-n svg{width:18px;height:18px;flex:none}
+.pr-v{font-size:12.5px;color:var(--muted);line-height:1.4}
+.pr-v a{color:var(--muted)}
+.rec{background:var(--brand-tint);border-left:3px solid var(--brand);border-radius:10px;padding:10px 14px;display:flex;flex-direction:column;gap:4px}
+.rec-t{margin:0;font-size:14px;font-weight:700;color:var(--ink)}
+.rec-d,.rec-how{margin:0;font-size:12.5px;color:var(--muted)}
+.rec ul{list-style:none;margin:0;padding:0;font-size:13px;color:var(--ink2);line-height:1.45}
+.rec ul a{color:var(--ink2)}
+.co-rest{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:16px 18px;display:flex;flex-direction:column;gap:6px}
+.co-rest p{margin:0;font-size:15px;line-height:1.6;color:var(--ink2)}
+.try ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px}
+</style>
 <link rel="stylesheet" href="/assets/consent/cookieconsent.css?v=3.1.0">
 <link rel="icon" href="/assets/brand/observatory/observatory-favicon.ico" sizes="48x48">
 <link rel="icon" href="/assets/brand/observatory/observatory-favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/assets/brand/observatory/observatory-apple-touch-180.png">
 <style>
-:root{--bg:#F6F5F2;--ink:#1B1A18;--ink2:#3A3833;--muted:#4F4C46;--line:#E3E0D8;--card:#FFFFFF;--brand:#2346B8;--on-ink:#FFFFFF}
+:root{--bg:#F6F5F2;--ink:#1B1A18;--ink2:#3A3833;--muted:#4F4C46;--line:#E3E0D8;--card:#FFFFFF;--paper:#FFFFFF;--brand:#2346B8;--brand-tint:#E6ECFB;--brand-on:#1E3C9E;--on-ink:#FFFFFF}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
 a{color:var(--ink)}a:hover{color:var(--brand)}
@@ -112,7 +146,7 @@ td:empty{display:none}}
 
 <main><div class="wrap">
 <div class="layout">
-<nav class="toc" aria-label="En esta página"><p>En esta página</p><a href="#mode">Modo con el que arranca</a><a href="#capabilities">Qué puede hacer de serie</a><a href="#rosmarops">Qué hace RosmarOps con este agente</a><a href="#history">Historial de cambios de seguridad</a><a href="#versions">Versiones observadas</a><a href="#sources">Fuentes y datos</a><a href="#reply">Réplica del fabricante</a></nav>
+<nav class="toc" aria-label="En esta página"><p>En esta página</p><a href="#mode">Modo con el que arranca</a><a href="#capabilities">Qué puede hacer de serie</a><a href="#rosmarops">Qué hace RosmarOps con este agente</a><a href="#try">Pruébalo en un entorno de pruebas</a><a href="#history">Historial de cambios de seguridad</a><a href="#versions">Versiones observadas</a><a href="#sources">Fuentes y datos</a><a href="#reply">Réplica del fabricante</a></nav>
 <article class="article">
 <section>
 <p class="crumbs"><img src="/assets/brand/observatory/observatory-mark.svg" width="24" height="24" alt=""><a href="/es/observatorio/">Observatorio</a> › Gemini CLI</p>
@@ -138,13 +172,21 @@ td:empty{display:none}}
 <p>Evaluado desde RosmarOps 0.10.0: RosmarOps lee su configuración en tu ordenador, sin red, y le pone una nota de exposición de 0 a 100: cuánto puede alcanzar con los permisos que tiene hoy.</p>
 <div class="actions"><a class="btn primary" href="/es/descargar?from=observatory-gemini-cli" target="_blank" rel="nofollow noopener">Revisa el tuyo: descarga RosmarOps</a></div>
 </section>
+<section id="try" class="box panel try" aria-labelledby="try-h">
+<h2 id="try-h">Pruébalo en un entorno de pruebas</h2>
+<p>Una carpeta vacía no basta: la mayoría de agentes pueden leer toda tu carpeta personal, claves incluidas. Así se aísla Gemini CLI:</p>
+<ul><li>Windows: enciende su caja de arena, como explica <a href="https://geminicli.com/docs/cli/sandbox/" rel="noopener">su documentación</a>.</li><li>macOS: enciende su caja de arena, como explica <a href="https://geminicli.com/docs/cli/sandbox/" rel="noopener">su documentación</a>.</li><li>Linux: ábrelo dentro de un contenedor (Docker), como explica <a href="https://geminicli.com/docs/cli/sandbox/" rel="noopener">su documentación</a>.</li></ul>
+<p>Un sandbox limita lo que podría tocar; no lo vuelve inofensivo. Con la red abierta, lo que lea podría salir.</p>
+<p>Después, ejecuta RosmarOps en ese mismo entorno: ves qué podría tocar el agente.</p>
+<p><a href="/es/probar-un-agente-de-ia/">La guía completa</a></p>
+</section>
 
 <section id="history" aria-labelledby="history-h" data-live="/es/observatorio/diario/history-gemini-cli.html">
 <h2 id="history-h">Historial de cambios de seguridad</h2>
 <p class="note">Solo cambios que afectan a lo que puede hacer en tu ordenador o con tus cuentas. Nada se borra: las correcciones quedan anotadas.</p>
 <p class="empty box" data-live-target>Todavía no hay cambios de seguridad registrados.</p>
 </section>
-<script src="/assets/observatory/today.js?v=2" defer></script>
+<script src="/assets/observatory/today.js?v=3" defer></script>
 <section id="versions" aria-labelledby="versions-h"><h2 id="versions-h">Versiones observadas</h2><ul class="plain"><li>0.66.0 · publicada el 27 de octubre de 2026 · <a href="https://github.com/google-gemini/gemini-cli/releases/tag/v0.66.0" rel="noopener">Fuente oficial</a></li></ul></section>
 <section id="sources" aria-labelledby="sources-h">
 <h2 id="sources-h">Fuentes y datos</h2>

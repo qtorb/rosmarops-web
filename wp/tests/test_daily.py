@@ -377,7 +377,7 @@ class Agents(unittest.TestCase):
             self.assertEqual(body, norm(static[start:static.index("</ol>", start) + 5]), lang)
             status, body = self.route(prefix + "last-change.html")
             self.assertEqual(status, "200")
-            cells = re.findall(r'data-last="([a-z0-9-]+)">(.*?)</td>', static)
+            cells = re.findall(r'data-last="([a-z0-9-]+)">(.*?)</(?:td|p)>', static)  # GTM-169: <p> in the company grid
             self.assertGreater(len(cells), 10)
             for aid, cell in cells:
                 self.assertIn(f'<span data-agent="{aid}">{norm(cell)}</span>', body, (lang, aid))

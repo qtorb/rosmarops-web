@@ -317,6 +317,19 @@
       "linux": {
         "value": "unknown"
       }
+    },
+    "read_only": {
+      "value": "unknown"
+    },
+    "asks_first": {
+      "commands": {
+        "value": "by_default",
+        "source": {
+          "url": "https://geminicli.com/docs/reference/configuration/",
+          "official": true,
+          "accessed_at": "2026-11-15"
+        }
+      }
     }
   }
 }

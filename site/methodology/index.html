@@ -115,6 +115,10 @@ footer nav{gap:20px;font-size:15px}
 <ul><li>agents RosmarOps doesn't evaluate yet;</li><li>what an agent does while it runs, since it only reads configuration at rest;</li><li>what an MCP tool does internally;</li><li>the Windows credential store.</li></ul>
 <h2>What a 100 means</h2>
 <p>A 100 means: no exposure found in what was read. It never means secure, and it never means protected.</p>
+<h2 id="recommendation">How we recommend an agent to start with</h2>
+<p>It's RosmarOps's opinion, based on what the Observatory collects. We apply the same criterion to every agent we evaluate, and the recommendation changes when the product changes. We recommend an agent if it meets one of these two routes:</p>
+<ul><li>Route 1: factory class A or B, a read-only mode, and it asks you before running commands, by default.</li><li>Route 2: sandbox and network cut on by default on Windows, macOS and Linux.</li></ul>
+<p>Our recommendation doesn't make it harmless: it means that, as it ships, it gives you more ways to control it. No company pays to appear or to be recommended.</p>
 </article>
 </div></main>
 

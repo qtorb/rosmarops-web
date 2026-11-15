@@ -26,12 +26,46 @@
 <meta property="og:updated_time" content="2026-11-07">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","@id":"https://rosmarops.com/es/observatorio/claude-code/#article","headline":"Claude Code en Windows: qué puede hacer en tu ordenador","description":"Qué guardan settings.json y .claude.json, qué decide el modo auto por ti y qué ficheros pueden tener claves. Revisado el 29 de octubre de 2026.","inLanguage":"es","datePublished":"2026-10-31","dateModified":"2026-11-07","mainEntityOfPage":"https://rosmarops.com/es/observatorio/claude-code/","about":{"@type":"SoftwareApplication","name":"Claude Code","applicationCategory":"DeveloperApplication","operatingSystem":"Windows, macOS, Linux, Web","author":{"@type":"Organization","name":"Anthropic"}},"publisher":{"@type":"Organization","@id":"https://rosmarops.com/#org","name":"RosmarOps","url":"https://rosmarops.com/"},"isBasedOn":"https://rosmarops.com/observatory/claude-code.json"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"RosmarOps","item":"https://rosmarops.com/es/"},{"@type":"ListItem","position":2,"name":"Observatorio","item":"https://rosmarops.com/es/observatorio/"},{"@type":"ListItem","position":3,"name":"Claude Code","item":"https://rosmarops.com/es/observatorio/claude-code/"}]}</script>
+<style>
+.co-k{margin:0;font-size:14px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.co-hero h1{font-size:34px;line-height:1.15}
+.co-hero .lead{font-size:17px;color:var(--ink2);max-width:65ch}
+.co-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start}
+@media (max-width:760px){.co-grid{grid-template-columns:minmax(0,1fr)}}
+.co{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:16px 18px;min-width:0}
+.co header{display:flex;align-items:baseline;justify-content:space-between;gap:12px;border-bottom:1px solid var(--line);padding:0 0 8px}
+.co h3{margin:0;font-size:20px}.co-n{font-size:13px;color:var(--muted);white-space:nowrap}
+.co-list{list-style:none;margin:0;padding:0}
+.co-p{display:flex;flex-direction:column;gap:6px;padding:12px 0;border-bottom:1px solid var(--line)}
+.co-p:last-child{border-bottom:0;padding-bottom:0}
+.co-pn{font-size:16px;font-weight:700}
+.co-tag{font-size:12px;color:var(--brand-on);background:var(--brand-tint);border-radius:999px;padding:1px 8px;width:max-content;max-width:100%}
+.co-cl{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--ink2)}
+.co-cls{min-width:26px;height:26px;display:inline-grid;place-items:center;font-weight:700;font-size:17px;border:1.5px dashed var(--ink);border-radius:7px;color:var(--ink);box-sizing:border-box}
+.co-cls.co-none{border:1.5px solid var(--line);color:var(--muted)}
+.co-meta{margin:0;font-size:12.5px;color:var(--muted)}
+.pr{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin:4px 0 0}
+@media (max-width:520px){.pr{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.pr-i{display:flex;flex-direction:column;gap:2px;min-width:0}
+.pr-n{display:flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;color:var(--ink2);text-decoration:none}
+.pr-n:hover{color:var(--brand)}.pr-n svg{width:18px;height:18px;flex:none}
+.pr-v{font-size:12.5px;color:var(--muted);line-height:1.4}
+.pr-v a{color:var(--muted)}
+.rec{background:var(--brand-tint);border-left:3px solid var(--brand);border-radius:10px;padding:10px 14px;display:flex;flex-direction:column;gap:4px}
+.rec-t{margin:0;font-size:14px;font-weight:700;color:var(--ink)}
+.rec-d,.rec-how{margin:0;font-size:12.5px;color:var(--muted)}
+.rec ul{list-style:none;margin:0;padding:0;font-size:13px;color:var(--ink2);line-height:1.45}
+.rec ul a{color:var(--ink2)}
+.co-rest{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:16px 18px;display:flex;flex-direction:column;gap:6px}
+.co-rest p{margin:0;font-size:15px;line-height:1.6;color:var(--ink2)}
+.try ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px}
+</style>
 <link rel="stylesheet" href="/assets/consent/cookieconsent.css?v=3.1.0">
 <link rel="icon" href="/assets/brand/observatory/observatory-favicon.ico" sizes="48x48">
 <link rel="icon" href="/assets/brand/observatory/observatory-favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/assets/brand/observatory/observatory-apple-touch-180.png">
 <style>
-:root{--bg:#F6F5F2;--ink:#1B1A18;--ink2:#3A3833;--muted:#4F4C46;--line:#E3E0D8;--card:#FFFFFF;--brand:#2346B8;--on-ink:#FFFFFF}
+:root{--bg:#F6F5F2;--ink:#1B1A18;--ink2:#3A3833;--muted:#4F4C46;--line:#E3E0D8;--card:#FFFFFF;--paper:#FFFFFF;--brand:#2346B8;--brand-tint:#E6ECFB;--brand-on:#1E3C9E;--on-ink:#FFFFFF}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
 a{color:var(--ink)}a:hover{color:var(--brand)}
@@ -112,7 +146,7 @@ td:empty{display:none}}
 
 <main><div class="wrap">
 <div class="layout">
-<nav class="toc" aria-label="En esta página"><p>En esta página</p><a href="#mode">Modo con el que arranca</a><a href="#capabilities">Qué puede hacer de serie</a><a href="#storage">Dónde guarda configuración y claves</a><a href="#rosmarops">Qué hace RosmarOps con este agente</a><a href="#history">Historial de cambios de seguridad</a><a href="#sources">Fuentes y datos</a><a href="#reply">Réplica del fabricante</a></nav>
+<nav class="toc" aria-label="En esta página"><p>En esta página</p><a href="#mode">Modo con el que arranca</a><a href="#capabilities">Qué puede hacer de serie</a><a href="#storage">Dónde guarda configuración y claves</a><a href="#rosmarops">Qué hace RosmarOps con este agente</a><a href="#try">Pruébalo en un entorno de pruebas</a><a href="#history">Historial de cambios de seguridad</a><a href="#sources">Fuentes y datos</a><a href="#reply">Réplica del fabricante</a></nav>
 <article class="article">
 <section>
 <p class="crumbs"><img src="/assets/brand/observatory/observatory-mark.svg" width="24" height="24" alt=""><a href="/es/observatorio/">Observatorio</a> › Claude Code</p>
@@ -145,13 +179,21 @@ td:empty{display:none}}
 <p>Evaluado desde RosmarOps 0.1.0: RosmarOps lee su configuración en tu ordenador, sin red, y le pone una nota de exposición de 0 a 100: cuánto puede alcanzar con los permisos que tiene hoy.</p>
 <div class="actions"><a class="btn primary" href="/es/descargar?from=observatory-claude-code" target="_blank" rel="nofollow noopener">Revisa el tuyo: descarga RosmarOps</a></div>
 </section>
+<section id="try" class="box panel try" aria-labelledby="try-h">
+<h2 id="try-h">Pruébalo en un entorno de pruebas</h2>
+<p>Una carpeta vacía no basta: la mayoría de agentes pueden leer toda tu carpeta personal, claves incluidas. Así se aísla Claude Code:</p>
+<ul><li>Windows: usa su perfil Lectura, que no le deja leer fuera del proyecto. Te lo da el informe de RosmarOps.</li><li>macOS: enciende su caja de arena, como explica <a href="https://code.claude.com/docs/en/sandboxing" rel="noopener">su documentación</a>.</li><li>Linux: enciende su caja de arena, como explica <a href="https://code.claude.com/docs/en/sandboxing" rel="noopener">su documentación</a>.</li></ul>
+<p>Un sandbox limita lo que podría tocar; no lo vuelve inofensivo. Con la red abierta, lo que lea podría salir.</p>
+<p>Después, ejecuta RosmarOps en ese mismo entorno: ves qué podría tocar el agente.</p>
+<p><a href="/es/probar-un-agente-de-ia/">La guía completa</a></p>
+</section>
 
 <section id="history" aria-labelledby="history-h" data-live="/es/observatorio/diario/history-claude-code.html">
 <h2 id="history-h">Historial de cambios de seguridad</h2>
 <p class="note">Solo cambios que afectan a lo que puede hacer en tu ordenador o con tus cuentas. Nada se borra: las correcciones quedan anotadas.</p>
 <ol class="changes box" data-live-target><li><p class="meta">6 de noviembre de 2026 · versión 2.1.319 · Permisos</p><p><strong>Antes:</strong> <span>Antes de 2.1.319, Claude Code no tenía el ajuste permissions.denyInsteadOfPrompting, según el changelog.</span></p><p><strong>Ahora:</strong> <span>Desde 2.1.319, permissions.denyInsteadOfPrompting deniega la llamada a una herramienta que esperaría una petición de permiso y el turno continúa, según el changelog.</span></p><p class="meta">Recogido automáticamente el 7 de noviembre de 2026 del registro de cambios oficial. <a href="https://code.claude.com/docs/en/changelog#2-1-319" rel="noopener">Fuente oficial</a></p></li><li><p class="meta">4 de noviembre de 2026 · versión 2.1.318 · MCP</p><p><strong>Antes:</strong> <span>Antes de 2.1.318, las entradas por URL de deniedMcpServers no bloqueaban servidores aportados por Anthropic con URL coincidente ni conectores en sesiones en la nube, según el changelog.</span></p><p><strong>Ahora:</strong> <span>Desde 2.1.318, las entradas por URL de deniedMcpServers bloquean también servidores aportados por Anthropic con URL coincidente y conectores en sesiones en la nube, según el changelog.</span></p><p class="meta">Recogido automáticamente el 6 de noviembre de 2026 del registro de cambios oficial. <a href="https://code.claude.com/docs/en/changelog#2-1-318" rel="noopener">Fuente oficial</a></p></li><li><p class="meta">3 de noviembre de 2026 · versión 2.1.317 · Modo de aprobación</p><p><strong>Antes:</strong> <span>Antes de 2.1.317, el changelog no recoge ninguna comprobación antes de que una llamada web o de shell enviara a la red el correo de la cuenta.</span></p><p><strong>Ahora:</strong> <span>Desde 2.1.317, Claude Code pregunta antes de que una llamada web o de shell envíe a la red el correo de la cuenta, según el changelog.</span></p><p class="meta">Recogido automáticamente el 6 de noviembre de 2026 del registro de cambios oficial. <a href="https://code.claude.com/docs/en/changelog#2-1-317" rel="noopener">Fuente oficial</a></p></li><li><p class="meta">31 de octubre de 2026 · versión 2.1.316 · Modo de aprobación</p><p><strong>Antes:</strong> <span>Antes de 2.1.316, los ajustes gestionados por servidor para cuentas Team y Enterprise se aplicaban tras un aviso de aprobación, según el changelog.</span></p><p><strong>Ahora:</strong> <span>Desde 2.1.316, los ajustes gestionados por servidor para cuentas Team y Enterprise se aplican sin aviso de aprobación, según el changelog.</span></p><p class="meta">Recogido automáticamente el 6 de noviembre de 2026 del registro de cambios oficial. <a href="https://code.claude.com/docs/en/changelog" rel="noopener">Fuente oficial</a></p></li></ol>
 </section>
-<script src="/assets/observatory/today.js?v=2" defer></script>
+<script src="/assets/observatory/today.js?v=3" defer></script>
 
 <section id="sources" aria-labelledby="sources-h">
 <h2 id="sources-h">Fuentes y datos</h2>
