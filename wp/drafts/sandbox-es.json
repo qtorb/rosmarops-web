@@ -1,0 +1,18 @@
+{
+ "id": "sandbox",
+ "lang": "es",
+ "slug": "sandbox-agentes-de-ia",
+ "title": "Sandbox: qué es y por qué casi todos los agentes de IA lo traen apagado",
+ "excerpt": "Llevo semanas leyendo la documentación de los agentes de IA que evalúa RosmarOps. Casi todos traen una caja de arena. Casi ninguno la trae encendida.",
+ "content": "sandbox-es.html",
+ "seo_title": "Sandbox en agentes de IA: quién lo trae y quién lo enciende",
+ "seo_description": "Qué es un sandbox, qué agentes de IA lo traen de serie y por qué casi todos vienen con él apagado. Lo que ha empezado a contar RosmarOps, con fuente y fecha.",
+ "translations": {
+  "en": "https://rosmarops.com/blog/sandbox-ai-agents/",
+  "ca": "https://rosmarops.com/ca/blog/sandbox-agents-dia/"
+ },
+ "category": "novedades-de-rosmarops",
+ "tags": {
+  "sandbox": "Sandbox"
+ }
+}
