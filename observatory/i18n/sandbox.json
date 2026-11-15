@@ -1,0 +1,62 @@
+{
+  "_source": "qtorb/rosmarops-vigil docs/research/2026-11-15-gtm-167-sandbox-textos.md §1 (signed by Albert 15-11) and the GTM-167 reply of 15-11 (container_only and the two lines per system). Literal: do not edit.",
+  "texts": {
+    "en": {
+      "title": "Which AI coding agents have a sandbox",
+      "lead": "A sandbox limits what an AI agent could touch: your other folders, your keys or the internet. This table shows, for each agent RosmarOps evaluates, whether it has one on your system and whether it's on by default, with the source and date of each value.",
+      "notice": "Having a sandbox doesn't make an agent harmless: its page shows what it leaves out.",
+      "col.agent": "Agent",
+      "col.windows": "Windows",
+      "col.macos": "macOS",
+      "col.linux": "Linux",
+      "col.source": "Source",
+      "line.sandbox": "Sandbox",
+      "line.network_cut": "Network cut",
+      "value.on_by_default": "On by default",
+      "value.off_by_default": "Off by default",
+      "value.none": "None",
+      "value.unknown": "—",
+      "value.container_only": "Container only",
+      "footer": "Read in each maker's official documentation on {date}. «—» means its documentation doesn't say.",
+      "glossary_link": "What a sandbox is"
+    },
+    "es": {
+      "title": "Qué agentes de IA tienen sandbox (caja de arena)",
+      "lead": "Un sandbox limita lo que un agente de IA podría tocar: tus otras carpetas, tus claves o internet. Esta tabla dice, para cada agente que evalúa RosmarOps, si lo tiene en tu sistema y si viene encendido de serie, con la fuente y la fecha de cada dato.",
+      "notice": "Que un agente tenga sandbox no lo vuelve inofensivo: en su ficha ves qué deja fuera.",
+      "col.agent": "Agente",
+      "col.windows": "Windows",
+      "col.macos": "macOS",
+      "col.linux": "Linux",
+      "col.source": "Fuente",
+      "line.sandbox": "Sandbox",
+      "line.network_cut": "Corte de red",
+      "value.on_by_default": "Encendido de serie",
+      "value.off_by_default": "Apagado de serie",
+      "value.none": "No tiene",
+      "value.unknown": "—",
+      "value.container_only": "Solo con contenedor",
+      "footer": "Leído en la documentación oficial de cada fabricante el {fecha}. «—» quiere decir que su documentación no lo dice.",
+      "glossary_link": "Qué es un sandbox"
+    },
+    "ca": {
+      "title": "Quins agents d'IA tenen sandbox (caixa de sorra)",
+      "lead": "Un sandbox limita el que un agent d'IA podria tocar: les teves altres carpetes, les teves claus o internet. Aquesta taula diu, per a cada agent que avalua RosmarOps, si en té al teu sistema i si ve encès de sèrie, amb la font i la data de cada dada.",
+      "notice": "Que un agent tingui sandbox no el fa inofensiu: a la seva fitxa veus què deixa fora.",
+      "col.agent": "Agent",
+      "col.windows": "Windows",
+      "col.macos": "macOS",
+      "col.linux": "Linux",
+      "col.source": "Font",
+      "line.sandbox": "Sandbox",
+      "line.network_cut": "Tall de xarxa",
+      "value.on_by_default": "Encès de sèrie",
+      "value.off_by_default": "Apagat de sèrie",
+      "value.none": "No en té",
+      "value.unknown": "—",
+      "value.container_only": "Només amb contenidor",
+      "footer": "Llegit a la documentació oficial de cada fabricant el {data}. «—» vol dir que la seva documentació no ho diu.",
+      "glossary_link": "Què és un sandbox"
+    }
+  }
+}

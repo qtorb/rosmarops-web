@@ -279,5 +279,44 @@
         "how": "official_doc"
       }
     }
-  ]
+  ],
+  "protections": {
+    "sandbox": {
+      "windows": {
+        "value": "off_by_default",
+        "source": {
+          "url": "https://geminicli.com/docs/cli/sandbox/",
+          "official": true,
+          "accessed_at": "2026-11-15"
+        }
+      },
+      "macos": {
+        "value": "off_by_default",
+        "source": {
+          "url": "https://geminicli.com/docs/cli/sandbox/",
+          "official": true,
+          "accessed_at": "2026-11-15"
+        }
+      },
+      "linux": {
+        "value": "container_only",
+        "source": {
+          "url": "https://geminicli.com/docs/cli/sandbox/",
+          "official": true,
+          "accessed_at": "2026-11-15"
+        }
+      }
+    },
+    "network_cut": {
+      "windows": {
+        "value": "unknown"
+      },
+      "macos": {
+        "value": "unknown"
+      },
+      "linux": {
+        "value": "unknown"
+      }
+    }
+  }
 }

@@ -475,6 +475,7 @@ def item_list(lang, items):
 
 def build_index(lang, t, agents, candidates):
     import map_page  # GTM-138: the map's button, with the first part of its signed title
+    import sandbox_page  # GTM-167: the link to the sandbox comparison, with its signed title
     path = INDEX_PATH[lang]
     reviewed = max(a["agent"]["reviewed_at"] for a in agents)
     modified = max(date_modified(a) for a in agents)
@@ -572,6 +573,7 @@ def build_index(lang, t, agents, candidates):
 <h1>{t("index.h1")}</h1>
 <p class="lead">{t("index.lead")}</p>
 <div class="actions"><a class="btn primary" href="{map_page.MAP_PATH[lang]}">{esc(map_page.load()[2]["texts"][lang]["title"].split(":")[0])}</a><a class="btn secondary" href="{DAILY_PATH[lang]}">{t("index.cta_daily")}</a></div>
+<p class="note"><a href="{sandbox_page.SANDBOX_PATH[lang]}">{esc(sandbox_page.texts()[lang]["title"])}</a></p>
 </section>
 
 <section id="today" aria-labelledby="today-h2" data-src="{DAILY_PATH[lang]}today.html" hidden>
@@ -935,6 +937,12 @@ def build_sitemap(agents):
     malts += f'<xhtml:link rel="alternate" hreflang="x-default" href="{BASE}{map_page.MAP_PATH["en"]}"/>'
     mlast = map_page.load()[0]["generated_at"][:10]
     lines += [f"  <url><loc>{BASE}{map_page.MAP_PATH[l]}</loc><lastmod>{mlast}</lastmod>{malts}</url>" for l in LANGS]
+    import sandbox_page  # GTM-167: which agents have a sandbox, with the latest reading date of its values
+    salts = "".join(f'<xhtml:link rel="alternate" hreflang="{l}" href="{BASE}{sandbox_page.SANDBOX_PATH[l]}"/>' for l in LANGS)
+    salts += f'<xhtml:link rel="alternate" hreflang="x-default" href="{BASE}{sandbox_page.SANDBOX_PATH["en"]}"/>'
+    slast = sandbox_page.read_date(agents)
+    smod = f"<lastmod>{slast}</lastmod>" if slast else ""
+    lines += [f"  <url><loc>{BASE}{sandbox_page.SANDBOX_PATH[l]}</loc>{smod}{salts}</url>" for l in LANGS]
     dalts = "".join(f'<xhtml:link rel="alternate" hreflang="{l}" href="{BASE}{DAILY_PATH[l]}"/>' for l in LANGS)
     dalts += f'<xhtml:link rel="alternate" hreflang="x-default" href="{BASE}{DAILY_PATH["en"]}"/>'
     lines += [f"  <url><loc>{BASE}{DAILY_PATH[l]}</loc>{dalts}</url>" for l in LANGS]
@@ -1143,6 +1151,20 @@ def build_map(lang, t, agents):
     html_out = html_out.replace("</body>", map_page.SCRIPT + "\n</body>", 1)
     write(map_page.MAP_PATH[lang], html_out)
 
+# ---------------------------------------------------------------- sandbox comparison (GTM-167)
+
+def build_sandbox(lang, t, agents):
+    """«Which AI coding agents have a sandbox» (GTM-167): indexable, in the sitemap, linked from the Observatory index
+    and from the glossary entry «Sandbox». Data from the protections field of each agent file; texts in
+    observatory/i18n/sandbox.json."""
+    import sandbox_page
+    by_id = {a["agent"]["id"]: a for a in agents}
+    T, body = sandbox_page.body(lang, agents, lambda aid: agent_path(lang, aid) if is_published(by_id[aid]) else None)
+    html_out = page(lang, t, path=sandbox_page.SANDBOX_PATH[lang], title=T["title"], description=T["lead"],
+                    alternates=sandbox_page.SANDBOX_PATH, jsonld=[], body=body, noindex=False)
+    write(sandbox_page.SANDBOX_PATH[lang], html_out)
+
+
 def main():
     global DATA, SITE
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
@@ -1172,6 +1194,8 @@ def main():
         build_index(lang, t, agents, candidates)
         pages += 1
         build_map(lang, t, agents)
+        pages += 1
+        build_sandbox(lang, t, agents)
         pages += 1
         for a in agents:
             if has_page(a):

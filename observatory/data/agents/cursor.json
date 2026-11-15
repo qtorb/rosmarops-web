@@ -696,5 +696,49 @@
         "how": "official_doc"
       }
     }
-  ]
+  ],
+  "protections": {
+    "sandbox": {
+      "windows": {
+        "value": "unknown"
+      },
+      "macos": {
+        "value": "on_by_default",
+        "source": {
+          "url": "https://cursor.com/docs/agent/security/run-modes.md",
+          "official": true,
+          "accessed_at": "2026-11-15"
+        }
+      },
+      "linux": {
+        "value": "on_by_default",
+        "source": {
+          "url": "https://cursor.com/docs/agent/security/run-modes.md",
+          "official": true,
+          "accessed_at": "2026-11-15"
+        }
+      }
+    },
+    "network_cut": {
+      "windows": {
+        "value": "unknown"
+      },
+      "macos": {
+        "value": "on_by_default",
+        "source": {
+          "url": "https://cursor.com/docs/agent/security/run-modes.md",
+          "official": true,
+          "accessed_at": "2026-11-15"
+        }
+      },
+      "linux": {
+        "value": "on_by_default",
+        "source": {
+          "url": "https://cursor.com/docs/agent/security/run-modes.md",
+          "official": true,
+          "accessed_at": "2026-11-15"
+        }
+      }
+    }
+  }
 }

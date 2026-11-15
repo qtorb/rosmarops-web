@@ -612,5 +612,54 @@
         "how": "official_doc"
       }
     }
-  ]
+  ],
+  "protections": {
+    "sandbox": {
+      "windows": {
+        "value": "none",
+        "source": {
+          "url": "https://code.claude.com/docs/en/sandboxing",
+          "official": true,
+          "accessed_at": "2026-11-15"
+        }
+      },
+      "macos": {
+        "value": "off_by_default",
+        "source": {
+          "url": "https://code.claude.com/docs/en/sandboxing",
+          "official": true,
+          "accessed_at": "2026-11-15"
+        }
+      },
+      "linux": {
+        "value": "off_by_default",
+        "source": {
+          "url": "https://code.claude.com/docs/en/sandboxing",
+          "official": true,
+          "accessed_at": "2026-11-15"
+        }
+      }
+    },
+    "network_cut": {
+      "windows": {
+        "value": "unknown"
+      },
+      "macos": {
+        "value": "off_by_default",
+        "source": {
+          "url": "https://code.claude.com/docs/en/sandboxing",
+          "official": true,
+          "accessed_at": "2026-11-15"
+        }
+      },
+      "linux": {
+        "value": "off_by_default",
+        "source": {
+          "url": "https://code.claude.com/docs/en/sandboxing",
+          "official": true,
+          "accessed_at": "2026-11-15"
+        }
+      }
+    }
+  }
 }

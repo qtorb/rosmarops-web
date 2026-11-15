@@ -101,5 +101,49 @@
         "ca": "La cerca web funciona sense preguntar. El que cerca pot endur-se part de la teva feina fora de l'ordinador. Obrir una pàgina web pregunta."
       }
     }
-  ]
+  ],
+  "protections": {
+    "sandbox": {
+      "windows": {
+        "value": "unknown"
+      },
+      "macos": {
+        "value": "off_by_default",
+        "source": {
+          "url": "https://docs.x.ai/build/features/sandbox.md",
+          "official": true,
+          "accessed_at": "2026-11-15"
+        }
+      },
+      "linux": {
+        "value": "off_by_default",
+        "source": {
+          "url": "https://docs.x.ai/build/features/sandbox.md",
+          "official": true,
+          "accessed_at": "2026-11-15"
+        }
+      }
+    },
+    "network_cut": {
+      "windows": {
+        "value": "unknown"
+      },
+      "macos": {
+        "value": "none",
+        "source": {
+          "url": "https://github.com/xai-org/grok-build/blob/main/crates/codegen/xai-grok-pager/docs/user-guide/18-sandbox.md",
+          "official": true,
+          "accessed_at": "2026-11-15"
+        }
+      },
+      "linux": {
+        "value": "off_by_default",
+        "source": {
+          "url": "https://docs.x.ai/build/features/sandbox.md",
+          "official": true,
+          "accessed_at": "2026-11-15"
+        }
+      }
+    }
+  }
 }
