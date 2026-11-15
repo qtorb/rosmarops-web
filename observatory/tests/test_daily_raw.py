@@ -17,7 +17,7 @@ D = "2026-01-15"
 NOW = datetime.datetime(2026, 1, 15, 7, 20, tzinfo=datetime.timezone.utc)
 ITEMS = json.loads((ROOT / "observatory" / "tests" / "daily" / f"{D}.json").read_text(encoding="utf-8"))["items"][:1]
 SOURCES = daily_raw.load_sources()
-PUBLIC = [s for s in SOURCES if s["method"] != "page-watch"]
+PUBLIC = [s for s in SOURCES if s["method"] != "page-watch" and not s.get("paused")]  # GTM-160, GTM-157
 
 
 def raw(closed=()):
