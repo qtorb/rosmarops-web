@@ -1,8 +1,8 @@
 {
   "format": "exposure-potential.v1",
-  "rosmarops_version": "v0.11.7",
-  "commit": "9426e44b2b3698835ba6b0358c04290b11204ece",
-  "generated_at": "2026-11-14T17:35:49Z",
+  "rosmarops_version": "v0.12.0",
+  "commit": "08da345e49710b6ffa537887b8506a34e0e62b6f",
+  "generated_at": "2026-11-15T17:19:17Z",
   "reference_computer": "R2",
   "contagion_computer": "R2-all",
   "contagion_computer_source": "r2_fixtures",
@@ -164,9 +164,10 @@
           "level": 0
         },
         "opacity": {
-          "level": 1,
+          "level": 2,
           "inputs": [
-            "launch_flags_not_readable"
+            "launch_flags_not_readable",
+            "windows_sandbox_unknown"
           ]
         },
         "complexity": {
@@ -248,9 +249,10 @@
           "level": 0
         },
         "opacity": {
-          "level": 1,
+          "level": 2,
           "inputs": [
-            "launch_flags_not_readable"
+            "launch_flags_not_readable",
+            "ui_mode_choice_unknown"
           ]
         },
         "complexity": {
