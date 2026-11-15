@@ -159,6 +159,7 @@
   "default.allow": "Sense preguntar",
   "default.ask": "Pregunta abans",
   "default.deny": "Denegat",
+  "default.conflicting": "—",
   "agent.storage_h2": "On guarda configuració i claus",
   "agent.storage_note": "Rutes a Windows. %USERPROFILE% és la teva carpeta d'usuari (C:\\Users\\el-teu-nom); <project> és la carpeta de cada projecte.",
   "agent.th_what": "Què",
