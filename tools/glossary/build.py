@@ -61,6 +61,19 @@ ASSETS = ('<link rel="stylesheet" href="/assets/help/help.css?v=1">\n',
           '<script src="/assets/help/help.js?v=1" defer></script>\n')
 
 
+# GTM-167: an entry may end with a link to the page that develops it, titled with that page's signed title.
+SANDBOX_TEXTS = os.path.join(ROOT, 'observatory', 'i18n', 'sandbox.json')
+SANDBOX_PATH = {'en': '/observatory/ai-agents-with-sandbox/', 'es': '/es/observatorio/agentes-ia-con-sandbox/',
+                'ca': '/ca/observatori/agents-ia-amb-sandbox/'}
+
+
+def see_also(tid, lang):
+    if tid != 'sandbox' or not os.path.exists(SANDBOX_TEXTS):
+        return ''
+    title = json.load(open(SANDBOX_TEXTS, encoding='utf-8'))['texts'][lang]['title']
+    return ' <a href="%s">%s</a>' % (SANDBOX_PATH[lang], html.escape(title))
+
+
 def term(tid, lang):
     for t in TERMS:
         if t['id'] == tid:
@@ -151,7 +164,7 @@ def glossary_page(lang):
     for l2, hrefs in meth.items():
         for h in hrefs:
             s = s.replace('href="%s" hreflang="%s"' % (h, l2), 'href="%s" hreflang="%s"' % (GLOSS[l2], l2))
-    items = ''.join('<dt id="%s">%s</dt>\n<dd>%s</dd>\n' % (t['id'], html.escape(t[lang][0]), html.escape(t[lang][1])) for t in TERMS)
+    items = ''.join('<dt id="%s">%s</dt>\n<dd>%s%s</dd>\n' % (t['id'], html.escape(t[lang][0]), html.escape(t[lang][1]), see_also(t['id'], lang)) for t in TERMS)
     body = ('<article class="doc"><h1>%s</h1>\n<p>%s</p>\n<dl class="gloss">\n%s</dl>\n</article>\n'
             % (html.escape(title), html.escape(intro), items))
     s = re.sub(r'<article class="doc">.*?</article>\n?', lambda m: body, s, count=1, flags=re.S)

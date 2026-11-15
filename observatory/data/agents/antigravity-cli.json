@@ -88,5 +88,59 @@
   },
   "versions": [],
   "changes": [],
-  "ratings": []
+  "ratings": [],
+  "protections": {
+    "sandbox": {
+      "windows": {
+        "value": "off_by_default",
+        "source": {
+          "url": "https://antigravity.google/docs/sandbox?tab=cli",
+          "official": true,
+          "accessed_at": "2026-11-15"
+        }
+      },
+      "macos": {
+        "value": "off_by_default",
+        "source": {
+          "url": "https://antigravity.google/docs/sandbox?tab=cli",
+          "official": true,
+          "accessed_at": "2026-11-15"
+        }
+      },
+      "linux": {
+        "value": "off_by_default",
+        "source": {
+          "url": "https://antigravity.google/docs/sandbox?tab=cli",
+          "official": true,
+          "accessed_at": "2026-11-15"
+        }
+      }
+    },
+    "network_cut": {
+      "windows": {
+        "value": "off_by_default",
+        "source": {
+          "url": "https://antigravity.google/docs/sandbox?tab=cli",
+          "official": true,
+          "accessed_at": "2026-11-15"
+        }
+      },
+      "macos": {
+        "value": "off_by_default",
+        "source": {
+          "url": "https://antigravity.google/docs/sandbox?tab=cli",
+          "official": true,
+          "accessed_at": "2026-11-15"
+        }
+      },
+      "linux": {
+        "value": "off_by_default",
+        "source": {
+          "url": "https://antigravity.google/docs/sandbox?tab=cli",
+          "official": true,
+          "accessed_at": "2026-11-15"
+        }
+      }
+    }
+  }
 }

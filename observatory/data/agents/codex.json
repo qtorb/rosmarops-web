@@ -420,5 +420,59 @@
         "how": "official_code"
       }
     }
-  ]
+  ],
+  "protections": {
+    "sandbox": {
+      "windows": {
+        "value": "on_by_default",
+        "source": {
+          "url": "https://learn.chatgpt.com/docs/windows/windows-sandbox",
+          "official": true,
+          "accessed_at": "2026-11-15"
+        }
+      },
+      "macos": {
+        "value": "on_by_default",
+        "source": {
+          "url": "https://learn.chatgpt.com/docs/agent-approvals-security",
+          "official": true,
+          "accessed_at": "2026-11-15"
+        }
+      },
+      "linux": {
+        "value": "on_by_default",
+        "source": {
+          "url": "https://learn.chatgpt.com/docs/agent-approvals-security",
+          "official": true,
+          "accessed_at": "2026-11-15"
+        }
+      }
+    },
+    "network_cut": {
+      "windows": {
+        "value": "on_by_default",
+        "source": {
+          "url": "https://learn.chatgpt.com/docs/windows/windows-sandbox",
+          "official": true,
+          "accessed_at": "2026-11-15"
+        }
+      },
+      "macos": {
+        "value": "on_by_default",
+        "source": {
+          "url": "https://learn.chatgpt.com/docs/agent-approvals-security",
+          "official": true,
+          "accessed_at": "2026-11-15"
+        }
+      },
+      "linux": {
+        "value": "on_by_default",
+        "source": {
+          "url": "https://learn.chatgpt.com/docs/agent-approvals-security",
+          "official": true,
+          "accessed_at": "2026-11-15"
+        }
+      }
+    }
+  }
 }

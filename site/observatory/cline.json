@@ -184,5 +184,29 @@
         ]
       }
     }
-  ]
+  ],
+  "protections": {
+    "sandbox": {
+      "windows": {
+        "value": "unknown"
+      },
+      "macos": {
+        "value": "unknown"
+      },
+      "linux": {
+        "value": "unknown"
+      }
+    },
+    "network_cut": {
+      "windows": {
+        "value": "unknown"
+      },
+      "macos": {
+        "value": "unknown"
+      },
+      "linux": {
+        "value": "unknown"
+      }
+    }
+  }
 }

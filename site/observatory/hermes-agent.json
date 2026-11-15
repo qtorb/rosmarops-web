@@ -281,5 +281,59 @@
         "ca": "Si es defineix HERMES_HOME, Hermes fa servir aquesta carpeta en lloc de %LOCALAPPDATA%\\hermes."
       }
     }
-  ]
+  ],
+  "protections": {
+    "sandbox": {
+      "windows": {
+        "value": "container_only",
+        "source": {
+          "url": "https://github.com/NousResearch/hermes-agent/blob/main/website/docs/user-guide/configuration.md",
+          "official": true,
+          "accessed_at": "2026-11-15"
+        }
+      },
+      "macos": {
+        "value": "container_only",
+        "source": {
+          "url": "https://github.com/NousResearch/hermes-agent/blob/main/website/docs/user-guide/configuration.md",
+          "official": true,
+          "accessed_at": "2026-11-15"
+        }
+      },
+      "linux": {
+        "value": "container_only",
+        "source": {
+          "url": "https://github.com/NousResearch/hermes-agent/blob/main/website/docs/user-guide/configuration.md",
+          "official": true,
+          "accessed_at": "2026-11-15"
+        }
+      }
+    },
+    "network_cut": {
+      "windows": {
+        "value": "container_only",
+        "source": {
+          "url": "https://github.com/NousResearch/hermes-agent/blob/main/website/docs/user-guide/configuration.md",
+          "official": true,
+          "accessed_at": "2026-11-15"
+        }
+      },
+      "macos": {
+        "value": "container_only",
+        "source": {
+          "url": "https://github.com/NousResearch/hermes-agent/blob/main/website/docs/user-guide/configuration.md",
+          "official": true,
+          "accessed_at": "2026-11-15"
+        }
+      },
+      "linux": {
+        "value": "container_only",
+        "source": {
+          "url": "https://github.com/NousResearch/hermes-agent/blob/main/website/docs/user-guide/configuration.md",
+          "official": true,
+          "accessed_at": "2026-11-15"
+        }
+      }
+    }
+  }
 }
