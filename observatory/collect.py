@@ -556,6 +556,78 @@ def read_changelog_web(src, since, terms):
     return res
 
 
+WATCH_SUBJECT = re.compile(r"grok[\s_-]?bot", re.I)
+WATCH_WITH = re.compile(r"\b(read|reads|reading|read-only|rules?|settings?|connectors?|oauth|scopes?)\b", re.I)
+WATCH_MAX = 300
+PREVIOUS_WATCHED = {}  # {source id: every watched item seen in an earlier raw file}, set by collect()
+
+
+class _Links(HTMLParser):
+    """(text, href) of every <a href> of an HTML page outside script and style."""
+    def __init__(self):
+        super().__init__(convert_charrefs=True)
+        self.links, self.skip, self.href, self.text = [], 0, None, []
+
+    def handle_starttag(self, tag, attrs):
+        if tag in SKIP:
+            self.skip += 1
+        elif tag == "a" and not self.skip:
+            self.href, self.text = dict(attrs).get("href"), []
+
+    def handle_endtag(self, tag):
+        if tag in SKIP:
+            self.skip = max(0, self.skip - 1)
+        elif tag == "a" and self.href is not None:
+            self.links.append((re.sub(r"\s+", " ", "".join(self.text)).strip(), self.href))
+            self.href = None
+
+    def handle_data(self, data):
+        if self.href is not None and not self.skip:
+            self.text.append(data)
+
+
+def watch_items(body):
+    """GTM-160: the pages and routes of a documentation index (docs.x.ai/llms.txt) or page (cursor.com/docs/api) that
+    mention Grok Bot together with read, rules, settings, connectors, OAuth or scope. Each line is read with the heading
+    above it ("## Grok Bot › - [Use Grok Bot — Vault](https://docs.x.ai/grok-bot/vault.md)"), and each link of an HTML
+    page as "text (href)". Sorted and without repeats, so two days can be compared."""
+    items, heading = set(), ""
+    for line in page_lines(body):
+        if line.startswith("#"):
+            heading = line.lstrip("# ").strip()
+            item = line
+        else:
+            item = f"{heading} › {line}" if heading else line
+        items.add(item[:WATCH_MAX])
+    if re.search(r"<html|<body|<div|<p[ >]", body[:5000], re.I):
+        p = _Links()
+        p.feed(body)
+        items |= {f"{t} ({h})"[:WATCH_MAX] for t, h in p.links if h}
+    return sorted(i for i in items if WATCH_SUBJECT.search(i) and WATCH_WITH.search(i))
+
+
+def read_page_watch(src, since, terms):
+    """GTM-160 (Albert, 14-11): watch an official documentation page for a new page or route that mentions Grok Bot with
+    read, rules, settings, connectors, OAuth or scope. `watched` carries today's matches; `new` the ones no earlier raw
+    file had, dated today (date_is_detection). The first reading is the baseline: nothing in it is new."""
+    res = blank(src, "curl")
+    try:
+        body = http_get(src["read"]["url"])
+    except ReadError as e:
+        res["reason"] = str(e)
+        return res
+    if not page_lines(body):
+        res["reason"] = "empty page"
+        return res
+    res["opened"] = True
+    res["watched"] = watch_items(body)
+    res["date_is_detection"] = True
+    seen = PREVIOUS_WATCHED.get(src["id"])
+    if seen is not None:
+        res["new"] = [{"date": today(), "version": None, "text": trim(i)} for i in res["watched"] if i not in seen]
+    return res
+
+
 def notes_for(version, tag_text, notes, git_url=None):
     """Notes of one version following the notes rule, in the order of the source's read.notes: 'github-api' (body of
     the GitHub release with that tag), raw CHANGELOG, web changelog, annotated tag text."""
@@ -835,7 +907,8 @@ def read_kev(src, since, terms):
 
 
 METHODS = {"changelog-web": read_changelog_web, "git-tags": read_git_tags, "ossf": read_ossf, "osv-csv": read_osv,
-           "nvd": read_nvd, "kev": read_kev, "changelog-versions": read_changelog_versions}
+           "nvd": read_nvd, "kev": read_kev, "changelog-versions": read_changelog_versions,
+           "page-watch": read_page_watch}
 
 
 def collect_source(src, since, terms):
@@ -873,6 +946,22 @@ def previous_versions(raw_dir, day):
     return out
 
 
+def previous_watched(raw_dir, day):
+    """{source id: set of watched items} from every raw file before `day` (GTM-160): an item is new only if no earlier
+    day had it, so a page that drops a line for a day and brings it back does not count as a change."""
+    out = {}
+    for p in Path(raw_dir).glob("*.json"):
+        if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", p.stem) or p.stem >= day:
+            continue
+        try:
+            for s in json.loads(p.read_text(encoding="utf-8")).get("sources", []):
+                if isinstance(s.get("watched"), list):
+                    out.setdefault(s["id"], set()).update(s["watched"])
+        except (ValueError, AttributeError):
+            continue
+    return out
+
+
 def collect(sources_file=SOURCES, raw_dir=RAW_DIR, now=None, progress=None):
     now = now or datetime.datetime.now(datetime.timezone.utc)
     global TODAY
@@ -884,6 +973,8 @@ def collect(sources_file=SOURCES, raw_dir=RAW_DIR, now=None, progress=None):
     since = last_raw_date(raw_dir, TODAY)
     PREVIOUS.clear()
     PREVIOUS.update(previous_versions(raw_dir, TODAY))
+    PREVIOUS_WATCHED.clear()
+    PREVIOUS_WATCHED.update(previous_watched(raw_dir, TODAY))
     out = []
     for s in cfg["sources"]:
         t0 = time.monotonic()
