@@ -144,6 +144,24 @@
           "accessed_at": "2026-11-15"
         }
       }
+    },
+    "read_only": {
+      "value": "yes",
+      "source": {
+        "url": "https://docs.x.ai/build/features/plan-mode.md",
+        "official": true,
+        "accessed_at": "2026-11-15"
+      }
+    },
+    "asks_first": {
+      "commands": {
+        "value": "by_default",
+        "source": {
+          "url": "https://docs.x.ai/build/features/permissions.md",
+          "official": true,
+          "accessed_at": "2026-11-15"
+        }
+      }
     }
   }
 }

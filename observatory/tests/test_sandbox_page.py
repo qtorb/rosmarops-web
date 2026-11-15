@@ -22,13 +22,13 @@ class Data(unittest.TestCase):
 
     def test_unknown_has_no_source_and_every_other_value_has_one(self):
         for a in AGENTS:
-            for kind, cells in a.get("protections", {}).items():
-                for system, c in cells.items():
+            for kind in ("sandbox", "network_cut") if a.get("protections") else ():
+                for system, c in a["protections"][kind].items():
                     self.assertEqual("source" in c, c["value"] != "unknown", (a["agent"]["id"], kind, system))
 
     def test_container_only_where_signed(self):
-        got = {(a["agent"]["id"], k, s) for a in AGENTS for k, cells in a.get("protections", {}).items()
-               for s, c in cells.items() if c["value"] == "container_only"}
+        got = {(a["agent"]["id"], k, s) for a in AGENTS if a.get("protections") for k in ("sandbox", "network_cut")
+               for s, c in a["protections"][k].items() if c["value"] == "container_only"}
         want = {("hermes-agent", k, s) for k in ("sandbox", "network_cut") for s in ("windows", "macos", "linux")}
         self.assertEqual(got, want | {("gemini-cli", "sandbox", "linux")})
 

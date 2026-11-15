@@ -32,7 +32,7 @@
       var tpl = document.createElement('template');
       tpl.innerHTML = h;
       Array.prototype.forEach.call(tpl.content.querySelectorAll('span[data-agent]'), function (sp) {
-        Array.prototype.forEach.call(document.querySelectorAll('td[data-last]'), function (td) {
+        Array.prototype.forEach.call(document.querySelectorAll('[data-last]'), function (td) {
           if (td.getAttribute('data-last') === sp.getAttribute('data-agent')) td.innerHTML = sp.innerHTML;
         });
       });

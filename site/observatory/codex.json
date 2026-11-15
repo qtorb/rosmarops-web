@@ -168,6 +168,24 @@
           "accessed_at": "2026-11-15"
         }
       }
+    },
+    "read_only": {
+      "value": "yes",
+      "source": {
+        "url": "https://learn.chatgpt.com/docs/agent-approvals-security",
+        "official": true,
+        "accessed_at": "2026-11-15"
+      }
+    },
+    "asks_first": {
+      "commands": {
+        "value": "no",
+        "source": {
+          "url": "https://learn.chatgpt.com/docs/agent-approvals-security",
+          "official": true,
+          "accessed_at": "2026-11-15"
+        }
+      }
     }
   }
 }

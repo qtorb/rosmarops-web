@@ -561,7 +561,7 @@ function rosmarops_agents_last_check_html($lang) {
 	return '<p class="meta last-check" style="margin:0 0 12px;font-size:14px;color:var(--muted)">' . rosmarops_daily_e($text) . '</p>';
 }
 
-/** The «Latest security change» cells: one span per agent, placed by today.js into td[data-last]. */
+/** The «Latest security change» cells: one span per agent, placed by today.js into [data-last] (GTM-169: the company grid). */
 function rosmarops_agents_last_html($lang, $all) {
 	$out = '';
 	foreach ($all as $id => $a) {

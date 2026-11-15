@@ -758,6 +758,27 @@
           "accessed_at": "2026-11-15"
         }
       }
+    },
+    "read_only": {
+      "value": "unknown"
+    },
+    "asks_first": {
+      "commands": {
+        "value": "another_model",
+        "source": {
+          "url": "https://github.com/NousResearch/hermes-agent/blob/main/website/docs/user-guide/security.md",
+          "official": true,
+          "accessed_at": "2026-11-15"
+        }
+      },
+      "edits": {
+        "value": "no",
+        "source": {
+          "url": "https://github.com/NousResearch/hermes-agent/blob/main/website/docs/user-guide/security.md",
+          "official": true,
+          "accessed_at": "2026-11-15"
+        }
+      }
     }
   }
 }
