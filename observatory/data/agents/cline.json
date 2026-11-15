@@ -72,7 +72,7 @@
               "official": true,
               "accessed_at": "2026-11-15"
             },
-            "quote": "DEFAULT_AUTO_APPROVAL_SETTINGS … readFiles: true, readFilesExternally: true, editFiles: true, editFilesExternally: true, executeSafeCommands: false, executeAllCommands: true, useBrowser: true, useMcp: true"
+            "quote": "DEFAULT_AUTO_APPROVAL_SETTINGS … readFiles: true, readFilesExternally: true, editFiles: true, editFilesExternally: true, … useBrowser: true, useMcp: true"
           }
         ]
       }
@@ -109,7 +109,7 @@
               "official": true,
               "accessed_at": "2026-11-15"
             },
-            "quote": "DEFAULT_AUTO_APPROVAL_SETTINGS … readFiles: true, readFilesExternally: true, editFiles: true, editFilesExternally: true, executeSafeCommands: false, executeAllCommands: true, useBrowser: true, useMcp: true"
+            "quote": "DEFAULT_AUTO_APPROVAL_SETTINGS … readFiles: true, readFilesExternally: true, editFiles: true, editFilesExternally: true, … useBrowser: true, useMcp: true"
           }
         ]
       }
@@ -118,38 +118,13 @@
       "id": "cap-shell",
       "action": "execute_commands",
       "scope": "all_commands",
-      "default": "conflicting",
+      "default": "ask",
       "source": {
-        "url": "https://github.com/cline/cline/blob/94eecbbe1a2f899c66b118d13656651b0a884e1f/apps/vscode/src/shared/AutoApprovalSettings.ts#L28-L44",
+        "url": "https://github.com/cline/cline/blob/94eecbbe1a2f899c66b118d13656651b0a884e1f/apps/vscode/src/sdk/sdk-tool-policies.ts#L55-L56",
         "official": true,
         "accessed_at": "2026-11-15"
       },
-      "via": "shell",
-      "conflict": {
-        "text": {
-          "es": "La documentación de Cline dice que todo pide tu aprobación. Su código, de serie, aprueba leer, editar, usar el navegador y usar servidores MCP sin preguntar; las órdenes de terminal sí te las pregunta. No hemos comprobado cuál de las dos se cumple en una instalación nueva.",
-          "en": "Cline's documentation says everything asks for your approval. Its code, by default, approves reading, editing, using the browser and using MCP servers without asking; it does ask before terminal commands. We haven't checked which of the two holds on a fresh install.",
-          "ca": "La documentació de Cline diu que tot demana la teva aprovació. El seu codi, de sèrie, aprova llegir, editar, fer servir el navegador i servidors MCP sense preguntar; les ordres de terminal sí que te les pregunta. No hem comprovat quina es compleix en una instal·lació nova."
-        },
-        "sources": [
-          {
-            "source": {
-              "url": "https://docs.cline.bot/cline-overview",
-              "official": true,
-              "accessed_at": "2026-11-15"
-            },
-            "quote": "Every action requires your explicit approval. You're always in control."
-          },
-          {
-            "source": {
-              "url": "https://github.com/cline/cline/blob/94eecbbe1a2f899c66b118d13656651b0a884e1f/apps/vscode/src/shared/AutoApprovalSettings.ts#L28-L44",
-              "official": true,
-              "accessed_at": "2026-11-15"
-            },
-            "quote": "DEFAULT_AUTO_APPROVAL_SETTINGS … readFiles: true, readFilesExternally: true, editFiles: true, editFilesExternally: true, executeSafeCommands: false, executeAllCommands: true, useBrowser: true, useMcp: true"
-          }
-        ]
-      }
+      "via": "shell"
     },
     {
       "id": "cap-browser",
@@ -183,7 +158,7 @@
               "official": true,
               "accessed_at": "2026-11-15"
             },
-            "quote": "DEFAULT_AUTO_APPROVAL_SETTINGS … readFiles: true, readFilesExternally: true, editFiles: true, editFilesExternally: true, executeSafeCommands: false, executeAllCommands: true, useBrowser: true, useMcp: true"
+            "quote": "DEFAULT_AUTO_APPROVAL_SETTINGS … readFiles: true, readFilesExternally: true, editFiles: true, editFilesExternally: true, … useBrowser: true, useMcp: true"
           }
         ]
       }
@@ -219,7 +194,7 @@
               "official": true,
               "accessed_at": "2026-11-15"
             },
-            "quote": "DEFAULT_AUTO_APPROVAL_SETTINGS … readFiles: true, readFilesExternally: true, editFiles: true, editFilesExternally: true, executeSafeCommands: false, executeAllCommands: true, useBrowser: true, useMcp: true"
+            "quote": "DEFAULT_AUTO_APPROVAL_SETTINGS … readFiles: true, readFilesExternally: true, editFiles: true, editFilesExternally: true, … useBrowser: true, useMcp: true"
           }
         ]
       }
