@@ -159,6 +159,7 @@
   "default.allow": "Without asking",
   "default.ask": "Asks first",
   "default.deny": "Denied",
+  "default.conflicting": "—",
   "agent.storage_h2": "Where it keeps configuration and keys",
   "agent.storage_note": "Paths on Windows. %USERPROFILE% is your user folder (C:\\Users\\your-name); <project> is the folder of each project.",
   "agent.th_what": "What",

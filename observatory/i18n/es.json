@@ -159,6 +159,7 @@
   "default.allow": "Sin preguntar",
   "default.ask": "Pregunta antes",
   "default.deny": "Denegado",
+  "default.conflicting": "—",
   "agent.storage_h2": "Dónde guarda configuración y claves",
   "agent.storage_note": "Rutas en Windows. %USERPROFILE% es tu carpeta de usuario (C:\\Users\\tu-nombre); <project> es la carpeta de cada proyecto.",
   "agent.th_what": "Qué",

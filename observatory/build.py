@@ -169,6 +169,8 @@ def texts(a):
     for x in [a.get("default_mode")] + a.get("capabilities", []) + a.get("storage", []):
         if x and "note" in x:
             out.append(x["note"])
+        if x and "conflict" in x:  # GTM-165
+            out.append(x["conflict"]["text"])
     for c in a["changes"]:
         out += [c["before"], c["after"]]
         if "correction" in c:
@@ -685,8 +687,16 @@ def build_agent(lang, t, a):
         return esc(v), attr
 
     def note_cell(x):
+        if x.get("conflict"):  # GTM-165, rule (f): the vendor's sources contradict each other
+            v, attr = loc(x["conflict"]["text"], lang)
+            quotes = "".join(f'<br><q lang="en">{esc(q["quote"])}</q>' for q in x["conflict"]["sources"])
+            return f'<td data-label="{t("agent.th_note")}"{attr}>{esc(v)}{quotes}</td>'
         v, attr = note(x)
         return f'<td data-label="{t("agent.th_note")}"{attr}>{v}</td>'
+
+    def src_cell(x):
+        srcs = [q["source"] for q in x["conflict"]["sources"]] if x.get("conflict") else [x["source"]]
+        return " · ".join(src_link(s) for s in srcs)
 
     def src_link(src):
         label = t("agent.source_official") if src["official"] else t("agent.source_rosmarops")
@@ -750,7 +760,7 @@ def build_agent(lang, t, a):
             f'<td data-label="{t("agent.th_scope")}">{t("scope." + c["scope"])}</td>'
             f'<td class="keep" data-label="{t("agent.th_default")}">{t("default." + c["default"])}</td>'
             f'{note_cell(c)}'
-            f'<td data-label="{t("agent.th_source")}">{src_link(c["source"])}</td>'
+            f'<td data-label="{t("agent.th_source")}">{src_cell(c)}</td>'
             "</tr>"
             for c in a["capabilities"]
         )
@@ -814,6 +824,8 @@ def build_agent(lang, t, a):
     for x in [a.get("default_mode")] + a.get("capabilities", []) + a.get("storage", []):
         if x:
             sources.setdefault(x["source"]["url"], x["source"])
+            for q in (x.get("conflict") or {}).get("sources", []):
+                sources.setdefault(q["source"]["url"], q["source"])
     src_items = "".join(
         f'<li><a href="{esc(u)}" rel="noopener">{esc(u)}</a> · {t("agent.accessed", date=t.date(s["accessed_at"]))}</li>'
         for u, s in sorted(sources.items())
