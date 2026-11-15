@@ -127,6 +127,33 @@
         "how": "official_changelog"
       },
       "rosmarops_impact": "none"
+    },
+    {
+      "id": "chg-github-copilot-1-0-111-permissions",
+      "version": "1.0.111",
+      "date": "2026-11-13",
+      "category": "permissions",
+      "before": {
+        "en": "Before 1.0.111, the GitHub Copilot CLI changelog lists no regular expression support in enterprise-managed Shell, Bash and PowerShell permission rules.",
+        "es": "Antes de 1.0.111, el changelog de GitHub Copilot CLI no recoge el uso de expresiones regulares en las reglas de permisos de Shell, Bash y PowerShell gestionadas por la empresa.",
+        "ca": "Abans de 1.0.111, el changelog de GitHub Copilot CLI no recull l'ús d'expressions regulars a les regles de permisos de Shell, Bash i PowerShell gestionades per l'empresa."
+      },
+      "after": {
+        "en": "From 1.0.111, enterprise-managed permission rules for Shell, Bash and PowerShell in GitHub Copilot CLI can use regular expressions, according to the changelog.",
+        "es": "Desde 1.0.111, las reglas de permisos de Shell, Bash y PowerShell gestionadas por la empresa en GitHub Copilot CLI pueden usar expresiones regulares, según el changelog.",
+        "ca": "Des de 1.0.111, les regles de permisos de Shell, Bash i PowerShell gestionades per l'empresa a GitHub Copilot CLI poden fer servir expressions regulars, segons el changelog."
+      },
+      "source": {
+        "url": "https://github.com/github/copilot-cli/blob/main/changelog.md",
+        "official": true,
+        "accessed_at": "2026-11-14"
+      },
+      "verified": {
+        "by": "writer",
+        "at": "2026-11-14",
+        "how": "official_changelog"
+      },
+      "rosmarops_impact": "none"
     }
   ],
   "ratings": [],

@@ -16,6 +16,7 @@ repository, never checked out.
 
 import csv
 import datetime
+import email.utils
 import fnmatch
 import html
 import io
@@ -24,6 +25,7 @@ import os
 import re
 import subprocess
 import sys
+import xml.etree.ElementTree as ET
 import tempfile
 import time
 import urllib.error
@@ -452,12 +454,75 @@ def index_entries(spec, since):
     return out
 
 
+CONTENT_NS = "{http://purl.org/rss/1.0/modules/content/}encoded"
+REPO_ADVISORIES = "https://api.github.com/repos/{repo}/security-advisories?state=published&per_page=20"
+
+
+def repo_advisories(repo):
+    """GTM-158: published security advisories of a GitHub repository (Cursor's own, cursor/cursor), as entries dated by
+    published_at, labelled by their GHSA id, with the CVE id in the text when there is one. Read with the workflow's
+    token like github_releases. A failure never closes the source: it goes to API_ERRORS and returns []."""
+    headers = {"User-Agent": UA, "Accept": "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28"}
+    token = os.environ.get("GH_TOKEN") or os.environ.get("GITHUB_TOKEN")
+    if token:
+        headers["Authorization"] = "Bearer " + token
+
+    def once():
+        req = urllib.request.Request(REPO_ADVISORIES.format(repo=repo), headers=headers)
+        try:
+            with urllib.request.urlopen(req, timeout=TIMEOUT) as r:
+                return json.loads(r.read().decode("utf-8", errors="replace"))
+        except urllib.error.HTTPError as e:
+            raise ReadError(f"HTTP {e.code}: {e.read().decode('utf-8', errors='replace')[:200]}") from None
+    try:
+        data = retry(f"GitHub advisories {repo}", once)
+    except (ReadError, ValueError, TypeError) as e:
+        API_ERRORS.append(str(e)[:300])
+        return []
+    out = []
+    for a in data if isinstance(data, list) else []:
+        if not isinstance(a, dict) or not a.get("ghsa_id") or not a.get("published_at"):
+            continue
+        ids = " ".join(x for x in (a["ghsa_id"], a.get("cve_id")) if x)
+        out.append({"date": a["published_at"][:10], "version": a["ghsa_id"], "title": a.get("summary") or "",
+                    "labels": [], "text": f"{ids}: {a.get('summary') or ''} {a.get('description') or ''}".strip()})
+    return out
+
+
+def rss_entries(body):
+    """Entries of an RSS 2.0 feed (GTM-158, Cursor's changelog since it dropped version numbers): one per <item>, dated
+    by pubDate, titled by <title> (also used as its version label, since the feed has no versions), text from
+    content:encoded or description. A feed that declares a DOCTYPE or entities is refused, not parsed."""
+    if re.search(r"<!DOCTYPE|<!ENTITY", body[:4000], re.I):
+        raise ReadError("feed declares a DOCTYPE or entities; not parsed")
+    try:
+        root = ET.fromstring(body)
+    except ET.ParseError as e:
+        raise ReadError(f"feed is not XML: {e}") from None
+    out = []
+    for it in root.iter("item"):
+        try:
+            date = email.utils.parsedate_to_datetime(it.findtext("pubDate") or "").date().isoformat()
+        except (TypeError, ValueError):
+            continue
+        title = (it.findtext("title") or "").strip()
+        body_html = it.findtext(CONTENT_NS) or it.findtext("description") or ""
+        text = " ".join(page_lines(body_html)) if body_html else ""
+        out.append({"date": date, "version": title[:60] or None, "title": title, "labels": [],
+                    "text": (title + ". " + text).strip()})
+    return out
+
+
 def read_changelog_web(src, since, terms):
     r = src["read"]
     res = blank(src, "curl")
     try:
         all_entries = []
-        for url in r["urls"]:
+        if r.get("rss"):  # GTM-158: an official RSS feed, read before the pages
+            all_entries += rss_entries(http_get(r["rss"]))
+        if r.get("advisories"):  # GTM-158: the vendor's own GitHub security advisories; never closes the source
+            all_entries += repo_advisories(r["advisories"])
+        for url in r.get("urls", []):
             if isinstance(url, dict):  # a dated version index whose notes live one page per version (GTM-93)
                 all_entries += index_entries(url, since)
             else:
@@ -488,6 +553,78 @@ def read_changelog_web(src, since, terms):
     res["new"] = [{"date": e["date"], "version": e["version"], "text": trim(e["text"])}
                   for e in all_entries if e["date"] >= since]
     res["ids"] = sorted({i for e in all_entries if e["date"] >= since for i in ADVISORY.findall(e["text"])})
+    return res
+
+
+WATCH_SUBJECT = re.compile(r"grok[\s_-]?bot", re.I)
+WATCH_WITH = re.compile(r"\b(read|reads|reading|read-only|rules?|settings?|connectors?|oauth|scopes?)\b", re.I)
+WATCH_MAX = 300
+PREVIOUS_WATCHED = {}  # {source id: every watched item seen in an earlier raw file}, set by collect()
+
+
+class _Links(HTMLParser):
+    """(text, href) of every <a href> of an HTML page outside script and style."""
+    def __init__(self):
+        super().__init__(convert_charrefs=True)
+        self.links, self.skip, self.href, self.text = [], 0, None, []
+
+    def handle_starttag(self, tag, attrs):
+        if tag in SKIP:
+            self.skip += 1
+        elif tag == "a" and not self.skip:
+            self.href, self.text = dict(attrs).get("href"), []
+
+    def handle_endtag(self, tag):
+        if tag in SKIP:
+            self.skip = max(0, self.skip - 1)
+        elif tag == "a" and self.href is not None:
+            self.links.append((re.sub(r"\s+", " ", "".join(self.text)).strip(), self.href))
+            self.href = None
+
+    def handle_data(self, data):
+        if self.href is not None and not self.skip:
+            self.text.append(data)
+
+
+def watch_items(body):
+    """GTM-160: the pages and routes of a documentation index (docs.x.ai/llms.txt) or page (cursor.com/docs/api) that
+    mention Grok Bot together with read, rules, settings, connectors, OAuth or scope. Each line is read with the heading
+    above it ("## Grok Bot › - [Use Grok Bot — Vault](https://docs.x.ai/grok-bot/vault.md)"), and each link of an HTML
+    page as "text (href)". Sorted and without repeats, so two days can be compared."""
+    items, heading = set(), ""
+    for line in page_lines(body):
+        if line.startswith("#"):
+            heading = line.lstrip("# ").strip()
+            item = line
+        else:
+            item = f"{heading} › {line}" if heading else line
+        items.add(item[:WATCH_MAX])
+    if re.search(r"<html|<body|<div|<p[ >]", body[:5000], re.I):
+        p = _Links()
+        p.feed(body)
+        items |= {f"{t} ({h})"[:WATCH_MAX] for t, h in p.links if h}
+    return sorted(i for i in items if WATCH_SUBJECT.search(i) and WATCH_WITH.search(i))
+
+
+def read_page_watch(src, since, terms):
+    """GTM-160 (Albert, 14-11): watch an official documentation page for a new page or route that mentions Grok Bot with
+    read, rules, settings, connectors, OAuth or scope. `watched` carries today's matches; `new` the ones no earlier raw
+    file had, dated today (date_is_detection). The first reading is the baseline: nothing in it is new."""
+    res = blank(src, "curl")
+    try:
+        body = http_get(src["read"]["url"])
+    except ReadError as e:
+        res["reason"] = str(e)
+        return res
+    if not page_lines(body):
+        res["reason"] = "empty page"
+        return res
+    res["opened"] = True
+    res["watched"] = watch_items(body)
+    res["date_is_detection"] = True
+    seen = PREVIOUS_WATCHED.get(src["id"])
+    if seen is not None:
+        res["new"] = [{"date": today(), "version": None, "text": trim(i)} for i in res["watched"] if i not in seen]
     return res
 
 
@@ -770,7 +907,8 @@ def read_kev(src, since, terms):
 
 
 METHODS = {"changelog-web": read_changelog_web, "git-tags": read_git_tags, "ossf": read_ossf, "osv-csv": read_osv,
-           "nvd": read_nvd, "kev": read_kev, "changelog-versions": read_changelog_versions}
+           "nvd": read_nvd, "kev": read_kev, "changelog-versions": read_changelog_versions,
+           "page-watch": read_page_watch}
 
 
 def collect_source(src, since, terms):
@@ -808,6 +946,22 @@ def previous_versions(raw_dir, day):
     return out
 
 
+def previous_watched(raw_dir, day):
+    """{source id: set of watched items} from every raw file before `day` (GTM-160): an item is new only if no earlier
+    day had it, so a page that drops a line for a day and brings it back does not count as a change."""
+    out = {}
+    for p in Path(raw_dir).glob("*.json"):
+        if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", p.stem) or p.stem >= day:
+            continue
+        try:
+            for s in json.loads(p.read_text(encoding="utf-8")).get("sources", []):
+                if isinstance(s.get("watched"), list):
+                    out.setdefault(s["id"], set()).update(s["watched"])
+        except (ValueError, AttributeError):
+            continue
+    return out
+
+
 def collect(sources_file=SOURCES, raw_dir=RAW_DIR, now=None, progress=None):
     now = now or datetime.datetime.now(datetime.timezone.utc)
     global TODAY
@@ -819,6 +973,8 @@ def collect(sources_file=SOURCES, raw_dir=RAW_DIR, now=None, progress=None):
     since = last_raw_date(raw_dir, TODAY)
     PREVIOUS.clear()
     PREVIOUS.update(previous_versions(raw_dir, TODAY))
+    PREVIOUS_WATCHED.clear()
+    PREVIOUS_WATCHED.update(previous_watched(raw_dir, TODAY))
     out = []
     for s in cfg["sources"]:
         if s.get("paused"):  # GTM-157: a paused source is not read and is not in the raw file (Albert, 13-11)

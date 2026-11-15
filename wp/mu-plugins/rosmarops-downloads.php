@@ -34,6 +34,7 @@ const ROSMAROPS_DL_FROM   = [
 	'observatory-cursor',
 	'observatory-gemini-cli',
 	'observatory-github-copilot',
+	'observatory-grok-bot',
 	'observatory-grok-build',
 	'observatory-hermes-agent',
 	'observatory-kanvas',

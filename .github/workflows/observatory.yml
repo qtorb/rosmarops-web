@@ -83,7 +83,7 @@ jobs:
         run: |
           set -eu
           export OBS_BASE="${{ github.event.pull_request.base.sha || github.event.before }}"
-          python -m unittest observatory/tests/test_daily_check.py observatory/tests/test_daily_alert.py observatory/tests/test_daily_raw.py observatory/tests/test_github_stats.py observatory/tests/test_collect.py observatory/tests/test_rules.py observatory/tests/test_agent_lists.py observatory/tests/test_map_data.py observatory/tests/test_map_page.py
+          python -m unittest observatory/tests/test_daily_check.py observatory/tests/test_daily_alert.py observatory/tests/test_daily_raw.py observatory/tests/test_github_stats.py observatory/tests/test_collect.py observatory/tests/test_rules.py observatory/tests/test_agent_lists.py observatory/tests/test_map_data.py observatory/tests/test_map_page.py observatory/tests/test_agent_pages.py
           if ls observatory/daily/*.json >/dev/null 2>&1; then python observatory/daily_check.py observatory/daily/*.json; else echo "no daily files yet"; fi
           php -l wp/mu-plugins/rosmarops-daily.php
           python -m unittest wp/tests/test_daily.py
@@ -104,6 +104,8 @@ jobs:
           python -m unittest wp/tests/test_category_loop_engineering.py
           php -l wp/mu-plugins/rosmarops-gtm124-agente.php
           python -m unittest wp/tests/test_gtm124_agente.py
+          php -l wp/mu-plugins/rosmarops-gtm164-sin-version.php
+          python -m unittest wp/tests/test_gtm164_sin_version.py
           php -l wp/mu-plugins/rosmarops-schedule-he-terminado.php
           python -m unittest wp/tests/test_schedule_he_terminado.py
           php -l wp/mu-plugins/rosmarops-schedule-microsoft-store.php
@@ -112,6 +114,8 @@ jobs:
           python -m unittest wp/tests/test_store_image.py
           php -l wp/mu-plugins/rosmarops-schedule-mapa.php
           python -m unittest wp/tests/test_schedule_mapa.py
+          php -l wp/mu-plugins/rosmarops-schedule-novedades-0-11.php
+          python -m unittest wp/tests/test_schedule_novedades_0_11.py
           python -m unittest wp/tests/test_download_sources.py
           python -m unittest wp/tests/test_static_about.py
           php -l wp/mu-plugins/rosmarops-consent.php

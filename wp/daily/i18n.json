@@ -209,6 +209,7 @@
     "gemini-cli",
     "github-copilot",
     "goose",
+    "grok-bot",
     "grok-build",
     "hermes-agent",
     "junie",
@@ -234,6 +235,7 @@
     "cursor",
     "gemini-cli",
     "github-copilot",
+    "grok-bot",
     "grok-build",
     "hermes-agent",
     "kanvas"

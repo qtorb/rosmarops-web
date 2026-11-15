@@ -35,11 +35,12 @@ def load_raw(date, raw_dir=RAW_DIR):
 
 def coverage(raw, sources):
     """(checked, not_checked): opened sources with name and public_url from sources.json; closed ones by name.
+    page-watch sources (GTM-160) are left out of both.
     A source in sources.json that the raw file does not carry counts as not opened."""
     by_id = {s["id"]: s for s in raw["sources"]}
     checked, not_checked = [], []
     for src in sources:
-        if src.get("paused"):  # GTM-157: neither checked nor not checked
+        if src.get("paused") or src["method"] == "page-watch":  # GTM-157 paused; GTM-160 watch-only: not in the public review
             continue
         r = by_id.get(src["id"])
         if r and r["opened"]:
@@ -70,7 +71,7 @@ def build(date, raw, sources, items, held, now=None):
 
 def no_raw(date, sources, now=None):
     return {"date": date, "reviewed_at": stamp(now), "status": "incomplete", "items": [], "checked": [],
-            "not_checked": [s["name"] for s in sources],
+            "not_checked": [s["name"] for s in sources if s["method"] != "page-watch" and not s.get("paused")],
             "held": [{"text_en": "", "source_url": "", "rule": 10, "reason": f"no raw for {date}"}],
             "summary_ref": f"docs/observatorio/{date}.md"}
 

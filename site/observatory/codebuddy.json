@@ -21,6 +21,34 @@
     "reviewed_at": "2026-11-06"
   },
   "versions": [],
-  "changes": [],
+  "changes": [
+    {
+      "id": "chg-codebuddy-2-184-0-sandbox",
+      "version": "v2.184.0",
+      "date": "2026-11-13",
+      "category": "sandbox",
+      "before": {
+        "en": "Before v2.184.0, the CodeBuddy Code release notes list no switch to run osascript commands outside the macOS sandbox.",
+        "es": "Antes de v2.184.0, las notas de versión de CodeBuddy Code no recogen ningún interruptor para ejecutar comandos osascript fuera del sandbox de macOS.",
+        "ca": "Abans de v2.184.0, les notes de versió de CodeBuddy Code no recullen cap interruptor per executar ordres osascript fora del sandbox de macOS."
+      },
+      "after": {
+        "en": "From v2.184.0, hosts other than WorkBuddy can explicitly enable running a single literal osascript command outside the macOS sandbox, under existing approvals; WorkBuddy Desktop keeps its default, according to the release notes.",
+        "es": "Desde v2.184.0, los hosts distintos de WorkBuddy pueden activar de forma explícita la ejecución de un único comando osascript literal fuera del sandbox de macOS, con las aprobaciones existentes; WorkBuddy Desktop mantiene su comportamiento por defecto, según las notas de versión.",
+        "ca": "Des de v2.184.0, els hosts diferents de WorkBuddy poden activar de manera explícita l'execució d'una sola ordre osascript literal fora del sandbox de macOS, amb les aprovacions existents; WorkBuddy Desktop manté el seu comportament per defecte, segons les notes de versió."
+      },
+      "source": {
+        "url": "https://www.codebuddy.cn/docs/cli/release-notes/README",
+        "official": true,
+        "accessed_at": "2026-11-14"
+      },
+      "verified": {
+        "by": "writer",
+        "at": "2026-11-14",
+        "how": "official_changelog"
+      },
+      "rosmarops_impact": "none"
+    }
+  ],
   "ratings": []
 }

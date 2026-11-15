@@ -23,7 +23,8 @@
     "crewai",
     "autogen",
     "muse",
-    "n8n"
+    "n8n",
+    "grok"
   ],
   "sources": [
     {
@@ -51,14 +52,15 @@
       "scope": "cursor",
       "method": "changelog-web",
       "read": {
+        "rss": "https://cursor.com/changelog/rss.xml",
         "urls": [
-          "https://cursor.com/changelog",
           "https://cursor.com/docs/cli/changelog"
-        ]
+        ],
+        "advisories": "cursor/cursor"
       },
       "public_url": "https://cursor.com/changelog",
       "fragile": false,
-      "notes": null
+      "notes": "GTM-158 (Albert, 13-11): the changelog is read from its official RSS feed (the page dropped version numbers on 06-11), the CLI changelog from its page, and Cursor's own published GitHub security advisories (cursor/cursor) are added; a failure of the advisories never closes the source."
     },
     {
       "id": "F3",
@@ -770,6 +772,44 @@
       "public_url": "https://x.ai/changelog/build",
       "fragile": false,
       "notes": "GTM-99. xAI's dated changelog of Grok Build, «## Grok Build 1.0.70» headings with their date. The site answers 403 to curl and 200 to Python's client (07-11)."
+    },
+    {
+      "id": "F45",
+      "name": "Grok Bot",
+      "scope": "grok-bot",
+      "method": "changelog-web",
+      "read": {
+        "urls": [
+          "https://x.ai/changelog/bot"
+        ]
+      },
+      "public_url": "https://x.ai/changelog/bot",
+      "fragile": false,
+      "notes": "GTM-159 (Albert, 13-11): xAI's changelog of Grok Bot, the desktop and mobile app whose Bots work in Cursor's cloud and, if allowed, on your own computer. Same host as F44."
+    },
+    {
+      "id": "F46",
+      "name": "Grok Bot: xAI documentation index",
+      "scope": "grok-bot",
+      "method": "page-watch",
+      "read": {
+        "url": "https://docs.x.ai/llms.txt"
+      },
+      "public_url": "https://docs.x.ai/llms.txt",
+      "fragile": false,
+      "notes": "GTM-160 (Albert, 14-11): watch only, after CTO-47. Not a changelog: the collector compares today's lines and links that mention Grok Bot with read, rules, settings, connectors, OAuth or scope against every earlier day; a new one goes to new, dated the day it was seen. It never goes to checked or not_checked of the daily."
+    },
+    {
+      "id": "F47",
+      "name": "Grok Bot: Cursor API documentation",
+      "scope": "grok-bot",
+      "method": "page-watch",
+      "read": {
+        "url": "https://cursor.com/docs/api"
+      },
+      "public_url": "https://cursor.com/docs/api",
+      "fragile": false,
+      "notes": "GTM-160 (Albert, 14-11): watch only, after CTO-47. Not a changelog: the collector compares today's lines and links that mention Grok Bot with read, rules, settings, connectors, OAuth or scope against every earlier day; a new one goes to new, dated the day it was seen. It never goes to checked or not_checked of the daily."
     }
   ]
 }

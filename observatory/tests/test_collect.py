@@ -225,16 +225,41 @@ class ChangelogWeb(Base):
         self.assertEqual((r["latest"], r["latest_date"], r["new"]), ("v2.1.12", "2026-01-10", []))
         self.assertIn("changelog page failed", r["reason"])
 
-    def test_two_pages_and_calendar_versions(self):
-        pages = {
-            "https://cursor.com/changelog": "<html><body><p>Jan 13, 2026</p><h1>Agent SDK</h1><p>Agents as code.</p></body></html>",
-            "https://cursor.com/docs/cli/changelog": "<html><body><h2>v2026.01.14</h2><h3>Hooks</h3><p>Hooks fire for subagents.</p>"
-                                                     "<h2>v2026.01.02</h2><p>Old.</p></body></html>",
-        }
-        with self.web(pages):
+    CURSOR_RSS = ('<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/">'
+                  '<channel><title>Cursor Changelog</title><item><title>Agent SDK</title><link>https://cursor.com/changelog/agent-sdk</link>'
+                  '<pubDate>Tue, 13 Jan 2026 00:00:00 GMT</pubDate><content:encoded><![CDATA[<p>Agents as code.</p>]]></content:encoded></item>'
+                  '<item><title>Old thing</title><pubDate>Fri, 02 Jan 2026 00:00:00 GMT</pubDate><description>Old.</description></item>'
+                  '</channel></rss>')
+    CURSOR_CLI = ("<html><body><h2>v2026.01.14</h2><h3>Hooks</h3><p>Hooks fire for subagents.</p>"
+                  "<h2>v2026.01.02</h2><p>Old.</p></body></html>")
+
+    def test_rss_cli_page_and_calendar_versions(self):
+        # GTM-158: Cursor's changelog from its RSS feed (no versions: the title is the label), the CLI from its page
+        pages = {"https://cursor.com/changelog/rss.xml": self.CURSOR_RSS, "https://cursor.com/docs/cli/changelog": self.CURSOR_CLI}
+        adv = [{"date": "2026-01-12", "version": "GHSA-abcd-efgh-ijkl", "title": "x", "labels": [],
+                "text": "GHSA-abcd-efgh-ijkl CVE-2026-0001: x"}]
+        with self.web(pages), mock.patch.object(collect, "repo_advisories", return_value=adv) as ra:
             r = collect.read_changelog_web(src("F2"), L, TERMS)
+        ra.assert_called_once_with("cursor/cursor")
+        self.assertTrue(r["opened"])
         self.assertEqual((r["latest"], r["latest_date"]), ("v2026.01.14", "2026-01-14"))
-        self.assertEqual([e["date"] for e in r["new"]], ["2026-01-14", "2026-01-13"])
+        self.assertEqual([(e["date"], e["version"]) for e in r["new"]],
+                         [("2026-01-14", "v2026.01.14"), ("2026-01-13", "Agent SDK"), ("2026-01-12", "GHSA-abcd-efgh-ijkl")])
+        self.assertIn("Agents as code.", r["new"][1]["text"])
+        self.assertEqual(r["ids"], ["CVE-2026-0001", "GHSA-abcd-efgh-ijkl"])
+
+    def test_advisories_failure_never_closes_cursor(self):
+        pages = {"https://cursor.com/changelog/rss.xml": self.CURSOR_RSS, "https://cursor.com/docs/cli/changelog": self.CURSOR_CLI}
+        collect.API_ERRORS.clear()
+        with self.web(pages), mock.patch.object(collect, "retry", side_effect=lambda what, fn: (_ for _ in ()).throw(collect.ReadError("HTTP 404"))
+                                                 if what.startswith("GitHub advisories") else fn()):
+            r = collect.read_changelog_web(src("F2"), L, TERMS)
+        self.assertTrue(r["opened"])
+        self.assertTrue(any("404" in e for e in collect.API_ERRORS))
+
+    def test_rss_with_doctype_is_refused(self):
+        with self.assertRaises(collect.ReadError):
+            collect.rss_entries('<?xml version="1.0"?><!DOCTYPE x [<!ENTITY a "b">]><rss><channel></channel></rss>')
 
     def test_time_datetime_attribute(self):
         page = ('<html><body><article><time datetime="2026-01-14T10:00:00Z">Jan.14</time><h3>Copilot agent hooks</h3>'
@@ -889,6 +914,78 @@ class WholeRun(Base):
         self.assertTrue(errors(out))
 
 
+LLMS = """# SpaceXSI API Documentation
+
+## API
+- [Get Started](https://docs.x.ai/developers/quickstart.md)
+- [Management — Read keys](https://docs.x.ai/developers/management.md)
+
+## Grok Bot
+- [Get started](https://docs.x.ai/grok-bot/overview.md)
+- [Use Grok Bot — Approvals and privacy](https://docs.x.ai/grok-bot/approvals-security-and-privacy.md)
+- [Reference](https://docs.x.ai/grok-bot/settings-and-notifications.md)
+"""
+CURSOR_API = """<html><body><nav><a href="/docs/account/teams/admin-api#grok-bot">Grok Bot</a>
+<a href="/docs/api/analytics">Analytics API</a></nav><main><h2>Rate limits</h2>
+<table><tr><td>GET /organizations/teams/{teamId}/grok-bot/operations/*</td><td>120 requests/minute</td></tr></table>
+<script>var x = "grok-bot rules";</script></main></body></html>"""
+
+
+class PageWatch(Base):
+    """GTM-160: docs.x.ai/llms.txt and cursor.com/docs/api, watched for a page or route that mentions Grok Bot with
+    read, rules, settings, connectors, OAuth or scope."""
+
+    def run_watch(self, sid, pages, seen=None):
+        with self.web(pages), mock.patch.object(collect, "PREVIOUS_WATCHED", {} if seen is None else {sid: set(seen)}):
+            return collect.collect_source(src(sid), L, TERMS)
+
+    def test_matches_need_grok_bot_and_a_watch_word(self):
+        self.assertEqual(collect.watch_items(LLMS),
+                         ["Grok Bot › - [Reference](https://docs.x.ai/grok-bot/settings-and-notifications.md)"])
+        self.assertEqual(collect.watch_items(CURSOR_API), [])  # Grok Bot without a watch word; script ignored
+
+    def test_first_reading_is_the_baseline(self):
+        r = self.run_watch("F46", {"https://docs.x.ai/llms.txt": LLMS})
+        self.assertTrue(r["opened"])
+        self.assertEqual((r["new"], r["latest"], r["latest_date"], r["date_is_detection"]), ([], None, None, True))
+        self.assertEqual(len(r["watched"]), 1)
+
+    def test_a_new_route_is_new_and_dated_today(self):
+        seen = collect.watch_items(CURSOR_API)
+        page = CURSOR_API.replace("</nav>", '<a href="/docs/api/grok-bot-settings">Grok Bot Settings API (read-only)</a></nav>')
+        r = self.run_watch("F47", {"https://cursor.com/docs/api": page}, seen)
+        self.assertIn({"date": TODAY, "version": None, "text": "Grok Bot Settings API (read-only) (/docs/api/grok-bot-settings)"},
+                      r["new"])
+        self.assertTrue(r["new"])
+        r = self.run_watch("F47", {"https://cursor.com/docs/api": page}, r["watched"])
+        self.assertEqual(r["new"], [])  # seen on an earlier day: not new again
+
+    def test_new_llms_page(self):
+        page = LLMS + "- [Reference — Connectors API](https://docs.x.ai/grok-bot/connectors-api.md)\n"
+        r = self.run_watch("F46", {"https://docs.x.ai/llms.txt": page}, collect.watch_items(LLMS))
+        self.assertEqual([e["text"] for e in r["new"]],
+                         ["Grok Bot › - [Reference — Connectors API](https://docs.x.ai/grok-bot/connectors-api.md)"])
+
+    def test_unreadable_page_closes_the_source(self):
+        r = self.run_watch("F47", {"https://cursor.com/docs/api": collect.ReadError("https://cursor.com/docs/api: HTTP 403")})
+        self.assertFalse(r["opened"])
+        self.assertIn("403", r["reason"])
+        self.assertNotIn("watched", r)
+
+    def test_previous_watched_unions_earlier_days_only(self):
+        with tempfile.TemporaryDirectory() as d:
+            for day, items in (("2026-01-13", ["a"]), ("2026-01-14", ["b"]), ("2026-01-15", ["c"])):
+                Path(d, f"{day}.json").write_text(json.dumps({"sources": [{"id": "F46", "watched": items}]}), encoding="utf-8")
+            self.assertEqual(collect.previous_watched(d, "2026-01-15"), {"F46": {"a", "b"}})
+
+    def test_output_with_watched_validates(self):
+        r = self.run_watch("F46", {"https://docs.x.ai/llms.txt": LLMS})
+        base = collect.blank(src("F1"), "curl") | {"opened": True}
+        out = {"date": "2026-01-15", "collected_at": "2026-01-15T05:30:00Z", "opened": 47, "total": 47,
+               "sources": [dict(base, id=f"F{i}") for i in range(1, 46)] + [r, dict(r, id="F47")]}
+        validate(self, out)
+
+
 class SourcesFile(unittest.TestCase):
     def test_sources_file(self):
         daily = json.loads((ROOT / "observatory" / "daily" / "2026-11-03.json").read_text(encoding="utf-8"))
@@ -898,14 +995,15 @@ class SourcesFile(unittest.TestCase):
         # GTM-157 (Albert, 13-11): Comet is paused; it stays in the file, the collector skips it
         self.assertEqual([s["id"] for s in SOURCES["sources"] if s.get("paused")], ["F43"])
         self.assertEqual(IDS[:29], [f"F{i}" for i in range(1, 30)])
-        self.assertEqual(IDS[29:], ["F31", "F32", "F33", "F34", "F35", "F36", "F37", "F38", "F39", "F40", "F41", "F42", "F43", "F44"])
+        self.assertEqual(IDS[29:], ["F31", "F32", "F33", "F34", "F35", "F36", "F37", "F38", "F39", "F40", "F41", "F42", "F43", "F44", "F45", "F46", "F47"])
         for s in SOURCES["sources"]:
             self.assertEqual(set(s) - {"paused"}, {"id", "name", "scope", "method", "read", "public_url", "fragile", "notes"}, s["id"])
             self.assertIn(s["method"], collect.METHODS, s["id"])
             self.assertEqual(s["fragile"], s["id"] in ("F8", "F19", "F43"), s["id"])
             self.assertNotIn("raw.githubusercontent.com", s["public_url"], s["id"])
             if s["name"] not in ("Hermes Agent", "Muse Code", "n8n", "TRAE", "Qwen Code", "Kimi Code", "CodeBuddy", "Qoder CN",
-                                 "Aider", "OpenHands", "Amp", "Warp", "Junie", "Kilo Code", "Comet", "Grok Build"):
+                                 "Aider", "OpenHands", "Amp", "Warp", "Junie", "Kilo Code", "Comet", "Grok Build", "Grok Bot",
+                                 "Grok Bot: xAI documentation index", "Grok Bot: Cursor API documentation"):
                 self.assertEqual(s["public_url"], checked[s["name"]], s["id"])
         self.assertEqual(len(set(SOURCES["scope_terms"])), len(SOURCES["scope_terms"]))
         self.assertTrue({"muse", "n8n"} <= set(SOURCES["scope_terms"]))
@@ -938,6 +1036,11 @@ class SourcesFile(unittest.TestCase):
         f44 = src("F44")
         self.assertEqual((f44["name"], f44["scope"], f44["method"], f44["read"]["urls"]), ("Grok Build", "grok-build", "changelog-web", ["https://x.ai/changelog/build"]))
         self.assertTrue(daily_check.host_allowed(f44["public_url"]))
+        for i, url in (("F46", "https://docs.x.ai/llms.txt"), ("F47", "https://cursor.com/docs/api")):
+            w = src(i)
+            self.assertEqual((w["scope"], w["method"], w["read"], w["public_url"], w["fragile"]),
+                             ("grok-bot", "page-watch", {"url": url}, url, False), i)
+            self.assertTrue(daily_check.host_allowed(url), i)
         f29 = SOURCES["sources"][28]
         self.assertEqual((f29["name"], f29["method"], f29["fragile"]), ("Muse Code", "changelog-versions", False))
         self.assertEqual(f29["public_url"], f29["read"]["url"])
