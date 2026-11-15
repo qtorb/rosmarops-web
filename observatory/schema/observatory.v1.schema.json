@@ -533,7 +533,7 @@
             "description": "v1.10 (GTM-165): the vendor's own sources contradict each other (rule f). The page shows «—», this text and both sources with their quotes.",
             "properties": {
               "text": {
-                "$ref": "#/$defs/conflict_text"
+                "$ref": "#/$defs/text"
               },
               "sources": {
                 "type": "array",
@@ -821,31 +821,6 @@
           ]
         }
       }
-    },
-    "conflict_text": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "en"
-      ],
-      "properties": {
-        "en": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 400
-        },
-        "es": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 400
-        },
-        "ca": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 400
-        }
-      },
-      "description": "Like text, up to 400 characters: a contradiction between two official sources needs both sides in one note (GTM-165)."
     }
   }
 }
