@@ -58,7 +58,7 @@
   ],
   "sandbox": [
    "Sandbox",
-   "A closed space where an AI agent works without being able to touch what's outside it: your other folders, your keys or the internet, depending on how it's set up. Many agents have one, but almost all ship with it turned off, and some only on macOS and Linux. A sandbox doesn't make an agent safe: it limits what it could touch. RosmarOps tells you whether your agent has one, whether it's on and what it leaves out."
+   "A closed space where an AI agent works without being able to touch what's outside it: your other folders, your keys or the internet, depending on how it's set up. Many agents have one, but almost all ship with it turned off, and some only on macOS and Linux. A sandbox doesn't make an agent harmless: it limits what it could touch. RosmarOps tells you whether your agent has one, whether it's on and what it leaves out."
   ]
  },
  "es": {
@@ -120,7 +120,7 @@
   ],
   "sandbox": [
    "Sandbox (caja de arena)",
-   "Un espacio cerrado donde un agente de IA trabaja sin poder tocar lo que queda fuera: tus otras carpetas, tus claves o internet, según cómo esté puesto. Muchos agentes lo traen, pero casi todos apagado de serie, y algunos solo en macOS y Linux. Un sandbox no hace seguro a un agente: limita lo que podría tocar. RosmarOps te dice si tu agente lo tiene, si está encendido y qué deja fuera."
+   "Un espacio cerrado donde un agente de IA trabaja sin poder tocar lo que queda fuera: tus otras carpetas, tus claves o internet, según cómo esté puesto. Muchos agentes lo traen, pero casi todos apagado de serie, y algunos solo en macOS y Linux. Un sandbox no vuelve inofensivo a un agente: limita lo que podría tocar. RosmarOps te dice si tu agente lo tiene, si está encendido y qué deja fuera."
   ]
  },
  "ca": {
@@ -182,7 +182,7 @@
   ],
   "sandbox": [
    "Sandbox (caixa de sorra)",
-   "Un espai tancat on un agent d'IA treballa sense poder tocar el que queda fora: les teves altres carpetes, les teves claus o internet, segons com estigui posat. Molts agents en porten, però gairebé tots apagat de sèrie, i alguns només a macOS i Linux. Un sandbox no fa segur un agent: limita el que podria tocar. RosmarOps et diu si el teu agent en té, si està encès i què deixa fora."
+   "Un espai tancat on un agent d'IA treballa sense poder tocar el que queda fora: les teves altres carpetes, les teves claus o internet, segons com estigui posat. Molts agents en porten, però gairebé tots apagat de sèrie, i alguns només a macOS i Linux. Un sandbox no fa inofensiu un agent: limita el que podria tocar. RosmarOps et diu si el teu agent en té, si està encès i què deixa fora."
   ]
  }
 }
