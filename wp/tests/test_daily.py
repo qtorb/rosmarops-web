@@ -146,9 +146,9 @@ class Daily(unittest.TestCase):
 
     def test_today_route_uses_latest_day(self):
         for prefix, line, empty in [
-            ("/observatory/daily/", "3 November 2026 · 2 sources checked", "No new changes in the sources today."),
-            ("/es/observatorio/diario/", "3 de noviembre de 2026 · 2 fuentes revisadas", "Hoy no hay cambios nuevos en las fuentes."),
-            ("/ca/observatori/diari/", "3 de novembre de 2026 · 2 fonts revisades", "Avui no hi ha canvis nous a les fonts."),
+            ("/observatory/daily/", "3 November 2026 · 2 sources checked", "No changes published today. 1 is waiting to be checked before it&#039;s published."),  # GTM-171: the fixture holds one
+            ("/es/observatorio/diario/", "3 de noviembre de 2026 · 2 fuentes revisadas", "Hoy no hay cambios publicados. Hay 1 pendiente de comprobar antes de publicarlo."),
+            ("/ca/observatori/diari/", "3 de novembre de 2026 · 2 fonts revisades", "Avui no hi ha canvis publicats. N&#039;hi ha 1 pendent de comprovar abans de publicar-lo."),
         ]:
             st, h, body = self.get(prefix + "today.html")
             self.assertEqual(st, 200, prefix)
@@ -178,16 +178,37 @@ class Daily(unittest.TestCase):
         self.assertEqual(self.today(d, "en").count("<li>"), 5)
 
     def test_today_incomplete(self):
+        """GTM-171: the count and the names of what could not be read; more than three end in «and {n} more»."""
         d = copy.deepcopy(self.valid)
         d.update(status="incomplete", not_checked=["Example source"])
         d["checked"].append({"name": "Internal", "url": "https://github.com/qtorb/rosmarops-vigil/tree/master/docs/observatorio", "latest_seen": "", "latest_date": None})
         out = self.today(d, "ca")
         self.assertTrue(out.startswith('<p class="note">15 de gener de 2026 · 2 fonts revisades</p>\n'
-                                       "<p class=\"note\">La revisió d&#039;avui és incompleta: al dia a dia veus què no s&#039;ha pogut revisar.</p>\n"), out)
+                                       "<p class=\"note\">2 de 3 fonts revisades. No s&#039;ha pogut llegir: Example source.</p>\n"), out)
         d["items"] = []
+        d["held"] = []
         out = self.today(d, "es")
-        self.assertIn('<p class="note">La revisión de hoy está incompleta: en el día a día ves qué no se pudo revisar.</p>', out)
+        self.assertIn('<p class="note">2 de 3 fuentes revisadas. No se pudo leer: Example source.</p>', out)
         self.assertIn('<p class="empty box">Hoy no hay cambios nuevos en las fuentes.</p>', out)
+        d["not_checked"] = ["A", "B", "C", "D", "E"]
+        self.assertIn('<p class="note">2 of 7 sources checked. Couldn&#039;t read: A, B, C and 2 more.</p>', self.today(d, "en"))
+        self.assertIn("No se pudo leer: A, B, C y 2 más.", self.today(d, "es"))
+        self.assertIn("No s&#039;ha pogut llegir: A, B, C i 2 més.", self.today(d, "ca"))
+
+    def test_today_held(self):
+        """GTM-171: no items but changes held back: say how many are waiting to be checked."""
+        d = copy.deepcopy(self.valid)
+        d.update(status="no_changes", items=[])
+        held = {"text_en": "x", "source_url": "https://example.com/", "rule": 3, "reason": "x"}
+        d["held"] = [held]
+        self.assertIn('<p class="empty box">Hoy no hay cambios publicados. Hay 1 pendiente de comprobar antes de publicarlo.</p>', self.today(d, "es"))
+        self.assertIn("No changes published today. 1 is waiting to be checked before it&#039;s published.", self.today(d, "en"))
+        d["held"] = [held, held]
+        self.assertIn("Hoy no hay cambios publicados. Hay 2 pendientes de comprobar antes de publicarlos.", self.today(d, "es"))
+        self.assertIn("Avui no hi ha canvis publicats. N&#039;hi ha 2 pendents de comprovar abans de publicar-los.", self.today(d, "ca"))
+        self.assertIn("No changes published today. 2 are waiting to be checked before they&#039;re published.", self.today(d, "en"))
+        d["held"] = []
+        self.assertIn('<p class="empty box">No new changes in the sources today.</p>', self.today(d, "en"))
 
     def test_unknown_date_is_wordpress_404(self):
         st, _, body = self.get("/observatory/daily/2026-01-01/")
