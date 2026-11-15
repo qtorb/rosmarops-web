@@ -37,7 +37,7 @@ class Data(unittest.TestCase):
     def test_the_recommendation_is_computed_and_gives_the_signed_set(self):
         cls = company_page.classes()
         got = {a["agent"]["id"]: company_page.recommendation(a, cls.get(a["agent"]["id"])) for a in AGENTS}
-        self.assertEqual({k: v for k, v in got.items() if v}, {"codex": 2, "github-copilot": 1, "antigravity-cli": 1})
+        self.assertEqual({k: v for k, v in got.items() if v}, {"codex": 2, "github-copilot": 1})
 
 
 class Summary(unittest.TestCase):
@@ -73,7 +73,7 @@ class Pages(unittest.TestCase):
         for lang in ("en", "es", "ca"):
             index = read(INDEX[lang])
             self.assertIn(f'href="{company_page.GUIDE_PATH[lang]}"', index)
-            self.assertEqual(index.count('class="rec"'), 3, lang)
+            self.assertEqual(index.count('class="rec"'), 2, lang)
             self.assertFalse(FORBIDDEN.search(text(index)), lang)
             guide = read("site" + company_page.GUIDE_PATH[lang] + "index.html")
             self.assertNotIn('name="robots"', guide)

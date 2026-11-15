@@ -1,5 +1,5 @@
 {
-  "_about": "GTM-169: texts of the Observatory by company (front page), the protections strip, «RosmarOps recommends it to start with» and «Try it in a test environment», literal from vigil docs/briefs/GTM-169.md (signed by Albert 15-11 16:03). EN and CA eyebrow «RosmarOps Observatory» and the no-class phrase (the map's «nodata») signed by Albert 15-11 with GTM-169. Do not edit by hand without a signature. Corrections of 15-11 (GTM-169 A1–A3), signed by Albert.",
+  "_about": "GTM-169: texts of the Observatory by company (front page), the protections strip, «RosmarOps recommends it to start with» and «Try it in a test environment», literal from vigil docs/briefs/GTM-169.md (signed by Albert 15-11 16:03). EN and CA eyebrow «RosmarOps Observatory» and the no-class phrase (the map's «nodata») signed by Albert 15-11 with GTM-169. Do not edit by hand without a signature. Corrections of 15-11 (GTM-169 A1–A3), signed by Albert. «Caja de arena» / «caixa de sorra» replaced by «sandbox» everywhere (Albert, 15-11).",
   "texts": {
     "es": {
       "eyebrow": "Observatorio de RosmarOps",
@@ -9,7 +9,7 @@
       "count.one": "1 producto",
       "count.many": "{n} productos",
       "rest_label": "Otras empresas y proyectos, todavía sin evaluar",
-      "p.sandbox": "Caja de arena",
+      "p.sandbox": "Sandbox",
       "p.read_only": "Modo solo lectura",
       "p.asks_first": "Te pregunta antes",
       "p.network_cut": "Corte de red",
@@ -32,13 +32,13 @@
       "rec.v1.class": "Clase de fábrica {letter}: {phrase}.",
       "rec.v1.read_only": "Tiene modo solo lectura.",
       "rec.v1.asks": "Te pregunta antes de ejecutar órdenes, de serie.",
-      "rec.v2.sandbox": "Trae la caja de arena encendida de serie en Windows, macOS y Linux.",
+      "rec.v2.sandbox": "Trae el sandbox encendido de serie en Windows, macOS y Linux.",
       "rec.v2.network": "Trae el corte de red encendido de serie en los tres sistemas.",
       "rec.how": "Cómo lo decidimos",
       "try.title": "Pruébalo en un entorno de pruebas",
       "try.intro": "Una carpeta vacía no basta: la mayoría de agentes pueden leer toda tu carpeta personal, claves incluidas. Así limitas lo que podría tocar {agent}:",
-      "try.on_by_default": "{system}: su caja de arena viene encendida. Ábrelo en una carpeta de pruebas.",
-      "try.off_by_default": "{system}: enciende su caja de arena, como explica {doc}.",
+      "try.on_by_default": "{system}: su sandbox viene encendido. Ábrelo en una carpeta de pruebas.",
+      "try.off_by_default": "{system}: enciende su sandbox, como explica {doc}.",
       "try.container_only": "{system}: ábrelo dentro de un contenedor (Docker), como explica {doc}.",
       "try.doc": "su documentación",
       "try.other_account": "{system}: ábrelo con otra cuenta de usuario del ordenador, sin tus carpetas ni tus claves.",
@@ -47,7 +47,7 @@
       "try.close": "Después, ejecuta RosmarOps en ese mismo entorno: ves qué podría tocar el agente.",
       "try.guide": "La guía completa",
       "guide.title": "Cómo probar un agente de IA en un entorno de pruebas",
-      "try.claude_code_sandbox": "{system}: usa su perfil Lectura y, además, enciende su caja de arena, como explica {doc}."
+      "try.claude_code_sandbox": "{system}: usa su perfil Lectura y, además, enciende su sandbox, como explica {doc}."
     },
     "en": {
       "eyebrow": "RosmarOps Observatory",
@@ -105,7 +105,7 @@
       "count.one": "1 producte",
       "count.many": "{n} productes",
       "rest_label": "Altres empreses i projectes, encara sense avaluar",
-      "p.sandbox": "Caixa de sorra",
+      "p.sandbox": "Sandbox",
       "p.read_only": "Mode només lectura",
       "p.asks_first": "Et pregunta abans",
       "p.network_cut": "Tall de xarxa",
@@ -128,13 +128,13 @@
       "rec.v1.class": "Classe de fàbrica {letter}: {phrase}.",
       "rec.v1.read_only": "Té mode només lectura.",
       "rec.v1.asks": "Et pregunta abans d'executar ordres, de sèrie.",
-      "rec.v2.sandbox": "Porta la caixa de sorra encesa de sèrie a Windows, macOS i Linux.",
+      "rec.v2.sandbox": "Porta el sandbox encès de sèrie a Windows, macOS i Linux.",
       "rec.v2.network": "Porta el tall de xarxa encès de sèrie als tres sistemes.",
       "rec.how": "Com ho decidim",
       "try.title": "Prova'l en un entorn de proves",
       "try.intro": "Una carpeta buida no n'hi ha prou: la majoria d'agents poden llegir tota la teva carpeta personal, claus incloses. Així limites el que podria tocar {agent}:",
-      "try.on_by_default": "{system}: la seva caixa de sorra ve encesa. Obre'l en una carpeta de proves.",
-      "try.off_by_default": "{system}: encén la seva caixa de sorra, com explica {doc}.",
+      "try.on_by_default": "{system}: el seu sandbox ve encès. Obre'l en una carpeta de proves.",
+      "try.off_by_default": "{system}: encén el seu sandbox, com explica {doc}.",
       "try.container_only": "{system}: obre'l dins d'un contenidor (Docker), com explica {doc}.",
       "try.doc": "la seva documentació",
       "try.other_account": "{system}: obre'l amb un altre compte d'usuari de l'ordinador, sense les teves carpetes ni les teves claus.",
@@ -143,7 +143,7 @@
       "try.close": "Després, executa RosmarOps en aquest mateix entorn: veus què podria tocar l'agent.",
       "try.guide": "La guia completa",
       "guide.title": "Com provar un agent d'IA en un entorn de proves",
-      "try.claude_code_sandbox": "{system}: fes servir el seu perfil Lectura i, a més, encén la seva caixa de sorra, com explica {doc}."
+      "try.claude_code_sandbox": "{system}: fes servir el seu perfil Lectura i, a més, encén el seu sandbox, com explica {doc}."
     }
   }
 }

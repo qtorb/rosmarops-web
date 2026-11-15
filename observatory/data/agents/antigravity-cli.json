@@ -152,12 +152,7 @@
     },
     "asks_first": {
       "commands": {
-        "value": "by_default",
-        "source": {
-          "url": "https://antigravity.google/docs/cli/modes",
-          "official": true,
-          "accessed_at": "2026-11-15"
-        }
+        "value": "unknown"
       }
     }
   }

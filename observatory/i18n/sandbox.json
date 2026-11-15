@@ -21,7 +21,7 @@
       "glossary_link": "What a sandbox is"
     },
     "es": {
-      "title": "Qué agentes de IA tienen sandbox (caja de arena)",
+      "title": "Qué agentes de IA tienen sandbox",
       "lead": "Un sandbox limita lo que un agente de IA podría tocar: tus otras carpetas, tus claves o internet. Esta tabla dice, para cada agente que evalúa RosmarOps, si lo tiene en tu sistema y si viene encendido de serie, con la fuente y la fecha de cada dato.",
       "notice": "Que un agente tenga sandbox no lo vuelve inofensivo: en su ficha ves qué deja fuera.",
       "col.agent": "Agente",
@@ -40,7 +40,7 @@
       "glossary_link": "Qué es un sandbox"
     },
     "ca": {
-      "title": "Quins agents d'IA tenen sandbox (caixa de sorra)",
+      "title": "Quins agents d'IA tenen sandbox",
       "lead": "Un sandbox limita el que un agent d'IA podria tocar: les teves altres carpetes, les teves claus o internet. Aquesta taula diu, per a cada agent que avalua RosmarOps, si en té al teu sistema i si ve encès de sèrie, amb la font i la data de cada dada.",
       "notice": "Que un agent tingui sandbox no el fa inofensiu: a la seva fitxa veus què deixa fora.",
       "col.agent": "Agent",
