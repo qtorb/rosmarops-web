@@ -1,0 +1,100 @@
+name: Sandbox lab captures
+
+# BV-250 (CTO-61 §4, signed by Albert 16-11 20:09). Once a day, if
+# qtorb/rosmarops-lab has a new latest release, reads its manifest.json,
+# checks the SHA-256 of every file, copies only the «concluyente» captures to
+# site/assets/sandbox/lab/ with a manifest of those entries, and opens a PR.
+# The «inesperado» ones are only listed in the PR, with their link in the
+# release, for the advisor. Nothing is merged here: the advisor reviews the PR
+# and Albert merges it. Only this repository's GITHUB_TOKEN and the public API.
+
+on:
+  schedule:
+    - cron: "41 9 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: lab-captures
+  cancel-in-progress: false
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      GH_TOKEN: ${{ github.token }}
+      DEST: site/assets/sandbox/lab
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Latest lab release
+        id: rel
+        run: |
+          set -eu
+          tag=$(gh api repos/qtorb/rosmarops-lab/releases/latest --jq .tag_name 2>/dev/null || true)
+          current=$(tr -d '[:space:]' < "$DEST/VERSION" 2>/dev/null || true)
+          echo "latest: ${tag:-none}, site: ${current:-none}"
+          case "$tag" in
+          lab-*) ;;
+          *) echo "No lab release"; echo "new=false" >> "$GITHUB_OUTPUT"; exit 0 ;;
+          esac
+          if [ "$tag" = "$current" ]; then
+            echo "No new release"; echo "new=false" >> "$GITHUB_OUTPUT"; exit 0
+          fi
+          if git ls-remote --exit-code --heads origin "lab-captures-$tag" >/dev/null; then
+            echo "Branch lab-captures-$tag already exists: its PR is waiting; nothing to do"
+            echo "new=false" >> "$GITHUB_OUTPUT"; exit 0
+          fi
+          echo "new=true" >> "$GITHUB_OUTPUT"
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+
+      - name: Download, check SHA-256 and copy the «concluyente» captures
+        if: steps.rel.outputs.new == 'true'
+        env:
+          TAG: ${{ steps.rel.outputs.tag }}
+        run: |
+          set -eu
+          dir="$RUNNER_TEMP/lab"
+          mkdir -p "$dir"
+          gh release download "$TAG" -R qtorb/rosmarops-lab -D "$dir"
+          python3 tools/lab-captures/collect.py "$dir" "$DEST" "$TAG" | tee "$RUNNER_TEMP/collect.txt"
+
+      - name: Push a branch and open a PR (the advisor reviews, Albert merges)
+        if: steps.rel.outputs.new == 'true'
+        env:
+          TAG: ${{ steps.rel.outputs.tag }}
+        run: |
+          set -eu
+          branch="lab-captures-$TAG"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$branch"
+          git add -A "$DEST"
+          git commit -m "Sandbox lab captures from $TAG (automatic, for review)"
+          git push origin "$branch"
+          raw="https://github.com/${GITHUB_REPOSITORY}/raw/$branch/$DEST"
+          rel="https://github.com/qtorb/rosmarops-lab/releases/download/$TAG"
+          {
+            echo "Captures marked «concluyente» in the release $TAG of qtorb/rosmarops-lab (SHA-256 checked against its manifest.json). The advisor reviews them before Albert merges; the text next to them says they are our observation."
+            echo
+            for f in $(ls "$DEST"/*.png 2>/dev/null); do
+              n=$(basename "$f"); echo "**$n**"; echo; echo "![$n]($raw/$n)"; echo
+            done
+            if grep -q '^INESPERADO' "$RUNNER_TEMP/collect.txt"; then
+              echo "Marked «inesperado» (not copied; for the advisor to look at):"
+              echo
+              grep '^INESPERADO' "$RUNNER_TEMP/collect.txt" | while read -r _ n rest; do
+                echo "- [${n%:}]($rel/${n%:}) $rest"
+              done
+            fi
+          } > "$RUNNER_TEMP/pr.md"
+          if ! gh pr create --base main --head "$branch" --title "Sandbox lab captures from $TAG" --body-file "$RUNNER_TEMP/pr.md"; then
+            echo "::error::Could not open the PR. Open it by hand: https://github.com/${GITHUB_REPOSITORY}/compare/main...$branch"
+            exit 1
+          fi
