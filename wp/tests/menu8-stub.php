@@ -21,14 +21,16 @@ function get_nav_menu_locations() { return db()['locations'] ?? []; }
 function wp_get_nav_menu_items($menu, $args = []) {
 	$out = [];
 	foreach (db()['menu_items'] as $it) { if ($it['menu'] === $menu) $out[] = (object) $it; }
-	usort($out, function ($a, $b) { return $a->menu_order <=> $b->menu_order; });
+	usort($out, function ($a, $b) { return [$a->menu_order, $a->ID] <=> [$b->menu_order, $b->ID]; });
+	// As WordPress does with its default ARRAY_A output: menu_order becomes the display position 1..n, whatever is stored.
+	foreach ($out as $i => $o) { $out[$i] = clone $o; $out[$i]->menu_order = $i + 1; }
 	return $out;
 }
 function wp_update_nav_menu_item($menu, $id, $a) {
 	$db = &db();
 	$new = 1000 + count($db['menu_items']);
 	$db['menu_items'][] = ['ID' => $new, 'menu' => $menu, 'url' => $a['menu-item-url'], 'title' => $a['menu-item-title'],
-		'menu_order' => $a['menu-item-position'], 'menu_item_parent' => 0, 'type' => $a['menu-item-type']];
+		'menu_order' => $a['menu-item-position'] ?? 0, 'menu_item_parent' => 0, 'type' => $a['menu-item-type']];
 	return $new;
 }
 function get_posts($q) {

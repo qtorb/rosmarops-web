@@ -52,23 +52,29 @@ function rosmarops_menu8_menu($plan) {
 	if (count($obs) !== 1) {
 		return 'menu skipped: menu ' . $menu_id . ' has ' . count($obs) . " top-level items for {$plan['observatory']}/, 1 expected";
 	}
-	$after = (int) $obs[0]->menu_order;
-	$pos = $after + 1;
-	foreach ($items as $it) {
-		if ((int) $it->menu_order > $after) {
-			wp_update_post(['ID' => $it->ID, 'menu_order' => (int) $it->menu_order + 1]);
-		}
-	}
+	// wp_get_nav_menu_items() numbers menu_order 1..n in display order; the stored values can be anything (gaps,
+	// repeats). So the new order is written for every item, from the display order, never shifted from those numbers
+	// (that is what left the ES menu out of order on 16-11, see GTM-175 menu9).
 	$new = wp_update_nav_menu_item($menu_id, 0, [
-		'menu-item-title'    => 'Sandbox',
-		'menu-item-url'      => 'https://rosmarops.com' . $plan['section'],
-		'menu-item-type'     => 'custom',
-		'menu-item-status'   => 'publish',
-		'menu-item-position' => $pos,
+		'menu-item-title'  => 'Sandbox',
+		'menu-item-url'    => 'https://rosmarops.com' . $plan['section'],
+		'menu-item-type'   => 'custom',
+		'menu-item-status' => 'publish',
 	]);
 	if (is_wp_error($new) || !$new) {
 		return "menu failed: could not add the item to menu {$menu_id}";
 	}
+	$seq = [];
+	foreach ($items as $it) {
+		$seq[] = (int) $it->ID;
+		if ((int) $it->ID === (int) $obs[0]->ID) {
+			$seq[] = (int) $new;
+		}
+	}
+	foreach ($seq as $i => $id) {
+		wp_update_post(['ID' => $id, 'menu_order' => $i + 1]);
+	}
+	$pos = array_search((int) $new, $seq, true) + 1;
 	return "menu done: item {$new} «Sandbox» at position {$pos} of menu {$menu_id}, right after item {$obs[0]->ID}";
 }
 
