@@ -1,77 +1,112 @@
 <!-- wp:paragraph -->
-<p><em>Fa setmanes que llegeixo la documentació dels agents d'IA que avalua RosmarOps. Gairebé tots porten un sandbox. Gairebé cap el porta encès.</em></p>
+<p><em>Ho vam veure repassant la documentació dels nou agents que avalua RosmarOps. I va sortir una cosa que em preocupa més: encendre'l no sempre n'hi ha prou.</em></p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>Aquests dies he donat més voltes de les que esperava a una paraula. A la primera versió de la taula vaig posar «caixa de sorra», que és el que vol dir sandbox. No em convencia i ho vaig canviar. Al final ho he deixat com a sandbox, amb la traducció entre parèntesis la primera vegada, perquè la imatge del sorral explica molt bé què és. I també què no és.</p>
 <!-- /wp:paragraph -->
 <!-- wp:heading -->
-<h2 class="wp-block-heading">Una paraula que gairebé ningú coneix</h2>
+<h2 class="wp-block-heading">Un sorral amb parets</h2>
 <!-- /wp:heading -->
 <!-- wp:paragraph -->
-<p>Un sandbox (en català, caixa de sorra) és un espai tancat on un agent treballa sense poder tocar el que queda fora: les teves altres carpetes, les teves claus o internet. Per a qui programa és una idea vella. Per a qui comença a fer servir agents d'IA, gairebé mai no surt a la pantalla d'instal·lació.</p>
+<p>Un sandbox (en català, caixa de sorra) és un espai tancat on un agent d'IA treballa sense poder tocar el que queda fora: la resta de les teves carpetes, les teves claus, internet. Com el sorral d'un parc: la sorra es queda dins perquè hi ha parets. Per a qui programa no és cap novetat. Per a qui comença amb agents, és una paraula que gairebé mai no surt a la pantalla. El normal és que la instal·lació et pregunti quin model vols fer servir, no on podrà treballar l'agent.</p>
 <!-- /wp:paragraph -->
 <!-- wp:paragraph -->
-<p>I canvia molt el que un agent podria tocar al teu ordinador. Per això RosmarOps comença a explicar-ho a l'Observatori, agent per agent, amb font i data.</p>
+<p>I aquesta pregunta importa, perquè un agent treballa amb els teus permisos. El que tu pots obrir, ell també: el .env d'un projecte que ja ni recordes, les credencials del núvol que es van quedar a la teva carpeta personal, els documents de la declaració de la renda.</p>
 <!-- /wp:paragraph -->
 <!-- wp:heading -->
-<h2 class="wp-block-heading">El que he trobat</h2>
+<h2 class="wp-block-heading">Gairebé tots en tenen, gairebé ningú no l'encén</h2>
 <!-- /wp:heading -->
 <!-- wp:paragraph -->
-<p>He llegit la documentació oficial dels nou agents que puntua RosmarOps. Això és el que diu, a 15 de novembre de 2026:</p>
+<p>El 15 de novembre vam repassar la documentació oficial dels nou agents que avalua RosmarOps, un per un, buscant tres coses: si tenen sandbox, si ve encès i si talla la xarxa.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>I el resultat és gairebé sempre el mateix: en tenen, però apagat.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>Codex és l'excepció. La resta en tenen, però gairebé sempre l'has d'anar a buscar:</p>
 <!-- /wp:paragraph -->
 <!-- wp:list -->
 <ul class="wp-block-list">
 <!-- wp:list-item -->
-<li><strong>Codex</strong> és l'únic que porta el sandbox i el tall de xarxa encesos de sèrie a Windows, macOS i Linux.</li>
+<li>Codex: encès de sèrie a Windows, macOS i Linux, i amb la xarxa tallada fins que tu decideixis obrir-la.</li>
 <!-- /wp:list-item -->
 <!-- wp:list-item -->
-<li><strong>GitHub Copilot a VS Code, Gemini CLI i Antigravity CLI</strong> en tenen als tres sistemes, però apagat de sèrie. A Linux, el de Gemini CLI només funciona amb un contenidor.</li>
+<li>Cursor: encès de sèrie, però només a macOS i Linux.</li>
 <!-- /wp:list-item -->
 <!-- wp:list-item -->
-<li><strong>Claude Code i Grok Build</strong> en tenen a macOS i Linux, apagat de sèrie. <strong>Cursor</strong> el porta encès a macOS i Linux. Per a Windows, la documentació dels tres no ho diu o diu que no.</li>
+<li>GitHub Copilot a VS Code, Gemini CLI i Antigravity CLI: en tenen a Windows, macOS i Linux, apagat de sèrie. A Linux, el de Gemini CLI només funciona amb un contenidor.</li>
 <!-- /wp:list-item -->
 <!-- wp:list-item -->
-<li><strong>Hermes Agent</strong> només s'aïlla si el fas treballar dins d'un contenidor.</li>
+<li>Claude Code i Grok Build: només a macOS i Linux, apagat de sèrie.</li>
 <!-- /wp:list-item -->
 <!-- wp:list-item -->
-<li><strong>Cline</strong> no diu res de sandbox a la seva documentació.</li>
+<li>Hermes Agent: s'aïlla si el poses a treballar dins d'un contenidor.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Cline: no el menciona.</li>
 <!-- /wp:list-item -->
 </ul>
 <!-- /wp:list -->
 <!-- wp:paragraph -->
-<p>Un sandbox no fa inofensiu un agent: limita el que podria tocar. Per això la taula també diu si talla la xarxa. I un sandbox encès no sempre talla internet: en diversos agents, de sèrie, deixa sortir a la xarxa.</p>
+<p>Claude Code va ser el primer que vaig mirar, perquè és l'agent amb què construeixo RosmarOps cada dia. La seva documentació no deixa lloc a dubtes: el sandbox ve apagat. I a Windows, directament, no existeix: executa les ordres sense ell.</p>
 <!-- /wp:paragraph -->
 <!-- wp:heading -->
-<h2 class="wp-block-heading">Què hem fet</h2>
-<!-- /wp:heading -->
-<!-- wp:list -->
-<ul class="wp-block-list">
-<!-- wp:list-item -->
-<li><strong>Una taula, <a href="/ca/observatori/agents-ia-amb-sandbox/">Quins agents d'IA tenen sandbox</a>.</strong> Per a cada agent i cada sistema diu si té sandbox, si ve encès i si talla la xarxa. Cada dada enllaça a la pàgina del fabricant d'on surt, amb la data en què la vam llegir. On la documentació no diu res, posem «—»: el que no s'ha llegit no compta com a net.</li>
-<!-- /wp:list-item -->
-<!-- wp:list-item -->
-<li><strong>Quatre entrades noves al <a href="/ca/glossari/#sandbox">glossari</a>:</strong> sandbox, mode només lectura, et pregunta abans i tall de xarxa. Estan explicades per a qui no programa.</li>
-<!-- /wp:list-item -->
-<!-- wp:list-item -->
-<li><strong>Contradiccions, a la vista.</strong> Quan un fabricant diu una cosa a la documentació i una altra al codi, ho ensenyem amb les dues cites. Li passa a Cline: la seva documentació diu que tot demana la teva aprovació, i el seu codi, de sèrie, aprova llegir i editar sense preguntar. No decidim nosaltres quina val.</li>
-<!-- /wp:list-item -->
-</ul>
-<!-- /wp:list -->
-<!-- wp:heading -->
-<h2 class="wp-block-heading">El que RosmarOps no fa</h2>
+<h2 class="wp-block-heading">Encendre'l no n'hi ha prou</h2>
 <!-- /wp:heading -->
 <!-- wp:paragraph -->
-<p>RosmarOps no et munta un sandbox ni encén el del teu agent. Només llegeix la configuració que tens i et diu què podria tocar cada agent. RosmarOps llegeix els ajustos de sandbox de Claude Code, Cursor, Codex i Grok Build: si en canvies algun, a la propera revisió veus com canvia la seva nota.</p>
+<p>El meu primer esborrany d'aquest article deia que un sandbox «no fa inofensiu un agent: limita el que podria tocar». És veritat, però en rellegir-lo em vaig adonar que es quedava curt. Hi faltava el més important.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>En molts agents, el sandbox limita el que l'agent escriu i on es connecta, però no el que llegeix. L'agent pot continuar llegint la teva clau. I si la xarxa està oberta, aquesta clau pot sortir.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>I la xarxa no sempre està tancada. A GitHub Copilot, amb el sandbox encès, la xarxa continua oberta de sèrie. Cursor deixa passar una llista de dominis, entre ells els dels gestors de paquets. A Grok Build, a macOS, la seva pròpia documentació avisa que el tall de xarxa no fa res. Per això a la taula el tall de xarxa té la seva pròpia línia: tenir sandbox i tallar la xarxa són dues coses diferents.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>I Claude Code té la seva pròpia lletra petita. A Claude Code, el sandbox només cobreix les ordres que l'agent llança al terminal. La seva documentació diu que les eines amb què llegeix i edita fitxers, els seus servidors MCP i els seus hooks funcionen fora.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>Tornant al sorral: encendre el sandbox és aixecar les parets. Però cal mirar per on continuen obertes.</p>
 <!-- /wp:paragraph -->
 <!-- wp:heading -->
-<h2 class="wp-block-heading">Per a què</h2>
+<h2 class="wp-block-heading">Quan el fabricant diu dues coses</h2>
 <!-- /wp:heading -->
 <!-- wp:paragraph -->
-<p>Perquè puguis triar un agent sabent com ve de sèrie, i perquè el provis en un entorn de proves on veus què podria tocar abans de donar-li la teva carpeta personal. Ho explico pas a pas a <a href="/ca/provar-un-agent-dia/">Com provar un agent d'IA en un entorn de proves</a>.</p>
+<p>Llegir documentació oficial té un parany: no sempre diu el mateix a tot arreu.</p>
 <!-- /wp:paragraph -->
 <!-- wp:paragraph -->
-<p>Si fas servir un d'aquests agents i veus alguna cosa que no quadra amb el que diu la taula, explica-m'ho.</p>
+<p>La documentació de Cline diu que cada acció demana la teva aprovació. El seu codi, acabat d'instal·lar, aprova llegir i editar fitxers sense preguntar. I el 12 de novembre, segons el seu registre de canvis, Antigravity CLI va passar a arrencar en mode Auto, en què és un altre model d'IA qui decideix quines ordres s'executen sense preguntar-te. La seva documentació continua dient que et pregunta abans.</p>
 <!-- /wp:paragraph -->
 <!-- wp:paragraph -->
-<p><em>Font: la documentació oficial de cada fabricant, llegida el 15 de novembre de 2026, enllaçada cel·la a cel·la a la taula.</em></p>
+<p>No sé quina de les dues versions és la bona al teu ordinador. Així que a la taula hi poso una ratlla i ensenyo les dues cites. M'estimo més això que triar-ne una i equivocar-me. El que no es va poder llegir, o no es va poder confirmar, no compta com a net.</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading -->
+<h2 class="wp-block-heading">On és tot això</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>Tot això és en una taula, <a href="/ca/observatori/agents-ia-amb-sandbox/">Quins agents d'IA tenen sandbox</a>, agent per agent i sistema per sistema, amb un enllaç a la pàgina de cada fabricant i la data en què la vam llegir. També és a l'<a href="/ca/observatori/">Observatori</a>, que ara s'ordena per empresa i ensenya quatre proteccions de cada agent: sandbox, mode només lectura, si et pregunta abans i tall de xarxa.</p>
 <!-- /wp:paragraph -->
 <!-- wp:paragraph -->
-<p><em>Escrit amb ajuda d'agents d'IA. El que dic i la decisió de publicar són meus; cada font està enllaçada a la taula.</em></p>
+<p>Amb aquestes dades, l'Observatori diu amb quins agents començar si no els coneixes. Avui són Codex, pel sandbox i el tall de xarxa encesos de sèrie, i GitHub Copilot a VS Code, perquè té mode només lectura i et pregunta abans d'executar ordres. El criteri és escrit a la <a href="/ca/metodologia/#recomanacio">metodologia</a> i és el mateix per a tothom. Ningú no paga per sortir-hi, ni perquè el recomanem.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>RosmarOps no et munta un sandbox ni encén el del teu agent. Llegeix la configuració que tens i et diu què podria tocar cadascun. A Claude Code, Cursor, Codex i Grok Build llegeix també els seus ajustos de sandbox: si l'encens, a la revisió següent veus com canvia la seva nota.</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Abans de donar-li la teva carpeta</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>Si has de provar un agent que no coneixes, no l'obris a la teva carpeta personal. I no n'hi ha prou de crear una carpeta buida i obrir-lo allà: la majoria d'agents poden llegir tota la teva carpeta personal igualment. Encén el seu sandbox si en té, fes servir un perfil que no el deixi llegir fora del projecte o, si no hi ha cap altra manera, obre'l des d'un altre compte d'usuari de l'ordinador. Després passa RosmarOps en aquest mateix entorn i mira què podria tocar.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>Ho explico pas a pas a <a href="/ca/provar-un-agent-dia/">Com provar un agent d'IA en un entorn de proves</a>.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>I si fas servir algun d'aquests agents i veus alguna cosa a la taula que no quadra amb el que et passa a tu, escriu-me. La taula només millora si algú em corregeix.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p><em>Font: la documentació oficial de cada fabricant, llegida el 15 de novembre de 2026 i enllaçada cel·la a cel·la a la taula; el registre de canvis d'Antigravity CLI (versió 1.5.7) i el codi de Cline.</em></p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p><em>Escrit amb l'ajuda d'agents d'IA. El que dic i la decisió de publicar són meus; cada font és enllaçada a la taula.</em></p>
 <!-- /wp:paragraph -->

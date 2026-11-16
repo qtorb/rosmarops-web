@@ -1,76 +1,111 @@
 <!-- wp:paragraph -->
-<p><em>Llevo semanas leyendo la documentación de los agentes de IA que evalúa RosmarOps. Casi todos traen un sandbox. Casi ninguno lo trae encendido.</em></p>
+<p><em>Lo vimos al repasar la documentación de los nueve agentes que evalúa RosmarOps. Y apareció algo que me preocupa más: encenderlo no siempre basta.</em></p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>Estos días he dado más vueltas de las que esperaba a una palabra. En la primera versión de la tabla puse «caja de arena», que es lo que significa sandbox. No me convencía y lo cambié. Al final lo he dejado como sandbox, con la traducción entre paréntesis la primera vez, porque la imagen del arenero explica muy bien lo que es. Y también lo que no es.</p>
 <!-- /wp:paragraph -->
 <!-- wp:heading -->
-<h2 class="wp-block-heading">Una palabra que casi nadie conoce</h2>
+<h2 class="wp-block-heading">Un arenero con paredes</h2>
 <!-- /wp:heading -->
 <!-- wp:paragraph -->
-<p>Un sandbox (en español, caja de arena) es un espacio cerrado donde un agente trabaja sin poder tocar lo que queda fuera: tus otras carpetas, tus claves o internet. Para quien programa es una idea vieja. Para quien empieza a usar agentes de IA, casi nunca aparece en la pantalla de instalación.</p>
+<p>Un sandbox (en español, caja de arena) es un espacio cerrado donde un agente de IA trabaja sin poder tocar lo que queda fuera: el resto de tus carpetas, tus claves, internet. Como el arenero de un parque: la arena se queda dentro porque hay paredes. Para quien programa no es ninguna novedad. Para quien empieza con agentes, es una palabra que casi nunca aparece en pantalla. Lo normal es que la instalación te pregunte qué modelo quieres usar, no dónde va a poder trabajar el agente.</p>
 <!-- /wp:paragraph -->
 <!-- wp:paragraph -->
-<p>Y cambia mucho lo que un agente podría tocar en tu ordenador. Por eso RosmarOps empieza a contarlo en el Observatorio, agente por agente, con fuente y fecha.</p>
+<p>Y esa pregunta importa, porque un agente trabaja con tus permisos. Lo que tú puedes abrir, él también: el .env de un proyecto que ya ni recuerdas, las credenciales de la nube que se quedaron en tu carpeta personal, los documentos de la declaración de la renta.</p>
 <!-- /wp:paragraph -->
 <!-- wp:heading -->
-<h2 class="wp-block-heading">Lo que encontré</h2>
+<h2 class="wp-block-heading">Casi todos lo tienen, casi nadie lo enciende</h2>
 <!-- /wp:heading -->
 <!-- wp:paragraph -->
-<p>He leído la documentación oficial de los nueve agentes que puntúa RosmarOps. Esto es lo que dice, a 15 de noviembre de 2026:</p>
+<p>El 15 de noviembre repasamos la documentación oficial de los nueve agentes que evalúa RosmarOps, uno por uno, buscando tres cosas: si tienen sandbox, si viene encendido y si corta la red.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>Y el resultado es casi siempre el mismo: lo tienen, pero apagado.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>Codex es la excepción. El resto lo tiene, pero casi siempre tienes que ir a buscarlo:</p>
 <!-- /wp:paragraph -->
 <!-- wp:list -->
 <ul class="wp-block-list">
 <!-- wp:list-item -->
-<li><strong>Codex</strong> es el único que trae el sandbox y el corte de red encendidos de serie en Windows, macOS y Linux.</li>
+<li>Codex: encendido de serie en Windows, macOS y Linux, y con la red cortada hasta que tú decidas abrirla.</li>
 <!-- /wp:list-item -->
 <!-- wp:list-item -->
-<li><strong>GitHub Copilot en VS Code, Gemini CLI y Antigravity CLI</strong> lo tienen en los tres sistemas, pero apagado de serie. En Linux, el de Gemini CLI solo funciona con un contenedor.</li>
+<li>Cursor: encendido de serie, pero solo en macOS y Linux.</li>
 <!-- /wp:list-item -->
 <!-- wp:list-item -->
-<li><strong>Claude Code y Grok Build</strong> lo tienen en macOS y Linux, apagado de serie. <strong>Cursor</strong> lo trae encendido en macOS y Linux. Para Windows, la documentación de los tres no lo dice o dice que no.</li>
+<li>GitHub Copilot en VS Code, Gemini CLI y Antigravity CLI: lo tienen en Windows, macOS y Linux, apagado de serie. En Linux, el de Gemini CLI solo funciona con un contenedor.</li>
 <!-- /wp:list-item -->
 <!-- wp:list-item -->
-<li><strong>Hermes Agent</strong> solo se aísla si lo pones a trabajar dentro de un contenedor.</li>
+<li>Claude Code y Grok Build: solo en macOS y Linux, apagado de serie.</li>
 <!-- /wp:list-item -->
 <!-- wp:list-item -->
-<li><strong>Cline</strong> no dice nada de sandbox en su documentación.</li>
+<li>Hermes Agent: se aísla si lo pones a trabajar dentro de un contenedor.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Cline: no lo menciona.</li>
 <!-- /wp:list-item -->
 </ul>
 <!-- /wp:list -->
 <!-- wp:paragraph -->
-<p>Un sandbox no vuelve inofensivo a un agente: limita lo que podría tocar. Por eso la tabla también dice si corta la red. Y un sandbox encendido no siempre corta internet: en varios agentes, de serie, deja salir a la red.</p>
+<p>Claude Code fue el primero que miré, porque es el agente con el que construyo RosmarOps todos los días. Su documentación no deja lugar a dudas: el sandbox viene apagado. Y en Windows, directamente, no existe: ejecuta las órdenes sin él.</p>
 <!-- /wp:paragraph -->
 <!-- wp:heading -->
-<h2 class="wp-block-heading">Qué hemos hecho</h2>
-<!-- /wp:heading -->
-<!-- wp:list -->
-<ul class="wp-block-list">
-<!-- wp:list-item -->
-<li><strong>Una tabla, <a href="/es/observatorio/agentes-ia-con-sandbox/">Qué agentes de IA tienen sandbox</a>.</strong> Para cada agente y cada sistema dice si tiene sandbox, si viene encendido y si corta la red. Cada dato enlaza a la página del fabricante de donde sale, con la fecha en que lo leímos. Donde la documentación no dice nada, ponemos «—»: lo que no se leyó no cuenta como limpio.</li>
-<!-- /wp:list-item -->
-<!-- wp:list-item -->
-<li><strong>Cuatro entradas nuevas en el <a href="/es/glosario/#sandbox">glosario</a>:</strong> sandbox, modo solo lectura, te pregunta antes y corte de red. Están explicadas para quien no programa.</li>
-<!-- /wp:list-item -->
-<!-- wp:list-item -->
-<li><strong>Contradicciones, a la vista.</strong> Cuando un fabricante dice una cosa en su documentación y otra en su código, lo enseñamos con las dos citas. Le pasa a Cline: su documentación dice que todo pide tu aprobación, y su código, de serie, aprueba leer y editar sin preguntar. No decidimos nosotros cuál vale.</li>
-<!-- /wp:list-item -->
-</ul>
-<!-- /wp:list -->
-<!-- wp:heading -->
-<h2 class="wp-block-heading">Lo que RosmarOps no hace</h2>
+<h2 class="wp-block-heading">Encenderlo no basta</h2>
 <!-- /wp:heading -->
 <!-- wp:paragraph -->
-<p>RosmarOps no te monta un sandbox ni enciende el de tu agente. Solo lee la configuración que tienes y te dice qué podría tocar cada agente. RosmarOps lee los ajustes de sandbox de Claude Code, Cursor, Codex y Grok Build: si cambias alguno, en la siguiente revisión ves cómo cambia su nota.</p>
+<p>Mi primer borrador de este artículo decía que un sandbox «no vuelve inofensivo a un agente: limita lo que podría tocar». Es verdad, pero al releerlo me di cuenta de que se quedaba corto. Faltaba lo más importante.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>En muchos agentes, el sandbox limita lo que el agente escribe y adónde se conecta, pero no lo que lee. El agente puede seguir leyendo tu clave. Y si la red está abierta, esa clave puede salir.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>Y la red no siempre está cerrada. En GitHub Copilot, con el sandbox encendido, la red sigue abierta de serie. Cursor deja pasar una lista de dominios, entre ellos los de los gestores de paquetes. En Grok Build, en macOS, su propia documentación avisa de que el corte de red no hace nada. Por eso en la tabla el corte de red tiene su propia línea: tener sandbox y cortar la red son dos cosas distintas.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>Y Claude Code tiene su propia letra pequeña. En Claude Code, el sandbox solo cubre las órdenes que el agente lanza en la terminal. Su documentación dice que las herramientas con las que lee y edita ficheros, sus servidores MCP y sus hooks funcionan fuera.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>Volviendo al arenero: encender el sandbox es levantar las paredes. Pero hay que mirar por dónde siguen abiertas.</p>
 <!-- /wp:paragraph -->
 <!-- wp:heading -->
-<h2 class="wp-block-heading">Para qué</h2>
+<h2 class="wp-block-heading">Cuando el fabricante dice dos cosas</h2>
 <!-- /wp:heading -->
 <!-- wp:paragraph -->
-<p>Para que puedas elegir un agente sabiendo cómo viene de serie, y para que lo pruebes en un entorno de pruebas donde ves qué podría tocar antes de darle tu carpeta personal. Lo explico paso a paso en <a href="/es/probar-un-agente-de-ia/">Cómo probar un agente de IA en un entorno de pruebas</a>.</p>
+<p>Leer documentación oficial tiene una trampa: no siempre dice lo mismo en todas partes.</p>
 <!-- /wp:paragraph -->
 <!-- wp:paragraph -->
-<p>Si usas uno de estos agentes y ves algo que no cuadra con lo que dice la tabla, cuéntamelo.</p>
+<p>La documentación de Cline dice que cada acción pide tu aprobación. Su código, recién instalado, aprueba leer y editar ficheros sin preguntar. Y el 12 de noviembre, según su registro de cambios, Antigravity CLI pasó a arrancar en modo Auto, en el que es otro modelo de IA quien decide qué órdenes se ejecutan sin preguntarte. Su documentación sigue diciendo que te pregunta antes.</p>
 <!-- /wp:paragraph -->
 <!-- wp:paragraph -->
-<p><em>Fuente: la documentación oficial de cada fabricante, leída el 15 de noviembre de 2026, enlazada celda a celda en la tabla.</em></p>
+<p>No sé cuál de las dos versiones es la buena en tu ordenador. Así que en la tabla pongo una raya y enseño las dos citas. Prefiero eso a elegir una y equivocarme. Lo que no se pudo leer, o no se pudo confirmar, no cuenta como limpio.</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Dónde está todo esto</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>Todo lo anterior está en una tabla, <a href="/es/observatorio/agentes-ia-con-sandbox/">Qué agentes de IA tienen sandbox</a>, agente por agente y sistema por sistema, con un enlace a la página de cada fabricante y la fecha en que la leímos. También está en el <a href="/es/observatorio/">Observatorio</a>, que ahora se ordena por empresa y enseña cuatro protecciones de cada agente: sandbox, modo solo lectura, si te pregunta antes y corte de red.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>Con esos datos, el Observatorio dice con qué agentes empezar si no los conoces. Hoy son Codex, por el sandbox y el corte de red encendidos de serie, y GitHub Copilot en VS Code, porque tiene modo solo lectura y te pregunta antes de ejecutar órdenes. El criterio está escrito en la <a href="/es/metodologia/#recomendacion">metodología</a> y es el mismo para todos. Nadie paga por salir, ni por que le recomendemos.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>RosmarOps no te monta un sandbox ni enciende el de tu agente. Lee la configuración que tienes y te dice qué podría tocar cada uno. En Claude Code, Cursor, Codex y Grok Build lee también sus ajustes de sandbox: si lo enciendes, en la siguiente revisión ves cómo cambia su nota.</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Antes de darle tu carpeta</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>Si vas a probar un agente que no conoces, no lo abras en tu carpeta personal. Y no basta con crear una carpeta vacía y abrirlo ahí: la mayoría de agentes pueden leer toda tu carpeta personal igualmente. Enciende su sandbox si lo tiene, usa un perfil que no le deje leer fuera del proyecto o, si no hay otra forma, ábrelo desde otra cuenta de usuario del ordenador. Luego pasa RosmarOps en ese mismo entorno y mira qué podría tocar.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>Lo cuento paso a paso en <a href="/es/probar-un-agente-de-ia/">Cómo probar un agente de IA en un entorno de pruebas</a>.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>Y si usas alguno de estos agentes y ves algo en la tabla que no cuadra con lo que te pasa a ti, escríbeme. La tabla solo mejora si alguien me corrige.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p><em>Fuente: la documentación oficial de cada fabricante, leída el 15 de noviembre de 2026 y enlazada celda a celda en la tabla; el registro de cambios de Antigravity CLI (versión 1.5.7) y el código de Cline.</em></p>
 <!-- /wp:paragraph -->
 <!-- wp:paragraph -->
 <p><em>Escrito con ayuda de agentes de IA. Lo que digo y la decisión de publicar son míos; cada fuente está enlazada en la tabla.</em></p>

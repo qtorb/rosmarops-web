@@ -2,8 +2,8 @@
  "id": "sandbox",
  "lang": "en",
  "slug": "sandbox-ai-agents",
- "title": "Sandbox: what it is and why almost every AI agent ships with it turned off",
- "excerpt": "I've spent weeks reading the documentation of the AI agents RosmarOps evaluates. Almost all of them have a sandbox. Almost none of them ship with it turned on.",
+ "title": "Your AI agent's sandbox: it almost always has one, it's almost never on",
+ "excerpt": "We saw it going through the documentation of the nine agents RosmarOps evaluates. And something came up that worries me more: turning it on isn't always enough.",
  "content": "sandbox-en.html",
  "seo_title": "Sandbox in AI agents: who has one and who turns it on",
  "seo_description": "What a sandbox is, which AI agents ship with one and why almost all of them come with it turned off. What RosmarOps has started to show, with source and date.",
@@ -14,5 +14,7 @@
  "category": "field-notes",
  "tags": {
   "sandbox": "Sandbox"
- }
+ },
+ "image": "sandbox-agentes-de-ia.jpg",
+ "alt": "A small figure plays in a sandbox whose walls lie flat on the ground; the sand spills out towards some keys, some folders and a half-open door."
 }

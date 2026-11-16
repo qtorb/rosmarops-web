@@ -19,7 +19,7 @@ ALBERT = {"ID": 3, "display_name": "Albert Garcia Pujadas", "roles": ["administr
 ADMIN = {"ID": 1, "display_name": "admin6244", "roles": ["administrator"]}
 IDS = {"loop-engineering", "agente-he-terminado", "errores-repetidos", "harness-engineering", "novedades-0-10", "microsoft-store", "mapa-agentes", "novedades-0-11", "sandbox"}
 IN_NEWS = {"harness-engineering", "novedades-0-10", "microsoft-store", "mapa-agentes", "novedades-0-11", "sandbox"}
-NO_IMAGE = {"microsoft-store", "mapa-agentes", "sandbox"}  # GTM-139: news post without a featured image (optional in the plugin)  # the rest of the series goes in loop-engineering
+NO_IMAGE = {"microsoft-store", "mapa-agentes"}  # GTM-139: news post without a featured image (optional in the plugin)  # the rest of the series goes in loop-engineering
 NEWS = {"en": "field-notes", "es": "novedades-de-rosmarops", "ca": "notes-de-camp"}
 
 

@@ -1,77 +1,112 @@
 <!-- wp:paragraph -->
-<p><em>I've spent weeks reading the documentation of the AI agents RosmarOps evaluates. Almost all of them have a sandbox. Almost none of them ship with it turned on.</em></p>
+<p><em>We saw it going through the documentation of the nine agents RosmarOps evaluates. And something came up that worries me more: turning it on isn't always enough.</em></p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>I've spent more time than I expected on one word. In Spanish the literal translation of sandbox is «caja de arena», a sandpit, and I went back and forth on whether to use it. I kept «sandbox», but the sandpit stuck with me, because it explains very well what a sandbox is. And also what it isn't.</p>
 <!-- /wp:paragraph -->
 <!-- wp:heading -->
-<h2 class="wp-block-heading">A word hardly anyone knows</h2>
+<h2 class="wp-block-heading">A sandpit with walls</h2>
 <!-- /wp:heading -->
 <!-- wp:paragraph -->
-<p>A sandbox is a closed space where an agent works without being able to touch what's outside it: your other folders, your keys or the internet. For people who code it's an old idea. For people starting to use AI agents, it almost never shows up on the install screen.</p>
+<p>A sandbox is a closed space where an AI agent works without being able to touch what's outside it: the rest of your folders, your keys, the internet. Like a sandpit in a park: the sand stays inside because there are walls. For people who code it's nothing new. For people starting out with agents, it's a word that hardly ever shows up on screen. The install usually asks you which model you want to use, not where the agent will be able to work.</p>
 <!-- /wp:paragraph -->
 <!-- wp:paragraph -->
-<p>And it changes a lot what an agent could touch on your computer. That's why RosmarOps is starting to show it in the Observatory, agent by agent, with source and date.</p>
+<p>And that question matters, because an agent works with your permissions. Whatever you can open, it can too: the .env of a project you no longer remember, the cloud credentials left in your home folder, your tax return documents.</p>
 <!-- /wp:paragraph -->
 <!-- wp:heading -->
-<h2 class="wp-block-heading">What I found</h2>
+<h2 class="wp-block-heading">Almost all have one, almost none turn it on</h2>
 <!-- /wp:heading -->
 <!-- wp:paragraph -->
-<p>I read the official documentation of the nine agents RosmarOps scores. This is what it says, as of 15 November 2026:</p>
+<p>On 15 November we went through the official documentation of the nine agents RosmarOps evaluates, one by one, looking for three things: whether they have a sandbox, whether it's on by default and whether it cuts off the network.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>And the result is almost always the same: they have one, but it's off.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>Codex is the exception. The rest have one, but you almost always have to go and find it:</p>
 <!-- /wp:paragraph -->
 <!-- wp:list -->
 <ul class="wp-block-list">
 <!-- wp:list-item -->
-<li><strong>Codex</strong> is the only one that ships with the sandbox and the network cut turned on by default on Windows, macOS and Linux.</li>
+<li>Codex: on by default in Windows, macOS and Linux, with the network cut off until you decide to open it.</li>
 <!-- /wp:list-item -->
 <!-- wp:list-item -->
-<li><strong>GitHub Copilot in VS Code, Gemini CLI and Antigravity CLI</strong> have one on all three systems, but turned off by default. On Linux, Gemini CLI's only works with a container.</li>
+<li>Cursor: on by default, but only on macOS and Linux.</li>
 <!-- /wp:list-item -->
 <!-- wp:list-item -->
-<li><strong>Claude Code and Grok Build</strong> have one on macOS and Linux, turned off by default. <strong>Cursor</strong> ships with it turned on on macOS and Linux. For Windows, the documentation of the three either doesn't say or says no.</li>
+<li>GitHub Copilot in VS Code, Gemini CLI and Antigravity CLI: they have one on Windows, macOS and Linux, off by default. On Linux, Gemini CLI's only works with a container.</li>
 <!-- /wp:list-item -->
 <!-- wp:list-item -->
-<li><strong>Hermes Agent</strong> is only isolated if you run it inside a container.</li>
+<li>Claude Code and Grok Build: only on macOS and Linux, off by default.</li>
 <!-- /wp:list-item -->
 <!-- wp:list-item -->
-<li><strong>Cline</strong> says nothing about a sandbox in its documentation.</li>
+<li>Hermes Agent: isolated if you set it to work inside a container.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Cline: doesn't mention it.</li>
 <!-- /wp:list-item -->
 </ul>
 <!-- /wp:list -->
 <!-- wp:paragraph -->
-<p>A sandbox doesn't make an agent harmless: it limits what it could touch. That's why the table also says whether it cuts the network. And a sandbox that is on doesn't always cut the internet: in several agents, by default, it lets traffic out.</p>
+<p>Claude Code was the first one I looked at, because it's the agent I build RosmarOps with every day. Its documentation leaves no room for doubt: the sandbox is off by default. And on Windows it simply doesn't exist: it runs commands without one.</p>
 <!-- /wp:paragraph -->
 <!-- wp:heading -->
-<h2 class="wp-block-heading">What we've done</h2>
-<!-- /wp:heading -->
-<!-- wp:list -->
-<ul class="wp-block-list">
-<!-- wp:list-item -->
-<li><strong>A table, <a href="/observatory/ai-agents-with-sandbox/">Which AI coding agents have a sandbox</a>.</strong> For each agent and each system it says whether it has a sandbox, whether it's on by default and whether it cuts the network. Each value links to the maker's page it comes from, with the date we read it. Where the documentation says nothing, we show «—»: what wasn't read doesn't count as clean.</li>
-<!-- /wp:list-item -->
-<!-- wp:list-item -->
-<li><strong>Four new entries in the <a href="/glossary/#sandbox">glossary</a>:</strong> sandbox, read-only mode, asks first and network cut. They're explained for people who don't code.</li>
-<!-- /wp:list-item -->
-<!-- wp:list-item -->
-<li><strong>Contradictions, in plain sight.</strong> When a maker says one thing in its documentation and another in its code, we show both quotes. It happens with Cline: its documentation says everything asks for your approval, and its code, by default, approves reading and editing without asking. We don't decide which one holds.</li>
-<!-- /wp:list-item -->
-</ul>
-<!-- /wp:list -->
-<!-- wp:heading -->
-<h2 class="wp-block-heading">What RosmarOps doesn't do</h2>
+<h2 class="wp-block-heading">Turning it on isn't enough</h2>
 <!-- /wp:heading -->
 <!-- wp:paragraph -->
-<p>RosmarOps doesn't set up a sandbox for you or turn on your agent's. It only reads the configuration you have and tells you what each agent could touch. RosmarOps reads the sandbox settings of Claude Code, Cursor, Codex and Grok Build: if you change one, at the next review you see how its score changes.</p>
+<p>My first draft of this article said that a sandbox «doesn't make an agent harmless: it limits what it could touch». That's true, but when I reread it I realised it fell short. The most important part was missing.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>In many agents, the sandbox limits what the agent writes and where it connects, but not what it reads. The agent can still read your key. And if the network is open, that key can get out.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>And the network isn't always closed. In GitHub Copilot, with the sandbox on, the network stays open by default. Cursor lets through a list of domains, including those of the package managers. In Grok Build, on macOS, its own documentation warns that the network cut-off does nothing. That's why the network cut has its own line in the table: having a sandbox and cutting off the network are two different things.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>And Claude Code has its own small print. In Claude Code, the sandbox only covers the commands the agent runs in the terminal. Its documentation says that the tools it uses to read and edit files, its MCP servers and its hooks run outside it.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>Back to the sandpit: turning on the sandbox is putting the walls up. But you have to check where they're still open.</p>
 <!-- /wp:paragraph -->
 <!-- wp:heading -->
-<h2 class="wp-block-heading">What it's for</h2>
+<h2 class="wp-block-heading">When the maker says two things</h2>
 <!-- /wp:heading -->
 <!-- wp:paragraph -->
-<p>So you can choose an agent knowing how it ships, and try it in a test environment where you see what it could touch before you hand it your home folder. I explain it step by step in <a href="/try-an-ai-agent/">How to try an AI agent in a test environment</a>.</p>
+<p>Reading official documentation has a catch: it doesn't always say the same thing everywhere.</p>
 <!-- /wp:paragraph -->
 <!-- wp:paragraph -->
-<p>If you use one of these agents and see something that doesn't match the table, tell me.</p>
+<p>Cline's documentation says every action asks for your approval. Its code, freshly installed, approves reading and editing files without asking. And on 12 November, according to its changelog, Antigravity CLI started up in Auto mode, where another AI model decides which commands run without asking you. Its documentation still says it asks you first.</p>
 <!-- /wp:paragraph -->
 <!-- wp:paragraph -->
-<p><em>Source: each maker's official documentation, read on 15 November 2026, linked cell by cell in the table.</em></p>
+<p>I don't know which of the two versions holds on your computer. So in the table I put a dash and show both quotes. I'd rather do that than pick one and get it wrong. What couldn't be read, or couldn't be confirmed, doesn't count as clean.</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Where all this lives</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>All of the above is in a table, <a href="/observatory/ai-agents-with-sandbox/">Which AI coding agents have a sandbox</a>, agent by agent and system by system, with a link to each maker's page and the date we read it. It's also in the <a href="/observatory/">Observatory</a>, which is now organised by company and shows four protections for each agent: sandbox, read-only mode, whether it asks first and network cut.</p>
 <!-- /wp:paragraph -->
 <!-- wp:paragraph -->
-<p><em>Written with help from AI agents. What I say and the decision to publish are mine; every source is linked in the table.</em></p>
+<p>With that data, the Observatory says which agents to start with if you don't know them. Today they are Codex, because its sandbox and network cut are on by default, and GitHub Copilot in VS Code, because it has a read-only mode and asks you before running commands. The criterion is written down in the <a href="/methodology/#recommendation">methodology</a> and it's the same for everyone. No one pays to appear, or to be recommended.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>RosmarOps doesn't set up a sandbox for you or turn on your agent's. It reads the configuration you have and tells you what each agent could touch. For Claude Code, Cursor, Codex and Grok Build it also reads their sandbox settings: if you turn it on, at the next review you see how its score changes.</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Before you give it your folder</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>If you're going to try an agent you don't know, don't open it in your home folder. And creating an empty folder and opening it there isn't enough: most agents can read your whole home folder anyway. Turn on its sandbox if it has one, use a profile that stops it reading outside the project or, if there's no other way, open it from another user account on the computer. Then run RosmarOps in that same environment and see what it could touch.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>I explain it step by step in <a href="/try-an-ai-agent/">How to try an AI agent in a test environment</a>.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>And if you use one of these agents and see something in the table that doesn't match what happens to you, write to me. The table only gets better if someone corrects me.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p><em>Source: each maker's official documentation, read on 15 November 2026 and linked cell by cell in the table; Antigravity CLI's changelog (version 1.5.7) and Cline's code.</em></p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p><em>Written with the help of AI agents. What I say and the decision to publish are mine; every source is linked in the table.</em></p>
 <!-- /wp:paragraph -->
