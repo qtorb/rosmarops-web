@@ -115,6 +115,7 @@ jobs:
           php -l wp/mu-plugins/rosmarops-schedule-mapa.php
           python -m unittest wp/tests/test_schedule_mapa.py
           python -m unittest wp/tests/test_slug_sandbox.py
+          python -m unittest wp/tests/test_menu_sandbox.py
           php -l wp/mu-plugins/rosmarops-schedule-novedades-0-11.php
           python -m unittest wp/tests/test_schedule_novedades_0_11.py
           python -m unittest wp/tests/test_download_sources.py
