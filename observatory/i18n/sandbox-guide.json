@@ -1,5 +1,5 @@
 {
-  "_source": "GTM-176 §3 and §5 (qtorb/rosmarops-vigil docs/briefs/GTM-176.md; direction signed by Albert 16-11 18:55). Literal: do not edit. Text between backticks is painted as <code>; **…** as <strong>. Placeholders: {agent}, {system}, {cmd}, {n}, {date}, {version}, {os_version}, {command}, {when}.",
+  "_source": "GTM-176 §3, §4 and §5 (qtorb/rosmarops-vigil docs/briefs/GTM-176.md; direction signed by Albert 16-11 18:55). Literal: do not edit. Text between backticks is painted as <code>; **…** as <strong>. Placeholders: {agent}, {system}, {cmd}, {n}, {date}, {version}, {os_version}, {command}, {when}.",
   "texts": {
     "es": {
       "h1": "Enciende el sandbox de tu agente de IA en 3 pasos",
@@ -95,7 +95,20 @@
       "lab.before": "antes",
       "lab.after": "después",
       "lab.checked": "Comprobado en nuestro laboratorio el {date}.",
-      "after.read_copilot_policy": "Tiene que salir el sandbox encendido, con ~/.ssh y ~/.aws entre las rutas denegadas."
+      "after.read_copilot_policy": "Tiene que salir el sandbox encendido, con ~/.ssh y ~/.aws entre las rutas denegadas.",
+      "acc.s1.h": "Crea otra cuenta de usuario",
+      "acc.s1.macos": "Menú Apple › Ajustes del Sistema › Usuarios y grupos › Añadir usuario, de tipo Estándar.",
+      "acc.s1.windows": "Configuración › Cuentas › Otro usuario › Agregar cuenta › No tengo los datos de inicio de sesión de esta persona › Agregar un usuario sin una cuenta de Microsoft.",
+      "acc.s1.linux": "En la terminal: `sudo adduser nombre` en Ubuntu, o `sudo useradd -m nombre` y después `sudo passwd nombre` en Fedora.",
+      "acc.s2.h": "Entra con ella y lleva solo el proyecto",
+      "acc.s2.p": "Copia ahí la carpeta del proyecto que vas a usar. No inicies sesión en tus cuentas personales: correo, GitHub, la nube.",
+      "acc.s3.h": "Instala {agent} ahí y comprueba",
+      "acc.s3.p": "Pídele que ejecute estas dos órdenes, cambiando «tu-usuario» por el nombre de tu cuenta de siempre.",
+      "acc.home": "Tiene que enseñar la carpeta de la cuenta nueva, no la tuya.",
+      "acc.yours": "Tiene que fallar: no puede ver tu carpeta.",
+      "acc.net": "Desde esa cuenta sigue pudiendo salir a internet.",
+      "acc.s4.h": "Opcional: mira qué puede tocar",
+      "acc.s4.p": "Ejecuta RosmarOps en esa cuenta: te dice qué puede hacer {agent} sin preguntarte."
     },
     "en": {
       "h1": "Turn on your AI agent's sandbox in 3 steps",
@@ -190,7 +203,21 @@
       "lab.alt": "{agent}: {command} {when} the template",
       "lab.before": "before",
       "lab.after": "after",
-      "lab.checked": "Checked in our lab on {date}."
+      "lab.checked": "Checked in our lab on {date}.",
+      "after.read_copilot_policy": "The sandbox should show as on, with ~/.ssh and ~/.aws among the denied paths.",
+      "acc.s1.h": "Create another user account",
+      "acc.s1.macos": "Apple menu › System Settings › Users & Groups › Add User, type Standard.",
+      "acc.s1.windows": "Settings › Accounts › Other user › Add account › I don't have this person's sign-in information › Add a user without a Microsoft account.",
+      "acc.s1.linux": "In the terminal: `sudo adduser name` on Ubuntu, or `sudo useradd -m name` and then `sudo passwd name` on Fedora.",
+      "acc.s2.h": "Sign in with it and bring only the project",
+      "acc.s2.p": "Copy the folder of the project you'll use there. Don't sign in to your personal accounts: email, GitHub, the cloud.",
+      "acc.s3.h": "Install {agent} there and check",
+      "acc.s3.p": "Ask it to run these two commands, replacing «tu-usuario» with the name of your usual account.",
+      "acc.home": "It should show the new account's folder, not yours.",
+      "acc.yours": "It should fail: it can't see your folder.",
+      "acc.net": "From that account it can still reach the internet.",
+      "acc.s4.h": "Optional: see what it can touch",
+      "acc.s4.p": "Run RosmarOps in that account: it tells you what {agent} can do without asking."
     },
     "ca": {
       "h1": "Encén el sandbox del teu agent d'IA en 3 passos",
@@ -285,7 +312,21 @@
       "lab.alt": "{agent}: {command} {when} de la plantilla",
       "lab.before": "abans",
       "lab.after": "després",
-      "lab.checked": "Comprovat al nostre laboratori el {date}."
+      "lab.checked": "Comprovat al nostre laboratori el {date}.",
+      "after.read_copilot_policy": "Ha de sortir el sandbox encès, amb ~/.ssh i ~/.aws entre les rutes denegades.",
+      "acc.s1.h": "Crea un altre compte d'usuari",
+      "acc.s1.macos": "Menú Apple › Configuració del Sistema › Usuaris i grups › Afegeix un usuari, de tipus Estàndard.",
+      "acc.s1.windows": "Prem Windows + R, escriu `ms-settings:otherusers` i prem Retorn. Afegeix-hi un compte local, sense compte de Microsoft.",
+      "acc.s1.linux": "Al terminal: `sudo adduser nom` a Ubuntu, o `sudo useradd -m nom` i després `sudo passwd nom` a Fedora.",
+      "acc.s2.h": "Entra-hi i porta-hi només el projecte",
+      "acc.s2.p": "Copia-hi la carpeta del projecte que faràs servir. No iniciïs sessió als teus comptes personals: correu, GitHub, el núvol.",
+      "acc.s3.h": "Instal·la-hi {agent} i comprova",
+      "acc.s3.p": "Demana-li que executi aquestes dues ordres, canviant «tu-usuario» pel nom del teu compte de sempre.",
+      "acc.home": "Ha de mostrar la carpeta del compte nou, no la teva.",
+      "acc.yours": "Ha de fallar: no pot veure la teva carpeta.",
+      "acc.net": "Des d'aquest compte encara pot sortir a internet.",
+      "acc.s4.h": "Opcional: mira què pot tocar",
+      "acc.s4.p": "Executa RosmarOps en aquest compte: et diu què pot fer {agent} sense preguntar-te."
     }
   }
 }

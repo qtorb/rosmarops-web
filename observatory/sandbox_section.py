@@ -8,8 +8,8 @@ latest raw file of the collector says one of its pages lost a watched string. La
 observatory/data/lab/manifest.json once BV-250 brings it in; until then there is none and no gap is drawn. Called by
 build.py.
 
-GTM-176 §4 (the account variant for agents without a sandbox) is not built yet: its menu paths wait for the check
-against the official help. Those combinations show GTM-175's sentence and their source.
+GTM-176 §4: agents without a sandbox on a system get the steps with another user account (menu paths checked by the
+advisor against the official help on 16-11).
 """
 
 import html
@@ -373,8 +373,6 @@ class Combo:
         if test == "network":
             return self.G["after.network"], muted
         key = {"cmd": "after.read_cmd", "hostname": "after.read_hostname", "copilot_policy": "after.read_copilot_policy"}[c["kind"]]
-        if key not in self.G:  # GTM-176 §3.3: the copilot_policy line is only given in ES (PARA, missing EN and CA)
-            return None, muted
         return self.G[key], muted
 
     def boxes(self, when):
@@ -477,13 +475,26 @@ class Combo:
     def main(self):
         G = self.G
         if self.t["kind"] == "separate_account":
-            # GTM-176 §4 is not built yet: its menu paths are waiting for the check against the official help.
-            sep = fill(self.T["separate_account"], system=self.sysname, agent=self.name)
-            return f'<div class="sg-main"><p class="sg-noline">{esc(sep)}</p><div class="sg-foot">{"".join(self.source())}</div></div>'
+            return self.account()
         s1 = [f'<p>{esc(self.g("s1.p"))}</p>'] + self.boxes("before") + self.figure(1, when="antes")
         steps = [self.step(1, G["s1.h"], s1), self.step2(), self.step3(),
                  self.step(4, self.g("s4.h"), [f'<p>{esc(self.g("s4.p"))}</p>', download(self.lang)], optional=True)]
         return f'<div class="sg-main"><ol class="sg-steps">{"".join(steps)}</ol>{self.foot()}</div>'
+
+    def account(self):
+        """GTM-176 §4: no sandbox on this system, another user account (paths checked by the advisor against the
+        official help on 16-11)."""
+        G = self.G
+        home = "dir ~" if self.s == "windows" else "ls ~"
+        yours = {"macos": "ls /Users/tu-usuario", "linux": "ls /home/tu-usuario", "windows": r"dir C:\Users\tu-usuario"}[self.s]
+        muted = G["after.unconfirmed"] if self.s in ("macos", "windows") else None
+        s3 = [f'<p>{esc(G["acc.s3.p"])}</p>', self.box({"kind": "cmd", "cmd": home}, G["acc.home"]),
+              self.box({"kind": "cmd", "cmd": yours}, G["acc.yours"], muted), f'<p class="sg-small">{esc(G["acc.net"])}</p>']
+        steps = [self.step(1, G["acc.s1.h"], [f'<p>{code(G["acc.s1." + self.s])}</p>']),
+                 self.step(2, G["acc.s2.h"], [f'<p>{esc(G["acc.s2.p"])}</p>']),
+                 self.step(3, self.g("acc.s3.h"), s3),
+                 self.step(4, G["acc.s4.h"], [f'<p>{esc(self.g("acc.s4.p"))}</p>', download(self.lang)], optional=True)]
+        return f'<div class="sg-main"><ol class="sg-steps">{"".join(steps)}</ol><div class="sg-foot">{"".join(self.source())}</div></div>'
 
     def html(self):
         side = side_boxes(self.lang, self.t["kind"] == "separate_account")

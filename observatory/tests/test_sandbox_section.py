@@ -146,7 +146,7 @@ class Page(unittest.TestCase):
 
     def test_texts_in_three_languages(self):
         self.assertEqual(set(G["en"]), set(G["ca"]))
-        self.assertEqual(set(G["es"]) - set(G["en"]), {"after.read_copilot_policy"})  # given only in ES (PARA)
+        self.assertEqual(set(G["es"]), set(G["en"]))
         used = {c for a in AGENTS for t in (a.get("templates") or {}).values() for c in t.get("checks", {}).get("troubleshoot", [])}
         self.assertEqual({k[3:] for k in G["es"] if k.startswith("ts.")}, used)
 
@@ -207,12 +207,31 @@ class Page(unittest.TestCase):
         he = combo(p, "hermes-agent-linux")
         self.assertIn("puede trabajar dentro de un contenedor (Docker)", he)
         self.assertIn(G["es"]["now.read_hostname"], he)
-        cl = combo(p, "cline-macos")
-        self.assertIn(G["es"]["side.why.h"], cl)
-        self.assertNotIn("sg-steps", cl)
-        en = combo(page("en"), "github-copilot-linux")  # the ES-only copilot line is left out in EN (PARA)
+        en = combo(page("en"), "github-copilot-linux")
+        self.assertIn(html.escape(G["en"]["after.read_copilot_policy"], quote=True), en)
         self.assertIn(html.escape(G["en"]["after.unconfirmed"], quote=True), en)
-        self.assertNotIn('<p class="sg-exp"></p>', en)
+
+    def test_account_variant(self):
+        """GTM-176 §4: no sandbox on that system, another user account."""
+        for lang in LANGS:
+            p = page(lang)
+            for cid in ("cline-macos", "cline-windows", "cline-linux", "claude-code-windows", "cursor-windows", "grok-build-windows"):
+                c = combo(p, cid)
+                system = cid.rsplit("-", 1)[1]
+                self.assertIn(html.escape(G[lang]["side.why.h"], quote=True), c, (lang, cid))
+                self.assertIn(sandbox_section.code(G[lang]["acc.s1." + system]), c, (lang, cid))
+                self.assertIn(html.escape(G[lang]["acc.net"], quote=True), c)
+                self.assertEqual(c.count('class="sg-step"'), 4)
+                self.assertNotIn(html.escape(G[lang]["fold.session"], quote=True), c)
+                self.assertNotIn("<details", c)
+                unconfirmed = html.escape(G[lang]["after.unconfirmed"], quote=True)
+                self.assertEqual(unconfirmed in c, system in ("macos", "windows"), (lang, cid))
+        es = page("es")
+        self.assertIn("<code>dir C:\\Users\\tu-usuario</code>", combo(es, "cline-windows"))
+        self.assertIn("<code>ls /home/tu-usuario</code>", combo(es, "cline-linux"))
+        self.assertIn("<code>ls /Users/tu-usuario</code>", combo(es, "cline-macos"))
+        self.assertIn("<code>ms-settings:otherusers</code>", combo(page("ca"), "cline-windows"))
+        self.assertIn("Agregar un usuario sin una cuenta de Microsoft", combo(es, "cline-windows"))
 
     def test_lab_screenshots_from_a_test_manifest(self):
         with tempfile.TemporaryDirectory() as d:
