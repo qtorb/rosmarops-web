@@ -1,0 +1,20 @@
+{
+ "id": "sandbox-v3",
+ "lang": "ca",
+ "slug": "sandbox-agents-dia",
+ "title": "El sandbox del teu agent d'IA: gairebé sempre en té, gairebé mai no està encès",
+ "excerpt": "Ho vam veure repassant la documentació dels nou agents que avalua RosmarOps. I va sortir una cosa que em preocupa més: encendre'l no sempre n'hi ha prou.",
+ "content": "sandbox-v3-ca.html",
+ "seo_title": "Sandbox en agents d'IA: qui en porta i qui l'encén",
+ "seo_description": "Què és un sandbox, quins agents d'IA en porten de sèrie i per què gairebé tots el porten apagat. El que ha començat a explicar RosmarOps, amb font i data.",
+ "translations": {
+  "es": "https://rosmarops.com/es/blog/sandbox-agentes-de-ia/",
+  "en": "https://rosmarops.com/blog/sandbox-ai-agents/"
+ },
+ "category": "notes-de-camp",
+ "tags": {
+  "sandbox": "Sandbox"
+ },
+ "image": "sandbox-agentes-de-ia.jpg",
+ "alt": "Una petita figura juga en un sorral amb les parets abatudes a terra; la sorra s'escapa cap a unes claus, unes carpetes i una porta entreoberta."
+}
