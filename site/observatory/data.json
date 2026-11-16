@@ -3178,7 +3178,35 @@
         "reviewed_at": "2026-11-06"
       },
       "versions": [],
-      "changes": [],
+      "changes": [
+        {
+          "id": "chg-qwen-code-0-27-4-scope",
+          "version": "0.27.4",
+          "date": "2026-11-15",
+          "category": "agent_scope",
+          "before": {
+            "en": "Before v0.27.4, the Qwen Code changelog lists no access for Managed Agent sessions to granted local directories or a Managed Web Terminal.",
+            "es": "Antes de v0.27.4, el changelog de Qwen Code no recoge que las sesiones de Managed Agent accedan a directorios locales concedidos ni a un Managed Web Terminal.",
+            "ca": "Abans de v0.27.4, el changelog de Qwen Code no recull que les sessions de Managed Agent accedeixin a directoris locals concedits ni a un Managed Web Terminal."
+          },
+          "after": {
+            "en": "From v0.27.4, Qwen Code Managed Agent sessions can use granted local directories and a Managed Web Terminal without storing credentials or paths, according to the changelog.",
+            "es": "Desde v0.27.4, las sesiones de Managed Agent de Qwen Code pueden usar directorios locales concedidos y un Managed Web Terminal sin guardar credenciales ni rutas, según el changelog.",
+            "ca": "Des de v0.27.4, les sessions de Managed Agent de Qwen Code poden fer servir directoris locals concedits i un Managed Web Terminal sense desar credencials ni camins, segons el changelog."
+          },
+          "source": {
+            "url": "https://github.com/QwenLM/qwen-code/releases/tag/v0.27.4",
+            "official": true,
+            "accessed_at": "2026-11-16"
+          },
+          "verified": {
+            "by": "writer",
+            "at": "2026-11-16",
+            "how": "official_changelog"
+          },
+          "rosmarops_impact": "none"
+        }
+      ],
       "ratings": []
     },
     {
