@@ -1,0 +1,18 @@
+{
+ "id": "sandbox",
+ "lang": "en",
+ "slug": "sandbox-ai-agents",
+ "title": "Sandbox: what it is and why almost every AI agent ships with it turned off",
+ "excerpt": "I've spent weeks reading the documentation of the AI agents RosmarOps evaluates. Almost all of them have a sandbox. Almost none of them ship with it turned on.",
+ "content": "sandbox-en.html",
+ "seo_title": "Sandbox in AI agents: who has one and who turns it on",
+ "seo_description": "What a sandbox is, which AI agents ship with one and why almost all of them come with it turned off. What RosmarOps has started to show, with source and date.",
+ "translations": {
+  "es": "https://rosmarops.com/es/blog/sandbox-agentes-de-ia/",
+  "ca": "https://rosmarops.com/ca/blog/sandbox-agents-dia/"
+ },
+ "category": "field-notes",
+ "tags": {
+  "sandbox": "Sandbox"
+ }
+}

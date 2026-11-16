@@ -1,8 +1,8 @@
 {
   "format": "rosmarops.factory-scores/1",
-  "rosmarops_version": "v0.11.7",
-  "commit": "9426e44b2b3698835ba6b0358c04290b11204ece",
-  "generated_at": "2026-11-14T17:35:49Z",
+  "rosmarops_version": "v0.12.1",
+  "commit": "1719cbfc5ec98186676a3d533e1a7a3226797052",
+  "generated_at": "2026-11-15T21:48:37Z",
   "reference_computer": "R2",
   "index_version": 5,
   "rules_version": "0",
