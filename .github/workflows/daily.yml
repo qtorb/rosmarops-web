@@ -99,3 +99,19 @@ jobs:
           set -eu
           files=$(ls observatory/daily/*.json 2>/dev/null || true)
           if [ -n "$files" ]; then python observatory/daily_check.py $files; fi
+
+  # GTM-173 (signed by Albert 16-11): ask the site to fetch the new daily file now instead of waiting for its hourly
+  # cron. No credential: the endpoint only makes the site fetch from this public repository, once a minute at most.
+  # raw.githubusercontent.com may serve the previous file for up to five minutes, so ask again after that.
+  refresh:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ask rosmarops.com to fetch the daily file now
+        run: |
+          set -eu
+          for wait in 0 330; do
+            sleep "$wait"
+            code=$(curl -s -o /tmp/refresh.out -w '%{http_code}' -X POST https://rosmarops.com/wp-json/rosmarops/v1/daily-refresh || true)
+            echo "refresh: HTTP $code $(cat /tmp/refresh.out 2>/dev/null)"
+          done

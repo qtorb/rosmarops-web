@@ -298,10 +298,14 @@ def run_checks(tag, digests, knowledge, root=ROOT):
     agents = load_agents(root / "observatory" / "data" / "agents")
     errs = check_candidates(agents, json.loads((root / "observatory" / "data" / "candidates.json").read_text(encoding="utf-8")))
     errs += check_scored(agents, knowledge, json.loads((root / "observatory" / "data" / "program-agents.json").read_text(encoding="utf-8")))
-    errs += check_sample(tag, digests, root / "site" / "sample-report")
-    errs += check_map(tag, digests, root / "observatory" / "data" / "map")
     errs += check_pages(agents, json.loads((root / "observatory" / "data" / "agent-list-exclusions.json").read_text(encoding="utf-8")), root)
     return errs
+
+
+def run_lag_checks(tag, digests, root=ROOT):
+    """GTM-173 (signed by Albert 16-11): a sample report or map data from the previous release is a warning, not a
+    failure. The web keeps showing the previous release's until the automatic release PR is merged; the deploy goes on."""
+    return check_sample(tag, digests, root / "site" / "sample-report") + check_map(tag, digests, root / "observatory" / "data" / "map")
 
 
 def release(tag, knowledge, root=ROOT):
@@ -346,9 +350,13 @@ def main(argv):
             print(f"{'::error::' if os.environ.get('GITHUB_ACTIONS') else 'FAIL '}cannot read the latest release of {REPO}: {e}")
             return 1
         errs = run_checks(tag, digests, knowledge)
+        lag = run_lag_checks(tag, digests)
+        gha = os.environ.get("GITHUB_ACTIONS")
         for e in errs:
-            print("::error::" + e if os.environ.get("GITHUB_ACTIONS") else "FAIL " + e)
-        print(f"agent lists: {len(errs)} problem(s) against {REPO} {tag}")
+            print("::error::" + e if gha else "FAIL " + e)
+        for w in lag:
+            print("::warning::" + w if gha else "WARN " + w)
+        print(f"agent lists: {len(errs)} problem(s) and {len(lag)} warning(s) against {REPO} {tag}")
         return 1 if errs else 0
     tag = argv[1]
     for n in release(tag, knowledge_files(tag)):

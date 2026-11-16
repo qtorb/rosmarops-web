@@ -24,3 +24,12 @@ if ($cmd === 'route') {
 	$r = rosmarops_daily_route($file);
 	echo $r === null ? "null\n" : $r[0] . "\n" . $r[2];
 }
+// GTM-173. `refresh <log file> <now>` prints the status of a refresh request; fetches are written to the log file.
+if ($cmd === 'refresh') {
+	class WP_Error {}
+	function is_wp_error($x) { return $x instanceof WP_Error; }
+	function wp_remote_get($url) { file_put_contents($GLOBALS['file'], $url . "\n", FILE_APPEND); return new WP_Error(); }
+	[$code, $status] = rosmarops_daily_refresh((int) $date);
+	echo "$code $status\n";
+}
+

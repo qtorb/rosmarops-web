@@ -110,6 +110,14 @@ class Checks(unittest.TestCase):
         dig = {"sample-report.en.html": hashlib.sha256(b"en").hexdigest(), "sample-report.es.html": hashlib.sha256(b"es").hexdigest()}
         self.assertEqual(al.check_sample("v0.8.0", dig, d), [])
 
+    def test_c_lag_is_a_warning_not_a_failure(self):
+        """GTM-173: run_lag_checks holds the sample and the map; run_checks no longer includes them."""
+        import inspect
+        self.assertNotIn("check_sample", inspect.getsource(al.run_checks))
+        self.assertNotIn("check_map", inspect.getsource(al.run_checks))
+        self.assertIn("check_sample", inspect.getsource(al.run_lag_checks))
+        self.assertIn("check_map", inspect.getsource(al.run_lag_checks))
+
     def test_c_sample_is_old(self):
         d = self.sample("v0.7.0", en=b"old")
         dig = {"sample-report.en.html": hashlib.sha256(b"en").hexdigest()}
@@ -206,6 +214,13 @@ class FocoAlert(unittest.TestCase):
 
     def test_clean_report_gives_none(self):
         self.assertEqual(daily_alert.for_consistency("2026-11-07", "agent lists: 0 problem(s) against qtorb/rosmarops v0.8.0\n"), [])
+
+    def test_release_lag_warning_still_alerts(self):
+        """GTM-173: a sample report from the previous release is a warning in CI, but the daily alert still lists it."""
+        report = "::warning::site/sample-report/VERSION is v0.12.0, the latest release is v0.12.1\nagent lists: 0 problem(s) and 1 warning(s) against qtorb/rosmarops v0.12.1\n"
+        msgs = daily_alert.for_consistency("2026-11-16", report)
+        self.assertEqual(len(msgs), 1)
+        self.assertIn("- site/sample-report/VERSION is v0.12.0, the latest release is v0.12.1", msgs[0]["TextBody"].splitlines())
 
     def test_unreadable_release_alerts(self):
         msgs = daily_alert.for_consistency("2026-11-07", "FAIL cannot read the latest release of qtorb/rosmarops: HTTP 403\n")
