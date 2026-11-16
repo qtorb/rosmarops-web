@@ -396,6 +396,11 @@
    "es": "no está documentado qué ficheros de configuración protege",
    "en": "it isn't documented which configuration files it protects",
    "ca": "no està documentat quins fitxers de configuració protegeix"
+  },
+  "windows_sandbox_unknown": {
+   "es": "no se sabe qué sandbox de Windows elige al arrancar; se supone el que menos aísla",
+   "en": "it isn't known which Windows sandbox it picks when it starts; the one that isolates least is assumed",
+   "ca": "no se sap quin sandbox de Windows tria en arrencar; se suposa el que menys aïlla"
   }
  }
 }
