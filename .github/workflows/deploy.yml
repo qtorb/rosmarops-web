@@ -304,12 +304,12 @@ jobs:
           put wp/drafts/novedades-0-11-es.json wp-content/mu-plugins/rosmarops-drafts/novedades-0-11-es.json
           put wp/drafts/novedades-0-11-ca.html wp-content/mu-plugins/rosmarops-drafts/novedades-0-11-ca.html
           put wp/drafts/novedades-0-11-ca.json wp-content/mu-plugins/rosmarops-drafts/novedades-0-11-ca.json
-          put wp/drafts/sandbox-en.html wp-content/mu-plugins/rosmarops-drafts/sandbox-en.html
-          put wp/drafts/sandbox-en.json wp-content/mu-plugins/rosmarops-drafts/sandbox-en.json
-          put wp/drafts/sandbox-es.html wp-content/mu-plugins/rosmarops-drafts/sandbox-es.html
-          put wp/drafts/sandbox-es.json wp-content/mu-plugins/rosmarops-drafts/sandbox-es.json
-          put wp/drafts/sandbox-ca.html wp-content/mu-plugins/rosmarops-drafts/sandbox-ca.html
-          put wp/drafts/sandbox-ca.json wp-content/mu-plugins/rosmarops-drafts/sandbox-ca.json
+          put wp/drafts/sandbox-v3-en.html wp-content/mu-plugins/rosmarops-drafts/sandbox-v3-en.html
+          put wp/drafts/sandbox-v3-en.json wp-content/mu-plugins/rosmarops-drafts/sandbox-v3-en.json
+          put wp/drafts/sandbox-v3-es.html wp-content/mu-plugins/rosmarops-drafts/sandbox-v3-es.html
+          put wp/drafts/sandbox-v3-es.json wp-content/mu-plugins/rosmarops-drafts/sandbox-v3-es.json
+          put wp/drafts/sandbox-v3-ca.html wp-content/mu-plugins/rosmarops-drafts/sandbox-v3-ca.html
+          put wp/drafts/sandbox-v3-ca.json wp-content/mu-plugins/rosmarops-drafts/sandbox-v3-ca.json
           put wp/drafts/sandbox-agentes-de-ia.jpg wp-content/mu-plugins/rosmarops-drafts/sandbox-agentes-de-ia.jpg
           put wp/mu-plugins/rosmarops-category-loop-engineering.php wp-content/mu-plugins/rosmarops-category-loop-engineering.php
           put wp/mu-plugins/rosmarops-gtm124-agente.php wp-content/mu-plugins/rosmarops-gtm124-agente.php

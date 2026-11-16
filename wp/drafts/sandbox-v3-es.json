@@ -1,10 +1,10 @@
 {
- "id": "sandbox",
+ "id": "sandbox-v3",
  "lang": "es",
  "slug": "sandbox-agentes-de-ia",
  "title": "El sandbox de tu agente de IA: casi siempre lo tiene, casi nunca está encendido",
  "excerpt": "Lo vimos al repasar la documentación de los nueve agentes que evalúa RosmarOps. Y apareció algo que me preocupa más: encenderlo no siempre basta.",
- "content": "sandbox-es.html",
+ "content": "sandbox-v3-es.html",
  "seo_title": "Sandbox en agentes de IA: quién lo trae y quién lo enciende",
  "seo_description": "Qué es un sandbox, qué agentes de IA lo traen de serie y por qué casi todos vienen con él apagado. Lo que ha empezado a contar RosmarOps, con fuente y fecha.",
  "translations": {
