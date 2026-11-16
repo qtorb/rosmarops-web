@@ -236,8 +236,17 @@ def try_section(lang, a):
 <ul>{"".join(lines)}</ul>
 <p>{esc(T["try.notice"])}</p>
 <p>{esc(T["try.close"])}</p>
-<p><a href="{GUIDE_PATH[lang]}">{esc(T["try.guide"])}</a></p>
+<p><a href="{GUIDE_PATH[lang]}">{esc(T["try.guide"])}</a>{template_link(lang, a)}</p>
 </section>"""
+
+
+def template_link(lang, a):
+    """GTM-175: «Its sandbox template», next to the guide link, to the agent's card on /sandbox/."""
+    if not a.get("templates"):
+        return ""
+    import sandbox_section
+    label = sandbox_section.texts()[lang]["its_template"]
+    return f' · <a href="{sandbox_section.SECTION_PATH[lang]}#{esc(a["agent"]["id"])}">{esc(label)}</a>'
 
 
 def company_of(a):

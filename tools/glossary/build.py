@@ -72,11 +72,19 @@ SANDBOX_PATH = {'en': '/observatory/ai-agents-with-sandbox/', 'es': '/es/observa
                 'ca': '/ca/observatori/agents-ia-amb-sandbox/'}
 
 
+SECTION_TEXTS = os.path.join(ROOT, 'observatory', 'i18n', 'sandbox-section.json')
+SECTION_PATH = {'en': '/sandbox/', 'es': '/es/sandbox/', 'ca': '/ca/sandbox/'}
+
+
 def see_also(tid, lang):
     if tid != 'sandbox' or not os.path.exists(SANDBOX_TEXTS):
         return ''
     title = json.load(open(SANDBOX_TEXTS, encoding='utf-8'))['texts'][lang]['title']
-    return ' <a href="%s">%s</a>' % (SANDBOX_PATH[lang], html.escape(title))
+    out = ' <a href="%s">%s</a>' % (SANDBOX_PATH[lang], html.escape(title))
+    if os.path.exists(SECTION_TEXTS):  # GTM-175: and the «Sandbox» section
+        label = json.load(open(SECTION_TEXTS, encoding='utf-8'))['texts'][lang]['all_about']
+        out += ' · <a href="%s">%s</a>' % (SECTION_PATH[lang], html.escape(label))
+    return out
 
 
 def term(tid, lang):

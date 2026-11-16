@@ -373,5 +373,145 @@
         "value": "unknown"
       }
     }
+  },
+  "templates": {
+    "windows": {
+      "kind": "agent_sandbox",
+      "intro": "paste_one",
+      "blocks": [
+        {
+          "file": "~/.gemini/antigravity-cli/settings.json",
+          "format": "json",
+          "value": "{ \"enableTerminalSandbox\": true, \"toolPermission\": \"proceed-in-sandbox\" }"
+        }
+      ],
+      "covers": {
+        "sandbox": true,
+        "read_limit": "listed_paths",
+        "network_cut": "yes"
+      },
+      "uncovered": [
+        "mcp_read_url_by_rules",
+        "allowed_outside_full_privileges",
+        "no_effect_without_system_sandbox",
+        "windows_outside_profile_readable"
+      ],
+      "measure": "guided",
+      "source": {
+        "url": "https://antigravity.google/docs/sandbox?tab=cli",
+        "official": true,
+        "accessed_at": "2026-11-16",
+        "page_date": null
+      },
+      "watch": [
+        "enableTerminalSandbox",
+        "proceed-in-sandbox",
+        "Sandboxed commands run without network access by default",
+        "full privileges",
+        "have no effect",
+        "anything not explicitly mounted is invisible",
+        "folders outside your user profile are readable",
+        "MCP tools, and web page reads",
+        "are added to the sandbox's outbound allowlist"
+      ]
+    },
+    "macos": {
+      "kind": "agent_sandbox",
+      "intro": "paste_one",
+      "blocks": [
+        {
+          "file": "~/.gemini/antigravity-cli/settings.json",
+          "format": "json",
+          "value": "{ \"enableTerminalSandbox\": true, \"toolPermission\": \"proceed-in-sandbox\" }"
+        }
+      ],
+      "covers": {
+        "sandbox": true,
+        "read_limit": "workspace",
+        "network_cut": "yes"
+      },
+      "uncovered": [
+        "mcp_read_url_by_rules",
+        "allowed_outside_full_privileges",
+        "no_effect_without_system_sandbox"
+      ],
+      "measure": "guided",
+      "source": {
+        "url": "https://antigravity.google/docs/sandbox?tab=cli",
+        "official": true,
+        "accessed_at": "2026-11-16",
+        "page_date": null
+      },
+      "watch": [
+        "enableTerminalSandbox",
+        "proceed-in-sandbox",
+        "Sandboxed commands run without network access by default",
+        "full privileges",
+        "have no effect",
+        "anything not explicitly mounted is invisible",
+        "folders outside your user profile are readable",
+        "MCP tools, and web page reads",
+        "are added to the sandbox's outbound allowlist"
+      ],
+      "session": {
+        "command": "agy --sandbox",
+        "requires": [],
+        "source": {
+          "url": "https://antigravity.google/docs/sandbox?tab=cli",
+          "official": true,
+          "accessed_at": "2026-11-16",
+          "page_date": null
+        }
+      }
+    },
+    "linux": {
+      "kind": "agent_sandbox",
+      "intro": "paste_one",
+      "blocks": [
+        {
+          "file": "~/.gemini/antigravity-cli/settings.json",
+          "format": "json",
+          "value": "{ \"enableTerminalSandbox\": true, \"toolPermission\": \"proceed-in-sandbox\" }"
+        }
+      ],
+      "covers": {
+        "sandbox": true,
+        "read_limit": "workspace",
+        "network_cut": "yes"
+      },
+      "uncovered": [
+        "mcp_read_url_by_rules",
+        "allowed_outside_full_privileges",
+        "no_effect_without_system_sandbox"
+      ],
+      "measure": "guided",
+      "source": {
+        "url": "https://antigravity.google/docs/sandbox?tab=cli",
+        "official": true,
+        "accessed_at": "2026-11-16",
+        "page_date": null
+      },
+      "watch": [
+        "enableTerminalSandbox",
+        "proceed-in-sandbox",
+        "Sandboxed commands run without network access by default",
+        "full privileges",
+        "have no effect",
+        "anything not explicitly mounted is invisible",
+        "folders outside your user profile are readable",
+        "MCP tools, and web page reads",
+        "are added to the sandbox's outbound allowlist"
+      ],
+      "session": {
+        "command": "agy --sandbox",
+        "requires": [],
+        "source": {
+          "url": "https://antigravity.google/docs/sandbox?tab=cli",
+          "official": true,
+          "accessed_at": "2026-11-16",
+          "page_date": null
+        }
+      }
+    }
   }
 }

@@ -492,5 +492,213 @@
         }
       }
     }
+  },
+  "templates": {
+    "windows": {
+      "kind": "agent_sandbox",
+      "intro": "paste_one",
+      "blocks": [
+        {
+          "file": "~/.codex/config.toml",
+          "format": "toml",
+          "value": "default_permissions = \"p2\"\n[permissions.p2.filesystem]\n\":minimal\" = \"read\"\n[permissions.p2.filesystem.\":workspace_roots\"]\n\".\" = \"write\"\n\"**/*.env\" = \"deny\"\n[permissions.p2.network]\nenabled = false\n[windows]\nsandbox = \"mxc\""
+        }
+      ],
+      "covers": {
+        "sandbox": true,
+        "read_limit": "workspace",
+        "network_cut": "yes"
+      },
+      "uncovered": [
+        "web_search_outside_sandbox",
+        "apps_connectors_outside_sandbox",
+        "mcp_outside_sandbox",
+        "browser_computer_use_outside_sandbox",
+        "service_traffic_outside_sandbox",
+        "deny_read_fixed_at_start"
+      ],
+      "measure": "guided",
+      "source": {
+        "url": "https://learn.chatgpt.com/docs/permissions",
+        "official": true,
+        "accessed_at": "2026-11-16",
+        "page_date": null
+      },
+      "watch": [
+        "default_permissions",
+        ":workspace_roots",
+        ":minimal",
+        "Permission profiles do not compose with the older sandbox settings",
+        "Matching files created afterward are not added to that process's deny list"
+      ],
+      "extra_sources": [
+        {
+          "url": "https://learn.chatgpt.com/docs/agent-approvals-security",
+          "official": true,
+          "accessed_at": "2026-11-16",
+          "page_date": null,
+          "watch": [
+            "workspace-write",
+            "keeps network access turned off unless you enable it",
+            "It does not filter web search",
+            "app or connector tool calls",
+            "MCP server connections",
+            "browser or Computer Use activity"
+          ]
+        },
+        {
+          "url": "https://learn.chatgpt.com/codex/windows/windows-sandbox.md",
+          "official": true,
+          "accessed_at": "2026-11-16",
+          "page_date": null,
+          "watch": [
+            "mxc",
+            "doesn't support denied read paths",
+            "24H2",
+            "25H2",
+            "for one command without changing the saved sandbox selection"
+          ]
+        }
+      ],
+      "session": {
+        "command": "codex --sandbox workspace-write -c sandbox_workspace_write.network_access=false -c windows.sandbox=mxc",
+        "requires": [
+          "windows_11_24h2_25h2"
+        ],
+        "source": {
+          "url": "https://learn.chatgpt.com/codex/windows/windows-sandbox.md",
+          "official": true,
+          "accessed_at": "2026-11-16",
+          "page_date": null
+        }
+      }
+    },
+    "macos": {
+      "kind": "agent_sandbox",
+      "intro": "paste_one",
+      "blocks": [
+        {
+          "file": "~/.codex/config.toml",
+          "format": "toml",
+          "value": "default_permissions = \"p2\"\n[permissions.p2.filesystem]\n\":minimal\" = \"read\"\n[permissions.p2.filesystem.\":workspace_roots\"]\n\".\" = \"write\"\n\"**/*.env\" = \"deny\"\n[permissions.p2.network]\nenabled = false"
+        }
+      ],
+      "covers": {
+        "sandbox": true,
+        "read_limit": "workspace",
+        "network_cut": "yes"
+      },
+      "uncovered": [
+        "web_search_outside_sandbox",
+        "apps_connectors_outside_sandbox",
+        "mcp_outside_sandbox",
+        "browser_computer_use_outside_sandbox",
+        "service_traffic_outside_sandbox"
+      ],
+      "measure": "guided",
+      "source": {
+        "url": "https://learn.chatgpt.com/docs/permissions",
+        "official": true,
+        "accessed_at": "2026-11-16",
+        "page_date": null
+      },
+      "watch": [
+        "default_permissions",
+        ":workspace_roots",
+        ":minimal",
+        "Permission profiles do not compose with the older sandbox settings",
+        "Matching files created afterward are not added to that process's deny list"
+      ],
+      "extra_sources": [
+        {
+          "url": "https://learn.chatgpt.com/docs/agent-approvals-security",
+          "official": true,
+          "accessed_at": "2026-11-16",
+          "page_date": null,
+          "watch": [
+            "workspace-write",
+            "keeps network access turned off unless you enable it",
+            "It does not filter web search",
+            "app or connector tool calls",
+            "MCP server connections",
+            "browser or Computer Use activity"
+          ]
+        }
+      ],
+      "session": {
+        "command": "codex --sandbox workspace-write -c sandbox_workspace_write.network_access=false",
+        "requires": [],
+        "source": {
+          "url": "https://learn.chatgpt.com/docs/cli/reference",
+          "official": true,
+          "accessed_at": "2026-11-16",
+          "page_date": null
+        }
+      }
+    },
+    "linux": {
+      "kind": "agent_sandbox",
+      "intro": "paste_one",
+      "blocks": [
+        {
+          "file": "~/.codex/config.toml",
+          "format": "toml",
+          "value": "default_permissions = \"p2\"\n[permissions.p2.filesystem]\n\":minimal\" = \"read\"\n[permissions.p2.filesystem.\":workspace_roots\"]\n\".\" = \"write\"\n\"**/*.env\" = \"deny\"\n[permissions.p2.network]\nenabled = false"
+        }
+      ],
+      "covers": {
+        "sandbox": true,
+        "read_limit": "workspace",
+        "network_cut": "yes"
+      },
+      "uncovered": [
+        "web_search_outside_sandbox",
+        "apps_connectors_outside_sandbox",
+        "mcp_outside_sandbox",
+        "browser_computer_use_outside_sandbox",
+        "service_traffic_outside_sandbox",
+        "deny_read_fixed_at_start"
+      ],
+      "measure": "guided",
+      "source": {
+        "url": "https://learn.chatgpt.com/docs/permissions",
+        "official": true,
+        "accessed_at": "2026-11-16",
+        "page_date": null
+      },
+      "watch": [
+        "default_permissions",
+        ":workspace_roots",
+        ":minimal",
+        "Permission profiles do not compose with the older sandbox settings",
+        "Matching files created afterward are not added to that process's deny list"
+      ],
+      "extra_sources": [
+        {
+          "url": "https://learn.chatgpt.com/docs/agent-approvals-security",
+          "official": true,
+          "accessed_at": "2026-11-16",
+          "page_date": null,
+          "watch": [
+            "workspace-write",
+            "keeps network access turned off unless you enable it",
+            "It does not filter web search",
+            "app or connector tool calls",
+            "MCP server connections",
+            "browser or Computer Use activity"
+          ]
+        }
+      ],
+      "session": {
+        "command": "codex --sandbox workspace-write -c sandbox_workspace_write.network_access=false",
+        "requires": [],
+        "source": {
+          "url": "https://learn.chatgpt.com/docs/cli/reference",
+          "official": true,
+          "accessed_at": "2026-11-16",
+          "page_date": null
+        }
+      }
+    }
   }
 }

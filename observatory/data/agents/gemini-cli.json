@@ -331,5 +331,145 @@
         }
       }
     }
+  },
+  "templates": {
+    "windows": {
+      "kind": "agent_sandbox",
+      "intro": "paste_one",
+      "blocks": [
+        {
+          "file": "~/.gemini/settings.json",
+          "format": "json",
+          "value": "{ \"tools\": { \"sandbox\": \"windows-native\", \"sandboxNetworkAccess\": false } }"
+        }
+      ],
+      "covers": {
+        "sandbox": true,
+        "read_limit": "unknown",
+        "network_cut": "unknown"
+      },
+      "uncovered": [
+        "mcp_fetch_hooks_undocumented",
+        "windows_read_network_undocumented"
+      ],
+      "measure": "guided",
+      "source": {
+        "url": "https://geminicli.com/docs/cli/sandbox/",
+        "official": true,
+        "accessed_at": "2026-11-16",
+        "page_date": "2026-07-17"
+      },
+      "watch": [
+        "SEATBELT_PROFILE",
+        "strict-proxied",
+        "only has access to the current project workspace"
+      ],
+      "extra_sources": [
+        {
+          "url": "https://geminicli.com/docs/reference/configuration/",
+          "official": true,
+          "accessed_at": "2026-11-16",
+          "page_date": "2026-10-15",
+          "watch": [
+            "tools.sandbox",
+            "sandboxNetworkAccess"
+          ]
+        }
+      ]
+    },
+    "macos": {
+      "kind": "agent_sandbox",
+      "intro": "paste_many",
+      "blocks": [
+        {
+          "file": "~/.gemini/settings.json",
+          "format": "json",
+          "value": "{ \"tools\": { \"sandbox\": true, \"sandboxNetworkAccess\": false } }"
+        },
+        {
+          "file": null,
+          "format": "env",
+          "value": "SEATBELT_PROFILE=strict-proxied gemini",
+          "note": "gemini_macos"
+        }
+      ],
+      "covers": {
+        "sandbox": true,
+        "read_limit": "workspace",
+        "network_cut": "unknown"
+      },
+      "uncovered": [
+        "mcp_fetch_hooks_undocumented",
+        "macos_proxy_undocumented"
+      ],
+      "measure": "guided",
+      "source": {
+        "url": "https://geminicli.com/docs/cli/sandbox/",
+        "official": true,
+        "accessed_at": "2026-11-16",
+        "page_date": "2026-07-17"
+      },
+      "watch": [
+        "SEATBELT_PROFILE",
+        "strict-proxied",
+        "only has access to the current project workspace"
+      ],
+      "extra_sources": [
+        {
+          "url": "https://geminicli.com/docs/reference/configuration/",
+          "official": true,
+          "accessed_at": "2026-11-16",
+          "page_date": "2026-10-15",
+          "watch": [
+            "tools.sandbox",
+            "sandboxNetworkAccess"
+          ]
+        }
+      ]
+    },
+    "linux": {
+      "kind": "agent_sandbox",
+      "intro": "paste_one",
+      "blocks": [
+        {
+          "file": "~/.gemini/settings.json",
+          "format": "json",
+          "value": "{ \"tools\": { \"sandbox\": \"docker\", \"sandboxNetworkAccess\": false } }"
+        }
+      ],
+      "covers": {
+        "sandbox": true,
+        "read_limit": "workspace",
+        "network_cut": "yes"
+      },
+      "uncovered": [
+        "mcp_fetch_hooks_undocumented",
+        "needs_docker"
+      ],
+      "measure": "guided",
+      "source": {
+        "url": "https://geminicli.com/docs/cli/sandbox/",
+        "official": true,
+        "accessed_at": "2026-11-16",
+        "page_date": "2026-07-17"
+      },
+      "watch": [
+        "SEATBELT_PROFILE",
+        "strict-proxied",
+        "only has access to the current project workspace"
+      ],
+      "extra_sources": [
+        {
+          "url": "https://geminicli.com/docs/reference/configuration/",
+          "official": true,
+          "accessed_at": "2026-11-16",
+          "page_date": "2026-10-15",
+          "watch": [
+            "tools.sandbox",
+            "sandboxNetworkAccess"
+          ]
+        }
+      ]
+    }
   }
 }

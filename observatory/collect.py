@@ -606,6 +606,21 @@ def watch_items(body):
     return sorted(i for i in items if WATCH_SUBJECT.search(i) and WATCH_WITH.search(i))
 
 
+def watch_text(s):
+    """Text of a page or of a watch string for comparing (GTM-175): no tags, no Markdown marks, straight quotes, one space."""
+    s = "\n".join(page_lines(s)) if re.search(r"<html|<body|<div|<p[ >]", s[:5000], re.I) else s
+    s = html.unescape(s)
+    s = s.translate(str.maketrans({"\u2018": "'", "\u2019": "'", "\u201c": '"', "\u201d": '"', "`": "", "*": ""}))
+    s = re.sub(r"(?<![\w])_|_(?![\w])", "", s)
+    return re.sub(r"\s+", " ", s).strip()
+
+
+def missing_strings(body, watch):
+    """The watch strings of a sandbox template (GTM-175) that are no longer in the page, in their order."""
+    text = watch_text(body).lower()
+    return [w for w in watch if watch_text(w).lower() not in text]
+
+
 def read_page_watch(src, since, terms):
     """GTM-160 (Albert, 14-11): watch an official documentation page for a new page or route that mentions Grok Bot with
     read, rules, settings, connectors, OAuth or scope. `watched` carries today's matches; `new` the ones no earlier raw
@@ -620,6 +635,9 @@ def read_page_watch(src, since, terms):
         res["reason"] = "empty page"
         return res
     res["opened"] = True
+    if "watch" in src["read"]:  # GTM-175: a sandbox template's page; only whether its strings are still there
+        res["missing"] = missing_strings(body, src["read"]["watch"])
+        return res
     res["watched"] = watch_items(body)
     res["date_is_detection"] = True
     seen = PREVIOUS_WATCHED.get(src["id"])

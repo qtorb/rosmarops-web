@@ -679,5 +679,155 @@
         }
       }
     }
+  },
+  "templates": {
+    "windows": {
+      "kind": "separate_account",
+      "blocks": [],
+      "covers": {
+        "sandbox": false,
+        "read_limit": "unknown",
+        "network_cut": "no"
+      },
+      "uncovered": [],
+      "measure": "guided",
+      "source": {
+        "url": "https://code.claude.com/docs/en/sandboxing",
+        "official": true,
+        "accessed_at": "2026-11-16",
+        "page_date": null
+      },
+      "watch": []
+    },
+    "macos": {
+      "kind": "agent_sandbox",
+      "intro": "paste_many",
+      "blocks": [
+        {
+          "file": "~/.claude/settings.json",
+          "format": "json",
+          "value": "{\n  \"permissions\": {\n    \"defaultMode\": \"acceptEdits\",\n    \"disableAutoMode\": \"disable\",\n    \"disableBypassPermissionsMode\": \"disable\",\n    \"blockReadsOutsideWorkingDirectories\": true,\n    \"allow\": [\n      \"Bash(npm run lint)\", \"Bash(npm run test *)\",\n      \"Bash(git status)\", \"Bash(git diff)\"\n    ],\n    \"ask\": [\n      \"Edit(~/.codex/**)\", \"Edit(**/.codex/**)\",\n      \"Edit(~/.cursor/**)\", \"Edit(**/.cursor/**)\",\n      \"Edit(~/.cline/**)\", \"Edit(**/.clinerules/**)\",\n      \"Edit(~/.gemini/**)\", \"Edit(**/.gemini/**)\",\n      \"Edit(~/.grok/**)\", \"Edit(**/.grok/**)\", \"Edit(~/.hermes/**)\",\n      \"Edit(~/AppData/Roaming/**)\",\n      \"Edit(**/AGENTS.md)\", \"Edit(**/CLAUDE.md)\", \"Edit(**/GEMINI.md)\",\n      \"Edit(**/.github/copilot-instructions.md)\"\n    ],\n    \"deny\": [\"WebFetch\", \"WebSearch\", \"Bash(curl *)\", \"Bash(wget *)\"]\n  },\n  \"sandbox\": {\n    \"enabled\": true,\n    \"failIfUnavailable\": true,\n    \"allowUnsandboxedCommands\": false,\n    \"autoAllowBashIfSandboxed\": false,\n    \"network\": { \"allowedDomains\": [\"registry.npmjs.org\", \"github.com\"], \"strictAllowlist\": true },\n    \"filesystem\": { \"denyRead\": [\"~/.ssh\", \"~/.aws\"] },\n    \"credentials\": { \"files\": [ { \"path\": \"~/.aws/credentials\", \"mode\": \"deny\" }, { \"path\": \"~/.ssh\", \"mode\": \"deny\" } ] }\n  }\n}"
+        },
+        {
+          "file": ".claude/settings.json",
+          "format": "json",
+          "value": "{ \"sandbox\": { \"filesystem\": { \"denyRead\": [\"~/\"], \"allowRead\": [\".\"] } } }"
+        }
+      ],
+      "covers": {
+        "sandbox": true,
+        "read_limit": "workspace",
+        "network_cut": "allowlist"
+      },
+      "uncovered": [
+        "file_and_web_tools_outside_sandbox",
+        "hooks_mcp_statusline_outside_sandbox",
+        "excluded_commands_outside_sandbox",
+        "bang_prompt_outside_sandbox",
+        "allowlisted_destinations_open"
+      ],
+      "measure": "guided",
+      "source": {
+        "url": "https://code.claude.com/docs/en/sandboxing",
+        "official": true,
+        "accessed_at": "2026-11-16",
+        "page_date": null
+      },
+      "watch": [
+        "failIfUnavailable",
+        "allowUnsandboxedCommands",
+        "strictAllowlist",
+        "allowedDomains",
+        "denyRead",
+        "allowRead",
+        "excludedCommands",
+        "autoAllowBashIfSandboxed",
+        "runs commands unsandboxed",
+        "The sandbox covers shell commands only",
+        "doesn't stop the Read tool",
+        "status line command",
+        "shell-mode prompt runs unsandboxed",
+        "bubblewrap",
+        "socat",
+        "start Claude Code with --settings",
+        "Set it to false to prompt for sandboxed commands"
+      ],
+      "session": {
+        "command": "claude --settings '{\"sandbox\":{\"enabled\":true,\"failIfUnavailable\":true,\"allowUnsandboxedCommands\":false,\"autoAllowBashIfSandboxed\":false,\"network\":{\"allowedDomains\":[],\"strictAllowlist\":true},\"filesystem\":{\"denyRead\":[\"~/\"],\"allowRead\":[\"/RUTA/DEL/PROYECTO\"]}},\"permissions\":{\"blockReadsOutsideWorkingDirectories\":true,\"deny\":[\"WebFetch\",\"WebSearch\"]}}'",
+        "requires": [],
+        "source": {
+          "url": "https://code.claude.com/docs/en/sandboxing",
+          "official": true,
+          "accessed_at": "2026-11-16",
+          "page_date": null
+        }
+      }
+    },
+    "linux": {
+      "kind": "agent_sandbox",
+      "intro": "paste_many",
+      "blocks": [
+        {
+          "file": "~/.claude/settings.json",
+          "format": "json",
+          "value": "{\n  \"permissions\": {\n    \"defaultMode\": \"acceptEdits\",\n    \"disableAutoMode\": \"disable\",\n    \"disableBypassPermissionsMode\": \"disable\",\n    \"blockReadsOutsideWorkingDirectories\": true,\n    \"allow\": [\n      \"Bash(npm run lint)\", \"Bash(npm run test *)\",\n      \"Bash(git status)\", \"Bash(git diff)\"\n    ],\n    \"ask\": [\n      \"Edit(~/.codex/**)\", \"Edit(**/.codex/**)\",\n      \"Edit(~/.cursor/**)\", \"Edit(**/.cursor/**)\",\n      \"Edit(~/.cline/**)\", \"Edit(**/.clinerules/**)\",\n      \"Edit(~/.gemini/**)\", \"Edit(**/.gemini/**)\",\n      \"Edit(~/.grok/**)\", \"Edit(**/.grok/**)\", \"Edit(~/.hermes/**)\",\n      \"Edit(~/AppData/Roaming/**)\",\n      \"Edit(**/AGENTS.md)\", \"Edit(**/CLAUDE.md)\", \"Edit(**/GEMINI.md)\",\n      \"Edit(**/.github/copilot-instructions.md)\"\n    ],\n    \"deny\": [\"WebFetch\", \"WebSearch\", \"Bash(curl *)\", \"Bash(wget *)\"]\n  },\n  \"sandbox\": {\n    \"enabled\": true,\n    \"failIfUnavailable\": true,\n    \"allowUnsandboxedCommands\": false,\n    \"autoAllowBashIfSandboxed\": false,\n    \"network\": { \"allowedDomains\": [\"registry.npmjs.org\", \"github.com\"], \"strictAllowlist\": true },\n    \"filesystem\": { \"denyRead\": [\"~/.ssh\", \"~/.aws\"] },\n    \"credentials\": { \"files\": [ { \"path\": \"~/.aws/credentials\", \"mode\": \"deny\" }, { \"path\": \"~/.ssh\", \"mode\": \"deny\" } ] }\n  }\n}"
+        },
+        {
+          "file": ".claude/settings.json",
+          "format": "json",
+          "value": "{ \"sandbox\": { \"filesystem\": { \"denyRead\": [\"~/\"], \"allowRead\": [\".\"] } } }"
+        }
+      ],
+      "covers": {
+        "sandbox": true,
+        "read_limit": "workspace",
+        "network_cut": "allowlist"
+      },
+      "uncovered": [
+        "file_and_web_tools_outside_sandbox",
+        "hooks_mcp_statusline_outside_sandbox",
+        "excluded_commands_outside_sandbox",
+        "bang_prompt_outside_sandbox",
+        "allowlisted_destinations_open"
+      ],
+      "measure": "guided",
+      "source": {
+        "url": "https://code.claude.com/docs/en/sandboxing",
+        "official": true,
+        "accessed_at": "2026-11-16",
+        "page_date": null
+      },
+      "watch": [
+        "failIfUnavailable",
+        "allowUnsandboxedCommands",
+        "strictAllowlist",
+        "allowedDomains",
+        "denyRead",
+        "allowRead",
+        "excludedCommands",
+        "autoAllowBashIfSandboxed",
+        "runs commands unsandboxed",
+        "The sandbox covers shell commands only",
+        "doesn't stop the Read tool",
+        "status line command",
+        "shell-mode prompt runs unsandboxed",
+        "bubblewrap",
+        "socat",
+        "start Claude Code with --settings",
+        "Set it to false to prompt for sandboxed commands"
+      ],
+      "session": {
+        "command": "claude --settings '{\"sandbox\":{\"enabled\":true,\"failIfUnavailable\":true,\"allowUnsandboxedCommands\":false,\"autoAllowBashIfSandboxed\":false,\"network\":{\"allowedDomains\":[],\"strictAllowlist\":true},\"filesystem\":{\"denyRead\":[\"~/\"],\"allowRead\":[\"/RUTA/DEL/PROYECTO\"]}},\"permissions\":{\"blockReadsOutsideWorkingDirectories\":true,\"deny\":[\"WebFetch\",\"WebSearch\"]}}'",
+        "requires": [
+          "bubblewrap_socat"
+        ],
+        "source": {
+          "url": "https://code.claude.com/docs/en/sandboxing",
+          "official": true,
+          "accessed_at": "2026-11-16",
+          "page_date": null
+        }
+      }
+    }
   }
 }
