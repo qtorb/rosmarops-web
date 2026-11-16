@@ -200,7 +200,25 @@
             "sandboxNetworkAccess"
           ]
         }
-      ]
+      ],
+      "checks": {
+        "read": {
+          "kind": "none",
+          "cmd": null,
+          "status": "not_documented"
+        },
+        "network": {
+          "kind": "none",
+          "cmd": null,
+          "status": "not_documented"
+        },
+        "notes": [
+          "gemini_replaced"
+        ],
+        "troubleshoot": [
+          "gemini_restart"
+        ]
+      }
     },
     "macos": {
       "kind": "agent_sandbox",
@@ -250,7 +268,26 @@
             "sandboxNetworkAccess"
           ]
         }
-      ]
+      ],
+      "checks": {
+        "read": {
+          "kind": "cmd",
+          "cmd": "ls ~",
+          "status": "confirmed"
+        },
+        "network": {
+          "kind": "cmd",
+          "cmd": "curl -I https://example.com",
+          "status": "not_documented"
+        },
+        "notes": [
+          "gemini_replaced"
+        ],
+        "troubleshoot": [
+          "gemini_restart",
+          "gemini_mac_env"
+        ]
+      }
     },
     "linux": {
       "kind": "agent_sandbox",
@@ -294,7 +331,26 @@
             "sandboxNetworkAccess"
           ]
         }
-      ]
+      ],
+      "checks": {
+        "read": {
+          "kind": "hostname",
+          "cmd": "hostname",
+          "status": "confirmed"
+        },
+        "network": {
+          "kind": "cmd",
+          "cmd": "curl -I https://example.com",
+          "status": "unconfirmed"
+        },
+        "notes": [
+          "gemini_replaced"
+        ],
+        "troubleshoot": [
+          "gemini_restart",
+          "gemini_linux_docker"
+        ]
+      }
     }
   }
 }

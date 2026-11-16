@@ -519,6 +519,26 @@
           "accessed_at": "2026-11-16",
           "page_date": null
         }
+      },
+      "checks": {
+        "read": {
+          "kind": "cmd",
+          "cmd": "ls ~",
+          "status": "confirmed"
+        },
+        "network": {
+          "kind": "cmd",
+          "cmd": "git ls-remote https://example.com",
+          "status": "confirmed"
+        },
+        "notes": [
+          "cc_allowlist_open"
+        ],
+        "troubleshoot": [
+          "cc_version",
+          "cc_sandbox_cmd",
+          "cc_status"
+        ]
       }
     },
     "linux": {
@@ -585,6 +605,27 @@
           "accessed_at": "2026-11-16",
           "page_date": null
         }
+      },
+      "checks": {
+        "read": {
+          "kind": "cmd",
+          "cmd": "ls ~",
+          "status": "confirmed"
+        },
+        "network": {
+          "kind": "cmd",
+          "cmd": "git ls-remote https://example.com",
+          "status": "confirmed"
+        },
+        "notes": [
+          "cc_allowlist_open"
+        ],
+        "troubleshoot": [
+          "cc_version",
+          "cc_linux_deps",
+          "cc_sandbox_cmd",
+          "cc_status"
+        ]
       }
     }
   }

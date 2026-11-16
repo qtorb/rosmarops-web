@@ -373,7 +373,28 @@
             "networkPolicy"
           ]
         }
-      ]
+      ],
+      "checks": {
+        "read": {
+          "kind": "cmd",
+          "cmd": "ls ~",
+          "status": "unconfirmed"
+        },
+        "network": {
+          "kind": "cmd",
+          "cmd": "curl -I https://example.com",
+          "status": "unconfirmed"
+        },
+        "notes": [
+          "cursor_asks_each",
+          "cursor_allowlist_open"
+        ],
+        "troubleshoot": [
+          "cursor_version",
+          "cursor_project_file",
+          "cursor_team"
+        ]
+      }
     },
     "linux": {
       "kind": "agent_sandbox",
@@ -426,7 +447,29 @@
             "networkPolicy"
           ]
         }
-      ]
+      ],
+      "checks": {
+        "read": {
+          "kind": "cmd",
+          "cmd": "ls ~",
+          "status": "unconfirmed"
+        },
+        "network": {
+          "kind": "cmd",
+          "cmd": "curl -I https://example.com",
+          "status": "unconfirmed"
+        },
+        "notes": [
+          "cursor_asks_each",
+          "cursor_allowlist_open"
+        ],
+        "troubleshoot": [
+          "cursor_version",
+          "cursor_linux",
+          "cursor_project_file",
+          "cursor_team"
+        ]
+      }
     }
   }
 }

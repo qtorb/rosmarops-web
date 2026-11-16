@@ -413,7 +413,27 @@
         "folders outside your user profile are readable",
         "MCP tools, and web page reads",
         "are added to the sandbox's outbound allowlist"
-      ]
+      ],
+      "checks": {
+        "read": {
+          "kind": "cmd",
+          "cmd": "dir ~",
+          "status": "confirmed"
+        },
+        "network": {
+          "kind": "cmd",
+          "cmd": "curl -I https://example.com",
+          "status": "confirmed"
+        },
+        "notes": [
+          "agy_ask_means_off"
+        ],
+        "troubleshoot": [
+          "agy_no_system_sandbox",
+          "agy_windows",
+          "agy_enterprise"
+        ]
+      }
     },
     "macos": {
       "kind": "agent_sandbox",
@@ -462,6 +482,25 @@
           "accessed_at": "2026-11-16",
           "page_date": null
         }
+      },
+      "checks": {
+        "read": {
+          "kind": "cmd",
+          "cmd": "ls ~",
+          "status": "confirmed"
+        },
+        "network": {
+          "kind": "cmd",
+          "cmd": "curl -I https://example.com",
+          "status": "confirmed"
+        },
+        "notes": [
+          "agy_ask_means_off"
+        ],
+        "troubleshoot": [
+          "agy_no_system_sandbox",
+          "agy_enterprise"
+        ]
       }
     },
     "linux": {
@@ -511,6 +550,26 @@
           "accessed_at": "2026-11-16",
           "page_date": null
         }
+      },
+      "checks": {
+        "read": {
+          "kind": "cmd",
+          "cmd": "ls ~",
+          "status": "confirmed"
+        },
+        "network": {
+          "kind": "cmd",
+          "cmd": "curl -I https://example.com",
+          "status": "confirmed"
+        },
+        "notes": [
+          "agy_ask_means_off"
+        ],
+        "troubleshoot": [
+          "agy_no_system_sandbox",
+          "agy_linux",
+          "agy_enterprise"
+        ]
       }
     }
   }
