@@ -47,6 +47,7 @@ jobs:
           php -l wp/mu-plugins/rosmarops-store-image.php
           php -l wp/mu-plugins/rosmarops-schedule-mapa.php
           php -l wp/mu-plugins/rosmarops-schedule-novedades-0-11.php
+          php -l wp/mu-plugins/rosmarops-slug-sandbox.php
           ls -l wp/drafts/*.json wp/drafts/*.html wp/drafts/rosmarops-img-13-loop-engineering.jpg wp/drafts/rosmarops-img-14-he-terminado.jpg wp/drafts/rosmarops-img-15-el-sistema-aprende.jpg wp/drafts/rosmarops-img-17-harness-engineering.jpg wp/drafts/rosmarops-img-16-novedades-0-10.jpg wp/drafts/rosmarops-img-18-microsoft-store.jpg wp/drafts/sandbox-agentes-de-ia.jpg
           ls -l wp/daily/shell-en.html wp/daily/shell-es.html wp/daily/shell-ca.html wp/daily/i18n.json
           ! grep -RIl 'noindex' site/index.html site/es/index.html site/methodology site/faq site/es/metodologia site/es/preguntas-frecuentes site/ca/index.html site/ca/metodologia site/ca/preguntes-frequents site/cloud-access site/es/acceso-en-la-nube site/ca/acces-al-nuvol site/ca/privadesa site/privacy site/es/privacidad site/legal-notice site/es/aviso-legal site/ca/avis-legal site/terms site/es/terminos site/ca/termes site/security-teams site/es/equipos-de-seguridad site/ca/equips-de-seguretat site/_static site/macos site/es/macos site/ca/macos site/linux site/es/linux site/ca/linux site/sample-report/index.html site/es/informe-de-ejemplo site/ca/informe-dexemple site/observatory/index.html site/es/observatorio/index.html site/ca/observatori/index.html site/glossary site/es/glosario site/ca/glossari site/observatory/ai-agent-map site/es/observatorio/mapa-agentes-ia site/ca/observatori/mapa-agents-ia site/observatory/ai-agents-with-sandbox site/es/observatorio/agentes-ia-con-sandbox site/ca/observatori/agents-ia-amb-sandbox site/try-an-ai-agent site/es/probar-un-agente-de-ia site/ca/provar-un-agent-dia
@@ -319,6 +320,7 @@ jobs:
           put wp/mu-plugins/rosmarops-store-image.php wp-content/mu-plugins/rosmarops-store-image.php
           put wp/mu-plugins/rosmarops-schedule-mapa.php wp-content/mu-plugins/rosmarops-schedule-mapa.php
           put wp/mu-plugins/rosmarops-schedule-novedades-0-11.php wp-content/mu-plugins/rosmarops-schedule-novedades-0-11.php
+          put wp/mu-plugins/rosmarops-slug-sandbox.php wp-content/mu-plugins/rosmarops-slug-sandbox.php
           -mkdir wp-content/mu-plugins/rosmarops-daily
           put wp/daily/shell-en.html wp-content/mu-plugins/rosmarops-daily/shell-en.html
           put wp/daily/shell-es.html wp-content/mu-plugins/rosmarops-daily/shell-es.html
@@ -892,6 +894,25 @@ jobs:
             [ "$code" != "200" ] && echo "$f.log closed to the web ($code)" || (echo "::error::$f.log is reachable from the web"; exit 1)
           done
           if grep -h '^\(skipped\|failed\):' /tmp/sched5/*.log 2>/dev/null; then echo "::warning::the RosmarOps 0.11.6 news post was not scheduled on some site; see the logs"; fi
+          # rosmarops-slug-sandbox.php (16-11) runs on the first request to each site after the upload; once done it never runs again.
+          for u in https://rosmarops.com/blog/ https://rosmarops.com/es/blog/ https://rosmarops.com/ca/blog/; do
+            curl -s -o /dev/null -w "%{http_code} $u\n" "$u?slug6=${GITHUB_SHA::7}"
+          done
+          sleep 5
+          mkdir -p /tmp/slug6
+          printf 'cd %s/wp-content/rosmarops-private\n-get slug6-en.log /tmp/slug6/\n-get slug6-es.log /tmp/slug6/\n-get slug6-ca.log /tmp/slug6/\n' "$SFTP_PATH" > /tmp/bs6
+          sshpass -e sftp -o BatchMode=no -b /tmp/bs6 \
+            -o StrictHostKeyChecking=yes \
+            -o UserKnownHostsFile="$HOME/.ssh/known_hosts" \
+            -o PreferredAuthentications=password,keyboard-interactive \
+            -o PubkeyAuthentication=no \
+            "$SFTP_USER@$SFTP_HOST" || true
+          for f in slug6-en slug6-es slug6-ca; do
+            if [ -f "/tmp/slug6/$f.log" ]; then echo "--- $f.log"; cat "/tmp/slug6/$f.log"; else echo "::warning::$f.log not found"; fi
+            code=$(curl -s -o /dev/null -w '%{http_code}' "https://rosmarops.com/wp-content/rosmarops-private/$f.log")
+            [ "$code" != "200" ] && echo "$f.log closed to the web ($code)" || (echo "::error::$f.log is reachable from the web"; exit 1)
+          done
+          if grep -h '^\(skipped\|failed\):' /tmp/slug6/*.log 2>/dev/null; then echo "::warning::the sandbox post kept its «-2» address on some site; see the logs"; fi
           # rosmarops-store-image.php (GTM-146) runs on the first request to each site after the upload; once done it never runs again.
           for u in https://rosmarops.com/blog/ https://rosmarops.com/es/blog/ https://rosmarops.com/ca/blog/; do
             curl -s -o /dev/null -w "%{http_code} $u\n" "$u?storeimg=${GITHUB_SHA::7}"
