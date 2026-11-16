@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sandbox: try an AI agent before you give it your folders · RosmarOps</title>
+<meta name="description" content="A sandbox is a closed space where an AI agent works without being able to touch what&#x27;s outside it: the rest of your folders, your keys or the internet. Here you can see which agents have one, how to turn it on in yours and what changes when you do. RosmarOps doesn&#x27;t set up any sandbox: it tells you what your agent could touch, with it and without it.">
+<link rel="canonical" href="https://rosmarops.com/sandbox/">
+<link rel="alternate" hreflang="en" href="https://rosmarops.com/sandbox/">
+<link rel="alternate" hreflang="es" href="https://rosmarops.com/es/sandbox/">
+<link rel="alternate" hreflang="ca" href="https://rosmarops.com/ca/sandbox/">
+<link rel="alternate" hreflang="x-default" href="https://rosmarops.com/sandbox/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="RosmarOps">
+<meta property="og:title" content="Sandbox: try an AI agent before you give it your folders · RosmarOps">
+<meta property="og:description" content="A sandbox is a closed space where an AI agent works without being able to touch what&#x27;s outside it: the rest of your folders, your keys or the internet. Here you can see which agents have one, how to turn it on in yours and what changes when you do. RosmarOps doesn&#x27;t set up any sandbox: it tells you what your agent could touch, with it and without it.">
+<meta property="og:url" content="https://rosmarops.com/sandbox/">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://rosmarops.com/assets/brand/rosmarops-social.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="RosmarOps logo">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "@id": "https://rosmarops.com/sandbox/#page", "url": "https://rosmarops.com/sandbox/", "name": "Sandbox: try an AI agent before you give it your folders", "inLanguage": "en", "isPartOf": {"@id": "https://rosmarops.com/#website"}}</script>
+<link rel="stylesheet" href="/assets/consent/cookieconsent.css?v=3.1.0">
+<link rel="icon" href="/wp-content/uploads/2026/10/image-1.png">
+<style>
+:root{--bg:#F6F5F2;--ink:#1B1A18;--ink2:#3A3833;--muted:#66635D;--line:#E3E0D8;--card:#FFFFFF;--accent:#6F8F78}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+a{color:var(--ink)}a:hover{color:var(--accent)}
+.wrap{max-width:1040px;margin:0 auto;padding:0 16px}
+header .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;padding-top:24px;padding-bottom:24px}
+header img{height:40px;width:auto;display:block}
+nav{display:flex;flex-wrap:wrap;gap:24px;font-size:16px}
+main .wrap{display:flex;flex-direction:column;gap:64px;padding-top:48px;padding-bottom:64px}
+.hero{display:flex;flex-direction:column;gap:20px;max-width:760px}
+h1{margin:0;font-size:clamp(34px,6vw,52px);line-height:1.08;font-weight:700;letter-spacing:-.02em}
+.lead{margin:0;font-size:20px;line-height:1.55;color:var(--ink2)}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:16px}
+h2{margin:0;font-size:14px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:12px;font-size:17px;line-height:1.55}
+.status{border-top:1px solid var(--line);padding-top:32px;display:flex;flex-direction:column;gap:12px;max-width:760px}
+.status p{margin:0;font-size:17px;line-height:1.55}
+footer{border-top:1px solid var(--line)}
+footer .wrap{padding-top:28px;padding-bottom:28px;font-size:15px;color:var(--muted)}
+footer nav{gap:20px;font-size:15px}
+.doc{max-width:760px;display:flex;flex-direction:column;gap:18px;font-size:18px;line-height:1.65}
+.doc h1{font-size:clamp(30px,5vw,44px);line-height:1.12}
+.doc h2{font-size:22px;letter-spacing:0;text-transform:none;color:var(--ink);margin-top:20px}
+.doc p,.doc ul{margin:0}.doc ul{font-size:18px;gap:8px}
+.doc .meta{font-size:15px;color:var(--muted)}
+.doc .formula{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 20px;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:16px;overflow-wrap:anywhere}
+.doc code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:.92em}
+.faq h2{margin-top:24px}
+.doc a{overflow-wrap:anywhere}
+</style>
+<style>
+:root{--paper:#FFFFFF}
+.sb-sec{display:flex;flex-direction:column;gap:18px}
+.tb-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start;max-width:1040px}
+@media (max-width:760px){.tb-grid{grid-template-columns:minmax(0,1fr)}}
+.tb{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:16px 18px;min-width:0;display:flex;flex-direction:column;gap:12px;scroll-margin-top:16px}
+.tb h3{margin:0;font-size:20px;line-height:1.25}
+.tb-b{display:flex;flex-direction:column;gap:8px;border-top:1px solid var(--line);padding-top:12px;min-width:0}
+.tb-os{margin:0;font-size:12.5px;font-weight:600;color:var(--ink2)}
+.tb-sub{margin:4px 0 0;font-size:12.5px;font-weight:600;color:var(--muted)}
+.tb-k{margin:0;font-size:12.5px;font-weight:600;color:var(--ink2)}
+.tb p{margin:0;font-size:15px;line-height:1.55}
+.tb ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:4px;font-size:14px;line-height:1.5}
+.tb code,.tb pre{font-family:ui-monospace,SFMono-Regular,Consolas,monospace}
+.tb code{font-size:.92em}
+.tb-tag{font-size:12px;font-weight:600;color:var(--muted)}
+.tb-pre{position:relative;min-width:0}
+.tb pre{margin:0;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:12.5px;line-height:1.5;white-space:pre-wrap;overflow-wrap:anywhere;max-height:360px;overflow:auto}
+.tb-copy{align-self:flex-start;font:inherit;font-size:14px;font-weight:600;padding:6px 14px;border:1px solid var(--ink);border-radius:8px;background:transparent;color:var(--ink);cursor:pointer}
+.tb-copy:hover{background:var(--bg)}.tb-copy:focus-visible,.tb-s summary:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.tb-s{display:flex;flex-direction:column;gap:8px}
+.tb-s summary{display:inline-block;width:max-content;max-width:100%;font-size:14px;font-weight:600;padding:6px 14px;border:1px solid var(--line);border-radius:8px;cursor:pointer;list-style:none}
+.tb-s summary::-webkit-details-marker{display:none}
+.tb-s[open]>*:not(summary){margin-top:8px}
+.tb-src{font-size:12.5px !important;color:var(--muted)}.tb-src a{color:var(--muted)}
+.tb-rev{font-size:12.5px !important;color:var(--ink);font-weight:600}
+.dlrow{display:flex;flex-wrap:wrap;align-items:center;gap:12px}
+.sbadge{display:inline-block;line-height:0;flex:none}.sbadge img{display:block;height:52px;width:auto}
+.hbtn{display:inline-flex;align-items:center;text-decoration:none;font-weight:700;line-height:1.2}
+.hbtn.sec{height:52px;padding:0 24px;border:1px solid var(--ink);border-radius:12px;background:transparent;color:var(--ink);font-size:17px;justify-content:center}
+.hbtn.sec:hover{color:var(--ink);background:var(--card)}
+@media (max-width:699px){.dlrow{flex-direction:column;align-items:stretch;width:100%}.dlrow .sbadge{align-self:flex-start}}
+.sb-note{font-size:12.5px !important;color:var(--muted)}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<a href="/"><img src="/assets/brand/rosmarops-logo.png" srcset="/assets/brand/rosmarops-logo.png 1x, /assets/brand/rosmarops-logo@2x.png 2x" width="512" height="131" alt="RosmarOps"></a>
+<nav><a href="/blog/">Blog</a><a href="/blog/about/">About</a><a href="/observatory/">Observatory</a><a href="/sandbox/" aria-current="page">Sandbox</a><a href="/methodology/">Methodology</a><a href="/faq/">FAQ</a><a href="/es/sandbox/" hreflang="es" lang="es" aria-label="Español">ES</a><a href="/ca/sandbox/" hreflang="ca" lang="ca" aria-label="Català">CA</a></nav>
+</div></header>
+
+<main><div class="wrap">
+<article class="doc"><h1>Sandbox: try an AI agent before you give it your folders</h1>
+<p>A sandbox is a closed space where an AI agent works without being able to touch what&#x27;s outside it: the rest of your folders, your keys or the internet. Here you can see which agents have one, how to turn it on in yours and what changes when you do. RosmarOps doesn&#x27;t set up any sandbox: it tells you what your agent could touch, with it and without it.</p>
+<h2 id="which">Which agents have one</h2>
+<p>Almost every AI agent has a sandbox, but almost none ship with it on. The table shows, agent by agent and system by system, whether it has one, whether it&#x27;s on by default and whether it cuts off the internet.</p>
+<p><a href="/observatory/ai-agents-with-sandbox/">See the table</a></p>
+<h2 id="templates">Turn it on in your agent</h2>
+<p>Each template is a text you copy and paste into your agent: it shows you the change and asks you before saving it. It turns on the sandbox, limits what it can read and, where possible, cuts off the internet.</p>
+</article>
+<div class="tb-grid">
+<section class="tb" id="antigravity-cli" aria-labelledby="tb-antigravity-cli"><h3 id="tb-antigravity-cli">Antigravity CLI</h3><div class="tb-b"><p class="tb-os">macOS and Linux</p><p class="tb-k">Template</p><pre id="antigravity-cli-c1">Add these settings to my Antigravity CLI configuration (~/.gemini/antigravity-cli/settings.json), without changing anything else. Show me the change before saving it.
+
+{ &quot;enableTerminalSandbox&quot;: true, &quot;toolPermission&quot;: &quot;proceed-in-sandbox&quot; }</pre><button type="button" class="tb-copy" data-copy="antigravity-cli-c1">Copy</button><p class="tb-k">What it doesn&#x27;t cover</p><ul><li>MCP servers and reading web pages follow its permission rules. The domains you allow for reading web pages are also open to commands in the sandbox.</li><li>If you let a command leave the sandbox, it runs on your computer with all your permissions.</li><li>If your system lacks the sandbox it needs, the setting does nothing and doesn&#x27;t warn you.</li></ul><details class="tb-s"><summary>Try it just this once</summary><p>Opens Antigravity CLI with the sandbox on for this session only: it doesn&#x27;t change its settings, and when you close it everything goes back to how it was.</p><pre id="antigravity-cli-c2">agy --sandbox</pre><button type="button" class="tb-copy" data-copy="antigravity-cli-c2">Copy</button></details><p class="tb-src">Source: <a href="https://antigravity.google/docs/sandbox?tab=cli" rel="noopener">Google</a>, read on 16 November 2026.</p></div><div class="tb-b"><p class="tb-os">Windows</p><p class="tb-k">Template</p><pre id="antigravity-cli-c3">Add these settings to my Antigravity CLI configuration (~/.gemini/antigravity-cli/settings.json), without changing anything else. Show me the change before saving it.
+
+{ &quot;enableTerminalSandbox&quot;: true, &quot;toolPermission&quot;: &quot;proceed-in-sandbox&quot; }</pre><button type="button" class="tb-copy" data-copy="antigravity-cli-c3">Copy</button><p class="tb-k">What it doesn&#x27;t cover</p><ul><li>MCP servers and reading web pages follow its permission rules. The domains you allow for reading web pages are also open to commands in the sandbox.</li><li>If you let a command leave the sandbox, it runs on your computer with all your permissions.</li><li>If your system lacks the sandbox it needs, the setting does nothing and doesn&#x27;t warn you.</li><li>On Windows, it hides your home folder, but it can read folders outside it.</li></ul><p class="tb-src">Source: <a href="https://antigravity.google/docs/sandbox?tab=cli" rel="noopener">Google</a>, read on 16 November 2026.</p></div></section>
+<section class="tb" id="claude-code" aria-labelledby="tb-claude-code"><h3 id="tb-claude-code">Claude Code</h3><div class="tb-b"><p class="tb-os">macOS and Linux</p><p class="tb-k">Template</p><pre id="claude-code-c1">Add these settings to my Claude Code configuration, each in the file named on its first line, without changing anything else. Show me the change before saving it.
+
+// ~/.claude/settings.json
+{
+  &quot;permissions&quot;: {
+    &quot;defaultMode&quot;: &quot;acceptEdits&quot;,
+    &quot;disableAutoMode&quot;: &quot;disable&quot;,
+    &quot;disableBypassPermissionsMode&quot;: &quot;disable&quot;,
+    &quot;blockReadsOutsideWorkingDirectories&quot;: true,
+    &quot;allow&quot;: [
+      &quot;Bash(npm run lint)&quot;, &quot;Bash(npm run test *)&quot;,
+      &quot;Bash(git status)&quot;, &quot;Bash(git diff)&quot;
+    ],
+    &quot;ask&quot;: [
+      &quot;Edit(~/.codex/**)&quot;, &quot;Edit(**/.codex/**)&quot;,
+      &quot;Edit(~/.cursor/**)&quot;, &quot;Edit(**/.cursor/**)&quot;,
+      &quot;Edit(~/.cline/**)&quot;, &quot;Edit(**/.clinerules/**)&quot;,
+      &quot;Edit(~/.gemini/**)&quot;, &quot;Edit(**/.gemini/**)&quot;,
+      &quot;Edit(~/.grok/**)&quot;, &quot;Edit(**/.grok/**)&quot;, &quot;Edit(~/.hermes/**)&quot;,
+      &quot;Edit(~/AppData/Roaming/**)&quot;,
+      &quot;Edit(**/AGENTS.md)&quot;, &quot;Edit(**/CLAUDE.md)&quot;, &quot;Edit(**/GEMINI.md)&quot;,
+      &quot;Edit(**/.github/copilot-instructions.md)&quot;
+    ],
+    &quot;deny&quot;: [&quot;WebFetch&quot;, &quot;WebSearch&quot;, &quot;Bash(curl *)&quot;, &quot;Bash(wget *)&quot;]
+  },
+  &quot;sandbox&quot;: {
+    &quot;enabled&quot;: true,
+    &quot;failIfUnavailable&quot;: true,
+    &quot;allowUnsandboxedCommands&quot;: false,
+    &quot;autoAllowBashIfSandboxed&quot;: false,
+    &quot;network&quot;: { &quot;allowedDomains&quot;: [&quot;registry.npmjs.org&quot;, &quot;github.com&quot;], &quot;strictAllowlist&quot;: true },
+    &quot;filesystem&quot;: { &quot;denyRead&quot;: [&quot;~/.ssh&quot;, &quot;~/.aws&quot;] },
+    &quot;credentials&quot;: { &quot;files&quot;: [ { &quot;path&quot;: &quot;~/.aws/credentials&quot;, &quot;mode&quot;: &quot;deny&quot; }, { &quot;path&quot;: &quot;~/.ssh&quot;, &quot;mode&quot;: &quot;deny&quot; } ] }
+  }
+}
+
+// .claude/settings.json
+{ &quot;sandbox&quot;: { &quot;filesystem&quot;: { &quot;denyRead&quot;: [&quot;~/&quot;], &quot;allowRead&quot;: [&quot;.&quot;] } } }</pre><button type="button" class="tb-copy" data-copy="claude-code-c1">Copy</button><p class="tb-k">What it doesn&#x27;t cover</p><ul><li>The sandbox only covers the terminal. Its tools for reading, editing and opening web pages work outside it: the template limits them with their own rules.</li><li>Hooks, the MCP servers on your computer and the status line command run outside the sandbox.</li><li>Commands you list in <code>excludedCommands</code> run outside the sandbox.</li><li>Commands you type yourself with <code>!</code> in front run outside the sandbox.</li><li>The template leaves registry.npmjs.org and github.com open: what the terminal reads from the project could go out to them.</li></ul><details class="tb-s"><summary>Try it just this once</summary><p>Opens Claude Code with the sandbox on for this session only: it doesn&#x27;t change its settings, and when you close it everything goes back to how it was.</p><pre id="claude-code-c2">claude --settings &#x27;{&quot;sandbox&quot;:{&quot;enabled&quot;:true,&quot;failIfUnavailable&quot;:true,&quot;allowUnsandboxedCommands&quot;:false,&quot;autoAllowBashIfSandboxed&quot;:false,&quot;network&quot;:{&quot;allowedDomains&quot;:[],&quot;strictAllowlist&quot;:true},&quot;filesystem&quot;:{&quot;denyRead&quot;:[&quot;~/&quot;],&quot;allowRead&quot;:[&quot;/RUTA/DEL/PROYECTO&quot;]}},&quot;permissions&quot;:{&quot;blockReadsOutsideWorkingDirectories&quot;:true,&quot;deny&quot;:[&quot;WebFetch&quot;,&quot;WebSearch&quot;]}}&#x27;</pre><button type="button" class="tb-copy" data-copy="claude-code-c2">Copy</button><p><span class="tb-tag">Linux:</span> Needs: bubblewrap and socat.</p><p>Replace /RUTA/DEL/PROYECTO with your project&#x27;s path.</p></details><p class="tb-src">Source: <a href="https://code.claude.com/docs/en/sandboxing" rel="noopener">Anthropic</a>, read on 16 November 2026.</p></div><div class="tb-b"><p class="tb-os">Windows</p><p>On Windows, Claude Code has no sandbox: open it from another user account on the computer, without your folders or keys.</p><p class="tb-src">Source: <a href="https://code.claude.com/docs/en/sandboxing" rel="noopener">Anthropic</a>, read on 16 November 2026.</p></div></section>
+<section class="tb" id="cline" aria-labelledby="tb-cline"><h3 id="tb-cline">Cline in VS Code</h3><div class="tb-b"><p class="tb-os">macOS and Linux</p><p>On macOS and Linux, Cline in VS Code has no sandbox: open it from another user account on the computer, without your folders or keys.</p><p class="tb-src">Source: <a href="https://docs.cline.bot/cli/cli-reference" rel="noopener">Cline</a>, read on 16 November 2026.</p></div><div class="tb-b"><p class="tb-os">Windows</p><p>On Windows, Cline in VS Code has no sandbox: open it from another user account on the computer, without your folders or keys.</p><p class="tb-src">Source: <a href="https://docs.cline.bot/cli/cli-reference" rel="noopener">Cline</a>, read on 16 November 2026.</p></div></section>
+<section class="tb" id="codex" aria-labelledby="tb-codex"><h3 id="tb-codex">Codex</h3><div class="tb-b"><p class="tb-os">macOS and Linux</p><p class="tb-k">Template</p><pre id="codex-c1">Add these settings to my Codex configuration (~/.codex/config.toml), without changing anything else. Show me the change before saving it.
+
+default_permissions = &quot;p2&quot;
+[permissions.p2.filesystem]
+&quot;:minimal&quot; = &quot;read&quot;
+[permissions.p2.filesystem.&quot;:workspace_roots&quot;]
+&quot;.&quot; = &quot;write&quot;
+&quot;**/*.env&quot; = &quot;deny&quot;
+[permissions.p2.network]
+enabled = false</pre><button type="button" class="tb-copy" data-copy="codex-c1">Copy</button><p class="tb-k">What it doesn&#x27;t cover</p><ul><li>Web search doesn&#x27;t go through the sandbox.</li><li>App and connector calls work outside the sandbox.</li><li>MCP servers work outside the sandbox.</li><li>The browser and Computer Use work outside the sandbox.</li><li>The sandbox doesn&#x27;t cut Codex&#x27;s own connection to its service.</li><li><span class="tb-tag">Linux:</span> The files you block are fixed when each command starts: a file created later can be read.</li></ul><details class="tb-s"><summary>Try it just this once</summary><p>Opens Codex with the sandbox on for this session only: it doesn&#x27;t change its settings, and when you close it everything goes back to how it was.</p><pre id="codex-c2">codex --sandbox workspace-write -c sandbox_workspace_write.network_access=false</pre><button type="button" class="tb-copy" data-copy="codex-c2">Copy</button></details><p class="tb-src">Source: <a href="https://learn.chatgpt.com/docs/permissions" rel="noopener">OpenAI</a>, read on 16 November 2026.</p></div><div class="tb-b"><p class="tb-os">Windows</p><p class="tb-k">Template</p><pre id="codex-c3">Add these settings to my Codex configuration (~/.codex/config.toml), without changing anything else. Show me the change before saving it.
+
+default_permissions = &quot;p2&quot;
+[permissions.p2.filesystem]
+&quot;:minimal&quot; = &quot;read&quot;
+[permissions.p2.filesystem.&quot;:workspace_roots&quot;]
+&quot;.&quot; = &quot;write&quot;
+&quot;**/*.env&quot; = &quot;deny&quot;
+[permissions.p2.network]
+enabled = false
+[windows]
+sandbox = &quot;mxc&quot;</pre><button type="button" class="tb-copy" data-copy="codex-c3">Copy</button><p class="tb-k">What it doesn&#x27;t cover</p><ul><li>Web search doesn&#x27;t go through the sandbox.</li><li>App and connector calls work outside the sandbox.</li><li>MCP servers work outside the sandbox.</li><li>The browser and Computer Use work outside the sandbox.</li><li>The sandbox doesn&#x27;t cut Codex&#x27;s own connection to its service.</li><li>The files you block are fixed when each command starts: a file created later can be read.</li></ul><details class="tb-s"><summary>Try it just this once</summary><p>Opens Codex with the sandbox on for this session only: it doesn&#x27;t change its settings, and when you close it everything goes back to how it was.</p><pre id="codex-c4">codex --sandbox workspace-write -c sandbox_workspace_write.network_access=false -c windows.sandbox=mxc</pre><button type="button" class="tb-copy" data-copy="codex-c4">Copy</button><p>Needs: Windows 11 24H2 or 25H2.</p></details><p class="tb-src">Source: <a href="https://learn.chatgpt.com/docs/permissions" rel="noopener">OpenAI</a>, read on 16 November 2026.</p></div></section>
+<section class="tb" id="cursor" aria-labelledby="tb-cursor"><h3 id="tb-cursor">Cursor</h3><div class="tb-b"><p class="tb-os">macOS and Linux</p><p class="tb-k">Template</p><p>In Cursor&#x27;s settings (Settings &gt; Agents &gt; Approvals &amp; Execution), choose the «Allowlist» mode, leave its list empty and turn on the sandbox.</p><pre id="cursor-c1">Add these settings to my Cursor configuration, each in the file named on its first line, without changing anything else. Show me the change before saving it.
+
+// ~/.cursor/sandbox.json
+{ &quot;readBoundary&quot;: &quot;workspace&quot;, &quot;networkPolicy&quot;: { &quot;default&quot;: &quot;deny&quot;, &quot;allow&quot;: [&quot;registry.npmjs.org&quot;] } }</pre><button type="button" class="tb-copy" data-copy="cursor-c1">Copy</button><p class="tb-k">What it doesn&#x27;t cover</p><ul><li>Commands you add to its allowlist and fetching web pages run outside the sandbox.</li><li>It can change the settings and instructions of other agents inside the project.</li><li>MCP servers work outside the sandbox.</li><li>On Linux it needs Landlock v3; if the system doesn&#x27;t have it, it goes back to asking you before each command.</li></ul><p class="tb-src">Source: <a href="https://cursor.com/docs/agent/security/run-modes.md" rel="noopener">Anysphere</a>, read on 16 November 2026.</p></div><div class="tb-b"><p class="tb-os">Windows</p><p>On Windows, Cursor has no sandbox: open it from another user account on the computer, without your folders or keys.</p><p class="tb-src">Source: <a href="https://cursor.com/docs/reference/sandbox.md" rel="noopener">Anysphere</a>, read on 16 November 2026.</p></div></section>
+<section class="tb" id="gemini-cli" aria-labelledby="tb-gemini-cli"><h3 id="tb-gemini-cli">Gemini CLI</h3><div class="tb-b"><p class="tb-os">macOS and Linux</p><p class="tb-sub">macOS</p><p class="tb-k">Template</p><pre id="gemini-cli-c1">Add these settings to my Gemini CLI configuration, each in the file named on its first line, without changing anything else. Show me the change before saving it.
+
+// ~/.gemini/settings.json
+{ &quot;tools&quot;: { &quot;sandbox&quot;: true, &quot;sandboxNetworkAccess&quot;: false } }</pre><button type="button" class="tb-copy" data-copy="gemini-cli-c1">Copy</button><p>On macOS, this setting doesn&#x27;t go in a file: start Gemini CLI like this every time.</p><pre id="gemini-cli-c2">SEATBELT_PROFILE=strict-proxied gemini</pre><button type="button" class="tb-copy" data-copy="gemini-cli-c2">Copy</button><p class="tb-k">What it doesn&#x27;t cover</p><ul><li>Its documentation doesn&#x27;t say whether MCP servers, fetching web pages and hooks go through the sandbox.</li><li>On macOS, the template&#x27;s profile sends the network through a proxy, and its documentation doesn&#x27;t say how to set that proxy.</li></ul><p class="tb-src">Source: <a href="https://geminicli.com/docs/cli/sandbox/" rel="noopener">Google</a>, read on 16 November 2026.</p><p class="tb-sub">Linux</p><p class="tb-k">Template</p><pre id="gemini-cli-c3">Add these settings to my Gemini CLI configuration (~/.gemini/settings.json), without changing anything else. Show me the change before saving it.
+
+{ &quot;tools&quot;: { &quot;sandbox&quot;: &quot;docker&quot;, &quot;sandboxNetworkAccess&quot;: false } }</pre><button type="button" class="tb-copy" data-copy="gemini-cli-c3">Copy</button><p class="tb-k">What it doesn&#x27;t cover</p><ul><li>Its documentation doesn&#x27;t say whether MCP servers, fetching web pages and hooks go through the sandbox.</li><li>It needs Docker installed and running.</li></ul><p class="tb-src">Source: <a href="https://geminicli.com/docs/cli/sandbox/" rel="noopener">Google</a>, read on 16 November 2026.</p></div><div class="tb-b"><p class="tb-os">Windows</p><p class="tb-k">Template</p><pre id="gemini-cli-c4">Add these settings to my Gemini CLI configuration (~/.gemini/settings.json), without changing anything else. Show me the change before saving it.
+
+{ &quot;tools&quot;: { &quot;sandbox&quot;: &quot;windows-native&quot;, &quot;sandboxNetworkAccess&quot;: false } }</pre><button type="button" class="tb-copy" data-copy="gemini-cli-c4">Copy</button><p class="tb-k">What it doesn&#x27;t cover</p><ul><li>Its documentation doesn&#x27;t say whether MCP servers, fetching web pages and hooks go through the sandbox.</li><li>On Windows, its documentation doesn&#x27;t say what it can read or whether it cuts the network.</li></ul><p class="tb-src">Source: <a href="https://geminicli.com/docs/cli/sandbox/" rel="noopener">Google</a>, read on 16 November 2026.</p></div></section>
+<section class="tb" id="github-copilot" aria-labelledby="tb-github-copilot"><h3 id="tb-github-copilot">GitHub Copilot in VS Code</h3><div class="tb-b"><p class="tb-os">macOS and Linux</p><p class="tb-k">Template</p><p>In VS Code, open the settings and set:</p><pre id="github-copilot-c1">&quot;chat.agent.sandbox.enabled&quot;: &quot;on&quot;,
+&quot;chat.agent.sandbox.network.allowNetwork&quot;: false,
+&quot;chat.agent.sandbox.fileSystem.allowDevToolAccess&quot;: false,
+&quot;chat.agent.sandbox.fileSystem.userConfiguredPaths&quot;: { &quot;deniedPaths&quot;: [&quot;~/.ssh&quot;, &quot;~/.aws&quot;] },
+&quot;chat.agent.sandbox.allowUnsandboxedCommands&quot;: false</pre><button type="button" class="tb-copy" data-copy="github-copilot-c1">Copy</button><p class="tb-k">What it doesn&#x27;t cover</p><ul><li>VS Code&#x27;s own tools that don&#x27;t launch commands don&#x27;t go through the sandbox: they use their own checks.</li><li>MCP servers that VS Code doesn&#x27;t start work outside the sandbox.</li><li>Inside the sandbox, commands get your git and gh credentials by default.</li><li>Its documentation doesn&#x27;t say whether it can read the rest of your home folder: the template only blocks ~/.ssh and ~/.aws.</li></ul><p class="tb-src">Source: <a href="https://code.visualstudio.com/docs/agents/run/agent-sandboxing.md" rel="noopener">GitHub</a>, read on 16 November 2026.</p></div><div class="tb-b"><p class="tb-os">Windows</p><p class="tb-k">Template</p><p>In VS Code, open the settings and set:</p><pre id="github-copilot-c2">&quot;chat.agent.sandbox.enabled&quot;: &quot;on&quot;,
+&quot;chat.agent.sandbox.network.allowNetwork&quot;: false,
+&quot;chat.agent.sandbox.fileSystem.allowDevToolAccess&quot;: false,
+&quot;chat.agent.sandbox.fileSystem.userConfiguredPaths&quot;: { &quot;deniedPaths&quot;: [&quot;~/.ssh&quot;, &quot;~/.aws&quot;] },
+&quot;chat.agent.sandbox.allowUnsandboxedCommands&quot;: false</pre><button type="button" class="tb-copy" data-copy="github-copilot-c2">Copy</button><p class="tb-k">What it doesn&#x27;t cover</p><ul><li>VS Code&#x27;s own tools that don&#x27;t launch commands don&#x27;t go through the sandbox: they use their own checks.</li><li>MCP servers that VS Code doesn&#x27;t start work outside the sandbox.</li><li>Inside the sandbox, commands get your git and gh credentials by default.</li><li>Its documentation doesn&#x27;t say whether it can read the rest of your home folder: the template only blocks ~/.ssh and ~/.aws.</li></ul><p class="tb-src">Source: <a href="https://code.visualstudio.com/docs/agents/run/agent-sandboxing.md" rel="noopener">GitHub</a>, read on 16 November 2026.</p></div></section>
+<section class="tb" id="grok-build" aria-labelledby="tb-grok-build"><h3 id="tb-grok-build">Grok Build</h3><div class="tb-b"><p class="tb-os">macOS and Linux</p><p class="tb-k">Template</p><pre id="grok-build-c1">Add these settings to my Grok Build configuration (~/.grok/config.toml), without changing anything else. Show me the change before saving it.
+
+[ui]
+permission_mode = &quot;ask&quot;
+
+[permission]
+rules = [
+  { action = &quot;allow&quot;, tool = &quot;bash&quot;, pattern = &quot;npm run lint&quot; },
+  { action = &quot;allow&quot;, tool = &quot;bash&quot;, pattern = &quot;npm run test *&quot; },
+  { action = &quot;allow&quot;, tool = &quot;bash&quot;, pattern = &quot;git status&quot; },
+  { action = &quot;allow&quot;, tool = &quot;bash&quot;, pattern = &quot;git diff&quot; },
+  { action = &quot;deny&quot;,  tool = &quot;webfetch&quot; },
+]
+deny = [&quot;WebSearch&quot;]
+
+[sandbox]
+profile = &quot;strict&quot;
+
+[compat.claude]
+hooks = false
+
+[compat.cursor]
+hooks = false</pre><button type="button" class="tb-copy" data-copy="grok-build-c1">Copy</button><p class="tb-k">What it doesn&#x27;t cover</p><ul><li>On macOS, the sandbox doesn&#x27;t cut the network for commands.</li><li>The sandbox doesn&#x27;t cut the connection to the model or its web tools.</li><li>Web search may stay open: its documentation only confirms it&#x27;s cut when you start it with <code>--deny WebSearch</code>.</li></ul><details class="tb-s"><summary>Try it just this once</summary><p>Opens Grok Build with the sandbox on for this session only: it doesn&#x27;t change its settings, and when you close it everything goes back to how it was.</p><pre id="grok-build-c2">grok --sandbox strict --disable-web-search --deny WebFetch</pre><button type="button" class="tb-copy" data-copy="grok-build-c2">Copy</button><p><span class="tb-tag">Linux:</span> Needs: Linux 5.13 or later.</p></details><p class="tb-src">Source: <a href="https://docs.x.ai/build/features/sandbox.md" rel="noopener">xAI</a>, read on 16 November 2026.</p></div><div class="tb-b"><p class="tb-os">Windows</p><p>On Windows, Grok Build has no sandbox: open it from another user account on the computer, without your folders or keys.</p><p class="tb-src">Source: <a href="https://docs.x.ai/build/features/sandbox.md" rel="noopener">xAI</a>, read on 16 November 2026.</p></div></section>
+<section class="tb" id="hermes-agent" aria-labelledby="tb-hermes-agent"><h3 id="tb-hermes-agent">Hermes Agent</h3><div class="tb-b"><p class="tb-os">macOS and Linux</p><p class="tb-k">Template</p><pre id="hermes-agent-c1">Add these settings to my Hermes Agent configuration (~/.hermes/config.yaml), without changing anything else. Show me the change before saving it.
+
+terminal:
+  backend: docker
+  docker_network: false</pre><button type="button" class="tb-copy" data-copy="hermes-agent-c1">Copy</button><p class="tb-k">What it doesn&#x27;t cover</p><ul><li>MCP servers run on your computer, not in the container.</li><li>It may reuse an earlier container, with a different network or other folders mounted.</li><li>It needs Docker installed and running.</li></ul><p class="tb-src">Source: <a href="https://hermes-agent.nousresearch.com/docs/user-guide/configuration" rel="noopener">Nous Research</a>, read on 16 November 2026.</p></div><div class="tb-b"><p class="tb-os">Windows</p><p class="tb-k">Template</p><pre id="hermes-agent-c2">Add these settings to my Hermes Agent configuration (~/.hermes/config.yaml), without changing anything else. Show me the change before saving it.
+
+terminal:
+  backend: docker
+  docker_network: false</pre><button type="button" class="tb-copy" data-copy="hermes-agent-c2">Copy</button><p class="tb-k">What it doesn&#x27;t cover</p><ul><li>MCP servers run on your computer, not in the container.</li><li>It may reuse an earlier container, with a different network or other folders mounted.</li><li>It needs Docker installed and running.</li></ul><p class="tb-src">Source: <a href="https://hermes-agent.nousresearch.com/docs/user-guide/configuration" rel="noopener">Nous Research</a>, read on 16 November 2026.</p></div></section>
+</div>
+<article class="doc">
+<h2 id="apart">Try it apart</h2>
+<p>If you&#x27;re going to try an agent you don&#x27;t know, don&#x27;t open it in your home folder: an empty folder isn&#x27;t enough. The guide explains three ways to isolate it.</p>
+<p><a href="/try-an-ai-agent/">How to try an AI agent in a test environment</a></p>
+<h2 id="then">Then see what it could touch</h2>
+<p>Run RosmarOps on your computer or in your test environment: it tells you what each agent can do without asking you, with the template and without it.</p>
+<div class="dlrow"><a class="sbadge" href="/download?from=sandbox&amp;os=store" target="_blank" rel="nofollow noopener"><img src="/assets/store/microsoft-store-en.svg" width="161" height="44" alt="Download from the Microsoft Store"></a><a class="hbtn sec" href="/macos/">Mac (preview)</a><a class="hbtn sec" href="/linux/">Linux</a></div>
+<p class="sb-note">A sandbox limits what an agent could touch; it doesn&#x27;t make it harmless.</p>
+</article>
+</div></main>
+
+<footer><div class="wrap">
+<nav><a href="/blog/">Blog</a><a href="/blog/about/">About</a><a href="/observatory/">Observatory</a><a href="/sandbox/" aria-current="page">Sandbox</a><a href="/methodology/">Methodology</a><a href="/faq/">FAQ</a><a href="/es/sandbox/" hreflang="es" lang="es" aria-label="Español">ES</a><a href="/ca/sandbox/" hreflang="ca" lang="ca" aria-label="Català">CA</a><a href="/privacy/">Privacy</a><a href="/legal-notice/">Legal notice</a><a href="/terms/">Terms</a><a href="#" data-cc="show-preferencesModal">Cookie settings</a></nav>
+</div></footer>
+<script src="/assets/consent/cookieconsent.umd.js?v=3.1.0" defer></script>
+<script src="/assets/consent/consent.js?v=5" defer></script><script src="/assets/visits/visits.js?v=3" defer></script>
+<script>
+document.querySelectorAll('.tb-copy').forEach(function(b){b.addEventListener('click',function(){
+var pre=document.getElementById(b.getAttribute('data-copy'));if(!pre)return;
+function select(){var r=document.createRange();r.selectNodeContents(pre);var s=window.getSelection();s.removeAllRanges();s.addRange(r);}
+try{navigator.clipboard.writeText(pre.textContent).catch(select);}catch(e){select();}});});
+</script>
+</body>
+</html>

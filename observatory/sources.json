@@ -810,6 +810,276 @@
       "public_url": "https://cursor.com/docs/api",
       "fragile": false,
       "notes": "GTM-160 (Albert, 14-11): watch only, after CTO-47. Not a changelog: the collector compares today's lines and links that mention Grok Bot with read, rules, settings, connectors, OAuth or scope against every earlier day; a new one goes to new, dated the day it was seen. It never goes to checked or not_checked of the daily."
+    },
+    {
+      "id": "F48",
+      "name": "Sandbox template: antigravity-cli (antigravity.google)",
+      "scope": "antigravity-cli",
+      "method": "page-watch",
+      "read": {
+        "url": "https://antigravity.google/docs/sandbox?tab=cli",
+        "watch": [
+          "enableTerminalSandbox",
+          "proceed-in-sandbox",
+          "Sandboxed commands run without network access by default",
+          "full privileges",
+          "have no effect",
+          "anything not explicitly mounted is invisible",
+          "folders outside your user profile are readable",
+          "MCP tools, and web page reads",
+          "are added to the sandbox's outbound allowlist"
+        ]
+      },
+      "public_url": "https://antigravity.google/docs/sandbox?tab=cli",
+      "fragile": false,
+      "notes": "GTM-175 (Albert, 16-11): watch only, after CTO-58 «Cómo se avisa». The collector checks that each watch string (key names and the quotes each template value rests on) is still in the page; a missing one goes to missing, and the template on /sandbox/ shows «Por revisar». Not a changelog: it never goes to checked or not_checked of the daily."
+    },
+    {
+      "id": "F49",
+      "name": "Sandbox template: claude-code (code.claude.com)",
+      "scope": "claude-code",
+      "method": "page-watch",
+      "read": {
+        "url": "https://code.claude.com/docs/en/sandboxing",
+        "watch": [
+          "failIfUnavailable",
+          "allowUnsandboxedCommands",
+          "strictAllowlist",
+          "allowedDomains",
+          "denyRead",
+          "allowRead",
+          "excludedCommands",
+          "autoAllowBashIfSandboxed",
+          "runs commands unsandboxed",
+          "The sandbox covers shell commands only",
+          "doesn't stop the Read tool",
+          "status line command",
+          "shell-mode prompt runs unsandboxed",
+          "bubblewrap",
+          "socat",
+          "start Claude Code with --settings",
+          "Set it to false to prompt for sandboxed commands"
+        ]
+      },
+      "public_url": "https://code.claude.com/docs/en/sandboxing",
+      "fragile": false,
+      "notes": "GTM-175 (Albert, 16-11): watch only, after CTO-58 «Cómo se avisa». The collector checks that each watch string (key names and the quotes each template value rests on) is still in the page; a missing one goes to missing, and the template on /sandbox/ shows «Por revisar». Not a changelog: it never goes to checked or not_checked of the daily."
+    },
+    {
+      "id": "F50",
+      "name": "Sandbox template: codex (learn.chatgpt.com)",
+      "scope": "codex",
+      "method": "page-watch",
+      "read": {
+        "url": "https://learn.chatgpt.com/docs/permissions",
+        "watch": [
+          "default_permissions",
+          ":workspace_roots",
+          ":minimal",
+          "Permission profiles do not compose with the older sandbox settings",
+          "Matching files created afterward are not added to that process's deny list"
+        ]
+      },
+      "public_url": "https://learn.chatgpt.com/docs/permissions",
+      "fragile": false,
+      "notes": "GTM-175 (Albert, 16-11): watch only, after CTO-58 «Cómo se avisa». The collector checks that each watch string (key names and the quotes each template value rests on) is still in the page; a missing one goes to missing, and the template on /sandbox/ shows «Por revisar». Not a changelog: it never goes to checked or not_checked of the daily."
+    },
+    {
+      "id": "F51",
+      "name": "Sandbox template: codex (learn.chatgpt.com)",
+      "scope": "codex",
+      "method": "page-watch",
+      "read": {
+        "url": "https://learn.chatgpt.com/docs/agent-approvals-security",
+        "watch": [
+          "workspace-write",
+          "keeps network access turned off unless you enable it",
+          "It does not filter web search",
+          "app or connector tool calls",
+          "MCP server connections",
+          "browser or Computer Use activity"
+        ]
+      },
+      "public_url": "https://learn.chatgpt.com/docs/agent-approvals-security",
+      "fragile": false,
+      "notes": "GTM-175 (Albert, 16-11): watch only, after CTO-58 «Cómo se avisa». The collector checks that each watch string (key names and the quotes each template value rests on) is still in the page; a missing one goes to missing, and the template on /sandbox/ shows «Por revisar». Not a changelog: it never goes to checked or not_checked of the daily."
+    },
+    {
+      "id": "F52",
+      "name": "Sandbox template: codex (learn.chatgpt.com)",
+      "scope": "codex",
+      "method": "page-watch",
+      "read": {
+        "url": "https://learn.chatgpt.com/codex/windows/windows-sandbox.md",
+        "watch": [
+          "mxc",
+          "doesn't support denied read paths",
+          "24H2",
+          "25H2",
+          "for one command without changing the saved sandbox selection"
+        ]
+      },
+      "public_url": "https://learn.chatgpt.com/codex/windows/windows-sandbox.md",
+      "fragile": false,
+      "notes": "GTM-175 (Albert, 16-11): watch only, after CTO-58 «Cómo se avisa». The collector checks that each watch string (key names and the quotes each template value rests on) is still in the page; a missing one goes to missing, and the template on /sandbox/ shows «Por revisar». Not a changelog: it never goes to checked or not_checked of the daily."
+    },
+    {
+      "id": "F53",
+      "name": "Sandbox template: cursor (cursor.com)",
+      "scope": "cursor",
+      "method": "page-watch",
+      "read": {
+        "url": "https://cursor.com/docs/agent/security/run-modes.md",
+        "watch": [
+          "Allowlist",
+          "With sandboxing enabled, supported shell commands can run in the sandbox",
+          "allowlisted shell, Fetch, and MCP calls run outside the sandbox",
+          "Landlock v3",
+          "falls back to asking for approval"
+        ]
+      },
+      "public_url": "https://cursor.com/docs/agent/security/run-modes.md",
+      "fragile": false,
+      "notes": "GTM-175 (Albert, 16-11): watch only, after CTO-58 «Cómo se avisa». The collector checks that each watch string (key names and the quotes each template value rests on) is still in the page; a missing one goes to missing, and the template on /sandbox/ shows «Por revisar». Not a changelog: it never goes to checked or not_checked of the daily."
+    },
+    {
+      "id": "F54",
+      "name": "Sandbox template: cursor (cursor.com)",
+      "scope": "cursor",
+      "method": "page-watch",
+      "read": {
+        "url": "https://cursor.com/docs/reference/sandbox.md",
+        "watch": [
+          "readBoundary",
+          "networkPolicy"
+        ]
+      },
+      "public_url": "https://cursor.com/docs/reference/sandbox.md",
+      "fragile": false,
+      "notes": "GTM-175 (Albert, 16-11): watch only, after CTO-58 «Cómo se avisa». The collector checks that each watch string (key names and the quotes each template value rests on) is still in the page; a missing one goes to missing, and the template on /sandbox/ shows «Por revisar». Not a changelog: it never goes to checked or not_checked of the daily."
+    },
+    {
+      "id": "F55",
+      "name": "Sandbox template: gemini-cli (geminicli.com)",
+      "scope": "gemini-cli",
+      "method": "page-watch",
+      "read": {
+        "url": "https://geminicli.com/docs/cli/sandbox/",
+        "watch": [
+          "SEATBELT_PROFILE",
+          "strict-proxied",
+          "only has access to the current project workspace"
+        ]
+      },
+      "public_url": "https://geminicli.com/docs/cli/sandbox/",
+      "fragile": false,
+      "notes": "GTM-175 (Albert, 16-11): watch only, after CTO-58 «Cómo se avisa». The collector checks that each watch string (key names and the quotes each template value rests on) is still in the page; a missing one goes to missing, and the template on /sandbox/ shows «Por revisar». Not a changelog: it never goes to checked or not_checked of the daily."
+    },
+    {
+      "id": "F56",
+      "name": "Sandbox template: gemini-cli (geminicli.com)",
+      "scope": "gemini-cli",
+      "method": "page-watch",
+      "read": {
+        "url": "https://geminicli.com/docs/reference/configuration/",
+        "watch": [
+          "tools.sandbox",
+          "sandboxNetworkAccess"
+        ]
+      },
+      "public_url": "https://geminicli.com/docs/reference/configuration/",
+      "fragile": false,
+      "notes": "GTM-175 (Albert, 16-11): watch only, after CTO-58 «Cómo se avisa». The collector checks that each watch string (key names and the quotes each template value rests on) is still in the page; a missing one goes to missing, and the template on /sandbox/ shows «Por revisar». Not a changelog: it never goes to checked or not_checked of the daily."
+    },
+    {
+      "id": "F57",
+      "name": "Sandbox template: github-copilot (code.visualstudio.com)",
+      "scope": "github-copilot",
+      "method": "page-watch",
+      "read": {
+        "url": "https://code.visualstudio.com/docs/agents/run/agent-sandboxing.md",
+        "watch": [
+          "chat.agent.sandbox.enabled",
+          "chat.agent.sandbox.network.allowNetwork",
+          "chat.agent.sandbox.fileSystem.allowDevToolAccess",
+          "userConfiguredPaths",
+          "deniedPaths",
+          "chat.agent.sandbox.allowUnsandboxedCommands",
+          "use their own permission checks",
+          "They don't cover servers you start independently",
+          "including registry tokens",
+          "provides Git authentication to sandboxed processes"
+        ]
+      },
+      "public_url": "https://code.visualstudio.com/docs/agents/run/agent-sandboxing.md",
+      "fragile": false,
+      "notes": "GTM-175 (Albert, 16-11): watch only, after CTO-58 «Cómo se avisa». The collector checks that each watch string (key names and the quotes each template value rests on) is still in the page; a missing one goes to missing, and the template on /sandbox/ shows «Por revisar». Not a changelog: it never goes to checked or not_checked of the daily."
+    },
+    {
+      "id": "F58",
+      "name": "Sandbox template: grok-build (docs.x.ai)",
+      "scope": "grok-build",
+      "method": "page-watch",
+      "read": {
+        "url": "https://docs.x.ai/build/features/sandbox.md",
+        "watch": [
+          "CWD and system paths",
+          "no-op on macOS",
+          "Model API and web tools are not blocked by child-network settings",
+          "Landlock"
+        ]
+      },
+      "public_url": "https://docs.x.ai/build/features/sandbox.md",
+      "fragile": false,
+      "notes": "GTM-175 (Albert, 16-11): watch only, after CTO-58 «Cómo se avisa». The collector checks that each watch string (key names and the quotes each template value rests on) is still in the page; a missing one goes to missing, and the template on /sandbox/ shows «Por revisar». Not a changelog: it never goes to checked or not_checked of the daily."
+    },
+    {
+      "id": "F59",
+      "name": "Sandbox template: grok-build (docs.x.ai)",
+      "scope": "grok-build",
+      "method": "page-watch",
+      "read": {
+        "url": "https://docs.x.ai/build/features/permissions.md",
+        "watch": [
+          "take the same patterns per invocation",
+          "WebSearch"
+        ]
+      },
+      "public_url": "https://docs.x.ai/build/features/permissions.md",
+      "fragile": false,
+      "notes": "GTM-175 (Albert, 16-11): watch only, after CTO-58 «Cómo se avisa». The collector checks that each watch string (key names and the quotes each template value rests on) is still in the page; a missing one goes to missing, and the template on /sandbox/ shows «Por revisar». Not a changelog: it never goes to checked or not_checked of the daily."
+    },
+    {
+      "id": "F60",
+      "name": "Sandbox template: grok-build (docs.x.ai)",
+      "scope": "grok-build",
+      "method": "page-watch",
+      "read": {
+        "url": "https://docs.x.ai/build/cli/reference.md",
+        "watch": [
+          "--sandbox",
+          "--disable-web-search",
+          "--deny"
+        ]
+      },
+      "public_url": "https://docs.x.ai/build/cli/reference.md",
+      "fragile": false,
+      "notes": "GTM-175 (Albert, 16-11): watch only, after CTO-58 «Cómo se avisa». The collector checks that each watch string (key names and the quotes each template value rests on) is still in the page; a missing one goes to missing, and the template on /sandbox/ shows «Por revisar». Not a changelog: it never goes to checked or not_checked of the daily."
+    },
+    {
+      "id": "F61",
+      "name": "Sandbox template: hermes-agent (hermes-agent.nousresearch.com)",
+      "scope": "hermes-agent",
+      "method": "page-watch",
+      "read": {
+        "url": "https://hermes-agent.nousresearch.com/docs/user-guide/configuration",
+        "watch": [
+          "docker_network"
+        ]
+      },
+      "public_url": "https://hermes-agent.nousresearch.com/docs/user-guide/configuration",
+      "fragile": false,
+      "notes": "GTM-175 (Albert, 16-11): watch only, after CTO-58 «Cómo se avisa». The collector checks that each watch string (key names and the quotes each template value rests on) is still in the page; a missing one goes to missing, and the template on /sandbox/ shows «Por revisar». Not a changelog: it never goes to checked or not_checked of the daily."
     }
   ]
 }

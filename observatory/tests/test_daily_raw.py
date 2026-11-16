@@ -76,9 +76,10 @@ class FromRaw(unittest.TestCase):
         self.assertEqual(check(d), [])
 
     def test_page_watch_sources_stay_out_of_the_daily(self):
-        """GTM-160: F46 and F47 only watch for a Grok Bot read access; they never show in checked or not_checked."""
+        """GTM-160: F46 and F47 only watch for a Grok Bot read access; GTM-175: F48-F61 only watch the pages of the
+        sandbox templates. They never show in checked or not_checked."""
         watch = [s for s in SOURCES if s["method"] == "page-watch"]
-        self.assertEqual([s["id"] for s in watch], ["F46", "F47"])
+        self.assertEqual([s["id"] for s in watch], ["F46", "F47"] + [f"F{i}" for i in range(48, 62)])
         names = {s["name"] for s in watch}
         d = daily_raw.build(D, raw(closed=("F46", "F47")), SOURCES, [], [], NOW)
         self.assertEqual(d["status"], "no_changes")
@@ -91,6 +92,8 @@ class FromRaw(unittest.TestCase):
 
     def test_every_public_url_passes_the_host_check(self):
         for s in SOURCES:
+            if "watch" in s["read"]:  # GTM-175: a sandbox template's page; never cited by the daily (page-watch)
+                continue
             self.assertTrue(daily_check.host_allowed(s["public_url"]), s["id"])
 
 

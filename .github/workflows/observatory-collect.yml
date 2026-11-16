@@ -63,7 +63,12 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add "observatory/raw/$d.json"
+          # GTM-175: /sandbox/ shows a template «Por revisar» when its page lost a watched string. Rebuilt here so main
+          # stays consistent with the raw file; only the three sandbox pages are committed (deploy is still Albert's).
+          python observatory/build.py
+          git add site/sandbox/index.html site/es/sandbox/index.html site/ca/sandbox/index.html
           git commit -m "observatory: raw $d"
+          git checkout -- . && git clean -fdq -- site wp # anything else the build changed is not this workflow's to commit
           git pull --rebase origin main
           git push origin HEAD:main
 

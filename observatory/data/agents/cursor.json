@@ -761,5 +761,130 @@
         }
       }
     }
+  },
+  "templates": {
+    "windows": {
+      "kind": "separate_account",
+      "blocks": [],
+      "covers": {
+        "sandbox": false,
+        "read_limit": "unknown",
+        "network_cut": "no"
+      },
+      "uncovered": [],
+      "measure": "guided",
+      "source": {
+        "url": "https://cursor.com/docs/reference/sandbox.md",
+        "official": true,
+        "accessed_at": "2026-11-16",
+        "page_date": null
+      },
+      "watch": []
+    },
+    "macos": {
+      "kind": "agent_sandbox",
+      "intro": "paste_many",
+      "blocks": [
+        {
+          "file": null,
+          "format": "ui",
+          "value": "cursor_allowlist_sandbox"
+        },
+        {
+          "file": "~/.cursor/sandbox.json",
+          "format": "json",
+          "value": "{ \"readBoundary\": \"workspace\", \"networkPolicy\": { \"default\": \"deny\", \"allow\": [\"registry.npmjs.org\"] } }"
+        }
+      ],
+      "covers": {
+        "sandbox": true,
+        "read_limit": "workspace",
+        "network_cut": "allowlist"
+      },
+      "uncovered": [
+        "allowlist_and_fetch_outside_sandbox",
+        "other_agents_config_in_project",
+        "mcp_outside_sandbox"
+      ],
+      "measure": "guided",
+      "source": {
+        "url": "https://cursor.com/docs/agent/security/run-modes.md",
+        "official": true,
+        "accessed_at": "2026-11-16",
+        "page_date": null
+      },
+      "watch": [
+        "Allowlist",
+        "With sandboxing enabled, supported shell commands can run in the sandbox",
+        "allowlisted shell, Fetch, and MCP calls run outside the sandbox",
+        "Landlock v3",
+        "falls back to asking for approval"
+      ],
+      "extra_sources": [
+        {
+          "url": "https://cursor.com/docs/reference/sandbox.md",
+          "official": true,
+          "accessed_at": "2026-11-16",
+          "page_date": null,
+          "watch": [
+            "readBoundary",
+            "networkPolicy"
+          ]
+        }
+      ]
+    },
+    "linux": {
+      "kind": "agent_sandbox",
+      "intro": "paste_many",
+      "blocks": [
+        {
+          "file": null,
+          "format": "ui",
+          "value": "cursor_allowlist_sandbox"
+        },
+        {
+          "file": "~/.cursor/sandbox.json",
+          "format": "json",
+          "value": "{ \"readBoundary\": \"workspace\", \"networkPolicy\": { \"default\": \"deny\", \"allow\": [\"registry.npmjs.org\"] } }"
+        }
+      ],
+      "covers": {
+        "sandbox": true,
+        "read_limit": "workspace",
+        "network_cut": "allowlist"
+      },
+      "uncovered": [
+        "allowlist_and_fetch_outside_sandbox",
+        "other_agents_config_in_project",
+        "mcp_outside_sandbox",
+        "linux_needs_landlock_v3"
+      ],
+      "measure": "guided",
+      "source": {
+        "url": "https://cursor.com/docs/agent/security/run-modes.md",
+        "official": true,
+        "accessed_at": "2026-11-16",
+        "page_date": null
+      },
+      "watch": [
+        "Allowlist",
+        "With sandboxing enabled, supported shell commands can run in the sandbox",
+        "allowlisted shell, Fetch, and MCP calls run outside the sandbox",
+        "Landlock v3",
+        "falls back to asking for approval"
+      ],
+      "extra_sources": [
+        {
+          "url": "https://cursor.com/docs/reference/sandbox.md",
+          "official": true,
+          "accessed_at": "2026-11-16",
+          "page_date": null,
+          "watch": [
+            "readBoundary",
+            "networkPolicy"
+          ]
+        }
+      ]
+    }
   }
 }

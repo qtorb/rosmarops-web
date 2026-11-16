@@ -163,5 +163,148 @@
         }
       }
     }
+  },
+  "templates": {
+    "windows": {
+      "kind": "separate_account",
+      "blocks": [],
+      "covers": {
+        "sandbox": false,
+        "read_limit": "unknown",
+        "network_cut": "no"
+      },
+      "uncovered": [],
+      "measure": "guided",
+      "source": {
+        "url": "https://docs.x.ai/build/features/sandbox.md",
+        "official": true,
+        "accessed_at": "2026-11-16",
+        "page_date": null
+      },
+      "watch": []
+    },
+    "macos": {
+      "kind": "agent_sandbox",
+      "intro": "paste_one",
+      "blocks": [
+        {
+          "file": "~/.grok/config.toml",
+          "format": "toml",
+          "value": "[ui]\npermission_mode = \"ask\"\n\n[permission]\nrules = [\n  { action = \"allow\", tool = \"bash\", pattern = \"npm run lint\" },\n  { action = \"allow\", tool = \"bash\", pattern = \"npm run test *\" },\n  { action = \"allow\", tool = \"bash\", pattern = \"git status\" },\n  { action = \"allow\", tool = \"bash\", pattern = \"git diff\" },\n  { action = \"deny\",  tool = \"webfetch\" },\n]\ndeny = [\"WebSearch\"]\n\n[sandbox]\nprofile = \"strict\"\n\n[compat.claude]\nhooks = false\n\n[compat.cursor]\nhooks = false"
+        }
+      ],
+      "covers": {
+        "sandbox": true,
+        "read_limit": "workspace",
+        "network_cut": "no"
+      },
+      "uncovered": [
+        "network_cut_noop_macos",
+        "model_api_web_tools_not_blocked",
+        "web_search_needs_launch_flag"
+      ],
+      "measure": "guided",
+      "source": {
+        "url": "https://docs.x.ai/build/features/sandbox.md",
+        "official": true,
+        "accessed_at": "2026-11-16",
+        "page_date": null
+      },
+      "watch": [
+        "CWD and system paths",
+        "no-op on macOS",
+        "Model API and web tools are not blocked by child-network settings",
+        "Landlock"
+      ],
+      "extra_sources": [
+        {
+          "url": "https://docs.x.ai/build/features/permissions.md",
+          "official": true,
+          "accessed_at": "2026-11-16",
+          "page_date": null,
+          "watch": [
+            "take the same patterns per invocation",
+            "WebSearch"
+          ]
+        }
+      ],
+      "session": {
+        "command": "grok --sandbox strict --disable-web-search --deny WebFetch",
+        "requires": [],
+        "source": {
+          "url": "https://docs.x.ai/build/cli/reference.md",
+          "official": true,
+          "accessed_at": "2026-11-16",
+          "page_date": null,
+          "watch": [
+            "--sandbox",
+            "--disable-web-search",
+            "--deny"
+          ]
+        }
+      }
+    },
+    "linux": {
+      "kind": "agent_sandbox",
+      "intro": "paste_one",
+      "blocks": [
+        {
+          "file": "~/.grok/config.toml",
+          "format": "toml",
+          "value": "[ui]\npermission_mode = \"ask\"\n\n[permission]\nrules = [\n  { action = \"allow\", tool = \"bash\", pattern = \"npm run lint\" },\n  { action = \"allow\", tool = \"bash\", pattern = \"npm run test *\" },\n  { action = \"allow\", tool = \"bash\", pattern = \"git status\" },\n  { action = \"allow\", tool = \"bash\", pattern = \"git diff\" },\n  { action = \"deny\",  tool = \"webfetch\" },\n]\ndeny = [\"WebSearch\"]\n\n[sandbox]\nprofile = \"strict\"\n\n[compat.claude]\nhooks = false\n\n[compat.cursor]\nhooks = false"
+        }
+      ],
+      "covers": {
+        "sandbox": true,
+        "read_limit": "workspace",
+        "network_cut": "yes"
+      },
+      "uncovered": [
+        "model_api_web_tools_not_blocked",
+        "web_search_needs_launch_flag"
+      ],
+      "measure": "guided",
+      "source": {
+        "url": "https://docs.x.ai/build/features/sandbox.md",
+        "official": true,
+        "accessed_at": "2026-11-16",
+        "page_date": null
+      },
+      "watch": [
+        "CWD and system paths",
+        "no-op on macOS",
+        "Model API and web tools are not blocked by child-network settings",
+        "Landlock"
+      ],
+      "extra_sources": [
+        {
+          "url": "https://docs.x.ai/build/features/permissions.md",
+          "official": true,
+          "accessed_at": "2026-11-16",
+          "page_date": null,
+          "watch": [
+            "take the same patterns per invocation",
+            "WebSearch"
+          ]
+        }
+      ],
+      "session": {
+        "command": "grok --sandbox strict --disable-web-search --deny WebFetch",
+        "requires": [
+          "linux_5_13"
+        ],
+        "source": {
+          "url": "https://docs.x.ai/build/cli/reference.md",
+          "official": true,
+          "accessed_at": "2026-11-16",
+          "page_date": null,
+          "watch": [
+            "--sandbox",
+            "--disable-web-search",
+            "--deny"
+          ]
+        }
+      }
+    }
   }
 }

@@ -320,11 +320,13 @@ td:empty{display:none}}
 
 
 def nav_links(t, lang, alternates, current_obs=True):
+    import sandbox_section  # GTM-175: «Sandbox» in the main menu
     current = ' aria-current="page"' if current_obs else ""
     parts = [
         f'<a href="{esc(t.text("site.nav.blog_url"))}">{t("site.nav.blog")}</a>',
         f'<a href="{esc(t.text("site.nav.about_url"))}">{t("site.nav.about")}</a>',
         f'<a href="{INDEX_PATH[lang]}"{current}>{t("site.nav.observatory")}</a>',
+        f'<a href="{sandbox_section.SECTION_PATH[lang]}">Sandbox</a>',  # GTM-175: between Observatory and Methodology
         f'<a href="{esc(t.text("site.nav.methodology_url"))}">{t("site.nav.methodology")}</a>',
         f'<a href="{esc(t.text("site.nav.faq_url"))}">{t("site.nav.faq")}</a>',
     ]
@@ -481,6 +483,7 @@ def item_list(lang, items):
 def build_index(lang, t, agents, candidates):
     import map_page  # GTM-138: the map's button, with the first part of its signed title
     import sandbox_page  # GTM-167: the link to the sandbox comparison, with its signed title
+    import sandbox_section  # GTM-175: «All about sandboxes»
     import company_page  # GTM-169: the Observatory by company
     path = INDEX_PATH[lang]
     reviewed = max(a["agent"]["reviewed_at"] for a in agents)
@@ -546,7 +549,7 @@ def build_index(lang, t, agents, candidates):
 <h1>{esc(CT["h1"])}</h1>
 <p class="lead">{esc(CT["lead"])}</p>
 <div class="actions"><a class="btn primary" href="{map_page.MAP_PATH[lang]}">{esc(map_page.load()[2]["texts"][lang]["title"].split(":")[0])}</a><a class="btn secondary" href="{DAILY_PATH[lang]}">{t("index.cta_daily")}</a></div>
-<p class="note"><a href="{sandbox_page.SANDBOX_PATH[lang]}">{esc(sandbox_page.texts()[lang]["title"])}</a> · <a href="{company_page.GUIDE_PATH[lang]}">{esc(CT["guide.title"])}</a></p>
+<p class="note"><a href="{sandbox_page.SANDBOX_PATH[lang]}">{esc(sandbox_page.texts()[lang]["title"])}</a> · <a href="{company_page.GUIDE_PATH[lang]}">{esc(CT["guide.title"])}</a> · <a href="{sandbox_section.SECTION_PATH[lang]}">{esc(sandbox_section.texts()[lang]["all_about"])}</a></p>
 </section>
 
 <section id="today" aria-labelledby="today-h2" data-src="{DAILY_PATH[lang]}today.html" hidden>
@@ -921,6 +924,12 @@ def build_sitemap(agents):
     slast = sandbox_page.read_date(agents)
     smod = f"<lastmod>{slast}</lastmod>" if slast else ""
     lines += [f"  <url><loc>{BASE}{sandbox_page.SANDBOX_PATH[l]}</loc>{smod}{salts}</url>" for l in LANGS]
+    import sandbox_section  # GTM-175: the «Sandbox» section, with the latest reading date of its templates
+    xalts = "".join(f'<xhtml:link rel="alternate" hreflang="{l}" href="{BASE}{sandbox_section.SECTION_PATH[l]}"/>' for l in LANGS)
+    xalts += f'<xhtml:link rel="alternate" hreflang="x-default" href="{BASE}{sandbox_section.SECTION_PATH["en"]}"/>'
+    xlast = max((t["source"]["accessed_at"] for a in agents for t in (a.get("templates") or {}).values()), default=None)
+    xmod = f"<lastmod>{xlast}</lastmod>" if xlast else ""
+    lines += [f"  <url><loc>{BASE}{sandbox_section.SECTION_PATH[l]}</loc>{xmod}{xalts}</url>" for l in LANGS]
     dalts = "".join(f'<xhtml:link rel="alternate" hreflang="{l}" href="{BASE}{DAILY_PATH[l]}"/>' for l in LANGS)
     dalts += f'<xhtml:link rel="alternate" hreflang="x-default" href="{BASE}{DAILY_PATH["en"]}"/>'
     lines += [f"  <url><loc>{BASE}{DAILY_PATH[l]}</loc>{dalts}</url>" for l in LANGS]
@@ -1033,11 +1042,11 @@ ABOUT_PAGES = {
     "ca": ("que-es-rosmarops-ca.html", "/ca/blog/que-es-rosmarops/", "Què és RosmarOps", "ca_ES", "Logotip de RosmarOps"),
 }
 ABOUT_NAV = {
-    "en": ('<a href="/blog/">Blog</a><a href="/blog/about/">About</a><a href="/observatory/">Observatory</a><a href="/methodology/">Methodology</a><a href="/faq/">FAQ</a>',
+    "en": ('<a href="/blog/">Blog</a><a href="/blog/about/">About</a><a href="/observatory/">Observatory</a><a href="/sandbox/">Sandbox</a><a href="/methodology/">Methodology</a><a href="/faq/">FAQ</a>',
            '<a href="/privacy/">Privacy</a><a href="/legal-notice/">Legal notice</a><a href="/terms/">Terms</a><a href="#" data-cc="show-preferencesModal">Cookie settings</a>', "/"),
-    "es": ('<a href="/es/blog/">Blog</a><a href="/es/blog/que-es-rosmarops/">Acerca de</a><a href="/es/observatorio/">Observatorio</a><a href="/es/metodologia/">Metodología</a><a href="/es/preguntas-frecuentes/">Preguntas</a>',
+    "es": ('<a href="/es/blog/">Blog</a><a href="/es/blog/que-es-rosmarops/">Acerca de</a><a href="/es/observatorio/">Observatorio</a><a href="/es/sandbox/">Sandbox</a><a href="/es/metodologia/">Metodología</a><a href="/es/preguntas-frecuentes/">Preguntas</a>',
            '<a href="/es/privacidad/">Privacidad</a><a href="/es/aviso-legal/">Aviso legal</a><a href="/es/terminos/">Términos</a><a href="#" data-cc="show-preferencesModal">Configurar cookies</a>', "/es/"),
-    "ca": ('<a href="/ca/blog/">Bloc</a><a href="/ca/blog/que-es-rosmarops/">Quant a</a><a href="/ca/observatori/">Observatori</a><a href="/ca/metodologia/">Metodologia</a><a href="/ca/preguntes-frequents/">Preguntes</a>',
+    "ca": ('<a href="/ca/blog/">Bloc</a><a href="/ca/blog/que-es-rosmarops/">Quant a</a><a href="/ca/observatori/">Observatori</a><a href="/ca/sandbox/">Sandbox</a><a href="/ca/metodologia/">Metodologia</a><a href="/ca/preguntes-frequents/">Preguntes</a>',
            '<a href="/ca/privadesa/">Privadesa</a><a href="/ca/avis-legal/">Avís legal</a><a href="/ca/termes/">Termes</a><a href="#" data-cc="show-preferencesModal">Configura les galetes</a>', "/ca/"),
 }
 ABOUT_SWITCH_LABEL = {"en": "English", "es": "Español", "ca": "Català"}
@@ -1166,6 +1175,8 @@ def main():
         import agent_lists
         agent_lists.render()
         build_static_about()
+        import sandbox_section  # GTM-175: /sandbox/, /es/sandbox/, /ca/sandbox/ (shell: the guide of each language)
+        sandbox_section.build(agents, SITE)
     pages = 0
     for lang in LANGS:
         t = T(cats[lang])

@@ -995,7 +995,8 @@ class SourcesFile(unittest.TestCase):
         # GTM-157 (Albert, 13-11): Comet is paused; it stays in the file, the collector skips it
         self.assertEqual([s["id"] for s in SOURCES["sources"] if s.get("paused")], ["F43"])
         self.assertEqual(IDS[:29], [f"F{i}" for i in range(1, 30)])
-        self.assertEqual(IDS[29:], ["F31", "F32", "F33", "F34", "F35", "F36", "F37", "F38", "F39", "F40", "F41", "F42", "F43", "F44", "F45", "F46", "F47"])
+        self.assertEqual(IDS[29:], ["F31", "F32", "F33", "F34", "F35", "F36", "F37", "F38", "F39", "F40", "F41", "F42", "F43", "F44", "F45", "F46", "F47"]
+                         + [f"F{i}" for i in range(48, 62)])  # GTM-175: the sandbox templates' pages
         for s in SOURCES["sources"]:
             self.assertEqual(set(s) - {"paused"}, {"id", "name", "scope", "method", "read", "public_url", "fragile", "notes"}, s["id"])
             self.assertIn(s["method"], collect.METHODS, s["id"])
@@ -1003,7 +1004,8 @@ class SourcesFile(unittest.TestCase):
             self.assertNotIn("raw.githubusercontent.com", s["public_url"], s["id"])
             if s["name"] not in ("Hermes Agent", "Muse Code", "n8n", "TRAE", "Qwen Code", "Kimi Code", "CodeBuddy", "Qoder CN",
                                  "Aider", "OpenHands", "Amp", "Warp", "Junie", "Kilo Code", "Comet", "Grok Build", "Grok Bot",
-                                 "Grok Bot: xAI documentation index", "Grok Bot: Cursor API documentation"):
+                                 "Grok Bot: xAI documentation index", "Grok Bot: Cursor API documentation") \
+                    and not s["name"].startswith("Sandbox template: "):  # GTM-175: watch only, never in the daily
                 self.assertEqual(s["public_url"], checked[s["name"]], s["id"])
         self.assertEqual(len(set(SOURCES["scope_terms"])), len(SOURCES["scope_terms"]))
         self.assertTrue({"muse", "n8n"} <= set(SOURCES["scope_terms"]))

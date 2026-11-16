@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://rosmarops.com/schemas/observatory.v1.schema.json",
-  "title": "RosmarOps observatory, one agent file (v1.12: protections gains read_only and asks_first (commands, optional edits); v1.11: optional protections (sandbox and network_cut per system); v1.10: capabilities[].default gains conflicting, with conflict; v1.9: who_decides gains unknown; v1.8: optional surfaces[] and reads_from[], agent.sources[] and agent.notes[], verified.how gains official_code; v1.7: kinds gains framework and personal_agent, who_decides gains rule, platforms gains python, optional agent.model; v1.6: capability scope other_agents_credentials; v1.5: change category agent_scope; v1.4: optional default_mode.basis and capabilities[].via; v1.3: prose fields are {en, es, ca} objects; v1.2: kinds gains agent_tooling; v1.1: optional default_mode, capabilities and storage)",
+  "title": "RosmarOps observatory, one agent file (v1.13: optional templates per system (kind, blocks, covers, uncovered, measure, source, watch, optional session); v1.12: protections gains read_only and asks_first (commands, optional edits); v1.11: optional protections (sandbox and network_cut per system); v1.10: capabilities[].default gains conflicting, with conflict; v1.9: who_decides gains unknown; v1.8: optional surfaces[] and reads_from[], agent.sources[] and agent.notes[], verified.how gains official_code; v1.7: kinds gains framework and personal_agent, who_decides gains rule, platforms gains python, optional agent.model; v1.6: capability scope other_agents_credentials; v1.5: change category agent_scope; v1.4: optional default_mode.basis and capabilities[].via; v1.3: prose fields are {en, es, ca} objects; v1.2: kinds gains agent_tooling; v1.1: optional default_mode, capabilities and storage)",
   "description": "One file per agent: data/observatory/agents/<id>.json. No user-facing prose beyond short technical sentences; every fact carries its source and date. Never data from users' machines.",
   "type": "object",
   "additionalProperties": false,
@@ -802,6 +802,27 @@
           }
         }
       }
+    },
+    "templates": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "windows",
+        "macos",
+        "linux"
+      ],
+      "description": "v1.13 (GTM-175, signed by Albert 16-11): the sandbox template of each system, shown on /sandbox/.",
+      "properties": {
+        "windows": {
+          "$ref": "#/$defs/template"
+        },
+        "macos": {
+          "$ref": "#/$defs/template"
+        },
+        "linux": {
+          "$ref": "#/$defs/template"
+        }
+      }
     }
   },
   "$defs": {
@@ -1023,6 +1044,252 @@
         }
       ],
       "description": "Asks you first (GTM-169): who approves by default; unknown has no source and shows «—» (rule f: contradiction → unknown)."
+    },
+    "template_source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "url",
+        "official",
+        "accessed_at",
+        "page_date"
+      ],
+      "description": "v1.13 (GTM-175): an official page a template rests on; watch: literal strings that must stay in it (sources.json page-watch).",
+      "properties": {
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://"
+        },
+        "official": {
+          "type": "boolean"
+        },
+        "accessed_at": {
+          "type": "string",
+          "format": "date"
+        },
+        "page_date": {
+          "oneOf": [
+            {
+              "type": "string",
+              "format": "date"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "watch": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 160
+          }
+        }
+      }
+    },
+    "template": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "blocks",
+        "covers",
+        "uncovered",
+        "measure",
+        "source",
+        "watch"
+      ],
+      "description": "v1.13 (GTM-175, CTO-58 §5.4 signed by Albert): the template of one system. Values from CTO-58 §1 with CTO-59, CTO-60 and GTM-175 §1-§6.",
+      "properties": {
+        "kind": {
+          "enum": [
+            "agent_sandbox",
+            "container",
+            "separate_account"
+          ]
+        },
+        "intro": {
+          "enum": [
+            "paste_one",
+            "paste_many",
+            "vscode_settings"
+          ],
+          "description": "Which signed sentence goes before the blocks (GTM-175 §2.2 and §3)."
+        },
+        "blocks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "file",
+              "format",
+              "value"
+            ],
+            "properties": {
+              "file": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "minLength": 1,
+                "maxLength": 80
+              },
+              "format": {
+                "enum": [
+                  "json",
+                  "toml",
+                  "yaml",
+                  "ui",
+                  "env"
+                ]
+              },
+              "key": {
+                "type": "string"
+              },
+              "value": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 4000,
+                "description": "The literal block; for ui, the code of its signed step."
+              },
+              "note": {
+                "enum": [
+                  "gemini_macos"
+                ],
+                "description": "env only: the code of the sentence that goes before it."
+              }
+            }
+          }
+        },
+        "covers": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "sandbox",
+            "read_limit",
+            "network_cut"
+          ],
+          "properties": {
+            "sandbox": {
+              "type": "boolean"
+            },
+            "read_limit": {
+              "enum": [
+                "workspace",
+                "listed_paths",
+                "none",
+                "unknown"
+              ]
+            },
+            "network_cut": {
+              "enum": [
+                "yes",
+                "allowlist",
+                "no",
+                "unknown"
+              ]
+            }
+          }
+        },
+        "uncovered": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "allowed_outside_full_privileges",
+              "allowlist_and_fetch_outside_sandbox",
+              "allowlisted_destinations_open",
+              "apps_connectors_outside_sandbox",
+              "bang_prompt_outside_sandbox",
+              "browser_computer_use_outside_sandbox",
+              "builtin_tools_own_checks",
+              "container_may_be_older",
+              "deny_read_fixed_at_start",
+              "excluded_commands_outside_sandbox",
+              "file_and_web_tools_outside_sandbox",
+              "git_credentials_injected",
+              "home_read_undocumented",
+              "hooks_mcp_statusline_outside_sandbox",
+              "linux_needs_landlock_v3",
+              "macos_proxy_undocumented",
+              "mcp_fetch_hooks_undocumented",
+              "mcp_not_launched_by_editor",
+              "mcp_on_host",
+              "mcp_outside_sandbox",
+              "mcp_read_url_by_rules",
+              "model_api_web_tools_not_blocked",
+              "needs_docker",
+              "network_cut_noop_macos",
+              "no_effect_without_system_sandbox",
+              "other_agents_config_in_project",
+              "service_traffic_outside_sandbox",
+              "web_search_needs_launch_flag",
+              "web_search_outside_sandbox",
+              "windows_outside_profile_readable",
+              "windows_read_network_undocumented"
+            ]
+          }
+        },
+        "measure": {
+          "enum": [
+            "measured",
+            "guided"
+          ]
+        },
+        "source": {
+          "$ref": "#/$defs/template_source"
+        },
+        "extra_sources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/template_source"
+          }
+        },
+        "watch": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 160
+          }
+        },
+        "session": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "command",
+            "requires",
+            "source"
+          ],
+          "description": "GTM-175: the one-session command of CTO-60, only for Claude Code (macOS, Linux), Codex, Grok Build (macOS, Linux) and Antigravity CLI (macOS, Linux).",
+          "properties": {
+            "command": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000
+            },
+            "requires": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "enum": [
+                  "bubblewrap_socat",
+                  "linux_5_13",
+                  "windows_11_24h2_25h2"
+                ]
+              }
+            },
+            "source": {
+              "$ref": "#/$defs/template_source"
+            }
+          }
+        }
+      }
     }
   }
 }

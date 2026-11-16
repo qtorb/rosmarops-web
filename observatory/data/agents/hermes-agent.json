@@ -780,5 +780,100 @@
         }
       }
     }
+  },
+  "templates": {
+    "windows": {
+      "kind": "container",
+      "intro": "paste_one",
+      "blocks": [
+        {
+          "file": "~/.hermes/config.yaml",
+          "format": "yaml",
+          "value": "terminal:\n  backend: docker\n  docker_network: false"
+        }
+      ],
+      "covers": {
+        "sandbox": true,
+        "read_limit": "unknown",
+        "network_cut": "yes"
+      },
+      "uncovered": [
+        "mcp_on_host",
+        "container_may_be_older",
+        "needs_docker"
+      ],
+      "measure": "guided",
+      "source": {
+        "url": "https://hermes-agent.nousresearch.com/docs/user-guide/configuration",
+        "official": true,
+        "accessed_at": "2026-11-16",
+        "page_date": null
+      },
+      "watch": [
+        "docker_network"
+      ]
+    },
+    "macos": {
+      "kind": "container",
+      "intro": "paste_one",
+      "blocks": [
+        {
+          "file": "~/.hermes/config.yaml",
+          "format": "yaml",
+          "value": "terminal:\n  backend: docker\n  docker_network: false"
+        }
+      ],
+      "covers": {
+        "sandbox": true,
+        "read_limit": "unknown",
+        "network_cut": "yes"
+      },
+      "uncovered": [
+        "mcp_on_host",
+        "container_may_be_older",
+        "needs_docker"
+      ],
+      "measure": "guided",
+      "source": {
+        "url": "https://hermes-agent.nousresearch.com/docs/user-guide/configuration",
+        "official": true,
+        "accessed_at": "2026-11-16",
+        "page_date": null
+      },
+      "watch": [
+        "docker_network"
+      ]
+    },
+    "linux": {
+      "kind": "container",
+      "intro": "paste_one",
+      "blocks": [
+        {
+          "file": "~/.hermes/config.yaml",
+          "format": "yaml",
+          "value": "terminal:\n  backend: docker\n  docker_network: false"
+        }
+      ],
+      "covers": {
+        "sandbox": true,
+        "read_limit": "unknown",
+        "network_cut": "yes"
+      },
+      "uncovered": [
+        "mcp_on_host",
+        "container_may_be_older",
+        "needs_docker"
+      ],
+      "measure": "guided",
+      "source": {
+        "url": "https://hermes-agent.nousresearch.com/docs/user-guide/configuration",
+        "official": true,
+        "accessed_at": "2026-11-16",
+        "page_date": null
+      },
+      "watch": [
+        "docker_network"
+      ]
+    }
   }
 }

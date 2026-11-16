@@ -4,7 +4,8 @@
   python3 observatory/daily_alert.py push FILE [FILE...]   alert if a file is invalid, incomplete or has held items
   python3 observatory/daily_alert.py missing YYYY-MM-DD    alert that the day's file does not exist
   python3 observatory/daily_alert.py repeat YYYY-MM-DD     alert if observatory/raw/D.json is missing, or if a source
-                                                           has opened false in it and in the day before's (GTM-90)
+                                                           has opened false in it and in the day before's (GTM-90),
+                                                           or if a sandbox template's page lost a watched string (GTM-175)
   python3 observatory/daily_alert.py consistency YYYY-MM-DD FILE
                                                            alert with a FOCO line if FILE (the output of
                                                            agent_lists.py check) lists problems (GTM-99)
@@ -126,6 +127,26 @@ def for_repeat(date, raw_dir=None, sources_file=SOURCES):
                   [f"Fecha: {date}", "Fuentes con opened false dos días seguidos:"] + lines)]
 
 
+def for_templates(date, raw_dir=None, sources_file=SOURCES):
+    """GTM-175: a sandbox template's official page no longer has a string its template rests on; /sandbox/ shows it as
+    «Por revisar» after the next build."""
+    today = read_raw(RAW_DIR if raw_dir is None else raw_dir, date)
+    if not today:
+        return []
+    src = {s["id"]: s for s in json.loads(Path(sources_file).read_text(encoding="utf-8"))["sources"]}
+    lines = []
+    for s in today.get("sources", []):
+        if s.get("missing"):
+            info = src.get(s["id"], {})
+            lines.append(f"- {s['id']} {info.get('name', '?')}: {info.get('public_url', '?')}")
+            lines += [f"    falta: «{m}»" for m in s["missing"]]
+    if not lines:
+        return []
+    return [plain(f"Observatorio: plantilla de sandbox por revisar ({date})",
+                  [f"Fecha: {date}", "Estas páginas oficiales ya no dicen lo que sostiene su plantilla:"] + lines
+                  + ["", "El recolector ya ha dejado /sandbox/ con «Por revisar» en main: sale en la web en el siguiente despliegue."])]
+
+
 def for_consistency(date, report):
     """GTM-99: the web contradicts the agent files or the program's latest release. Same channel, one FOCO line first."""
     lines = [ln.removeprefix("::error::").removeprefix("FAIL ").removeprefix("::warning::").removeprefix("WARN ").strip()
@@ -148,6 +169,7 @@ def main(argv):
             msgs += for_file(f)
     elif argv[0] == "repeat":
         msgs += for_repeat(argv[1])
+        msgs += for_templates(argv[1])
     elif argv[0] == "consistency":
         msgs += for_consistency(argv[1], Path(argv[2]).read_text(encoding="utf-8") if len(argv) > 2 else "")
     else:

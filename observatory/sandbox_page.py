@@ -51,6 +51,7 @@ def host(url):
 
 def body(lang, agents, agent_href):
     """(texts, html) of the page. agent_href(id) is the path of a published agent page, or None."""
+    import sandbox_section  # GTM-175: «All about sandboxes»
     T = texts()[lang]
     items = rows(agents)
     names = map_page.agent_names([a["agent"] for a in items], lang)
@@ -102,6 +103,6 @@ def body(lang, agents, agent_href):
 </tbody>
 </table></div>
 <p class="note">{esc(footer)}</p>
-<p class="note"><a href="{GLOSSARY_SANDBOX[lang]}">{esc(T["glossary_link"])}</a></p>
+<p class="note"><a href="{GLOSSARY_SANDBOX[lang]}">{esc(T["glossary_link"])}</a> · <a href="{sandbox_section.SECTION_PATH[lang]}">{esc(sandbox_section.texts()[lang]["all_about"])}</a></p>
 </article>"""
     return T, page

@@ -224,6 +224,62 @@
             "value": "unknown"
           }
         }
+      },
+      "templates": {
+        "windows": {
+          "kind": "separate_account",
+          "blocks": [],
+          "covers": {
+            "sandbox": false,
+            "read_limit": "unknown",
+            "network_cut": "no"
+          },
+          "uncovered": [],
+          "measure": "guided",
+          "source": {
+            "url": "https://docs.cline.bot/cli/cli-reference",
+            "official": true,
+            "accessed_at": "2026-11-16",
+            "page_date": null
+          },
+          "watch": []
+        },
+        "macos": {
+          "kind": "separate_account",
+          "blocks": [],
+          "covers": {
+            "sandbox": false,
+            "read_limit": "unknown",
+            "network_cut": "no"
+          },
+          "uncovered": [],
+          "measure": "guided",
+          "source": {
+            "url": "https://docs.cline.bot/cli/cli-reference",
+            "official": true,
+            "accessed_at": "2026-11-16",
+            "page_date": null
+          },
+          "watch": []
+        },
+        "linux": {
+          "kind": "separate_account",
+          "blocks": [],
+          "covers": {
+            "sandbox": false,
+            "read_limit": "unknown",
+            "network_cut": "no"
+          },
+          "uncovered": [],
+          "measure": "guided",
+          "source": {
+            "url": "https://docs.cline.bot/cli/cli-reference",
+            "official": true,
+            "accessed_at": "2026-11-16",
+            "page_date": null
+          },
+          "watch": []
+        }
       }
     },
     {
@@ -383,6 +439,146 @@
               "accessed_at": "2026-11-15"
             }
           }
+        }
+      },
+      "templates": {
+        "windows": {
+          "kind": "agent_sandbox",
+          "intro": "paste_one",
+          "blocks": [
+            {
+              "file": "~/.gemini/settings.json",
+              "format": "json",
+              "value": "{ \"tools\": { \"sandbox\": \"windows-native\", \"sandboxNetworkAccess\": false } }"
+            }
+          ],
+          "covers": {
+            "sandbox": true,
+            "read_limit": "unknown",
+            "network_cut": "unknown"
+          },
+          "uncovered": [
+            "mcp_fetch_hooks_undocumented",
+            "windows_read_network_undocumented"
+          ],
+          "measure": "guided",
+          "source": {
+            "url": "https://geminicli.com/docs/cli/sandbox/",
+            "official": true,
+            "accessed_at": "2026-11-16",
+            "page_date": "2026-07-17"
+          },
+          "watch": [
+            "SEATBELT_PROFILE",
+            "strict-proxied",
+            "only has access to the current project workspace"
+          ],
+          "extra_sources": [
+            {
+              "url": "https://geminicli.com/docs/reference/configuration/",
+              "official": true,
+              "accessed_at": "2026-11-16",
+              "page_date": "2026-10-15",
+              "watch": [
+                "tools.sandbox",
+                "sandboxNetworkAccess"
+              ]
+            }
+          ]
+        },
+        "macos": {
+          "kind": "agent_sandbox",
+          "intro": "paste_many",
+          "blocks": [
+            {
+              "file": "~/.gemini/settings.json",
+              "format": "json",
+              "value": "{ \"tools\": { \"sandbox\": true, \"sandboxNetworkAccess\": false } }"
+            },
+            {
+              "file": null,
+              "format": "env",
+              "value": "SEATBELT_PROFILE=strict-proxied gemini",
+              "note": "gemini_macos"
+            }
+          ],
+          "covers": {
+            "sandbox": true,
+            "read_limit": "workspace",
+            "network_cut": "unknown"
+          },
+          "uncovered": [
+            "mcp_fetch_hooks_undocumented",
+            "macos_proxy_undocumented"
+          ],
+          "measure": "guided",
+          "source": {
+            "url": "https://geminicli.com/docs/cli/sandbox/",
+            "official": true,
+            "accessed_at": "2026-11-16",
+            "page_date": "2026-07-17"
+          },
+          "watch": [
+            "SEATBELT_PROFILE",
+            "strict-proxied",
+            "only has access to the current project workspace"
+          ],
+          "extra_sources": [
+            {
+              "url": "https://geminicli.com/docs/reference/configuration/",
+              "official": true,
+              "accessed_at": "2026-11-16",
+              "page_date": "2026-10-15",
+              "watch": [
+                "tools.sandbox",
+                "sandboxNetworkAccess"
+              ]
+            }
+          ]
+        },
+        "linux": {
+          "kind": "agent_sandbox",
+          "intro": "paste_one",
+          "blocks": [
+            {
+              "file": "~/.gemini/settings.json",
+              "format": "json",
+              "value": "{ \"tools\": { \"sandbox\": \"docker\", \"sandboxNetworkAccess\": false } }"
+            }
+          ],
+          "covers": {
+            "sandbox": true,
+            "read_limit": "workspace",
+            "network_cut": "yes"
+          },
+          "uncovered": [
+            "mcp_fetch_hooks_undocumented",
+            "needs_docker"
+          ],
+          "measure": "guided",
+          "source": {
+            "url": "https://geminicli.com/docs/cli/sandbox/",
+            "official": true,
+            "accessed_at": "2026-11-16",
+            "page_date": "2026-07-17"
+          },
+          "watch": [
+            "SEATBELT_PROFILE",
+            "strict-proxied",
+            "only has access to the current project workspace"
+          ],
+          "extra_sources": [
+            {
+              "url": "https://geminicli.com/docs/reference/configuration/",
+              "official": true,
+              "accessed_at": "2026-11-16",
+              "page_date": "2026-10-15",
+              "watch": [
+                "tools.sandbox",
+                "sandboxNetworkAccess"
+              ]
+            }
+          ]
         }
       }
     },
@@ -761,6 +957,146 @@
             "value": "unknown"
           }
         }
+      },
+      "templates": {
+        "windows": {
+          "kind": "agent_sandbox",
+          "intro": "paste_one",
+          "blocks": [
+            {
+              "file": "~/.gemini/antigravity-cli/settings.json",
+              "format": "json",
+              "value": "{ \"enableTerminalSandbox\": true, \"toolPermission\": \"proceed-in-sandbox\" }"
+            }
+          ],
+          "covers": {
+            "sandbox": true,
+            "read_limit": "listed_paths",
+            "network_cut": "yes"
+          },
+          "uncovered": [
+            "mcp_read_url_by_rules",
+            "allowed_outside_full_privileges",
+            "no_effect_without_system_sandbox",
+            "windows_outside_profile_readable"
+          ],
+          "measure": "guided",
+          "source": {
+            "url": "https://antigravity.google/docs/sandbox?tab=cli",
+            "official": true,
+            "accessed_at": "2026-11-16",
+            "page_date": null
+          },
+          "watch": [
+            "enableTerminalSandbox",
+            "proceed-in-sandbox",
+            "Sandboxed commands run without network access by default",
+            "full privileges",
+            "have no effect",
+            "anything not explicitly mounted is invisible",
+            "folders outside your user profile are readable",
+            "MCP tools, and web page reads",
+            "are added to the sandbox's outbound allowlist"
+          ]
+        },
+        "macos": {
+          "kind": "agent_sandbox",
+          "intro": "paste_one",
+          "blocks": [
+            {
+              "file": "~/.gemini/antigravity-cli/settings.json",
+              "format": "json",
+              "value": "{ \"enableTerminalSandbox\": true, \"toolPermission\": \"proceed-in-sandbox\" }"
+            }
+          ],
+          "covers": {
+            "sandbox": true,
+            "read_limit": "workspace",
+            "network_cut": "yes"
+          },
+          "uncovered": [
+            "mcp_read_url_by_rules",
+            "allowed_outside_full_privileges",
+            "no_effect_without_system_sandbox"
+          ],
+          "measure": "guided",
+          "source": {
+            "url": "https://antigravity.google/docs/sandbox?tab=cli",
+            "official": true,
+            "accessed_at": "2026-11-16",
+            "page_date": null
+          },
+          "watch": [
+            "enableTerminalSandbox",
+            "proceed-in-sandbox",
+            "Sandboxed commands run without network access by default",
+            "full privileges",
+            "have no effect",
+            "anything not explicitly mounted is invisible",
+            "folders outside your user profile are readable",
+            "MCP tools, and web page reads",
+            "are added to the sandbox's outbound allowlist"
+          ],
+          "session": {
+            "command": "agy --sandbox",
+            "requires": [],
+            "source": {
+              "url": "https://antigravity.google/docs/sandbox?tab=cli",
+              "official": true,
+              "accessed_at": "2026-11-16",
+              "page_date": null
+            }
+          }
+        },
+        "linux": {
+          "kind": "agent_sandbox",
+          "intro": "paste_one",
+          "blocks": [
+            {
+              "file": "~/.gemini/antigravity-cli/settings.json",
+              "format": "json",
+              "value": "{ \"enableTerminalSandbox\": true, \"toolPermission\": \"proceed-in-sandbox\" }"
+            }
+          ],
+          "covers": {
+            "sandbox": true,
+            "read_limit": "workspace",
+            "network_cut": "yes"
+          },
+          "uncovered": [
+            "mcp_read_url_by_rules",
+            "allowed_outside_full_privileges",
+            "no_effect_without_system_sandbox"
+          ],
+          "measure": "guided",
+          "source": {
+            "url": "https://antigravity.google/docs/sandbox?tab=cli",
+            "official": true,
+            "accessed_at": "2026-11-16",
+            "page_date": null
+          },
+          "watch": [
+            "enableTerminalSandbox",
+            "proceed-in-sandbox",
+            "Sandboxed commands run without network access by default",
+            "full privileges",
+            "have no effect",
+            "anything not explicitly mounted is invisible",
+            "folders outside your user profile are readable",
+            "MCP tools, and web page reads",
+            "are added to the sandbox's outbound allowlist"
+          ],
+          "session": {
+            "command": "agy --sandbox",
+            "requires": [],
+            "source": {
+              "url": "https://antigravity.google/docs/sandbox?tab=cli",
+              "official": true,
+              "accessed_at": "2026-11-16",
+              "page_date": null
+            }
+          }
+        }
       }
     },
     {
@@ -1001,6 +1337,131 @@
             }
           }
         }
+      },
+      "templates": {
+        "windows": {
+          "kind": "agent_sandbox",
+          "intro": "vscode_settings",
+          "blocks": [
+            {
+              "file": "settings.json",
+              "format": "json",
+              "value": "\"chat.agent.sandbox.enabled\": \"on\",\n\"chat.agent.sandbox.network.allowNetwork\": false,\n\"chat.agent.sandbox.fileSystem.allowDevToolAccess\": false,\n\"chat.agent.sandbox.fileSystem.userConfiguredPaths\": { \"deniedPaths\": [\"~/.ssh\", \"~/.aws\"] },\n\"chat.agent.sandbox.allowUnsandboxedCommands\": false"
+            }
+          ],
+          "covers": {
+            "sandbox": true,
+            "read_limit": "listed_paths",
+            "network_cut": "yes"
+          },
+          "uncovered": [
+            "builtin_tools_own_checks",
+            "mcp_not_launched_by_editor",
+            "git_credentials_injected",
+            "home_read_undocumented"
+          ],
+          "measure": "guided",
+          "source": {
+            "url": "https://code.visualstudio.com/docs/agents/run/agent-sandboxing.md",
+            "official": true,
+            "accessed_at": "2026-11-16",
+            "page_date": null
+          },
+          "watch": [
+            "chat.agent.sandbox.enabled",
+            "chat.agent.sandbox.network.allowNetwork",
+            "chat.agent.sandbox.fileSystem.allowDevToolAccess",
+            "userConfiguredPaths",
+            "deniedPaths",
+            "chat.agent.sandbox.allowUnsandboxedCommands",
+            "use their own permission checks",
+            "They don't cover servers you start independently",
+            "including registry tokens",
+            "provides Git authentication to sandboxed processes"
+          ]
+        },
+        "macos": {
+          "kind": "agent_sandbox",
+          "intro": "vscode_settings",
+          "blocks": [
+            {
+              "file": "settings.json",
+              "format": "json",
+              "value": "\"chat.agent.sandbox.enabled\": \"on\",\n\"chat.agent.sandbox.network.allowNetwork\": false,\n\"chat.agent.sandbox.fileSystem.allowDevToolAccess\": false,\n\"chat.agent.sandbox.fileSystem.userConfiguredPaths\": { \"deniedPaths\": [\"~/.ssh\", \"~/.aws\"] },\n\"chat.agent.sandbox.allowUnsandboxedCommands\": false"
+            }
+          ],
+          "covers": {
+            "sandbox": true,
+            "read_limit": "listed_paths",
+            "network_cut": "yes"
+          },
+          "uncovered": [
+            "builtin_tools_own_checks",
+            "mcp_not_launched_by_editor",
+            "git_credentials_injected",
+            "home_read_undocumented"
+          ],
+          "measure": "guided",
+          "source": {
+            "url": "https://code.visualstudio.com/docs/agents/run/agent-sandboxing.md",
+            "official": true,
+            "accessed_at": "2026-11-16",
+            "page_date": null
+          },
+          "watch": [
+            "chat.agent.sandbox.enabled",
+            "chat.agent.sandbox.network.allowNetwork",
+            "chat.agent.sandbox.fileSystem.allowDevToolAccess",
+            "userConfiguredPaths",
+            "deniedPaths",
+            "chat.agent.sandbox.allowUnsandboxedCommands",
+            "use their own permission checks",
+            "They don't cover servers you start independently",
+            "including registry tokens",
+            "provides Git authentication to sandboxed processes"
+          ]
+        },
+        "linux": {
+          "kind": "agent_sandbox",
+          "intro": "vscode_settings",
+          "blocks": [
+            {
+              "file": "settings.json",
+              "format": "json",
+              "value": "\"chat.agent.sandbox.enabled\": \"on\",\n\"chat.agent.sandbox.network.allowNetwork\": false,\n\"chat.agent.sandbox.fileSystem.allowDevToolAccess\": false,\n\"chat.agent.sandbox.fileSystem.userConfiguredPaths\": { \"deniedPaths\": [\"~/.ssh\", \"~/.aws\"] },\n\"chat.agent.sandbox.allowUnsandboxedCommands\": false"
+            }
+          ],
+          "covers": {
+            "sandbox": true,
+            "read_limit": "listed_paths",
+            "network_cut": "yes"
+          },
+          "uncovered": [
+            "builtin_tools_own_checks",
+            "mcp_not_launched_by_editor",
+            "git_credentials_injected",
+            "home_read_undocumented"
+          ],
+          "measure": "guided",
+          "source": {
+            "url": "https://code.visualstudio.com/docs/agents/run/agent-sandboxing.md",
+            "official": true,
+            "accessed_at": "2026-11-16",
+            "page_date": null
+          },
+          "watch": [
+            "chat.agent.sandbox.enabled",
+            "chat.agent.sandbox.network.allowNetwork",
+            "chat.agent.sandbox.fileSystem.allowDevToolAccess",
+            "userConfiguredPaths",
+            "deniedPaths",
+            "chat.agent.sandbox.allowUnsandboxedCommands",
+            "use their own permission checks",
+            "They don't cover servers you start independently",
+            "including registry tokens",
+            "provides Git authentication to sandboxed processes"
+          ]
+        }
       }
     },
     {
@@ -1192,6 +1653,214 @@
             }
           }
         }
+      },
+      "templates": {
+        "windows": {
+          "kind": "agent_sandbox",
+          "intro": "paste_one",
+          "blocks": [
+            {
+              "file": "~/.codex/config.toml",
+              "format": "toml",
+              "value": "default_permissions = \"p2\"\n[permissions.p2.filesystem]\n\":minimal\" = \"read\"\n[permissions.p2.filesystem.\":workspace_roots\"]\n\".\" = \"write\"\n\"**/*.env\" = \"deny\"\n[permissions.p2.network]\nenabled = false\n[windows]\nsandbox = \"mxc\""
+            }
+          ],
+          "covers": {
+            "sandbox": true,
+            "read_limit": "workspace",
+            "network_cut": "yes"
+          },
+          "uncovered": [
+            "web_search_outside_sandbox",
+            "apps_connectors_outside_sandbox",
+            "mcp_outside_sandbox",
+            "browser_computer_use_outside_sandbox",
+            "service_traffic_outside_sandbox",
+            "deny_read_fixed_at_start"
+          ],
+          "measure": "guided",
+          "source": {
+            "url": "https://learn.chatgpt.com/docs/permissions",
+            "official": true,
+            "accessed_at": "2026-11-16",
+            "page_date": null
+          },
+          "watch": [
+            "default_permissions",
+            ":workspace_roots",
+            ":minimal",
+            "Permission profiles do not compose with the older sandbox settings",
+            "Matching files created afterward are not added to that process's deny list"
+          ],
+          "extra_sources": [
+            {
+              "url": "https://learn.chatgpt.com/docs/agent-approvals-security",
+              "official": true,
+              "accessed_at": "2026-11-16",
+              "page_date": null,
+              "watch": [
+                "workspace-write",
+                "keeps network access turned off unless you enable it",
+                "It does not filter web search",
+                "app or connector tool calls",
+                "MCP server connections",
+                "browser or Computer Use activity"
+              ]
+            },
+            {
+              "url": "https://learn.chatgpt.com/codex/windows/windows-sandbox.md",
+              "official": true,
+              "accessed_at": "2026-11-16",
+              "page_date": null,
+              "watch": [
+                "mxc",
+                "doesn't support denied read paths",
+                "24H2",
+                "25H2",
+                "for one command without changing the saved sandbox selection"
+              ]
+            }
+          ],
+          "session": {
+            "command": "codex --sandbox workspace-write -c sandbox_workspace_write.network_access=false -c windows.sandbox=mxc",
+            "requires": [
+              "windows_11_24h2_25h2"
+            ],
+            "source": {
+              "url": "https://learn.chatgpt.com/codex/windows/windows-sandbox.md",
+              "official": true,
+              "accessed_at": "2026-11-16",
+              "page_date": null
+            }
+          }
+        },
+        "macos": {
+          "kind": "agent_sandbox",
+          "intro": "paste_one",
+          "blocks": [
+            {
+              "file": "~/.codex/config.toml",
+              "format": "toml",
+              "value": "default_permissions = \"p2\"\n[permissions.p2.filesystem]\n\":minimal\" = \"read\"\n[permissions.p2.filesystem.\":workspace_roots\"]\n\".\" = \"write\"\n\"**/*.env\" = \"deny\"\n[permissions.p2.network]\nenabled = false"
+            }
+          ],
+          "covers": {
+            "sandbox": true,
+            "read_limit": "workspace",
+            "network_cut": "yes"
+          },
+          "uncovered": [
+            "web_search_outside_sandbox",
+            "apps_connectors_outside_sandbox",
+            "mcp_outside_sandbox",
+            "browser_computer_use_outside_sandbox",
+            "service_traffic_outside_sandbox"
+          ],
+          "measure": "guided",
+          "source": {
+            "url": "https://learn.chatgpt.com/docs/permissions",
+            "official": true,
+            "accessed_at": "2026-11-16",
+            "page_date": null
+          },
+          "watch": [
+            "default_permissions",
+            ":workspace_roots",
+            ":minimal",
+            "Permission profiles do not compose with the older sandbox settings",
+            "Matching files created afterward are not added to that process's deny list"
+          ],
+          "extra_sources": [
+            {
+              "url": "https://learn.chatgpt.com/docs/agent-approvals-security",
+              "official": true,
+              "accessed_at": "2026-11-16",
+              "page_date": null,
+              "watch": [
+                "workspace-write",
+                "keeps network access turned off unless you enable it",
+                "It does not filter web search",
+                "app or connector tool calls",
+                "MCP server connections",
+                "browser or Computer Use activity"
+              ]
+            }
+          ],
+          "session": {
+            "command": "codex --sandbox workspace-write -c sandbox_workspace_write.network_access=false",
+            "requires": [],
+            "source": {
+              "url": "https://learn.chatgpt.com/docs/cli/reference",
+              "official": true,
+              "accessed_at": "2026-11-16",
+              "page_date": null
+            }
+          }
+        },
+        "linux": {
+          "kind": "agent_sandbox",
+          "intro": "paste_one",
+          "blocks": [
+            {
+              "file": "~/.codex/config.toml",
+              "format": "toml",
+              "value": "default_permissions = \"p2\"\n[permissions.p2.filesystem]\n\":minimal\" = \"read\"\n[permissions.p2.filesystem.\":workspace_roots\"]\n\".\" = \"write\"\n\"**/*.env\" = \"deny\"\n[permissions.p2.network]\nenabled = false"
+            }
+          ],
+          "covers": {
+            "sandbox": true,
+            "read_limit": "workspace",
+            "network_cut": "yes"
+          },
+          "uncovered": [
+            "web_search_outside_sandbox",
+            "apps_connectors_outside_sandbox",
+            "mcp_outside_sandbox",
+            "browser_computer_use_outside_sandbox",
+            "service_traffic_outside_sandbox",
+            "deny_read_fixed_at_start"
+          ],
+          "measure": "guided",
+          "source": {
+            "url": "https://learn.chatgpt.com/docs/permissions",
+            "official": true,
+            "accessed_at": "2026-11-16",
+            "page_date": null
+          },
+          "watch": [
+            "default_permissions",
+            ":workspace_roots",
+            ":minimal",
+            "Permission profiles do not compose with the older sandbox settings",
+            "Matching files created afterward are not added to that process's deny list"
+          ],
+          "extra_sources": [
+            {
+              "url": "https://learn.chatgpt.com/docs/agent-approvals-security",
+              "official": true,
+              "accessed_at": "2026-11-16",
+              "page_date": null,
+              "watch": [
+                "workspace-write",
+                "keeps network access turned off unless you enable it",
+                "It does not filter web search",
+                "app or connector tool calls",
+                "MCP server connections",
+                "browser or Computer Use activity"
+              ]
+            }
+          ],
+          "session": {
+            "command": "codex --sandbox workspace-write -c sandbox_workspace_write.network_access=false",
+            "requires": [],
+            "source": {
+              "url": "https://learn.chatgpt.com/docs/cli/reference",
+              "official": true,
+              "accessed_at": "2026-11-16",
+              "page_date": null
+            }
+          }
+        }
       }
     },
     {
@@ -1356,6 +2025,149 @@
               "url": "https://docs.x.ai/build/features/permissions.md",
               "official": true,
               "accessed_at": "2026-11-15"
+            }
+          }
+        }
+      },
+      "templates": {
+        "windows": {
+          "kind": "separate_account",
+          "blocks": [],
+          "covers": {
+            "sandbox": false,
+            "read_limit": "unknown",
+            "network_cut": "no"
+          },
+          "uncovered": [],
+          "measure": "guided",
+          "source": {
+            "url": "https://docs.x.ai/build/features/sandbox.md",
+            "official": true,
+            "accessed_at": "2026-11-16",
+            "page_date": null
+          },
+          "watch": []
+        },
+        "macos": {
+          "kind": "agent_sandbox",
+          "intro": "paste_one",
+          "blocks": [
+            {
+              "file": "~/.grok/config.toml",
+              "format": "toml",
+              "value": "[ui]\npermission_mode = \"ask\"\n\n[permission]\nrules = [\n  { action = \"allow\", tool = \"bash\", pattern = \"npm run lint\" },\n  { action = \"allow\", tool = \"bash\", pattern = \"npm run test *\" },\n  { action = \"allow\", tool = \"bash\", pattern = \"git status\" },\n  { action = \"allow\", tool = \"bash\", pattern = \"git diff\" },\n  { action = \"deny\",  tool = \"webfetch\" },\n]\ndeny = [\"WebSearch\"]\n\n[sandbox]\nprofile = \"strict\"\n\n[compat.claude]\nhooks = false\n\n[compat.cursor]\nhooks = false"
+            }
+          ],
+          "covers": {
+            "sandbox": true,
+            "read_limit": "workspace",
+            "network_cut": "no"
+          },
+          "uncovered": [
+            "network_cut_noop_macos",
+            "model_api_web_tools_not_blocked",
+            "web_search_needs_launch_flag"
+          ],
+          "measure": "guided",
+          "source": {
+            "url": "https://docs.x.ai/build/features/sandbox.md",
+            "official": true,
+            "accessed_at": "2026-11-16",
+            "page_date": null
+          },
+          "watch": [
+            "CWD and system paths",
+            "no-op on macOS",
+            "Model API and web tools are not blocked by child-network settings",
+            "Landlock"
+          ],
+          "extra_sources": [
+            {
+              "url": "https://docs.x.ai/build/features/permissions.md",
+              "official": true,
+              "accessed_at": "2026-11-16",
+              "page_date": null,
+              "watch": [
+                "take the same patterns per invocation",
+                "WebSearch"
+              ]
+            }
+          ],
+          "session": {
+            "command": "grok --sandbox strict --disable-web-search --deny WebFetch",
+            "requires": [],
+            "source": {
+              "url": "https://docs.x.ai/build/cli/reference.md",
+              "official": true,
+              "accessed_at": "2026-11-16",
+              "page_date": null,
+              "watch": [
+                "--sandbox",
+                "--disable-web-search",
+                "--deny"
+              ]
+            }
+          }
+        },
+        "linux": {
+          "kind": "agent_sandbox",
+          "intro": "paste_one",
+          "blocks": [
+            {
+              "file": "~/.grok/config.toml",
+              "format": "toml",
+              "value": "[ui]\npermission_mode = \"ask\"\n\n[permission]\nrules = [\n  { action = \"allow\", tool = \"bash\", pattern = \"npm run lint\" },\n  { action = \"allow\", tool = \"bash\", pattern = \"npm run test *\" },\n  { action = \"allow\", tool = \"bash\", pattern = \"git status\" },\n  { action = \"allow\", tool = \"bash\", pattern = \"git diff\" },\n  { action = \"deny\",  tool = \"webfetch\" },\n]\ndeny = [\"WebSearch\"]\n\n[sandbox]\nprofile = \"strict\"\n\n[compat.claude]\nhooks = false\n\n[compat.cursor]\nhooks = false"
+            }
+          ],
+          "covers": {
+            "sandbox": true,
+            "read_limit": "workspace",
+            "network_cut": "yes"
+          },
+          "uncovered": [
+            "model_api_web_tools_not_blocked",
+            "web_search_needs_launch_flag"
+          ],
+          "measure": "guided",
+          "source": {
+            "url": "https://docs.x.ai/build/features/sandbox.md",
+            "official": true,
+            "accessed_at": "2026-11-16",
+            "page_date": null
+          },
+          "watch": [
+            "CWD and system paths",
+            "no-op on macOS",
+            "Model API and web tools are not blocked by child-network settings",
+            "Landlock"
+          ],
+          "extra_sources": [
+            {
+              "url": "https://docs.x.ai/build/features/permissions.md",
+              "official": true,
+              "accessed_at": "2026-11-16",
+              "page_date": null,
+              "watch": [
+                "take the same patterns per invocation",
+                "WebSearch"
+              ]
+            }
+          ],
+          "session": {
+            "command": "grok --sandbox strict --disable-web-search --deny WebFetch",
+            "requires": [
+              "linux_5_13"
+            ],
+            "source": {
+              "url": "https://docs.x.ai/build/cli/reference.md",
+              "official": true,
+              "accessed_at": "2026-11-16",
+              "page_date": null,
+              "watch": [
+                "--sandbox",
+                "--disable-web-search",
+                "--deny"
+              ]
             }
           }
         }
@@ -1718,6 +2530,101 @@
               "accessed_at": "2026-11-15"
             }
           }
+        }
+      },
+      "templates": {
+        "windows": {
+          "kind": "container",
+          "intro": "paste_one",
+          "blocks": [
+            {
+              "file": "~/.hermes/config.yaml",
+              "format": "yaml",
+              "value": "terminal:\n  backend: docker\n  docker_network: false"
+            }
+          ],
+          "covers": {
+            "sandbox": true,
+            "read_limit": "unknown",
+            "network_cut": "yes"
+          },
+          "uncovered": [
+            "mcp_on_host",
+            "container_may_be_older",
+            "needs_docker"
+          ],
+          "measure": "guided",
+          "source": {
+            "url": "https://hermes-agent.nousresearch.com/docs/user-guide/configuration",
+            "official": true,
+            "accessed_at": "2026-11-16",
+            "page_date": null
+          },
+          "watch": [
+            "docker_network"
+          ]
+        },
+        "macos": {
+          "kind": "container",
+          "intro": "paste_one",
+          "blocks": [
+            {
+              "file": "~/.hermes/config.yaml",
+              "format": "yaml",
+              "value": "terminal:\n  backend: docker\n  docker_network: false"
+            }
+          ],
+          "covers": {
+            "sandbox": true,
+            "read_limit": "unknown",
+            "network_cut": "yes"
+          },
+          "uncovered": [
+            "mcp_on_host",
+            "container_may_be_older",
+            "needs_docker"
+          ],
+          "measure": "guided",
+          "source": {
+            "url": "https://hermes-agent.nousresearch.com/docs/user-guide/configuration",
+            "official": true,
+            "accessed_at": "2026-11-16",
+            "page_date": null
+          },
+          "watch": [
+            "docker_network"
+          ]
+        },
+        "linux": {
+          "kind": "container",
+          "intro": "paste_one",
+          "blocks": [
+            {
+              "file": "~/.hermes/config.yaml",
+              "format": "yaml",
+              "value": "terminal:\n  backend: docker\n  docker_network: false"
+            }
+          ],
+          "covers": {
+            "sandbox": true,
+            "read_limit": "unknown",
+            "network_cut": "yes"
+          },
+          "uncovered": [
+            "mcp_on_host",
+            "container_may_be_older",
+            "needs_docker"
+          ],
+          "measure": "guided",
+          "source": {
+            "url": "https://hermes-agent.nousresearch.com/docs/user-guide/configuration",
+            "official": true,
+            "accessed_at": "2026-11-16",
+            "page_date": null
+          },
+          "watch": [
+            "docker_network"
+          ]
         }
       }
     },
@@ -2160,6 +3067,156 @@
             }
           }
         }
+      },
+      "templates": {
+        "windows": {
+          "kind": "separate_account",
+          "blocks": [],
+          "covers": {
+            "sandbox": false,
+            "read_limit": "unknown",
+            "network_cut": "no"
+          },
+          "uncovered": [],
+          "measure": "guided",
+          "source": {
+            "url": "https://code.claude.com/docs/en/sandboxing",
+            "official": true,
+            "accessed_at": "2026-11-16",
+            "page_date": null
+          },
+          "watch": []
+        },
+        "macos": {
+          "kind": "agent_sandbox",
+          "intro": "paste_many",
+          "blocks": [
+            {
+              "file": "~/.claude/settings.json",
+              "format": "json",
+              "value": "{\n  \"permissions\": {\n    \"defaultMode\": \"acceptEdits\",\n    \"disableAutoMode\": \"disable\",\n    \"disableBypassPermissionsMode\": \"disable\",\n    \"blockReadsOutsideWorkingDirectories\": true,\n    \"allow\": [\n      \"Bash(npm run lint)\", \"Bash(npm run test *)\",\n      \"Bash(git status)\", \"Bash(git diff)\"\n    ],\n    \"ask\": [\n      \"Edit(~/.codex/**)\", \"Edit(**/.codex/**)\",\n      \"Edit(~/.cursor/**)\", \"Edit(**/.cursor/**)\",\n      \"Edit(~/.cline/**)\", \"Edit(**/.clinerules/**)\",\n      \"Edit(~/.gemini/**)\", \"Edit(**/.gemini/**)\",\n      \"Edit(~/.grok/**)\", \"Edit(**/.grok/**)\", \"Edit(~/.hermes/**)\",\n      \"Edit(~/AppData/Roaming/**)\",\n      \"Edit(**/AGENTS.md)\", \"Edit(**/CLAUDE.md)\", \"Edit(**/GEMINI.md)\",\n      \"Edit(**/.github/copilot-instructions.md)\"\n    ],\n    \"deny\": [\"WebFetch\", \"WebSearch\", \"Bash(curl *)\", \"Bash(wget *)\"]\n  },\n  \"sandbox\": {\n    \"enabled\": true,\n    \"failIfUnavailable\": true,\n    \"allowUnsandboxedCommands\": false,\n    \"autoAllowBashIfSandboxed\": false,\n    \"network\": { \"allowedDomains\": [\"registry.npmjs.org\", \"github.com\"], \"strictAllowlist\": true },\n    \"filesystem\": { \"denyRead\": [\"~/.ssh\", \"~/.aws\"] },\n    \"credentials\": { \"files\": [ { \"path\": \"~/.aws/credentials\", \"mode\": \"deny\" }, { \"path\": \"~/.ssh\", \"mode\": \"deny\" } ] }\n  }\n}"
+            },
+            {
+              "file": ".claude/settings.json",
+              "format": "json",
+              "value": "{ \"sandbox\": { \"filesystem\": { \"denyRead\": [\"~/\"], \"allowRead\": [\".\"] } } }"
+            }
+          ],
+          "covers": {
+            "sandbox": true,
+            "read_limit": "workspace",
+            "network_cut": "allowlist"
+          },
+          "uncovered": [
+            "file_and_web_tools_outside_sandbox",
+            "hooks_mcp_statusline_outside_sandbox",
+            "excluded_commands_outside_sandbox",
+            "bang_prompt_outside_sandbox",
+            "allowlisted_destinations_open"
+          ],
+          "measure": "guided",
+          "source": {
+            "url": "https://code.claude.com/docs/en/sandboxing",
+            "official": true,
+            "accessed_at": "2026-11-16",
+            "page_date": null
+          },
+          "watch": [
+            "failIfUnavailable",
+            "allowUnsandboxedCommands",
+            "strictAllowlist",
+            "allowedDomains",
+            "denyRead",
+            "allowRead",
+            "excludedCommands",
+            "autoAllowBashIfSandboxed",
+            "runs commands unsandboxed",
+            "The sandbox covers shell commands only",
+            "doesn't stop the Read tool",
+            "status line command",
+            "shell-mode prompt runs unsandboxed",
+            "bubblewrap",
+            "socat",
+            "start Claude Code with --settings",
+            "Set it to false to prompt for sandboxed commands"
+          ],
+          "session": {
+            "command": "claude --settings '{\"sandbox\":{\"enabled\":true,\"failIfUnavailable\":true,\"allowUnsandboxedCommands\":false,\"autoAllowBashIfSandboxed\":false,\"network\":{\"allowedDomains\":[],\"strictAllowlist\":true},\"filesystem\":{\"denyRead\":[\"~/\"],\"allowRead\":[\"/RUTA/DEL/PROYECTO\"]}},\"permissions\":{\"blockReadsOutsideWorkingDirectories\":true,\"deny\":[\"WebFetch\",\"WebSearch\"]}}'",
+            "requires": [],
+            "source": {
+              "url": "https://code.claude.com/docs/en/sandboxing",
+              "official": true,
+              "accessed_at": "2026-11-16",
+              "page_date": null
+            }
+          }
+        },
+        "linux": {
+          "kind": "agent_sandbox",
+          "intro": "paste_many",
+          "blocks": [
+            {
+              "file": "~/.claude/settings.json",
+              "format": "json",
+              "value": "{\n  \"permissions\": {\n    \"defaultMode\": \"acceptEdits\",\n    \"disableAutoMode\": \"disable\",\n    \"disableBypassPermissionsMode\": \"disable\",\n    \"blockReadsOutsideWorkingDirectories\": true,\n    \"allow\": [\n      \"Bash(npm run lint)\", \"Bash(npm run test *)\",\n      \"Bash(git status)\", \"Bash(git diff)\"\n    ],\n    \"ask\": [\n      \"Edit(~/.codex/**)\", \"Edit(**/.codex/**)\",\n      \"Edit(~/.cursor/**)\", \"Edit(**/.cursor/**)\",\n      \"Edit(~/.cline/**)\", \"Edit(**/.clinerules/**)\",\n      \"Edit(~/.gemini/**)\", \"Edit(**/.gemini/**)\",\n      \"Edit(~/.grok/**)\", \"Edit(**/.grok/**)\", \"Edit(~/.hermes/**)\",\n      \"Edit(~/AppData/Roaming/**)\",\n      \"Edit(**/AGENTS.md)\", \"Edit(**/CLAUDE.md)\", \"Edit(**/GEMINI.md)\",\n      \"Edit(**/.github/copilot-instructions.md)\"\n    ],\n    \"deny\": [\"WebFetch\", \"WebSearch\", \"Bash(curl *)\", \"Bash(wget *)\"]\n  },\n  \"sandbox\": {\n    \"enabled\": true,\n    \"failIfUnavailable\": true,\n    \"allowUnsandboxedCommands\": false,\n    \"autoAllowBashIfSandboxed\": false,\n    \"network\": { \"allowedDomains\": [\"registry.npmjs.org\", \"github.com\"], \"strictAllowlist\": true },\n    \"filesystem\": { \"denyRead\": [\"~/.ssh\", \"~/.aws\"] },\n    \"credentials\": { \"files\": [ { \"path\": \"~/.aws/credentials\", \"mode\": \"deny\" }, { \"path\": \"~/.ssh\", \"mode\": \"deny\" } ] }\n  }\n}"
+            },
+            {
+              "file": ".claude/settings.json",
+              "format": "json",
+              "value": "{ \"sandbox\": { \"filesystem\": { \"denyRead\": [\"~/\"], \"allowRead\": [\".\"] } } }"
+            }
+          ],
+          "covers": {
+            "sandbox": true,
+            "read_limit": "workspace",
+            "network_cut": "allowlist"
+          },
+          "uncovered": [
+            "file_and_web_tools_outside_sandbox",
+            "hooks_mcp_statusline_outside_sandbox",
+            "excluded_commands_outside_sandbox",
+            "bang_prompt_outside_sandbox",
+            "allowlisted_destinations_open"
+          ],
+          "measure": "guided",
+          "source": {
+            "url": "https://code.claude.com/docs/en/sandboxing",
+            "official": true,
+            "accessed_at": "2026-11-16",
+            "page_date": null
+          },
+          "watch": [
+            "failIfUnavailable",
+            "allowUnsandboxedCommands",
+            "strictAllowlist",
+            "allowedDomains",
+            "denyRead",
+            "allowRead",
+            "excludedCommands",
+            "autoAllowBashIfSandboxed",
+            "runs commands unsandboxed",
+            "The sandbox covers shell commands only",
+            "doesn't stop the Read tool",
+            "status line command",
+            "shell-mode prompt runs unsandboxed",
+            "bubblewrap",
+            "socat",
+            "start Claude Code with --settings",
+            "Set it to false to prompt for sandboxed commands"
+          ],
+          "session": {
+            "command": "claude --settings '{\"sandbox\":{\"enabled\":true,\"failIfUnavailable\":true,\"allowUnsandboxedCommands\":false,\"autoAllowBashIfSandboxed\":false,\"network\":{\"allowedDomains\":[],\"strictAllowlist\":true},\"filesystem\":{\"denyRead\":[\"~/\"],\"allowRead\":[\"/RUTA/DEL/PROYECTO\"]}},\"permissions\":{\"blockReadsOutsideWorkingDirectories\":true,\"deny\":[\"WebFetch\",\"WebSearch\"]}}'",
+            "requires": [
+              "bubblewrap_socat"
+            ],
+            "source": {
+              "url": "https://code.claude.com/docs/en/sandboxing",
+              "official": true,
+              "accessed_at": "2026-11-16",
+              "page_date": null
+            }
+          }
+        }
       }
     },
     {
@@ -2466,6 +3523,131 @@
               "accessed_at": "2026-11-15"
             }
           }
+        }
+      },
+      "templates": {
+        "windows": {
+          "kind": "separate_account",
+          "blocks": [],
+          "covers": {
+            "sandbox": false,
+            "read_limit": "unknown",
+            "network_cut": "no"
+          },
+          "uncovered": [],
+          "measure": "guided",
+          "source": {
+            "url": "https://cursor.com/docs/reference/sandbox.md",
+            "official": true,
+            "accessed_at": "2026-11-16",
+            "page_date": null
+          },
+          "watch": []
+        },
+        "macos": {
+          "kind": "agent_sandbox",
+          "intro": "paste_many",
+          "blocks": [
+            {
+              "file": null,
+              "format": "ui",
+              "value": "cursor_allowlist_sandbox"
+            },
+            {
+              "file": "~/.cursor/sandbox.json",
+              "format": "json",
+              "value": "{ \"readBoundary\": \"workspace\", \"networkPolicy\": { \"default\": \"deny\", \"allow\": [\"registry.npmjs.org\"] } }"
+            }
+          ],
+          "covers": {
+            "sandbox": true,
+            "read_limit": "workspace",
+            "network_cut": "allowlist"
+          },
+          "uncovered": [
+            "allowlist_and_fetch_outside_sandbox",
+            "other_agents_config_in_project",
+            "mcp_outside_sandbox"
+          ],
+          "measure": "guided",
+          "source": {
+            "url": "https://cursor.com/docs/agent/security/run-modes.md",
+            "official": true,
+            "accessed_at": "2026-11-16",
+            "page_date": null
+          },
+          "watch": [
+            "Allowlist",
+            "With sandboxing enabled, supported shell commands can run in the sandbox",
+            "allowlisted shell, Fetch, and MCP calls run outside the sandbox",
+            "Landlock v3",
+            "falls back to asking for approval"
+          ],
+          "extra_sources": [
+            {
+              "url": "https://cursor.com/docs/reference/sandbox.md",
+              "official": true,
+              "accessed_at": "2026-11-16",
+              "page_date": null,
+              "watch": [
+                "readBoundary",
+                "networkPolicy"
+              ]
+            }
+          ]
+        },
+        "linux": {
+          "kind": "agent_sandbox",
+          "intro": "paste_many",
+          "blocks": [
+            {
+              "file": null,
+              "format": "ui",
+              "value": "cursor_allowlist_sandbox"
+            },
+            {
+              "file": "~/.cursor/sandbox.json",
+              "format": "json",
+              "value": "{ \"readBoundary\": \"workspace\", \"networkPolicy\": { \"default\": \"deny\", \"allow\": [\"registry.npmjs.org\"] } }"
+            }
+          ],
+          "covers": {
+            "sandbox": true,
+            "read_limit": "workspace",
+            "network_cut": "allowlist"
+          },
+          "uncovered": [
+            "allowlist_and_fetch_outside_sandbox",
+            "other_agents_config_in_project",
+            "mcp_outside_sandbox",
+            "linux_needs_landlock_v3"
+          ],
+          "measure": "guided",
+          "source": {
+            "url": "https://cursor.com/docs/agent/security/run-modes.md",
+            "official": true,
+            "accessed_at": "2026-11-16",
+            "page_date": null
+          },
+          "watch": [
+            "Allowlist",
+            "With sandboxing enabled, supported shell commands can run in the sandbox",
+            "allowlisted shell, Fetch, and MCP calls run outside the sandbox",
+            "Landlock v3",
+            "falls back to asking for approval"
+          ],
+          "extra_sources": [
+            {
+              "url": "https://cursor.com/docs/reference/sandbox.md",
+              "official": true,
+              "accessed_at": "2026-11-16",
+              "page_date": null,
+              "watch": [
+                "readBoundary",
+                "networkPolicy"
+              ]
+            }
+          ]
         }
       }
     },
