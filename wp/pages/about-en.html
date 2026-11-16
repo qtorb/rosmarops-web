@@ -7,7 +7,11 @@
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>A free program for Windows and Linux, and for macOS in preview, open source under the AGPL-3.0 license, downloaded from GitHub (<a href="/">download</a>). It reads the configuration your agents leave on disk and gives you a report with a traffic light, «If you do only one thing today», and an Agent Posture Score out of 100 for each agent it evaluates.</p>
+<p>A free, open-source program (AGPL-3.0) for Windows and Linux, and for macOS in preview. You install it from the Microsoft Store, with Homebrew on macOS and Linux, or by downloading it from GitHub (<a href="/">download</a>). It reads the configuration your agents leave on disk and gives you a one-sheet report: your computer’s control score, from 0 to 100, a class from A to D that says how much your agents do without asking you, and the findings that weigh most, with how much the score would go up if you change them.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>If you don’t want to adjust permissions one by one, you tell it what you use your agents for and it suggests a profile for each one, with a text to paste into the agent itself. The agent shows you the change before saving it: RosmarOps touches nothing. If you want, you connect the program to your space at app.rosmarops.com and see the results of all your computers there.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -50,7 +54,7 @@
 
 <!-- wp:list -->
 <ul class="wp-block-list"><!-- wp:list-item -->
-<li>The program is not yet signed with a code signing certificate: Windows may warn you the first time you open it. On macOS, where it is not notarised by Apple either, the first run needs two commands in Terminal.</li>
+<li>Downloaded from GitHub, the program isn’t signed with a code-signing certificate yet: Windows may warn you the first time you open it. From the Microsoft Store it doesn’t. On macOS it isn’t notarised by Apple: with Homebrew nothing else is needed; if you download it from GitHub, the first time takes two commands in Terminal.</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
@@ -72,11 +76,15 @@
 
 <!-- wp:list -->
 <ul class="wp-block-list"><!-- wp:list-item -->
-<li><a href="https://rosmarops.com/observatory/">The Observatory</a>: what each AI coding agent can do on your computer by default, where it keeps its configuration and keys, and its security changes, each fact with its date and source. No one pays to appear.</li>
+<li><a href="https://rosmarops.com/observatory/">The Observatory</a>: what each AI agent can do by default, company by company, what protections it has (sandbox, read-only mode, whether it asks first, network cut) and its security changes, each value with its date and source. With a published criterion, it says which agents to start with. No one pays to appear.</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><a href="https://rosmarops.com/methodology/">The methodology</a>: how the Agent Posture Score is calculated, and what it does not measure.</li>
+<li><a href="/try-an-ai-agent/">How to try an AI agent in a test environment</a>: a guide to see what an agent could touch before you give it your folders.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><a href="https://rosmarops.com/methodology/">The methodology</a>: how the control score and the class are calculated, what they don’t measure and how we recommend an agent.</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->

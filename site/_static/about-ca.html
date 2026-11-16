@@ -66,7 +66,8 @@ footer nav{gap:20px;font-size:15px}
 <article class="doc"><h1>Què és RosmarOps</h1>
 <p>RosmarOps mostra què poden fer els agents d’IA per programar que tens a l’ordinador: què pot llegir i canviar cadascun, quines claus té a l’abast, on envien dades els seus servidors MCP i si un agent pot canviar la configuració o les instruccions d’un altre. Tot es calcula al teu ordinador. El fa Albert Garcia Pujadas.</p>
 <h2>Què és avui</h2>
-<p>Un programa gratuït per a Windows i Linux, i per a macOS en vista prèvia, de codi obert amb llicència AGPL-3.0, que es baixa des de GitHub (<a href="/ca/">baixa’l</a>). Llegeix la configuració que els teus agents deixen al disc i et dona un informe amb un semàfor, «Si només fas una cosa avui» i una nota d’exposició sobre 100 per a cada agent que avalua.</p>
+<p>Un programa gratuït de codi obert (AGPL-3.0) per a Windows i Linux, i per a macOS en vista prèvia. S’instal·la des de la Microsoft Store, amb Homebrew a macOS i Linux, o descarregant-lo de GitHub (<a href="/ca/">descarregar</a>). Llegeix la configuració que els teus agents deixen al disc i et dona un informe d’un full: la nota de control del teu ordinador, de 0 a 100, una classe de l’A a la D que diu quant fan els teus agents sense preguntar-te, i els avisos que pesen més, amb el que pujaria la nota si els canvies.</p>
+<p>Si no vols ajustar els permisos un per un, li dius per a què fas servir els teus agents i et proposa un perfil per a cadascun, amb un text per enganxar al mateix agent. L’agent t’ensenya el canvi abans de desar-lo: RosmarOps no toca res. Si vols, connectes el programa al teu espai a app.rosmarops.com i hi veus els resultats de tots els teus ordinadors.</p>
 <p>Avui avalua Claude Code, Cursor, Hermes Agent, Codex, Grok Build, Antigravity CLI, GitHub Copilot a VS Code, Cline a VS Code i Gemini CLI. Detecta Continue, Antigravity, Claude Desktop i n8n, però encara no els posa nota. Més a la <a href="https://rosmarops.com/ca/">portada</a>.</p>
 <h2>El que no fa mai</h2>
 <ul>
@@ -79,15 +80,16 @@ footer nav{gap:20px;font-size:15px}
 <p>No cal que te’n fiïs de la nostra paraula. El <a href="https://github.com/qtorb/rosmarops/blob/master/docs/trust-model.md">model de confiança</a> llista cada afirmació i com comprovar-la. Cada versió porta una atestació de GitHub del commit i el procés que la van compilar, i compilar aquesta mateixa versió des del seu codi, amb la versió de Go i l’ordre que documentem, dona el mateix programa.</p>
 <h2>El que encara no fa</h2>
 <ul>
-<li>El programa encara no està signat amb un certificat de signatura de codi: Windows et pot avisar la primera vegada que l’obris. A macOS, on tampoc no està notaritzat per Apple, la primera vegada calen dues ordres al Terminal.</li>
+<li>Descarregat de GitHub, el programa encara no està signat amb un certificat de signatura de codi: Windows et pot avisar la primera vegada que l’obris. Des de la Microsoft Store no passa. A macOS no està notaritzat per Apple: amb Homebrew no cal res més; si el descarregues de GitHub, la primera vegada calen dues ordres al Terminal.</li>
 <li>No s’ha publicat cap revisió de seguretat independent.</li>
 <li>Llegeix la configuració en repòs. No veu el que fa un agent mentre treballa, els ajustos que només viuen dins d’una aplicació o als servidors del fabricant, ni el que es configura només en una sessió de terminal. El que no va poder llegir apareix a l’informe i mai no compta com a net.</li>
 <li>A macOS és una vista prèvia: l’informe llista el que encara no revisa a macOS, i res d’això compta com a net.</li>
 </ul>
 <h2>Què publiquem</h2>
 <ul>
-<li><a href="https://rosmarops.com/ca/observatori/">L’Observatori</a>: què pot fer de sèrie cada agent d’IA per programar al teu ordinador, on guarda la seva configuració i les seves claus, i els seus canvis de seguretat, cada dada amb la seva data i la seva font. Ningú no paga per aparèixer-hi.</li>
-<li><a href="https://rosmarops.com/ca/metodologia/">La metodologia</a>: com es calcula la nota d’exposició i què no mesura.</li>
+<li><a href="https://rosmarops.com/ca/observatori/">L’Observatori</a>: què pot fer de sèrie cada agent d’IA, empresa per empresa, quines proteccions porta (sandbox, mode només lectura, si et pregunta abans i tall de xarxa) i els seus canvis de seguretat, cada dada amb la seva data i la seva font. Amb un criteri publicat, diu per quins agents començar. Ningú no paga per aparèixer.</li>
+<li><a href="/ca/provar-un-agent-dia/">Com provar un agent d’IA en un entorn de proves</a>: una guia per veure què podria tocar un agent abans de donar-li les teves carpetes.</li>
+<li><a href="https://rosmarops.com/ca/metodologia/">La metodologia</a>: com es calculen la nota de control i la classe, què no mesuren i com recomanem un agent.</li>
 <li>Aquest bloc: les novetats del producte, en català, <a href="https://rosmarops.com/blog/">anglès</a> i <a href="https://rosmarops.com/es/blog/">castellà</a>.</li>
 </ul>
 <h2>D’on venim</h2>
