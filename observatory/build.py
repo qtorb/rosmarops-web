@@ -51,6 +51,7 @@ DAILY_KEYS = ["common.date", "common.months", "site.observatory_brand",
               "daily.title", "daily.lead", "daily.empty", "daily.checked_h2", "daily.index_h1", "daily.rss_title", "daily.disclaimer",
               "daily.partial", "daily.partial_empty", "daily.none_checked",
               "index.today_checked", "index.today_incomplete", "index.today_source", "index.today_empty",
+              "index.today_more", "index.today_held", "index.today_held_one",  # GTM-171
               # GTM-89: the security changes list, the «Latest security change» column and the agent histories, served live.
               "agent.change_meta", "agent.change_meta_noversion", "agent.before", "agent.after", "agent.source_official",
               "agent.source_rosmarops", "agent.verified", "agent.verified_writer_official_changelog",

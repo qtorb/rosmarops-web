@@ -179,8 +179,8 @@ function rosmarops_daily_store($d, $date) {
 		error_log("rosmarops-daily: $date rejected ($ok)");
 		return false;
 	}
-	// Only what the pages use is kept; `held` stays in the repository.
-	$keep = ['date' => $d['date'], 'reviewed_at' => $d['reviewed_at'], 'status' => $d['status'], 'items' => $d['items'], 'checked' => $d['checked'], 'not_checked' => $d['not_checked'] ?? []];
+	// Only what the pages use is kept; `held` stays in the repository, only its count is kept (GTM-171).
+	$keep = ['date' => $d['date'], 'reviewed_at' => $d['reviewed_at'], 'status' => $d['status'], 'items' => $d['items'], 'checked' => $d['checked'], 'not_checked' => $d['not_checked'] ?? [], 'held_n' => count($d['held'])];
 	rosmarops_daily_set('rosmarops_daily_' . $date, $keep);
 	$dates = (array) rosmarops_daily_get('rosmarops_daily_dates', []);
 	$dates[] = $date;
@@ -481,7 +481,15 @@ function rosmarops_daily_today($lang, $d) {
 	$checked = strtr(rosmarops_daily_t($lang, 'index.today_checked'), ['{date}' => rosmarops_daily_date($lang, $d['date']), '{checked}' => (string) count(rosmarops_daily_sources($d))]);
 	$out = '<p class="note">' . rosmarops_daily_e($checked) . "</p>\n";
 	if ($d['status'] === 'incomplete') {
-		$out .= '<p class="note">' . rosmarops_daily_e(rosmarops_daily_t($lang, 'index.today_incomplete')) . "</p>\n";
+		// GTM-171: the count and the names of what could not be read (the first three, then «and {n} more»).
+		$n = count(rosmarops_daily_sources($d));
+		$nc = array_values((array) ($d['not_checked'] ?? []));
+		$names = implode(', ', array_slice($nc, 0, 3));
+		if (count($nc) > 3) {
+			$names .= ' ' . strtr(rosmarops_daily_t($lang, 'index.today_more'), ['{n}' => (string) (count($nc) - 3)]);
+		}
+		$inc = strtr(rosmarops_daily_t($lang, 'index.today_incomplete'), ['{checked}' => (string) $n, '{total}' => (string) ($n + count($nc)), '{sources}' => $names]);
+		$out .= '<p class="note">' . rosmarops_daily_e($inc) . "</p>\n";
 	}
 	$items = array_slice((array) $d['items'], 0, 5);
 	if (count($items) > 0) {
@@ -493,7 +501,14 @@ function rosmarops_daily_today($lang, $d) {
 		}
 		$out .= "</ol>\n";
 	} else {
-		$out .= '<p class="empty box">' . rosmarops_daily_e(rosmarops_daily_t($lang, 'index.today_empty')) . "</p>\n";
+		// GTM-171: nothing published, but changes held back for checking.
+		$held = isset($d['held_n']) ? (int) $d['held_n'] : (is_array($d['held'] ?? null) ? count($d['held']) : 0);
+		if ($held > 0) {
+			$text = $held === 1 ? rosmarops_daily_t($lang, 'index.today_held_one') : strtr(rosmarops_daily_t($lang, 'index.today_held'), ['{n}' => (string) $held]);
+		} else {
+			$text = rosmarops_daily_t($lang, 'index.today_empty');
+		}
+		$out .= '<p class="empty box">' . rosmarops_daily_e($text) . "</p>\n";
 	}
 	return $out;
 }
