@@ -128,7 +128,8 @@ def for_repeat(date, raw_dir=None, sources_file=SOURCES):
 
 def for_consistency(date, report):
     """GTM-99: the web contradicts the agent files or the program's latest release. Same channel, one FOCO line first."""
-    lines = [ln.removeprefix("::error::").removeprefix("FAIL ").strip() for ln in report.splitlines()]
+    lines = [ln.removeprefix("::error::").removeprefix("FAIL ").removeprefix("::warning::").removeprefix("WARN ").strip()
+             for ln in report.splitlines()]  # GTM-173: release lag is a warning, still reported
     problems = [ln for ln in lines if ln and not ln.startswith("agent lists:")]
     if not problems:
         return []

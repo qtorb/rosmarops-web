@@ -210,6 +210,20 @@ class Daily(unittest.TestCase):
         d["held"] = []
         self.assertIn('<p class="empty box">No new changes in the sources today.</p>', self.today(d, "en"))
 
+    def test_refresh_fetches_at_most_once_a_minute(self):
+        """GTM-173: the daily workflow's refresh request makes the site fetch the daily and agent files, once a minute at most."""
+        log = Path(self.tmp.name) / "fetches.log"
+        run = lambda now: subprocess.run(["php", str(TESTS / "daily-cli.php"), "refresh", str(log), str(now)],
+                                         env=self.env, capture_output=True, text=True, check=True).stdout.strip()
+        self.assertEqual(run(1_000_000), "200 fetched")
+        urls = log.read_text(encoding="utf-8").split()
+        self.assertTrue(urls and all(u.startswith("https://raw.githubusercontent.com/qtorb/rosmarops-web/main/observatory/") for u in urls), urls)
+        self.assertTrue(any("/observatory/daily/" in u for u in urls) and any("/observatory/data/agents/" in u for u in urls), urls)
+        n = len(urls)
+        self.assertEqual(run(1_000_030), "429 too_soon")
+        self.assertEqual(len(log.read_text(encoding="utf-8").split()), n)
+        self.assertEqual(run(1_000_061), "200 fetched")
+
     def test_unknown_date_is_wordpress_404(self):
         st, _, body = self.get("/observatory/daily/2026-01-01/")
         self.assertEqual((st, body), (404, "wp-404"))

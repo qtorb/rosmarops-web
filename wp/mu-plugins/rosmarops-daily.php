@@ -217,6 +217,37 @@ function rosmarops_daily_fetch() {
 add_action('rosmarops_daily_fetch', 'rosmarops_daily_fetch');
 add_action('rosmarops_daily_fetch', 'rosmarops_agents_fetch');
 
+// GTM-173 (signed by Albert 16-11): the daily workflow asks the site to fetch right after a daily file lands on main,
+// instead of waiting for the hourly cron. No credential: the request only makes the site do what the cron does, from
+// the fixed public addresses above, with the same checks; at most once every ROSMAROPS_DAILY_REFRESH_GAP seconds.
+const ROSMAROPS_DAILY_REFRESH_GAP = 60;
+
+/** [HTTP status, short status word] for POST /wp-json/rosmarops/v1/daily-refresh. */
+function rosmarops_daily_refresh($now = null) {
+	if (function_exists('is_main_site') && !is_main_site()) {
+		return [404, 'not_here'];
+	}
+	$now = $now ?? time();
+	$last = (int) rosmarops_daily_get('rosmarops_daily_refresh_at', 0);
+	if ($now - $last < ROSMAROPS_DAILY_REFRESH_GAP) {
+		return [429, 'too_soon'];
+	}
+	rosmarops_daily_set('rosmarops_daily_refresh_at', $now);
+	do_action('rosmarops_daily_fetch');
+	return [200, 'fetched'];
+}
+
+add_action('rest_api_init', function () {
+	register_rest_route('rosmarops/v1', '/daily-refresh', [
+		'methods' => 'POST',
+		'permission_callback' => '__return_true',
+		'callback' => function () {
+			[$code, $status] = rosmarops_daily_refresh();
+			return new WP_REST_Response(['status' => $status], $code);
+		},
+	]);
+});
+
 // ------------------------------------------------------------------ agent files (GTM-89)
 
 /** A prose object {en, es?, ca?} as in observatory.v1 $defs/text. */
