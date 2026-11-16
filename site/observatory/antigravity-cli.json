@@ -17,11 +17,296 @@
       "status": "evaluated",
       "since_version": "0.9.0"
     },
-    "reviewed_at": "2026-11-07"
+    "reviewed_at": "2026-11-15"
   },
   "versions": [],
-  "changes": [],
+  "changes": [
+    {
+      "id": "chg-antigravity-cli-1-5-8-sandbox-proxy",
+      "version": "1.5.8",
+      "date": "2026-11-13",
+      "category": "sandbox",
+      "before": {
+        "en": "Before 1.5.8, a command could get around the path-based network rules of the terminal sandbox, according to the changelog.",
+        "es": "Antes de la 1.5.8, una orden podía saltarse las reglas de red por ruta del sandbox de la terminal, según el registro de cambios.",
+        "ca": "Abans de la 1.5.8, una ordre podia saltar-se les regles de xarxa per ruta del sandbox del terminal, segons el registre de canvis."
+      },
+      "after": {
+        "en": "From 1.5.8, the sandbox's network proxy checks every way of writing a URL path against those rules, according to the changelog.",
+        "es": "Desde la 1.5.8, el proxy de red del sandbox comprueba contra esas reglas todas las formas de escribir la ruta de una URL, según el registro de cambios.",
+        "ca": "Des de la 1.5.8, el proxy de xarxa del sandbox comprova amb aquestes regles totes les maneres d'escriure la ruta d'una URL, segons el registre de canvis."
+      },
+      "source": {
+        "url": "https://antigravity.google/docs/changelog",
+        "official": true,
+        "accessed_at": "2026-11-15"
+      },
+      "verified": {
+        "by": "writer",
+        "at": "2026-11-15",
+        "how": "official_changelog"
+      },
+      "rosmarops_impact": "none"
+    },
+    {
+      "id": "chg-antigravity-cli-1-5-8-mcp-rules",
+      "version": "1.5.8",
+      "date": "2026-11-13",
+      "category": "mcp",
+      "before": {
+        "en": "Before 1.5.8, a deny or ask rule for an MCP tool could be ignored, according to the changelog.",
+        "es": "Antes de la 1.5.8, una regla de denegar o preguntar para una herramienta MCP podía no aplicarse, según el registro de cambios.",
+        "ca": "Abans de la 1.5.8, una regla de denegar o preguntar per a una eina MCP podia no aplicar-se, segons el registre de canvis."
+      },
+      "after": {
+        "en": "From 1.5.8, MCP tools loaded at start-up and the browser subagent's tools follow those rules, according to the changelog.",
+        "es": "Desde la 1.5.8, las herramientas MCP que se cargan al arrancar y las del subagente de navegador cumplen esas reglas, según el registro de cambios.",
+        "ca": "Des de la 1.5.8, les eines MCP que es carreguen en arrencar i les del subagent de navegador compleixen aquestes regles, segons el registre de canvis."
+      },
+      "source": {
+        "url": "https://antigravity.google/docs/changelog",
+        "official": true,
+        "accessed_at": "2026-11-15"
+      },
+      "verified": {
+        "by": "writer",
+        "at": "2026-11-15",
+        "how": "official_changelog"
+      },
+      "rosmarops_impact": "none"
+    },
+    {
+      "id": "chg-antigravity-cli-1-5-7-auto-default",
+      "version": "1.5.7",
+      "date": "2026-11-12",
+      "category": "approval_mode",
+      "before": {
+        "en": "Before 1.5.7, a session with no saved mode started in Default mode, which asks you before running commands, according to the changelog.",
+        "es": "Antes de la 1.5.7, una sesión sin modo guardado arrancaba en el modo Default, que te pregunta antes de ejecutar órdenes, según el registro de cambios.",
+        "ca": "Abans de la 1.5.7, una sessió sense mode desat arrencava en el mode Default, que et pregunta abans d'executar ordres, segons el registre de canvis."
+      },
+      "after": {
+        "en": "From 1.5.7, it starts in Auto mode where it's available, also when run without a window (-p). You can keep Default in /config, according to the changelog.",
+        "es": "Desde la 1.5.7, arranca en el modo Auto donde está disponible, también cuando se ejecuta sin ventana (-p). Puedes mantener Default en /config, según el registro de cambios.",
+        "ca": "Des de la 1.5.7, arrenca en el mode Auto on és disponible, també quan s'executa sense finestra (-p). Pots mantenir Default a /config, segons el registre de canvis."
+      },
+      "source": {
+        "url": "https://antigravity.google/docs/changelog",
+        "official": true,
+        "accessed_at": "2026-11-15"
+      },
+      "verified": {
+        "by": "writer",
+        "at": "2026-11-15",
+        "how": "official_changelog"
+      },
+      "rosmarops_impact": "knowledge"
+    },
+    {
+      "id": "chg-antigravity-cli-1-5-7-strict",
+      "version": "1.5.7",
+      "date": "2026-11-12",
+      "category": "permissions",
+      "before": {
+        "en": "Before 1.5.7, the strict Tool Permission setting did not take precedence over the Auto and accept-edits modes, according to the changelog.",
+        "es": "Antes de la 1.5.7, el ajuste estricto de permisos de herramientas no se imponía a los modos Auto y accept-edits, según el registro de cambios.",
+        "ca": "Abans de la 1.5.7, l'ajust estricte de permisos d'eines no s'imposava als modes Auto i accept-edits, segons el registre de canvis."
+      },
+      "after": {
+        "en": "From 1.5.7, it takes precedence over both, and file edits still ask for your approval, according to the changelog.",
+        "es": "Desde la 1.5.7, se impone a los dos, y las ediciones de ficheros siguen pidiendo tu aprobación, según el registro de cambios.",
+        "ca": "Des de la 1.5.7, s'imposa als dos, i les edicions de fitxers continuen demanant la teva aprovació, segons el registre de canvis."
+      },
+      "source": {
+        "url": "https://antigravity.google/docs/changelog",
+        "official": true,
+        "accessed_at": "2026-11-15"
+      },
+      "verified": {
+        "by": "writer",
+        "at": "2026-11-15",
+        "how": "official_changelog"
+      },
+      "rosmarops_impact": "none"
+    },
+    {
+      "id": "chg-antigravity-cli-1-5-7-hook-bypass",
+      "version": "1.5.7",
+      "date": "2026-11-12",
+      "category": "hooks",
+      "before": {
+        "en": "Before 1.5.7, a hook that approved on its own, or an allow rule for any command, could skip a review your administrator required, according to the changelog.",
+        "es": "Antes de la 1.5.7, un hook que aprobaba por su cuenta, o una regla que permitía cualquier orden, podía saltarse una revisión que exigía tu administrador, según el registro de cambios.",
+        "ca": "Abans de la 1.5.7, un hook que aprovava pel seu compte, o una regla que permetia qualsevol ordre, podia saltar-se una revisió que exigia el teu administrador, segons el registre de canvis."
+      },
+      "after": {
+        "en": "From 1.5.7, they can't skip it: commands that leave the sandbox and file access outside the project under an always-ask policy always ask, according to the changelog.",
+        "es": "Desde la 1.5.7, ya no pueden: las órdenes que salen del sandbox y el acceso a ficheros fuera del proyecto con una política de preguntar siempre te preguntan siempre, según el registro de cambios.",
+        "ca": "Des de la 1.5.7, ja no poden: les ordres que surten del sandbox i l'accés a fitxers fora del projecte amb una política de preguntar sempre et pregunten sempre, segons el registre de canvis."
+      },
+      "source": {
+        "url": "https://antigravity.google/docs/changelog",
+        "official": true,
+        "accessed_at": "2026-11-15"
+      },
+      "verified": {
+        "by": "writer",
+        "at": "2026-11-15",
+        "how": "official_changelog"
+      },
+      "rosmarops_impact": "none"
+    }
+  ],
   "ratings": [],
+  "default_mode": {
+    "name": "default",
+    "who_decides": "unknown",
+    "source": {
+      "url": "https://antigravity.google/docs/cli/modes",
+      "official": true,
+      "accessed_at": "2026-11-15"
+    },
+    "note": {
+      "en": "Its modes and permissions pages say it starts in Default mode, which asks you. Its changelog says that from 1.5.7 it starts in Auto mode, where another model reviews commands. We haven't checked which holds.",
+      "es": "Sus páginas de modos y permisos dicen que arranca en el modo Default, que te pregunta. Su registro de cambios dice que desde la 1.5.7 arranca en el modo Auto, donde otro modelo revisa las órdenes. No hemos comprobado cuál se cumple.",
+      "ca": "Les seves pàgines de modes i permisos diuen que arrenca en el mode Default, que et pregunta. El seu registre de canvis diu que des de la 1.5.7 arrenca en el mode Auto, on un altre model revisa les ordres. No hem comprovat quina es compleix."
+    }
+  },
+  "capabilities": [
+    {
+      "id": "cap-read-working",
+      "action": "read_files",
+      "scope": "working_directories",
+      "default": "allow",
+      "source": {
+        "url": "https://antigravity.google/docs/permissions",
+        "official": true,
+        "accessed_at": "2026-11-15"
+      },
+      "via": "tools"
+    },
+    {
+      "id": "cap-read-outside",
+      "action": "read_files",
+      "scope": "outside_working_directories",
+      "default": "ask",
+      "source": {
+        "url": "https://antigravity.google/docs/permissions",
+        "official": true,
+        "accessed_at": "2026-11-15"
+      },
+      "via": "tools"
+    },
+    {
+      "id": "cap-write-working",
+      "action": "write_files",
+      "scope": "working_directories",
+      "default": "conflicting",
+      "source": {
+        "url": "https://antigravity.google/docs/cli/modes",
+        "official": true,
+        "accessed_at": "2026-11-15"
+      },
+      "via": "tools",
+      "conflict": {
+        "text": {
+          "en": "Its modes page says that by default it shows you each change before writing it. Its changelog says that from 1.5.7 it starts in Auto mode, which writes in the project without asking. We haven't checked which holds.",
+          "es": "Su página de modos dice que, de serie, te enseña cada cambio antes de escribirlo. Su registro de cambios dice que desde la 1.5.7 arranca en el modo Auto, que escribe en el proyecto sin preguntar. No hemos comprobado cuál se cumple.",
+          "ca": "La seva pàgina de modes diu que, de sèrie, t'ensenya cada canvi abans d'escriure'l. El seu registre de canvis diu que des de la 1.5.7 arrenca en el mode Auto, que escriu al projecte sense preguntar. No hem comprovat quina es compleix."
+        },
+        "sources": [
+          {
+            "source": {
+              "url": "https://antigravity.google/docs/cli/modes",
+              "official": true,
+              "accessed_at": "2026-11-15"
+            },
+            "quote": "Pauses for interactive diff review before modifying or creating files, and asks before running terminal commands."
+          },
+          {
+            "source": {
+              "url": "https://antigravity.google/docs/changelog",
+              "official": true,
+              "accessed_at": "2026-11-15"
+            },
+            "quote": "Changed the default `Agent Mode` from Default to Auto: sessions with no saved mode, including headless `-p` runs,"
+          }
+        ]
+      }
+    },
+    {
+      "id": "cap-write-outside",
+      "action": "write_files",
+      "scope": "outside_working_directories",
+      "default": "ask",
+      "source": {
+        "url": "https://antigravity.google/docs/permissions",
+        "official": true,
+        "accessed_at": "2026-11-15"
+      },
+      "via": "tools"
+    },
+    {
+      "id": "cap-shell",
+      "action": "execute_commands",
+      "scope": "all_commands",
+      "default": "conflicting",
+      "source": {
+        "url": "https://antigravity.google/docs/cli/modes",
+        "official": true,
+        "accessed_at": "2026-11-15"
+      },
+      "via": "shell",
+      "conflict": {
+        "text": {
+          "en": "Its modes page says that by default it asks you before running terminal commands. Its changelog says that from 1.5.7 it starts in Auto mode, where commands it judges low-risk run without asking. We haven't checked which holds.",
+          "es": "Su página de modos dice que, de serie, te pregunta antes de ejecutar órdenes de terminal. Su registro de cambios dice que desde la 1.5.7 arranca en el modo Auto, donde las órdenes que juzga sin peligro se ejecutan sin preguntar. No hemos comprobado cuál se cumple.",
+          "ca": "La seva pàgina de modes diu que, de sèrie, et pregunta abans d'executar ordres de terminal. El seu registre de canvis diu que des de la 1.5.7 arrenca en el mode Auto, on les ordres que considera sense perill s'executen sense preguntar. No hem comprovat quina es compleix."
+        },
+        "sources": [
+          {
+            "source": {
+              "url": "https://antigravity.google/docs/cli/modes",
+              "official": true,
+              "accessed_at": "2026-11-15"
+            },
+            "quote": "Pauses for interactive diff review before modifying or creating files, and asks before running terminal commands."
+          },
+          {
+            "source": {
+              "url": "https://antigravity.google/docs/changelog",
+              "official": true,
+              "accessed_at": "2026-11-15"
+            },
+            "quote": "Changed the default `Agent Mode` from Default to Auto: sessions with no saved mode, including headless `-p` runs,"
+          }
+        ]
+      }
+    },
+    {
+      "id": "cap-network",
+      "action": "network",
+      "scope": "any_destination",
+      "default": "ask",
+      "source": {
+        "url": "https://antigravity.google/docs/permissions",
+        "official": true,
+        "accessed_at": "2026-11-15"
+      },
+      "via": "tools"
+    },
+    {
+      "id": "cap-mcp",
+      "action": "use_mcp_tools",
+      "scope": "all_mcp_tools",
+      "default": "ask",
+      "source": {
+        "url": "https://antigravity.google/docs/mcp",
+        "official": true,
+        "accessed_at": "2026-11-15"
+      }
+    }
+  ],
   "protections": {
     "sandbox": {
       "windows": {
