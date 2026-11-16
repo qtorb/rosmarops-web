@@ -571,6 +571,24 @@
           "accessed_at": "2026-11-16",
           "page_date": null
         }
+      },
+      "checks": {
+        "read": {
+          "kind": "cmd",
+          "cmd": "dir ~",
+          "status": "unconfirmed"
+        },
+        "network": {
+          "kind": "cmd",
+          "cmd": "curl -I https://example.com",
+          "status": "before_also_fails"
+        },
+        "notes": [],
+        "troubleshoot": [
+          "codex_sandbox_mode",
+          "codex_status",
+          "codex_windows"
+        ]
       }
     },
     "macos": {
@@ -634,6 +652,23 @@
           "accessed_at": "2026-11-16",
           "page_date": null
         }
+      },
+      "checks": {
+        "read": {
+          "kind": "cmd",
+          "cmd": "ls ~",
+          "status": "unconfirmed"
+        },
+        "network": {
+          "kind": "cmd",
+          "cmd": "curl -I https://example.com",
+          "status": "before_also_fails"
+        },
+        "notes": [],
+        "troubleshoot": [
+          "codex_sandbox_mode",
+          "codex_status"
+        ]
       }
     },
     "linux": {
@@ -698,6 +733,24 @@
           "accessed_at": "2026-11-16",
           "page_date": null
         }
+      },
+      "checks": {
+        "read": {
+          "kind": "cmd",
+          "cmd": "ls ~",
+          "status": "unconfirmed"
+        },
+        "network": {
+          "kind": "cmd",
+          "cmd": "curl -I https://example.com",
+          "status": "before_also_fails"
+        },
+        "notes": [],
+        "troubleshoot": [
+          "codex_sandbox_mode",
+          "codex_status",
+          "codex_linux"
+        ]
       }
     }
   }

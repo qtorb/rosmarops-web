@@ -484,7 +484,25 @@
                 "sandboxNetworkAccess"
               ]
             }
-          ]
+          ],
+          "checks": {
+            "read": {
+              "kind": "none",
+              "cmd": null,
+              "status": "not_documented"
+            },
+            "network": {
+              "kind": "none",
+              "cmd": null,
+              "status": "not_documented"
+            },
+            "notes": [
+              "gemini_replaced"
+            ],
+            "troubleshoot": [
+              "gemini_restart"
+            ]
+          }
         },
         "macos": {
           "kind": "agent_sandbox",
@@ -534,7 +552,26 @@
                 "sandboxNetworkAccess"
               ]
             }
-          ]
+          ],
+          "checks": {
+            "read": {
+              "kind": "cmd",
+              "cmd": "ls ~",
+              "status": "confirmed"
+            },
+            "network": {
+              "kind": "cmd",
+              "cmd": "curl -I https://example.com",
+              "status": "not_documented"
+            },
+            "notes": [
+              "gemini_replaced"
+            ],
+            "troubleshoot": [
+              "gemini_restart",
+              "gemini_mac_env"
+            ]
+          }
         },
         "linux": {
           "kind": "agent_sandbox",
@@ -578,7 +615,26 @@
                 "sandboxNetworkAccess"
               ]
             }
-          ]
+          ],
+          "checks": {
+            "read": {
+              "kind": "hostname",
+              "cmd": "hostname",
+              "status": "confirmed"
+            },
+            "network": {
+              "kind": "cmd",
+              "cmd": "curl -I https://example.com",
+              "status": "unconfirmed"
+            },
+            "notes": [
+              "gemini_replaced"
+            ],
+            "troubleshoot": [
+              "gemini_restart",
+              "gemini_linux_docker"
+            ]
+          }
         }
       }
     },
@@ -997,7 +1053,27 @@
             "folders outside your user profile are readable",
             "MCP tools, and web page reads",
             "are added to the sandbox's outbound allowlist"
-          ]
+          ],
+          "checks": {
+            "read": {
+              "kind": "cmd",
+              "cmd": "dir ~",
+              "status": "confirmed"
+            },
+            "network": {
+              "kind": "cmd",
+              "cmd": "curl -I https://example.com",
+              "status": "confirmed"
+            },
+            "notes": [
+              "agy_ask_means_off"
+            ],
+            "troubleshoot": [
+              "agy_no_system_sandbox",
+              "agy_windows",
+              "agy_enterprise"
+            ]
+          }
         },
         "macos": {
           "kind": "agent_sandbox",
@@ -1046,6 +1122,25 @@
               "accessed_at": "2026-11-16",
               "page_date": null
             }
+          },
+          "checks": {
+            "read": {
+              "kind": "cmd",
+              "cmd": "ls ~",
+              "status": "confirmed"
+            },
+            "network": {
+              "kind": "cmd",
+              "cmd": "curl -I https://example.com",
+              "status": "confirmed"
+            },
+            "notes": [
+              "agy_ask_means_off"
+            ],
+            "troubleshoot": [
+              "agy_no_system_sandbox",
+              "agy_enterprise"
+            ]
           }
         },
         "linux": {
@@ -1095,6 +1190,26 @@
               "accessed_at": "2026-11-16",
               "page_date": null
             }
+          },
+          "checks": {
+            "read": {
+              "kind": "cmd",
+              "cmd": "ls ~",
+              "status": "confirmed"
+            },
+            "network": {
+              "kind": "cmd",
+              "cmd": "curl -I https://example.com",
+              "status": "confirmed"
+            },
+            "notes": [
+              "agy_ask_means_off"
+            ],
+            "troubleshoot": [
+              "agy_no_system_sandbox",
+              "agy_linux",
+              "agy_enterprise"
+            ]
           }
         }
       }
@@ -1378,7 +1493,25 @@
             "They don't cover servers you start independently",
             "including registry tokens",
             "provides Git authentication to sandboxed processes"
-          ]
+          ],
+          "checks": {
+            "read": {
+              "kind": "copilot_policy",
+              "cmd": null,
+              "status": "unconfirmed"
+            },
+            "network": {
+              "kind": "cmd",
+              "cmd": "curl -I https://example.com",
+              "status": "confirmed"
+            },
+            "notes": [],
+            "troubleshoot": [
+              "copilot_new_session",
+              "copilot_toggle",
+              "copilot_windows"
+            ]
+          }
         },
         "macos": {
           "kind": "agent_sandbox",
@@ -1419,7 +1552,25 @@
             "They don't cover servers you start independently",
             "including registry tokens",
             "provides Git authentication to sandboxed processes"
-          ]
+          ],
+          "checks": {
+            "read": {
+              "kind": "copilot_policy",
+              "cmd": null,
+              "status": "unconfirmed"
+            },
+            "network": {
+              "kind": "cmd",
+              "cmd": "curl -I https://example.com",
+              "status": "confirmed"
+            },
+            "notes": [],
+            "troubleshoot": [
+              "copilot_new_session",
+              "copilot_toggle",
+              "copilot_mac"
+            ]
+          }
         },
         "linux": {
           "kind": "agent_sandbox",
@@ -1460,7 +1611,25 @@
             "They don't cover servers you start independently",
             "including registry tokens",
             "provides Git authentication to sandboxed processes"
-          ]
+          ],
+          "checks": {
+            "read": {
+              "kind": "copilot_policy",
+              "cmd": null,
+              "status": "unconfirmed"
+            },
+            "network": {
+              "kind": "cmd",
+              "cmd": "curl -I https://example.com",
+              "status": "confirmed"
+            },
+            "notes": [],
+            "troubleshoot": [
+              "copilot_new_session",
+              "copilot_toggle",
+              "copilot_linux"
+            ]
+          }
         }
       }
     },
@@ -1732,6 +1901,24 @@
               "accessed_at": "2026-11-16",
               "page_date": null
             }
+          },
+          "checks": {
+            "read": {
+              "kind": "cmd",
+              "cmd": "dir ~",
+              "status": "unconfirmed"
+            },
+            "network": {
+              "kind": "cmd",
+              "cmd": "curl -I https://example.com",
+              "status": "before_also_fails"
+            },
+            "notes": [],
+            "troubleshoot": [
+              "codex_sandbox_mode",
+              "codex_status",
+              "codex_windows"
+            ]
           }
         },
         "macos": {
@@ -1795,6 +1982,23 @@
               "accessed_at": "2026-11-16",
               "page_date": null
             }
+          },
+          "checks": {
+            "read": {
+              "kind": "cmd",
+              "cmd": "ls ~",
+              "status": "unconfirmed"
+            },
+            "network": {
+              "kind": "cmd",
+              "cmd": "curl -I https://example.com",
+              "status": "before_also_fails"
+            },
+            "notes": [],
+            "troubleshoot": [
+              "codex_sandbox_mode",
+              "codex_status"
+            ]
           }
         },
         "linux": {
@@ -1859,6 +2063,24 @@
               "accessed_at": "2026-11-16",
               "page_date": null
             }
+          },
+          "checks": {
+            "read": {
+              "kind": "cmd",
+              "cmd": "ls ~",
+              "status": "unconfirmed"
+            },
+            "network": {
+              "kind": "cmd",
+              "cmd": "curl -I https://example.com",
+              "status": "before_also_fails"
+            },
+            "notes": [],
+            "troubleshoot": [
+              "codex_sandbox_mode",
+              "codex_status",
+              "codex_linux"
+            ]
           }
         }
       }
@@ -2107,6 +2329,24 @@
                 "--deny"
               ]
             }
+          },
+          "checks": {
+            "read": {
+              "kind": "cmd",
+              "cmd": "ls ~",
+              "status": "confirmed"
+            },
+            "network": {
+              "kind": "cmd",
+              "cmd": "curl -I https://example.com",
+              "status": "works_by_design"
+            },
+            "notes": [],
+            "troubleshoot": [
+              "grok_file",
+              "grok_override",
+              "grok_requirements"
+            ]
           }
         },
         "linux": {
@@ -2169,6 +2409,24 @@
                 "--deny"
               ]
             }
+          },
+          "checks": {
+            "read": {
+              "kind": "cmd",
+              "cmd": "ls ~",
+              "status": "confirmed"
+            },
+            "network": {
+              "kind": "cmd",
+              "cmd": "curl -I https://example.com",
+              "status": "confirmed"
+            },
+            "notes": [],
+            "troubleshoot": [
+              "grok_file",
+              "grok_override",
+              "grok_requirements"
+            ]
           }
         }
       }
@@ -2562,7 +2820,25 @@
           },
           "watch": [
             "docker_network"
-          ]
+          ],
+          "checks": {
+            "read": {
+              "kind": "hostname",
+              "cmd": "hostname",
+              "status": "confirmed"
+            },
+            "network": {
+              "kind": "cmd",
+              "cmd": "curl -I https://example.com",
+              "status": "confirmed"
+            },
+            "notes": [],
+            "troubleshoot": [
+              "hermes_docker",
+              "hermes_backend",
+              "hermes_old_container"
+            ]
+          }
         },
         "macos": {
           "kind": "container",
@@ -2593,7 +2869,25 @@
           },
           "watch": [
             "docker_network"
-          ]
+          ],
+          "checks": {
+            "read": {
+              "kind": "hostname",
+              "cmd": "hostname",
+              "status": "confirmed"
+            },
+            "network": {
+              "kind": "cmd",
+              "cmd": "curl -I https://example.com",
+              "status": "confirmed"
+            },
+            "notes": [],
+            "troubleshoot": [
+              "hermes_docker",
+              "hermes_backend",
+              "hermes_old_container"
+            ]
+          }
         },
         "linux": {
           "kind": "container",
@@ -2624,7 +2918,25 @@
           },
           "watch": [
             "docker_network"
-          ]
+          ],
+          "checks": {
+            "read": {
+              "kind": "hostname",
+              "cmd": "hostname",
+              "status": "confirmed"
+            },
+            "network": {
+              "kind": "cmd",
+              "cmd": "curl -I https://example.com",
+              "status": "confirmed"
+            },
+            "notes": [],
+            "troubleshoot": [
+              "hermes_docker",
+              "hermes_backend",
+              "hermes_old_container"
+            ]
+          }
         }
       }
     },
@@ -3149,6 +3461,26 @@
               "accessed_at": "2026-11-16",
               "page_date": null
             }
+          },
+          "checks": {
+            "read": {
+              "kind": "cmd",
+              "cmd": "ls ~",
+              "status": "confirmed"
+            },
+            "network": {
+              "kind": "cmd",
+              "cmd": "git ls-remote https://example.com",
+              "status": "confirmed"
+            },
+            "notes": [
+              "cc_allowlist_open"
+            ],
+            "troubleshoot": [
+              "cc_version",
+              "cc_sandbox_cmd",
+              "cc_status"
+            ]
           }
         },
         "linux": {
@@ -3215,6 +3547,27 @@
               "accessed_at": "2026-11-16",
               "page_date": null
             }
+          },
+          "checks": {
+            "read": {
+              "kind": "cmd",
+              "cmd": "ls ~",
+              "status": "confirmed"
+            },
+            "network": {
+              "kind": "cmd",
+              "cmd": "git ls-remote https://example.com",
+              "status": "confirmed"
+            },
+            "notes": [
+              "cc_allowlist_open"
+            ],
+            "troubleshoot": [
+              "cc_version",
+              "cc_linux_deps",
+              "cc_sandbox_cmd",
+              "cc_status"
+            ]
           }
         }
       }
@@ -3594,7 +3947,28 @@
                 "networkPolicy"
               ]
             }
-          ]
+          ],
+          "checks": {
+            "read": {
+              "kind": "cmd",
+              "cmd": "ls ~",
+              "status": "unconfirmed"
+            },
+            "network": {
+              "kind": "cmd",
+              "cmd": "curl -I https://example.com",
+              "status": "unconfirmed"
+            },
+            "notes": [
+              "cursor_asks_each",
+              "cursor_allowlist_open"
+            ],
+            "troubleshoot": [
+              "cursor_version",
+              "cursor_project_file",
+              "cursor_team"
+            ]
+          }
         },
         "linux": {
           "kind": "agent_sandbox",
@@ -3647,7 +4021,29 @@
                 "networkPolicy"
               ]
             }
-          ]
+          ],
+          "checks": {
+            "read": {
+              "kind": "cmd",
+              "cmd": "ls ~",
+              "status": "unconfirmed"
+            },
+            "network": {
+              "kind": "cmd",
+              "cmd": "curl -I https://example.com",
+              "status": "unconfirmed"
+            },
+            "notes": [
+              "cursor_asks_each",
+              "cursor_allowlist_open"
+            ],
+            "troubleshoot": [
+              "cursor_version",
+              "cursor_linux",
+              "cursor_project_file",
+              "cursor_team"
+            ]
+          }
         }
       }
     },

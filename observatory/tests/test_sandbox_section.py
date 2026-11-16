@@ -103,64 +103,139 @@ class Data(unittest.TestCase):
                 self.assertEqual(s["method"], "page-watch", s["id"])
 
 
+G = sandbox_section.gtexts()
+LAB = [  # a test manifest (GTM-176 §5): never published; the real one comes from BV-250
+    {"agent": "claude-code", "system": "macos", "step": 1, "test": "read", "when": "antes", "command": "ls ~", "result": "concluyente",
+     "agent_version": "2.1.330", "os_version": "26.1", "date": "2026-11-20", "file": "claude-code-macos-1-read-antes.png", "sha256": "0" * 64},
+    {"agent": "claude-code", "system": "macos", "step": 3, "test": "read", "when": "despues", "command": "ls ~", "result": "no_concluyente",
+     "agent_version": "2.1.330", "os_version": "26.1", "date": "2026-11-20", "file": "x.png", "sha256": "0" * 64},
+    {"agent": "codex", "system": "macos", "step": 3, "test": "read", "when": "despues", "command": "ls ~", "result": "concluyente",
+     "agent_version": "0.140.0", "os_version": "26.1", "date": "2026-11-21", "file": "codex-macos-3-read-despues.png", "sha256": "0" * 64},
+]
+
+
+def combo(p, cid):
+    i = p.index(f'id="{cid}"')
+    return p[i:p.index("</section>", i)]
+
+
 class Page(unittest.TestCase):
-    def test_one_card_per_agent_in_the_observatory_order(self):
+    def test_every_combination_once_in_the_observatory_order(self):
         for lang in LANGS:
             p = page(lang)
-            ids = re.findall(r'<section class="tb" id="([a-z-]+)"', p)
-            self.assertEqual(ids, [a["agent"]["id"] for a in sandbox_section.with_templates(AGENTS)], lang)
-            self.assertEqual(len(ids), 9)
+            ids = re.findall(r'<section class="sg-combo" id="([a-z-]+)"', p)
+            want = [f'{a["agent"]["id"]}-{s}' for a in sandbox_section.with_templates(AGENTS) for s in SYSTEMS]
+            self.assertEqual(ids, want, lang)
+            for a in sandbox_section.with_templates(AGENTS):  # «Su plantilla de sandbox» of each agent page lands here
+                self.assertIn(f'<span class="sg-anchor" id="{a["agent"]["id"]}"></span>', p)
 
     def test_signed_texts_and_no_forbidden_word(self):
         for lang in LANGS:
             p = page(lang)
             body = text(p[p.index("<main"):p.index("</main>")])
             self.assertFalse(FORBIDDEN.search(body), lang)
-            for k in ("title", "lead", "which.h", "which.p", "on.h", "on.p", "apart.h", "apart.p", "then.h", "then.p", "note"):
-                self.assertIn(T[lang][k], body, (lang, k))
-            self.assertNotIn(T[lang]["example.h"], body)  # §2.3: no sandbox-example.json in any release yet
+            for k in ("h1", "lead", "sel.agent", "sel.system", "sel.picked", "sel.choose", "none_chosen", "side.what.h",
+                      "side.which.link", "side.try.link"):
+                self.assertIn(G[lang][k], body, (lang, k))
+            self.assertIn(T[lang]["note"], body)
             self.assertIn(f'href="/{"" if lang == "en" else lang + "/"}sandbox/" aria-current="page">Sandbox</a>', p)
-            self.assertIn("from=sandbox&amp;os=store", p)
+            self.assertIn('<div class="sg-sel" hidden>', p)  # without JavaScript the selector does not show
         for lang in LANGS:
-            for k, v in T[lang].items():
+            for k, v in G[lang].items():
                 self.assertFalse(FORBIDDEN.search(v), (lang, k))
 
-    def test_claude_code_card(self):
+    def test_texts_in_three_languages(self):
+        self.assertEqual(set(G["en"]), set(G["ca"]))
+        self.assertEqual(set(G["es"]) - set(G["en"]), {"after.read_copilot_policy"})  # given only in ES (PARA)
+        used = {c for a in AGENTS for t in (a.get("templates") or {}).values() for c in t.get("checks", {}).get("troubleshoot", [])}
+        self.assertEqual({k[3:] for k in G["es"] if k.startswith("ts.")}, used)
+
+    def test_checks_from_cto_61(self):
+        c = lambda a, s: BY_ID[a]["templates"][s].get("checks")
+        self.assertEqual(c("claude-code", "macos")["network"], {"kind": "cmd", "cmd": "git ls-remote https://example.com", "status": "confirmed"})
+        self.assertEqual(c("codex", "windows")["read"]["cmd"], "dir ~")
+        self.assertEqual(c("codex", "linux")["network"]["status"], "before_also_fails")
+        self.assertEqual(c("grok-build", "macos")["network"]["status"], "works_by_design")
+        self.assertEqual(c("github-copilot", "linux")["read"]["kind"], "copilot_policy")
+        self.assertEqual(c("gemini-cli", "linux")["read"]["kind"], "hostname")
+        self.assertEqual((c("gemini-cli", "windows")["read"]["kind"], c("gemini-cli", "windows")["network"]["kind"]), ("none", "none"))
+        self.assertEqual(c("antigravity-cli", "windows")["read"]["cmd"], "dir ~")
+        self.assertIsNone(c("cline", "macos"))
+        self.assertIsNone(c("claude-code", "windows"))
+        self.assertEqual(c("claude-code", "linux")["troubleshoot"], ["cc_version", "cc_linux_deps", "cc_sandbox_cmd", "cc_status"])
+        self.assertEqual(c("claude-code", "macos")["troubleshoot"], ["cc_version", "cc_sandbox_cmd", "cc_status"])
+        self.assertEqual(c("github-copilot", "windows")["troubleshoot"], ["copilot_new_session", "copilot_toggle", "copilot_windows"])
+
+    def test_claude_code_macos(self):
+        cc = combo(page("es"), "claude-code-macos")
+        self.assertIn("<strong>Claude Code en macOS</strong> tiene sandbox, pero viene apagado. La plantilla lo enciende.", cc)
+        self.assertIn("<code>git ls-remote https://example.com</code>", cc)
+        self.assertIn(G["es"]["now.network_git"], cc)
+        self.assertIn(G["es"]["note.cc_allowlist_open"], cc)
+        self.assertIn("Copiar la plantilla", cc)
+        self.assertIn("// ~/.claude/settings.json", cc)
+        self.assertIn(G["es"]["fold.session"], cc)
+        self.assertIn("Lo que el sandbox no cubre en Claude Code (5)", cc)
+        self.assertIn("<code>claude --version</code>", cc)
+        self.assertNotIn("bubblewrap y socat instalados", cc)  # cc_linux_deps is Linux only
+        self.assertIn("bubblewrap y socat instalados", combo(page("es"), "claude-code-linux"))
+        self.assertNotIn(G["es"]["after.unconfirmed"], cc)
+
+    def test_variants(self):
         p = page("es")
-        card = p[p.index('id="claude-code"'):p.index("</section>", p.index('id="claude-code"'))]
-        self.assertIn("// ~/.claude/settings.json", card)
-        self.assertIn("// .claude/settings.json", card)
-        self.assertIn(html.escape(T["es"]["paste.many"].replace("{agent}", "Claude Code"), quote=True), card)
-        self.assertIn("<summary>Probar solo esta vez</summary>", card)
-        self.assertIn("Linux:</span> Necesita: bubblewrap y socat.", card)
-        self.assertIn(T["es"]["session.path"], card)
-        self.assertIn("<code>excludedCommands</code>", card)
-        self.assertIn("En Windows, Claude Code no tiene sandbox", card)
+        cx = combo(p, "codex-windows")
+        self.assertIn(G["es"]["now.before_also_fails"].replace("{agent}", "Codex"), cx)
+        self.assertIn(G["es"]["after.before_also_fails"].replace("{agent}", "Codex"), cx)
+        self.assertIn(G["es"]["after.unconfirmed"], cx)
+        self.assertIn("<code>dir ~</code>", cx)
+        gk = combo(p, "grok-build-macos")
+        self.assertIn(G["es"]["after.works_by_design"].replace("{system}", "macOS"), gk)
+        gw = combo(p, "gemini-cli-windows")
+        self.assertEqual(gw.count(G["es"]["no_test"].replace("{agent}", "Gemini CLI").replace("{system}", "Windows")), 2)  # step 1 and 3
+        self.assertIn(G["es"]["status.gemini_replaced"], gw)
+        cp = combo(p, "github-copilot-macos")
+        self.assertIn("<code>/sandbox policy</code>", cp)
+        self.assertIn(html.escape(T["es"]["paste.vscode"], quote=True), cp)
+        self.assertNotIn("Copiar la plantilla", cp)
+        ag = combo(p, "antigravity-cli-linux")
+        self.assertIn(f'<p>{G["es"]["s3.p_agy"]}</p>', ag)
+        self.assertIn(G["es"]["note.agy_ask_means_off"], ag)
+        cu = combo(p, "cursor-linux")
+        self.assertIn(html.escape(T["es"]["ui.cursor_allowlist_sandbox"], quote=True), cu)
+        gm = combo(p, "gemini-cli-macos")
+        self.assertIn(html.escape(T["es"]["env.gemini_macos"], quote=True), gm)
+        he = combo(p, "hermes-agent-linux")
+        self.assertIn("puede trabajar dentro de un contenedor (Docker)", he)
+        self.assertIn(G["es"]["now.read_hostname"], he)
+        cl = combo(p, "cline-macos")
+        self.assertIn(G["es"]["side.why.h"], cl)
+        self.assertNotIn("sg-steps", cl)
+        en = combo(page("en"), "github-copilot-linux")  # the ES-only copilot line is left out in EN (PARA)
+        self.assertIn(html.escape(G["en"]["after.unconfirmed"], quote=True), en)
+        self.assertNotIn('<p class="sg-exp"></p>', en)
 
-    def test_cline_is_the_other_account_in_both_blocks(self):
-        for lang in LANGS:
-            p = page(lang)
-            card = p[p.index('id="cline"'):p.index("</section>", p.index('id="cline"'))]
-            self.assertEqual(card.count("<pre"), 0)
-            self.assertNotIn(T[lang]["uncovered.h"], card)
-            self.assertEqual(text(card).count(T[lang]["separate_account"].split("{agent}")[1].split(":")[0]), 2)
+    def test_lab_screenshots_from_a_test_manifest(self):
+        with tempfile.TemporaryDirectory() as d:
+            m = Path(d) / "manifest.json"
+            m.write_text(json.dumps({"entries": LAB}))
+            lab = sandbox_section.lab_entries(m)
+        self.assertEqual(len(lab), 2)  # only concluyente
+        p = sandbox_section.article("es", AGENTS, set(), lab)
+        cc = combo(p, "claude-code-macos")
+        self.assertIn('src="/assets/sandbox-lab/claude-code-macos-1-read-antes.png"', cc)
+        self.assertIn('alt="Claude Code: ls ~ antes de la plantilla"', cc)
+        self.assertIn("Captura de nuestro laboratorio: Claude Code 2.1.330, macOS 26.1, 20 de noviembre de 2026.", cc)
+        self.assertNotIn("x.png", cc)
+        cx = combo(p, "codex-macos")
+        self.assertIn("Comprobado en nuestro laboratorio el 21 de noviembre de 2026.", cx)
+        self.assertEqual(cx.count(G["es"]["after.unconfirmed"]), 0)
+        self.assertNotIn("<figure", combo(p, "cursor-macos"))  # without a capture, no gap
+        self.assertEqual(sandbox_section.lab_entries(Path("/nonexistent/manifest.json")), [])
 
-    def test_copilot_cursor_gemini_and_codex(self):
-        p = page("en")
-        card = lambda aid: p[p.index(f'id="{aid}"'):p.index("</section>", p.index(f'id="{aid}"'))]
-        self.assertIn(T["en"]["paste.vscode"], card("github-copilot"))
-        self.assertIn(html.escape(T["en"]["ui.cursor_allowlist_sandbox"], quote=True), card("cursor"))
-        self.assertIn(html.escape(T["en"]["env.gemini_macos"], quote=True), card("gemini-cli"))
-        self.assertIn("SEATBELT_PROFILE=strict-proxied gemini", card("gemini-cli"))
-        self.assertIn("Linux:</span> " + html.escape(T["en"]["uncovered.deny_read_fixed_at_start"], quote=True), card("codex"))
-        self.assertIn('sandbox = &quot;mxc&quot;', card("codex"))
-        self.assertIn("Needs: Windows 11 24H2 or 25H2.", card("codex"))
-        self.assertNotIn("macOS:</span> On macOS", card("grok-build"))  # the text already says its system
-
-    def test_to_review_shows_on_the_cards_of_that_page(self):
+    def test_to_review_shows_on_that_page_combinations(self):
         url = "https://docs.x.ai/build/features/sandbox.md"
         p = page("es", {url})
-        self.assertEqual(p.count(T["es"]["review"]), 2)  # Grok Build: macOS and Linux block, and Windows (other account)
+        self.assertEqual(p.count(T["es"]["review"]), 3)  # Grok Build on the three systems
         self.assertNotIn(T["es"]["review"], page("es"))
 
     def test_review_from_the_latest_raw_file(self):
@@ -172,7 +247,7 @@ class Page(unittest.TestCase):
         with tempfile.TemporaryDirectory() as d:
             self.assertEqual(sandbox_section.to_review(d), set())
 
-    def test_links_to_the_section(self):
+    def test_links_to_the_section(self):  # noqa: the agent anchors stay #{agent}
         site = ROOT / "site"
         for lang, guide, gloss, cmp_ in (("es", "es/probar-un-agente-de-ia", "es/glosario", "es/observatorio/agentes-ia-con-sandbox"),
                                          ("en", "try-an-ai-agent", "glossary", "observatory/ai-agents-with-sandbox"),

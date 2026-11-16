@@ -242,6 +242,24 @@
             "--deny"
           ]
         }
+      },
+      "checks": {
+        "read": {
+          "kind": "cmd",
+          "cmd": "ls ~",
+          "status": "confirmed"
+        },
+        "network": {
+          "kind": "cmd",
+          "cmd": "curl -I https://example.com",
+          "status": "works_by_design"
+        },
+        "notes": [],
+        "troubleshoot": [
+          "grok_file",
+          "grok_override",
+          "grok_requirements"
+        ]
       }
     },
     "linux": {
@@ -304,6 +322,24 @@
             "--deny"
           ]
         }
+      },
+      "checks": {
+        "read": {
+          "kind": "cmd",
+          "cmd": "ls ~",
+          "status": "confirmed"
+        },
+        "network": {
+          "kind": "cmd",
+          "cmd": "curl -I https://example.com",
+          "status": "confirmed"
+        },
+        "notes": [],
+        "troubleshoot": [
+          "grok_file",
+          "grok_override",
+          "grok_requirements"
+        ]
       }
     }
   }

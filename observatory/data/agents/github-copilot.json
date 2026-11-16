@@ -761,7 +761,25 @@
         "They don't cover servers you start independently",
         "including registry tokens",
         "provides Git authentication to sandboxed processes"
-      ]
+      ],
+      "checks": {
+        "read": {
+          "kind": "copilot_policy",
+          "cmd": null,
+          "status": "unconfirmed"
+        },
+        "network": {
+          "kind": "cmd",
+          "cmd": "curl -I https://example.com",
+          "status": "confirmed"
+        },
+        "notes": [],
+        "troubleshoot": [
+          "copilot_new_session",
+          "copilot_toggle",
+          "copilot_windows"
+        ]
+      }
     },
     "macos": {
       "kind": "agent_sandbox",
@@ -802,7 +820,25 @@
         "They don't cover servers you start independently",
         "including registry tokens",
         "provides Git authentication to sandboxed processes"
-      ]
+      ],
+      "checks": {
+        "read": {
+          "kind": "copilot_policy",
+          "cmd": null,
+          "status": "unconfirmed"
+        },
+        "network": {
+          "kind": "cmd",
+          "cmd": "curl -I https://example.com",
+          "status": "confirmed"
+        },
+        "notes": [],
+        "troubleshoot": [
+          "copilot_new_session",
+          "copilot_toggle",
+          "copilot_mac"
+        ]
+      }
     },
     "linux": {
       "kind": "agent_sandbox",
@@ -843,7 +879,25 @@
         "They don't cover servers you start independently",
         "including registry tokens",
         "provides Git authentication to sandboxed processes"
-      ]
+      ],
+      "checks": {
+        "read": {
+          "kind": "copilot_policy",
+          "cmd": null,
+          "status": "unconfirmed"
+        },
+        "network": {
+          "kind": "cmd",
+          "cmd": "curl -I https://example.com",
+          "status": "confirmed"
+        },
+        "notes": [],
+        "troubleshoot": [
+          "copilot_new_session",
+          "copilot_toggle",
+          "copilot_linux"
+        ]
+      }
     }
   }
 }

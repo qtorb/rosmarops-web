@@ -811,7 +811,25 @@
       },
       "watch": [
         "docker_network"
-      ]
+      ],
+      "checks": {
+        "read": {
+          "kind": "hostname",
+          "cmd": "hostname",
+          "status": "confirmed"
+        },
+        "network": {
+          "kind": "cmd",
+          "cmd": "curl -I https://example.com",
+          "status": "confirmed"
+        },
+        "notes": [],
+        "troubleshoot": [
+          "hermes_docker",
+          "hermes_backend",
+          "hermes_old_container"
+        ]
+      }
     },
     "macos": {
       "kind": "container",
@@ -842,7 +860,25 @@
       },
       "watch": [
         "docker_network"
-      ]
+      ],
+      "checks": {
+        "read": {
+          "kind": "hostname",
+          "cmd": "hostname",
+          "status": "confirmed"
+        },
+        "network": {
+          "kind": "cmd",
+          "cmd": "curl -I https://example.com",
+          "status": "confirmed"
+        },
+        "notes": [],
+        "troubleshoot": [
+          "hermes_docker",
+          "hermes_backend",
+          "hermes_old_container"
+        ]
+      }
     },
     "linux": {
       "kind": "container",
@@ -873,7 +909,25 @@
       },
       "watch": [
         "docker_network"
-      ]
+      ],
+      "checks": {
+        "read": {
+          "kind": "hostname",
+          "cmd": "hostname",
+          "status": "confirmed"
+        },
+        "network": {
+          "kind": "cmd",
+          "cmd": "curl -I https://example.com",
+          "status": "confirmed"
+        },
+        "notes": [],
+        "troubleshoot": [
+          "hermes_docker",
+          "hermes_backend",
+          "hermes_old_container"
+        ]
+      }
     }
   }
 }
