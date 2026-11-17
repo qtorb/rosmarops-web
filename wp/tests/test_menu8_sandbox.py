@@ -44,7 +44,7 @@ class Menu8(unittest.TestCase):
         return json.loads(out.stdout), json.loads(self.db.read_text())
 
     def order(self, db):
-        return [i["url"].replace("https://rosmarops.com", "") for i in sorted(db["menu_items"], key=lambda i: i["menu_order"])]
+        return [i["url"].replace("https://rosmarops.com", "") for i in sorted(db["menu_items"], key=lambda i: (i["menu_order"], i["ID"]))]
 
     def test_after_observatory_on_each_site(self):
         for lang, (home, menu, rows, sec) in SITES.items():
@@ -59,6 +59,22 @@ class Menu8(unittest.TestCase):
                 self.assertTrue(log[1].startswith("menu done:"), log)
                 self.assertIn(f"right after item {rows[2][0]}", log[1])
                 self.assertTrue((Path(self.tmp.name) / "content" / "rosmarops-private" / f"menu8-{lang}.log").exists())
+
+    def test_stored_menu_order_with_gaps_or_repeats(self):
+        """GTM-175: the ES menu 317 had stored menu_order values that were not 1..6 (WordPress shows them as 1..6). menu8
+        shifted from the shown numbers and left Blog, Sandbox, … , Acerca de, Observatorio. Now every item is renumbered."""
+        home, menu, rows, sec = SITES["es"]
+        for stored in ([1, 8, 9, 10, 11, 12], [1, 2, 2, 3, 3, 3], [0, 0, 0, 0, 0, 0]):
+            with self.subTest(stored=stored):
+                its = items(menu, rows)
+                for it, o in zip(its, stored):
+                    it["menu_order"] = o
+                want_before = [t[2] for t in sorted(zip(stored, [r[0] for r in rows], [r[1] for r in rows]))]
+                log, db = self.run_with(home, menu, its)
+                want = list(want_before)
+                want.insert(want.index("/es/observatorio/") + 1, sec)
+                self.assertEqual(self.order(db), want)
+                self.assertEqual(sorted(i["menu_order"] for i in db["menu_items"]), list(range(1, 8)))
 
     def test_runs_once(self):
         home, menu, rows, _ = SITES["es"]
