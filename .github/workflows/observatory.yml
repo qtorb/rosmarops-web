@@ -117,6 +117,8 @@ jobs:
           python -m unittest wp/tests/test_menu_sandbox.py
           python -m unittest wp/tests/test_menu8_sandbox.py
           python -m unittest wp/tests/test_menu9_sandbox.py
+          php -l wp/mu-plugins/rosmarops-slug7-sandbox.php
+          python -m unittest wp/tests/test_slug7_sandbox.py
           php -l wp/mu-plugins/rosmarops-schedule-novedades-0-11.php
           python -m unittest wp/tests/test_schedule_novedades_0_11.py
           python -m unittest wp/tests/test_download_sources.py
