@@ -36,7 +36,35 @@
     ]
   },
   "versions": [],
-  "changes": [],
+  "changes": [
+    {
+      "id": "chg-kiro-3-4-0-hook-permission",
+      "version": "3.4.0",
+      "date": "2026-11-16",
+      "category": "hooks",
+      "before": {
+        "en": "Before Kiro CLI 3.4.0, a PreToolUse hook could not change a tool call's inputs or reply to its permission prompt, according to the changelog.",
+        "es": "Antes de Kiro CLI 3.4.0, un hook PreToolUse no podía cambiar las entradas de una llamada a herramienta ni responder a su petición de permiso, según el changelog.",
+        "ca": "Abans de Kiro CLI 3.4.0, un hook PreToolUse no podia canviar les entrades d'una crida a una eina ni respondre a la seva petició de permís, segons el changelog."
+      },
+      "after": {
+        "en": "From Kiro CLI 3.4.0, a PreToolUse hook in V3 sessions can change a tool call's inputs before it runs or reply to its permission prompt, according to the changelog.",
+        "es": "Desde Kiro CLI 3.4.0, un hook PreToolUse en sesiones V3 puede cambiar las entradas de una llamada a herramienta antes de que se ejecute o responder a su petición de permiso, según el changelog.",
+        "ca": "Des de Kiro CLI 3.4.0, un hook PreToolUse en sessions V3 pot canviar les entrades d'una crida a una eina abans que s'executi o respondre a la seva petició de permís, segons el changelog."
+      },
+      "source": {
+        "url": "https://kiro.dev/changelog/",
+        "official": true,
+        "accessed_at": "2026-11-17"
+      },
+      "verified": {
+        "by": "writer",
+        "at": "2026-11-17",
+        "how": "official_changelog"
+      },
+      "rosmarops_impact": "none"
+    }
+  ],
   "ratings": [],
   "surfaces": [
     {
