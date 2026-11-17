@@ -67,10 +67,8 @@ jobs:
           EOF
 
       - name: Generated pages are up to date
-        run: |
-          python observatory/build.py
-          git status --porcelain -- site wp/daily wp/pages wp/mu-plugins/rosmarops-downloads.php
-          test -z "$(git status --porcelain -- site wp/daily wp/pages wp/mu-plugins/rosmarops-downloads.php)" || { echo "::error::site/, wp/daily/, wp/pages/ or the download sources are out of date: run python3 observatory/build.py and commit"; exit 1; }
+        # The same script the daily writer runs before pushing (observatory/rules/daily.md, registry rule 9).
+        run: python observatory/site_check.py || { echo "::error::site/, wp/daily/, wp/pages/ or the download sources are out of date: run python3 observatory/site_check.py --stage and commit"; exit 1; }
 
       - name: Agent lists agree with the agent files and the program's latest release (GTM-99)
         env:
@@ -83,7 +81,7 @@ jobs:
         run: |
           set -eu
           export OBS_BASE="${{ github.event.pull_request.base.sha || github.event.before }}"
-          python -m unittest observatory/tests/test_daily_check.py observatory/tests/test_daily_alert.py observatory/tests/test_daily_raw.py observatory/tests/test_github_stats.py observatory/tests/test_collect.py observatory/tests/test_rules.py observatory/tests/test_agent_lists.py observatory/tests/test_map_data.py observatory/tests/test_map_page.py observatory/tests/test_agent_pages.py observatory/tests/test_sandbox_page.py observatory/tests/test_company_page.py observatory/tests/test_sandbox_section.py
+          python -m unittest observatory/tests/test_daily_check.py observatory/tests/test_daily_alert.py observatory/tests/test_daily_raw.py observatory/tests/test_github_stats.py observatory/tests/test_collect.py observatory/tests/test_rules.py observatory/tests/test_agent_lists.py observatory/tests/test_map_data.py observatory/tests/test_map_page.py observatory/tests/test_agent_pages.py observatory/tests/test_sandbox_page.py observatory/tests/test_company_page.py observatory/tests/test_sandbox_section.py observatory/tests/test_site_check.py
           if ls observatory/daily/*.json >/dev/null 2>&1; then python observatory/daily_check.py observatory/daily/*.json; else echo "no daily files yet"; fi
           php -l wp/mu-plugins/rosmarops-daily.php
           python -m unittest wp/tests/test_daily.py

@@ -60,7 +60,7 @@ Después de escribir y validar `observatory/daily/D.json`, la misma tarea añade
 6. Si dudas de si un cambio entra en una categoría, no lo escribas en el registro: va solo al día a día.
 7. Nunca borres ni cambies una entrada existente; una corrección va en `correction`.
 8. Valida cada fichero de agente tocado con el esquema antes del commit. Si no valida, no lo subas y dilo en el día a día; `D.json` se sube igualmente.
-9. Un único commit en main de qtorb/rosmarops-web con `observatory/daily/D.json` y los ficheros de agente tocados. Solo se escribe en `changes[]` de `observatory/data/agents/*.json`; la copia de vigil (`data/observatory/agents/`) queda congelada y no se toca.
+9. Un único commit en main de qtorb/rosmarops-web con `observatory/daily/D.json`, los ficheros de agente tocados y las páginas que se generan de ellos. Si has tocado algún fichero de agente, antes del commit ejecuta `python3 observatory/site_check.py --stage`: regenera `site/` y lo añade al commit. Si no sale con 0, no subas los ficheros de agente y dilo en el día a día; `D.json` se sube igualmente. Solo se escribe en `changes[]` de `observatory/data/agents/*.json`; la copia de vigil (`data/observatory/agents/`) queda congelada y no se toca.
 10. Antigravity y Antigravity CLI (decisión de Albert del 07-11, GTM-107): la fuente F4 (`https://antigravity.google/docs/changelog`) trae todas las pestañas. Desde el 07-11, un cambio de la pestaña CLI va al registro de `antigravity-cli` (`subject` «Antigravity CLI»), y los de las demás pestañas (App, IDE, IDE Extensions, SDK) siguen yendo a `antigravity`. Los cambios ya registrados en `antigravity` antes del 07-11 se quedan donde están: no se mueven ni se copian.
 
 ## Vigilancia del acceso de lectura a Grok Bot (GTM-160)
