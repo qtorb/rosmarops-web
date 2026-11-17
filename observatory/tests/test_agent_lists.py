@@ -96,6 +96,24 @@ class Checks(unittest.TestCase):
         errs = al.check_scored(AGENTS, ["claude-code", "cursor"], PROGRAM)
         self.assertEqual(errs, ["hermes-agent is evaluated in its agent file but has no knowledge file in the program's release"])
 
+    def test_b_read_not_scored(self):
+        """GTM-177 (Albert, 17-11): a knowledge file the program reads but does not score gives no error."""
+        program = dict(PROGRAM, read_not_scored=["aider"])
+        self.assertEqual(al.check_scored(AGENTS, ["claude-code", "cursor", "hermes", "mcp_catalog", "aider"], program), [])
+        errs = al.check_scored(AGENTS, ["claude-code", "cursor", "hermes", "mcp_catalog", "aider"], PROGRAM)
+        self.assertEqual(errs, ["knowledge file aider.json has no entry in program-agents.json"])
+
+    def test_b_read_not_scored_agent_keeps_any_status(self):
+        evaluated = [a if a["id"] != "aider" else agent("aider", "Aider", "evaluated", "0.9.0") for a in AGENTS]
+        program = dict(PROGRAM, read_not_scored=["aider"])
+        self.assertEqual(al.check_scored(evaluated, ["claude-code", "cursor", "hermes", "aider"], program), [])
+
+    def test_b_id_in_two_lists(self):
+        program = dict(PROGRAM, not_agents=["mcp_catalog", "codex"], read_not_scored=["codex", "aider"])
+        errs = al.check_scored(AGENTS, ["claude-code", "cursor", "hermes"], program)
+        self.assertIn("program-agents.json: codex is in more than one list (knowledge_to_file, not_agents, read_not_scored)", errs)
+        self.assertEqual(len([e for e in errs if "more than one list" in e]), 1)
+
     # c
     def sample(self, version, en=b"en", es=b"es"):
         d = self.tmp / "sample"
@@ -175,6 +193,32 @@ class Checks(unittest.TestCase):
         codex = json.loads((folder / "codex.json").read_text())["agent"]["rosmarops"]
         self.assertEqual(codex, {"status": "evaluated", "since_version": "0.8.0"})
 
+    def test_release_leaves_read_not_scored_as_it_is(self):
+        """GTM-177: release() does not change the status of an agent in read_not_scored (Grok Bot in v0.13.0)."""
+        folder = self.tmp / "observatory" / "data" / "agents"
+        folder.mkdir(parents=True)
+        for a in AGENTS:
+            (folder / f"{a['id']}.json").write_text(json.dumps({"schema_version": 1, "agent": a}), encoding="utf-8")
+        program = dict(PROGRAM, knowledge_to_file=dict(PROGRAM["knowledge_to_file"], aider="aider"))
+        before = json.loads((folder / "aider.json").read_text())["agent"]["rosmarops"]
+        (self.tmp / "observatory" / "data" / "program-agents.json").write_text(json.dumps(dict(PROGRAM, read_not_scored=["aider"])), encoding="utf-8")
+        notes = al.release("v0.13.0", ["claude-code", "cursor", "hermes", "mcp_catalog", "aider"], self.tmp)
+        self.assertEqual(notes, [])
+        self.assertEqual(json.loads((folder / "aider.json").read_text())["agent"]["rosmarops"], before)
+        # Without read_not_scored the same release would mark it (the case it guards against).
+        (self.tmp / "observatory" / "data" / "program-agents.json").write_text(json.dumps(program), encoding="utf-8")
+        self.assertIn("aider: now evaluated since 0.13.0", al.release("v0.13.0", ["claude-code", "cursor", "hermes", "aider"], self.tmp))
+
+    def test_release_notes_an_id_in_two_lists(self):
+        folder = self.tmp / "observatory" / "data" / "agents"
+        folder.mkdir(parents=True)
+        for a in AGENTS:
+            (folder / f"{a['id']}.json").write_text(json.dumps({"schema_version": 1, "agent": a}), encoding="utf-8")
+        (self.tmp / "observatory" / "data" / "program-agents.json").write_text(
+            json.dumps(dict(PROGRAM, read_not_scored=["codex"])), encoding="utf-8")
+        notes = al.release("v0.13.0", ["claude-code", "cursor", "hermes"], self.tmp)
+        self.assertIn("needs Albert: program-agents.json: codex is in more than one list (knowledge_to_file, read_not_scored)", notes)
+
 
 class Repository(unittest.TestCase):
     """The repository as committed: lists rendered, no list outside the markers, candidates and scored set right."""
@@ -198,8 +242,9 @@ class Repository(unittest.TestCase):
         agents = al.load_agents()
         self.assertEqual(al.check_candidates(agents, json.loads((OBS / "data" / "candidates.json").read_text(encoding="utf-8"))), [])
         program = json.loads((OBS / "data" / "program-agents.json").read_text(encoding="utf-8"))
-        # v0.8.0 (07-11): internal/knowledge/ has claude-code, codex, cursor, grok-build, hermes and mcp_catalog.
-        self.assertEqual(al.check_scored(agents, ["antigravity-cli", "claude-code", "cline", "codex", "cursor", "gemini-cli", "github-copilot", "grok-build", "hermes", "mcp_catalog"], program), [])
+        # v0.13.0 (17-11, GTM-177): internal/knowledge/ adds grok-bot (an agent) and startup-files (not an agent).
+        self.assertEqual(al.check_scored(agents, ["antigravity-cli", "claude-code", "cline", "codex", "cursor", "gemini-cli", "github-copilot",
+                                                  "grok-bot", "grok-build", "hermes", "mcp_catalog", "startup-files"], program), [])
 
 
 class FocoAlert(unittest.TestCase):
