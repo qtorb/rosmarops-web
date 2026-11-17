@@ -314,7 +314,8 @@ class Page(unittest.TestCase):
         self.assertIn("<pre>ls: /Users/tu-usuario/Documents: Permission denied</pre>", cm)
         self.assertIn(esc(G["es"]["after.unconfirmed"]), cm[cm.index('<details class="sg-if">'):])
         cw = combo(p, "cline-windows")
-        self.assertIn(f"<pre>{esc(sandbox_section.WIN_TABLE)}</pre>", cw)
+        self.assertIn(f"<pre>{esc(sandbox_section.WIN_TABLE.replace('tu-usuario', 'cuenta-nueva'))}</pre>", cw)
+        self.assertIn("    Directory: C:\\Users\\cuenta-nueva\n", sandbox_section.EX_ACC_HOME["windows"])
         self.assertIn(f"<pre>{esc(sandbox_section.EX_READ_AFTER['windows'])}</pre>", cw)
         self.assertIn("<pre>ls: cannot open directory", combo(p, "cline-linux"))
         for lang in ("en", "ca"):

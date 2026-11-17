@@ -123,7 +123,8 @@ EX_NETWORK = {"curl": ("HTTP/2 200", "curl: (6) Could not resolve host: example.
               "git": ("fatal: repository 'https://example.com/' not found",
                       "fatal: unable to access 'https://example.com/': CONNECT tunnel failed, response 403")}
 EX_HOSTNAME = ("mi-portatil", "3f2a9c1b7e04")
-EX_ACC_HOME = {"macos": "Desktop  Documents  Downloads", "linux": "Desktop  Documents  Downloads", "windows": WIN_TABLE}
+EX_ACC_HOME = {"macos": "Desktop  Documents  Downloads", "linux": "Desktop  Documents  Downloads",
+               "windows": WIN_TABLE.replace("tu-usuario", "cuenta-nueva")}  # §7.3: the new account's folder
 EX_ACC_YOURS = {"macos": "ls: /Users/tu-usuario/Documents: Permission denied",
                 "linux": EX_READ_AFTER["linux"], "windows": EX_READ_AFTER["windows"]}
 NO_EXAMPLE = ("before_also_fails", "works_by_design", "not_documented")
