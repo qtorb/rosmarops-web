@@ -858,7 +858,7 @@
           "bubblewrap",
           "socat",
           "start Claude Code with --settings",
-          "Set it to false to prompt for sandboxed commands"
+          "For auto-allow mode, also set sandbox.autoAllowBashIfSandboxed to true"
         ]
       },
       "public_url": "https://code.claude.com/docs/en/sandboxing",
@@ -1080,6 +1080,22 @@
       "public_url": "https://hermes-agent.nousresearch.com/docs/user-guide/configuration",
       "fragile": false,
       "notes": "GTM-175 (Albert, 16-11): watch only, after CTO-58 «Cómo se avisa». The collector checks that each watch string (key names and the quotes each template value rests on) is still in the page; a missing one goes to missing, and the template on /sandbox/ shows «Por revisar». Not a changelog: it never goes to checked or not_checked of the daily."
+    },
+    {
+      "id": "F62",
+      "name": "Sandbox template: claude-code (code.claude.com, settings reference)",
+      "scope": "claude-code",
+      "method": "page-watch",
+      "read": {
+        "url": "https://code.claude.com/docs/en/settings-reference",
+        "watch": [
+          "sandbox.autoAllowBashIfSandboxed",
+          "Default: false. Before v2.1.324, the default was true"
+        ]
+      },
+      "public_url": "https://code.claude.com/docs/en/settings-reference",
+      "fragile": false,
+      "notes": "GTM-175 (Albert, 17-11): second source of the Claude Code template, for the default of sandbox.autoAllowBashIfSandboxed (the sandboxing page no longer says it). Watch only, like F48-F61: a missing string goes to missing, and the template on /sandbox/ shows «Por revisar». Not a changelog: it never goes to checked or not_checked of the daily."
     }
   ]
 }

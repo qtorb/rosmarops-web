@@ -266,6 +266,30 @@ class Page(unittest.TestCase):
         with tempfile.TemporaryDirectory() as d:
             self.assertEqual(sandbox_section.to_review(d), set())
 
+    def test_a_replaced_watch_string_no_longer_marks_review(self):
+        """F49 (Albert, 17-11): the string the page dropped was replaced; the raw of that day still lists it."""
+        url = "https://code.claude.com/docs/en/sandboxing"
+        watch = next(s for s in SOURCES if s["id"] == "F49")["read"]["watch"]
+        self.assertNotIn("Set it to false to prompt for sandboxed commands", watch)
+        self.assertIn("For auto-allow mode, also set sandbox.autoAllowBashIfSandboxed to true", watch)
+        self.assertEqual(len(watch), 17)
+        with tempfile.TemporaryDirectory() as d:
+            f = Path(d) / "2026-11-17.json"
+            f.write_text(json.dumps({"sources": [{"id": "F49", "missing": ["Set it to false to prompt for sandboxed commands"]}]}))
+            self.assertEqual(sandbox_section.to_review(d), set())
+            f.write_text(json.dumps({"sources": [{"id": "F49", "missing": ["socat"]}]}))
+            self.assertEqual(sandbox_section.to_review(d), {url})
+
+    def test_claude_code_second_source(self):
+        """F62 (Albert, 17-11): the settings reference, for the default of sandbox.autoAllowBashIfSandboxed."""
+        ref = "https://code.claude.com/docs/en/settings-reference"
+        f62 = next(s for s in SOURCES if s["id"] == "F62")
+        self.assertEqual((f62["read"]["url"], f62["scope"], f62["method"]), (ref, "claude-code", "page-watch"))
+        self.assertEqual(f62["read"]["watch"], ["sandbox.autoAllowBashIfSandboxed", "Default: false. Before v2.1.324, the default was true"])
+        for s in ("macos", "linux"):
+            self.assertEqual([x["url"] for x in BY_ID["claude-code"]["templates"][s]["extra_sources"]], [ref])
+        self.assertIn(ref, sandbox_section.template_urls(BY_ID["claude-code"]["templates"]["macos"]))
+
     def test_links_to_the_section(self):  # noqa: the agent anchors stay #{agent}
         site = ROOT / "site"
         for lang, guide, gloss, cmp_ in (("es", "es/probar-un-agente-de-ia", "es/glosario", "es/observatorio/agentes-ia-con-sandbox"),
