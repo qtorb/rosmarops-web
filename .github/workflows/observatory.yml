@@ -68,7 +68,8 @@ jobs:
 
       - name: Generated pages are up to date
         # The same script the daily writer runs before pushing (observatory/rules/daily.md, registry rule 9).
-        run: python observatory/site_check.py || { echo "::error::site/, wp/daily/, wp/pages/ or the download sources are out of date: run python3 observatory/site_check.py --stage and commit"; exit 1; }
+        run: |
+          python observatory/site_check.py || { echo "::error::site/, wp/daily/, wp/pages/ or the download sources are out of date: run python3 observatory/site_check.py --stage and commit"; exit 1; }
 
       - name: Agent lists agree with the agent files and the program's latest release (GTM-99)
         env:
