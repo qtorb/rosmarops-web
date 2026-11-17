@@ -168,14 +168,28 @@ def check_candidates(agents, candidates):
     return [f"candidates.json: {c['name']} has an agent file" for c in candidates if c["name"].lower() in have]
 
 
+def list_overlap(program):
+    """GTM-177: an id may be in only one of knowledge_to_file, not_agents and read_not_scored."""
+    lists = {"knowledge_to_file": set(program["knowledge_to_file"]), "not_agents": set(program["not_agents"]),
+             "read_not_scored": set(program.get("read_not_scored", []))}
+    seen = {}
+    for name, ids in lists.items():
+        for i in ids:
+            seen.setdefault(i, []).append(name)
+    return [f"program-agents.json: {i} is in more than one list ({', '.join(names)})" for i, names in sorted(seen.items()) if len(names) > 1]
+
+
 def check_scored(agents, knowledge, program):
-    """b. The scored set equals the program's knowledge files at the latest release, through program-agents.json."""
-    errs = []
+    """b. The scored set equals the program's knowledge files at the latest release, through program-agents.json.
+    read_not_scored (GTM-177, signed by Albert 17-11): knowledge files of agents the program reads but gives no 0-100
+    score; they are not expected to be evaluated, and their agent file keeps its status, whatever it is."""
+    errs = list_overlap(program)
     mapping, not_agents = program["knowledge_to_file"], set(program["not_agents"])
+    read_only = set(program.get("read_not_scored", []))
     ids = {a["id"] for a in agents}
     expected = set()
     for k in knowledge:
-        if k in not_agents:
+        if k in not_agents or k in read_only:
             continue
         if k not in mapping:
             errs.append(f"knowledge file {k}.json has no entry in program-agents.json")
@@ -184,7 +198,7 @@ def check_scored(agents, knowledge, program):
             errs.append(f"program-agents.json maps {k} to {mapping[k]}, which has no agent file")
             continue
         expected.add(mapping[k])
-    scored = {a["id"] for a in agents if a["rosmarops"]["status"] == "evaluated"}
+    scored = {a["id"] for a in agents if a["rosmarops"]["status"] == "evaluated" and a["id"] not in read_only}
     errs += [f"{i} is scored in the program's release but not evaluated in its agent file" for i in sorted(expected - scored)]
     errs += [f"{i} is evaluated in its agent file but has no knowledge file in the program's release" for i in sorted(scored - expected)]
     return errs
@@ -314,9 +328,10 @@ def release(tag, knowledge, root=ROOT):
     program = json.loads((root / "observatory" / "data" / "program-agents.json").read_text(encoding="utf-8"))
     folder = root / "observatory" / "data" / "agents"
     version = tag.lstrip("v")
-    notes, expected = [], set()
+    notes, expected = [f"needs Albert: {e}" for e in list_overlap(program)], set()
+    read_only = set(program.get("read_not_scored", []))
     for k in knowledge:
-        if k in program["not_agents"]:
+        if k in program["not_agents"] or k in read_only:  # read_not_scored: the agent file keeps its status (GTM-177)
             continue
         fid = program["knowledge_to_file"].get(k)
         if not fid or not (folder / f"{fid}.json").exists():
@@ -330,7 +345,7 @@ def release(tag, knowledge, root=ROOT):
             f.write_text(json.dumps(d, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
             notes.append(f"{fid}: now evaluated since {version}")
     for a in load_agents(folder):
-        if a["rosmarops"]["status"] == "evaluated" and a["id"] not in expected:
+        if a["rosmarops"]["status"] == "evaluated" and a["id"] not in expected and a["id"] not in read_only:
             notes.append(f"needs Albert: {a['id']} is evaluated but has no knowledge file in {tag}; left as it is")
     return notes
 
