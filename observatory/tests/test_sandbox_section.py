@@ -134,7 +134,7 @@ class Page(unittest.TestCase):
             p = page(lang)
             body = text(p[p.index("<main"):p.index("</main>")])
             self.assertFalse(FORBIDDEN.search(body), lang)
-            for k in ("h1", "lead", "sel.agent", "sel.system", "sel.picked", "sel.choose", "none_chosen", "side.what.h",
+            for k in ("h1", "lead", "sel.agent", "sel.system", "sel.picked", "sel.choose", "pick_line", "none.1", "none.2", "none.3", "side.what.h",
                       "side.which.link", "side.try.link"):
                 self.assertIn(G[lang][k], body, (lang, k))
             self.assertIn(T[lang]["note"], body)
@@ -169,7 +169,7 @@ class Page(unittest.TestCase):
     def test_claude_code_macos(self):
         cc = combo(page("es"), "claude-code-macos")
         self.assertIn("<strong>Claude Code en macOS</strong> tiene sandbox, pero viene apagado. La plantilla lo enciende.", cc)
-        self.assertIn("<code>git ls-remote https://example.com</code>", cc)
+        self.assertIn("<code>Ejecuta git ls-remote https://example.com</code>", cc)
         self.assertIn(G["es"]["now.network_git"], cc)
         self.assertIn(G["es"]["note.cc_allowlist_open"], cc)
         self.assertIn("Copiar la plantilla", cc)
@@ -187,7 +187,7 @@ class Page(unittest.TestCase):
         self.assertIn(G["es"]["now.before_also_fails"].replace("{agent}", "Codex"), cx)
         self.assertIn(G["es"]["after.before_also_fails"].replace("{agent}", "Codex"), cx)
         self.assertIn(G["es"]["after.unconfirmed"], cx)
-        self.assertIn("<code>dir ~</code>", cx)
+        self.assertIn("<code>Ejecuta dir ~</code>", cx)
         gk = combo(p, "grok-build-macos")
         self.assertIn(G["es"]["after.works_by_design"].replace("{system}", "macOS"), gk)
         gw = combo(p, "gemini-cli-windows")
@@ -223,13 +223,13 @@ class Page(unittest.TestCase):
                 self.assertIn(html.escape(G[lang]["acc.net"], quote=True), c)
                 self.assertEqual(c.count('class="sg-step"'), 4)
                 self.assertNotIn(html.escape(G[lang]["fold.session"], quote=True), c)
-                self.assertNotIn("<details", c)
+                self.assertEqual(c.count("<details"), 1 if system in ("macos", "windows") else 0, (lang, cid))  # §7.4
                 unconfirmed = html.escape(G[lang]["after.unconfirmed"], quote=True)
                 self.assertEqual(unconfirmed in c, system in ("macos", "windows"), (lang, cid))
         es = page("es")
-        self.assertIn("<code>dir C:\\Users\\tu-usuario</code>", combo(es, "cline-windows"))
-        self.assertIn("<code>ls /home/tu-usuario</code>", combo(es, "cline-linux"))
-        self.assertIn("<code>ls /Users/tu-usuario</code>", combo(es, "cline-macos"))
+        self.assertIn("<code>Ejecuta dir C:\\Users\\tu-usuario</code>", combo(es, "cline-windows"))
+        self.assertIn("<code>Ejecuta ls /home/tu-usuario</code>", combo(es, "cline-linux"))
+        self.assertIn("<code>Ejecuta ls /Users/tu-usuario/Documents</code>", combo(es, "cline-macos"))
         self.assertIn("<code>ms-settings:otherusers</code>", combo(page("ca"), "cline-windows"))
         self.assertIn("Agregar un usuario sin una cuenta de Microsoft", combo(es, "cline-windows"))
 
@@ -250,6 +250,91 @@ class Page(unittest.TestCase):
         self.assertEqual(cx.count(G["es"]["after.unconfirmed"]), 0)
         self.assertNotIn("<figure", combo(p, "cursor-macos"))  # without a capture, no gap
         self.assertEqual(sandbox_section.lab_entries(Path("/nonexistent/manifest.json")), [])
+
+    def test_clarity_s7(self):
+        """GTM-176 §7 (signed by Albert 17-11): summary without an agent, «Escríbele:», examples, one fold per step."""
+        esc = lambda t: html.escape(t, quote=True)
+        ex = esc(G["es"]["ex.label"])
+        p = page("es")
+        none = p[p.index('<div class="sg-none">'):p.index("</aside>", p.index('<div class="sg-none">'))]
+        self.assertEqual(re.findall(r"<li><b>(\d)\.</b>", none), ["1", "2", "3"])
+        sel = p[p.index('<div class="sg-sel"'):p.index('<p class="sg-status"')]
+        self.assertNotIn('aria-pressed="true"', sel)  # no agent marked
+        self.assertNotIn(" selected", sel)
+        self.assertLess(p.index(G["es"]["h1"]), p.index(G["es"]["pick_line"]))
+        self.assertLess(p.index(G["es"]["pick_line"]), p.index('<div class="sg-sel"'))
+        cc = combo(p, "claude-code-macos")
+        self.assertIn('Escríbele: <code>Ejecuta ls ~</code></span><span hidden id="claude-code-macos-c1">Ejecuta ls ~</span>', cc)
+        self.assertIn(esc(G["es"]["s1.p"].replace("{agent}", "Claude Code")), cc)
+        self.assertIn(esc(G["es"]["s1.after"]), cc)
+        self.assertIn(esc(G["es"]["s2.p"].replace("{agent}", "Claude Code")), cc)
+        self.assertIn(esc(G["es"]["s3.p"]), cc)
+        self.assertIn(f"{ex}</p><pre>Desktop  Documents  Downloads  proyecto</pre>", cc)
+        self.assertIn("<pre>ls: /Users/tu-usuario: Operation not permitted</pre>", cc)
+        self.assertIn(f"<pre>{esc(sandbox_section.EX_NETWORK['git'][0])}</pre>", cc)
+        self.assertIn(f"<pre>{esc(sandbox_section.EX_NETWORK['git'][1])}</pre>", cc)
+        self.assertEqual(cc.count('<details class="sg-if">'), 2)  # step 1 (the note) and step 3
+        self.assertNotIn("¿Alguna ha funcionado?", p)
+        s3 = cc[cc.index(esc(G["es"]["s3.p"])):]
+        fold3 = s3[s3.index('<details class="sg-if">'):]
+        for t in (G["es"]["note.cc_allowlist_open"], G["es"]["s3.fixed"], G["es"]["s3.worked_p"]):
+            self.assertIn(esc(t), fold3)
+        self.assertIn("<code>claude --version</code>", fold3)
+        self.assertNotIn(esc(G["es"]["s3.fixed"]), s3[:s3.index('<details class="sg-if">')])
+        # Windows: the PowerShell table before, the denial after
+        cx = combo(p, "codex-windows")
+        self.assertIn(f"<pre>{esc(sandbox_section.WIN_TABLE)}</pre>", cx)
+        self.assertIn(f"<pre>{esc(sandbox_section.EX_READ_AFTER['windows'])}</pre>", cx)
+        self.assertNotIn("HTTP/2 200", cx)  # before_also_fails: no example
+        self.assertEqual(cx.count(esc(G["es"]["after.unconfirmed"])), 2)  # in the folds of steps 1 and 3
+        self.assertNotIn('class="sg-muted"', cx[:cx.index("<details")])
+        # Linux, hostname, works_by_design, copilot_policy, kind none
+        self.assertIn("<pre>ls: cannot open directory &#x27;/home/tu-usuario&#x27;: Permission denied</pre>", combo(p, "claude-code-linux"))
+        he = combo(p, "hermes-agent-macos")
+        self.assertIn("<pre>mi-portatil</pre>", he)
+        self.assertIn("<pre>3f2a9c1b7e04</pre>", he)
+        self.assertIn("<code>Ejecuta hostname</code>", he)
+        gk = combo(p, "grok-build-macos")
+        self.assertNotIn("HTTP/2 200", gk)
+        self.assertNotIn("Could not resolve host", gk)
+        self.assertIn("<pre>Desktop  Documents  Downloads  proyecto</pre>", gk)
+        cp = combo(p, "github-copilot-macos")
+        self.assertIn('<span hidden id="github-copilot-macos-c1">/sandbox policy</span>', cp)
+        self.assertEqual(cp.count(ex), 2)  # network only, before and after
+        gw = combo(p, "gemini-cli-windows")
+        self.assertNotIn(ex, gw)
+        self.assertNotIn(esc(G["es"]["s1.after"]), gw)
+        # Antigravity: no «si te pide permiso» in step 3, its note visible
+        ag = combo(p, "antigravity-cli-windows")
+        self.assertIn(f'<p>{esc(G["es"]["s3.p_agy"])}</p><p class="sg-small">{esc(G["es"]["note.agy_ask_means_off"])}</p>', ag)
+        self.assertEqual(ag.count(esc(G["es"]["note.agy_ask_means_off"])), 1)
+        # §4
+        cm = combo(p, "cline-macos")
+        self.assertIn("<pre>Desktop  Documents  Downloads</pre>", cm)
+        self.assertIn("<pre>ls: /Users/tu-usuario/Documents: Permission denied</pre>", cm)
+        self.assertIn(esc(G["es"]["after.unconfirmed"]), cm[cm.index('<details class="sg-if">'):])
+        cw = combo(p, "cline-windows")
+        self.assertIn(f"<pre>{esc(sandbox_section.WIN_TABLE.replace('tu-usuario', 'cuenta-nueva'))}</pre>", cw)
+        self.assertIn("    Directory: C:\\Users\\cuenta-nueva\n", sandbox_section.EX_ACC_HOME["windows"])
+        self.assertIn(f"<pre>{esc(sandbox_section.EX_READ_AFTER['windows'])}</pre>", cw)
+        self.assertIn("<pre>ls: cannot open directory", combo(p, "cline-linux"))
+        for lang in ("en", "ca"):
+            q = page(lang)
+            self.assertIn(f'{esc(G[lang]["run"]).replace("{cmd}", "")}<code>{esc(G[lang]["run_cmd"].replace("{cmd}", "ls ~"))}</code>',
+                          combo(q, "claude-code-macos"))
+            self.assertIn(esc(G[lang]["fold.if"]), q)
+
+    def test_a_capture_replaces_the_example_of_its_box(self):
+        p = sandbox_section.article("es", AGENTS, set(), [e for e in LAB if e["result"] == "concluyente"])
+        cc = combo(p, "claude-code-macos")
+        box = cc[cc.index('id="claude-code-macos-c1"'):cc.index('id="claude-code-macos-c2"')]
+        self.assertIn("claude-code-macos-1-read-antes.png", box)
+        self.assertNotIn("<pre>Desktop", box)
+        self.assertIn("<pre>ls: /Users/tu-usuario: Operation not permitted</pre>", cc)  # the after box has no concluyente capture
+        cx = combo(p, "codex-macos")
+        self.assertIn("codex-macos-3-read-despues.png", cx)
+        self.assertNotIn("Operation not permitted", cx)
+        self.assertIn("<pre>Desktop  Documents  Downloads  proyecto</pre>", cx)
 
     def test_to_review_shows_on_that_page_combinations(self):
         url = "https://docs.x.ai/build/features/sandbox.md"

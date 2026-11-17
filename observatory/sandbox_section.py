@@ -119,6 +119,24 @@ LAB_IMG = "/assets/sandbox-lab/"
 SYSTEMS = ("windows", "macos", "linux")
 GPH = re.compile(r"\{(agent|system|cmd|n|date|version|os_version|command|when)\}")
 
+# GTM-176 §7.3: example outputs, not translated (signed by Albert 17-11). Shown under the expected line of a box,
+# unless the lab has a concluyente screenshot of that box (§5).
+WIN_TABLE = "    Directory: C:\\Users\\tu-usuario\n\nMode    LastWriteTime      Name\nd-r---  16/11/2026 9:00    Documents"
+EX_READ_BEFORE = {"macos": "Desktop  Documents  Downloads  proyecto", "linux": "Desktop  Documents  Downloads  proyecto",
+                  "windows": WIN_TABLE}
+EX_READ_AFTER = {"macos": "ls: /Users/tu-usuario: Operation not permitted",
+                 "linux": "ls: cannot open directory '/home/tu-usuario': Permission denied",
+                 "windows": "dir : Access to the path 'C:\\Users\\tu-usuario' is denied."}
+EX_NETWORK = {"curl": ("HTTP/2 200", "curl: (6) Could not resolve host: example.com"),
+              "git": ("fatal: repository 'https://example.com/' not found",
+                      "fatal: unable to access 'https://example.com/': CONNECT tunnel failed, response 403")}
+EX_HOSTNAME = ("mi-portatil", "3f2a9c1b7e04")
+EX_ACC_HOME = {"macos": "Desktop  Documents  Downloads", "linux": "Desktop  Documents  Downloads",
+               "windows": WIN_TABLE.replace("tu-usuario", "cuenta-nueva")}  # §7.3: the new account's folder
+EX_ACC_YOURS = {"macos": "ls: /Users/tu-usuario/Documents: Permission denied",
+                "linux": EX_READ_AFTER["linux"], "windows": EX_READ_AFTER["windows"]}
+NO_EXAMPLE = ("before_also_fails", "works_by_design", "not_documented")
+
 GUIDE_CSS = """
 :root{--paper:#FFFFFF;--brand:#2346B8;--on-brand:#FFFFFF}
 .sg{display:flex;flex-direction:column;min-width:0}
@@ -151,7 +169,12 @@ GUIDE_CSS = """
 .sg-cols{display:flex;flex-wrap:wrap;gap:48px;align-items:flex-start}
 .sg-main{flex:1 1 640px;min-width:0;display:flex;flex-direction:column;gap:40px}
 .sg-side{flex:0 0 280px;display:flex;flex-direction:column;gap:16px;min-width:0}
-.sg-noneline{margin:0;font-size:16px;color:var(--ink2)}
+.sg-pick{margin:0;font-size:16px;line-height:1.55;color:var(--ink2)}
+.sg-sum{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.sg-sum li{margin:0;font-size:16px;line-height:1.55;color:var(--ink2)}
+.sg-sum b{font-weight:600}
+.sg-exlab{margin:0;font-size:13px;line-height:1.45;color:var(--muted)}
+.sg-sbody>p.sg-after{margin:0;font-size:15px;line-height:1.55;color:var(--ink2)}
 .sg-steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:40px}
 .sg-step{display:grid;grid-template-columns:40px minmax(0,1fr);column-gap:20px;align-items:start}
 .sg-num{grid-row:1;width:40px;height:40px;border-radius:50%;background:var(--ink);color:var(--paper);display:grid;place-items:center;font-size:18px;font-weight:600}
@@ -346,20 +369,36 @@ class Combo:
         return None
 
     # -- test boxes
-    def box(self, check, expected, muted=None):
+    def example(self, test, c, when):
+        """GTM-176 §7.3: the example output of a box, or None."""
+        if c["kind"] in ("none", "copilot_policy") or c["status"] in NO_EXAMPLE:
+            return None
+        i = 0 if when == "before" else 1
+        if test == "read":
+            if c["kind"] == "hostname":
+                return EX_HOSTNAME[i]
+            return (EX_READ_BEFORE if i == 0 else EX_READ_AFTER)[self.s]
+        return EX_NETWORK["git" if c["cmd"].startswith("git ") else "curl"][i]
+
+    def box(self, check, expected, example=None, shots=None):
+        """A test box: label and command with Copiar, the expected line, then the lab screenshot of that box if there
+        is one (§5) or else the example output (§7.3)."""
         if check["kind"] == "copilot_policy":
-            label, cmd = self.G["chat"], "/sandbox policy"
-            line = rich(label)
+            cmd = "/sandbox policy"
+            line = rich(self.G["chat"])
         else:
-            cmd = check["cmd"] if check["kind"] == "cmd" else "hostname"
-            line = rich(gfill(self.G["run"], cmd=f"`{cmd}`"))
+            phrase = gfill(self.G["run_cmd"], cmd=check["cmd"] if check["kind"] == "cmd" else "hostname")
+            cmd = phrase
+            line = gfill(esc(self.G["run"]), cmd=f"<code>{esc(phrase)}</code>")
         pid = self.pid()
         out = (f'<div class="sg-test"><div class="sg-cmdrow"><span>{line}</span><span hidden id="{pid}">{esc(cmd)}</span>'
                f'{self.copy_btn(pid)}</div>')
         if expected:
             out += f'<p class="sg-exp">{esc(expected)}</p>'
-        if muted:
-            out += f'<p class="sg-muted">{esc(muted)}</p>'
+        if shots:
+            out += "".join(shots)
+        elif example:
+            out += f'<p class="sg-exlab">{esc(self.G["ex.label"])}</p><pre>{esc(example)}</pre>'
         return out + "</div>"
 
     def now(self, test, c):
@@ -369,36 +408,52 @@ class Combo:
             return self.g("now.before_also_fails")
         return self.g("now.network_git" if c["cmd"].startswith("git ") else "now.network_curl")
 
+    def unconfirmed(self, test, c):
+        """The --muted line of an unconfirmed test (§3.3), or the lab's date once it is checked (§5); None otherwise."""
+        if c["status"] != "unconfirmed":
+            return None
+        d = self.lab_checked(test)
+        return self.g("lab.checked", date=d) if d else self.G["after.unconfirmed"]
+
     def after(self, test, c):
-        """(expected line, muted line or None) after the template."""
+        """The expected line after the template."""
         st = c["status"]
-        muted = None
-        if st == "unconfirmed":
-            d = self.lab_checked(test)
-            muted = self.g("lab.checked", date=d) if d else self.G["after.unconfirmed"]
         if st in ("works_by_design", "before_also_fails", "not_documented"):
-            return self.g("after." + st), None
+            return self.g("after." + st)
         if test == "network":
-            return self.G["after.network"], muted
+            return self.G["after.network"]
         key = {"cmd": "after.read_cmd", "hostname": "after.read_hostname", "copilot_policy": "after.read_copilot_policy"}[c["kind"]]
-        return self.G[key], muted
+        return self.G[key]
 
     def boxes(self, when):
         ch = self.t["checks"]
         out = []
         if ch["read"]["kind"] == "none" and ch["network"]["kind"] == "none":
             return [f'<p class="sg-noline">{esc(self.g("no_test"))}</p>']
+        step, lab_when = (1, "antes") if when == "before" else (3, "despues")
         for test in ("read", "network"):
             c = ch[test]
             if c["kind"] == "none":
                 out.append(f'<p class="sg-noline">{esc(self.g("no_test"))}</p>')
                 continue
-            if when == "before":
-                out.append(self.box(c, self.now(test, c)))
-            else:
-                exp, muted = self.after(test, c)
-                out.append(self.box(c, exp or "", muted))
+            exp = self.now(test, c) if when == "before" else self.after(test, c)
+            out.append(self.box(c, exp, self.example(test, c, when), self.figure(step, test, lab_when)))
         return out
+
+    def muted_lines(self):
+        ch = self.t["checks"]
+        lines = []
+        for test in ("read", "network"):
+            m = self.unconfirmed(test, ch[test])
+            if m and m not in lines:
+                lines.append(m)
+        return lines
+
+    def fold(self, parts):
+        """GTM-176 §7.4: the one fold of a step, «Si algo no sale como aquí», or nothing when it would be empty."""
+        if not parts:
+            return []
+        return [f'<details class="sg-if"><summary>{esc(self.G["fold.if"])}</summary><div class="sg-dbody">{"".join(parts)}</div></details>']
 
     # -- steps
     def step(self, n, title, body, optional=False):
@@ -423,7 +478,7 @@ class Combo:
             body.append(f'<p>{esc(T["paste.vscode"])}</p>')
             body.append(self.pre(self.template_text()))
         else:
-            body.append(f'<p>{esc(G["s2.p"])}</p>')
+            body.append(f'<p>{esc(self.g("s2.p"))}</p>')
             for b in self.t["blocks"]:
                 if b["format"] == "ui":
                     body.append(f'<p>{esc(T["ui." + b["value"]])}</p>')
@@ -439,17 +494,35 @@ class Combo:
         body += self.figure(2)
         return self.step(2, self.g("s2.h"), body)
 
+    def notes(self):
+        """The notes of §3.4 that go in the folds (§7.4): all but gemini_replaced (status line) and agy_ask_means_off
+        (visible in step 3)."""
+        return [f'<p>{esc(self.G["note." + n])}</p>' for n in self.t["checks"]["notes"]
+                if n not in ("gemini_replaced", "agy_ask_means_off")]
+
+    def muted(self):
+        return [f'<p class="sg-muted">{esc(m)}</p>' for m in self.muted_lines()]
+
+    def step1(self):
+        ch = self.t["checks"]
+        body = [f'<p>{esc(self.g("s1.p"))}</p>'] + self.boxes("before")
+        if not (ch["read"]["kind"] == "none" and ch["network"]["kind"] == "none"):
+            body.append(f'<p class="sg-after">{esc(self.G["s1.after"])}</p>')
+        body += self.fold(self.notes() + self.muted())
+        return self.step(1, self.G["s1.h"], body)
+
     def step3(self):
         G = self.G
-        notes = [n for n in self.t["checks"]["notes"] if n != "gemini_replaced"]
-        body = [f'<p>{esc(G["s3.p_agy"] if "agy_ask_means_off" in notes else G["s3.p"])}</p>']
-        body += [f'<p class="sg-small">{esc(G["note." + n])}</p>' for n in notes]
+        agy = "agy_ask_means_off" in self.t["checks"]["notes"]
+        body = [f'<p>{esc(G["s3.p_agy"] if agy else G["s3.p"])}</p>']
+        if agy:
+            body.append(f'<p class="sg-small">{esc(G["note.agy_ask_means_off"])}</p>')
         body += self.boxes("after")
-        body.append(f'<p class="sg-small">{esc(G["s3.fixed"])}</p>')
-        body += self.figure(3, when="despues")
         ts = "".join(f'<li>{code(G["ts." + c])}</li>' for c in self.t["checks"]["troubleshoot"])
-        body.append(f'<details><summary>{esc(G["s3.worked"])}</summary><div class="sg-dbody">'
-                    f'<p>{esc(G["s3.worked_p"])}</p><ul>{ts}</ul></div></details>')
+        parts = self.notes() + self.muted() + [f'<p>{esc(G["s3.fixed"])}</p>']
+        if ts:
+            parts.append(f'<p>{esc(G["s3.worked_p"])}</p><ul>{ts}</ul>')
+        body += self.fold(parts)
         return self.step(3, self.g("s3.h"), body)
 
     def foot(self):
@@ -484,8 +557,7 @@ class Combo:
         G = self.G
         if self.t["kind"] == "separate_account":
             return self.account()
-        s1 = [f'<p>{esc(self.g("s1.p"))}</p>'] + self.boxes("before") + self.figure(1, when="antes")
-        steps = [self.step(1, G["s1.h"], s1), self.step2(), self.step3(),
+        steps = [self.step1(), self.step2(), self.step3(),
                  self.step(4, self.g("s4.h"), [f'<p>{esc(self.g("s4.p"))}</p>', download(self.lang)], optional=True)]
         return f'<div class="sg-main"><ol class="sg-steps">{"".join(steps)}</ol>{self.foot()}</div>'
 
@@ -494,10 +566,13 @@ class Combo:
         official help on 16-11)."""
         G = self.G
         home = "dir ~" if self.s == "windows" else "ls ~"
-        yours = {"macos": "ls /Users/tu-usuario", "linux": "ls /home/tu-usuario", "windows": r"dir C:\Users\tu-usuario"}[self.s]
-        muted = G["after.unconfirmed"] if self.s in ("macos", "windows") else None
-        s3 = [f'<p>{esc(G["acc.s3.p"])}</p>', self.box({"kind": "cmd", "cmd": home}, G["acc.home"]),
-              self.box({"kind": "cmd", "cmd": yours}, G["acc.yours"], muted), f'<p class="sg-small">{esc(G["acc.net"])}</p>']
+        yours = {"macos": "ls /Users/tu-usuario/Documents", "linux": "ls /home/tu-usuario",
+                 "windows": r"dir C:\Users\tu-usuario"}[self.s]
+        s3 = [f'<p>{esc(G["acc.s3.p"])}</p>', self.box({"kind": "cmd", "cmd": home}, G["acc.home"], EX_ACC_HOME[self.s]),
+              self.box({"kind": "cmd", "cmd": yours}, G["acc.yours"], EX_ACC_YOURS[self.s]),
+              f'<p class="sg-small">{esc(G["acc.net"])}</p>']
+        if self.s in ("macos", "windows"):  # §7.4: the unconfirmed line goes to the fold of step 3
+            s3 += self.fold([f'<p class="sg-muted">{esc(G["after.unconfirmed"])}</p>'])
         steps = [self.step(1, G["acc.s1.h"], [f'<p>{code(G["acc.s1." + self.s])}</p>']),
                  self.step(2, G["acc.s2.h"], [f'<p>{esc(G["acc.s2.p"])}</p>']),
                  self.step(3, self.g("acc.s3.h"), s3),
@@ -550,10 +625,11 @@ def article(lang, agents, review, lab=None):
     for a in items:
         combos.append(f'<span class="sg-anchor" id="{a["agent"]["id"]}"></span>')
         combos += [Combo(a, s, lang, review, lab).html() for s in SYSTEMS]
+    lines = "".join(f'<li><b>{i}.</b> {esc(G["none." + str(i)])}</li>' for i in (1, 2, 3))
     none = (f'<div class="sg-none"><div class="sg-cols"><div class="sg-main">'
-            f'<p class="sg-noneline">{esc(G["none_chosen"])}</p></div>{side_boxes(lang)}</div></div>')
+            f'<ol class="sg-sum">{lines}</ol></div>{side_boxes(lang)}</div></div>')
     return f"""<article class="sg">
-<header class="sg-head"><h1>{esc(G["h1"])}</h1><p class="sg-lead">{esc(G["lead"])}</p></header>
+<header class="sg-head"><h1>{esc(G["h1"])}</h1><p class="sg-lead">{esc(G["lead"])}</p><p class="sg-pick">{esc(G["pick_line"])}</p></header>
 {selector(lang, items)}
 {none}
 {chr(10).join(combos)}
