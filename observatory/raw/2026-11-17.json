@@ -1,0 +1,816 @@
+{
+  "date": "2026-11-17",
+  "collected_at": "2026-11-17T05:34:36Z",
+  "sources": [
+    {
+      "id": "F1",
+      "opened": true,
+      "reason": null,
+      "latest": "2.1.326",
+      "latest_date": "2026-11-16",
+      "new": [
+        {
+          "date": "2026-11-16",
+          "version": "2.1.326",
+          "text": "Added Added support for turning on Code Mode while agent teams are enabled; if you already turned it on, sessions with teams on now start in Code Mode Added a startup warning when an --allowedTools, --disallowedTools or --tools value has an entry that doesn’t look like a complete rule Added a message explaining why MCP servers stop loading when an administrator adds managed-mcp.json during a session Added a row to /status that says when your provider or an environment variable such as DISABLE_TELEMETRY turns features off Added a note in /plugin and claude plugin list when a malformed plugin.j…"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F2",
+      "opened": true,
+      "reason": null,
+      "latest": "Voice Chat with Agents",
+      "latest_date": "2026-11-06",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F3",
+      "opened": true,
+      "reason": null,
+      "latest": "rust-v0.169.0",
+      "latest_date": "2026-11-13",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F4",
+      "opened": true,
+      "reason": null,
+      "latest": "v1.5.9",
+      "latest_date": "2026-11-14",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F5",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.23.2",
+      "latest_date": "2026-11-16",
+      "new": [
+        {
+          "date": "2026-11-16",
+          "version": "v0.23.2",
+          "text": "# Hermes Agent v0.23.2 **Release Date:** November 16, 2026 > Patch release. This tag rolls up the ~1,989 PRs merged since v0.23.1 into a stable release for the GitHub release (CLI and installers), the Microsoft Store app, Docker and Hermes Cloud. Full curated notes for this window ship with v0.24.0. <!-- HERMES_BUILDS_TABLE --> ## About this release Measured at commit `ae2a81ccc00`, the window since v0.23.1 contains **7,918 non-merge commits** across **5,211 changed files** (+239,733 / −22,788), **1,989 merged PRs** and **940 closed issues**. Also in the window, undocumented here on purpose:…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F6",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-16",
+      "new": [
+        {
+          "date": "2026-11-16",
+          "version": null,
+          "text": "Nov.16 Retired VS Code retires the Local harness in February 2027 client apps copilot ... +1 ###"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F7",
+      "opened": true,
+      "reason": null,
+      "latest": "v4.1.26",
+      "latest_date": "2026-10-26",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F8",
+      "opened": true,
+      "reason": null,
+      "latest": "v2.1.0-vscode",
+      "latest_date": "2026-06-19",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F9",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.5.0",
+      "latest_date": "2026-11-09",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F10",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-17",
+      "new": [
+        {
+          "date": "2026-11-17",
+          "version": null,
+          "text": "MAL-0000-ghsa-malware-8dd0307d895e3528 @ifasn/mmdd-doc-mcp: Malware in @ifasn/mmdd-doc-mcp"
+        },
+        {
+          "date": "2026-11-17",
+          "version": null,
+          "text": "MAL-0000-ghsa-malware-4ece6401b6660c68 @ifasn/ms-doc-mcp: Malware in @ifasn/ms-doc-mcp"
+        },
+        {
+          "date": "2026-11-16",
+          "version": null,
+          "text": "MAL-0000-ghsa-malware-fcc651c3b97ead34 @shadowdqj/image-mcp: Malware in @shadowdqj/image-mcp"
+        },
+        {
+          "date": "2026-11-16",
+          "version": null,
+          "text": "MAL-0000-ghsa-malware-33da74f0c3034ea4 @shadowdu/memos-mcp: Malware in @shadowdu/memos-mcp"
+        },
+        {
+          "date": "2026-11-16",
+          "version": null,
+          "text": "MAL-0000-ghsa-malware-1d0f8e2cbe1857a7 mem0-mcp-server: Malware in mem0-mcp-server"
+        },
+        {
+          "date": "2026-11-16",
+          "version": null,
+          "text": "MAL-0000-ghsa-malware-c8122037915b7776 mikuhost-agent: Malware in mikuhost-agent"
+        }
+      ],
+      "ids": [
+        "MAL-0000-ghsa-malware-1d0f8e2cbe1857a7",
+        "MAL-0000-ghsa-malware-33da74f0c3034ea4",
+        "MAL-0000-ghsa-malware-4ece6401b6660c68",
+        "MAL-0000-ghsa-malware-8dd0307d895e3528",
+        "MAL-0000-ghsa-malware-c8122037915b7776",
+        "MAL-0000-ghsa-malware-fcc651c3b97ead34"
+      ],
+      "read_with": "git"
+    },
+    {
+      "id": "F11",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.68.0",
+      "latest_date": "2026-11-10",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F12",
+      "opened": true,
+      "reason": null,
+      "latest": "1.0.112",
+      "latest_date": "2026-11-13",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F13",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-12",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F14",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-17",
+      "new": [
+        {
+          "date": "2026-11-16",
+          "version": null,
+          "text": "GHSA-jq3q-62jc-fqq9 code-review-mcp-server: code-review-mcp-server: Command injection via unsanitized folderPath/baseBranch parameters"
+        },
+        {
+          "date": "2026-11-16",
+          "version": null,
+          "text": "MAL-2026-20009 @shadowdu/memos-mcp: Malicious code in @shadowdu/memos-mcp (npm)"
+        },
+        {
+          "date": "2026-11-16",
+          "version": null,
+          "text": "MAL-2026-20008 @shadowdqj/image-mcp: Malicious code in @shadowdqj/image-mcp (npm)"
+        },
+        {
+          "date": "2026-11-16",
+          "version": null,
+          "text": "MAL-2026-20011 mem0-mcp-server: Malicious code in mem0-mcp-server (npm)"
+        },
+        {
+          "date": "2026-11-16",
+          "version": null,
+          "text": "MAL-2026-19970 mikuhost-agent: Malicious code in mikuhost-agent (npm)"
+        }
+      ],
+      "ids": [
+        "GHSA-jq3q-62jc-fqq9",
+        "MAL-2026-19970",
+        "MAL-2026-20008",
+        "MAL-2026-20009",
+        "MAL-2026-20011"
+      ],
+      "read_with": "curl"
+    },
+    {
+      "id": "F15",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-17",
+      "new": [
+        {
+          "date": "2026-11-17",
+          "version": null,
+          "text": "CVE-2026-123142 [MCP]: GitLab has remediated an issue in GitLab CE/EE affecting all versions from 18.4 before 19.3.9, 19.4 before 19.4.8, and 19.5 before 19.5.6 that under certain conditions could have allowed an authenticated user holding an MCP-scoped OAuth token to perform unauthorized issuable state changes on issues and merge requests, including approving and merging, due to incorrect authorization checks."
+        },
+        {
+          "date": "2026-11-16",
+          "version": null,
+          "text": "CVE-2026-129875 [MCP]: REBUILD 4.5.0 through 4.5.4 contains an information disclosure vulnerability that allows low-privileged authenticated users to recover the administrator password hash by filtering User.password through the MCP QueryRecords tool. Attackers can send LK2 prefix-match filters to the /gw/mcp/sse gateway and use the returned total count as an oracle to extract the SHA-256 hash one character at a time, then log in as administrator."
+        },
+        {
+          "date": "2026-11-16",
+          "version": null,
+          "text": "CVE-2026-129235 [MCP]: Kubeshark is an eBPF-powered network observability tool for Kubernetes. From 53.1.0 until 53.4.0, the download_file tool in cmd/mcpRunner.go accepts caller-controlled path and dest values, fetches a selected Kubeshark Hub API response, and writes the returned bytes through os.Create(dest) in callDownloadFile without confining the destination. An attacker who influences arguments through an AI agent driving kubeshark mcp can write Hub-supplied bytes to any path writable by the local MCP user and can read captured network traffic from default auth-disabled Hub deployments…"
+        },
+        {
+          "date": "2026-11-16",
+          "version": null,
+          "text": "CVE-2026-129236 [MCP]: Kubeshark is an eBPF-powered network observability tool for Kubernetes. From 53.1.0 until 53.4.0, the start_kubeshark MCP tool in cmd/mcpRunner.go uses callStartKubeshark to append caller-controlled pod_regex as a bare positional argument to kubeshark tap without a -- end-of-options separator, allowing a value beginning with --set to be parsed as a Helm value override. An attacker who influences tool arguments against kubeshark mcp --allow-destructive can redirect the privileged worker, Hub, and front images through tap.docker.registry and tap.docker.tag to an attacker-…"
+        },
+        {
+          "date": "2026-11-16",
+          "version": null,
+          "text": "CVE-2026-126816 [MCP]: Improper limitation of a pathname to a restricted directory in the cost report generation tool in AWS Pricing MCP Server (aws-pricing-mcp-server) before 1.0.31 might allow an actor who can influence the MCP agent to write actor controlled content to arbitrary locations outside the intended output directory via absolute paths or directory traversal sequences in the report output path. To remediate this issue, users should upgrade to version 1.0.31 or later. Users of the deprecated awslabs.cost-analysis-mcp-server package should migrate to awslabs.aws-pricing-mcp-server v…"
+        },
+        {
+          "date": "2026-11-16",
+          "version": null,
+          "text": "CVE-2026-115563 [MCP]: The Model Context Protocol Python SDK is the official Python SDK for Model Context Protocol servers and clients. From 1.9.1 until 1.30.0 and 2.2.0, OAuth client support in mcp.client.auth can send credentials to an authorization server chosen by an untrusted MCP server. ClientCredentialsOAuthProvider and PrivateKeyJWTOAuthProvider cannot identify the authorization server that owns their credentials. Affected HTTP clients using those providers, OAuthClientProvider, or the deprecated 1.x RFC7523OAuthClientProvider can disclose a client_secret, authorization code, PKCE cod…"
+        },
+        {
+          "date": "2026-11-16",
+          "version": null,
+          "text": "CVE-2026-126681 [MCP]: Improper restriction of intended endpoints in the connection configuration handling of the AWS Labs Timestream for InfluxDB MCP Server (awslabs.timestream-for-influxdb-mcp-server) before 0.0.19 might allow a remote unauthenticated actor (via prompt injection) to obtain the InfluxDB API token configured on the server, sent to a crafted endpoint controlled through an InfluxDB URL introduced in the MCP client context. To remediate this issue, users should upgrade to version 0.0.19 or later and rotate any InfluxDB API tokens configured for the server."
+        },
+        {
+          "date": "2026-11-16",
+          "version": null,
+          "text": "CVE-2026-68934 [MCP]: code-review-mcp-server automates code review and can post comments directly on GitHub pull requests. Prior to 1.5.3, the getLocalGitDiff, codeReview, createPR, and getPRTemplate MCP tools accept caller-controlled folderPath and baseBranch string parameters that are interpolated into command strings executed by child_process.execSync through /bin/sh. Shell metacharacters, command substitution, or quote-breaking input can therefore execute arbitrary commands with the privileges of the host process running the MCP server. This issue is fixed in version 1.5.3."
+        }
+      ],
+      "ids": [
+        "CVE-2026-115563",
+        "CVE-2026-123142",
+        "CVE-2026-126681",
+        "CVE-2026-126816",
+        "CVE-2026-129235",
+        "CVE-2026-129236",
+        "CVE-2026-129875",
+        "CVE-2026-68934"
+      ],
+      "read_with": "curl"
+    },
+    {
+      "id": "F16",
+      "opened": true,
+      "reason": null,
+      "latest": "v2.3.0",
+      "latest_date": "2026-11-13",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F17",
+      "opened": true,
+      "reason": null,
+      "latest": "3.4.0",
+      "latest_date": "2026-11-16",
+      "new": [
+        {
+          "date": "2026-11-16",
+          "version": null,
+          "text": "Web ## Terminal in Kiro Web You can now run commands in your session's workspace right in Kiro Web. Open a terminal beside the conversation or below it to run builds and tests, check output, or try a command yourself. Learn more -> Loading image..."
+        },
+        {
+          "date": "2026-11-16",
+          "version": "3.4.0",
+          "text": "3.4.0CLI ## Hooks That Rewrite Tool Inputs and Answer Permission Prompts This release adds hooks that rewrite a tool call's inputs before it runs or answer its permission prompt, so a script can apply your team's rules to every tool call in V3 sessions instead of waiting on you to approve each one. It also offers four /memories choices, resumes and lists cloud sessions in more places, and fixes headless, context window, MCP, search, /tangent, /rewind, and display issues. ## Rewrite a tool call or answer its permission prompt from a hook In a V3 session, a PreToolUse hook can now return update…"
+        },
+        {
+          "date": "2026-11-16",
+          "version": null,
+          "text": "General ## Real-time events and private connectivity Kiro Enterprise administrators can now send richer activity data to their observability tools. Stream each LLM request and completed tool call as a real-time OpenTelemetry event, or use daily CSV reports and OpenTelemetry metrics for reconciled trends. Track credits, models, conversations, response times, tool outcomes, client versions, and agent modes. Real-time events and private connectivity are available for Kiro profiles in US East (N. Virginia) and Europe (Frankfurt). Loading image... Daily metrics move to 00:30 UTC on November 26, 20…"
+        },
+        {
+          "date": "2026-11-16",
+          "version": "3.4.0",
+          "text": "3.4.0CLI ## Hooks That Rewrite Tool Inputs and Answer Permission Prompts This release adds hooks that rewrite a tool call's inputs before it runs or answer its permission prompt, so a script can apply your team's rules to every tool call in V3 sessions instead of waiting on you to approve each one. It also offers four /memories choices, resumes and lists cloud sessions in more places, and fixes headless, context window, MCP, search, /tangent, /rewind, and display issues. ## Rewrite a tool call or answer its permission prompt from a hook In a V3 session, a PreToolUse hook can now return update…"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F18",
+      "opened": true,
+      "reason": null,
+      "latest": "v3.13.4",
+      "latest_date": "2026-11-17",
+      "new": [
+        {
+          "date": "2026-11-17",
+          "version": "v3.13.4",
+          "text": "New Added tabs to the Agent Command Center, so you can keep several sessions and pages open in one window, each with its own Back and Forward history. Local sessions now run in a background process, so you can close or reopen Devin Desktop or the CLI without stopping a session, and open the same session in multiple clients at once. See the Devin CLI release notes for details. The Files tab now previews local PDF files, shows CSV and TSV files as tables, and plays more media types. Devin Local now nests the output of each subagent under it and shows how many subagents are running. Changed The…"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F19",
+      "opened": true,
+      "reason": null,
+      "latest": "v1.59.2",
+      "latest_date": "2026-11-15",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F20",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-16",
+      "new": [
+        {
+          "date": "2026-11-16",
+          "version": null,
+          "text": "### Sessions & Workspace Subscribers and Mark doneYour sidebar now shows the sessions you are subscribed to. Mark done replaces Archive: it moves a session to your Done folder while it keeps running and stays in the sidebars of its other subscribers, so you can clear your sidebar without stopping work others depend on.Phonebook: one identity across your connected servicesDevin now keeps a phonebook of each member’s linked identities across Devin, Slack, Microsoft Teams, your git providers, Jira, Linear and Pylon. Devin has a tool to match a person to their connected identities, and it tags pe…"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F21",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-08-19",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F22",
+      "opened": true,
+      "reason": null,
+      "latest": "v2026.11.4",
+      "latest_date": "2026-11-16",
+      "new": [
+        {
+          "date": "2026-11-16",
+          "version": "v2026.11.4",
+          "text": "<!-- openclaw-release-publication:docs-v1 --> ## OpenClaw v2026.11.4 220 commits · 125 pull requests · 90 contributors ### Changes included in this release The release notes and changelog contain the same content, presented in two formats: - [Release notes](https://docs.openclaw.ai/releases/2026.11.4) — formatted for people. - [Changelog](https://raw.githubusercontent.com/openclaw/openclaw/main/CHANGELOG/2026.11.4.md) — plain Markdown for AI agents and tools. ### Thanks [@1052326311](https://github.com/1052326311) [@abacha](https://github.com/abacha) [@akang1798](https://github.com/akang1798)…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F23",
+      "opened": true,
+      "reason": null,
+      "latest": "1.2.22",
+      "latest_date": "2026-11-14",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F24",
+      "opened": true,
+      "reason": null,
+      "latest": "1.15.41",
+      "latest_date": "2026-11-12",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F25",
+      "opened": true,
+      "reason": null,
+      "latest": "python-1.26.0",
+      "latest_date": "2026-11-12",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F26",
+      "opened": true,
+      "reason": null,
+      "latest": "2026-07-28",
+      "latest_date": "2026-07-28",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F27",
+      "opened": true,
+      "reason": null,
+      "latest": "1.146",
+      "latest_date": "2026-11-11",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F28",
+      "opened": true,
+      "reason": null,
+      "latest": "2026.11.13",
+      "latest_date": "2026-11-13",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F29",
+      "opened": true,
+      "reason": null,
+      "latest": "1.4.18",
+      "latest_date": "2026-11-17",
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "date_is_detection": true
+    },
+    {
+      "id": "F31",
+      "opened": true,
+      "reason": null,
+      "latest": "n8n@3.2.2",
+      "latest_date": "2026-11-13",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F32",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-12",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F33",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.27.4",
+      "latest_date": "2026-11-15",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F34",
+      "opened": true,
+      "reason": null,
+      "latest": "@moonshot-ai/kimi-code@2.6.2",
+      "latest_date": "2026-11-13",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F35",
+      "opened": true,
+      "reason": null,
+      "latest": "v2.184.0",
+      "latest_date": "2026-11-13",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F36",
+      "opened": true,
+      "reason": null,
+      "latest": "1.1.90",
+      "latest_date": "2026-11-16",
+      "new": [
+        {
+          "date": "2026-11-16",
+          "version": "1.1.90",
+          "text": "CLI 1.1.90 ### 历史会话兼容性修复 修复历史会话的读取的兼容性问题"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F37",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.86.2",
+      "latest_date": "2026-02-12",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F38",
+      "opened": true,
+      "reason": null,
+      "latest": "v1.41.0",
+      "latest_date": "2026-11-16",
+      "new": [
+        {
+          "date": "2026-11-16",
+          "version": "v1.41.0",
+          "text": "## 1.41.0 (2026-11-16) <!-- Release notes generated using configuration in .github/release.yml at main --> ## What's Changed ### Features * feat(verify-openhands): scenarios beyond the happy path, `map controls`, `browser timezone` by @enyst in https://github.com/OpenHands/OpenHands/pull/19670 * feat(acp): choose the reasoning effort from what the agent reports by @simonrosenberg in https://github.com/OpenHands/OpenHands/pull/19436 * feat(hooks): name the workspace and user hooks files in the Available Hooks dialog by @enyst in https://github.com/OpenHands/OpenHands/pull/18366 * feat(analytic…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F39",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-12",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F40",
+      "opened": true,
+      "reason": null,
+      "latest": "2026.11.12",
+      "latest_date": "2026-11-12",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F41",
+      "opened": true,
+      "reason": null,
+      "latest": "26.11.1",
+      "latest_date": "2026-11-13",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F42",
+      "opened": true,
+      "reason": null,
+      "latest": "v7.8.30",
+      "latest_date": "2026-11-16",
+      "new": [
+        {
+          "date": "2026-11-16",
+          "version": "v7.8.30",
+          "text": "## VS Code ### Minor Changes - [#16080](https://github.com/Kilo-Org/kilocode/pull/16080) [`54de37a`](https://github.com/Kilo-Org/kilocode/commit/54de37a85dfef8feb828382d8a71f84139857121) - Retire the Mercury Edit 2 autocomplete models and Next Edit. Codestral is now the default autocomplete model, and saved Mercury or Inception selections use Codestral. The SDK no longer has `client.kilo.edit`, and `@kilocode/kilo-gateway` no longer exports `./edit` or `./edit-prompt`. ### Patch Changes - Updated dependencies [[`37b2900`](https://github.com/Kilo-Org/kilocode/commit/37b2900fcb6223fec33c2bd5f59…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F44",
+      "opened": true,
+      "reason": null,
+      "latest": "v1.0.77",
+      "latest_date": "2026-11-05",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F45",
+      "opened": true,
+      "reason": null,
+      "latest": "v1.0.1",
+      "latest_date": "2026-11-11",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F46",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "watched": [
+        "Grok Bot › - [Reference](https://docs.x.ai/grok-bot/settings-and-notifications.md)"
+      ],
+      "date_is_detection": true
+    },
+    {
+      "id": "F47",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "watched": [],
+      "date_is_detection": true
+    },
+    {
+      "id": "F48",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F49",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": [
+        "Set it to false to prompt for sandboxed commands"
+      ]
+    },
+    {
+      "id": "F50",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F51",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F52",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F53",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F54",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F55",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F56",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F57",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F58",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F59",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F60",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F61",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    }
+  ],
+  "opened": 59,
+  "total": 59
+}
