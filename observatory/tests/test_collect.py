@@ -996,7 +996,7 @@ class SourcesFile(unittest.TestCase):
         self.assertEqual([s["id"] for s in SOURCES["sources"] if s.get("paused")], ["F43"])
         self.assertEqual(IDS[:29], [f"F{i}" for i in range(1, 30)])
         self.assertEqual(IDS[29:], ["F31", "F32", "F33", "F34", "F35", "F36", "F37", "F38", "F39", "F40", "F41", "F42", "F43", "F44", "F45", "F46", "F47"]
-                         + [f"F{i}" for i in range(48, 62)])  # GTM-175: the sandbox templates' pages
+                         + [f"F{i}" for i in range(48, 63)])  # GTM-175: the sandbox templates' pages
         for s in SOURCES["sources"]:
             self.assertEqual(set(s) - {"paused"}, {"id", "name", "scope", "method", "read", "public_url", "fragile", "notes"}, s["id"])
             self.assertIn(s["method"], collect.METHODS, s["id"])

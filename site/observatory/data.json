@@ -3433,6 +3433,18 @@
             "accessed_at": "2026-11-16",
             "page_date": null
           },
+          "extra_sources": [
+            {
+              "url": "https://code.claude.com/docs/en/settings-reference",
+              "official": true,
+              "accessed_at": "2026-11-17",
+              "page_date": null,
+              "watch": [
+                "sandbox.autoAllowBashIfSandboxed",
+                "Default: false. Before v2.1.324, the default was true"
+              ]
+            }
+          ],
           "watch": [
             "failIfUnavailable",
             "allowUnsandboxedCommands",
@@ -3450,7 +3462,7 @@
             "bubblewrap",
             "socat",
             "start Claude Code with --settings",
-            "Set it to false to prompt for sandboxed commands"
+            "For auto-allow mode, also set sandbox.autoAllowBashIfSandboxed to true"
           ],
           "session": {
             "command": "claude --settings '{\"sandbox\":{\"enabled\":true,\"failIfUnavailable\":true,\"allowUnsandboxedCommands\":false,\"autoAllowBashIfSandboxed\":false,\"network\":{\"allowedDomains\":[],\"strictAllowlist\":true},\"filesystem\":{\"denyRead\":[\"~/\"],\"allowRead\":[\"/RUTA/DEL/PROYECTO\"]}},\"permissions\":{\"blockReadsOutsideWorkingDirectories\":true,\"deny\":[\"WebFetch\",\"WebSearch\"]}}'",
@@ -3517,6 +3529,18 @@
             "accessed_at": "2026-11-16",
             "page_date": null
           },
+          "extra_sources": [
+            {
+              "url": "https://code.claude.com/docs/en/settings-reference",
+              "official": true,
+              "accessed_at": "2026-11-17",
+              "page_date": null,
+              "watch": [
+                "sandbox.autoAllowBashIfSandboxed",
+                "Default: false. Before v2.1.324, the default was true"
+              ]
+            }
+          ],
           "watch": [
             "failIfUnavailable",
             "allowUnsandboxedCommands",
@@ -3534,7 +3558,7 @@
             "bubblewrap",
             "socat",
             "start Claude Code with --settings",
-            "Set it to false to prompt for sandboxed commands"
+            "For auto-allow mode, also set sandbox.autoAllowBashIfSandboxed to true"
           ],
           "session": {
             "command": "claude --settings '{\"sandbox\":{\"enabled\":true,\"failIfUnavailable\":true,\"allowUnsandboxedCommands\":false,\"autoAllowBashIfSandboxed\":false,\"network\":{\"allowedDomains\":[],\"strictAllowlist\":true},\"filesystem\":{\"denyRead\":[\"~/\"],\"allowRead\":[\"/RUTA/DEL/PROYECTO\"]}},\"permissions\":{\"blockReadsOutsideWorkingDirectories\":true,\"deny\":[\"WebFetch\",\"WebSearch\"]}}'",

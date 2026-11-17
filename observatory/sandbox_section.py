@@ -92,13 +92,21 @@ def watch_map(agents):
 
 
 def to_review(raw_dir=RAW_DIR, sources_file=SOURCES):
-    """URLs whose page lost a watched string in the latest raw file of the collector (empty if there is none)."""
+    """URLs whose page lost a watched string in the latest raw file of the collector (empty if there is none).
+
+    Only strings still watched count: a string replaced in sources.json since that reading (F49, signed by Albert
+    17-11) stops marking its template «Por revisar» at the next build, not at the next reading."""
     files = sorted(Path(raw_dir).glob("????-??-??.json"))
     if not files:
         return set()
     raw = json.loads(files[-1].read_text(encoding="utf-8"))
-    url = {s["id"]: s.get("read", {}).get("url") for s in json.loads(Path(sources_file).read_text(encoding="utf-8"))["sources"]}
-    return {url.get(s["id"]) for s in raw.get("sources", []) if s.get("missing")} - {None}
+    read = {s["id"]: s.get("read", {}) for s in json.loads(Path(sources_file).read_text(encoding="utf-8"))["sources"]}
+    out = set()
+    for s in raw.get("sources", []):
+        r = read.get(s["id"], {})
+        if r.get("url") and set(s.get("missing") or []) & set(r.get("watch", [])):
+            out.add(r["url"])
+    return out
 
 
 def maker(a):

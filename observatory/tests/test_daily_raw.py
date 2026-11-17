@@ -79,7 +79,7 @@ class FromRaw(unittest.TestCase):
         """GTM-160: F46 and F47 only watch for a Grok Bot read access; GTM-175: F48-F61 only watch the pages of the
         sandbox templates. They never show in checked or not_checked."""
         watch = [s for s in SOURCES if s["method"] == "page-watch"]
-        self.assertEqual([s["id"] for s in watch], ["F46", "F47"] + [f"F{i}" for i in range(48, 62)])
+        self.assertEqual([s["id"] for s in watch], ["F46", "F47"] + [f"F{i}" for i in range(48, 63)])
         names = {s["name"] for s in watch}
         d = daily_raw.build(D, raw(closed=("F46", "F47")), SOURCES, [], [], NOW)
         self.assertEqual(d["status"], "no_changes")
