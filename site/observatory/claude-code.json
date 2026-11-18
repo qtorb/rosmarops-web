@@ -557,7 +557,7 @@
       "checks": {
         "read": {
           "kind": "cmd",
-          "cmd": "ls ~",
+          "cmd": "python3 -c \"import os; print(sorted(os.listdir(os.path.expanduser('~'))))\"",
           "status": "confirmed"
         },
         "network": {
@@ -650,7 +650,7 @@
       "checks": {
         "read": {
           "kind": "cmd",
-          "cmd": "ls ~",
+          "cmd": "python3 -c \"import os; print(sorted(os.listdir(os.path.expanduser('~'))))\"",
           "status": "confirmed"
         },
         "network": {

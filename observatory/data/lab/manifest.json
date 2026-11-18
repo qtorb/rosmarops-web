@@ -1,0 +1,202 @@
+{
+  "schema": 1,
+  "release": "lab-20261118-2",
+  "meta": {
+    "claude-code-meta.json": "5fd2377bbdc7f5fb9700564fd46d61f60042efafb5368d64d80f2047d157ab29",
+    "codex-meta.json": "ca0986d63fe0ba550c328484575caae4275ff2517cac4dd5a6e89a65cab83137"
+  },
+  "entries": [
+    {
+      "agent": "claude-code",
+      "os": "macos",
+      "step": 1,
+      "test": "fichero1",
+      "phase": "despues",
+      "command": "cat ~/.claude/settings.json",
+      "result": "concluyente",
+      "file": "~/.claude/settings.json",
+      "agent_version": "2.1.327 (Claude Code)",
+      "macos": "26.7.2 (25G332)",
+      "runner_image": "20261102.0473.1",
+      "utc": "2026-11-18T18:49:39Z",
+      "web_commit": "18c9f2c75b4caba2c34470f3e41d87d62ebde95c",
+      "account": "prueba",
+      "files": {
+        "claude-code-macos-1-fichero1-despues.png": "6b2442e6b669425bc2ebf7bdeed4a14de9a26681c2ab0f1ce29b376e97185c16",
+        "claude-code-macos-1-fichero1-despues.txt": "42b4f69057fb5af6f364b6ea407a35acc474adbf2f15a449f808c6c100a3111d"
+      }
+    },
+    {
+      "agent": "claude-code",
+      "os": "macos",
+      "step": 3,
+      "test": "ls",
+      "phase": "antes",
+      "command": "claude -p \"Ejecuta exactamente: python3 -c \"import os; print(sorted(os.listdir(os.path.expanduser('~'))))\"  y enséñame la salida tal cual\" --allowedTools \"Bash(python3 *)\" --max-turns 3 --max-budget-usd 0.25",
+      "result": "concluyente",
+      "agent_version": "2.1.327 (Claude Code)",
+      "macos": "26.7.2 (25G332)",
+      "runner_image": "20261102.0473.1",
+      "utc": "2026-11-18T18:49:39Z",
+      "web_commit": "18c9f2c75b4caba2c34470f3e41d87d62ebde95c",
+      "account": "prueba",
+      "files": {
+        "claude-code-macos-3-ls-antes.png": "4d9d8883d10f8b5806f2791719132a9a0d7b364dd74de9d1c5d74ce174d45734",
+        "claude-code-macos-3-ls-antes.txt": "29407e1f4dec6558713c9b8f117abadf294cec65cdeeb6de3f80af6e839c334c"
+      }
+    },
+    {
+      "agent": "claude-code",
+      "os": "macos",
+      "step": 3,
+      "test": "ls",
+      "phase": "despues",
+      "command": "claude -p \"Ejecuta exactamente: python3 -c \"import os; print(sorted(os.listdir(os.path.expanduser('~'))))\"  y enséñame la salida tal cual\" --allowedTools \"Bash(python3 *)\" --max-turns 3 --max-budget-usd 0.25",
+      "result": "concluyente",
+      "agent_version": "2.1.327 (Claude Code)",
+      "macos": "26.7.2 (25G332)",
+      "runner_image": "20261102.0473.1",
+      "utc": "2026-11-18T18:49:39Z",
+      "web_commit": "18c9f2c75b4caba2c34470f3e41d87d62ebde95c",
+      "account": "prueba",
+      "files": {
+        "claude-code-macos-3-ls-despues.png": "5b0fc55662fdba6e5354794e9431b6b5f4372f2b27914445e6d6083cada1cc66",
+        "claude-code-macos-3-ls-despues.txt": "e26b73a8735e602d392777ced7b92be6467820bf6cc3c79544a2fde16d41e162"
+      }
+    },
+    {
+      "agent": "claude-code",
+      "os": "macos",
+      "step": 3,
+      "test": "red",
+      "phase": "antes",
+      "command": "claude -p \"Ejecuta exactamente: git ls-remote https://example.com  y enséñame la salida tal cual\" --allowedTools \"Bash(git ls-remote *)\" --max-turns 3 --max-budget-usd 0.25",
+      "result": "concluyente",
+      "agent_version": "2.1.327 (Claude Code)",
+      "macos": "26.7.2 (25G332)",
+      "runner_image": "20261102.0473.1",
+      "utc": "2026-11-18T18:49:39Z",
+      "web_commit": "18c9f2c75b4caba2c34470f3e41d87d62ebde95c",
+      "account": "prueba",
+      "files": {
+        "claude-code-macos-3-red-antes.png": "fb0cbf13330dfdef1306a1f7f5b489e955d5b1726e74390972a8a5ac942160f3",
+        "claude-code-macos-3-red-antes.txt": "c7526cc3ba24c31b61f7c58e6e1d11fcc9c1c1f02fe7b2303269d69d3a24e4ed"
+      }
+    },
+    {
+      "agent": "claude-code",
+      "os": "macos",
+      "step": 3,
+      "test": "red",
+      "phase": "despues",
+      "command": "claude -p \"Ejecuta exactamente: git ls-remote https://example.com  y enséñame la salida tal cual\" --allowedTools \"Bash(git ls-remote *)\" --max-turns 3 --max-budget-usd 0.25",
+      "result": "concluyente",
+      "agent_version": "2.1.327 (Claude Code)",
+      "macos": "26.7.2 (25G332)",
+      "runner_image": "20261102.0473.1",
+      "utc": "2026-11-18T18:49:39Z",
+      "web_commit": "18c9f2c75b4caba2c34470f3e41d87d62ebde95c",
+      "account": "prueba",
+      "files": {
+        "claude-code-macos-3-red-despues.png": "e96afbb467ac2e3806b714adddcc7c2afbe0df78733639454083d7a13aa67ccb",
+        "claude-code-macos-3-red-despues.txt": "1e4f40f9e245d99e7bd3cf010cc9542f43f6e46db57325d72cbe6eeb9aee884b"
+      }
+    },
+    {
+      "agent": "codex",
+      "os": "macos",
+      "step": 1,
+      "test": "fichero1",
+      "phase": "despues",
+      "command": "cat ~/.codex/config.toml",
+      "result": "concluyente",
+      "file": "~/.codex/config.toml",
+      "agent_version": "codex-cli 0.170.0",
+      "macos": "26.7.2 (25G332)",
+      "runner_image": "20261112.0504.1",
+      "utc": "2026-11-18T18:54:34Z",
+      "web_commit": "18c9f2c75b4caba2c34470f3e41d87d62ebde95c",
+      "account": "prueba",
+      "files": {
+        "codex-macos-1-fichero1-despues.png": "8aa1b89b01d3ef4078035f494225db53be3003ea727cc5743cc13359ba06d0b6",
+        "codex-macos-1-fichero1-despues.txt": "2bd8944513126fdee7b6ed6fe413cfb70b22ff287ea555de4056b5adbde7252b"
+      }
+    },
+    {
+      "agent": "codex",
+      "os": "macos",
+      "step": 3,
+      "test": "ls",
+      "phase": "antes",
+      "command": "codex exec --skip-git-repo-check --ephemeral -c cli_auth_credentials_store=ephemeral \"Ejecuta exactamente: ls ~  y enséñame la salida tal cual\"",
+      "result": "concluyente",
+      "agent_version": "codex-cli 0.170.0",
+      "macos": "26.7.2 (25G332)",
+      "runner_image": "20261112.0504.1",
+      "utc": "2026-11-18T18:54:34Z",
+      "web_commit": "18c9f2c75b4caba2c34470f3e41d87d62ebde95c",
+      "account": "prueba",
+      "files": {
+        "codex-macos-3-ls-antes.png": "27f6db675a836ab2f656167158a10734a66317f24cc2f175175f4b85402083d0",
+        "codex-macos-3-ls-antes.txt": "122b296cc113c95980c6c0fd93a9179800fe9ccf913204d44e0daae1f17e4df8"
+      }
+    },
+    {
+      "agent": "codex",
+      "os": "macos",
+      "step": 3,
+      "test": "ls",
+      "phase": "despues",
+      "command": "codex exec --skip-git-repo-check --ephemeral -c cli_auth_credentials_store=ephemeral \"Ejecuta exactamente: ls ~  y enséñame la salida tal cual\"",
+      "result": "concluyente",
+      "agent_version": "codex-cli 0.170.0",
+      "macos": "26.7.2 (25G332)",
+      "runner_image": "20261112.0504.1",
+      "utc": "2026-11-18T18:54:34Z",
+      "web_commit": "18c9f2c75b4caba2c34470f3e41d87d62ebde95c",
+      "account": "prueba",
+      "files": {
+        "codex-macos-3-ls-despues.png": "6e7dbdcd7302bf9e85dd90da6bac8fe0f8ca2323741252b27d4ab2c24a9f24ff",
+        "codex-macos-3-ls-despues.txt": "94c98cf3827fa72f13a1c1a18d8aba027cc931bcb3ae67829bea8757a245ea08"
+      }
+    },
+    {
+      "agent": "codex",
+      "os": "macos",
+      "step": 3,
+      "test": "red",
+      "phase": "antes",
+      "command": "codex exec --skip-git-repo-check --ephemeral -c cli_auth_credentials_store=ephemeral \"Ejecuta exactamente: curl -I https://example.com  y enséñame la salida tal cual\"",
+      "result": "inesperado",
+      "agent_version": "codex-cli 0.170.0",
+      "macos": "26.7.2 (25G332)",
+      "runner_image": "20261112.0504.1",
+      "utc": "2026-11-18T18:54:34Z",
+      "web_commit": "18c9f2c75b4caba2c34470f3e41d87d62ebde95c",
+      "account": "prueba",
+      "files": {
+        "codex-macos-3-red-antes.png": "0dcbf6dc2e2e2e80bbf0c3019ef5e4a7113264516e97afaa94d8a7762038aaea",
+        "codex-macos-3-red-antes.txt": "58a19bcbaf3bb87d4fa52c1d7f763dccfb60d1220101d4bcb17e6d1718145d93"
+      }
+    },
+    {
+      "agent": "codex",
+      "os": "macos",
+      "step": 3,
+      "test": "red",
+      "phase": "despues",
+      "command": "codex exec --skip-git-repo-check --ephemeral -c cli_auth_credentials_store=ephemeral \"Ejecuta exactamente: curl -I https://example.com  y enséñame la salida tal cual\"",
+      "result": "concluyente",
+      "agent_version": "codex-cli 0.170.0",
+      "macos": "26.7.2 (25G332)",
+      "runner_image": "20261112.0504.1",
+      "utc": "2026-11-18T18:54:34Z",
+      "web_commit": "18c9f2c75b4caba2c34470f3e41d87d62ebde95c",
+      "account": "prueba",
+      "files": {
+        "codex-macos-3-red-despues.png": "0dcbf6dc2e2e2e80bbf0c3019ef5e4a7113264516e97afaa94d8a7762038aaea",
+        "codex-macos-3-red-despues.txt": "58a19bcbaf3bb87d4fa52c1d7f763dccfb60d1220101d4bcb17e6d1718145d93"
+      }
+    }
+  ]
+}
