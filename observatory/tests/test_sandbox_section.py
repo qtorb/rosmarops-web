@@ -104,10 +104,12 @@ class Data(unittest.TestCase):
 
 
 G = sandbox_section.gtexts()
+# GTM-182: Claude Code's read test on macOS and Linux, the command the lab checked (release lab-20261118-2).
+CC_READ = "python3 -c \"import os; print(sorted(os.listdir(os.path.expanduser('~'))))\""
 LAB = [  # a test manifest (GTM-176 §5): never published; the real one comes from BV-250
-    {"agent": "claude-code", "system": "macos", "step": 1, "test": "read", "when": "antes", "command": "ls ~", "result": "concluyente",
+    {"agent": "claude-code", "system": "macos", "step": 1, "test": "read", "when": "antes", "command": CC_READ, "result": "concluyente",
      "agent_version": "2.1.330", "os_version": "26.1", "date": "2026-11-20", "file": "claude-code-macos-1-read-antes.png", "sha256": "0" * 64},
-    {"agent": "claude-code", "system": "macos", "step": 3, "test": "read", "when": "despues", "command": "ls ~", "result": "no_concluyente",
+    {"agent": "claude-code", "system": "macos", "step": 3, "test": "read", "when": "despues", "command": CC_READ, "result": "no_concluyente",
      "agent_version": "2.1.330", "os_version": "26.1", "date": "2026-11-20", "file": "x.png", "sha256": "0" * 64},
     {"agent": "codex", "system": "macos", "step": 3, "test": "read", "when": "despues", "command": "ls ~", "result": "concluyente",
      "agent_version": "0.140.0", "os_version": "26.1", "date": "2026-11-21", "file": "codex-macos-3-read-despues.png", "sha256": "0" * 64},
@@ -242,7 +244,7 @@ class Page(unittest.TestCase):
         p = sandbox_section.article("es", AGENTS, set(), lab)
         cc = combo(p, "claude-code-macos")
         self.assertIn('src="/assets/sandbox-lab/claude-code-macos-1-read-antes.png"', cc)
-        self.assertIn('alt="Claude Code: ls ~ antes de la plantilla"', cc)
+        self.assertIn(f'alt="Claude Code: {html.escape(CC_READ, quote=True)} antes de la plantilla"', cc)
         self.assertIn("Captura de nuestro laboratorio: Claude Code 2.1.330, macOS 26.1, 20 de noviembre de 2026.", cc)
         self.assertNotIn("x.png", cc)
         cx = combo(p, "codex-macos")
@@ -264,15 +266,18 @@ class Page(unittest.TestCase):
         self.assertLess(p.index(G["es"]["h1"]), p.index(G["es"]["pick_line"]))
         self.assertLess(p.index(G["es"]["pick_line"]), p.index('<div class="sg-sel"'))
         cc = combo(p, "claude-code-macos")
-        self.assertIn('Escríbele: <code>Ejecuta ls ~</code></span><span hidden id="claude-code-macos-c1">Ejecuta ls ~</span>', cc)
+        run = esc("Ejecuta " + CC_READ)
+        self.assertIn(f'Escríbele: <code>{run}</code></span><span hidden id="claude-code-macos-c1">{run}</span>', cc)
         self.assertIn(esc(G["es"]["s1.p"].replace("{agent}", "Claude Code")), cc)
         self.assertIn(esc(G["es"]["s1.after"]), cc)
         self.assertIn(esc(G["es"]["s2.p"].replace("{agent}", "Claude Code")), cc)
         self.assertIn(esc(G["es"]["s3.p"]), cc)
-        self.assertIn(f"{ex}</p><pre>Desktop  Documents  Downloads  proyecto</pre>", cc)
-        self.assertIn("<pre>ls: /Users/tu-usuario: Operation not permitted</pre>", cc)
-        self.assertIn(f"<pre>{esc(sandbox_section.EX_NETWORK['git'][0])}</pre>", cc)
-        self.assertIn(f"<pre>{esc(sandbox_section.EX_NETWORK['git'][1])}</pre>", cc)
+        # Claude Code on macOS has the lab's screenshots (GTM-182), which replace the examples: they are checked without them.
+        bare = combo(sandbox_section.article("es", AGENTS, set(), []), "claude-code-macos")
+        self.assertIn(f"{ex}</p><pre>Desktop  Documents  Downloads  proyecto</pre>", bare)
+        self.assertIn("<pre>ls: /Users/tu-usuario: Operation not permitted</pre>", bare)
+        self.assertIn(f"<pre>{esc(sandbox_section.EX_NETWORK['git'][0])}</pre>", bare)
+        self.assertIn(f"<pre>{esc(sandbox_section.EX_NETWORK['git'][1])}</pre>", bare)
         self.assertEqual(cc.count('<details class="sg-if">'), 2)  # step 1 (the note) and step 3
         self.assertNotIn("¿Alguna ha funcionado?", p)
         s3 = cc[cc.index(esc(G["es"]["s3.p"])):]
@@ -320,7 +325,7 @@ class Page(unittest.TestCase):
         self.assertIn("<pre>ls: cannot open directory", combo(p, "cline-linux"))
         for lang in ("en", "ca"):
             q = page(lang)
-            self.assertIn(f'{esc(G[lang]["run"]).replace("{cmd}", "")}<code>{esc(G[lang]["run_cmd"].replace("{cmd}", "ls ~"))}</code>',
+            self.assertIn(f'{esc(G[lang]["run"]).replace("{cmd}", "")}<code>{esc(G[lang]["run_cmd"].replace("{cmd}", CC_READ))}</code>',
                           combo(q, "claude-code-macos"))
             self.assertIn(esc(G[lang]["fold.if"]), q)
 
@@ -455,6 +460,72 @@ class ClaudeCodeOneText(unittest.TestCase):
     def test_user_block_is_the_program_p2json(self):
         for system in ("macos", "linux"):
             self.assertEqual(BY_ID["claude-code"]["templates"][system]["blocks"][0]["value"], P2_JSON, system)
+
+
+class LabRelease(unittest.TestCase):
+    """GTM-182: the lab release brought in (observatory/data/lab/manifest.json and site/assets/sandbox-lab/)."""
+
+    MANIFEST = sandbox_section.LAB_MANIFEST
+    IMG = ROOT / "site" / "assets" / "sandbox-lab"
+    # Where each concluyente capture goes: (combo, step, the box's command or None for step 2, file).
+    WANT = {
+        ("claude-code-macos", 1, CC_READ, "claude-code-macos-3-ls-antes.png"),
+        ("claude-code-macos", 1, "git ls-remote https://example.com", "claude-code-macos-3-red-antes.png"),
+        ("claude-code-macos", 2, None, "claude-code-macos-1-fichero1-despues.png"),
+        ("claude-code-macos", 3, CC_READ, "claude-code-macos-3-ls-despues.png"),
+        ("claude-code-macos", 3, "git ls-remote https://example.com", "claude-code-macos-3-red-despues.png"),
+        ("codex-macos", 1, "ls ~", "codex-macos-3-ls-antes.png"),
+        ("codex-macos", 2, None, "codex-macos-1-fichero1-despues.png"),
+        ("codex-macos", 3, "ls ~", "codex-macos-3-ls-despues.png"),
+        ("codex-macos", 3, "curl -I https://example.com", "codex-macos-3-red-despues.png"),
+    }
+
+    def placed(self, lang):
+        out = set()
+        p = page(lang)
+        for m in re.finditer(r'<section class="sg-combo" id="([^"]+)"(.*?)</section>', p, re.S):
+            for n, step in enumerate(m.group(2).split('<li class="sg-step">')[1:], 1):
+                for box in step.split('<div class="sg-test">'):
+                    for f in re.findall(r'<img src="/assets/sandbox-lab/([^"]+)"', box):
+                        c = re.search(r'<span hidden id="[^"]+">(.*?)</span>', box)
+                        cmd = html.unescape(c.group(1)).split(" ", 1)[1] if c and n != 2 else None
+                        out.add((m.group(1), n, cmd, f))
+        return out
+
+    def test_each_capture_in_its_box_and_nowhere_else(self):
+        for lang in LANGS:
+            self.assertEqual(self.placed(lang), self.WANT, lang)
+
+    def test_only_concluyente_pngs_published_and_their_sha256(self):
+        import hashlib
+        m = json.loads(self.MANIFEST.read_text(encoding="utf-8"))
+        self.assertEqual(m["release"], "lab-20261118-2")
+        want = {n: h for e in m["entries"] if e["result"] == "concluyente" for n, h in e["files"].items() if n.endswith(".png")}
+        got = {f.name: hashlib.sha256(f.read_bytes()).hexdigest() for f in self.IMG.iterdir()}
+        self.assertEqual(got, want)
+        self.assertEqual(len(want), 9)
+        self.assertFalse(any(f.suffix == ".txt" for f in self.IMG.iterdir()))
+
+    def test_a_capture_of_another_command_or_file_is_not_shown(self):
+        e = dict(sandbox_section.lab_entries()[0])
+        moved = []
+        for x in sandbox_section.lab_entries():
+            x = dict(x)
+            if x["step"] != 2:
+                x["command"] = "ls ~/otra-cosa"
+            else:
+                x["path"] = "~/.otro/settings.json"
+            moved.append(x)
+        p = sandbox_section.article("es", AGENTS, set(), moved)
+        self.assertNotIn("<figure", p)
+        self.assertNotIn("Comprobado en nuestro laboratorio", p)
+        self.assertEqual(e["agent"], "claude-code")
+
+    def test_caption_from_the_release(self):
+        cc = combo(page("es"), "claude-code-macos")
+        self.assertIn("Captura de nuestro laboratorio: Claude Code 2.1.327, macOS 26.7.2, 18 de noviembre de 2026.", cc)
+        cx = combo(page("es"), "codex-macos")
+        self.assertIn("Captura de nuestro laboratorio: Codex 0.170.0, macOS 26.7.2, 18 de noviembre de 2026.", cx)
 
 
 class Watch(unittest.TestCase):

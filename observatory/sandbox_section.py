@@ -295,6 +295,34 @@ def rich(s):
     return re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", code(s))
 
 
+# GTM-182: how a lab release (qtorb/rosmarops-lab, BV-250) names its tests, and where each goes in the guide (GTM-176
+# §5): the template file in step 2; «ls» and «red» in the read and network boxes, «antes» in step 1, «despues» in step 3.
+LAB_TESTS = {"ls": "read", "red": "network", "fichero1": "file"}
+LAB_ASK = re.compile(r"Ejecuta exactamente: (.+?)  y enséñame")
+VERSION = re.compile(r"\d+(?:\.\d+)+")
+
+
+def _lab_entry(e):
+    """One entry of a lab release's manifest, in the guide's terms; None if it cannot be placed. Entries already in
+    those terms (the test manifests) are kept as they are."""
+    if "system" in e:
+        return e
+    test = LAB_TESTS.get(e.get("test"))
+    pngs = [n for n in (e.get("files") or {}) if n.endswith(".png")]
+    if test is None or len(pngs) != 1 or e.get("phase") not in ("antes", "despues"):
+        return None
+    ask = LAB_ASK.search(e.get("command", ""))
+    ver = VERSION.search(e.get("agent_version", ""))
+    os_ver = VERSION.search(str(e.get(e.get("os", ""), "")))
+    return {
+        "agent": e.get("agent"), "system": e.get("os"), "test": test, "when": e["phase"],
+        "step": 2 if test == "file" else (1 if e["phase"] == "antes" else 3),
+        "command": ask.group(1) if ask else e.get("command", ""), "path": e.get("file"),
+        "file": pngs[0], "agent_version": ver.group(0) if ver else "", "os_version": os_ver.group(0) if os_ver else "",
+        "date": (e.get("utc") or "")[:10], "result": e.get("result"),
+    }
+
+
 def lab_entries(path=LAB_MANIFEST):
     """GTM-176 §5: the concluyente entries of the lab manifest (BV-250), or [] while no release has been brought in."""
     try:
@@ -302,7 +330,8 @@ def lab_entries(path=LAB_MANIFEST):
     except (OSError, ValueError):
         return []
     entries = data.get("entries", data) if isinstance(data, dict) else data
-    return [e for e in entries if isinstance(e, dict) and e.get("result") == "concluyente"]
+    out = [_lab_entry(e) for e in entries if isinstance(e, dict) and e.get("result") == "concluyente"]
+    return [e for e in out if e is not None]
 
 
 class Combo:
@@ -349,10 +378,17 @@ class Combo:
         return out
 
     # -- captures (§5)
-    def figure(self, step, test=None, when=None):
+    def figure(self, step, test=None, when=None, cmd=None):
+        """The lab's screenshots for one place of the guide. A screenshot of a box only goes there if the lab ran that
+        box's command, and one of step 2 only if it shows a file of this template (GTM-182)."""
         out = []
+        files = {b.get("file") for b in self.t.get("blocks", [])}
         for e in self.lab:
             if e.get("step") != step or (test and e.get("test") != test) or (when and e.get("when") != when):
+                continue
+            if cmd is not None and e.get("command") != cmd:
+                continue
+            if step == 2 and e.get("path") is not None and e.get("path") not in files:
                 continue
             w = self.G["lab.after" if e.get("when") == "despues" else "lab.before"]
             date = map_page.fmt_date(e["date"], self.lang)
@@ -363,8 +399,11 @@ class Combo:
         return out
 
     def lab_checked(self, test):
+        c = self.t["checks"][test]
+        cmd = c["cmd"] if c["kind"] == "cmd" else None
         for e in self.lab:
-            if e.get("step") == 3 and e.get("test") == test and e.get("when") == "despues":
+            if e.get("step") == 3 and e.get("test") == test and e.get("when") == "despues" \
+                    and (cmd is None or e.get("command") == cmd):
                 return map_page.fmt_date(e["date"], self.lang)
         return None
 
@@ -437,7 +476,8 @@ class Combo:
                 out.append(f'<p class="sg-noline">{esc(self.g("no_test"))}</p>')
                 continue
             exp = self.now(test, c) if when == "before" else self.after(test, c)
-            out.append(self.box(c, exp, self.example(test, c, when), self.figure(step, test, lab_when)))
+            cmd = c["cmd"] if c["kind"] == "cmd" else None
+            out.append(self.box(c, exp, self.example(test, c, when), self.figure(step, test, lab_when, cmd)))
         return out
 
     def muted_lines(self):
