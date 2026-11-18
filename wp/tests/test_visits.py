@@ -28,6 +28,8 @@ PREFIX = "vtest_"
 TABLE = PREFIX + "rosmarops_visits"
 ORIGIN = "https://rosmarops.com"
 UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36"
+# GTM-178: what Playwright's and Puppeteer's Chromium sends by default.
+HEADLESS = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/130.0.0.0 Safari/537.36"
 
 
 def mysql(sql):
@@ -211,6 +213,13 @@ class Visits(unittest.TestCase):
                    "facebookexternalhit/1.1", "Wget/1.21"]:
             self.visit("/methodology/", "", headers={"User-Agent": ua})
         self.assertEqual(self.rows(), [])
+
+    def test_headless_chrome_not_counted(self):
+        # GTM-178: an automated browser (HeadlessChrome) is not counted; the same visit from a person's browser is.
+        self.visit("/methodology/", "", headers={"User-Agent": HEADLESS})
+        self.assertEqual(self.rows(), [])
+        self.visit("/methodology/", "")
+        self.assertEqual(self.rows(), ["/methodology/\ten\tdirect\t1"])
 
     def test_internal_cookie_not_counted(self):
         # GTM-126: a browser marked with ?rosmarops_internal=1 carries this cookie; only its presence counts.
@@ -403,7 +412,7 @@ class SwitchedOff(unittest.TestCase):
 
 NODE_HARNESS = r"""
 const fs = require('fs');
-const [src, visible, referrer, path, on, search, stored] = process.argv.slice(2);
+const [src, visible, referrer, path, on, search, stored, webdriver, ua] = process.argv.slice(2);
 let code = fs.readFileSync(src, 'utf8');
 code = code.replace(/var ON = (true|false);/, on === '1' ? 'var ON = true;' : 'var ON = false;');
 const calls = []; const listeners = {};
@@ -418,11 +427,13 @@ const storage = new Proxy({}, { get(t, prop) {
   if (prop === 'getItem') return (k) => { reads.push(k); return k === 'rosmarops_internal' && stored ? stored : null; };
   touched.push('localStorage.' + String(prop)); return () => null; } });
 const win = { fetch: (url, opts) => { calls.push({ url, opts }); return Promise.resolve(); } };
-const fn = new Function('window', 'document', 'location', 'fetch', 'localStorage', 'sessionStorage', 'indexedDB', 'URL', code);
+// GTM-178: the browser's navigator, as the test sets it (webdriver flag and user agent).
+const nav = { webdriver: webdriver === '1', userAgent: ua };
+const fn = new Function('window', 'document', 'location', 'fetch', 'localStorage', 'sessionStorage', 'indexedDB', 'URL', 'navigator', code);
 win.localStorage = storage;
 const loc = { pathname: path, search: search || '' };
-fn(win, doc, loc, win.fetch, storage, trap('sessionStorage'), trap('indexedDB'), URL);
-fn(win, doc, loc, win.fetch, storage, trap('sessionStorage'), trap('indexedDB'), URL); // included twice
+fn(win, doc, loc, win.fetch, storage, trap('sessionStorage'), trap('indexedDB'), URL, nav);
+fn(win, doc, loc, win.fetch, storage, trap('sessionStorage'), trap('indexedDB'), URL, nav); // included twice
 const before = calls.length;
 doc.visibilityState = 'visible';
 if (listeners.visibilitychange) listeners.visibilitychange();
@@ -432,13 +443,14 @@ console.log(JSON.stringify({ before, calls, touched, reads }));
 
 
 class Script(unittest.TestCase):
-    def run_js(self, visible, referrer, path, on=True, search="", stored=""):
+    def run_js(self, visible, referrer, path, on=True, search="", stored="", webdriver=False, ua=UA):
         if not shutil.which("node"):
             self.skipTest("node not on PATH")
         with tempfile.NamedTemporaryFile("w", suffix=".js", delete=False) as f:
             f.write(NODE_HARNESS)
         try:
-            p = subprocess.run(["node", f.name, str(SCRIPT), visible, referrer, path, "1" if on else "0", search, stored],
+            p = subprocess.run(["node", f.name, str(SCRIPT), visible, referrer, path, "1" if on else "0", search, stored,
+                                "1" if webdriver else "0", ua],
                                capture_output=True, text=True, check=True)
         finally:
             os.unlink(f.name)
@@ -468,8 +480,11 @@ class Script(unittest.TestCase):
     def test_no_storage_in_the_source(self):
         src = SCRIPT.read_text(encoding="utf-8").lower()
         code = re.sub(r"/\*.*?\*/|//[^\n]*", "", src, flags=re.S)
-        for word in ["cookie", "sessionstorage", "indexeddb", "navigator", "screen", "useragent", "date", "setitem", "removeitem"]:
+        for word in ["cookie", "sessionstorage", "indexeddb", "screen", "date", "setitem", "removeitem"]:
             self.assertNotIn(word, code, word)
+        # GTM-178: the browser is looked at only to tell an automated one, in this one place: never sent or kept.
+        self.assertEqual(re.findall(r"navigator\.\w+", code), ["navigator.webdriver", "navigator.useragent"])
+        self.assertEqual(code.count("useragent"), 1)
         # GTM-126: the only use of localStorage is reading the team's mark.
         self.assertEqual(re.findall(r"localstorage\.\w+\([^)]*\)", code), ["localstorage.getitem('rosmarops_internal')"])
 
@@ -485,6 +500,20 @@ class Script(unittest.TestCase):
     def test_internal_zero_counts_even_if_marked(self):
         r = self.run_js("visible", "", "/methodology/", search="?rosmarops_internal=0", stored="1")
         self.assertEqual(len(r["calls"]), 1)
+
+    def test_webdriver_sends_nothing(self):
+        # GTM-178: a browser driven by automation (navigator.webdriver true) is not counted, with a normal user agent.
+        r = self.run_js("visible", "", "/methodology/", webdriver=True)
+        self.assertEqual((r["before"], r["calls"], r["touched"], r["reads"]), (0, [], [], []))
+
+    def test_headless_chrome_sends_nothing(self):
+        r = self.run_js("visible", "", "/methodology/", ua=HEADLESS)
+        self.assertEqual((r["before"], r["calls"], r["touched"], r["reads"]), (0, [], [], []))
+
+    def test_normal_browser_counts_and_sends_nothing_about_it(self):
+        r = self.run_js("visible", "", "/methodology/")
+        self.assertEqual(len(r["calls"]), 1)
+        self.assertEqual(json.loads(r["calls"][0]["opts"]["body"]), {"p": "/methodology/", "r": ""})
 
     def test_no_mark_counts_and_only_reads_the_mark(self):
         r = self.run_js("visible", "", "/methodology/")
@@ -537,6 +566,48 @@ class InternalMark(unittest.TestCase):
 
     def test_unmarked_browser_gets_no_cookie(self):
         self.assertEqual(self.run_js()["sets"], [])
+
+
+CLICK_HARNESS = r"""
+const fs = require('fs');
+const [src, webdriver, ua] = process.argv.slice(2);
+const events = []; const listeners = {};
+const doc = { documentElement: { lang: 'en' }, cookie: '', addEventListener: (ev, fn) => { listeners[ev] = fn; } };
+const ls = { getItem: () => null, setItem() {}, removeItem() {} };
+const CC = { acceptedCategory: () => true, run() {} };
+const win = { CookieConsent: CC, __rosmaropsGA: true, gtag: (...a) => events.push(a) };
+const loc = { search: '', host: 'rosmarops.com', href: 'https://rosmarops.com/' };
+const nav = { webdriver: webdriver === '1', userAgent: ua };
+new Function('window', 'document', 'location', 'localStorage', 'URLSearchParams', 'CookieConsent', 'navigator', 'URL',
+  fs.readFileSync(src, 'utf8'))(win, doc, loc, ls, URLSearchParams, CC, nav, URL);
+const a = { href: 'https://rosmarops.com/download?from=home&os=windows' };
+listeners.click({ target: { closest: () => a } });
+console.log(JSON.stringify(events));
+"""
+
+
+class DownloadClick(unittest.TestCase):
+    """GTM-178: consent.js sends no GA download_click from an automated browser; a person's browser sends it."""
+
+    def run_js(self, webdriver=False, ua=UA):
+        if not shutil.which("node"):
+            self.skipTest("node not on PATH")
+        with tempfile.NamedTemporaryFile("w", suffix=".js", delete=False) as f:
+            f.write(CLICK_HARNESS)
+        try:
+            p = subprocess.run(["node", f.name, str(CONSENT), "1" if webdriver else "0", ua], capture_output=True, text=True, check=True)
+        finally:
+            os.unlink(f.name)
+        return json.loads(p.stdout)
+
+    def test_person_sends_download_click(self):
+        self.assertEqual(self.run_js(), [["event", "download_click", {"from": "home", "lang": "en", "transport_type": "beacon"}]])
+
+    def test_webdriver_sends_nothing(self):
+        self.assertEqual(self.run_js(webdriver=True), [])
+
+    def test_headless_chrome_sends_nothing(self):
+        self.assertEqual(self.run_js(ua=HEADLESS), [])
 
 
 class Switch(unittest.TestCase):
