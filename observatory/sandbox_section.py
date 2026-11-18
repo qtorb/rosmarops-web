@@ -15,6 +15,7 @@ advisor against the official help on 16-11).
 import html
 import json
 import re
+import struct
 from pathlib import Path
 
 import company_page
@@ -116,6 +117,20 @@ def maker(a):
 GUIDE_TEXTS = ROOT / "observatory" / "i18n" / "sandbox-guide.json"
 LAB_MANIFEST = ROOT / "observatory" / "data" / "lab" / "manifest.json"
 LAB_IMG = "/assets/sandbox-lab/"
+LAB_DIR = ROOT / "site" / "assets" / "sandbox-lab"
+
+
+def png_size(path):
+    """(width, height) of a PNG from its IHDR header, or None if it is not a readable PNG (GTM-183: the page keeps the
+    image's space while it loads)."""
+    try:
+        with open(path, "rb") as f:
+            head = f.read(24)
+    except OSError:
+        return None
+    if len(head) < 24 or head[:8] != b"\x89PNG\r\n\x1a\n" or head[12:16] != b"IHDR":
+        return None
+    return struct.unpack(">II", head[16:24])
 SYSTEMS = ("windows", "macos", "linux")
 GPH = re.compile(r"\{(agent|system|cmd|n|date|version|os_version|command|when)\}")
 
@@ -206,6 +221,7 @@ GUIDE_CSS = """
 .hbtn{display:inline-flex;align-items:center;min-height:44px;padding:12px 20px;border:1.5px solid var(--ink);border-radius:10px;color:var(--ink);font-weight:700;line-height:1.2;text-decoration:none;font-family:inherit;font-size:16px;cursor:pointer;background:transparent}
 .hbtn.primary,.hbtn.primary:hover{background:var(--brand);border-color:var(--brand);color:var(--on-brand);align-self:flex-start}
 .sg figure{margin:0}
+.sg figure a{display:block}
 .sg figure img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:12px}
 .sg figcaption{margin-top:8px;font-size:13px;line-height:1.45;color:var(--muted)}
 .sg-foot{border-top:1px solid var(--line);padding-top:8px;display:flex;flex-direction:column;gap:10px}
@@ -394,7 +410,12 @@ class Combo:
             date = map_page.fmt_date(e["date"], self.lang)
             alt = self.g("lab.alt", command=e.get("command", ""), when=w)
             cap = self.g("lab.caption", version=e.get("agent_version", ""), os_version=e.get("os_version", ""), date=date)
-            out.append(f'<figure><img src="{esc(LAB_IMG + e["file"])}" alt="{esc(alt)}" loading="lazy">'
+            # GTM-183: the capture links to its full-size PNG (its alt stays the link's name); real width and height so
+            # the page does not move while it loads.
+            src = esc(LAB_IMG + e["file"])
+            size = png_size(LAB_DIR / e["file"])
+            dims = f' width="{size[0]}" height="{size[1]}"' if size else ""
+            out.append(f'<figure><a href="{src}"><img src="{src}" alt="{esc(alt)}"{dims} loading="lazy" decoding="async"></a>'
                        f'<figcaption>{esc(cap)}</figcaption></figure>')
         return out
 
