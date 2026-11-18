@@ -24,7 +24,35 @@
     "reviewed_at": "2026-11-10"
   },
   "versions": [],
-  "changes": [],
+  "changes": [
+    {
+      "id": "chg-codex-0-170-0-mcp-names",
+      "version": "rust-v0.170.0",
+      "date": "2026-11-18",
+      "category": "mcp",
+      "before": {
+        "en": "Before rust-v0.170.0, the Codex release notes listed no support for identically named MCP servers across environments.",
+        "es": "Antes de rust-v0.170.0, las notas de versión de Codex no recogían soporte para servidores MCP con el mismo nombre en varios entornos.",
+        "ca": "Abans de rust-v0.170.0, les notes de versió de Codex no recollien suport per a servidors MCP amb el mateix nom en diversos entorns."
+      },
+      "after": {
+        "en": "From rust-v0.170.0, Codex has experimental support for identically named MCP servers across environments and fixes MCP OAuth credential races, according to the release notes.",
+        "es": "Desde rust-v0.170.0, Codex tiene soporte experimental para servidores MCP con el mismo nombre en varios entornos y corrige carreras de credenciales OAuth de MCP, según las notas de versión.",
+        "ca": "Des de rust-v0.170.0, Codex té suport experimental per a servidors MCP amb el mateix nom en diversos entorns i corregeix curses de credencials OAuth de MCP, segons les notes de versió."
+      },
+      "source": {
+        "url": "https://github.com/openai/codex/releases/tag/rust-v0.170.0",
+        "official": true,
+        "accessed_at": "2026-11-18"
+      },
+      "verified": {
+        "by": "writer",
+        "at": "2026-11-18",
+        "how": "official_changelog"
+      },
+      "rosmarops_impact": "none"
+    }
+  ],
   "ratings": [],
   "default_mode": {
     "name": "on_request",
