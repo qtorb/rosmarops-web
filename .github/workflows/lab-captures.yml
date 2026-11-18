@@ -1,12 +1,15 @@
 name: Sandbox lab captures
 
-# BV-250 (CTO-61 §4, signed by Albert 16-11 20:09). Once a day, if
-# qtorb/rosmarops-lab has a new latest release, reads its manifest.json,
-# checks the SHA-256 of every file, copies only the «concluyente» captures to
-# site/assets/sandbox/lab/ with a manifest of those entries, and opens a PR.
-# The «inesperado» ones are only listed in the PR, with their link in the
-# release, for the advisor. Nothing is merged here: the advisor reviews the PR
-# and Albert merges it. Only this repository's GITHUB_TOKEN and the public API.
+# BV-250 (CTO-61 §4, signed by Albert 16-11 20:09), places of GTM-182
+# (GTM-183, 18-11). Once a day, if qtorb/rosmarops-lab has a latest release
+# that is not the one already imported (the `release` of
+# observatory/data/lab/manifest.json), checks the SHA-256 of every file of its
+# manifest.json, copies that manifest unchanged to observatory/data/lab/ and
+# only the «concluyente» PNGs to site/assets/sandbox-lab/, regenerates the
+# guide and opens a PR. The «inesperado» ones are only listed in the PR, with
+# their link in the release, for the advisor. Nothing is merged here: the
+# advisor reviews the PR and Albert merges it. Only this repository's
+# GITHUB_TOKEN and the public API.
 
 on:
   schedule:
@@ -27,7 +30,7 @@ jobs:
     timeout-minutes: 10
     env:
       GH_TOKEN: ${{ github.token }}
-      DEST: site/assets/sandbox/lab
+      DEST: site/assets/sandbox-lab
     steps:
       - uses: actions/checkout@v4
         with:
@@ -38,7 +41,7 @@ jobs:
         run: |
           set -eu
           tag=$(gh api repos/qtorb/rosmarops-lab/releases/latest --jq .tag_name 2>/dev/null || true)
-          current=$(tr -d '[:space:]' < "$DEST/VERSION" 2>/dev/null || true)
+          current=$(python3 tools/lab-captures/collect.py current)
           echo "latest: ${tag:-none}, site: ${current:-none}"
           case "$tag" in
           lab-*) ;;
@@ -63,7 +66,9 @@ jobs:
           dir="$RUNNER_TEMP/lab"
           mkdir -p "$dir"
           gh release download "$TAG" -R qtorb/rosmarops-lab -D "$dir"
-          python3 tools/lab-captures/collect.py "$dir" "$DEST" "$TAG" | tee "$RUNNER_TEMP/collect.txt"
+          python3 tools/lab-captures/collect.py import "$dir" "$TAG" | tee "$RUNNER_TEMP/collect.txt"
+          # Each capture goes in its box of the guide (/sandbox/ in EN, ES and CA).
+          python3 observatory/build.py
 
       - name: Push a branch and open a PR (the advisor reviews, Albert merges)
         if: steps.rel.outputs.new == 'true'
@@ -75,7 +80,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git checkout -b "$branch"
-          git add -A "$DEST"
+          git add -A "$DEST" observatory/data/lab site
           git commit -m "Sandbox lab captures from $TAG (automatic, for review)"
           git push origin "$branch"
           raw="https://github.com/${GITHUB_REPOSITORY}/raw/$branch/$DEST"

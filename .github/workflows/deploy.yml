@@ -236,15 +236,8 @@ jobs:
           put site/assets/sample/sample-thumb-mobile.es.png assets/sample/sample-thumb-mobile.es.png
           put site/assets/sample/sample-thumb-mobile.es@2x.png assets/sample/sample-thumb-mobile.es@2x.png
           -mkdir assets/sandbox-lab
-          put site/assets/sandbox-lab/claude-code-macos-1-fichero1-despues.png assets/sandbox-lab/claude-code-macos-1-fichero1-despues.png
-          put site/assets/sandbox-lab/claude-code-macos-3-ls-antes.png assets/sandbox-lab/claude-code-macos-3-ls-antes.png
-          put site/assets/sandbox-lab/claude-code-macos-3-ls-despues.png assets/sandbox-lab/claude-code-macos-3-ls-despues.png
-          put site/assets/sandbox-lab/claude-code-macos-3-red-antes.png assets/sandbox-lab/claude-code-macos-3-red-antes.png
-          put site/assets/sandbox-lab/claude-code-macos-3-red-despues.png assets/sandbox-lab/claude-code-macos-3-red-despues.png
-          put site/assets/sandbox-lab/codex-macos-1-fichero1-despues.png assets/sandbox-lab/codex-macos-1-fichero1-despues.png
-          put site/assets/sandbox-lab/codex-macos-3-ls-antes.png assets/sandbox-lab/codex-macos-3-ls-antes.png
-          put site/assets/sandbox-lab/codex-macos-3-ls-despues.png assets/sandbox-lab/codex-macos-3-ls-despues.png
-          put site/assets/sandbox-lab/codex-macos-3-red-despues.png assets/sandbox-lab/codex-macos-3-red-despues.png
+          # Every capture of the lab release in use (GTM-183): the daily import can bring new file names.
+          put site/assets/sandbox-lab/*.png assets/sandbox-lab/
           -mkdir assets/methodology
           put site/assets/methodology/how-rosmarops-works-en-wide.svg assets/methodology/how-rosmarops-works-en-wide.svg
           put site/assets/methodology/how-rosmarops-works-en-narrow.svg assets/methodology/how-rosmarops-works-en-narrow.svg

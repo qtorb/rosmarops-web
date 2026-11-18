@@ -521,6 +521,29 @@ class LabRelease(unittest.TestCase):
         self.assertNotIn("Comprobado en nuestro laboratorio", p)
         self.assertEqual(e["agent"], "claude-code")
 
+    def test_each_capture_links_to_its_png_with_its_size(self):
+        # GTM-183: a link to the full-size PNG around each capture, no new visible text, real width and height, lazy.
+        for lang in LANGS:
+            figs = re.findall(r"<figure>(.*?)<figcaption>", page(lang), re.S)
+            self.assertEqual(len(figs), 9, lang)
+            for f in figs:
+                m = re.fullmatch(r'<a href="(/assets/sandbox-lab/[^"]+\.png)"><img src="([^"]+)" alt="([^"]+)" '
+                                 r'width="(\d+)" height="(\d+)" loading="lazy" decoding="async"></a>', f)
+                self.assertIsNotNone(m, f)
+                self.assertEqual(m.group(1), m.group(2))
+                w, h = sandbox_section.png_size(ROOT / "site" / m.group(1).lstrip("/"))
+                self.assertEqual((int(m.group(4)), int(m.group(5))), (w, h))
+        self.assertIn(".sg figure a{display:block}", page("es"))
+
+    def test_png_size(self):
+        self.assertEqual(sandbox_section.png_size(self.IMG / "codex-macos-3-ls-antes.png")[0] > 1000, True)
+        self.assertIsNone(sandbox_section.png_size(self.MANIFEST))
+        self.assertIsNone(sandbox_section.png_size(self.IMG / "nope.png"))
+        # Without the file (a test manifest), no width or height, and still a link.
+        p = sandbox_section.article("es", AGENTS, set(), [e for e in LAB if e["result"] == "concluyente"])
+        self.assertIn('<a href="/assets/sandbox-lab/claude-code-macos-1-read-antes.png"><img src="/assets/sandbox-lab/claude-code-macos-1-read-antes.png" alt=', p)
+        self.assertNotIn('width="', p[p.index("claude-code-macos-1-read-antes.png"):p.index("</figure>", p.index("claude-code-macos-1-read-antes.png"))])
+
     def test_caption_from_the_release(self):
         cc = combo(page("es"), "claude-code-macos")
         self.assertIn("Captura de nuestro laboratorio: Claude Code 2.1.327, macOS 26.7.2, 18 de noviembre de 2026.", cc)
