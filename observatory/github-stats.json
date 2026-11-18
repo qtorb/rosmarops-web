@@ -1,13 +1,64 @@
 {
-  "generated_at": "2026-11-17T03:20:42Z",
+  "generated_at": "2026-11-18T03:20:47Z",
   "repo": {
     "stargazers_count": 1,
     "subscribers_count": 0,
     "forks_count": 0,
-    "open_issues_count": 0
+    "open_issues_count": 1
   },
-  "open_pulls": 0,
+  "open_pulls": 1,
   "releases": [
+    {
+      "tag_name": "v0.13.0",
+      "published_at": "2026-11-17T10:59:56Z",
+      "draft": false,
+      "assets": [
+        {
+          "name": "exposure-potential.json",
+          "download_count": 2
+        },
+        {
+          "name": "factory-scores.json",
+          "download_count": 3
+        },
+        {
+          "name": "profile-scores.json",
+          "download_count": 4
+        },
+        {
+          "name": "rosmarops-linux-amd64",
+          "download_count": 1
+        },
+        {
+          "name": "rosmarops-linux-arm64",
+          "download_count": 1
+        },
+        {
+          "name": "rosmarops-macos-apple-silicon",
+          "download_count": 1
+        },
+        {
+          "name": "rosmarops-macos-intel",
+          "download_count": 1
+        },
+        {
+          "name": "rosmarops.exe",
+          "download_count": 6
+        },
+        {
+          "name": "sample-report.en.html",
+          "download_count": 1
+        },
+        {
+          "name": "sample-report.es.html",
+          "download_count": 1
+        },
+        {
+          "name": "SHA256SUMS.txt",
+          "download_count": 7
+        }
+      ]
+    },
     {
       "tag_name": "v0.12.1",
       "published_at": "2026-11-15T21:48:09Z",
@@ -19,7 +70,7 @@
         },
         {
           "name": "factory-scores.json",
-          "download_count": 2
+          "download_count": 3
         },
         {
           "name": "rosmarops-linux-amd64",
@@ -51,7 +102,7 @@
         },
         {
           "name": "SHA256SUMS.txt",
-          "download_count": 7
+          "download_count": 8
         }
       ]
     },
@@ -250,7 +301,7 @@
       "assets": [
         {
           "name": "exposure-potential.json",
-          "download_count": 2
+          "download_count": 5
         },
         {
           "name": "factory-scores.json",
@@ -1312,5 +1363,5 @@
       ]
     }
   ],
-  "latest_tag": "v0.12.1"
+  "latest_tag": "v0.13.0"
 }
