@@ -48,5 +48,5 @@ Can I use it on a work computer? Yes, but tell your security team first. To look
 - [RosmarOps 0.4.0](https://rosmarops.com/blog/rosmarops-0-4-0/): records where each MCP server sends data and warns when that changes
 - [Before you tell your agent "install X from this repo"](https://rosmarops.com/blog/before-you-tell-your-agent-to-install-it/): what an agent-installed tool leaves on your computer, with Kanvas as the example
 - [Observatory data (JSON)](https://rosmarops.com/observatory/data.json): every agent record, with its source and date
-- [RosmarOps program: privacy policy](https://rosmarops.com/privacy/app/): what the program reads, writes and sends (nothing)
+- [RosmarOps program: privacy policy](https://rosmarops.com/privacy/app/): what the program reads, writes and sends (only with permission: results to your space, problem reports, usage statistics)
 - [Blog en català](https://rosmarops.com/ca/blog/) and [blog en español](https://rosmarops.com/es/blog/)

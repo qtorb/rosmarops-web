@@ -79,8 +79,8 @@ footer nav{gap:20px;font-size:15px}
 <ul><li>its state, <code>state.json</code>;</li><li>the reports, in HTML and JSON;</li><li>in the <code>data</code> folder, the send log (<code>rosmarops-sends.log</code>) and the local list of problems it runs into.</li></ul>
 <p>Nothing else.</p>
 <h2 id="red">4. When it connects and where to</h2>
-<p><strong>By default, never.</strong> It connects only in two cases, always over HTTPS and only to <code>app.rosmarops.com</code>, port 443:</p>
-<ul><li>if the person connects the computer to their space: it sends their results, encrypted, after each check;</li><li>if the person presses «Send» when the program runs into a problem: it sends the list of error codes, with no paths, names or keys. This is from version 0.11.0.</li></ul>
+<p><strong>By default, never.</strong> It connects only in three cases, always over HTTPS and only to <code>app.rosmarops.com</code>, port 443:</p>
+<ul><li>if the person connects the computer to their space: it sends their results, encrypted, after each check;</li><li>if the person presses «Send» when the program runs into a problem: it sends the list of error codes, with no paths, names or keys. This is from version 0.11.0.</li><li>if the person accepts usage statistics: after each check it sends a summary with no paths, names or keys (usage.v1 format). From version 0.15.0.</li></ul>
 <p>Every send is listed in <code>rosmarops-sends.log</code>.</p>
 <p>It honours <code>HTTPS_PROXY</code>. If you block <code>app.rosmarops.com</code>, everything else works the same: the check and the report need no network.</p>
 <h2 id="garantias">5. How this is guaranteed</h2>
