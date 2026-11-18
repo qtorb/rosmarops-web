@@ -74,8 +74,18 @@
 
   // download_click (GTM-18): only when GA is loaded, i.e. analytics accepted.
   // The server-side download counter does not depend on this.
+  // GTM-178: an automated browser (navigator.webdriver true, or HeadlessChrome) sends no download_click, the same
+  // criterion as visits.js and the server; only looked at, never sent.
   var DOWNLOAD_ROUTES = { '/download': 'en', '/es/descargar': 'es', '/ca/descarregar': 'ca' };
+  function isAutomated() {
+    try {
+      return navigator.webdriver === true || String(navigator.userAgent).indexOf('HeadlessChrome') !== -1;
+    } catch (err) {
+      return false;
+    }
+  }
   document.addEventListener('click', function (e) {
+    if (isAutomated()) return;
     if (!window.__rosmaropsGA || typeof window.gtag !== 'function') return;
     if (!CookieConsent.acceptedCategory('analytics')) return;
     var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
