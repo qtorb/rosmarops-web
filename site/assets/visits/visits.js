@@ -4,10 +4,15 @@
    On since the privacy policy texts were signed (Albert, 07-11): ON must match ROSMAROPS_VISITS_ON in
    wp/mu-plugins/rosmarops-downloads.php.
    GTM-126: the team's own browsers are not counted. A page opened with ?rosmarops_internal=1, or a browser marked
-   by consent.js (the key rosmarops_internal in localStorage, read only), sends nothing; ?rosmarops_internal=0 counts. */
+   by consent.js (the key rosmarops_internal in localStorage, read only), sends nothing; ?rosmarops_internal=0 counts.
+   GTM-178: an automated browser sends nothing either: navigator.webdriver is true, or the user agent says
+   HeadlessChrome. Both are only looked at here, in the browser; nothing about them is sent or kept. */
 (function () {
   var ON = true;
   if (!ON || !window.fetch || window.rosmaropsVisit) return;
+  try {
+    if (navigator.webdriver === true || String(navigator.userAgent).indexOf('HeadlessChrome') !== -1) return;
+  } catch (e) { /* no navigator: count */ }
   var mark = null;
   try { mark = new URLSearchParams(location.search).get('rosmarops_internal'); } catch (e) { mark = null; }
   if (mark === '1') return;

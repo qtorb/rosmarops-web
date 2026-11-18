@@ -21,6 +21,8 @@ PREFIX = "dltest_"
 TABLE = PREFIX + "rosmarops_downloads"
 LATEST = "https://github.com/qtorb/rosmarops/releases/latest"
 UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36"
+# GTM-178: what Playwright's and Puppeteer's Chromium sends by default.
+HEADLESS = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/130.0.0.0 Safari/537.36"
 
 
 class NoRedirect(urllib.request.HTTPRedirectHandler):
@@ -182,6 +184,17 @@ class Downloads(unittest.TestCase):
         cols = [c.split("\t")[0] for c in mysql(f"SHOW COLUMNS FROM {TABLE}").splitlines()]
         self.assertEqual(cols, ["day", "src", "lang", "os", "count"])
         self.assertNotIn("Mozilla", mysql(f"SELECT * FROM {TABLE}"))
+
+    def test_headless_chrome_redirected_but_not_counted(self):
+        # GTM-178: an automated browser (HeadlessChrome) gets the same redirect and is not counted; a person's is.
+        before = int(mysql(f"SELECT COALESCE(SUM(count), 0) FROM {TABLE}").strip())
+        st, h, _ = self.get("/download?from=home&os=windows", headers={"User-Agent": HEADLESS})
+        self.assertEqual((st, h["Location"]), (302, LATEST + "/download/rosmarops.exe"))
+        self.assertEqual(int(mysql(f"SELECT COALESCE(SUM(count), 0) FROM {TABLE}").strip()), before)
+        st, h, _ = self.get("/download?from=home&os=windows", headers={"User-Agent": UA})
+        self.assertEqual((st, h["Location"]), (302, LATEST + "/download/rosmarops.exe"))
+        self.assertEqual(int(mysql(f"SELECT COALESCE(SUM(count), 0) FROM {TABLE}").strip()), before + 1)
+        self.assertNotIn("Headless", mysql(f"SELECT * FROM {TABLE}"))
 
     def test_endpoint_migrates_on_read_and_adds_os(self):
         st, _, body = self.get("/wp-json/rosmarops/v1/downloads")
