@@ -1,0 +1,896 @@
+{
+  "date": "2026-11-18",
+  "collected_at": "2026-11-18T05:34:37Z",
+  "sources": [
+    {
+      "id": "F1",
+      "opened": true,
+      "reason": null,
+      "latest": "2.1.327",
+      "latest_date": "2026-11-17",
+      "new": [
+        {
+          "date": "2026-11-17",
+          "version": "2.1.327",
+          "text": "Added Added a confirmation before /install-github-app changes a repository Added claude mcp add-json <name> - to read the server’s JSON from stdin, so tokens can stay off the command line; not available inside a Claude Code session Added a line when a resumed session’s earlier messages can’t be loaded Added a list in /status of broken agent, skill, command and output style files, keybinding errors, an unavailable sandbox, ignored permission settings and hook matchers that never match Added a note in /config when other settings override a row Added x-claude-code-managed-settings-checksum to th…"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F2",
+      "opened": true,
+      "reason": null,
+      "latest": "Voice Chat with Agents",
+      "latest_date": "2026-11-06",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F3",
+      "opened": true,
+      "reason": null,
+      "latest": "rust-v0.170.0",
+      "latest_date": "2026-11-18",
+      "new": [
+        {
+          "date": "2026-11-18",
+          "version": "rust-v0.170.0",
+          "text": "## New Features - Added WebRTC negotiation for realtime voice calls in the TUI. (#61172) - Added automatically refreshed authentication headers for OpenTelemetry HTTP exporters. (#61028) - Added experimental support for using identically named MCP servers across environments. (#60905) ## Bug Fixes - Oversized WebSocket requests now fall back to HTTP without unnecessary retries. (#60840, #60841) - Fixed MCP OAuth credential races during cancellation, login, and logout. (#60849, #60981) - Improved automatic reconnection for Cloud conversations and preserved active recovery turns when clients re…"
+        },
+        {
+          "date": "2026-11-17",
+          "version": "rust-v0.169.1",
+          "text": "## Chores No verified release highlights available. ## Changelog Full Changelog: https://github.com/openai/codex/compare/rust-v0.169.0...rust-v0.169.1"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F4",
+      "opened": true,
+      "reason": null,
+      "latest": "v2.33.0",
+      "latest_date": "2026-11-17",
+      "new": [
+        {
+          "date": "2026-11-17",
+          "version": "v2.33.0",
+          "text": "### Connect over SSH and GitHub pull request integration This release adds SSH host connections for running projects and agents on remote Linux machines, along with live GitHub pull request status pills, hover cards, and an Overview Pull Requests section. It also brings in-page Cmd/Ctrl+F search to the built-in browser and opens /swarm and UI plugin panels to business and enterprise accounts. It includes 16 improvements and 21 fixes. Improvements(16) You can now connect the Antigravity App to a remote 64-bit Linux machine over SSH from the sidebar, the project menu (SSH Host...), or the comma…"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F5",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.23.2",
+      "latest_date": "2026-11-16",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F6",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-17",
+      "new": [
+        {
+          "date": "2026-11-17",
+          "version": null,
+          "text": "Nov.17 Release Track Copilot code review outcomes in Repository insights account management copilot enterprise management tools ... +2 ###"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F7",
+      "opened": true,
+      "reason": null,
+      "latest": "v4.1.26",
+      "latest_date": "2026-10-26",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F8",
+      "opened": true,
+      "reason": null,
+      "latest": "v2.1.0-vscode",
+      "latest_date": "2026-06-19",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F9",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.5.0",
+      "latest_date": "2026-11-09",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F10",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-18",
+      "new": [
+        {
+          "date": "2026-11-17",
+          "version": null,
+          "text": "MAL-0000-ghsa-malware-8dd0307d895e3528 @ifasn/mmdd-doc-mcp: Malware in @ifasn/mmdd-doc-mcp"
+        },
+        {
+          "date": "2026-11-17",
+          "version": null,
+          "text": "MAL-0000-ghsa-malware-4ece6401b6660c68 @ifasn/ms-doc-mcp: Malware in @ifasn/ms-doc-mcp"
+        },
+        {
+          "date": "2026-11-18",
+          "version": null,
+          "text": "MAL-0000-ghsa-malware-15aa7c362aaaafc3 @tnhorg/agent-skills: Malware in @tnhorg/agent-skills"
+        },
+        {
+          "date": "2026-11-17",
+          "version": null,
+          "text": "MAL-0000-ghsa-malware-69d44e96893b9ae6 vamp-mcp: Malware in vamp-mcp"
+        },
+        {
+          "date": "2026-11-17",
+          "version": null,
+          "text": "MAL-0000-ghsa-malware-c954c19fb756f37e vamp-mcp: Malware in vamp-mcp"
+        },
+        {
+          "date": "2026-11-17",
+          "version": null,
+          "text": "MAL-2026-20061 vamp-mcp: Malicious code in vamp-mcp (npm)"
+        },
+        {
+          "date": "2026-11-17",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-72f7549a69d5529a agent-framework: Typosquat of microsoft/agent-framework exfiltrating credentials and Azure tokens to webhook.site at every Python start"
+        },
+        {
+          "date": "2026-11-17",
+          "version": null,
+          "text": "MAL-0000-kam193-7170b55e6541c89d agent-framework: Malicious code in agent-framework (PyPI)"
+        },
+        {
+          "date": "2026-11-17",
+          "version": null,
+          "text": "MAL-2026-20101 agent-framework: Malicious code in agent-framework (PyPI)"
+        },
+        {
+          "date": "2026-11-17",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-0798e8aa41cf6d07 mcp-aevo-server: mcp-aevo-server exfiltrates Aevo API credentials and wallet private keys to hardcoded Telegram bot on startup"
+        },
+        {
+          "date": "2026-11-17",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-138b279506f65893 mcp-aevo-server: mcp-aevo-server exfiltrates Aevo API keys and wallet private keys to a hardcoded Telegram bot on startup"
+        },
+        {
+          "date": "2026-11-17",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-77c3ab661dbdee76 mcp-aevo-server: mcp-aevo-server exfiltrates AEVO API keys and wallet private keys to Telegram and opens a remote shell backdoor on startup"
+        },
+        {
+          "date": "2026-11-17",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-972c258509e94a35 mcp-aevo-server: mcp-aevo-server exfiltrates Aevo API keys and wallet private keys to a hardcoded Telegram bot on startup"
+        },
+        {
+          "date": "2026-11-17",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-d5d33159c8372d8b mcp-aevo-server: mcp-aevo-server exfiltrates AEVO API keys and wallet private keys to a hardcoded Telegram bot on startup"
+        },
+        {
+          "date": "2026-11-17",
+          "version": null,
+          "text": "MAL-0000-kam193-6c0f51469b807e83 mcp-aevo-server: Malicious code in mcp-aevo-server (PyPI)"
+        },
+        {
+          "date": "2026-11-17",
+          "version": null,
+          "text": "MAL-2026-20068 mcp-aevo-server: Malicious code in mcp-aevo-server (PyPI)"
+        }
+      ],
+      "ids": [
+        "MAL-0000-amazon-inspector-0798e8aa41cf6d07",
+        "MAL-0000-amazon-inspector-138b279506f65893",
+        "MAL-0000-amazon-inspector-72f7549a69d5529a",
+        "MAL-0000-amazon-inspector-77c3ab661dbdee76",
+        "MAL-0000-amazon-inspector-972c258509e94a35",
+        "MAL-0000-amazon-inspector-d5d33159c8372d8b",
+        "MAL-0000-ghsa-malware-15aa7c362aaaafc3",
+        "MAL-0000-ghsa-malware-4ece6401b6660c68",
+        "MAL-0000-ghsa-malware-69d44e96893b9ae6",
+        "MAL-0000-ghsa-malware-8dd0307d895e3528",
+        "MAL-0000-ghsa-malware-c954c19fb756f37e",
+        "MAL-0000-kam193-6c0f51469b807e83",
+        "MAL-0000-kam193-7170b55e6541c89d",
+        "MAL-2026-20061",
+        "MAL-2026-20068",
+        "MAL-2026-20101"
+      ],
+      "read_with": "git"
+    },
+    {
+      "id": "F11",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.68.0",
+      "latest_date": "2026-11-10",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F12",
+      "opened": true,
+      "reason": null,
+      "latest": "1.0.113",
+      "latest_date": "2026-11-17",
+      "new": [
+        {
+          "date": "2026-11-17",
+          "version": "1.0.113",
+          "text": "- Administrators can disable built-in Browser Use with the managed setting features.browserUse, including in running sessions."
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F13",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-17",
+      "new": [
+        {
+          "date": "2026-11-17",
+          "version": null,
+          "text": "Choose a release channel in Claude Desktop You can now use a release channel to set which version of Claude Desktop you get when the app updates. Stable stays the default and gets new versions less often, after more testing. Latest gets a new version about once a day, so fixes and new features reach you sooner. For more information, see Choose a release channel."
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F14",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-18",
+      "new": [
+        {
+          "date": "2026-11-18",
+          "version": null,
+          "text": "MAL-2026-20104 @tnhorg/agent-skills: Malicious code in @tnhorg/agent-skills (npm)"
+        },
+        {
+          "date": "2026-11-17",
+          "version": null,
+          "text": "MAL-2026-20061 vamp-mcp: Malicious code in vamp-mcp (npm)"
+        },
+        {
+          "date": "2026-11-17",
+          "version": null,
+          "text": "MAL-2026-20068 mcp-aevo-server: Malicious code in mcp-aevo-server (PyPI)"
+        },
+        {
+          "date": "2026-11-17",
+          "version": null,
+          "text": "MAL-2026-20101 agent-framework: Malicious code in agent-framework (PyPI)"
+        }
+      ],
+      "ids": [
+        "MAL-2026-20061",
+        "MAL-2026-20068",
+        "MAL-2026-20101",
+        "MAL-2026-20104"
+      ],
+      "read_with": "curl"
+    },
+    {
+      "id": "F15",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-18",
+      "new": [
+        {
+          "date": "2026-11-18",
+          "version": null,
+          "text": "CVE-2026-131857 [MCP]: Supergateway 4.2.0 through 4.2.2 contains a denial of service vulnerability in stdio-to-SSE mode that allows unauthenticated attackers to crash the gateway via prototype-inherited sessionId values. Attackers can send a POST message request with sessionId set to toString or constructor, triggering an unhandled TypeError that terminates every attached MCP session."
+        },
+        {
+          "date": "2026-11-18",
+          "version": null,
+          "text": "CVE-2026-130121 [MCP]: The AI Puffer - MCP Server for Claude & ChatGPT, with AI Chatbot plugin for WordPress is vulnerable to Stored Cross-Site Scripting via AI-generated comment replies in all versions up to, and including, 2.5.28 due to insufficient sanitization of the AI model's output in the insert_comment_reply_logic() function, which saves replies with wp_insert_comment() and bypasses the kses filtering WordPress normally applies to comment content. This makes it possible for unauthenticated attackers to inject arbitrary web scripts in pages that will execute whenever a user accesses an…"
+        },
+        {
+          "date": "2026-11-17",
+          "version": null,
+          "text": "CVE-2026-123142 [MCP]: GitLab has remediated an issue in GitLab CE/EE affecting all versions from 18.4 before 19.3.9, 19.4 before 19.4.8, and 19.5 before 19.5.6 that under certain conditions could have allowed an authenticated user holding an MCP-scoped OAuth token to perform unauthorized issuable state changes on issues and merge requests, including approving and merging, due to incorrect authorization checks."
+        },
+        {
+          "date": "2026-11-17",
+          "version": null,
+          "text": "CVE-2026-130796 [MCP]: Flowise 3.1.3 through 3.1.4 contains an information disclosure vulnerability that allows unauthenticated attackers to read MCP server bearer tokens via the GET /api/v1/public-chatflows/:id handler. Attackers can use the leaked mcpServerConfig token on the POST /api/v1/mcp/:chatflowId route to invoke chatflows, bypassing API key protection and consuming the owner's model quota."
+        },
+        {
+          "date": "2026-11-17",
+          "version": null,
+          "text": "CVE-2026-130837 [Cursor]: GPAC before 26.07.0 contains a heap-based out-of-bounds read vulnerability in xmt_parse_mf_field() in loader_xmt.c caused by unchecked cursor advancement when splitting multi-value XMT-A fields. Attackers can supply a crafted XMT scene file opened with MP4Box to make xmt_parse_string() read past the heap buffer and crash the process."
+        }
+      ],
+      "ids": [
+        "CVE-2026-123142",
+        "CVE-2026-130121",
+        "CVE-2026-130796",
+        "CVE-2026-130837",
+        "CVE-2026-131857"
+      ],
+      "read_with": "curl"
+    },
+    {
+      "id": "F16",
+      "opened": true,
+      "reason": null,
+      "latest": "v2.3.2",
+      "latest_date": "2026-11-18",
+      "new": [
+        {
+          "date": "2026-11-18",
+          "version": "v2.3.2",
+          "text": "### Highlights - **GPT-6.2 Prompt Caching**: GPT-6.2 models don't cache a system prompt sent in the Responses `instructions` field, so every step re-billed it as uncached input. OpenCode now sends it as a leading developer message on every Responses route, including OpenAI (API key and ChatGPT sign-in), GitHub Copilot, Zen, Azure and OpenRouter, so it is cached from the second step on. ([#64542](https://github.com/anomalyco/opencode/pull/64542), [#64544](https://github.com/anomalyco/opencode/pull/64544)) ### Core #### Bug fixes - Fixed GPT-6.2 models re-billing the system prompt as uncached i…"
+        },
+        {
+          "date": "2026-11-17",
+          "version": "v2.3.1",
+          "text": "### Highlights - **Timed-Out Shell Commands Keep Running**: A shell command still running when its timeout expires now moves to the background instead of being killed, so long builds and test runs finish and report back. A foreground `timeout: 0` now means the default 120 seconds. ([#63699](https://github.com/anomalyco/opencode/pull/63699)) - **Compaction Without the Wait**: As a session nears automatic compaction, the summary is now written in the background, so your next prompt doesn't pause for it. Set `compaction.background: false` to turn it off; a background summary that ends up unused…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F17",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-17",
+      "new": [
+        {
+          "date": "2026-11-17",
+          "version": null,
+          "text": "General ## Local Sandbox Controls in Enterprise Management Enterprise administrators can now set local sandbox controls for Kiro IDE and Kiro CLI. In Controls, require sandboxing for commands and local stdio MCP servers, and choose file and network defaults. Developers cannot turn off a required sandbox through client settings or change organization-set modes. Their allow rules cannot override organization deny rules, and tool permissions still decide which commands may run. Credential stores stay closed by default, but a file allow rule that covers them can open them. Enterprise Management i…"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F18",
+      "opened": true,
+      "reason": null,
+      "latest": "v3.14.30819",
+      "latest_date": "2026-11-17",
+      "new": [
+        {
+          "date": "2026-11-17",
+          "version": "v3.14.30819",
+          "text": "New Devin Bots are now available: give a Bot an outcome to own in its chat, and it plans the work and runs sessions until the work is done. Enterprise administrators can now turn on proxy auto-detection for the Devin Desktop language server on managed macOS, Windows, and Linux machines with the DetectProxy device policy or the devin.network.detectProxy setting. The image viewer now includes zoom buttons and supports Cmd/Ctrl + +, -, and 0. Fixed Repeated git push commands to the same branch and commit in a session’s worklog now collapse into one row. Long streaming replies now use less memory…"
+        },
+        {
+          "date": "2026-11-17",
+          "version": "v3.13.4",
+          "text": "New Added tabs to the Agent Command Center, so you can keep several sessions and pages open in one window, each with its own Back and Forward history. Local sessions now run in a background process, so you can close or reopen Devin Desktop or the CLI without stopping a session, and open the same session in multiple clients at once. See the Devin CLI release notes for details. The Files tab now previews local PDF files, shows CSV and TSV files as tables, and plays more media types. Devin Local now nests the output of each subagent under it and shows how many subagents are running. Changed The…"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F19",
+      "opened": true,
+      "reason": null,
+      "latest": "v1.60.1",
+      "latest_date": "2026-11-17",
+      "new": [
+        {
+          "date": "2026-11-17",
+          "version": "v1.60.1",
+          "text": "## 🐛 Bug Fixes - Compaction: drop the `<analysis>` scratchpad that Claude models refuse [#13572](https://github.com/aaif-goose/goose/pull/13572)"
+        },
+        {
+          "date": "2026-11-17",
+          "version": "v1.60.0",
+          "text": "## ✨ Features - SkillOperation and drop the Skills extension [#13574](https://github.com/aaif-goose/goose/pull/13574) - Executable commands and SlashCommandOperation in oi-kit [#13533](https://github.com/aaif-goose/goose/pull/13533) - Bang command operation in oi-kit [#13535](https://github.com/aaif-goose/goose/pull/13535) - Steering operation in oi-kit [#13502](https://github.com/aaif-goose/goose/pull/13502) - Dutch (nl) translation [#13240](https://github.com/aaif-goose/goose/pull/13240) - Cortecs declarative provider [#12617](https://github.com/aaif-goose/goose/pull/12617) - Onysoft declar…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F20",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-16",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F21",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-08-19",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F22",
+      "opened": true,
+      "reason": null,
+      "latest": "v2026.11.5",
+      "latest_date": "2026-11-17",
+      "new": [
+        {
+          "date": "2026-11-17",
+          "version": "v2026.11.5",
+          "text": "## 2026.11.5 ### Highlights - **Restart-safe conversations:** Queued messages, send permissions, and final chat writes are retained across Gateway restarts. (#196923, #196540, #196493) Authored by @steipete. Thanks @joshavant. - **Safer updates:** Failed Doctor or Gateway startup rolls back an activated update, while restored npm packages remain readable by non-root services. (#197851, #193272) Thanks @RomneyDa, @obviyus, and @vincentkoc. - **Telegram widgets:** Interactive widgets now render in Telegram messages, including private-chat topics. (#196991, #198022). Related #197923 Thanks @obvi…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F23",
+      "opened": true,
+      "reason": null,
+      "latest": "1.2.22",
+      "latest_date": "2026-11-14",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F24",
+      "opened": true,
+      "reason": null,
+      "latest": "1.15.41",
+      "latest_date": "2026-11-12",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F25",
+      "opened": false,
+      "reason": "git ls-remote: exit 128: remote: Repository not found.\nfatal: repository 'https://github.com/microsoft/agent-framework.git/' not found",
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F26",
+      "opened": true,
+      "reason": null,
+      "latest": "2026-07-28",
+      "latest_date": "2026-07-28",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F27",
+      "opened": true,
+      "reason": null,
+      "latest": "1.146",
+      "latest_date": "2026-11-11",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F28",
+      "opened": true,
+      "reason": null,
+      "latest": "2026.11.17",
+      "latest_date": "2026-11-17",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F29",
+      "opened": true,
+      "reason": null,
+      "latest": "1.4.18",
+      "latest_date": "2026-11-18",
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "date_is_detection": true
+    },
+    {
+      "id": "F31",
+      "opened": true,
+      "reason": null,
+      "latest": "n8n@3.3.0",
+      "latest_date": "2026-11-17",
+      "new": [
+        {
+          "date": "2026-11-17",
+          "version": "n8n@3.3.0",
+          "text": "<!-- release-prerelease --> # [3.3.0](https://github.com/n8n-io/n8n/compare/n8n@2.48.0...n8n@3.3.0) (2026-11-17) ### Bug Fixes * Accept custom OpenAI-compatible model IDs in v2 ([#43550](https://github.com/n8n-io/n8n/issues/43550)) ([5c7815a](https://github.com/n8n-io/n8n/commit/5c7815ab9a63d65895bb4f301472d1272a8b3cd7)) * Add context to tool-call errors ([#42474](https://github.com/n8n-io/n8n/issues/42474)) ([71941da](https://github.com/n8n-io/n8n/commit/71941da5b0ab89ae6135e20636e9a3fd0cc15456)) * **AI Agent Node:** Keep the model's text before tool calls in agent history ([#43559](https://…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F32",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-12",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F33",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.28.0",
+      "latest_date": "2026-11-17",
+      "new": [
+        {
+          "date": "2026-11-17",
+          "version": "v0.28.0",
+          "text": "<!-- qwen-release-notes:v1 --> ## Highlights _See the complete change list below._ ## Breaking Changes No known breaking changes. ## Complete Change List ### Features - feat(web-shell): add sidebar workspace filter ([#17244](https://github.com/QwenLM/qwen-code/pull/17244)) by @callmeYe - feat(managed-agent): add the DingTalk adapter on the managed channel path ([#17136](https://github.com/QwenLM/qwen-code/pull/17136)) by @wenshao - feat(acp): route live and read-only Agent Host sessions through the shared tool batch ([#17218](https://github.com/QwenLM/qwen-code/pull/17218)) by @yiliang114 - f…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F34",
+      "opened": true,
+      "reason": null,
+      "latest": "@moonshot-ai/kimi-code@2.6.3",
+      "latest_date": "2026-11-17",
+      "new": [
+        {
+          "date": "2026-11-17",
+          "version": "@moonshot-ai/kimi-code@2.6.3",
+          "text": "### Patch Changes - [#4994](https://github.com/MoonshotAI/kimi-code/pull/4994) [`2016917`](https://github.com/MoonshotAI/kimi-code/commit/20169174c815ada19093bc687b1433ef8b52f8f9) Thanks [@sailist](https://github.com/sailist)! - 修复前台 Shell 命令输出重复且加载状态不消失的问题。 - [#4982](https://github.com/MoonshotAI/kimi-code/pull/4982) [`9d7f9af`](https://github.com/MoonshotAI/kimi-code/commit/9d7f9af9fba7d1282873a31ec8486f9ea956c591) Thanks [@sailist](https://github.com/sailist)! - 修复了若干已知的问题。 - [#4999](https://github.com/MoonshotAI/kimi-code/pull/4999) [`9bf2891`](https://github.com/MoonshotAI/kimi-code/comm…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F35",
+      "opened": true,
+      "reason": null,
+      "latest": "v2.184.0",
+      "latest_date": "2026-11-13",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F36",
+      "opened": true,
+      "reason": null,
+      "latest": "1.1.91",
+      "latest_date": "2026-11-17",
+      "new": [
+        {
+          "date": "2026-11-17",
+          "version": "1.1.91",
+          "text": "CLI 1.1.91 ### 企业级 Skill 与 MCP 下发及多项稳定性修复 修复 Windows PowerShell 安装脚本在受限语言模式下（如启用了 AppLocker 或 WDAC 的企业电脑）无法解压安装包的问题。现在会改用系统自带的 tar.exe 解压，安装可以正常完成 修复了 MCP 工具列表刷新失败导致工具不可用的问题 修复长会话压缩上下文时，模型服务返回“输入过长”错误导致压缩失败的问题。现在会自动裁剪较早的历史并重试压缩 支持企业管理员向成员下发独立 Skill 和 MCP Auto 权限模式下审批策略改为仅命中高风险命令时才进行模型审批 修复在色彩支持有限的终端（如 TERM=xterm 下的 GNU screen）中，主输入框不显示光标的问题 修复 BYOK 模型的思考强度档位、关闭思考选项和上下文窗口选项丢失的问题 修复项目目录无法建立文件索引时，@ 补全整体失效的问题 修复自动压缩后使用 /rewind 可能恢复压缩前全部历史的问题。该问题会导致上下文占比较低时也再次触发自动压缩 修复会话流中的长 URL 换行后点击只能打开部分地址的问题 修复终端深浅色主题切换后颜色残留的问题 修复在部分终端使用 /export 时，导出的会话内容重复的问题 修复 Windows 下会话查询 Git 信息超时或被取消后，Git 相关进程可能残留的问题 修复…"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F37",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.86.2",
+      "latest_date": "2026-02-12",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F38",
+      "opened": true,
+      "reason": null,
+      "latest": "v1.41.0",
+      "latest_date": "2026-11-16",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F39",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-12",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F40",
+      "opened": true,
+      "reason": null,
+      "latest": "2026.11.12",
+      "latest_date": "2026-11-12",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F41",
+      "opened": true,
+      "reason": null,
+      "latest": "26.11.1",
+      "latest_date": "2026-11-13",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F42",
+      "opened": true,
+      "reason": null,
+      "latest": "v7.8.30",
+      "latest_date": "2026-11-16",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F44",
+      "opened": true,
+      "reason": null,
+      "latest": "v1.0.88",
+      "latest_date": "2026-11-16",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F45",
+      "opened": true,
+      "reason": null,
+      "latest": "v1.2.0",
+      "latest_date": "2026-11-16",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F46",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "watched": [
+        "Grok Bot › - [Reference](https://docs.x.ai/grok-bot/settings-and-notifications.md)"
+      ],
+      "date_is_detection": true
+    },
+    {
+      "id": "F47",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "watched": [],
+      "date_is_detection": true
+    },
+    {
+      "id": "F48",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F49",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F50",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F51",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F52",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F53",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F54",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F55",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F56",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F57",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F58",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F59",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F60",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F61",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F62",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    }
+  ],
+  "opened": 59,
+  "total": 60
+}
