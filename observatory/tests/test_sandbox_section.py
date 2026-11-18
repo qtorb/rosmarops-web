@@ -173,7 +173,7 @@ class Page(unittest.TestCase):
         self.assertIn(G["es"]["now.network_git"], cc)
         self.assertIn(G["es"]["note.cc_allowlist_open"], cc)
         self.assertIn("Copiar la plantilla", cc)
-        self.assertIn("// ~/.claude/settings.json", cc)
+        self.assertIn("(~/.claude/settings.json)", cc)  # GTM-179: one text, paste.one
         self.assertIn(G["es"]["fold.session"], cc)
         self.assertIn("Lo que el sandbox no cubre en Claude Code (5)", cc)
         self.assertIn("<code>claude --version</code>", cc)
@@ -385,6 +385,76 @@ class Page(unittest.TestCase):
                 self.assertIn(link, (site / f / "index.html").read_text(encoding="utf-8"), (lang, f))
             ficha = (site / {"es": "es/observatorio", "en": "observatory", "ca": "ca/observatori"}[lang] / "claude-code" / "index.html").read_text(encoding="utf-8")
             self.assertIn(f'<a href="{sandbox_section.SECTION_PATH[lang]}#claude-code">{html.escape(T[lang]["its_template"], quote=False)}</a>', ficha)
+
+
+# GTM-179: P2's user block, copied literally from qtorb/rosmarops internal/profiles/profiles.go, const p2JSON, v0.14.0
+# (master after #133, BV-254). The web's Claude Code template must be this text, byte for byte.
+P2_JSON = """{
+  "permissions": {
+    "defaultMode": "acceptEdits",
+    "disableAutoMode": "disable",
+    "disableBypassPermissionsMode": "disable",
+    "blockReadsOutsideWorkingDirectories": true,
+    "allow": [
+      "Bash(npm run lint)", "Bash(npm run test *)",
+      "Bash(git status)", "Bash(git diff)"
+    ],
+    "ask": [
+      "Edit(~/.codex/**)", "Edit(**/.codex/**)",
+      "Edit(~/.cursor/**)", "Edit(**/.cursor/**)",
+      "Edit(~/.cline/**)", "Edit(**/.clinerules/**)",
+      "Edit(~/.gemini/**)", "Edit(**/.gemini/**)",
+      "Edit(~/.grok/**)", "Edit(**/.grok/**)", "Edit(~/.hermes/**)",
+      "Edit(~/AppData/Roaming/**)",
+      "Edit(**/AGENTS.md)", "Edit(**/CLAUDE.md)", "Edit(**/GEMINI.md)",
+      "Edit(**/.github/copilot-instructions.md)"
+    ],
+    "deny": ["WebFetch", "WebSearch", "Bash(curl *)", "Bash(wget *)"]
+  },
+  "sandbox": {
+    "enabled": true,
+    "failIfUnavailable": true,
+    "allowUnsandboxedCommands": false,
+    "autoAllowBashIfSandboxed": false,
+    "network": { "allowedDomains": ["registry.npmjs.org", "github.com"], "strictAllowlist": true },
+    "filesystem": { "denyRead": ["~/.ssh", "~/.aws"] },
+    "credentials": { "files": [ { "path": "~/.aws/credentials", "mode": "deny" }, { "path": "~/.ssh", "mode": "deny" } ] }
+  }
+}"""
+
+
+class ClaudeCodeOneText(unittest.TestCase):
+    """GTM-179 (CTO-68): on macOS and Linux the Claude Code template is one text, the user block, as in program 0.14.0."""
+
+    def copied(self, lang, system):
+        cc = combo(page(lang), f"claude-code-{system}")
+        m = re.search(rf'<pre id="claude-code-{system}-c3">(.*?)</pre>', cc, re.S)
+        return html.unescape(m.group(1))
+
+    def test_one_block_and_intro_paste_one(self):
+        for system in ("macos", "linux"):
+            t = BY_ID["claude-code"]["templates"][system]
+            self.assertEqual(t["intro"], "paste_one", system)
+            self.assertEqual([b["file"] for b in t["blocks"]], ["~/.claude/settings.json"], system)
+
+    def test_copied_text_has_no_project_block(self):
+        for lang in LANGS:
+            for system in ("macos", "linux"):
+                txt = self.copied(lang, system)
+                self.assertIn("~/.claude/settings.json", txt, (lang, system))
+                self.assertNotIn("// .claude/settings.json", txt, (lang, system))
+                self.assertNotIn('allowRead": ["."]', txt, (lang, system))
+                want = sandbox_section.fill(T[lang]["paste.one"], agent="Claude Code", file="~/.claude/settings.json")
+                self.assertEqual(txt, want + "\n\n" + P2_JSON, (lang, system))
+
+    def test_paste_one_sentence(self):
+        self.assertTrue(self.copied("es", "macos").startswith(
+            "Añade estos ajustes a mi configuración de Claude Code (~/.claude/settings.json), sin cambiar nada más. "
+            "Enséñame el cambio antes de guardarlo."))
+
+    def test_user_block_is_the_program_p2json(self):
+        for system in ("macos", "linux"):
+            self.assertEqual(BY_ID["claude-code"]["templates"][system]["blocks"][0]["value"], P2_JSON, system)
 
 
 class Watch(unittest.TestCase):

@@ -728,17 +728,12 @@
     },
     "macos": {
       "kind": "agent_sandbox",
-      "intro": "paste_many",
+      "intro": "paste_one",
       "blocks": [
         {
           "file": "~/.claude/settings.json",
           "format": "json",
           "value": "{\n  \"permissions\": {\n    \"defaultMode\": \"acceptEdits\",\n    \"disableAutoMode\": \"disable\",\n    \"disableBypassPermissionsMode\": \"disable\",\n    \"blockReadsOutsideWorkingDirectories\": true,\n    \"allow\": [\n      \"Bash(npm run lint)\", \"Bash(npm run test *)\",\n      \"Bash(git status)\", \"Bash(git diff)\"\n    ],\n    \"ask\": [\n      \"Edit(~/.codex/**)\", \"Edit(**/.codex/**)\",\n      \"Edit(~/.cursor/**)\", \"Edit(**/.cursor/**)\",\n      \"Edit(~/.cline/**)\", \"Edit(**/.clinerules/**)\",\n      \"Edit(~/.gemini/**)\", \"Edit(**/.gemini/**)\",\n      \"Edit(~/.grok/**)\", \"Edit(**/.grok/**)\", \"Edit(~/.hermes/**)\",\n      \"Edit(~/AppData/Roaming/**)\",\n      \"Edit(**/AGENTS.md)\", \"Edit(**/CLAUDE.md)\", \"Edit(**/GEMINI.md)\",\n      \"Edit(**/.github/copilot-instructions.md)\"\n    ],\n    \"deny\": [\"WebFetch\", \"WebSearch\", \"Bash(curl *)\", \"Bash(wget *)\"]\n  },\n  \"sandbox\": {\n    \"enabled\": true,\n    \"failIfUnavailable\": true,\n    \"allowUnsandboxedCommands\": false,\n    \"autoAllowBashIfSandboxed\": false,\n    \"network\": { \"allowedDomains\": [\"registry.npmjs.org\", \"github.com\"], \"strictAllowlist\": true },\n    \"filesystem\": { \"denyRead\": [\"~/.ssh\", \"~/.aws\"] },\n    \"credentials\": { \"files\": [ { \"path\": \"~/.aws/credentials\", \"mode\": \"deny\" }, { \"path\": \"~/.ssh\", \"mode\": \"deny\" } ] }\n  }\n}"
-        },
-        {
-          "file": ".claude/settings.json",
-          "format": "json",
-          "value": "{ \"sandbox\": { \"filesystem\": { \"denyRead\": [\"~/\"], \"allowRead\": [\".\"] } } }"
         }
       ],
       "covers": {
@@ -824,17 +819,12 @@
     },
     "linux": {
       "kind": "agent_sandbox",
-      "intro": "paste_many",
+      "intro": "paste_one",
       "blocks": [
         {
           "file": "~/.claude/settings.json",
           "format": "json",
           "value": "{\n  \"permissions\": {\n    \"defaultMode\": \"acceptEdits\",\n    \"disableAutoMode\": \"disable\",\n    \"disableBypassPermissionsMode\": \"disable\",\n    \"blockReadsOutsideWorkingDirectories\": true,\n    \"allow\": [\n      \"Bash(npm run lint)\", \"Bash(npm run test *)\",\n      \"Bash(git status)\", \"Bash(git diff)\"\n    ],\n    \"ask\": [\n      \"Edit(~/.codex/**)\", \"Edit(**/.codex/**)\",\n      \"Edit(~/.cursor/**)\", \"Edit(**/.cursor/**)\",\n      \"Edit(~/.cline/**)\", \"Edit(**/.clinerules/**)\",\n      \"Edit(~/.gemini/**)\", \"Edit(**/.gemini/**)\",\n      \"Edit(~/.grok/**)\", \"Edit(**/.grok/**)\", \"Edit(~/.hermes/**)\",\n      \"Edit(~/AppData/Roaming/**)\",\n      \"Edit(**/AGENTS.md)\", \"Edit(**/CLAUDE.md)\", \"Edit(**/GEMINI.md)\",\n      \"Edit(**/.github/copilot-instructions.md)\"\n    ],\n    \"deny\": [\"WebFetch\", \"WebSearch\", \"Bash(curl *)\", \"Bash(wget *)\"]\n  },\n  \"sandbox\": {\n    \"enabled\": true,\n    \"failIfUnavailable\": true,\n    \"allowUnsandboxedCommands\": false,\n    \"autoAllowBashIfSandboxed\": false,\n    \"network\": { \"allowedDomains\": [\"registry.npmjs.org\", \"github.com\"], \"strictAllowlist\": true },\n    \"filesystem\": { \"denyRead\": [\"~/.ssh\", \"~/.aws\"] },\n    \"credentials\": { \"files\": [ { \"path\": \"~/.aws/credentials\", \"mode\": \"deny\" }, { \"path\": \"~/.ssh\", \"mode\": \"deny\" } ] }\n  }\n}"
-        },
-        {
-          "file": ".claude/settings.json",
-          "format": "json",
-          "value": "{ \"sandbox\": { \"filesystem\": { \"denyRead\": [\"~/\"], \"allowRead\": [\".\"] } } }"
         }
       ],
       "covers": {
