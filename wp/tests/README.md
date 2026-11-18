@@ -16,3 +16,7 @@ The REST part of the stand-in only mimics WordPress routing (GET registered, any
 `rosmarops-daily.php` (GTM-23), with its own stand-in (`daily-stub.php`, network options in a JSON file) and `php -S`:
 
     python3 -m unittest wp/tests/test_daily.py
+
+`rosmarops-gtm181-promesa.php` (GTM-181, the 0.15.0 promise in WordPress: the program's privacy policy in EN, ES and a new CA page, a dated line at the start of 14 posts, and four pages the static site already serves set to draft), with its own stand-in (`gtm181-stub.php`):
+
+    python3 -m unittest wp/tests/test_gtm181_promesa.py

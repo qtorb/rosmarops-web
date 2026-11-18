@@ -79,8 +79,8 @@ footer nav{gap:20px;font-size:15px}
 <ul><li>su estado, <code>state.json</code>;</li><li>los informes, en HTML y JSON;</li><li>en la carpeta <code>data</code>, el registro de envíos (<code>rosmarops-sends.log</code>) y la lista local de problemas que encuentra.</li></ul>
 <p>Nada más.</p>
 <h2 id="red">4. Cuándo se conecta y a dónde</h2>
-<p><strong>Por defecto, nunca.</strong> Solo se conecta en dos casos, siempre por HTTPS y solo a <code>app.rosmarops.com</code>, puerto 443:</p>
-<ul><li>si la persona conecta el ordenador a su espacio: envía sus resultados, cifrados, después de cada revisión;</li><li>si la persona pulsa «Enviar» cuando el programa encuentra un problema: envía la lista de códigos de error, sin rutas, nombres ni claves. Esto es desde la versión 0.11.0.</li></ul>
+<p><strong>Por defecto, nunca.</strong> Solo se conecta en tres casos, siempre por HTTPS y solo a <code>app.rosmarops.com</code>, puerto 443:</p>
+<ul><li>si la persona conecta el ordenador a su espacio: envía sus resultados, cifrados, después de cada revisión;</li><li>si la persona pulsa «Enviar» cuando el programa encuentra un problema: envía la lista de códigos de error, sin rutas, nombres ni claves. Esto es desde la versión 0.11.0.</li><li>si la persona acepta las estadísticas de uso: después de cada revisión envía un resumen sin rutas, nombres ni claves (formato usage.v1). Desde la versión 0.15.0.</li></ul>
 <p>Cada envío queda en <code>rosmarops-sends.log</code>.</p>
 <p>Respeta <code>HTTPS_PROXY</code>. Si bloqueas <code>app.rosmarops.com</code>, todo lo demás funciona igual: la revisión y el informe no necesitan red.</p>
 <h2 id="garantias">5. Cómo se garantiza</h2>

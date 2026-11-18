@@ -105,6 +105,8 @@ jobs:
           python -m unittest wp/tests/test_gtm124_agente.py
           php -l wp/mu-plugins/rosmarops-gtm164-sin-version.php
           python -m unittest wp/tests/test_gtm164_sin_version.py
+          php -l wp/mu-plugins/rosmarops-gtm181-promesa.php
+          python -m unittest wp/tests/test_gtm181_promesa.py
           php -l wp/mu-plugins/rosmarops-schedule-he-terminado.php
           python -m unittest wp/tests/test_schedule_he_terminado.py
           php -l wp/mu-plugins/rosmarops-schedule-microsoft-store.php
