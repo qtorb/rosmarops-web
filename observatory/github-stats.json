@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-11-19T08:27:35Z",
+  "generated_at": "2026-11-19T09:26:24Z",
   "repo": {
     "stargazers_count": 1,
     "subscribers_count": 0,
     "forks_count": 0,
-    "open_issues_count": 1
+    "open_issues_count": 2
   },
-  "open_pulls": 1,
+  "open_pulls": 2,
   "releases": [
     {
       "tag_name": "v0.15.0",
@@ -55,7 +55,7 @@
         },
         {
           "name": "SHA256SUMS.txt",
-          "download_count": 6
+          "download_count": 11
         }
       ]
     },
