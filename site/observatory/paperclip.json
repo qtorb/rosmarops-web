@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "agent": {
+    "id": "paperclip",
+    "name": "Paperclip",
+    "vendor": "Paperclip",
+    "kinds": [
+      "agent_tooling"
+    ],
+    "platforms": [
+      "macos",
+      "linux"
+    ],
+    "local_footprint": "yes",
+    "rosmarops": {
+      "status": "not_supported"
+    },
+    "reviewed_at": "2026-11-19"
+  },
+  "versions": [],
+  "changes": [],
+  "ratings": []
+}
