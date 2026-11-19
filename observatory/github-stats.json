@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-11-19T21:24:15Z",
+  "generated_at": "2026-11-19T22:25:03Z",
   "repo": {
     "stargazers_count": 1,
     "subscribers_count": 0,
     "forks_count": 0,
-    "open_issues_count": 1
+    "open_issues_count": 0
   },
-  "open_pulls": 1,
+  "open_pulls": 0,
   "releases": [
     {
       "tag_name": "v0.15.0",
@@ -43,7 +43,7 @@
         },
         {
           "name": "rosmarops.exe",
-          "download_count": 5
+          "download_count": 7
         },
         {
           "name": "sample-report.en.html",
