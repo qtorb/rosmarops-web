@@ -1,9 +1,11 @@
 <?php
 /**
  * Plugin Name: RosmarOps downloads and visits
- * Description: Download counter (GTM-18; os added by the 2026-10-29 direct-download decision). /download, /es/descargar and /ca/descarregar add one to an aggregate count (UTC day, source page, language, os) and redirect to GitHub: to the file for ?os=windows|mac-arm|mac-intel|linux-amd64|linux-arm64 (Linux added by GTM-83), to the Microsoft Store listing for ?os=store (GTM-135), otherwise to the latest release. Stores no IP address, cookie, user agent or referrer; requests with the WordPress session cookie (the team, signed in) are not counted (GTM-111), nor requests from robots, by the same user-agent list as visits (GTM-118; the user agent is looked at, never stored). Public read-only totals at /wp-json/rosmarops/v1/downloads. Versioned in qtorb/rosmarops-web; do not edit on the server.
+ * Description: Download counter (GTM-18; os added by the 2026-10-29 direct-download decision). /download, /es/descargar and /ca/descarregar add one to an aggregate count (UTC day, source page, language, os), and one to the hourly download total (GTM-186) and redirect to GitHub: to the file for ?os=windows|mac-arm|mac-intel|linux-amd64|linux-arm64 (Linux added by GTM-83), to the Microsoft Store listing for ?os=store (GTM-135), otherwise to the latest release. Stores no IP address, cookie, user agent or referrer; requests with the WordPress session cookie (the team, signed in) are not counted (GTM-111), nor requests from robots, by the same user-agent list as visits (GTM-118; the user agent is looked at, never stored). Public read-only totals at /wp-json/rosmarops/v1/downloads. Versioned in qtorb/rosmarops-web; do not edit on the server.
  *
- * GTM-111: visit counter, behind ROSMAROPS_VISITS_ON (off). Pages send their path and the referrer's domain with JavaScript (/assets/visits/visits.js); the server adds one to (UTC day, page, language, referrer kind), with closed lists. It stores no IP address, cookie, user agent, exact time or identifier. GTM-125: different people per UTC day, from an HMAC of IP and user agent with a key of the day; only today's fingerprints and key exist, both replaced at the day change, and the IP and user agent are never stored. Public read-only totals (visits in rows, people in people) at /wp-json/rosmarops/v1/visits.
+ * GTM-111: visit counter, behind ROSMAROPS_VISITS_ON (off). Pages send their path and the referrer's domain with JavaScript (/assets/visits/visits.js); the server adds one to (UTC day, page, language, referrer kind), with closed lists. It stores no IP address, cookie, user agent or identifier, and no time finer than the UTC day in that table (GTM-186: the hourly totals below hold only the hour and the kind). GTM-125: different people per UTC day, from an HMAC of IP and user agent with a key of the day; only today's fingerprints and key exist, both replaced at the day change, and the IP and user agent are never stored. Public read-only totals (visits in rows, people in people) at /wp-json/rosmarops/v1/visits.
+ *
+ * GTM-186 (signed by Albert 19-11 12:26): hourly totals. Each visit and each download click that is counted also adds one to (UTC hour, kind), kind visit or download, in a separate table with no other column: no page, language, referrer kind, system or anything about the person. Rows older than 48 hours are deleted in the same write and when the totals are read. Public read-only totals of the last 48 hours at /wp-json/rosmarops/v1/hours, with Cache-Control: max-age=60.
  */
 
 if (!defined('ABSPATH')) {
@@ -174,7 +176,9 @@ add_action('muplugins_loaded', function () {
 	$os = rosmarops_dl_os($_GET['os'] ?? null);
 	// Robots and the team get the same redirect, but are not counted.
 	if ($method === 'GET' && !rosmarops_is_team($_COOKIE) && !rosmarops_is_bot($_SERVER)) {
-		rosmarops_dl_count(rosmarops_dl_source($_GET['from'] ?? null), $lang, $os);
+		if (rosmarops_dl_count(rosmarops_dl_source($_GET['from'] ?? null), $lang, $os)) {
+			rosmarops_hourly_count('download');
+		}
 	}
 	header('Cache-Control: no-store');
 	header('Location: ' . rosmarops_dl_target($os), true, 302);
@@ -195,7 +199,118 @@ add_action('rest_api_init', function () {
 			return $res;
 		},
 	]);
+	// GTM-186: hourly totals of the last 48 hours, for following the day as it goes. Short cache on purpose; the
+	// two routes above keep theirs.
+	register_rest_route('rosmarops/v1', '/hours', [
+		'methods'             => 'GET',
+		'permission_callback' => '__return_true',
+		'callback'            => function () {
+			$res = new WP_REST_Response(rosmarops_hourly_rows());
+			$res->header('Cache-Control', 'max-age=60');
+			return $res;
+		},
+	]);
 });
+
+
+// --------------------------------------------------------------------------------------- hourly totals (GTM-186)
+
+/*
+ * GTM-186 (signed by Albert 19-11 12:26, option B of the GTM-185 reading): one total per UTC hour and kind, kind
+ * visit or download, so the back office can follow the day as it goes. Only what the counters above already count adds
+ * one, after its own count is written, so the same rules for robots, the team and prefetch apply. The table has the
+ * hour, the kind and the count, and nothing else. Rows older than 48 hours are deleted in the same write and whenever
+ * the totals are read, so no new process runs on the server.
+ */
+const ROSMAROPS_HOURLY_KINDS = ['visit', 'download'];
+const ROSMAROPS_HOURLY_HOURS = 48;
+
+function rosmarops_hourly_table() {
+	global $wpdb;
+	return $wpdb->base_prefix . 'rosmarops_hourly';
+}
+
+function rosmarops_hourly_create_table() {
+	global $wpdb;
+	$t = rosmarops_hourly_table();
+	$wpdb->query(
+		"CREATE TABLE IF NOT EXISTS `$t` (
+			hour DATETIME NOT NULL,
+			kind VARCHAR(8) NOT NULL,
+			count INT UNSIGNED NOT NULL DEFAULT 0,
+			PRIMARY KEY (hour, kind)
+		) " . $wpdb->get_charset_collate()
+	);
+}
+
+/** Now as a Unix time (a test can fix it with ROSMAROPS_HOURLY_NOW). */
+function rosmarops_hourly_now() {
+	return defined('ROSMAROPS_HOURLY_NOW') ? (int) ROSMAROPS_HOURLY_NOW : time();
+}
+
+/** The start of the current UTC hour, minus $back hours, as 'Y-m-d H:00:00'. */
+function rosmarops_hourly_start($back = 0) {
+	$h = intdiv(rosmarops_hourly_now(), 3600) - $back;
+	return gmdate('Y-m-d H:00:00', $h * 3600);
+}
+
+/** Deletes the rows older than the last ROSMAROPS_HOURLY_HOURS hours (the current one included). */
+function rosmarops_hourly_prune() {
+	global $wpdb;
+	$t = rosmarops_hourly_table();
+	return $wpdb->query($wpdb->prepare("DELETE FROM `$t` WHERE hour < %s", rosmarops_hourly_start(ROSMAROPS_HOURLY_HOURS - 1)));
+}
+
+/** Adds one to the current UTC hour of a kind, and deletes what is older than 48 hours. Only this table is written. */
+function rosmarops_hourly_count($kind) {
+	if (!in_array($kind, ROSMAROPS_HOURLY_KINDS, true)) {
+		return false;
+	}
+	global $wpdb;
+	$t   = rosmarops_hourly_table();
+	$sql = $wpdb->prepare(
+		"INSERT INTO `$t` (hour, kind, count) VALUES (%s, %s, 1) ON DUPLICATE KEY UPDATE count = count + 1",
+		rosmarops_hourly_start(),
+		$kind
+	);
+	$suppress = $wpdb->suppress_errors(true);
+	$ok       = $wpdb->query($sql);
+	if ($ok === false) {
+		rosmarops_hourly_create_table();
+		$ok = $wpdb->query($sql);
+	}
+	rosmarops_hourly_prune();
+	$wpdb->suppress_errors($suppress);
+	return $ok !== false;
+}
+
+/**
+ * The last 48 UTC hours, oldest first, the current one last: [{"hour": "2026-11-19T10:00:00Z", "visits": n,
+ * "downloads": n}], with 0 for an hour with nothing. Deletes what is older first.
+ */
+function rosmarops_hourly_rows() {
+	global $wpdb;
+	$t        = rosmarops_hourly_table();
+	$since    = rosmarops_hourly_start(ROSMAROPS_HOURLY_HOURS - 1);
+	$suppress = $wpdb->suppress_errors(true);
+	rosmarops_hourly_prune();
+	$res = $wpdb->get_results($wpdb->prepare("SELECT hour, kind, count FROM `$t` WHERE hour >= %s", $since), ARRAY_A);
+	$wpdb->suppress_errors($suppress);
+	$got = [];
+	foreach ((array) $res as $r) {
+		$got[$r['hour']][$r['kind']] = (int) $r['count'];
+	}
+	$rows = [];
+	for ($back = ROSMAROPS_HOURLY_HOURS - 1; $back >= 0; $back--) {
+		$h      = rosmarops_hourly_start($back);
+		$rows[] = [
+			'hour'      => str_replace(' ', 'T', $h) . 'Z',
+			'visits'    => $got[$h]['visit'] ?? 0,
+			'downloads' => $got[$h]['download'] ?? 0,
+		];
+	}
+	return $rows;
+}
 
 
 // ------------------------------------------------------------------------------------------------- visits (GTM-111)
@@ -377,6 +492,7 @@ function rosmarops_visits_handle($body, $server, $cookies) {
 	if (!rosmarops_visits_count($page, $lang, $ref, $day)) {
 		return false;
 	}
+	rosmarops_hourly_count('visit');
 	rosmarops_people_count($server, $lang, $ref, $day);
 	return true;
 }
@@ -410,7 +526,8 @@ function rosmarops_visits_rows($today = null) {
  * fingerprint and are stored nowhere. The key is 32 random bytes per UTC day, in a network option with its date; on a
  * new day a new key replaces it (the old one no longer exists) and the fingerprints table is emptied. That table holds
  * only today's fingerprints (one column, unique); a fingerprint not yet in it is one more person for (day, language,
- * referrer kind) of that first visit. Those counts are kept with no time limit, like the visits.
+ * referrer kind) of that first visit. Those counts are kept with no time limit, like the visits. They stay per day:
+ * the hourly totals (GTM-186) count visits and clicks, not people.
  */
 const ROSMAROPS_PEOPLE_KEY  = 'rosmarops_people_key';
 const ROSMAROPS_PEOPLE_LOCK = 'rosmarops_people_rotating';

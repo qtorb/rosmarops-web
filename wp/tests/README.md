@@ -20,3 +20,7 @@ The REST part of the stand-in only mimics WordPress routing (GET registered, any
 `rosmarops-gtm181-promesa.php` (GTM-181, the 0.15.0 promise in WordPress: the program's privacy policy in EN, ES and a new CA page, a dated line at the start of 14 posts, and four pages the static site already serves set to draft), with its own stand-in (`gtm181-stub.php`):
 
     python3 -m unittest wp/tests/test_gtm181_promesa.py
+
+The hourly totals (GTM-186: `rosmarops_hourly` and `/wp-json/rosmarops/v1/hours`), with the same stand-in, «now» fixed by `HOURLY_NOW`; the privacy policy paragraphs are checked without a database:
+
+    DB_USER=… DB_PASS=… DB_NAME=wptest python3 -m unittest wp/tests/test_hourly.py
