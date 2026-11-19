@@ -3129,6 +3129,33 @@
             "how": "official_changelog"
           },
           "rosmarops_impact": "none"
+        },
+        {
+          "id": "chg-claude-code-2-1-328-hook-block",
+          "version": "2.1.328",
+          "date": "2026-11-19",
+          "category": "hooks",
+          "before": {
+            "en": "Before 2.1.328, the Claude Code changelog listed \"onFailure\": \"block\" only for command and HTTP hooks, not for mcp_tool hooks.",
+            "es": "Antes de 2.1.328, el changelog de Claude Code recogía \"onFailure\": \"block\" solo para los hooks command y HTTP, no para los hooks mcp_tool.",
+            "ca": "Abans de 2.1.328, el changelog de Claude Code recollia \"onFailure\": \"block\" només per als hooks command i HTTP, no per als hooks mcp_tool."
+          },
+          "after": {
+            "en": "From 2.1.328, mcp_tool hooks accept \"onFailure\": \"block\", so a hook whose call fails blocks the action, according to the changelog.",
+            "es": "Desde 2.1.328, los hooks mcp_tool aceptan \"onFailure\": \"block\", así que un hook cuya llamada falla bloquea la acción, según el changelog.",
+            "ca": "Des de 2.1.328, els hooks mcp_tool accepten \"onFailure\": \"block\", així que un hook la crida del qual falla bloqueja l'acció, segons el changelog."
+          },
+          "source": {
+            "url": "https://code.claude.com/docs/en/changelog#2-1-328",
+            "official": true,
+            "accessed_at": "2026-11-19"
+          },
+          "verified": {
+            "by": "writer",
+            "at": "2026-11-19",
+            "how": "official_changelog"
+          },
+          "rosmarops_impact": "none"
         }
       ],
       "ratings": [],
@@ -4595,7 +4622,35 @@
         "reviewed_at": "2026-11-13"
       },
       "versions": [],
-      "changes": [],
+      "changes": [
+        {
+          "id": "chg-grok-bot-v1-2-3-tool-permissions",
+          "version": "v1.2.3",
+          "date": "2026-11-18",
+          "category": "permissions",
+          "before": {
+            "en": "Before v1.2.3, the Grok Bot changelog listed no per-tool permission setting on connector pages.",
+            "es": "Antes de v1.2.3, el changelog de Grok Bot no recogía ningún ajuste de permiso por herramienta en las páginas de conectores.",
+            "ca": "Abans de v1.2.3, el changelog de Grok Bot no recollia cap opció de permís per eina a les pàgines de connectors."
+          },
+          "after": {
+            "en": "From v1.2.3, connector pages let each tool be set to Always allow, Auto-review, Needs approval or Blocked, according to the changelog.",
+            "es": "Desde v1.2.3, las páginas de conectores permiten poner cada herramienta en Always allow, Auto-review, Needs approval o Blocked, según el changelog.",
+            "ca": "Des de v1.2.3, les pàgines de connectors permeten posar cada eina en Always allow, Auto-review, Needs approval o Blocked, segons el changelog."
+          },
+          "source": {
+            "url": "https://x.ai/changelog/bot",
+            "official": true,
+            "accessed_at": "2026-11-19"
+          },
+          "verified": {
+            "by": "writer",
+            "at": "2026-11-19",
+            "how": "official_changelog"
+          },
+          "rosmarops_impact": "none"
+        }
+      ],
       "ratings": [],
       "default_mode": {
         "name": "ask_every_time",

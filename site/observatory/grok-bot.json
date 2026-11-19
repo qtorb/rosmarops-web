@@ -20,7 +20,35 @@
     "reviewed_at": "2026-11-13"
   },
   "versions": [],
-  "changes": [],
+  "changes": [
+    {
+      "id": "chg-grok-bot-v1-2-3-tool-permissions",
+      "version": "v1.2.3",
+      "date": "2026-11-18",
+      "category": "permissions",
+      "before": {
+        "en": "Before v1.2.3, the Grok Bot changelog listed no per-tool permission setting on connector pages.",
+        "es": "Antes de v1.2.3, el changelog de Grok Bot no recogía ningún ajuste de permiso por herramienta en las páginas de conectores.",
+        "ca": "Abans de v1.2.3, el changelog de Grok Bot no recollia cap opció de permís per eina a les pàgines de connectors."
+      },
+      "after": {
+        "en": "From v1.2.3, connector pages let each tool be set to Always allow, Auto-review, Needs approval or Blocked, according to the changelog.",
+        "es": "Desde v1.2.3, las páginas de conectores permiten poner cada herramienta en Always allow, Auto-review, Needs approval o Blocked, según el changelog.",
+        "ca": "Des de v1.2.3, les pàgines de connectors permeten posar cada eina en Always allow, Auto-review, Needs approval o Blocked, segons el changelog."
+      },
+      "source": {
+        "url": "https://x.ai/changelog/bot",
+        "official": true,
+        "accessed_at": "2026-11-19"
+      },
+      "verified": {
+        "by": "writer",
+        "at": "2026-11-19",
+        "how": "official_changelog"
+      },
+      "rosmarops_impact": "none"
+    }
+  ],
   "ratings": [],
   "default_mode": {
     "name": "ask_every_time",
