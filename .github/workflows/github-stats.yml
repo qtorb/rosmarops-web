@@ -1,14 +1,18 @@
-name: GitHub stats (daily)
+name: GitHub stats (hourly)
 
 # GTM-61 (signed by Albert, 01-11 08:40). The app.rosmarops.com panel read the GitHub API without credentials from the
 # OVH shared hosting, where the per-IP limit runs out and the read failed almost daily (31-10 and 01-11). From now on
-# GitHub Actions reads the public figures of qtorb/rosmarops once a day with this workflow's own GITHUB_TOKEN and
-# writes observatory/github-stats.json to main; the panel picks up that public file. If any of the four reads does
-# not return 200, the run fails and writes nothing. observatory/ is outside deploy.yml's paths: no deploy is asked for.
+# GitHub Actions reads the public figures of qtorb/rosmarops with this workflow's own GITHUB_TOKEN and writes
+# observatory/github-stats.json to main; the panel picks up that public file. If any of the four reads does not return
+# 200, the run fails and writes nothing. GTM-184 (signed by Albert, 19-11 07:35, CTO-73 point 6): every hour instead of
+# once a day. Four API requests per run, far below the GITHUB_TOKEN limit of 1,000 per hour per repository. The commit
+# is pushed with that same token, and GitHub starts no workflow for a push made with it (the GitHub docs: «events
+# triggered by the GITHUB_TOKEN ... will not create a new workflow run»), so neither observatory.yml, whose paths
+# include observatory/**, nor deploy.yml, whose paths leave observatory/ out, runs for it.
 
 on:
   schedule:
-    - cron: "15 3 * * *" # 04:15 Madrid in winter (CET), 05:15 in summer: before the space reads it at 06:30 Madrid (BA-78), with room for GitHub's delay.
+    - cron: "20 * * * *" # every hour at minute 20 (GTM-184); the space still finds a fresh file when it reads it at 06:30 Madrid (BA-78).
   workflow_dispatch:
 
 permissions:
