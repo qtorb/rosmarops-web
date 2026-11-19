@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "agent": {
+    "id": "paperclip",
+    "name": "Paperclip",
+    "vendor": "Paperclip",
+    "kinds": [
+      "agent_tooling"
+    ],
+    "platforms": [
+      "macos",
+      "linux"
+    ],
+    "local_footprint": "yes",
+    "rosmarops": {
+      "status": "not_supported"
+    },
+    "reviewed_at": "2026-11-19"
+  },
+  "versions": [],
+  "changes": [],
+  "ratings": [],
+  "surfaces": [
+    {
+      "surface": "subagents",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://github.com/paperclipai/paperclip/blob/master/docs/adapters/overview.md",
+        "official": true,
+        "accessed_at": "2026-11-19"
+      },
+      "verified": {
+        "by": "writer",
+        "at": "2026-11-19",
+        "how": "official_doc"
+      }
+    },
+    {
+      "surface": "scheduled_tasks",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://github.com/paperclipai/paperclip/blob/master/docs/api/routines.md",
+        "official": true,
+        "accessed_at": "2026-11-19"
+      },
+      "verified": {
+        "by": "writer",
+        "at": "2026-11-19",
+        "how": "official_doc"
+      }
+    },
+    {
+      "surface": "permission_modes",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://github.com/paperclipai/paperclip/blob/master/docs/adapters/claude-local.md",
+        "official": true,
+        "accessed_at": "2026-11-19"
+      },
+      "verified": {
+        "by": "writer",
+        "at": "2026-11-19",
+        "how": "official_doc"
+      }
+    },
+    {
+      "surface": "mcp",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://github.com/paperclipai/paperclip/blob/master/docs/api/tool-gateway-tokens.md",
+        "official": true,
+        "accessed_at": "2026-11-19"
+      },
+      "verified": {
+        "by": "writer",
+        "at": "2026-11-19",
+        "how": "official_doc"
+      }
+    },
+    {
+      "surface": "skills",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://github.com/paperclipai/paperclip/blob/master/docs/guides/agent-developer/skills-store.md",
+        "official": true,
+        "accessed_at": "2026-11-19"
+      },
+      "verified": {
+        "by": "writer",
+        "at": "2026-11-19",
+        "how": "official_doc"
+      }
+    }
+  ]
+}
