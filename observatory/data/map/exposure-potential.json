@@ -1,13 +1,13 @@
 {
   "format": "exposure-potential.v1",
-  "rosmarops_version": "v0.12.1",
-  "commit": "1719cbfc5ec98186676a3d533e1a7a3226797052",
-  "generated_at": "2026-11-15T21:48:37Z",
+  "rosmarops_version": "v0.15.0",
+  "commit": "8710db65cc2e2d75665bd1a7added32021d9f34d",
+  "generated_at": "2026-11-18T18:47:37Z",
   "reference_computer": "R2",
   "contagion_computer": "R2-all",
   "contagion_computer_source": "r2_fixtures",
   "rules_version": "0",
-  "knowledge_version": "antigravity-cli@2026-11-01;claude-code@2026-10-24;cline@2026-11-03;codex@2026-11-01;cursor@2026-10-25;gemini-cli@2026-11-08;github-copilot@2026-11-01;grok-build@2026-11-08;hermes@2026-10-29",
+  "knowledge_version": "antigravity-cli@2026-11-01;claude-code@2026-10-24;cline@2026-11-03;codex@2026-11-01;cursor@2026-10-25;gemini-cli@2026-11-08;github-copilot@2026-11-01;grok-bot@2026-11-14;grok-build@2026-11-08;hermes@2026-10-29",
   "class_rule": "weighted_v1",
   "weights": {
     "autonomy": 2,
@@ -119,7 +119,7 @@
           "inputs": [
             "auto_classifier_permits",
             "config_file_protection_scope_unknown",
-            "ide_run_mode_not_readable",
+            "declared_by_you",
             "team_policy_unknown"
           ]
         },
@@ -164,10 +164,9 @@
           "level": 0
         },
         "opacity": {
-          "level": 2,
+          "level": 1,
           "inputs": [
-            "launch_flags_not_readable",
-            "windows_sandbox_unknown"
+            "launch_flags_not_readable"
           ]
         },
         "complexity": {

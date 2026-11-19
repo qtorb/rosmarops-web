@@ -1,12 +1,12 @@
 {
   "format": "rosmarops.factory-scores/1",
-  "rosmarops_version": "v0.12.1",
-  "commit": "1719cbfc5ec98186676a3d533e1a7a3226797052",
-  "generated_at": "2026-11-15T21:48:37Z",
+  "rosmarops_version": "v0.15.0",
+  "commit": "8710db65cc2e2d75665bd1a7added32021d9f34d",
+  "generated_at": "2026-11-18T18:47:37Z",
   "reference_computer": "R2",
   "index_version": 5,
   "rules_version": "0",
-  "knowledge_version": "antigravity-cli@2026-11-01;claude-code@2026-10-24;cline@2026-11-03;codex@2026-11-01;cursor@2026-10-25;gemini-cli@2026-11-08;github-copilot@2026-11-01;grok-build@2026-11-08;hermes@2026-10-29",
+  "knowledge_version": "antigravity-cli@2026-11-01;claude-code@2026-10-24;cline@2026-11-03;codex@2026-11-01;cursor@2026-10-25;gemini-cli@2026-11-08;github-copilot@2026-11-01;grok-bot@2026-11-14;grok-build@2026-11-08;hermes@2026-10-29",
   "agents": [
     {
       "product": "claude-code",
@@ -32,6 +32,7 @@
         "bash_tool_available",
         "no_pretooluse_hook_blocks",
         "process_runs_as_user",
+        "startup_file_runs_later",
         "ui_mode_choice_unknown",
         "version_behaves_as_documented"
       ]
@@ -57,8 +58,10 @@
       "assumptions": [
         "auto_classifier_permits",
         "config_file_protection_scope_unknown",
-        "ide_run_mode_not_readable",
+        "declared_by_you",
         "process_runs_as_user",
+        "shell_write_unchecked",
+        "startup_file_runs_later",
         "team_policy_unknown",
         "version_behaves_as_documented"
       ]
