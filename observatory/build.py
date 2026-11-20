@@ -350,6 +350,11 @@ td:empty{display:none}}
 """.strip()
 
 
+def _templates_footer(lang):
+    import templates_pages
+    return templates_pages.footer_link(lang, templates_pages.load())
+
+
 def nav_links(t, lang, alternates, current_obs=True):
     import sandbox_section  # GTM-175: «Sandbox» in the main menu
     current = ' aria-current="page"' if current_obs else ""
@@ -428,6 +433,7 @@ def page(lang, t, *, path, title, description, alternates, jsonld, body, og_type
     footer = (
         '<footer><div class="wrap">\n<nav>'
         + links
+        + _templates_footer(lang)  # GTM-190: «Templates», once the pages exist
         + f'<a href="{esc(t.text("site.footer.privacy_url"))}">{t("site.footer.privacy")}</a>'
         + f'<a href="{esc(t.text("site.footer.legal_url"))}">{t("site.footer.legal")}</a>'  # GTM-130
         + f'<a href="{esc(t.text("site.footer.terms_url"))}">{t("site.footer.terms")}</a>'
@@ -944,6 +950,11 @@ def build_sitemap(agents):
         aalts = "".join(f'<xhtml:link rel="alternate" hreflang="{l}" href="{BASE}{agent_path(l, aid)}"/>' for l in LANGS)
         aalts += f'<xhtml:link rel="alternate" hreflang="x-default" href="{BASE}{agent_path("en", aid)}"/>'
         lines += [f"  <url><loc>{BASE}{agent_path(l, aid)}</loc><lastmod>{date_modified(a)}</lastmod>{aalts}</url>" for l in LANGS]
+    import templates_pages  # GTM-190: the template pages, hreflang EN<->ES, once they exist
+    for path, group in templates_pages.sitemap_urls(templates_pages.load()):
+        talts = "".join(f'<xhtml:link rel="alternate" hreflang="{l}" href="{BASE}{p}"/>' for l, p in group.items())
+        talts += f'<xhtml:link rel="alternate" hreflang="x-default" href="{BASE}{group["en"]}"/>'
+        lines.append(f"  <url><loc>{BASE}{path}</loc>{talts}</url>")
     lines += [SM_END]
     xml = f.read_text(encoding="utf-8")
     if SM_START in xml:
@@ -970,6 +981,8 @@ def build_llms(agents, t_en):
             ag = a["agent"]
             h1 = t_en.text(h1_key(ag), agent=ag["name"])
             lines.append(f"- [{h1}]({BASE}{agent_path('en', ag['id'])}): observatory page, with its data at {BASE}{JSON_BASE}{ag['id']}.json")
+    import templates_pages  # GTM-190: the three questions with their URL, once the pages exist
+    lines += templates_pages.llms_lines(templates_pages.load())
     lines.append(LL_END)
     block = "\n".join(lines)
     if LL_START in txt:
@@ -1181,6 +1194,8 @@ def main():
         build_static_about()
         import sandbox_section  # GTM-175: /sandbox/, /es/sandbox/, /ca/sandbox/ (shell: the guide of each language)
         sandbox_section.build(agents, SITE)
+        import templates_pages  # GTM-190: /templates/ and /es/plantillas/, only once BV-266's export is copied in
+        templates_pages.build(SITE)
     pages = 0
     for lang in LANGS:
         t = T(cats[lang])
