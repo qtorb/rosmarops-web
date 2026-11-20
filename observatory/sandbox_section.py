@@ -298,6 +298,17 @@ try{navigator.clipboard.writeText(pre.textContent).then(done,select);}catch(e){s
 </script>"""
 
 
+CATALOG = ROOT / "observatory" / "i18n"
+# GTM-194 §3.4: the page with the three Claude Code templates (GTM-190); its sentence shows only once the page exists.
+TEMPLATES_PAGE = {"en": "/templates/", "es": "/es/plantillas/", "ca": "/templates/"}
+
+
+def ctexts(lang):
+    """GTM-194: the page's own texts, in the Observatory catalog under the prefix sandbox."""
+    d = json.loads((CATALOG / f"{lang}.json").read_text(encoding="utf-8"))
+    return {k[len("sandbox."):]: v for k, v in d.items() if k.startswith("sandbox.")}
+
+
 def gtexts():
     return json.loads(GUIDE_TEXTS.read_text(encoding="utf-8"))["texts"]
 
@@ -566,7 +577,10 @@ class Combo:
 
     def step1(self):
         ch = self.t["checks"]
-        body = [f'<p>{esc(self.g("s1.p"))}</p>'] + self.boxes("before")
+        body = [f'<p>{esc(self.g("s1.p"))}</p>']
+        if not (ch["read"]["kind"] == "none" and ch["network"]["kind"] == "none"):
+            body.append(f'<p>{esc(ctexts(self.lang)["test_line"])}</p>')  # GTM-194 §3.5
+        body += self.boxes("before")
         if not (ch["read"]["kind"] == "none" and ch["network"]["kind"] == "none"):
             body.append(f'<p class="sg-after">{esc(self.G["s1.after"])}</p>')
         body += self.fold(self.notes() + self.muted())
@@ -641,20 +655,51 @@ class Combo:
         return f'<div class="sg-main"><ol class="sg-steps">{"".join(steps)}</ol><div class="sg-foot">{"".join(self.source())}</div></div>'
 
     def html(self):
-        side = side_boxes(self.lang, self.t["kind"] == "separate_account")
+        side = side_boxes(self.lang) if self.t["kind"] == "separate_account" else ""
         return (f'<section class="sg-combo" id="{self.cid}" data-agent="{self.aid}" data-system="{self.s}">'
                 f'<h2 class="sg-combo-h">{esc(self.g("combo"))}</h2><p class="sg-cstatus">{self.status()}</p>'
                 f'<div class="sg-cols">{self.main()}{side}</div></section>')
 
 
-def side_boxes(lang, account=False):
+def side_boxes(lang):
+    """GTM-194 §2: the side column stays only in the panels of another user account («¿Por qué otra cuenta?»). «¿Qué es
+    un sandbox?» became the section «Por qué encenderlo», and the two link boxes go once, after the steps."""
     G = gtexts()[lang]
-    first = (f'<div class="sg-box"><h3>{esc(G["side.why.h"])}</h3><p>{esc(G["side.why.p"])}</p></div>' if account else
-             f'<div class="sg-box"><h3>{esc(G["side.what.h"])}</h3><p>{esc(G["side.what.p"])}</p></div>')
-    return (f'<aside class="sg-side">{first}'
-            f'<div class="sg-box"><h3>{esc(G["side.which.h"])}</h3><a href="{sandbox_page.SANDBOX_PATH[lang]}">{esc(G["side.which.link"])}</a></div>'
-            f'<div class="sg-box"><h3>{esc(G["side.try.h"])}</h3><a href="{company_page.GUIDE_PATH[lang]}">{esc(G["side.try.link"])}</a></div>'
-            "</aside>")
+    return f'<aside class="sg-side"><div class="sg-box"><h3>{esc(G["side.why.h"])}</h3><p>{esc(G["side.why.p"])}</p></div></aside>'
+
+
+def link_boxes(lang):
+    """GTM-194 §2: «¿Qué agentes lo traen?» and «¿Vas a probar un agente que no conoces?», once, after the steps."""
+    G = gtexts()[lang]
+    return (f'<div class="sg-box"><h3>{esc(G["side.which.h"])}</h3><a href="{sandbox_page.SANDBOX_PATH[lang]}">{esc(G["side.which.link"])}</a></div>'
+            f'<div class="sg-box"><h3>{esc(G["side.try.h"])}</h3><a href="{company_page.GUIDE_PATH[lang]}">{esc(G["side.try.link"])}</a></div>')
+
+
+def link(text, href):
+    return f'<a href="{esc(href)}">{esc(text)}</a>'
+
+
+def sections(lang, site=SITE):
+    """GTM-194 §3 (texts signed by Albert, 20-11), as (id, html), in the order of §2. Same styles as the site's text
+    pages (.doc) and the guide's folds; nothing new."""
+    C = ctexts(lang)
+    def ul(keys):
+        return "<ul>" + "".join(f"<li>{esc(C[k])}</li>" for k in keys) + "</ul>"
+    level = [f'<h2>{esc(C["level.h"])}</h2>', f'<p>{esc(C["level.p"])}</p>', ul(["level.1", "level.2", "level.3"])]
+    tpl = TEMPLATES_PAGE[lang]
+    if (Path(site) / tpl.strip("/") / "index.html").is_file():  # §3.4: only once GTM-190's pages exist
+        level.append(f'<p>{esc(C["level.more"]).replace("{link}", link(C["level.link"], tpl))}</p>')
+    faq = "".join(f'<details><summary>{esc(C[f"faq.q{i}"])}</summary><div class="sg-dbody"><p>{esc(C[f"faq.a{i}"])}</p></div></details>'
+                  for i in range(1, 6))
+    return {
+        "why": f'<section class="doc"><h2>{esc(C["why.h"])}</h2><p>{esc(C["why.p1"])}</p><p>{esc(C["why.p2"])}</p></section>',
+        "day": (f'<section class="doc"><h2>{esc(C["day.h"])}</h2>{ul(["day.1", "day.2", "day.3", "day.4"])}'
+                f'<p>{esc(C["day.end"])}</p></section>'),
+        "level": f'<section class="doc">{"".join(level)}</section>',
+        "worktree": (f'<section class="doc"><h2>{esc(C["wt.h"])}</h2><p>{esc(C["wt.p1"])}</p>'
+                     f'<p>{esc(C["wt.p2"]).replace("{link}", link(C["wt.link"], OBS_PATH[lang]))}</p></section>'),
+        "faq": f'<section class="doc faq"><h2>{esc(C["faq.h"])}</h2>{faq}</section>',
+    }
 
 
 def selector(lang, agents):
@@ -688,14 +733,31 @@ def article(lang, agents, review, lab=None):
         combos += [Combo(a, s, lang, review, lab).html() for s in SYSTEMS]
     lines = "".join(f'<li><b>{i}.</b> {esc(G["none." + str(i)])}</li>' for i in (1, 2, 3))
     none = (f'<div class="sg-none"><div class="sg-cols"><div class="sg-main">'
-            f'<ol class="sg-sum">{lines}</ol></div>{side_boxes(lang)}</div></div>')
+            f'<ol class="sg-sum">{lines}</ol></div></div></div>')
+    S = sections(lang)
+    # GTM-194 §2: header, why, what changes, which level, the steps (with the lab's captures), the two link boxes once,
+    # a worktree is not a sandbox, questions. «pick_line» goes with the selector it introduces.
+    # Spacing with the site's own rules only: the upper sections share one .doc (gap 18px); the lower part is a sibling of
+    # the article, so main .wrap puts its 64px between them.
     return f"""<article class="sg">
-<header class="sg-head"><h1>{esc(G["h1"])}</h1><p class="sg-lead">{esc(G["lead"])}</p><p class="sg-pick">{esc(G["pick_line"])}</p></header>
+<header class="sg-head"><h1>{esc(G["h1"])}</h1><p class="sg-lead">{esc(ctexts(lang)["lead"])}</p></header>
+<div class="doc">
+{S["why"]}
+{S["day"]}
+{S["level"]}
+<p class="sg-pick">{esc(G["pick_line"])}</p>
+</div>
 {selector(lang, items)}
 {none}
 {chr(10).join(combos)}
+</article>
+<div class="sg"><div class="doc">
+{link_boxes(lang)}
+{S["worktree"]}
+{S["faq"]}
+</div>
 <p class="sg-note">{esc(T["note"])}</p>
-</article>"""
+</div>"""
 
 
 def download(lang):
@@ -728,7 +790,7 @@ def page(lang, agents, review):
     style, header, footer, scripts = shell_parts(lang)
     url = "https://rosmarops.com" + SECTION_PATH[lang]
     title = G["h1"] + " · RosmarOps"
-    desc = G["lead"]
+    desc = ctexts(lang)["lead"]  # GTM-194 §3.1: the new lead, also as the description
     alts = "".join(f'<link rel="alternate" hreflang="{o}" href="https://rosmarops.com{SECTION_PATH[o]}">\n' for o in LANGS)
     alts += f'<link rel="alternate" hreflang="x-default" href="https://rosmarops.com{SECTION_PATH["en"]}">\n'
     ld = json.dumps({"@context": "https://schema.org", "@type": "WebPage", "@id": url + "#page", "url": url, "name": G["h1"],
