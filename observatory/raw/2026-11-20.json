@@ -1,0 +1,898 @@
+{
+  "date": "2026-11-20",
+  "collected_at": "2026-11-20T05:34:35Z",
+  "sources": [
+    {
+      "id": "F1",
+      "opened": true,
+      "reason": null,
+      "latest": "2.1.329",
+      "latest_date": "2026-11-19",
+      "new": [
+        {
+          "date": "2026-11-19",
+          "version": "2.1.329",
+          "text": "Added Added a trust dialog warning that says where a folder’s hooks are declared Added a warning in the conversation, in Claude Desktop and other non-interactive hosts, when hooks in managed settings fail to load Added this session’s scheduled tasks, /loop wakeups, the goal and this conversation’s forks to /tasks; x stops one after asking Added a “Server message” row to a server’s page in /mcp that shows the JSON-RPC error message of a remote HTTP MCP server that refuses the connection Added a “Marketplace auto-update” row to /status that names managed marketplaces that get no automatic updat…"
+        },
+        {
+          "date": "2026-11-19",
+          "version": "2.1.328",
+          "text": "Added Added auto mode for Claude Opus 4.6 and Sonnet 4.6 on Amazon Bedrock, Google Cloud’s Agent Platform, Microsoft Foundry and Claude apps gateway; interactive sessions with no permission mode start in it Added \"onFailure\": \"block\" for mcp_tool hooks, as for command and HTTP hooks: a hook whose call fails blocks the action Added a warning when a message from a session that skips permission prompts may be held and dropped by a cloud session Added a notice in /status and claude doctor when an OpenTelemetry exporter has no endpoint and its data would likely be lost Added CLAUDE_CODE_DISABLE_DE…"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F2",
+      "opened": true,
+      "reason": null,
+      "latest": "v2026.11.17",
+      "latest_date": "2026-11-17",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F3",
+      "opened": true,
+      "reason": null,
+      "latest": "rust-v0.171.0",
+      "latest_date": "2026-11-19",
+      "new": [
+        {
+          "date": "2026-11-19",
+          "version": "rust-v0.171.0",
+          "text": "## New Features - Added GPT-6.2 Sol and Astra to model catalogs, with Sol as the default catalog selection. (#62106) - Enabled the TUI workspace by default, with searchable document previews, image previews, and subagent transcripts alongside the main conversation. (#61352, #61888, #61889, #61919, #62157) - Added configurable undo and redo shortcuts to the non-Vim prompt composer, including restoration of attachments and large pastes. (#61954) - Added `codex exec --remote <ADDR>` to start or resume noninteractive sessions on an existing app server. (#61707) - Added `/rc` and `/remote` to mana…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F4",
+      "opened": true,
+      "reason": null,
+      "latest": "v1.5.12",
+      "latest_date": "2026-11-19",
+      "new": [
+        {
+          "date": "2026-11-19",
+          "version": "v1.5.12",
+          "text": "### Remote Control split view, Gemini 4 Neon API key support, and faster conversation forking. Antigravity CLI 1.5.12 introduces split view in the Remote Control browser view, adds Gemini 4 Neon support when connecting with a GEMINI_API_KEY, improves /fork speed for large conversations, and resolves several network retry, rendering, and Remote Control bugs. Improvements(7) Added split view to the Remote Control browser view, so you can keep several conversations open side by side: choose Split Right or Split Down from the Split submenu of a conversation's menu in the sidebar or of the ⋮ menu…"
+        },
+        {
+          "date": "2026-11-19",
+          "version": "v1.2.0",
+          "text": "### In-IDE issue reporting and retry actions, improved mid-session crash recovery, and sign-in flow reliability improvements Introduces in-IDE issue reporting and recovery actions on error panels alongside reliability fixes for browser authentication and session stability. Improvements(1) In-IDE Feedback Reporting: Added direct issue reporting and retry actions to error views across chat, settings, and artifact panels. Fixes(2) Service Crash Recovery: Fixed an issue where unexpected service terminations were not detected and displayed across open tool views. Sign-In Experience: Fixed an issue…"
+        },
+        {
+          "date": "2026-11-19",
+          "version": "v2.8.0",
+          "text": "### Background update checks, instant startup, remote sign-in port forwarding, and Windows recovery fixes This release adds recurring background update checks with instant backend startup, automatic port forwarding for remote sign-in, keyboard shortcuts to search within conversations, and custom certificate and proxy support during sign-in. It also fixes Windows logoff recovery loops, multi-window task notification routing, and unintended backend binary downgrades or re-downloads. Improvements(7) Increased the default backend startup readiness timeout from 30 to 60 seconds to improve startup…"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F5",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.23.3",
+      "latest_date": "2026-11-20",
+      "new": [
+        {
+          "date": "2026-11-20",
+          "version": "v0.23.3",
+          "text": "# Hermes Agent v0.23.3 **Release Date:** November 19, 2026 > Patch release. This tag rolls up the ~370 PRs merged since v0.23.2 into a stable release for the GitHub release (CLI and installers), the Microsoft Store app, Docker and Hermes Cloud. Full curated notes for this window ship with v0.24.0. <!-- HERMES_BUILDS_TABLE --> ## About this release Measured at commit `caafe5389ae`, the window since v0.23.2 contains **1,657 non-merge commits** across **3,948 changed files** (+222,379 / −96,154), **370 merged PRs** and **60 closed issues**. Also in the window, undocumented here on purpose: one p…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F6",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-18",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F7",
+      "opened": true,
+      "reason": null,
+      "latest": "v4.1.26",
+      "latest_date": "2026-10-26",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F8",
+      "opened": true,
+      "reason": null,
+      "latest": "v2.1.0-vscode",
+      "latest_date": "2026-06-19",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F9",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.5.0",
+      "latest_date": "2026-11-09",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F10",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-20",
+      "new": [
+        {
+          "date": "2026-11-19",
+          "version": null,
+          "text": "MAL-0000-ghsa-malware-3e3dc06cacc0d8ae @claudeorg/universal-code-generator: Malware in @claudeorg/universal-code-generator"
+        },
+        {
+          "date": "2026-11-19",
+          "version": null,
+          "text": "MAL-0000-ghsa-malware-e592072a64081eeb @mibbp/agent-observer: Malware in @mibbp/agent-observer"
+        },
+        {
+          "date": "2026-11-20",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-2d80e7dc6878ebee gemini-computer-use: gemini-computer-use runs unpinned remote installer and starts a remote-controlled shell agent"
+        },
+        {
+          "date": "2026-11-20",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-5e9262ea9d7343df gemini-computer-use: Reverse-tunnel agent with boot persistence executes shell commands from hardcoded author-controlled control plane"
+        },
+        {
+          "date": "2026-11-20",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-73119ad8a8c521c3 gemini-computer-use: CLI pipes remote installer from author's Tailscale Funnel into shell and persists a network-driven bash_exec service"
+        },
+        {
+          "date": "2026-11-20",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-786ad22ac105f890 gemini-computer-use: require() of gemini-computer-use fetches and executes a remote installer from smart-server.online; package also exposes a remote-shell MCP tunnel to the same host"
+        },
+        {
+          "date": "2026-11-19",
+          "version": null,
+          "text": "MAL-0000-ghsa-malware-68351eaee0835e82 mrnima-openai-chatgpt-bot: Malware in mrnima-openai-chatgpt-bot"
+        }
+      ],
+      "ids": [
+        "MAL-0000-amazon-inspector-2d80e7dc6878ebee",
+        "MAL-0000-amazon-inspector-5e9262ea9d7343df",
+        "MAL-0000-amazon-inspector-73119ad8a8c521c3",
+        "MAL-0000-amazon-inspector-786ad22ac105f890",
+        "MAL-0000-ghsa-malware-3e3dc06cacc0d8ae",
+        "MAL-0000-ghsa-malware-68351eaee0835e82",
+        "MAL-0000-ghsa-malware-e592072a64081eeb"
+      ],
+      "read_with": "git"
+    },
+    {
+      "id": "F11",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.70.0",
+      "latest_date": "2026-11-19",
+      "new": [
+        {
+          "date": "2026-11-19",
+          "version": "v0.70.0",
+          "text": "## What's Changed * Changelog for v0.69.0-preview.0 by @gemini-cli-robot in https://github.com/google-gemini/gemini-cli/pull/30222 * Changelog for v0.68.0 by @gemini-cli-robot in https://github.com/google-gemini/gemini-cli/pull/30224 * chore(release): bump version to 0.70.0-nightly.20261110.g1603e9bab by @gemini-cli-robot in https://github.com/google-gemini/gemini-cli/pull/30223 * test(cli): remove redundant lowercase restart test in AdminSettingsChangedDialog by @luisfelipe-alt in https://github.com/google-gemini/gemini-cli/pull/30221 * fix(cli): preserve Unicode prompts and strip ANSI fragm…"
+        },
+        {
+          "date": "2026-11-19",
+          "version": "v0.69.0",
+          "text": "## What's Changed * fix(core,cli): preserve literal `$` characters during template placeholder replacement by @jesussamuel-byte in https://github.com/google-gemini/gemini-cli/pull/30136 * feat(cli): add /stats heatmap subcommand for daily token usage by @jvargassanchez-dot in https://github.com/google-gemini/gemini-cli/pull/30135 * fix(core): prevent __GCLI_EXPAND_TARGET__ env collision in expandEnvVars by @villahernandez-coder in https://github.com/google-gemini/gemini-cli/pull/30138 * chore(release): bump version to 0.69.0-nightly.20261104.g89e9d25d6 by @gemini-cli-robot in https://github.c…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F12",
+      "opened": true,
+      "reason": null,
+      "latest": "1.0.114",
+      "latest_date": "2026-11-18",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F13",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-17",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F14",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-20",
+      "new": [
+        {
+          "date": "2026-11-19",
+          "version": null,
+          "text": "GHSA-4rj4-rcrq-gr92 safari-mcp: Safari MCP: JavaScript injection through single-quoted tool arguments (backslash not escaped)"
+        },
+        {
+          "date": "2026-11-19",
+          "version": null,
+          "text": "GHSA-mx6p-3fg7-v6pj obsidian-sync-mcp: obsidian-sync-mcp: Missing Host/Origin validation lets a public website drive a victim's Obsidian vault via DNS rebinding (no-auth mode)"
+        },
+        {
+          "date": "2026-11-19",
+          "version": null,
+          "text": "GHSA-833v-v58w-294h @doist/todoist-mcp: Todoist MCP Server: Browser DNS rebinding lets websites write and delete Todoist data through local MCP server"
+        },
+        {
+          "date": "2026-11-19",
+          "version": null,
+          "text": "MAL-2026-20254 @mibbp/agent-observer: Malicious code in @mibbp/agent-observer (npm)"
+        },
+        {
+          "date": "2026-11-19",
+          "version": null,
+          "text": "MAL-2026-20214 @claudeorg/universal-code-generator: Malicious code in @claudeorg/universal-code-generator (npm)"
+        },
+        {
+          "date": "2026-11-19",
+          "version": null,
+          "text": "GHSA-2m9m-6cr5-9x25 @connorbritain/mssql-mcp-core, @connorbritain/mssql-mcp-reader, @connorbritain/mssql-mcp-writer, @connorbritain/mssql-mcp-server: mssql-mcp-core: SQL injection in mssql-mcp write tools via unparameterized table names and WHERE clauses"
+        },
+        {
+          "date": "2026-11-19",
+          "version": null,
+          "text": "MAL-2026-20155 mrnima-openai-chatgpt-bot: Malicious code in mrnima-openai-chatgpt-bot (npm)"
+        },
+        {
+          "date": "2026-11-20",
+          "version": null,
+          "text": "GHSA-9x8x-crjq-g64h jupyter-mcp-server: Jupyter MCP Server: Browser DNS rebinding can hijack the Jupyter backend through management routes"
+        },
+        {
+          "date": "2026-11-20",
+          "version": null,
+          "text": "GHSA-24pw-rf5p-mgp7 jupyter-mcp-server: Jupyter MCP Server: Unauthenticated management routes can hijack the Jupyter backend in standalone HTTP mode"
+        },
+        {
+          "date": "2026-11-19",
+          "version": null,
+          "text": "GHSA-qx49-fqc8-xw99 mcp, mcp: Model Context Protocol Python SDK: OAuth client could send credentials to an authorization server chosen by the MCP server"
+        },
+        {
+          "date": "2026-11-19",
+          "version": null,
+          "text": "GHSA-r7wg-f7r2-8wf7 axon-mcp: Axon: Download of Code Without Integrity Check in axon-mcp"
+        }
+      ],
+      "ids": [
+        "GHSA-24pw-rf5p-mgp7",
+        "GHSA-2m9m-6cr5-9x25",
+        "GHSA-4rj4-rcrq-gr92",
+        "GHSA-833v-v58w-294h",
+        "GHSA-9x8x-crjq-g64h",
+        "GHSA-mx6p-3fg7-v6pj",
+        "GHSA-qx49-fqc8-xw99",
+        "GHSA-r7wg-f7r2-8wf7",
+        "MAL-2026-20155",
+        "MAL-2026-20214",
+        "MAL-2026-20254"
+      ],
+      "read_with": "curl"
+    },
+    {
+      "id": "F15",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-19",
+      "new": [
+        {
+          "date": "2026-11-19",
+          "version": null,
+          "text": "CVE-2026-133161 [MCP]: ### Summary ui With `strip_ansi=True`, Pydantic AI Harness's `ToolOutputLimits` capability removes ANSI escape sequences from tool output with a pattern that takes time quadratic in the length of a line. A tool result of a few hundred kilobytes, crafted with many unterminated escape sequences, can occupy the event loop for tens of seconds to minutes, delaying every other request and agent run in the process. ### Details This affects applications that set `strip_ansi=True` on `ToolOutputLimits` (named `OverflowingToolOutput` before 0.13.0) and run tools whose output an a…"
+        },
+        {
+          "date": "2026-11-19",
+          "version": null,
+          "text": "CVE-2026-99329 [MCP]: In the Linux kernel, the following vulnerability has been resolved: HID: mcp2221: always initialize and cancel init_work The writable gpio_mode_enforce parameter can change between probe and remove. If it changes from false to true after probe, remove skips cancellation of init_work. Pending or running work can then access devm-managed driver state after teardown. Changing it from true to false can make remove cancel an uninitialized delayed work item. Initialize init_work whenever IIO is reachable and cancel it unconditionally on remove. Keep the parameter check only fo…"
+        },
+        {
+          "date": "2026-11-19",
+          "version": null,
+          "text": "CVE-2026-99330 [MCP]: In the Linux kernel, the following vulnerability has been resolved: HID: mcp2200: validate READ_ALL response length The HID core invokes raw_event callbacks before validating the report length. mcp2200_raw_event() casts a READ_ALL response to struct mcp_read_all_resp and reads fields through offset ten without checking that the response contains the structure. A one-byte READ_ALL response reproduced the issue under KASAN: BUG: KASAN: slab-out-of-bounds in mcp2200_raw_event+0x24b/0x3a0 Read of size 1 by task hidtrigger/89 Call Trace: mcp2200_raw_event+0x24b/0x3a0 kasan_re…"
+        },
+        {
+          "date": "2026-11-19",
+          "version": null,
+          "text": "CVE-2026-77318 [MCP]: Jupyter MCP Server is a Model Context Protocol server for Jupyter. Prior to 1.0.3, standalone streamable-http mode can enforce MCP_TOKEN on /mcp while leaving the state-changing /api/connect and /api/stop management routes unauthenticated. An unauthenticated network caller can use /api/connect to replace runtime_url and document_url values and their tokens, reset ServerContext, and start a kernel client against attacker-controlled infrastructure, causing the server to send Jupyter API and WebSocket traffic to that backend. The caller can also use /api/stop to stop the cu…"
+        },
+        {
+          "date": "2026-11-19",
+          "version": null,
+          "text": "CVE-2026-77359 [MCP]: Jupyter MCP Server is a Model Context Protocol server for Jupyter. Prior to 1.0.3, standalone streamable-http mode validates Host and Origin values for /mcp but does not apply the same browser-origin controls to the state-changing /api/connect and /api/stop management routes. A malicious website can use DNS rebinding so that its hostname resolves to a loopback, LAN, VPN, or published-container MCP listener, then send a browser-shaped request that /api/connect accepts to replace runtime_url and document_url values and start a kernel client against attacker-controlled infr…"
+        },
+        {
+          "date": "2026-11-19",
+          "version": null,
+          "text": "CVE-2026-77314 [MCP]: Flyto2 Core is an execution kernel for automation and AI-agent workflows. Prior to 2.26.8, the MCP run_recipe tool in src/core/mcp_handler.py accepts a caller-controlled recipe_name that load_recipe() in src/cli/recipe.py appends to the src/recipes path without resolved-path containment. Parent-directory segments can therefore make Flyto load and execute a YAML workflow outside the bundled recipe directory, bypassing the boundary represented by list_recipes(). This does not necessarily provide unrestricted code execution because available workflow modules remain subject…"
+        },
+        {
+          "date": "2026-11-19",
+          "version": null,
+          "text": "CVE-2026-99390 [Cursor]: In the Linux kernel, the following vulnerability has been resolved: xfs: fix correction of unwritten extents in quota file data fork LOLLM noticed a couple of problems with the code that fixes unwritten mappings in the quota file's data fork: first, we should zero the ondisk contents as part of converting them to \"unwritten\" just in case we crash shortly after the conversion. Second, and more importantly, it noticed that we fail to resynchronize the iext tree cursor after modifying the iext tree. If the tree shape changes, we could be in a world of hurt. Third, we sho…"
+        },
+        {
+          "date": "2026-11-19",
+          "version": null,
+          "text": "CVE-2026-99556 [Cursor]: In the Linux kernel, the following vulnerability has been resolved: ksmbd: serialize directory emptiness checks with readdir SMB2 QUERY_DIRECTORY holds fp->readdir_lock while it calls iterate_dir() on fp->filp. An SMB2 SET_INFO request with FILE_DISPOSITION_INFORMATION can resolve the same FileId and call ksmbd_vfs_empty_dir() on the same filp without that lock. iterate_dir()'s inode read lock permits concurrent readers and does not serialize per-file iterator state. ext4 stores its dx readdir cursor and fname RB tree in file->private_data. Concurrent reset or refill…"
+        }
+      ],
+      "ids": [
+        "CVE-2026-133161",
+        "CVE-2026-77314",
+        "CVE-2026-77318",
+        "CVE-2026-77359",
+        "CVE-2026-99329",
+        "CVE-2026-99330",
+        "CVE-2026-99390",
+        "CVE-2026-99556"
+      ],
+      "read_with": "curl"
+    },
+    {
+      "id": "F16",
+      "opened": true,
+      "reason": null,
+      "latest": "v2.3.2",
+      "latest_date": "2026-11-18",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F17",
+      "opened": true,
+      "reason": null,
+      "latest": "0.13.0",
+      "latest_date": "2026-11-19",
+      "new": [
+        {
+          "date": "2026-11-19",
+          "version": "0.13.0",
+          "text": "0.13.0Crew ## Conductor Mode for Everyone and Replies From Anywhere Kiro Crew 0.13.0 turns on conductor mode, formerly Ultra Mode, in every standard build. You can answer a session that needs you from the sidebar or your own chat app, see the next update before it arrives, and reopen, fork, and optimize chats. The Files and Git panels lead with what the agent changed, and Bots choose their own harness. ## Before You Upgrade These changes rename, move, or change the default of controls you may use today: Ultra Mode is now conductor mode. It has left Settings → Developer → Feature Previews and…"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F18",
+      "opened": true,
+      "reason": null,
+      "latest": "v3.14.30825",
+      "latest_date": "2026-11-18",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F19",
+      "opened": true,
+      "reason": null,
+      "latest": "v1.60.1",
+      "latest_date": "2026-11-17",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F20",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-16",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F21",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-08-19",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F22",
+      "opened": true,
+      "reason": null,
+      "latest": "v2026.11.6",
+      "latest_date": "2026-11-19",
+      "new": [
+        {
+          "date": "2026-11-19",
+          "version": "v2026.11.6",
+          "text": "## 2026.11.6 ### Highlights - **Smoother upgrades:** bridge the 2026.11.5 updater to the current release path and validate staged plugin dependencies correctly on Windows. (#200662, #200595) Authored by @steipete. Thanks @RomneyDa and @desksk. - **More resilient conversations:** keep subagent and background turns running through configuration edits, and deliver final answers when a Gateway restart interrupted sending. (#200516, #200553) Thanks @obviyus and @RomneyDa. - **Lighter, more responsive Gateway:** reduce startup memory pressure and resident memory on constrained hosts, defer unused l…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F23",
+      "opened": true,
+      "reason": null,
+      "latest": "1.2.24",
+      "latest_date": "2026-11-20",
+      "new": [
+        {
+          "date": "2026-11-20",
+          "version": "1.2.24",
+          "text": "Changes since 1.2.23 * release(langgraph): 1.2.24 (#9752) * fix(langgraph): handle `REMOVE_ALL_MESSAGES` in `_messages_delta_reducer` and `None` checkpoints in `DeltaChannel` (#9735)"
+        },
+        {
+          "date": "2026-11-19",
+          "version": "1.2.23",
+          "text": "Changes since 1.2.22 * release(langgraph): 1.2.23 (#9742) * release(prebuilt): 1.1.3 (#9741) * fix(langgraph,prebuilt): give Send-dispatched tool calls the same state as an edge (#9728) * chore(deps): bump opentelemetry-api from 1.45.1 to 1.45.2 in /libs/langgraph (#9696) * fix(langgraph): avoid warning races in dynamic schemas (#9716)"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F24",
+      "opened": true,
+      "reason": null,
+      "latest": "1.15.44",
+      "latest_date": "2026-11-19",
+      "new": [
+        {
+          "date": "2026-11-19",
+          "version": "1.15.44",
+          "text": "## What's Changed ### Features - Add capability to save files as versioned, shareable artifacts. ### Bug Fixes - Fix inline agent and crew action references relative to the flow file. - Stop duplicating kept separators when merging chunks. - Isolate nested defaults from a shared flow declaration. - Restrict Pillow to PNG, JPEG, GIF, and WEBP when opening images. - Reset cache eviction order on clear. - Treat a docs path on GitHub as a repository. - Exit with the script's status when crewai train fails. - Relax av pin to ensure current FFmpeg installs. - Keep a deeply nested span that the run…"
+        },
+        {
+          "date": "2026-11-19",
+          "version": "1.15.43",
+          "text": "## What's Changed ### Bug Fixes - Fix detection of multimodal support for Claude 5. ### Documentation - Update snapshot and changelog for v1.15.42. ## Contributors @Vidit-Ostwal, @anubhavlal07, @joaomdmoura"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F25",
+      "opened": false,
+      "reason": "git ls-remote: exit 128: remote: Repository not found.\nfatal: repository 'https://github.com/microsoft/agent-framework.git/' not found",
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F26",
+      "opened": true,
+      "reason": null,
+      "latest": "2026-07-28",
+      "latest_date": "2026-07-28",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F27",
+      "opened": true,
+      "reason": null,
+      "latest": "1.147",
+      "latest_date": "2026-11-18",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F28",
+      "opened": true,
+      "reason": null,
+      "latest": "2026.11.18",
+      "latest_date": "2026-11-18",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F29",
+      "opened": true,
+      "reason": null,
+      "latest": "1.4.18",
+      "latest_date": "2026-11-20",
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "date_is_detection": true
+    },
+    {
+      "id": "F31",
+      "opened": true,
+      "reason": null,
+      "latest": "n8n@3.3.0",
+      "latest_date": "2026-11-17",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F32",
+      "opened": true,
+      "reason": null,
+      "latest": "v3.4.18",
+      "latest_date": "2026-11-10",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F33",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.28.0",
+      "latest_date": "2026-11-17",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F34",
+      "opened": true,
+      "reason": null,
+      "latest": "@moonshot-ai/kimi-code@2.7.0",
+      "latest_date": "2026-11-19",
+      "new": [
+        {
+          "date": "2026-11-19",
+          "version": "@moonshot-ai/kimi-code@2.7.0",
+          "text": "### Minor Changes - [#4895](https://github.com/MoonshotAI/kimi-code/pull/4895) [`88e3c20`](https://github.com/MoonshotAI/kimi-code/commit/88e3c20739a20a9a4003e366db7ecad9b88e10bd) Thanks [@sailist](https://github.com/sailist)! - Add support for Amazon Bedrock providers, configured with `type = \"bedrock\"` and `AWS_REGION`. - [#4754](https://github.com/MoonshotAI/kimi-code/pull/4754) [`482936a`](https://github.com/MoonshotAI/kimi-code/commit/482936afceaec4d513aa28f7b7e6b461e35e105f) Thanks [@sailist](https://github.com/sailist)! - Add experimental next-prompt predictions in the TUI after comple…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F35",
+      "opened": true,
+      "reason": null,
+      "latest": "v2.184.0",
+      "latest_date": "2026-11-13",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F36",
+      "opened": true,
+      "reason": null,
+      "latest": "1.41.1",
+      "latest_date": "2026-11-20",
+      "new": [
+        {
+          "date": "2026-11-20",
+          "version": "1.41.1",
+          "text": "### 企业设备账号管控 功能 企业设备账号管控：企业 IT 可通过系统托管配置，限制设备仅允许登录指定企业的账号。 会话内查找：按 Ctrl/Cmd+F 搜索当前会话，支持区分大小写、全词匹配和正则表达式，快速定位历史内容。 优化 悬停在已发送的消息上即可复制，粘贴回输入框时保留引用文件等附件标签，方便修改后重新发送。 加快大仓库中通过 @ 搜索和引用文件的速度，减少等待。 缩短部分模型的上下文压缩耗时，提升长对话的流畅度。 优化文件上下文的使用，按需读取附件，并结合对话判断当前打开的文件是否相关。 缩短网页登录成功后返回 IDE 完成认证的等待时间。 修复 修复 Windows 启动和退出时的卡顿，以及服务重新连接后历史会话无法自动恢复的问题。 修复文件保存失败后 Agent 继续编辑或重试，以及 Hook 拦截后文件占用和“生成中”状态残留的问题。 修复 Agent 新建后又删除的文件仍留在 Review 列表、导致审查页无法打开的问题。 修复终端输出导致内存持续增长的问题，提升长时间使用的稳定性。 修复企业模型与官方模型同名时选择错误的问题，并在切换模型和恢复会话时保留明确选择的企业模型。"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F37",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.86.2",
+      "latest_date": "2026-02-12",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F38",
+      "opened": true,
+      "reason": null,
+      "latest": "v1.42.0",
+      "latest_date": "2026-11-18",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F39",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-18",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F40",
+      "opened": true,
+      "reason": null,
+      "latest": "2026.11.12",
+      "latest_date": "2026-11-12",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F41",
+      "opened": true,
+      "reason": null,
+      "latest": "26.11.2",
+      "latest_date": "2026-11-18",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F42",
+      "opened": true,
+      "reason": null,
+      "latest": "v7.8.31",
+      "latest_date": "2026-11-19",
+      "new": [
+        {
+          "date": "2026-11-19",
+          "version": "v7.8.31",
+          "text": "## VS Code ### Minor Changes - [#16342](https://github.com/Kilo-Org/kilocode/pull/16342) [`182a5f9`](https://github.com/Kilo-Org/kilocode/commit/182a5f9f501d4d2bff2b5a4372d6f06065cf9904) - Change the Kilo telemetry preference from VS Code's About tab or the core telemetry API. Telemetry stays off if Kilo config, VS Code, or the environment disables it. ## CLI ### Minor Changes - [#16342](https://github.com/Kilo-Org/kilocode/pull/16342) [`182a5f9`](https://github.com/Kilo-Org/kilocode/commit/182a5f9f501d4d2bff2b5a4372d6f06065cf9904) - Change the Kilo telemetry preference from VS Code's About t…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F44",
+      "opened": true,
+      "reason": null,
+      "latest": "v1.0.89",
+      "latest_date": "2026-11-17",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F45",
+      "opened": true,
+      "reason": null,
+      "latest": "v1.2.3",
+      "latest_date": "2026-11-18",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F46",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "watched": [
+        "Grok Bot › - [Reference](https://docs.x.ai/grok-bot/settings-and-notifications.md)"
+      ],
+      "date_is_detection": true
+    },
+    {
+      "id": "F47",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "watched": [],
+      "date_is_detection": true
+    },
+    {
+      "id": "F48",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F49",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F50",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F51",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F52",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F53",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F54",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F55",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F56",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F57",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": [
+        "use their own permission checks",
+        "They don't cover servers you start independently",
+        "provides Git authentication to sandboxed processes"
+      ]
+    },
+    {
+      "id": "F58",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F59",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F60",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F61",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F62",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    }
+  ],
+  "opened": 59,
+  "total": 60
+}
