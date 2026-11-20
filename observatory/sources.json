@@ -1096,6 +1096,70 @@
       "public_url": "https://code.claude.com/docs/en/settings-reference",
       "fragile": false,
       "notes": "GTM-175 (Albert, 17-11): second source of the Claude Code template, for the default of sandbox.autoAllowBashIfSandboxed (the sandboxing page no longer says it). Watch only, like F48-F61: a missing string goes to missing, and the template on /sandbox/ shows «Por revisar». Not a changelog: it never goes to checked or not_checked of the daily."
+    },
+    {
+      "id": "F63",
+      "name": "Orca",
+      "scope": "orca",
+      "method": "git-tags",
+      "read": {
+        "git": "https://github.com/stablyai/orca.git",
+        "tags": "v*",
+        "notes": [
+          "github-api"
+        ]
+      },
+      "public_url": "https://github.com/stablyai/orca/releases",
+      "fragile": false,
+      "notes": "GTM-191 (Albert, 20-11). Tag pattern v* skips _gh-attach-assets."
+    },
+    {
+      "id": "F64",
+      "name": "Paseo",
+      "scope": "paseo",
+      "method": "git-tags",
+      "read": {
+        "git": "https://github.com/getpaseo/paseo.git",
+        "tags": "v*",
+        "notes": [
+          "github-api"
+        ]
+      },
+      "public_url": "https://github.com/getpaseo/paseo/releases",
+      "fragile": false,
+      "notes": "GTM-191 (Albert, 20-11)."
+    },
+    {
+      "id": "F65",
+      "name": "Claude Squad",
+      "scope": "claude-squad",
+      "method": "git-tags",
+      "read": {
+        "git": "https://github.com/smtg-ai/claude-squad.git",
+        "tags": "v*",
+        "notes": [
+          "github-api"
+        ]
+      },
+      "public_url": "https://github.com/smtg-ai/claude-squad/releases",
+      "fragile": false,
+      "notes": "GTM-191 (Albert, 20-11)."
+    },
+    {
+      "id": "F66",
+      "name": "Paradev",
+      "scope": "paradev",
+      "method": "git-tags",
+      "read": {
+        "git": "https://github.com/ParadevAI/Paradev.git",
+        "tags": "desktop-v*",
+        "notes": [
+          "github-api"
+        ]
+      },
+      "public_url": "https://github.com/ParadevAI/Paradev/releases",
+      "fragile": false,
+      "notes": "GTM-191 (Albert, 20-11). Desktop app tags only (desktop-v*): cli-v* and the plugin tags (name@N) are other packages."
     }
   ]
 }

@@ -5,6 +5,7 @@
     "name": "Paperclip",
     "vendor": "Paperclip",
     "kinds": [
+      "orchestrator",
       "agent_tooling"
     ],
     "platforms": [
@@ -15,7 +16,22 @@
     "rosmarops": {
       "status": "not_supported"
     },
-    "reviewed_at": "2026-11-19"
+    "reviewed_at": "2026-11-20",
+    "sources": [
+      {
+        "field": "kinds",
+        "source": {
+          "url": "https://github.com/paperclipai/paperclip/blob/201abacd6ee5bc5d92cfa3c6c24263678ccbceae/README.md#L39-L43",
+          "official": true,
+          "accessed_at": "2026-11-20"
+        },
+        "verified": {
+          "by": "writer",
+          "at": "2026-11-20",
+          "how": "official_code"
+        }
+      }
+    ]
   },
   "versions": [],
   "changes": [],

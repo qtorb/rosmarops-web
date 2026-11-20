@@ -5,7 +5,7 @@
     "name": "n8n",
     "vendor": "n8n",
     "kinds": [
-      "agent_tooling"
+      "workflow_automation"
     ],
     "platforms": [
       "windows",
@@ -18,7 +18,22 @@
       "status": "detected",
       "since_version": "0.7.7"
     },
-    "reviewed_at": "2026-11-06"
+    "reviewed_at": "2026-11-20",
+    "sources": [
+      {
+        "field": "kinds",
+        "source": {
+          "url": "https://github.com/n8n-io/n8n/blob/28b1d8ad1ac3ac2ad0db6f2f4e616926996a8807/README.md#L3-L5",
+          "official": true,
+          "accessed_at": "2026-11-20"
+        },
+        "verified": {
+          "by": "writer",
+          "at": "2026-11-20",
+          "how": "official_code"
+        }
+      }
+    ]
   },
   "versions": [],
   "changes": [],

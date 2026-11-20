@@ -68,3 +68,51 @@ class WhoDecidesUnknown(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class Families(unittest.TestCase):
+    """GTM-191 (signed by Albert 20-11 07:08): the five families in order, and every new file with its source."""
+
+    AGENTS = {p.stem: json.loads(p.read_text(encoding="utf-8")) for p in (ROOT / "observatory/data/agents").glob("*.json")}
+    NEW = ("orca", "paseo", "claude-squad", "paradev")
+
+    def test_order(self):
+        self.assertEqual(build.FAMILIES, ("local", "orchestrators", "tooling", "automation", "cloud"))
+        self.assertEqual(list(build.FAMILY_H2), list(build.FAMILIES))
+
+    def test_family_of_each_kind(self):
+        f = lambda kinds, fp="yes", i="x": build.family({"agent": {"id": i, "kinds": kinds, "local_footprint": fp}})
+        self.assertEqual(f(["orchestrator", "agent_tooling"]), "orchestrators")
+        self.assertEqual(f(["framework"]), "tooling")
+        self.assertEqual(f(["agent_tooling"]), "tooling")
+        self.assertEqual(f(["workflow_automation"], "no"), "automation")
+        self.assertEqual(f(["cloud"], "no"), "cloud")
+        self.assertEqual(f(["cli"]), "local")
+        self.assertEqual(build.family(self.AGENTS["paperclip"]), "orchestrators")
+        self.assertEqual(build.family(self.AGENTS["n8n"]), "automation")
+
+    def test_index_lists_follow_the_order(self):
+        names = {"en": json.loads((ROOT / "observatory/i18n/en.json").read_text(encoding="utf-8"))}["en"]
+        page = (ROOT / "site/observatory/index.html").read_text(encoding="utf-8")
+        lists = [names[build.FAMILY_H2[f]] for f in build.FAMILIES
+                 if f == "local" or any(build.family(a) == f for a in self.AGENTS.values())]
+        found = [n for n in lists if f'"@type":"ItemList","name":"{n}"' in page]
+        self.assertEqual(found, lists)
+        self.assertEqual(sorted(found, key=lambda n: page.index(f'"@type":"ItemList","name":"{n}"')), lists)
+
+    def test_new_files_have_a_source(self):
+        sources = json.loads((ROOT / "observatory/sources.json").read_text(encoding="utf-8"))["sources"]
+        scopes = {s["scope"] for s in sources}
+        for i in self.NEW:
+            a = self.AGENTS[i]
+            self.assertIn(i, scopes, i)
+            self.assertIn("orchestrator", a["agent"]["kinds"], i)
+            self.assertEqual(a["agent"]["rosmarops"]["status"], "not_supported", i)
+            for s in a.get("surfaces", []) + a["agent"].get("sources", []):
+                self.assertTrue(s["source"]["official"], i)
+                self.assertIn(s["verified"]["how"], ("official_doc", "official_code"), i)
+
+    def test_h1_key(self):
+        self.assertEqual(build.h1_key(self.AGENTS["paperclip"]["agent"]), "agent.h1_orchestrator")
+        self.assertEqual(build.h1_key(self.AGENTS["kanvas"]["agent"]), "agent.h1_tool")
+        self.assertEqual(build.h1_key(self.AGENTS["claude-code"]["agent"]), "agent.h1")

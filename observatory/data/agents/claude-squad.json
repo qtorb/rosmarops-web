@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "agent": {
+    "id": "claude-squad",
+    "name": "Claude Squad",
+    "vendor": "smtg-ai",
+    "kinds": [
+      "orchestrator"
+    ],
+    "platforms": [
+      "macos",
+      "linux"
+    ],
+    "local_footprint": "yes",
+    "rosmarops": {
+      "status": "not_supported"
+    },
+    "reviewed_at": "2026-11-20",
+    "sources": [
+      {
+        "field": "platforms",
+        "source": {
+          "url": "https://github.com/smtg-ai/claude-squad/blob/070eb9387cda2be2e64aa1a32ee81be160c457a1/install.sh#L183-L208",
+          "official": true,
+          "accessed_at": "2026-11-20"
+        },
+        "verified": {
+          "by": "writer",
+          "at": "2026-11-20",
+          "how": "official_code"
+        }
+      }
+    ]
+  },
+  "versions": [],
+  "changes": [],
+  "ratings": [],
+  "surfaces": [
+    {
+      "surface": "subagents",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://github.com/smtg-ai/claude-squad/blob/070eb9387cda2be2e64aa1a32ee81be160c457a1/README.md#L3",
+        "official": true,
+        "accessed_at": "2026-11-20"
+      },
+      "verified": {
+        "by": "writer",
+        "at": "2026-11-20",
+        "how": "official_code"
+      }
+    },
+    {
+      "surface": "permission_modes",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://github.com/smtg-ai/claude-squad/blob/070eb9387cda2be2e64aa1a32ee81be160c457a1/main.go#L151-L152",
+        "official": true,
+        "accessed_at": "2026-11-20"
+      },
+      "verified": {
+        "by": "writer",
+        "at": "2026-11-20",
+        "how": "official_code"
+      }
+    }
+  ]
+}
