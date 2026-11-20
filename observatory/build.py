@@ -428,6 +428,7 @@ def page(lang, t, *, path, title, description, alternates, jsonld, body, og_type
     footer = (
         '<footer><div class="wrap">\n<nav>'
         + links
+        + templates_footer_link(lang)  # GTM-190
         + f'<a href="{esc(t.text("site.footer.privacy_url"))}">{t("site.footer.privacy")}</a>'
         + f'<a href="{esc(t.text("site.footer.legal_url"))}">{t("site.footer.legal")}</a>'  # GTM-130
         + f'<a href="{esc(t.text("site.footer.terms_url"))}">{t("site.footer.terms")}</a>'
@@ -443,6 +444,12 @@ def page(lang, t, *, path, title, description, alternates, jsonld, body, og_type
         "",
     ]
     return "\n".join(head) + "\n" + header + "\n\n<main><div class=\"wrap\">\n" + body + "\n</div></main>\n\n" + footer + "\n" + "\n".join(tail)
+
+
+def templates_footer_link(lang):
+    """GTM-190: the footer link to the template pages (English index), with the label of the language."""
+    import templates_section
+    return templates_section.footer_link(lang)
 
 
 def write(path, content):
@@ -934,6 +941,11 @@ def build_sitemap(agents):
     xlast = max((t["source"]["accessed_at"] for a in agents for t in (a.get("templates") or {}).values()), default=None)
     xmod = f"<lastmod>{xlast}</lastmod>" if xlast else ""
     lines += [f"  <url><loc>{BASE}{sandbox_section.SECTION_PATH[l]}</loc>{xmod}{xalts}</url>" for l in LANGS]
+    import templates_section  # GTM-190: the template question pages, English and Spanish
+    for tpaths, _ in templates_section.all_paths():
+        talts = "".join(f'<xhtml:link rel="alternate" hreflang="{l}" href="{BASE}{tpaths[l]}"/>' for l in templates_section.LANGS)
+        talts += f'<xhtml:link rel="alternate" hreflang="x-default" href="{BASE}{tpaths["en"]}"/>'
+        lines += [f"  <url><loc>{BASE}{tpaths[l]}</loc>{talts}</url>" for l in templates_section.LANGS]
     dalts = "".join(f'<xhtml:link rel="alternate" hreflang="{l}" href="{BASE}{DAILY_PATH[l]}"/>' for l in LANGS)
     dalts += f'<xhtml:link rel="alternate" hreflang="x-default" href="{BASE}{DAILY_PATH["en"]}"/>'
     lines += [f"  <url><loc>{BASE}{DAILY_PATH[l]}</loc>{dalts}</url>" for l in LANGS]
@@ -970,6 +982,9 @@ def build_llms(agents, t_en):
             ag = a["agent"]
             h1 = t_en.text(h1_key(ag), agent=ag["name"])
             lines.append(f"- [{h1}]({BASE}{agent_path('en', ag['id'])}): observatory page, with its data at {BASE}{JSON_BASE}{ag['id']}.json")
+    import templates_section  # GTM-190: the three questions, with their address
+    tt = templates_section.texts()["en"]
+    lines += [f"- [{tt[p]}]({BASE}{templates_section.PAGES[p]['en']})" for p in templates_section.PAGES]
     lines.append(LL_END)
     block = "\n".join(lines)
     if LL_START in txt:
@@ -1047,11 +1062,11 @@ ABOUT_PAGES = {
 }
 ABOUT_NAV = {
     "en": ('<a href="/blog/">Blog</a><a href="/blog/about/">About</a><a href="/observatory/">Observatory</a><a href="/sandbox/">Sandbox</a><a href="/methodology/">Methodology</a><a href="/faq/">FAQ</a>',
-           '<a href="/privacy/">Privacy</a><a href="/legal-notice/">Legal notice</a><a href="/terms/">Terms</a><a href="#" data-cc="show-preferencesModal">Cookie settings</a>', "/"),
+           '<a href="/templates/">Templates</a><a href="/privacy/">Privacy</a><a href="/legal-notice/">Legal notice</a><a href="/terms/">Terms</a><a href="#" data-cc="show-preferencesModal">Cookie settings</a>', "/"),
     "es": ('<a href="/es/blog/">Blog</a><a href="/es/blog/que-es-rosmarops/">Acerca de</a><a href="/es/observatorio/">Observatorio</a><a href="/es/sandbox/">Sandbox</a><a href="/es/metodologia/">Metodología</a><a href="/es/preguntas-frecuentes/">Preguntas</a>',
-           '<a href="/es/privacidad/">Privacidad</a><a href="/es/aviso-legal/">Aviso legal</a><a href="/es/terminos/">Términos</a><a href="#" data-cc="show-preferencesModal">Configurar cookies</a>', "/es/"),
+           '<a href="/templates/">Plantillas</a><a href="/es/privacidad/">Privacidad</a><a href="/es/aviso-legal/">Aviso legal</a><a href="/es/terminos/">Términos</a><a href="#" data-cc="show-preferencesModal">Configurar cookies</a>', "/es/"),
     "ca": ('<a href="/ca/blog/">Bloc</a><a href="/ca/blog/que-es-rosmarops/">Quant a</a><a href="/ca/observatori/">Observatori</a><a href="/ca/sandbox/">Sandbox</a><a href="/ca/metodologia/">Metodologia</a><a href="/ca/preguntes-frequents/">Preguntes</a>',
-           '<a href="/ca/privadesa/">Privadesa</a><a href="/ca/avis-legal/">Avís legal</a><a href="/ca/termes/">Termes</a><a href="#" data-cc="show-preferencesModal">Configura les galetes</a>', "/ca/"),
+           '<a href="/templates/">Plantilles</a><a href="/ca/privadesa/">Privadesa</a><a href="/ca/avis-legal/">Avís legal</a><a href="/ca/termes/">Termes</a><a href="#" data-cc="show-preferencesModal">Configura les galetes</a>', "/ca/"),
 }
 ABOUT_SWITCH_LABEL = {"en": "English", "es": "Español", "ca": "Català"}
 
@@ -1179,6 +1194,8 @@ def main():
         import agent_lists
         agent_lists.render()
         build_static_about()
+        import templates_section  # GTM-190: /templates/ and /es/plantillas/ (shell: the guide of each language), before
+        templates_section.build(SITE)  # the «Sandbox» section, whose link to them shows only once they exist (GTM-194 §3.4)
         import sandbox_section  # GTM-175: /sandbox/, /es/sandbox/, /ca/sandbox/ (shell: the guide of each language)
         sandbox_section.build(agents, SITE)
     pages = 0
