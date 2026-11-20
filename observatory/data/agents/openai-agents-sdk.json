@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "agent": {
+    "id": "openai-agents-sdk",
+    "name": "OpenAI Agents SDK",
+    "vendor": "OpenAI",
+    "kinds": [
+      "framework"
+    ],
+    "platforms": [
+      "python"
+    ],
+    "local_footprint": "yes",
+    "rosmarops": {
+      "status": "not_supported"
+    },
+    "reviewed_at": "2026-11-20",
+    "sources": [
+      {
+        "field": "platforms",
+        "source": {
+          "url": "https://github.com/openai/openai-agents-python/blob/6c4e4a29cd08eef454db6980d74da6afc8939d24/pyproject.toml#L6",
+          "official": true,
+          "accessed_at": "2026-11-20"
+        },
+        "verified": {
+          "by": "writer",
+          "at": "2026-11-20",
+          "how": "official_code"
+        }
+      }
+    ],
+    "notes": [
+      {
+        "code": "tracing_enabled_by_default",
+        "source": {
+          "url": "https://github.com/openai/openai-agents-python/blob/6c4e4a29cd08eef454db6980d74da6afc8939d24/docs/tracing.md#L7-L9",
+          "official": true,
+          "accessed_at": "2026-11-20"
+        },
+        "verified": {
+          "by": "writer",
+          "at": "2026-11-20",
+          "how": "official_code"
+        }
+      },
+      {
+        "code": "traces_sent_to_openai_with_inputs_and_outputs",
+        "source": {
+          "url": "https://github.com/openai/openai-agents-python/blob/6c4e4a29cd08eef454db6980d74da6afc8939d24/docs/tracing.md#L145-L160",
+          "official": true,
+          "accessed_at": "2026-11-20"
+        },
+        "verified": {
+          "by": "writer",
+          "at": "2026-11-20",
+          "how": "official_code"
+        }
+      }
+    ]
+  },
+  "versions": [],
+  "changes": [],
+  "ratings": [],
+  "surfaces": [
+    {
+      "surface": "mcp",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://github.com/openai/openai-agents-python/blob/6c4e4a29cd08eef454db6980d74da6afc8939d24/docs/mcp.md#L1",
+        "official": true,
+        "accessed_at": "2026-11-20"
+      },
+      "verified": {
+        "by": "writer",
+        "at": "2026-11-20",
+        "how": "official_code"
+      }
+    },
+    {
+      "surface": "subagents",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://github.com/openai/openai-agents-python/blob/6c4e4a29cd08eef454db6980d74da6afc8939d24/docs/handoffs.md#L1",
+        "official": true,
+        "accessed_at": "2026-11-20"
+      },
+      "verified": {
+        "by": "writer",
+        "at": "2026-11-20",
+        "how": "official_code"
+      }
+    }
+  ]
+}

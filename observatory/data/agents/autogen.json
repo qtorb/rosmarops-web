@@ -16,7 +16,7 @@
     "rosmarops": {
       "status": "not_supported"
     },
-    "reviewed_at": "2026-10-30",
+    "reviewed_at": "2026-11-20",
     "sources": [
       {
         "field": "name",
@@ -28,6 +28,21 @@
         "verified": {
           "by": "advisor",
           "at": "2026-11-07",
+          "how": "official_code"
+        }
+      }
+    ],
+    "notes": [
+      {
+        "code": "autogen_archived",
+        "source": {
+          "url": "https://github.com/microsoft/autogen/blob/8390985108cb1e3881f5f7297765758d8ad2540c/README.md#L19-L31",
+          "official": true,
+          "accessed_at": "2026-11-20"
+        },
+        "verified": {
+          "by": "writer",
+          "at": "2026-11-20",
           "how": "official_code"
         }
       }

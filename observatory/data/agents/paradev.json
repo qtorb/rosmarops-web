@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "agent": {
+    "id": "paradev",
+    "name": "Paradev",
+    "vendor": "ParadevAI",
+    "kinds": [
+      "orchestrator"
+    ],
+    "platforms": [
+      "macos",
+      "linux"
+    ],
+    "local_footprint": "yes",
+    "rosmarops": {
+      "status": "not_supported"
+    },
+    "reviewed_at": "2026-11-20",
+    "sources": [
+      {
+        "field": "platforms",
+        "source": {
+          "url": "https://github.com/ParadevAI/Paradev/blob/20d863914ab1d8005bc67becedd63d934262f015/README.md#L33",
+          "official": true,
+          "accessed_at": "2026-11-20"
+        },
+        "verified": {
+          "by": "writer",
+          "at": "2026-11-20",
+          "how": "official_code"
+        }
+      }
+    ]
+  },
+  "versions": [],
+  "changes": [],
+  "ratings": [],
+  "surfaces": [
+    {
+      "surface": "mcp",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://github.com/ParadevAI/Paradev/blob/20d863914ab1d8005bc67becedd63d934262f015/packages/agent-setup/src/managed-mcp-servers.ts#L18-L21",
+        "official": true,
+        "accessed_at": "2026-11-20"
+      },
+      "verified": {
+        "by": "writer",
+        "at": "2026-11-20",
+        "how": "official_code"
+      }
+    },
+    {
+      "surface": "subagents",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://github.com/ParadevAI/Paradev/blob/20d863914ab1d8005bc67becedd63d934262f015/README.md#L31",
+        "official": true,
+        "accessed_at": "2026-11-20"
+      },
+      "verified": {
+        "by": "writer",
+        "at": "2026-11-20",
+        "how": "official_code"
+      }
+    },
+    {
+      "surface": "permission_modes",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://github.com/ParadevAI/Paradev/blob/20d863914ab1d8005bc67becedd63d934262f015/packages/shared/src/builtin-terminal-agents.ts#L60-L70",
+        "official": true,
+        "accessed_at": "2026-11-20"
+      },
+      "verified": {
+        "by": "writer",
+        "at": "2026-11-20",
+        "how": "official_code"
+      }
+    }
+  ]
+}

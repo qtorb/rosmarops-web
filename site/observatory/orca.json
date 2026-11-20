@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "agent": {
+    "id": "orca",
+    "name": "Orca",
+    "vendor": "stablyai",
+    "kinds": [
+      "orchestrator"
+    ],
+    "platforms": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "local_footprint": "yes",
+    "rosmarops": {
+      "status": "not_supported"
+    },
+    "reviewed_at": "2026-11-20"
+  },
+  "versions": [],
+  "changes": [],
+  "ratings": []
+}

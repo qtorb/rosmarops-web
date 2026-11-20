@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "agent": {
+    "id": "openai-agents-sdk",
+    "name": "OpenAI Agents SDK",
+    "vendor": "OpenAI",
+    "kinds": [
+      "framework"
+    ],
+    "platforms": [
+      "python"
+    ],
+    "local_footprint": "yes",
+    "rosmarops": {
+      "status": "not_supported"
+    },
+    "reviewed_at": "2026-11-20"
+  },
+  "versions": [],
+  "changes": [],
+  "ratings": []
+}

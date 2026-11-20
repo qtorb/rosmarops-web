@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "agent": {
+    "id": "paradev",
+    "name": "Paradev",
+    "vendor": "ParadevAI",
+    "kinds": [
+      "orchestrator"
+    ],
+    "platforms": [
+      "macos",
+      "linux"
+    ],
+    "local_footprint": "yes",
+    "rosmarops": {
+      "status": "not_supported"
+    },
+    "reviewed_at": "2026-11-20"
+  },
+  "versions": [],
+  "changes": [],
+  "ratings": []
+}

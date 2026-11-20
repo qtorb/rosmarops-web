@@ -5,6 +5,7 @@
     "name": "Paperclip",
     "vendor": "Paperclip",
     "kinds": [
+      "orchestrator",
       "agent_tooling"
     ],
     "platforms": [
@@ -15,7 +16,7 @@
     "rosmarops": {
       "status": "not_supported"
     },
-    "reviewed_at": "2026-11-19"
+    "reviewed_at": "2026-11-20"
   },
   "versions": [],
   "changes": [],

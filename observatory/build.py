@@ -187,6 +187,37 @@ def translated(a):
 CLOUD_FAMILY = {"grok-bot"}
 
 
+# GTM-191 (signed by Albert 20-11 07:08): five families, in this order. Agent orchestrators: kinds has orchestrator.
+# Frameworks: kinds has framework or agent_tooling, without orchestrator. Workflow automation: kinds has
+# workflow_automation, even with local_footprint "no". In the cloud and personal: local_footprint "no" or kinds has
+# personal_agent. On your computer: the rest (GTM-57).
+FAMILIES = ("local", "orchestrators", "tooling", "automation", "cloud")
+FAMILY_H2 = {"local": "index.agents_h2", "orchestrators": "index.orchestrators_h2", "tooling": "index.tooling_h2",
+             "automation": "index.automation_h2", "cloud": "index.cloud_h2"}
+
+
+def family(a):
+    ag = a["agent"]
+    if "orchestrator" in ag["kinds"]:
+        return "orchestrators"
+    if "framework" in ag["kinds"] or "agent_tooling" in ag["kinds"]:
+        return "tooling"
+    if "workflow_automation" in ag["kinds"]:
+        return "automation"
+    if ag["local_footprint"] == "no" or "personal_agent" in ag["kinds"] or ag["id"] in CLOUD_FAMILY:
+        return "cloud"
+    return "local"
+
+
+def h1_key(ag, sfx=None):
+    """GTM-191: agent.h1_orchestrator for an orchestrator; otherwise agent.h1 or agent.h1_tool, as before."""
+    if "orchestrator" in ag["kinds"]:
+        return "agent.h1_orchestrator"
+    if sfx is None:
+        sfx = "_tool" if "agent_tooling" in ag["kinds"] else ""
+    return "agent.h1" + sfx
+
+
 def is_published(a):
     # Never in any language until every text has en, es and ca (schema v1.3 rule).
     return has_page(a) and translated(a) and a["agent"]["id"] in PUBLISHED_AGENT_PAGES
@@ -491,19 +522,6 @@ def build_index(lang, t, agents, candidates):
     title = t.text("index.title")
     desc = t.text("index.description")
 
-    # GTM-57: three families. Frameworks: kinds has framework or agent_tooling. In the cloud and personal:
-    # local_footprint "no" or kinds has personal_agent. On your computer: the rest.
-    def family(a):
-        ag = a["agent"]
-        if "framework" in ag["kinds"] or "agent_tooling" in ag["kinds"]:
-            return "tooling"
-        if ag["local_footprint"] == "no" or "personal_agent" in ag["kinds"] or ag["id"] in CLOUD_FAMILY:
-            return "cloud"
-        return "local"
-
-    agent_list = [a for a in agents if family(a) == "local"]
-    tool_list = [a for a in agents if family(a) == "tooling"]
-    cloud_list = [a for a in agents if family(a) == "cloud"]
     candidates_section = ""
     if candidates:
         cand_items = "".join(
@@ -531,7 +549,7 @@ def build_index(lang, t, agents, candidates):
     CT = company_page.texts()[lang]
 
     def family_label(a):
-        return t.text({"local": "index.agents_h2", "tooling": "index.tooling_h2", "cloud": "index.cloud_h2"}[family(a)])
+        return t.text(FAMILY_H2[family(a)])
 
     def status_html(a):
         return t("status.followed") if family(a) != "local" else esc(status_text(t, a))
@@ -596,13 +614,13 @@ def build_index(lang, t, agents, candidates):
                 {"@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": BASE + JSON_BASE + "data.json"}
             ],
         },
-        {
+        *({
             "@context": "https://schema.org",
             "@type": "ItemList",
-            "name": t.text("index.agents_h2"),
-            "numberOfItems": len(agent_list),
-            "itemListElement": item_list(lang, agent_list),
-        },
+            "name": t.text(FAMILY_H2[f]),
+            "numberOfItems": len(members),
+            "itemListElement": item_list(lang, members),
+        } for f, members in ((f, [a for a in agents if family(a) == f]) for f in FAMILIES) if f == "local" or members),
         {
             "@context": "https://schema.org",
             "@type": "BreadcrumbList",
@@ -612,22 +630,6 @@ def build_index(lang, t, agents, candidates):
             ],
         },
     ]
-    if cloud_list:
-        jsonld.insert(2, {
-            "@context": "https://schema.org",
-            "@type": "ItemList",
-            "name": t.text("index.cloud_h2"),
-            "numberOfItems": len(cloud_list),
-            "itemListElement": item_list(lang, cloud_list),
-        })
-    if tool_list:
-        jsonld.insert(2, {
-            "@context": "https://schema.org",
-            "@type": "ItemList",
-            "name": t.text("index.tooling_h2"),
-            "numberOfItems": len(tool_list),
-            "itemListElement": item_list(lang, tool_list),
-        })
     write(path, page(lang, t, path=path, title=title, description=desc, alternates=INDEX_PATH, jsonld=jsonld, body=body, modified=modified,
                       extra_head=[f"<style>{company_page.CSS}</style>"]))
 
@@ -648,6 +650,8 @@ def build_agent(lang, t, a):
     # naming what people search for (Search Console, GTM-143); the rest keep the template.
     tkey = "agent.title" + sfx + "." + ag["id"]
     title = t.text(tkey if tkey in t.c else "agent.title" + sfx, agent=ag["name"])
+    if "orchestrator" in ag["kinds"]:  # GTM-191 (advisor, 20-11): the h1 is also the title, no new text
+        title = t.text("agent.h1_orchestrator", agent=ag["name"])
     dkey = "agent.description" + sfx + "." + ag["id"]
     desc = t.text(dkey if dkey in t.c else "agent.description" + sfx, agent=ag["name"], vendor=ag["vendor"], date=reviewed)
     st = ag["rosmarops"]
@@ -831,7 +835,7 @@ def build_agent(lang, t, a):
 <article class="article">
 <section>
 <p class="crumbs"><img src="/assets/brand/observatory/observatory-mark.svg" width="24" height="24" alt=""><a href="{INDEX_PATH[lang]}">{t("site.nav.observatory")}</a> › {esc(ag["name"])}</p>
-<h1>{t("agent.h1" + sfx, agent=ag["name"])}</h1>
+<h1>{t(h1_key(ag, sfx), agent=ag["name"])}</h1>
 <p class="pagemeta">{meta}</p>
 {summary_html}
 </section>
@@ -874,7 +878,7 @@ def build_agent(lang, t, a):
             "@context": "https://schema.org",
             "@type": "TechArticle",
             "@id": url + "#article",
-            "headline": t.text("agent.h1" + sfx, agent=ag["name"]),
+            "headline": t.text(h1_key(ag, sfx), agent=ag["name"]),
             "description": desc,
             "inLanguage": lang,
             "datePublished": published,
@@ -964,7 +968,7 @@ def build_llms(agents, t_en):
     for a in agents:
         if is_published(a):
             ag = a["agent"]
-            h1 = t_en.text("agent.h1_tool" if "agent_tooling" in ag["kinds"] else "agent.h1", agent=ag["name"])
+            h1 = t_en.text(h1_key(ag), agent=ag["name"])
             lines.append(f"- [{h1}]({BASE}{agent_path('en', ag['id'])}): observatory page, with its data at {BASE}{JSON_BASE}{ag['id']}.json")
     lines.append(LL_END)
     block = "\n".join(lines)
