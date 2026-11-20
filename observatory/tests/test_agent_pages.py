@@ -75,6 +75,7 @@ class Families(unittest.TestCase):
 
     AGENTS = {p.stem: json.loads(p.read_text(encoding="utf-8")) for p in (ROOT / "observatory/data/agents").glob("*.json")}
     NEW = ("orca", "paseo", "claude-squad", "paradev")
+    NEW_FRAMEWORKS = ("openai-agents-sdk",)
 
     def test_order(self):
         self.assertEqual(build.FAMILIES, ("local", "orchestrators", "tooling", "automation", "cloud"))
@@ -116,3 +117,29 @@ class Families(unittest.TestCase):
         self.assertEqual(build.h1_key(self.AGENTS["paperclip"]["agent"]), "agent.h1_orchestrator")
         self.assertEqual(build.h1_key(self.AGENTS["kanvas"]["agent"]), "agent.h1_tool")
         self.assertEqual(build.h1_key(self.AGENTS["claude-code"]["agent"]), "agent.h1")
+
+    def test_new_framework_has_a_source(self):
+        scopes = {s["scope"] for s in json.loads((ROOT / "observatory/sources.json").read_text(encoding="utf-8"))["sources"]}
+        for i in self.NEW_FRAMEWORKS:
+            a = self.AGENTS[i]
+            self.assertIn(i, scopes, i)
+            self.assertEqual(build.family(a), "tooling", i)
+            for s in a.get("surfaces", []) + a["agent"].get("sources", []) + a["agent"].get("notes", []):
+                self.assertTrue(s["source"]["official"], i)
+
+    def test_orchestrator_title_is_its_h1(self):
+        """GTM-191 (advisor, 20-11): an orchestrator's page uses agent.h1_orchestrator as its title too."""
+        import tempfile
+        fixture = json.loads(next((ROOT / "observatory/tests/fixture").glob("*.json")).read_text(encoding="utf-8"))
+        fixture["agent"]["kinds"] = ["orchestrator"]
+        with tempfile.TemporaryDirectory() as d:
+            (Path(d) / (fixture["agent"]["id"] + ".json")).write_text(json.dumps(fixture), encoding="utf-8")
+            out = Path(d) / "out"
+            import subprocess
+            subprocess.run([sys.executable, str(ROOT / "observatory/build.py"), "--data", d, "--out", str(out)], check=True,
+                           capture_output=True)
+            en = json.loads((ROOT / "observatory/i18n/en.json").read_text(encoding="utf-8"))["agent.h1_orchestrator"]
+            want = html.escape(en.replace("{agent}", fixture["agent"]["name"]), quote=False)
+            page = (out / "observatory" / fixture["agent"]["id"] / "index.html").read_text(encoding="utf-8")
+            self.assertIn(f"<title>{want}</title>", page)
+            self.assertIn(f"<h1>{want}</h1>", page)

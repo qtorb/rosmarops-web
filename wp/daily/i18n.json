@@ -229,6 +229,7 @@
     "kiro",
     "langgraph",
     "n8n",
+    "openai-agents-sdk",
     "openclaw",
     "opencode",
     "openhands",

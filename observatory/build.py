@@ -650,6 +650,8 @@ def build_agent(lang, t, a):
     # naming what people search for (Search Console, GTM-143); the rest keep the template.
     tkey = "agent.title" + sfx + "." + ag["id"]
     title = t.text(tkey if tkey in t.c else "agent.title" + sfx, agent=ag["name"])
+    if "orchestrator" in ag["kinds"]:  # GTM-191 (advisor, 20-11): the h1 is also the title, no new text
+        title = t.text("agent.h1_orchestrator", agent=ag["name"])
     dkey = "agent.description" + sfx + "." + ag["id"]
     desc = t.text(dkey if dkey in t.c else "agent.description" + sfx, agent=ag["name"], vendor=ag["vendor"], date=reviewed)
     st = ag["rosmarops"]
