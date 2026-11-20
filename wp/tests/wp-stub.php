@@ -36,6 +36,8 @@ define('ROSMAROPS_VISITS_ON', (bool) getenv('VISITS_ON')); // the test decides, 
 if (getenv('VISITS_DOCROOT')) { define('ROSMAROPS_VISITS_DOCROOT', getenv('VISITS_DOCROOT')); }
 // GTM-125 people per day: the test fixes the UTC day; network options live in a real table, like wp_sitemeta.
 if (getenv('VISITS_TODAY')) { define('ROSMAROPS_VISITS_TODAY', getenv('VISITS_TODAY')); }
+// GTM-186 hourly totals: the test fixes «now» (a Unix time).
+if (getenv('HOURLY_NOW')) { define('ROSMAROPS_HOURLY_NOW', (int) getenv('HOURLY_NOW')); }
 function __opt_table() { return $GLOBALS['wpdb']->base_prefix . 'stub_sitemeta'; }
 function __opt_q($sql) { $db = $GLOBALS['wpdb']->raw(); $db->query('CREATE TABLE IF NOT EXISTS `' . __opt_table() . '` (k VARCHAR(191) PRIMARY KEY, v LONGTEXT)'); return $db->query($sql); }
 function get_site_option($k, $d = false) { $db = $GLOBALS['wpdb']->raw(); $r = __opt_q("SELECT v FROM `" . __opt_table() . "` WHERE k = '" . $db->real_escape_string($k) . "'"); $row = $r ? $r->fetch_row() : null; return $row ? unserialize($row[0]) : $d; }

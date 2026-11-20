@@ -1,6 +1,6 @@
 /* RosmarOps visit counter (GTM-111). Sends this page's path and the referrer's domain, once, when the page is
    actually seen, to /wp-json/rosmarops/v1/visits on this same site. Nothing else: no cookie, no storage, no
-   identifier. The server keeps only a count per day, page, language and kind of referrer.
+   identifier. The server keeps only a count per day, page, language and kind of referrer, and an hourly total with none of these, deleted after 48 hours.
    On since the privacy policy texts were signed (Albert, 07-11): ON must match ROSMAROPS_VISITS_ON in
    wp/mu-plugins/rosmarops-downloads.php.
    GTM-126: the team's own browsers are not counted. A page opened with ?rosmarops_internal=1, or a browser marked
