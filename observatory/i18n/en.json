@@ -296,7 +296,7 @@
   "sandbox.level.link": "Claude Code templates",
   "sandbox.test_line": "You don't need to understand these commands: copy them, paste them into your agent's chat and compare what comes out with the example.",
   "sandbox.wt.h": "A worktree is not a sandbox",
-  "sandbox.wt.p1": "Agent orchestrators such as Paperclip, Orca or Paseo launch several agents at once and give each one a copy of your project on another branch, a git worktree. That keeps their files apart. But each agent is still you: it sees your home folder and your keys, and it has the internet. Some orchestrators also launch them, by default, without asking you anything.",
+  "sandbox.wt.p1": "Agent orchestrators such as Orca or Paseo launch several agents at once and give each one a copy of your project on another branch, a git worktree. That keeps their files apart. But each agent is still you: it sees your home folder and your keys, and it has the internet. Some orchestrators also launch them, by default, without asking you anything.",
   "sandbox.wt.p2": "To keep their access apart, you need the sandbox in every agent they launch. What each orchestrator does is in the {link}.",
   "sandbox.wt.link": "Observatory",
   "sandbox.faq.h": "Questions",

@@ -296,7 +296,7 @@
   "sandbox.level.link": "Plantillas de Claude Code",
   "sandbox.test_line": "No hace falta entender estas órdenes: cópialas, pégalas en el chat de tu agente y compara lo que sale con el ejemplo.",
   "sandbox.wt.h": "Una worktree no es un sandbox",
-  "sandbox.wt.p1": "Los orquestadores de agentes, como Paperclip, Orca o Paseo, lanzan varios agentes a la vez y dan a cada uno una copia de tu proyecto en otra rama, una worktree de git. Eso evita que se pisen los ficheros. Pero cada agente sigue siendo tú: ve tu carpeta personal, tus claves y tiene internet. Algunos orquestadores, además, los lanzan de fábrica sin preguntarte nada.",
+  "sandbox.wt.p1": "Los orquestadores de agentes, como Orca o Paseo, lanzan varios agentes a la vez y dan a cada uno una copia de tu proyecto en otra rama, una worktree de git. Eso evita que se pisen los ficheros. Pero cada agente sigue siendo tú: ve tu carpeta personal, tus claves y tiene internet. Algunos orquestadores, además, los lanzan de fábrica sin preguntarte nada.",
   "sandbox.wt.p2": "Para separar su acceso hace falta el sandbox en cada agente que lancen. Qué hace cada orquestador está en el {link}.",
   "sandbox.wt.link": "Observatorio",
   "sandbox.faq.h": "Preguntas",

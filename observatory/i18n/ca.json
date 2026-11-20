@@ -296,7 +296,7 @@
   "sandbox.level.link": "Plantilles de Claude Code",
   "sandbox.test_line": "No cal entendre aquestes ordres: copia-les, enganxa-les al xat del teu agent i compara el que surt amb l'exemple.",
   "sandbox.wt.h": "Una worktree no és un sandbox",
-  "sandbox.wt.p1": "Els orquestradors d'agents, com Paperclip, Orca o Paseo, llancen diversos agents alhora i donen a cada un una còpia del teu projecte en una altra branca, una worktree de git. Això evita que es trepitgin els fitxers. Però cada agent continua sent tu: veu la teva carpeta personal i les teves claus, i té internet. Alguns orquestradors, a més, els llancen de fàbrica sense preguntar-te res.",
+  "sandbox.wt.p1": "Els orquestradors d'agents, com Orca o Paseo, llancen diversos agents alhora i donen a cada un una còpia del teu projecte en una altra branca, una worktree de git. Això evita que es trepitgin els fitxers. Però cada agent continua sent tu: veu la teva carpeta personal i les teves claus, i té internet. Alguns orquestradors, a més, els llancen de fàbrica sense preguntar-te res.",
   "sandbox.wt.p2": "Per separar-ne l'accés cal el sandbox a cada agent que llancin. Què fa cada orquestrador és a l'{link}.",
   "sandbox.wt.link": "Observatori",
   "sandbox.faq.h": "Preguntes",
