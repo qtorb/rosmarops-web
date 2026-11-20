@@ -136,9 +136,12 @@ class Page(unittest.TestCase):
             p = page(lang)
             body = text(p[p.index("<main"):p.index("</main>")])
             self.assertFalse(FORBIDDEN.search(body), lang)
-            for k in ("h1", "lead", "sel.agent", "sel.system", "sel.picked", "sel.choose", "pick_line", "none.1", "none.2", "none.3", "side.what.h",
+            # GTM-194: the lead is the catalog's sandbox.lead; «¿Qué es un sandbox?» became «Por qué encenderlo».
+            for k in ("h1", "sel.agent", "sel.system", "sel.picked", "sel.choose", "pick_line", "none.1", "none.2", "none.3",
                       "side.which.link", "side.try.link"):
                 self.assertIn(G[lang][k], body, (lang, k))
+            self.assertIn(sandbox_section.ctexts(lang)["lead"], body)
+            self.assertNotIn(G[lang]["side.what.h"], body)
             self.assertIn(T[lang]["note"], body)
             self.assertIn(f'href="/{"" if lang == "en" else lang + "/"}sandbox/" aria-current="page">Sandbox</a>', p)
             self.assertIn('<div class="sg-sel" hidden>', p)  # without JavaScript the selector does not show
@@ -258,7 +261,7 @@ class Page(unittest.TestCase):
         esc = lambda t: html.escape(t, quote=True)
         ex = esc(G["es"]["ex.label"])
         p = page("es")
-        none = p[p.index('<div class="sg-none">'):p.index("</aside>", p.index('<div class="sg-none">'))]
+        none = p[p.index('<div class="sg-none">'):p.index('<section class="sg-combo"', p.index('<div class="sg-none">'))]
         self.assertEqual(re.findall(r"<li><b>(\d)\.</b>", none), ["1", "2", "3"])
         sel = p[p.index('<div class="sg-sel"'):p.index('<p class="sg-status"')]
         self.assertNotIn('aria-pressed="true"', sel)  # no agent marked
@@ -599,3 +602,51 @@ class Watch(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class PageOrder(unittest.TestCase):
+    """GTM-194 (order and texts signed by Albert, 20-11): the order of §2 and the texts of §3 in the three languages."""
+
+    def test_sections_in_order(self):
+        for lang in LANGS:
+            p = page(lang)
+            C = sandbox_section.ctexts(lang)
+            esc = lambda t: html.escape(t, quote=True)
+            h2 = lambda k: f"<h2>{esc(C[k])}</h2>"
+            marks = [esc(G[lang]["h1"]), esc(C["lead"]), h2("why.h"), h2("day.h"), h2("level.h"),
+                     '<div class="sg-sel"', '<section class="sg-combo"', esc(G[lang]["side.which.h"]),
+                     esc(G[lang]["side.try.h"]), h2("wt.h"), h2("faq.h")]
+            pos = [p.index(m) for m in marks]
+            self.assertEqual(pos, sorted(pos), lang)
+            # the two link boxes, once, after the last panel; the side column only in another-account panels
+            self.assertEqual(p.count(esc(G[lang]["side.which.h"])), 1, lang)
+            self.assertEqual(p.count(esc(G[lang]["side.try.h"])), 1, lang)
+            self.assertGreater(p.index(esc(G[lang]["side.which.h"])), p.rindex('<section class="sg-combo"'))
+            self.assertEqual(p.count('<aside class="sg-side">'), p.count(esc(G[lang]["side.why.h"])), lang)
+            # §3.5 before the boxes of step 1; §3.6 links to the Observatory's home
+            self.assertIn(esc(C["test_line"]), p)
+            self.assertIn(f'<a href="{sandbox_section.OBS_PATH[lang]}">{esc(C["wt.link"])}</a>', p)
+            for i in range(1, 6):
+                self.assertIn(f'<summary>{esc(C[f"faq.q{i}"])}</summary>', p)
+
+    def test_all_keys_in_the_three_languages(self):
+        keys = [set(sandbox_section.ctexts(l)) for l in LANGS]
+        self.assertEqual(keys[0], keys[1])
+        self.assertEqual(keys[0], keys[2])
+        self.assertEqual(len(keys[0]), 33)
+        for l in LANGS:
+            for k, v in sandbox_section.ctexts(l).items():
+                self.assertTrue(v.strip(), (l, k))
+                self.assertFalse(FORBIDDEN.search(v), (l, k))
+
+    def test_level_sentence_only_with_the_templates_page(self):
+        import tempfile
+        for lang in LANGS:
+            with tempfile.TemporaryDirectory() as d:
+                without = sandbox_section.sections(lang, site=d)["level"]
+                self.assertNotIn(sandbox_section.TEMPLATES_PAGE[lang], without)
+                f = Path(d) / sandbox_section.TEMPLATES_PAGE[lang].strip("/") / "index.html"
+                f.parent.mkdir(parents=True, exist_ok=True)
+                f.write_text("x")
+                withp = sandbox_section.sections(lang, site=d)["level"]
+                self.assertIn(f'<a href="{sandbox_section.TEMPLATES_PAGE[lang]}">', withp)
