@@ -47,7 +47,7 @@ No se ha enviado nada a ningún directorio ni lista.
 | `hooks/hooks.json` válido, solo con eventos documentados | Cumple: `SessionStart` |
 | SKILL.md con un `description` de texto | Cumple |
 | Ninguna credencial; ningún `npx` o `uvx` sin versión fijada | Cumple: no hay ninguno |
-| El README describe todo lo que el plugin ejecuta, envía o descarga | **Falta:** no nombra las órdenes `rosmarops session-check` ni `rosmarops statusline` |
+| El README describe todo lo que el plugin ejecuta, envía o descarga | Cumple cuando se fusione qtorb/rosmarops-claude-code#4, que nombra `rosmarops session-check` y `rosmarops statusline` |
 | Subir `version` en cada versión | Hay que hacerlo en cada envío |
 
 - **Revisión:** validación automática y examen de seguridad en cada versión. Además, una persona revisa el primer listado. Si un primer envío falla el examen de seguridad, se rechaza.
@@ -62,7 +62,7 @@ No se ha enviado nada a ningún directorio ni lista.
 | Qué necesita | This plugin does not include RosmarOps. It calls the program you installed, so updates and the integrity check stay with the program. | README del plugin, «What it needs» |
 | Data handling: ¿envía datos? | No. «It does not use the network.» | README del plugin, «What it does not do» |
 | Data handling: qué lee | «It does not read the content of your files, your keys or your conversations.» | README del plugin, «What it does not do» |
-| Qué ejecuta | **FALTA TEXTO.** Hace falta una frase que nombre `rosmarops session-check` (al abrir una sesión) y `rosmarops statusline` (con `/rosmarops`). Tiene que estar antes en el README del plugin. | — |
+| Qué ejecuta | When a Claude Code session starts, the plugin runs `rosmarops session-check`, which only reads Claude Code's settings and tells you what changed since you last opened the project. The `/rosmarops` command shows your last result and the command to run a full review in a terminal; to get that result it may run `rosmarops statusline`, which only reads the file your last review left. The plugin never starts a review, never uses the network and never changes your settings. | README del plugin, tercer párrafo (qtorb/rosmarops-claude-code#4, sin fusionar todavía) |
 | Web | https://rosmarops.com | `plugin.json`, `homepage` |
 | Licencia | AGPL-3.0 | `plugin.json`, `license` |
 
