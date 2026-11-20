@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Templates · RosmarOps</title>
+<link rel="canonical" href="https://rosmarops.com/templates/">
+<link rel="alternate" hreflang="en" href="https://rosmarops.com/templates/">
+<link rel="alternate" hreflang="es" href="https://rosmarops.com/es/plantillas/">
+<link rel="alternate" hreflang="x-default" href="https://rosmarops.com/templates/">
+<link rel="stylesheet" href="/assets/consent/cookieconsent.css?v=3.1.0">
+<link rel="icon" href="/wp-content/uploads/2026/10/image-1.png">
+<style>
+:root{--bg:#F6F5F2;--ink:#1B1A18;--ink2:#3A3833;--muted:#66635D;--line:#E3E0D8;--card:#FFFFFF;--accent:#6F8F78}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+a{color:var(--ink)}a:hover{color:var(--accent)}
+.wrap{max-width:1040px;margin:0 auto;padding:0 16px}
+header .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;padding-top:24px;padding-bottom:24px}
+header img{height:40px;width:auto;display:block}
+nav{display:flex;flex-wrap:wrap;gap:24px;font-size:16px}
+main .wrap{display:flex;flex-direction:column;gap:64px;padding-top:48px;padding-bottom:64px}
+.hero{display:flex;flex-direction:column;gap:20px;max-width:760px}
+h1{margin:0;font-size:clamp(34px,6vw,52px);line-height:1.08;font-weight:700;letter-spacing:-.02em}
+.lead{margin:0;font-size:20px;line-height:1.55;color:var(--ink2)}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:16px}
+h2{margin:0;font-size:14px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:12px;font-size:17px;line-height:1.55}
+.status{border-top:1px solid var(--line);padding-top:32px;display:flex;flex-direction:column;gap:12px;max-width:760px}
+.status p{margin:0;font-size:17px;line-height:1.55}
+footer{border-top:1px solid var(--line)}
+footer .wrap{padding-top:28px;padding-bottom:28px;font-size:15px;color:var(--muted)}
+footer nav{gap:20px;font-size:15px}
+.doc{max-width:760px;display:flex;flex-direction:column;gap:18px;font-size:18px;line-height:1.65}
+.doc h1{font-size:clamp(30px,5vw,44px);line-height:1.12}
+.doc h2{font-size:22px;letter-spacing:0;text-transform:none;color:var(--ink);margin-top:20px}
+.doc p,.doc ul{margin:0}.doc ul{font-size:18px;gap:8px}
+.doc .meta{font-size:15px;color:var(--muted)}
+.doc .formula{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 20px;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:16px;overflow-wrap:anywhere}
+.doc code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:.92em}
+.faq h2{margin-top:24px}
+.doc a{overflow-wrap:anywhere}
+</style>
+<style>
+:root{--paper:#FFFFFF;--brand:#2346B8;--on-brand:#FFFFFF}
+.sg{display:flex;flex-direction:column;min-width:0}
+.sg-head{display:flex;flex-direction:column;gap:16px;max-width:760px}
+.sg-head h1{margin:0;font-size:clamp(30px,5vw,44px);line-height:1.12;font-weight:700;letter-spacing:-.02em}
+.sg-lead{margin:0;font-size:19px;line-height:1.5;color:var(--ink2);max-width:760px}
+.sg-sel{margin-top:36px;background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:28px 32px;display:flex;flex-direction:column;gap:22px}
+.sg-sel[hidden]{display:none}
+.sg-grp{display:flex;flex-direction:column}
+.sg-lab{margin:0 0 12px;font-size:15px;font-weight:600;color:var(--ink)}
+.sg-picked{font-weight:400;color:var(--muted)}
+.sg-btns{display:flex;flex-wrap:wrap;gap:8px}
+.sg-btn{font:inherit;font-size:14px;font-weight:500;padding:10px 14px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
+.sg-btn[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.sg-btn:focus-visible,.sg-mob select:focus-visible,.tb-copy:focus-visible,.hbtn:focus-visible,.sg summary:focus-visible{outline:3px solid var(--brand);outline-offset:2px}
+.sg-mob{display:none;flex-direction:column;gap:8px}
+.sg-mob label{font-size:14px;font-weight:600}
+.sg-mob select{width:100%;height:44px;font:inherit;font-size:15px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);padding:0 10px}
+.sg-status{margin:0;padding-top:16px;border-top:1px solid var(--line);font-size:16px;line-height:1.45;color:var(--ink2)}
+.sg-status:empty{display:none}
+.sg-status strong,.sg-cstatus strong{font-weight:600;color:var(--ink)}
+.sg-status .sg-sub,.sg-cstatus .sg-sub{display:block;margin-top:6px;font-size:14px;color:var(--muted)}
+.sg-combo{margin-top:48px;min-width:0;scroll-margin-top:16px}
+.sg-combo-h{margin:0 0 8px;font-size:26px;line-height:1.2;font-weight:700}
+.sg-cstatus{margin:0 0 24px;font-size:16px;line-height:1.45;color:var(--ink2)}
+.js .sg-combo,.js .sg-combo-h,.js .sg-cstatus{display:none}
+.js .sg-combo.on{display:block}
+.sg-none{display:none;margin-top:48px}
+.js .sg-none.on{display:block}
+.sg-cols{display:flex;flex-wrap:wrap;gap:48px;align-items:flex-start}
+.sg-main{flex:1 1 640px;min-width:0;display:flex;flex-direction:column;gap:40px}
+.sg-side{flex:0 0 280px;display:flex;flex-direction:column;gap:16px;min-width:0}
+.sg-pick{margin:0;font-size:16px;line-height:1.55;color:var(--ink2)}
+.sg-sum{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.sg-sum li{margin:0;font-size:16px;line-height:1.55;color:var(--ink2)}
+.sg-sum b{font-weight:600}
+.sg-exlab{margin:0;font-size:13px;line-height:1.45;color:var(--muted)}
+.sg-sbody>p.sg-after{margin:0;font-size:15px;line-height:1.55;color:var(--ink2)}
+.sg-steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:40px}
+.sg-step{display:grid;grid-template-columns:40px minmax(0,1fr);column-gap:20px;align-items:start}
+.sg-num{grid-row:1;width:40px;height:40px;border-radius:50%;background:var(--ink);color:var(--paper);display:grid;place-items:center;font-size:18px;font-weight:600}
+.sg-num.opt{background:transparent;border:2px solid var(--ink);color:var(--ink);box-sizing:border-box}
+.sg h2{text-transform:none;letter-spacing:0;color:var(--ink)}
+.sg-step h2{grid-row:1;grid-column:2;margin:0;align-self:center;font-size:24px;line-height:1.25;font-weight:600}
+.sg-sbody{grid-column:2;display:flex;flex-direction:column;gap:14px;margin-top:14px;min-width:0}
+.sg-sbody>p,.sg-sbody li{margin:0;font-size:16px;line-height:1.55;color:var(--ink2)}
+.sg-test{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:18px 20px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.sg-cmdrow{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.sg-cmdrow span{font-size:15px;color:var(--ink);overflow-wrap:anywhere}
+.sg code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:.92em}
+.sg-cmdrow code{font-size:13px;background:var(--card);border:1px solid var(--line);border-radius:6px;padding:8px 10px;display:inline-block}
+.sg-exp{margin:0;font-size:15px;line-height:1.5;color:var(--ink2)}
+.sg-muted{margin:0;font-size:14px;line-height:1.5;color:var(--muted)}
+.sg-small{margin:0;font-size:14px;line-height:1.55;color:var(--ink2)}
+.sg-noline{margin:0;font-size:15px;line-height:1.55;color:var(--ink2)}
+.sg details{border:1px solid var(--line);border-radius:12px;min-width:0}
+.sg summary{font-size:15px;font-weight:500;padding:16px 20px;cursor:pointer;list-style:none;color:var(--ink)}
+.sg summary::-webkit-details-marker{display:none}
+.sg summary::after{content:" ▸"}
+.sg details[open]>summary::after{content:" ▾"}
+.sg-dbody{padding:0 20px 18px;font-size:15px;line-height:1.55;color:var(--ink2);display:flex;flex-direction:column;gap:10px;min-width:0}
+.sg-dbody p{margin:0}
+.sg-dbody ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px;list-style:disc}
+.sg pre{margin:0;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:12.5px;line-height:1.5;white-space:pre-wrap;overflow-wrap:anywhere;max-height:360px;overflow:auto;color:var(--ink)}
+.tb-copy{align-self:flex-start;font:inherit;font-size:14px;font-weight:600;padding:6px 14px;border:1px solid var(--ink);border-radius:8px;background:transparent;color:var(--ink);cursor:pointer;flex:none}
+.tb-copy:hover{background:var(--card)}
+.hbtn{display:inline-flex;align-items:center;min-height:44px;padding:12px 20px;border:1.5px solid var(--ink);border-radius:10px;color:var(--ink);font-weight:700;line-height:1.2;text-decoration:none;font-family:inherit;font-size:16px;cursor:pointer;background:transparent}
+.hbtn.primary,.hbtn.primary:hover{background:var(--brand);border-color:var(--brand);color:var(--on-brand);align-self:flex-start}
+.sg figure{margin:0}
+.sg figure a{display:block}
+.sg figure img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:12px}
+.sg figcaption{margin-top:8px;font-size:13px;line-height:1.45;color:var(--muted)}
+.sg-foot{border-top:1px solid var(--line);padding-top:8px;display:flex;flex-direction:column;gap:10px}
+.sg-src{margin:0;font-size:13px;color:var(--muted)}.sg-src a{color:var(--muted)}
+.sg-rev{margin:0;font-size:13px;color:var(--ink);font-weight:600}
+.sg-box{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:20px;display:flex;flex-direction:column;gap:6px}
+.sg-box h3{margin:0;font-size:15px;font-weight:600;color:var(--ink)}
+.sg-box p{margin:0;font-size:14px;line-height:1.55;color:var(--ink2)}
+.sg-box a{font-size:14px}
+.sg-note{margin:48px 0 0;font-size:13px;color:var(--muted)}
+.dlrow{display:flex;flex-wrap:wrap;align-items:center;gap:12px}
+.sbadge{display:inline-block;line-height:0;flex:none}.sbadge img{display:block;height:52px;width:auto}
+.hbtn.sec{height:52px;padding:0 24px;border:1px solid var(--ink);border-radius:12px;background:transparent;color:var(--ink);font-size:17px;justify-content:center}
+.hbtn.sec:hover{color:var(--ink);background:var(--card)}
+.sg-anchor{display:block;scroll-margin-top:16px}
+@media (max-width:759px){
+.sg-sel{padding:18px;gap:14px}
+.sg-btns{display:none}.sg-grp>.sg-lab{display:none}.sg-mob{display:flex}
+.sg-status{font-size:15px}
+.sg-combo{margin-top:32px}
+.sg-cols{flex-direction:column;gap:32px}.sg-side{flex:none;width:100%}.sg-main{flex:none;width:100%;gap:32px}
+.sg-steps{gap:32px}
+.sg-step{grid-template-columns:32px minmax(0,1fr);column-gap:12px}
+.sg-num{width:32px;height:32px;font-size:15px}
+.sg-step h2{font-size:20px}
+.sg-sbody{grid-column:1 / -1}
+.sg-sbody>p,.sg-sbody li{font-size:15px}
+.sg-test{padding:14px}
+.sg-cmdrow{flex-direction:column;align-items:stretch}.sg-cmdrow .tb-copy{align-self:flex-end}
+.sg-exp{font-size:14px}
+.sg summary{padding:14px 16px}
+.sg-dbody{padding:0 16px 16px}
+.dlrow{flex-direction:column;align-items:stretch;width:100%}.dlrow .sbadge{align-self:flex-start}
+}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<a href="/"><img src="/assets/brand/rosmarops-logo.png" srcset="/assets/brand/rosmarops-logo.png 1x, /assets/brand/rosmarops-logo@2x.png 2x" width="512" height="131" alt="RosmarOps"></a>
+<nav><a href="/blog/">Blog</a><a href="/blog/about/">About</a><a href="/observatory/">Observatory</a><a href="/sandbox/">Sandbox</a><a href="/methodology/">Methodology</a><a href="/faq/">FAQ</a><a href="/es/plantillas/" hreflang="es" lang="es" aria-label="Español">ES</a><a href="/templates/" hreflang="ca" lang="ca" aria-label="Català">CA</a></nav>
+</div></header>
+
+<main><div class="wrap">
+<article class="doc"><h1>Templates</h1><ul><li><a href="/templates/claude-code-read-only/">How to make Claude Code read your project without changing anything</a></li><li><a href="/templates/claude-code-no-web/">How to stop Claude Code from fetching web pages or running curl and wget</a></li><li><a href="/templates/claude-code-sandbox/">How to run Claude Code in its sandbox with network only to npm and GitHub</a></li></ul><p><a href="https://github.com/qtorb/rosmarops-templates" target="_blank" rel="noopener">qtorb/rosmarops-templates</a></p></article>
+</div></main>
+
+<footer><div class="wrap">
+<nav><a href="/blog/">Blog</a><a href="/blog/about/">About</a><a href="/observatory/">Observatory</a><a href="/sandbox/">Sandbox</a><a href="/methodology/">Methodology</a><a href="/faq/">FAQ</a><a href="/es/plantillas/" hreflang="es" lang="es" aria-label="Español">ES</a><a href="/templates/" hreflang="ca" lang="ca" aria-label="Català">CA</a><a href="/templates/">Templates</a><a href="/privacy/">Privacy</a><a href="/legal-notice/">Legal notice</a><a href="/terms/">Terms</a><a href="#" data-cc="show-preferencesModal">Cookie settings</a></nav>
+</div></footer>
+<script src="/assets/consent/cookieconsent.umd.js?v=3.1.0" defer></script>
+<script src="/assets/consent/consent.js?v=5" defer></script><script src="/assets/visits/visits.js?v=3" defer></script>
+<script>
+document.querySelectorAll('.tb-copy,.sg-copytpl').forEach(function(b){b.addEventListener('click',function(){
+var pre=document.getElementById(b.getAttribute('data-copy'));if(!pre)return;
+var label=b.textContent;
+function done(){b.textContent=b.getAttribute('data-copied');setTimeout(function(){b.textContent=label;},2000);}
+function select(){var r=document.createRange();r.selectNodeContents(pre);var s=window.getSelection();s.removeAllRanges();s.addRange(r);}
+try{navigator.clipboard.writeText(pre.textContent).then(done,select);}catch(e){select();}});});
+</script>
+</body>
+</html>

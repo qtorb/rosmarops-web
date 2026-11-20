@@ -55,7 +55,7 @@ jobs:
           php -l wp/mu-plugins/rosmarops-slug7-sandbox.php
           ls -l wp/drafts/*.json wp/drafts/*.html wp/drafts/rosmarops-img-13-loop-engineering.jpg wp/drafts/rosmarops-img-14-he-terminado.jpg wp/drafts/rosmarops-img-15-el-sistema-aprende.jpg wp/drafts/rosmarops-img-17-harness-engineering.jpg wp/drafts/rosmarops-img-16-novedades-0-10.jpg wp/drafts/rosmarops-img-18-microsoft-store.jpg wp/drafts/rosmarops-img-19-tres-blocs.jpg wp/drafts/sandbox-agentes-de-ia.jpg
           ls -l wp/daily/shell-en.html wp/daily/shell-es.html wp/daily/shell-ca.html wp/daily/i18n.json
-          ! grep -RIl 'noindex' site/index.html site/es/index.html site/methodology site/faq site/es/metodologia site/es/preguntas-frecuentes site/ca/index.html site/ca/metodologia site/ca/preguntes-frequents site/cloud-access site/es/acceso-en-la-nube site/ca/acces-al-nuvol site/ca/privadesa site/privacy site/es/privacidad site/legal-notice site/es/aviso-legal site/ca/avis-legal site/terms site/es/terminos site/ca/termes site/security-teams site/es/equipos-de-seguridad site/ca/equips-de-seguretat site/_static site/macos site/es/macos site/ca/macos site/linux site/es/linux site/ca/linux site/sample-report/index.html site/es/informe-de-ejemplo site/ca/informe-dexemple site/observatory/index.html site/es/observatorio/index.html site/ca/observatori/index.html site/glossary site/es/glosario site/ca/glossari site/observatory/ai-agent-map site/es/observatorio/mapa-agentes-ia site/ca/observatori/mapa-agents-ia site/observatory/ai-agents-with-sandbox site/es/observatorio/agentes-ia-con-sandbox site/ca/observatori/agents-ia-amb-sandbox site/try-an-ai-agent site/es/probar-un-agente-de-ia site/ca/provar-un-agent-dia site/sandbox site/es/sandbox site/ca/sandbox
+          ! grep -RIl 'noindex' site/index.html site/es/index.html site/methodology site/faq site/es/metodologia site/es/preguntas-frecuentes site/ca/index.html site/ca/metodologia site/ca/preguntes-frequents site/cloud-access site/es/acceso-en-la-nube site/ca/acces-al-nuvol site/ca/privadesa site/privacy site/es/privacidad site/legal-notice site/es/aviso-legal site/ca/avis-legal site/terms site/es/terminos site/ca/termes site/security-teams site/es/equipos-de-seguridad site/ca/equips-de-seguretat site/_static site/macos site/es/macos site/ca/macos site/linux site/es/linux site/ca/linux site/sample-report/index.html site/es/informe-de-ejemplo site/ca/informe-dexemple site/observatory/index.html site/es/observatorio/index.html site/ca/observatori/index.html site/glossary site/es/glosario site/ca/glossari site/observatory/ai-agent-map site/es/observatorio/mapa-agentes-ia site/ca/observatori/mapa-agents-ia site/observatory/ai-agents-with-sandbox site/es/observatorio/agentes-ia-con-sandbox site/ca/observatori/agents-ia-amb-sandbox site/try-an-ai-agent site/es/probar-un-agente-de-ia site/ca/provar-un-agent-dia site/sandbox site/es/sandbox site/ca/sandbox site/templates site/es/plantillas
           # Observatory: only the three index pages and the JSON files are published (GTM-11). Agent pages wait for verification.
           ls site/observatory/index.html site/es/observatorio/index.html site/ca/observatori/index.html site/observatory/*.json
 
@@ -161,6 +161,23 @@ jobs:
           put site/es/sandbox/index.html es/sandbox/index.html
           -mkdir ca/sandbox
           put site/ca/sandbox/index.html ca/sandbox/index.html
+          # GTM-190: the template question pages
+          -mkdir templates
+          put site/templates/index.html templates/index.html
+          -mkdir templates/claude-code-read-only
+          put site/templates/claude-code-read-only/index.html templates/claude-code-read-only/index.html
+          -mkdir templates/claude-code-no-web
+          put site/templates/claude-code-no-web/index.html templates/claude-code-no-web/index.html
+          -mkdir templates/claude-code-sandbox
+          put site/templates/claude-code-sandbox/index.html templates/claude-code-sandbox/index.html
+          -mkdir es/plantillas
+          put site/es/plantillas/index.html es/plantillas/index.html
+          -mkdir es/plantillas/claude-code-solo-lectura
+          put site/es/plantillas/claude-code-solo-lectura/index.html es/plantillas/claude-code-solo-lectura/index.html
+          -mkdir es/plantillas/claude-code-sin-web
+          put site/es/plantillas/claude-code-sin-web/index.html es/plantillas/claude-code-sin-web/index.html
+          -mkdir es/plantillas/claude-code-sandbox
+          put site/es/plantillas/claude-code-sandbox/index.html es/plantillas/claude-code-sandbox/index.html
           -mkdir macos
           put site/macos/index.html macos/index.html
           -mkdir es/macos
