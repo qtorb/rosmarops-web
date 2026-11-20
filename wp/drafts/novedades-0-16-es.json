@@ -10,5 +10,7 @@
  "translations": {
   "en": "https://rosmarops.com/blog/from-a-long-list-of-findings-to-a-short-list-of-problems/"
  },
- "category": "novedades-de-rosmarops"
+ "category": "novedades-de-rosmarops",
+ "image": "rosmarops-img-19-tres-blocs.jpg",
+ "alt": "Una columna larga de avisos pequeños se reúne en tres tarjetas: un resultado, tres problemas y un ajuste que entra en un portátil."
 }

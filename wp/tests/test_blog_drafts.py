@@ -20,10 +20,9 @@ ADMIN = {"ID": 1, "display_name": "admin6244", "roles": ["administrator"]}
 IDS = {"loop-engineering", "agente-he-terminado", "errores-repetidos", "harness-engineering", "novedades-0-10", "microsoft-store", "mapa-agentes", "novedades-0-11", "sandbox-v3", "novedades-0-16"}
 IN_NEWS = {"harness-engineering", "novedades-0-10", "microsoft-store", "mapa-agentes", "novedades-0-11", "sandbox-v3", "novedades-0-16"}
 NO_IMAGE = {"microsoft-store", "mapa-agentes"}  # GTM-139: news post without a featured image (optional in the plugin)  # the rest of the series goes in loop-engineering
-# GTM-193: the 0.16 post goes only in EN and ES, with nothing but its signed text (no tags, no image).
+# GTM-193: the 0.16 post goes only in EN and ES, with its signed text and image, and no tags.
 ONLY = {"novedades-0-16": {"en", "es"}}
 NO_TAGS = {"novedades-0-16"}
-NO_IMAGE = NO_IMAGE | {"novedades-0-16"}
 NEWS = {"en": "field-notes", "es": "novedades-de-rosmarops", "ca": "notes-de-camp"}
 
 
