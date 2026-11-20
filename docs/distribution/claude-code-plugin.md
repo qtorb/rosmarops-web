@@ -66,6 +66,88 @@ No se ha enviado nada a ningún directorio ni lista.
 | Web | https://rosmarops.com | `plugin.json`, `homepage` |
 | Licencia | AGPL-3.0 | `plugin.json`, `license` |
 
+## 1 bis. Bloqueos del portal y organización verificada (GTM-192, lectura del 20-11-2026)
+
+El portal (claude.ai/directory/manage) bloquea el envío de qtorb/rosmarops-claude-code por dos motivos, según lo que vio Albert:
+
+1. «Hooks of type command accepted only from Verified organizations».
+2. Hay ficheros fuera de la lista permitida (`tests/check-no-network.sh`) y un aviso de `tests/` que nombra `.claude-plugin/icon.png`.
+
+No se ha solicitado nada, no se ha creado ninguna cuenta ni se ha enviado nada.
+
+### (a)-(c) Organización verificada: la documentación pública no la describe
+
+He leído estas páginas el 20-11-2026:
+- Publish to the directory: https://claude.com/docs/directory/publish.md
+- Submit your plugin: https://claude.com/docs/plugins/submit.md
+- Plugin pre-submission checklist: https://claude.com/docs/plugins/pre-submission-checklist.md
+- Track your directory submission: https://claude.com/docs/directory/submission-status.md
+- Connector verification: https://claude.com/docs/connectors/verification.md
+- Plugins: https://claude.com/docs/plugins
+- El índice entero: https://claude.com/docs/llms.txt
+
+**Ninguna habla de una «organización verificada»,** ni de que los hooks de tipo `command` se acepten solo de ellas. El índice no tiene ninguna página sobre verificar una organización, verificar un dominio o verificar un publicador.
+
+Esto es lo más cercano que sí dicen:
+- **Quién puede enviar:** cualquiera con plan de pago de Claude (Pro, Max, Team o Enterprise). En Pro y Max, desde la propia cuenta y sin rol. En Team y Enterprise, un Owner, o en Enterprise quien tenga el permiso Directory. Los planes Free no pueden enviar. El listado pertenece a la organización desde la que se envía, y la primera organización que envía una carpeta de un repositorio se queda con ese listado. No hay programa de socios al que apuntarse antes. Fuente: publish.md, «Confirm you can submit to the directory».
+- **La etiqueta «Verified» es de conectores MCP, no de organizaciones.** No se solicita: la decide Anthropic durante la revisión. Fuente: publish.md, «Prepare for review», y connectors/verification.md, «List your own connector».
+- **Hooks:** la lista de comprobación solo pide que `hooks/hooks.json` sea JSON válido y use los eventos y tipos de la referencia de hooks. No menciona ninguna restricción por tipo de organización. Fuente: pre-submission-checklist.md, «Hooks, skills, commands, and agents».
+- **Plazos:** «Review time isn't fixed» (submission-status.md). No hay nada sobre cuánto tarda verificar una organización.
+- **Contacto para una submission de plugin:** el menú del plugin en el portal («Get help» o «Contact Anthropic»), o `directory@anthropic.com`, donde las respuestas pueden tardar (submission-status.md, «Contact Anthropic about a submission»).
+
+**Por tanto, sin respuesta en la documentación:**
+- qué es una organización verificada y qué pide (entidad legal, dominio, documentos, plan, coste);
+- cómo se solicita;
+- si puede verificarse una organización de una persona o una cuenta personal;
+- cuánto tarda.
+
+Lo único que hay es el mensaje del portal, que solo ve Albert con su cuenta. **Condición de parada de GTM-192: se para aquí.** Lo que se puede hacer:
+1. Albert abre el mensaje del portal y mira si enlaza a una página o a un formulario.
+2. Si no enlaza a nada, se pregunta en «Get help» o «Contact Anthropic» desde el plugin, o en `directory@anthropic.com`.
+
+Dos páginas no se han podido leer en esta sesión porque pedían aprobación y no había nadie para darla:
+- https://claude.com/docs/directory (la portada de esa sección);
+- la Software Directory Policy: https://support.claude.com/en/articles/13145358-anthropic-software-directory-policy
+
+Quedan por leer; podrían tratar el tema.
+
+### (d) Que el envío contenga solo la carpeta del plugin
+
+**Lo que dice la documentación:**
+- La carpeta del plugin es la que contiene `.claude-plugin/plugin.json`, y puede estar en la raíz o en una subcarpeta. Quien instala recibe solo esa carpeta (pre-submission-checklist.md, «Review what validation and the scan check»).
+- En el paso Source, «Plugin path (optional)» es esa carpeta, y «Branch or tag (optional)» es la rama o etiqueta que el directorio sigue (submit.md, «Enter the source and validate»).
+- «If the plugin is one folder in a larger repository, give that folder as the plugin path when you submit; the directory reads and scans only that folder» (submit.md, «Update a published plugin»).
+- El repositorio y la carpeta no se pueden cambiar después de enviar (submit.md, «Change the tracked branch or tag»).
+
+**Cómo está hoy el repositorio** (`main`): todo en la raíz.
+- Del plugin: `.claude-plugin/plugin.json`, `.claude-plugin/icon.png`, `.claude-plugin/marketplace.json`, `hooks/hooks.json`, `skills/rosmarops/SKILL.md`, `README.md` y `LICENSE`.
+- De desarrollo: `tests/check-no-network.sh`, `tests/check-shape.sh` y `.github/workflows/ci.yml`.
+
+**Opción A: el plugin en una subcarpeta de `main`.** El contenido de los ficheros del plugin no cambia; solo se mueven.
+
+| Queda dentro de `plugin/` | Queda en la raíz |
+| --- | --- |
+| `.claude-plugin/plugin.json` y `.claude-plugin/icon.png` | `tests/`, `.github/workflows/ci.yml` y `LICENSE` |
+| `hooks/hooks.json` y `skills/rosmarops/SKILL.md` | `.claude-plugin/marketplace.json`, con `"source": "./plugin"` en lugar de `"./"` |
+| `README.md` (el portal pide un README de 40 palabras como mínimo dentro de la carpeta del plugin) y una copia de `LICENSE` (la pide dentro de la carpeta) | un `README.md` corto que apunte a `plugin/README.md`, para quien llegue al repositorio |
+
+Lo que cambia fuera del plugin:
+- **Pruebas:** `tests/check-shape.sh` y `tests/check-no-network.sh` tienen que mirar dentro de `plugin/`: hoy hacen `cd "$(dirname "$0")/.."` y leen la raíz.
+- **CI:** `ci.yml` pasa a validar `claude plugin validate --strict ./plugin`. La validación del marketplace sigue en la raíz.
+- **Quien ya lo instaló** con `/plugin marketplace add qtorb/rosmarops-claude-code` sigue funcionando, porque el marketplace sigue en la raíz y apunta a `./plugin`. Esto conviene probarlo antes de fusionar.
+- **En el portal:** Repository `qtorb/rosmarops-claude-code`, Plugin path `plugin`, Branch vacío (sigue `main`).
+
+**Opción B: una rama aparte con solo el plugin** (por ejemplo `directory`). `main` no cambia. La rama lleva solo `.claude-plugin/plugin.json`, `.claude-plugin/icon.png`, `hooks/`, `skills/`, `README.md` y `LICENSE`, y en el portal se pone como Branch. El coste es mantenerla igual que `main` en cada versión, porque el directorio publica lo que hay en esa rama. Si no se hace a mano, hace falta un paso de publicación que la actualice.
+
+**Lo que no resuelve ninguna de las dos:**
+- **El bloqueo 1 sigue.** El hook de `SessionStart` es de tipo `command`, y sin ese hook el plugin no hace nada.
+- **Dos riesgos solo para la opción A,** porque la lista de comprobación es más estricta con los plugins en subcarpeta:
+  - Los comandos de hook tienen que escribir cada ruta completa desde `${CLAUDE_PLUGIN_ROOT}`. El nuestro, `rosmarops` con `session-check`, no lleva ruta: es un programa que ya está en el PATH. La documentación no dice qué pasa con un comando sin ruta, así que puede bloquear o no. Hay que pasarle «Validate».
+  - Si el validador no puede seguir lo que ejecuta un hook, lo retiene para un revisor («Scripts the validator couldn't follow»).
+
+  La opción B mantiene el plugin en la raíz de su rama y evita los dos.
+- **El aviso que nombra `.claude-plugin/icon.png`:** desde aquí no veo su texto exacto. PNG es un tipo permitido, y ningún fichero de `tests/` nombra el icono. Haría falta el texto literal del portal.
+
 ## 2. Marketplaces y listas de plugins de la comunidad
 
 | Sitio | Cómo se entra | Qué piden | Cuenta o pago | Qué falta |
