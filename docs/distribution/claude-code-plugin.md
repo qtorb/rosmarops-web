@@ -13,13 +13,15 @@ Plugin: [qtorb/rosmarops-claude-code](https://github.com/qtorb/rosmarops-claude-
 
 Nunca «secure», «safe», «protects» ni sus traducciones, ni en lo que se envía ni aquí.
 
-## Lo que hay que decidir
+## Decidido (Albert, 20-11-2026)
 
-1. **El directorio de Anthropic pide un plan de pago de Claude.** Sirve Pro, Max, Ultra, Team o Enterprise. En Team o Enterprise, solo puede enviar el Owner o quien tenga el permiso Directory. Además pide una cuenta de GitHub conectada en claude.ai con permiso de escritura en el repositorio, y un email de contacto. No he creado ni conectado nada.
-2. **Dos listas exigen que el envío lo haga una persona.** En awesome-claude-code, el formulario lo rellena una persona. En travisvn/awesome-claude-skills se cierran los PR hechos con ayuda de IA. Esos dos los tendrías que enviar tú.
-3. **Dos listas no enlazan: copian el plugin dentro de su repositorio.** Son ComposioHQ/awesome-claude-plugins y ComposioHQ/awesome-claude-skills. Copiarlo deja una copia que no se actualiza con el nuestro. No lo recomiendo, pero lo decides tú.
+1. **El directorio de Anthropic lo presenta Albert.** Pide un plan de pago de Claude (Pro, Max, Ultra, Team o Enterprise; en Team o Enterprise, solo el Owner o quien tenga el permiso Directory), una cuenta de GitHub conectada en claude.ai con permiso de escritura en el repositorio y un email de contacto. No he creado ni conectado nada.
+2. **awesome-claude-code, a partir del 01-12-2026**, cuando el plugin cumple 14 días desde el primer commit (17-11). El formulario lo rellena una persona: lo envía Albert.
+3. **Solo listas que enlazan.** No se presenta en las que copian el plugin dentro de su propio repositorio (ComposioHQ/awesome-claude-plugins): la copia se queda vieja, porque no se actualiza con nuestras versiones. Por eso esa lista no aparece en este documento.
 4. **Claude Marketplaces ofrece una revisión prioritaria de pago, de 4 $.** No hace falta pagarla, porque la cola gratuita existe.
 5. **skills.sh no admite envíos.** Lista las skills según la telemetría de su CLI (`npx skills add`). No se propone.
+
+No se ha enviado nada a ningún directorio ni lista.
 
 ## 1. Directorio oficial de Anthropic
 
@@ -69,7 +71,6 @@ Nunca «secure», «safe», «protects» ni sus traducciones, ni en lo que se en
 | Sitio | Cómo se entra | Qué piden | Cuenta o pago | Qué falta |
 | --- | --- | --- | --- | --- |
 | [Claude Marketplaces](https://claudemarketplaces.com/about) ([envío](https://claudemarketplaces.com/submit)) | Lo encuentra solo si el repositorio tiene un `marketplace.json` válido, o se envía entrando con GitHub | No dicen mínimo de estrellas; un editor revisa los listados nuevos | GitHub. Revisión prioritaria opcional de 4 $ | Nada de lo que piden. Puede que ya esté listado: no lo he buscado |
-| [ComposioHQ/awesome-claude-plugins](https://github.com/ComposioHQ/awesome-claude-plugins) | PR que copia la carpeta del plugin a su repositorio y añade una línea al README | Un uso real, sin duplicar otro, con su estructura de plantilla y probado | GitHub | Es una copia, no un enlace (punto 3 de arriba) |
 | [Chat2AnyLLM awesome-claude-plugins](https://chat2anyllm.github.io/awesome-claude-plugins/) | Sigue los marketplaces listados en `Chat2AnyLLM/awesome-repo-configs`; la página no dice cómo entrar | No lo dicen | No lo dicen | No se sabe |
 
 Texto para Claude Marketplaces, si pide descripción: «Tells you in one line, when a Claude Code session opens, what changed in what your agents can do.» (`plugin.json`).
