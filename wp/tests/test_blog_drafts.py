@@ -20,8 +20,8 @@ ADMIN = {"ID": 1, "display_name": "admin6244", "roles": ["administrator"]}
 IDS = {"loop-engineering", "agente-he-terminado", "errores-repetidos", "harness-engineering", "novedades-0-10", "microsoft-store", "mapa-agentes", "novedades-0-11", "sandbox-v3", "novedades-0-16"}
 IN_NEWS = {"harness-engineering", "novedades-0-10", "microsoft-store", "mapa-agentes", "novedades-0-11", "sandbox-v3", "novedades-0-16"}
 NO_IMAGE = {"microsoft-store", "mapa-agentes"}  # GTM-139: news post without a featured image (optional in the plugin)  # the rest of the series goes in loop-engineering
-# GTM-193: the 0.16 post goes only in EN and ES, with its signed text and image, and no tags.
-ONLY = {"novedades-0-16": {"en", "es"}}
+# GTM-193: the 0.16 post goes with its signed text and image, and no tags.
+ONLY = {}  # GTM-193: the 0.16 post now has its CA version too (Albert, 20-11: every post in CA as well)
 NO_TAGS = {"novedades-0-16"}
 NEWS = {"en": "field-notes", "es": "novedades-de-rosmarops", "ca": "notes-de-camp"}
 
@@ -216,3 +216,31 @@ class Drafts(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+ROOT = TESTS.parents[1]
+
+
+class Rewrite016(unittest.TestCase):
+    """GTM-193 (Albert, 20-11): the 0.16.0 post carries the rewrite in EN, ES and CA, and the one-time plugin only
+    replaces a post that still starts with the previous text."""
+
+    PLUGIN = (ROOT / "wp/mu-plugins/rosmarops-gtm193-reescritura.php").read_text(encoding="utf-8")
+    OLD = {"en": "RosmarOps 0.16.0 is out.", "es": "Ya está la versión 0.16.0 de RosmarOps."}
+
+    def test_each_text_starts_with_its_excerpt(self):
+        import html as h
+        import re
+        for lang in ("en", "es", "ca"):
+            d = json.loads((ROOT / f"wp/drafts/novedades-0-16-{lang}.json").read_text(encoding="utf-8"))
+            text = h.unescape(re.sub(r"<[^>]+>", "", (ROOT / f"wp/drafts/novedades-0-16-{lang}.html").read_text(encoding="utf-8"))).strip()
+            self.assertTrue(text.startswith(d["excerpt"]), lang)
+            self.assertEqual(d["excerpt"], d["seo_description"], lang)
+            self.assertNotIn("0.16.0 is out", text)
+
+    def test_plugin_targets_the_published_slugs(self):
+        for lang, old in self.OLD.items():
+            d = json.loads((ROOT / f"wp/drafts/novedades-0-16-{lang}.json").read_text(encoding="utf-8"))
+            self.assertIn(f"'slug' => '{d['slug']}'", self.PLUGIN)
+            self.assertIn(f"'old' => '{old}'", self.PLUGIN)
+        self.assertNotIn("/ca'", self.PLUGIN)  # CA is created as a new draft with the rewrite

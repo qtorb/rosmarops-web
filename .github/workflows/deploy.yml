@@ -41,6 +41,7 @@ jobs:
           php -l wp/mu-plugins/rosmarops-blog-drafts.php
           php -l wp/mu-plugins/rosmarops-category-loop-engineering.php
           php -l wp/mu-plugins/rosmarops-gtm124-agente.php
+          php -l wp/mu-plugins/rosmarops-gtm193-reescritura.php
           php -l wp/mu-plugins/rosmarops-gtm164-sin-version.php
           php -l wp/mu-plugins/rosmarops-gtm181-promesa.php
           php -l wp/mu-plugins/rosmarops-schedule-he-terminado.php
@@ -324,6 +325,8 @@ jobs:
           put wp/drafts/novedades-0-16-en.json wp-content/mu-plugins/rosmarops-drafts/novedades-0-16-en.json
           put wp/drafts/novedades-0-16-es.html wp-content/mu-plugins/rosmarops-drafts/novedades-0-16-es.html
           put wp/drafts/novedades-0-16-es.json wp-content/mu-plugins/rosmarops-drafts/novedades-0-16-es.json
+          put wp/drafts/novedades-0-16-ca.html wp-content/mu-plugins/rosmarops-drafts/novedades-0-16-ca.html
+          put wp/drafts/novedades-0-16-ca.json wp-content/mu-plugins/rosmarops-drafts/novedades-0-16-ca.json
           put wp/drafts/sandbox-v3-en.html wp-content/mu-plugins/rosmarops-drafts/sandbox-v3-en.html
           put wp/drafts/sandbox-v3-en.json wp-content/mu-plugins/rosmarops-drafts/sandbox-v3-en.json
           put wp/drafts/sandbox-v3-es.html wp-content/mu-plugins/rosmarops-drafts/sandbox-v3-es.html
@@ -333,6 +336,7 @@ jobs:
           put wp/drafts/sandbox-agentes-de-ia.jpg wp-content/mu-plugins/rosmarops-drafts/sandbox-agentes-de-ia.jpg
           put wp/mu-plugins/rosmarops-category-loop-engineering.php wp-content/mu-plugins/rosmarops-category-loop-engineering.php
           put wp/mu-plugins/rosmarops-gtm124-agente.php wp-content/mu-plugins/rosmarops-gtm124-agente.php
+          put wp/mu-plugins/rosmarops-gtm193-reescritura.php wp-content/mu-plugins/rosmarops-gtm193-reescritura.php
           put wp/mu-plugins/rosmarops-gtm164-sin-version.php wp-content/mu-plugins/rosmarops-gtm164-sin-version.php
           put wp/mu-plugins/rosmarops-gtm181-promesa.php wp-content/mu-plugins/rosmarops-gtm181-promesa.php
           put wp/mu-plugins/rosmarops-schedule-he-terminado.php wp-content/mu-plugins/rosmarops-schedule-he-terminado.php
@@ -807,6 +811,25 @@ jobs:
             [ "$code" != "200" ] && echo "$f.log closed to the web ($code)" || (echo "::error::$f.log is reachable from the web"; exit 1)
           done
           if grep -h '^\(skipped\|failed\):' /tmp/gtm124/*.log 2>/dev/null; then echo "::warning::GTM-124 left something alone; see the logs"; fi
+          # rosmarops-gtm193-reescritura.php (GTM-193) runs on the first request to EN and ES after the upload; once done it never runs again.
+          for u in https://rosmarops.com/blog/ https://rosmarops.com/es/blog/; do
+            curl -s -o /dev/null -w "%{http_code} $u\n" "$u?gtm193=${GITHUB_SHA::7}"
+          done
+          sleep 5
+          mkdir -p /tmp/gtm193
+          printf 'cd %s/wp-content/rosmarops-private\n-get gtm193-en.log /tmp/gtm193/\n-get gtm193-es.log /tmp/gtm193/\n' "$SFTP_PATH" > /tmp/b193
+          sshpass -e sftp -o BatchMode=no -b /tmp/b193 \
+            -o StrictHostKeyChecking=yes \
+            -o UserKnownHostsFile="$HOME/.ssh/known_hosts" \
+            -o PreferredAuthentications=password,keyboard-interactive \
+            -o PubkeyAuthentication=no \
+            "$SFTP_USER@$SFTP_HOST" || true
+          for f in gtm193-en gtm193-es; do
+            if [ -f "/tmp/gtm193/$f.log" ]; then echo "--- $f.log"; cat "/tmp/gtm193/$f.log"; else echo "::warning::$f.log not found"; fi
+            code=$(curl -s -o /dev/null -w '%{http_code}' "https://rosmarops.com/wp-content/rosmarops-private/$f.log")
+            [ "$code" != "200" ] && echo "$f.log closed to the web ($code)" || (echo "::error::$f.log is reachable from the web"; exit 1)
+          done
+          if grep -h '^\(skipped\|failed\):' /tmp/gtm193/*.log 2>/dev/null; then echo "::warning::GTM-193 left something alone; see the logs"; fi
           # rosmarops-gtm164-sin-version.php runs on the first request to each site after the upload; once done it never runs again.
           for u in https://rosmarops.com/blog/ https://rosmarops.com/es/blog/ https://rosmarops.com/ca/blog/; do
             curl -s -o /dev/null -w "%{http_code} $u\n" "$u?gtm164=${GITHUB_SHA::7}"

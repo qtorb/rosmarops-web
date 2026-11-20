@@ -1,0 +1,17 @@
+{
+ "id": "novedades-0-16",
+ "lang": "ca",
+ "slug": "duna-llista-llarga-davisos-a-una-llista-curta-de-problemes",
+ "title": "D'una llista llarga d'avisos a una llista curta de problemes",
+ "excerpt": "La primera vegada que executes RosmarOps en un ordinador amb diversos agents, l'informe impressiona, i no sempre per bé.",
+ "content": "novedades-0-16-ca.html",
+ "seo_title": "D'una llista llarga d'avisos a una llista curta de problemes",
+ "seo_description": "La primera vegada que executes RosmarOps en un ordinador amb diversos agents, l'informe impressiona, i no sempre per bé.",
+ "translations": {
+  "en": "https://rosmarops.com/blog/from-a-long-list-of-findings-to-a-short-list-of-problems/",
+  "es": "https://rosmarops.com/es/blog/de-una-lista-larga-de-avisos-a-una-lista-corta-de-problemas/"
+ },
+ "category": "notes-de-camp",
+ "image": "rosmarops-img-19-tres-blocs.jpg",
+ "alt": "Una columna llarga d'avisos petits es reuneix en tres targetes: un resultat, tres problemes i un ajust que entra en un portàtil."
+}

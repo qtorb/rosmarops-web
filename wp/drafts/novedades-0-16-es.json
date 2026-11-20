@@ -3,12 +3,13 @@
  "lang": "es",
  "slug": "de-una-lista-larga-de-avisos-a-una-lista-corta-de-problemas",
  "title": "De una lista larga de avisos a una lista corta de problemas",
- "excerpt": "Ya está la versión 0.16.0 de RosmarOps.",
+ "excerpt": "La primera vez que ejecutas RosmarOps en un ordenador con varios agentes, el informe impresiona, y no siempre para bien.",
  "content": "novedades-0-16-es.html",
  "seo_title": "De una lista larga de avisos a una lista corta de problemas",
- "seo_description": "Ya está la versión 0.16.0 de RosmarOps.",
+ "seo_description": "La primera vez que ejecutas RosmarOps en un ordenador con varios agentes, el informe impresiona, y no siempre para bien.",
  "translations": {
-  "en": "https://rosmarops.com/blog/from-a-long-list-of-findings-to-a-short-list-of-problems/"
+  "en": "https://rosmarops.com/blog/from-a-long-list-of-findings-to-a-short-list-of-problems/",
+  "ca": "https://rosmarops.com/ca/blog/duna-llista-llarga-davisos-a-una-llista-curta-de-problemes/"
  },
  "category": "novedades-de-rosmarops",
  "image": "rosmarops-img-19-tres-blocs.jpg",
