@@ -319,6 +319,10 @@ jobs:
           put wp/drafts/novedades-0-11-es.json wp-content/mu-plugins/rosmarops-drafts/novedades-0-11-es.json
           put wp/drafts/novedades-0-11-ca.html wp-content/mu-plugins/rosmarops-drafts/novedades-0-11-ca.html
           put wp/drafts/novedades-0-11-ca.json wp-content/mu-plugins/rosmarops-drafts/novedades-0-11-ca.json
+          put wp/drafts/novedades-0-16-en.html wp-content/mu-plugins/rosmarops-drafts/novedades-0-16-en.html
+          put wp/drafts/novedades-0-16-en.json wp-content/mu-plugins/rosmarops-drafts/novedades-0-16-en.json
+          put wp/drafts/novedades-0-16-es.html wp-content/mu-plugins/rosmarops-drafts/novedades-0-16-es.html
+          put wp/drafts/novedades-0-16-es.json wp-content/mu-plugins/rosmarops-drafts/novedades-0-16-es.json
           put wp/drafts/sandbox-v3-en.html wp-content/mu-plugins/rosmarops-drafts/sandbox-v3-en.html
           put wp/drafts/sandbox-v3-en.json wp-content/mu-plugins/rosmarops-drafts/sandbox-v3-en.json
           put wp/drafts/sandbox-v3-es.html wp-content/mu-plugins/rosmarops-drafts/sandbox-v3-es.html

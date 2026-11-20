@@ -1,0 +1,14 @@
+{
+ "id": "novedades-0-16",
+ "lang": "en",
+ "slug": "from-a-long-list-of-findings-to-a-short-list-of-problems",
+ "title": "From a long list of findings to a short list of problems",
+ "excerpt": "RosmarOps 0.16.0 is out.",
+ "content": "novedades-0-16-en.html",
+ "seo_title": "From a long list of findings to a short list of problems",
+ "seo_description": "RosmarOps 0.16.0 is out.",
+ "translations": {
+  "es": "https://rosmarops.com/es/blog/de-una-lista-larga-de-avisos-a-una-lista-corta-de-problemas/"
+ },
+ "category": "field-notes"
+}

@@ -1,0 +1,78 @@
+<!-- wp:paragraph -->
+<p>RosmarOps 0.16.0 is out. It doesn't add a new agent. It changes what you see when you open the report, and it fixes what our first Linux testers ran into.</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading -->
+<h2 class="wp-block-heading">The report now opens in three blocks</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>Until now, a review could end in a long list of findings, one per file and per agent. Many of them were the same problem seen from different places. The report now opens with three blocks:</p>
+<!-- /wp:paragraph -->
+<!-- wp:list {"ordered":true} -->
+<ol class="wp-block-list">
+<!-- wp:list-item -->
+<li><strong>Your result</strong>: the score and what it means.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>Your problems</strong>: findings grouped by the problem behind them. Several findings about the same setting become one problem, with the places where it shows up.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>How to stop them coming back</strong>: the setting to change, and the template you can paste into your agent.</li>
+<!-- /wp:list-item -->
+</ol>
+<!-- /wp:list -->
+<!-- wp:paragraph -->
+<p>You read less and you know where to start.</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Updates that explain themselves</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>When RosmarOps changes, it checks that the new version is really the one you installed. That check now asks you in your language, in every command, instead of stopping with a message in English. And if RosmarOps has to start from scratch, it tells you first that your computer will show up as a new one in your space.</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Linux: reports you can open</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>On Ubuntu, Firefox from the Snap store couldn't open reports saved in a hidden folder. Reports are now saved in <code>~/RosmarOps</code>, and your earlier ones are moved there once.</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Smaller things that save time</h2>
+<!-- /wp:heading -->
+<!-- wp:list -->
+<ul class="wp-block-list">
+<!-- wp:list-item -->
+<li>A review no longer ends asking you to pick findings by number. When you want to dismiss or accept one, run <code>rosmarops findings</code>.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>When a project takes too long to review, the report says «at least N findings» and how many projects were not finished, instead of a number that looks complete.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>On Linux, RosmarOps also reads Cursor's company hooks file and its command-line settings, where Cursor itself looks for them.</li>
+<!-- /wp:list-item -->
+</ul>
+<!-- /wp:list -->
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Tested before it reaches you</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>Every version is now installed from scratch and updated from the previous one, on Windows, macOS and Ubuntu, before it is published. If one of those journeys fails, the version doesn't ship. It already stopped one release this week.</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading -->
+<h2 class="wp-block-heading">How to get it</h2>
+<!-- /wp:heading -->
+<!-- wp:list -->
+<ul class="wp-block-list">
+<!-- wp:list-item -->
+<li>Windows: from the Microsoft Store, or from GitHub.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>macOS and Linux: <code>brew install qtorb/rosmarops/rosmarops</code>, or download it from GitHub.</li>
+<!-- /wp:list-item -->
+</ul>
+<!-- /wp:list -->
+<!-- wp:paragraph -->
+<p>If you already use RosmarOps, update and run a review: the first screen is the new one.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p><a href="https://github.com/qtorb/rosmarops/releases/tag/v0.16.0">Release notes on GitHub</a></p>
+<!-- /wp:paragraph -->

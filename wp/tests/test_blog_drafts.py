@@ -17,10 +17,19 @@ DRAFTS = TESTS.parent / "drafts"
 SITES = {"en": "https://rosmarops.com", "es": "https://rosmarops.com/es", "ca": "https://rosmarops.com/ca"}
 ALBERT = {"ID": 3, "display_name": "Albert Garcia Pujadas", "roles": ["administrator"]}
 ADMIN = {"ID": 1, "display_name": "admin6244", "roles": ["administrator"]}
-IDS = {"loop-engineering", "agente-he-terminado", "errores-repetidos", "harness-engineering", "novedades-0-10", "microsoft-store", "mapa-agentes", "novedades-0-11", "sandbox-v3"}
-IN_NEWS = {"harness-engineering", "novedades-0-10", "microsoft-store", "mapa-agentes", "novedades-0-11", "sandbox-v3"}
+IDS = {"loop-engineering", "agente-he-terminado", "errores-repetidos", "harness-engineering", "novedades-0-10", "microsoft-store", "mapa-agentes", "novedades-0-11", "sandbox-v3", "novedades-0-16"}
+IN_NEWS = {"harness-engineering", "novedades-0-10", "microsoft-store", "mapa-agentes", "novedades-0-11", "sandbox-v3", "novedades-0-16"}
 NO_IMAGE = {"microsoft-store", "mapa-agentes"}  # GTM-139: news post without a featured image (optional in the plugin)  # the rest of the series goes in loop-engineering
+# GTM-193: the 0.16 post goes only in EN and ES, with nothing but its signed text (no tags, no image).
+ONLY = {"novedades-0-16": {"en", "es"}}
+NO_TAGS = {"novedades-0-16"}
+NO_IMAGE = NO_IMAGE | {"novedades-0-16"}
 NEWS = {"en": "field-notes", "es": "novedades-de-rosmarops", "ca": "notes-de-camp"}
+
+
+def per_site(lang):
+    """How many drafts a site gets (GTM-193: not every post is in every language)."""
+    return sum(1 for i in IDS if lang in ONLY.get(i, {"en", "es", "ca"}))
 
 
 def descriptions():
@@ -79,7 +88,7 @@ class Drafts(unittest.TestCase):
         all_ = descriptions()
         self.assertEqual(set(all_), IDS)
         for pid, d in all_.items():
-            self.assertEqual(set(d), {"en", "es", "ca"}, pid)
+            self.assertEqual(set(d), ONLY.get(pid, {"en", "es", "ca"}), pid)
             urls = {l: f"{SITES[l]}/blog/{d[l]['slug']}/" for l in d}
             for l, x in d.items():
                 self.assertTrue((DRAFTS / x["content"]).is_file())
@@ -97,7 +106,10 @@ class Drafts(unittest.TestCase):
                     else:
                         self.assertTrue((DRAFTS / x["image"]).is_file(), x["image"])
                         self.assertTrue(x["alt"])
-                    self.assertTrue(x["tags"])
+                    if pid in NO_TAGS:
+                        self.assertNotIn("tags", x)
+                    else:
+                        self.assertTrue(x["tags"])
                     self.assertEqual(x["category"], NEWS[l] if pid in IN_NEWS else "loop-engineering")
         self.assertIn("arxiv.org/abs/2608.21884v3", (DRAFTS / all_["loop-engineering"]["es"]["content"]).read_text(encoding="utf-8"))
 
@@ -105,9 +117,11 @@ class Drafts(unittest.TestCase):
         all_ = descriptions()
         for lang, home in SITES.items():
             log, out = self.run_once(home, self.db(lang=lang))
-            self.assertEqual(len(out["posts"]), len(IDS), lang)
+            self.assertEqual(len(out["posts"]), per_site(lang), lang)
             by_slug = {p["post_name"]: p for p in out["posts"]}
             for pid, d in all_.items():
+                if lang not in d:
+                    continue
                 x = d[lang]
                 p = by_slug[x["slug"]]
                 self.assertEqual(p["post_status"], "draft")
@@ -127,7 +141,7 @@ class Drafts(unittest.TestCase):
                 rel = out["rel"][str(p["ID"])]
                 self.assertEqual(rel["category"], [11 if pid in IN_NEWS else 10])
                 slugs = {t["term_id"]: t["slug"] for t in out["terms"] if t["taxonomy"] == "post_tag"}
-                self.assertEqual({slugs[i] for i in rel["post_tag"]}, set(x["tags"]))
+                self.assertEqual({slugs[i] for i in rel.get("post_tag", [])}, set(x.get("tags", {})))
                 if pid in NO_IMAGE:
                     self.assertNotIn("_thumbnail_id", meta)
                     continue
@@ -175,7 +189,7 @@ class Drafts(unittest.TestCase):
             mine = {"ID": 9, "post_name": name, "post_type": "post", "post_status": status, "post_title": "theirs"}
             log, out = self.run_once(SITES["ca"], self.db([mine], lang="ca"))
             self.assertEqual([p for p in out["posts"] if p["ID"] == 9], [mine], status)
-            self.assertEqual(len(out["posts"]), len(IDS), status)
+            self.assertEqual(len(out["posts"]), per_site("ca"), status)
             self.assertIn(f"skipped: {slug} already used by post 9 ({status}); nothing changed", log)
 
     def test_other_hosts_do_nothing(self):
