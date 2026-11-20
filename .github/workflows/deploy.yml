@@ -53,7 +53,7 @@ jobs:
           php -l wp/mu-plugins/rosmarops-menu8-sandbox.php
           php -l wp/mu-plugins/rosmarops-menu9-sandbox.php
           php -l wp/mu-plugins/rosmarops-slug7-sandbox.php
-          ls -l wp/drafts/*.json wp/drafts/*.html wp/drafts/rosmarops-img-13-loop-engineering.jpg wp/drafts/rosmarops-img-14-he-terminado.jpg wp/drafts/rosmarops-img-15-el-sistema-aprende.jpg wp/drafts/rosmarops-img-17-harness-engineering.jpg wp/drafts/rosmarops-img-16-novedades-0-10.jpg wp/drafts/rosmarops-img-18-microsoft-store.jpg wp/drafts/sandbox-agentes-de-ia.jpg
+          ls -l wp/drafts/*.json wp/drafts/*.html wp/drafts/rosmarops-img-13-loop-engineering.jpg wp/drafts/rosmarops-img-14-he-terminado.jpg wp/drafts/rosmarops-img-15-el-sistema-aprende.jpg wp/drafts/rosmarops-img-17-harness-engineering.jpg wp/drafts/rosmarops-img-16-novedades-0-10.jpg wp/drafts/rosmarops-img-18-microsoft-store.jpg wp/drafts/rosmarops-img-19-tres-blocs.jpg wp/drafts/sandbox-agentes-de-ia.jpg
           ls -l wp/daily/shell-en.html wp/daily/shell-es.html wp/daily/shell-ca.html wp/daily/i18n.json
           ! grep -RIl 'noindex' site/index.html site/es/index.html site/methodology site/faq site/es/metodologia site/es/preguntas-frecuentes site/ca/index.html site/ca/metodologia site/ca/preguntes-frequents site/cloud-access site/es/acceso-en-la-nube site/ca/acces-al-nuvol site/ca/privadesa site/privacy site/es/privacidad site/legal-notice site/es/aviso-legal site/ca/avis-legal site/terms site/es/terminos site/ca/termes site/security-teams site/es/equipos-de-seguridad site/ca/equips-de-seguretat site/_static site/macos site/es/macos site/ca/macos site/linux site/es/linux site/ca/linux site/sample-report/index.html site/es/informe-de-ejemplo site/ca/informe-dexemple site/observatory/index.html site/es/observatorio/index.html site/ca/observatori/index.html site/glossary site/es/glosario site/ca/glossari site/observatory/ai-agent-map site/es/observatorio/mapa-agentes-ia site/ca/observatori/mapa-agents-ia site/observatory/ai-agents-with-sandbox site/es/observatorio/agentes-ia-con-sandbox site/ca/observatori/agents-ia-amb-sandbox site/try-an-ai-agent site/es/probar-un-agente-de-ia site/ca/provar-un-agent-dia site/sandbox site/es/sandbox site/ca/sandbox
           # Observatory: only the three index pages and the JSON files are published (GTM-11). Agent pages wait for verification.
@@ -277,6 +277,7 @@ jobs:
           put wp/drafts/rosmarops-img-17-harness-engineering.jpg wp-content/mu-plugins/rosmarops-drafts/rosmarops-img-17-harness-engineering.jpg
           put wp/drafts/rosmarops-img-16-novedades-0-10.jpg wp-content/mu-plugins/rosmarops-drafts/rosmarops-img-16-novedades-0-10.jpg
           put wp/drafts/rosmarops-img-18-microsoft-store.jpg wp-content/mu-plugins/rosmarops-drafts/rosmarops-img-18-microsoft-store.jpg
+          put wp/drafts/rosmarops-img-19-tres-blocs.jpg wp-content/mu-plugins/rosmarops-drafts/rosmarops-img-19-tres-blocs.jpg
           put wp/drafts/agente-he-terminado-en.html wp-content/mu-plugins/rosmarops-drafts/agente-he-terminado-en.html
           put wp/drafts/agente-he-terminado-en.json wp-content/mu-plugins/rosmarops-drafts/agente-he-terminado-en.json
           put wp/drafts/agente-he-terminado-es.html wp-content/mu-plugins/rosmarops-drafts/agente-he-terminado-es.html
@@ -319,6 +320,10 @@ jobs:
           put wp/drafts/novedades-0-11-es.json wp-content/mu-plugins/rosmarops-drafts/novedades-0-11-es.json
           put wp/drafts/novedades-0-11-ca.html wp-content/mu-plugins/rosmarops-drafts/novedades-0-11-ca.html
           put wp/drafts/novedades-0-11-ca.json wp-content/mu-plugins/rosmarops-drafts/novedades-0-11-ca.json
+          put wp/drafts/novedades-0-16-en.html wp-content/mu-plugins/rosmarops-drafts/novedades-0-16-en.html
+          put wp/drafts/novedades-0-16-en.json wp-content/mu-plugins/rosmarops-drafts/novedades-0-16-en.json
+          put wp/drafts/novedades-0-16-es.html wp-content/mu-plugins/rosmarops-drafts/novedades-0-16-es.html
+          put wp/drafts/novedades-0-16-es.json wp-content/mu-plugins/rosmarops-drafts/novedades-0-16-es.json
           put wp/drafts/sandbox-v3-en.html wp-content/mu-plugins/rosmarops-drafts/sandbox-v3-en.html
           put wp/drafts/sandbox-v3-en.json wp-content/mu-plugins/rosmarops-drafts/sandbox-v3-en.json
           put wp/drafts/sandbox-v3-es.html wp-content/mu-plugins/rosmarops-drafts/sandbox-v3-es.html

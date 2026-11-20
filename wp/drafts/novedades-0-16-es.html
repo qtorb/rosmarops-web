@@ -1,0 +1,78 @@
+<!-- wp:paragraph -->
+<p>Ya está la versión 0.16.0 de RosmarOps. No añade un agente nuevo. Cambia lo que ves al abrir el informe y arregla lo que encontraron nuestros primeros probadores de Linux.</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading -->
+<h2 class="wp-block-heading">El informe se abre en tres bloques</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>Hasta ahora, una revisión podía acabar en una lista larga de avisos, uno por fichero y por agente. Muchos eran el mismo problema visto desde sitios distintos. Ahora el informe se abre con tres bloques:</p>
+<!-- /wp:paragraph -->
+<!-- wp:list {"ordered":true} -->
+<ol class="wp-block-list">
+<!-- wp:list-item -->
+<li><strong>Tu resultado</strong>: la nota y qué significa.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>Tus problemas</strong>: los avisos agrupados por el problema que hay detrás. Varios avisos sobre el mismo ajuste pasan a ser un problema, con los sitios donde aparece.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>Cómo evitar que vuelvan</strong>: el ajuste que hay que cambiar y la plantilla que puedes pegar en tu agente.</li>
+<!-- /wp:list-item -->
+</ol>
+<!-- /wp:list -->
+<!-- wp:paragraph -->
+<p>Lees menos y sabes por dónde empezar.</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Actualizaciones que se explican</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>Cuando RosmarOps cambia, comprueba que la versión nueva es de verdad la que has instalado. Esa comprobación ahora te pregunta en tu idioma, en todas las órdenes, en lugar de pararse con un mensaje en inglés. Y si RosmarOps tiene que empezar de cero, antes te avisa de que tu ordenador aparecerá como uno nuevo en tu espacio.</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Linux: informes que se abren</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>En Ubuntu, el Firefox de la tienda Snap no podía abrir los informes guardados en una carpeta oculta. Ahora se guardan en <code>~/RosmarOps</code>, y los anteriores se mueven allí una vez.</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Cosas pequeñas que ahorran tiempo</h2>
+<!-- /wp:heading -->
+<!-- wp:list -->
+<ul class="wp-block-list">
+<!-- wp:list-item -->
+<li>Una revisión ya no termina pidiéndote que elijas avisos por número. Cuando quieras descartar o asumir uno, ejecuta <code>rosmarops findings</code>.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>Cuando un proyecto tarda demasiado en revisarse, el informe dice «al menos N avisos» y cuántos proyectos no terminaron, en lugar de una cifra que parece completa.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>En Linux, RosmarOps lee también el fichero de hooks de empresa de Cursor y sus ajustes de la línea de órdenes, donde los busca el propio Cursor.</li>
+<!-- /wp:list-item -->
+</ul>
+<!-- /wp:list -->
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Probada antes de llegarte</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>Ahora cada versión se instala de cero y se actualiza desde la anterior, en Windows, macOS y Ubuntu, antes de publicarse. Si uno de esos recorridos falla, la versión no sale. Esta semana ya paró una publicación.</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Cómo conseguirla</h2>
+<!-- /wp:heading -->
+<!-- wp:list -->
+<ul class="wp-block-list">
+<!-- wp:list-item -->
+<li>Windows: desde la Microsoft Store o desde GitHub.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li>macOS y Linux: <code>brew install qtorb/rosmarops/rosmarops</code>, o descárgala desde GitHub.</li>
+<!-- /wp:list-item -->
+</ul>
+<!-- /wp:list -->
+<!-- wp:paragraph -->
+<p>Si ya usas RosmarOps, actualiza y haz una revisión: la primera pantalla ya es la nueva.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p><a href="https://github.com/qtorb/rosmarops/releases/tag/v0.16.0">Nota de la versión en GitHub</a></p>
+<!-- /wp:paragraph -->
