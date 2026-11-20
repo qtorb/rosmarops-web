@@ -37,7 +37,35 @@
     ]
   },
   "versions": [],
-  "changes": [],
+  "changes": [
+    {
+      "id": "chg-kilo-code-7-8-31-telemetry",
+      "version": "v7.8.31",
+      "date": "2026-11-19",
+      "category": "telemetry",
+      "before": {
+        "en": "Before v7.8.31, the Kilo Code release notes listed no telemetry preference in VS Code's About tab.",
+        "es": "Antes de v7.8.31, las notas de versión de Kilo Code no recogían ninguna preferencia de telemetría en la pestaña About de VS Code.",
+        "ca": "Abans de v7.8.31, les notes de versió de Kilo Code no recollien cap preferència de telemetria a la pestanya About de VS Code."
+      },
+      "after": {
+        "en": "From v7.8.31, the telemetry preference can be changed from VS Code's About tab or the core telemetry API, and stays off if Kilo config, VS Code or the environment disables it, according to the release notes.",
+        "es": "Desde v7.8.31, la preferencia de telemetría se puede cambiar desde la pestaña About de VS Code o la API de telemetría del núcleo, y sigue desactivada si la desactivan la configuración de Kilo, VS Code o el entorno, según las notas de versión.",
+        "ca": "Des de v7.8.31, la preferència de telemetria es pot canviar des de la pestanya About de VS Code o l'API de telemetria del nucli, i continua desactivada si la desactiven la configuració de Kilo, VS Code o l'entorn, segons les notes de versió."
+      },
+      "source": {
+        "url": "https://github.com/Kilo-Org/kilocode/releases/tag/v7.8.31",
+        "official": true,
+        "accessed_at": "2026-11-20"
+      },
+      "verified": {
+        "by": "writer",
+        "at": "2026-11-20",
+        "how": "official_changelog"
+      },
+      "rosmarops_impact": "none"
+    }
+  ],
   "ratings": [],
   "surfaces": [
     {

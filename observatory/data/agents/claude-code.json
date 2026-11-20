@@ -227,6 +227,33 @@
         "how": "official_changelog"
       },
       "rosmarops_impact": "none"
+    },
+    {
+      "id": "chg-claude-code-2-1-329-hook-origin",
+      "version": "2.1.329",
+      "date": "2026-11-19",
+      "category": "hooks",
+      "before": {
+        "en": "Before 2.1.329, the Claude Code changelog listed no trust dialog warning saying where a folder's hooks are declared.",
+        "es": "Antes de 2.1.329, el changelog de Claude Code no recogía ningún aviso en el diálogo de confianza sobre dónde se declaran los hooks de una carpeta.",
+        "ca": "Abans de 2.1.329, el changelog de Claude Code no recollia cap avís al diàleg de confiança sobre on es declaren els hooks d'una carpeta."
+      },
+      "after": {
+        "en": "From 2.1.329, the trust dialog warns where a folder's hooks are declared, and a warning appears when hooks in managed settings fail to load, according to the changelog.",
+        "es": "Desde 2.1.329, el diálogo de confianza avisa de dónde se declaran los hooks de una carpeta, y aparece un aviso cuando no cargan los hooks de la configuración gestionada, según el changelog.",
+        "ca": "Des de 2.1.329, el diàleg de confiança avisa d'on es declaren els hooks d'una carpeta, i apareix un avís quan no es carreguen els hooks de la configuració gestionada, segons el changelog."
+      },
+      "source": {
+        "url": "https://code.claude.com/docs/en/changelog#2-1-329",
+        "official": true,
+        "accessed_at": "2026-11-20"
+      },
+      "verified": {
+        "by": "writer",
+        "at": "2026-11-20",
+        "how": "official_changelog"
+      },
+      "rosmarops_impact": "none"
     }
   ],
   "ratings": [],
