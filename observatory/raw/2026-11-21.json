@@ -1,0 +1,1003 @@
+{
+  "date": "2026-11-21",
+  "collected_at": "2026-11-21T05:34:17Z",
+  "sources": [
+    {
+      "id": "F1",
+      "opened": true,
+      "reason": null,
+      "latest": "2.1.330",
+      "latest_date": "2026-11-20",
+      "new": [
+        {
+          "date": "2026-11-20",
+          "version": "2.1.330",
+          "text": "Added Added sign-in to organizations managed in Anthropic’s Enterprise Admin Console: after claude auth login, Claude Code applies the organization’s settings and uses its cloud provider or gateway Added easel, a built-in mod that draws charts when asked and under MCP metrics results, on Pro, Max and, where available, Team and Enterprise on macOS and Linux; turn automatic charts off in /config Added CLAUDE_CODE_FULL_SIGN_IN_LINK=1 to print the full sign-in link, if the short one shows an error or a script reads values from it Self-hosted runner: Added --start-dir / SELF_HOSTED_RUNNER_START_DI…"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F2",
+      "opened": true,
+      "reason": null,
+      "latest": "v2026.11.17",
+      "latest_date": "2026-11-17",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F3",
+      "opened": true,
+      "reason": null,
+      "latest": "rust-v0.171.0",
+      "latest_date": "2026-11-19",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F4",
+      "opened": true,
+      "reason": null,
+      "latest": "v2.34.0",
+      "latest_date": "2026-11-20",
+      "new": [
+        {
+          "date": "2026-11-20",
+          "version": "v2.34.0",
+          "text": "### Gemini 4 Neon, MCP Apps, and more This release brings MCP App support and Gemini 4 Neon to eligible paid consumer plans. It includes 15 improvements and 24 fixes. Improvements(15) Gemini 4 Neon and Orchestrator (Neon) are now available for eligible paid consumer plans, and Gemini 4 Neon is available with Gemini API keys and Application Default Credentials. Enterprise and Application Default Credentials accounts also now support the Orchestrator. You can now choose whether Enter or Ctrl+Enter (Cmd+Enter on macOS) sends messages under Settings > General > Input Box. You can now start a side…"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F5",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.23.3",
+      "latest_date": "2026-11-20",
+      "new": [
+        {
+          "date": "2026-11-20",
+          "version": "v0.23.3",
+          "text": "# Hermes Agent v0.23.3 **Release Date:** November 19, 2026 > Patch release. This tag rolls up the ~370 PRs merged since v0.23.2 into a stable release for the GitHub release (CLI and installers), the Microsoft Store app, Docker and Hermes Cloud. Full curated notes for this window ship with v0.24.0. <!-- HERMES_BUILDS_TABLE --> ## About this release Measured at commit `caafe5389ae`, the window since v0.23.2 contains **1,657 non-merge commits** across **3,948 changed files** (+222,379 / −96,154), **370 merged PRs** and **60 closed issues**. Also in the window, undocumented here on purpose: one p…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F6",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-18",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F7",
+      "opened": true,
+      "reason": null,
+      "latest": "v4.1.26",
+      "latest_date": "2026-10-26",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F8",
+      "opened": true,
+      "reason": null,
+      "latest": "v2.1.0-vscode",
+      "latest_date": "2026-06-19",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F9",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.5.0",
+      "latest_date": "2026-11-09",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F10",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-21",
+      "new": [
+        {
+          "date": "2026-11-20",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-239993ae4c14c460 @guicai777/mcp-doctor: Dropper: XOR-obfuscated bundled Windows binary decoded and executed under cover of an MCP diagnostic tool"
+        },
+        {
+          "date": "2026-11-20",
+          "version": null,
+          "text": "MAL-0000-ghsa-malware-d1e1443947c2ad37 @guicai777/mcp-doctor: Malware in @guicai777/mcp-doctor"
+        },
+        {
+          "date": "2026-11-20",
+          "version": null,
+          "text": "MAL-2026-20295 @guicai777/mcp-doctor: Malicious code in @guicai777/mcp-doctor (npm)"
+        },
+        {
+          "date": "2026-11-20",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-2d80e7dc6878ebee gemini-computer-use: gemini-computer-use runs unpinned remote installer and starts a remote-controlled shell agent"
+        },
+        {
+          "date": "2026-11-20",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-5e9262ea9d7343df gemini-computer-use: Reverse-tunnel agent with boot persistence executes shell commands from hardcoded author-controlled control plane"
+        },
+        {
+          "date": "2026-11-20",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-73119ad8a8c521c3 gemini-computer-use: CLI pipes remote installer from author's Tailscale Funnel into shell and persists a network-driven bash_exec service"
+        },
+        {
+          "date": "2026-11-20",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-786ad22ac105f890 gemini-computer-use: require() of gemini-computer-use fetches and executes a remote installer from smart-server.online; package also exposes a remote-shell MCP tunnel to the same host"
+        },
+        {
+          "date": "2026-11-20",
+          "version": null,
+          "text": "MAL-0000-amazon-inspector-4230304085532b4b xssdoctor-muse-task448-provider-runtime: Dependency-confusion canary exfiltrates sibling file contents to hardcoded remote endpoint"
+        }
+      ],
+      "ids": [
+        "MAL-0000-amazon-inspector-239993ae4c14c460",
+        "MAL-0000-amazon-inspector-2d80e7dc6878ebee",
+        "MAL-0000-amazon-inspector-4230304085532b4b",
+        "MAL-0000-amazon-inspector-5e9262ea9d7343df",
+        "MAL-0000-amazon-inspector-73119ad8a8c521c3",
+        "MAL-0000-amazon-inspector-786ad22ac105f890",
+        "MAL-0000-ghsa-malware-d1e1443947c2ad37",
+        "MAL-2026-20295"
+      ],
+      "read_with": "git"
+    },
+    {
+      "id": "F11",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.70.0",
+      "latest_date": "2026-11-19",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F12",
+      "opened": true,
+      "reason": null,
+      "latest": "1.0.114",
+      "latest_date": "2026-11-18",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F13",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-20",
+      "new": [
+        {
+          "date": "2026-11-20",
+          "version": null,
+          "text": "Computer use (beta) for Team and Enterprise plans Computer use lets Claude see a user's screen and work in the desktop apps they allow. It works in the new Claude experience in Claude Desktop, and from Claude on the web and Claude Mobile where Computer access is on. It's now available in beta on Team and Enterprise plans, and is rolling out to organizations gradually. For more information, see Set up computer use for Team and Enterprise plans."
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F14",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-21",
+      "new": [
+        {
+          "date": "2026-11-20",
+          "version": null,
+          "text": "MAL-2026-20306 xssdoctor-muse-task448-provider-runtime: Malicious code in xssdoctor-muse-task448-provider-runtime (npm)"
+        },
+        {
+          "date": "2026-11-20",
+          "version": null,
+          "text": "MAL-2026-20295 @guicai777/mcp-doctor: Malicious code in @guicai777/mcp-doctor (npm)"
+        },
+        {
+          "date": "2026-11-20",
+          "version": null,
+          "text": "GHSA-9x8x-crjq-g64h jupyter-mcp-server: Jupyter MCP Server: Browser DNS rebinding can hijack the Jupyter backend through management routes"
+        },
+        {
+          "date": "2026-11-20",
+          "version": null,
+          "text": "GHSA-24pw-rf5p-mgp7 jupyter-mcp-server: Jupyter MCP Server: Unauthenticated management routes can hijack the Jupyter backend in standalone HTTP mode"
+        }
+      ],
+      "ids": [
+        "GHSA-24pw-rf5p-mgp7",
+        "GHSA-9x8x-crjq-g64h",
+        "MAL-2026-20295",
+        "MAL-2026-20306"
+      ],
+      "read_with": "curl"
+    },
+    {
+      "id": "F15",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-20",
+      "new": [
+        {
+          "date": "2026-11-20",
+          "version": null,
+          "text": "CVE-2026-133505 [MCP]: When message history is serialized and loaded again, a tool result that contains a JSON object in the serialized shape of one of Pydantic AI's file types is rebuilt as that file. A third party who controls data a tool returns, such as a record that an MCP server or a function tool returns from an external system, can use this to make the application download a URL on its local network, or make the model provider read an s3:// object or uploaded file with the application's credentials. Applications are affected when tool results can contain third-party data, message hist…"
+        },
+        {
+          "date": "2026-11-20",
+          "version": null,
+          "text": "CVE-2026-133853 [MCP]: FlowIntel's chatbot component used a single shared MCP (Model Context Protocol) session and process-wide environment variable to pass per-user API credentials to a child process. Because the session and the ambient FLOWINTEL_API_KEY environment variable were shared across all concurrent requests, a user's authenticated identity could be applied to another user's tool invocation, or a stale/ambient credential could be inherited by a new request. Preconditions: - An authenticated user with access to the chatbot interface. - Concurrent or overlapping chatbot tool invocatio…"
+        },
+        {
+          "date": "2026-11-20",
+          "version": null,
+          "text": "CVE-2026-77329 [MCP]: Tapo provides Rust and Python APIs and an MCP server for TP-Link Tapo smart devices. From 0.3.1 until 0.5.0, the Streamable HTTP implementation in tapo-mcp/src/server.rs calls disable_allowed_hosts() without replacement Host or Origin validation, while TAPO_MCP_API_KEY remains optional for a listener that can bind to all interfaces. A malicious website can use DNS rebinding to send same-origin browser requests to the victim's local or LAN Tapo MCP listener when it runs without an API key. The attacker can invoke exposed tools including control_device for smart-device act…"
+        },
+        {
+          "date": "2026-11-20",
+          "version": null,
+          "text": "CVE-2026-77350 [MCP]: pmo-platform is a modular PMO and release-management platform for Claude Code. Prior to 3.69.1, core/hooks/block-credential-reads.sh, core/hooks/block-egress.sh, core/hooks/block-fs-boundary.sh, and core/hooks/block-mcp-writes.sh pin PATH to /usr/bin:/bin, hard-code jq as /usr/bin/jq, and return success when jq is unavailable there. On systems where jq exists only in a Homebrew path, including affected pre-Sequoia or Homebrew-only macOS installations, the hooks can skip credential-read, network-egress, filesystem-boundary, and MCP-write controls. Native deny rules indepe…"
+        },
+        {
+          "date": "2026-11-20",
+          "version": null,
+          "text": "CVE-2026-129995 [MCP]: mcp-ssh-manager is an MCP server for managing servers over SSH with human approval, an encrypted vault, and a live audit trail. Prior to 3.8.5, ssh_backup_create, ssh_backup_restore, ssh_backup_schedule, and ssh_backup_list build remote shell commands from caller-controlled values in src/backup-manager.js and inline backup handlers in src/index.js without neutralizing shell metacharacters. Crafted database, connection, backup directory, path, exclusion, schedule, or comment arguments can therefore execute arbitrary OS commands on managed remote servers as the configured…"
+        },
+        {
+          "date": "2026-11-20",
+          "version": null,
+          "text": "CVE-2026-130901 [MCP]: Improper limitation of a pathname to a restricted directory in the file access checks in Amazon awslabs.document-loader-mcp-server 1.0.10 through 1.0.20 might allow a context-dependent actor, via crafted document content processed by an MCP client, to read files outside the intended base directory and, in 1.0.12 through 1.0.20, to write PNG slide images outside it. This occurs when DOCUMENT_BASE_DIR is not set or is empty and the CI, GITHUB_ACTIONS or PYTEST_CURRENT_TEST environment variable is present. Versions before 1.0.10 do not restrict file access to a base direct…"
+        },
+        {
+          "date": "2026-11-20",
+          "version": null,
+          "text": "CVE-2026-77383 [MCP]: mcp-ssh-manager is an MCP server for managing servers over SSH with human approval, an encrypted vault, and a live audit trail. Prior to 3.6.7, ssh_db_list, ssh_db_dump, ssh_db_import, and ssh_db_restore in src/database-manager.js interpolate caller-controlled database, table, collection, file path, user, host, port, and password values into shell-evaluated command strings without neutralization. Shell metacharacters in these arguments therefore execute arbitrary commands on the configured SSH target as the account used by the MCP server. ssh_db_list is classified as rea…"
+        },
+        {
+          "date": "2026-11-20",
+          "version": null,
+          "text": "CVE-2026-114494 [MCP]: codebase-memory-mcp provides local code intelligence for developers and AI agents through a persistent graph and MCP tools. Prior to 0.9.0, the Cypher parser accepted an unbounded number of projection items in RETURN and WITH clauses while projection executors indexed fixed 32-element stack arrays using the parsed count. A query_graph query with more than 32 projection items could therefore write beyond those arrays, and a related result-column path could read uninitialized stack slots even when no node matched. Any caller of query_graph, including an agent whose query…"
+        },
+        {
+          "date": "2026-11-20",
+          "version": null,
+          "text": "CVE-2026-114495 [MCP]: codebase-memory-mcp provides local code intelligence for developers and AI agents through a persistent graph and MCP tools. Prior to 0.9.0, automatic import of a repository's .codebase-memory/ artifact allocated a decompression buffer using the attacker-controlled 64-bit original_size value from artifact.json but truncated that value to int when passing the destination capacity to the Zstandard decompressor. A value with bit 31 set became negative and was sign-extended to a large size_t, allowing the decompressor to write frame content beyond the actual allocation. Inde…"
+        },
+        {
+          "date": "2026-11-20",
+          "version": null,
+          "text": "CVE-2026-114496 [MCP]: codebase-memory-mcp provides local code intelligence for developers and AI agents through a persistent graph and MCP tools. Prior to 0.9.0, the detect_changes tool validated the base_branch argument for shell metacharacters but omitted the leading-dash check before placing the value in the revision position of a git diff command. Git therefore interpreted an option-shaped base_branch value, including --output, as a command option instead of a revision, allowing a caller to create or overwrite a caller-chosen file with Git diff output under the server process's permissio…"
+        },
+        {
+          "date": "2026-11-20",
+          "version": null,
+          "text": "CVE-2026-114497 [MCP]: codebase-memory-mcp provides local code intelligence for developers and AI agents through a persistent graph and MCP tools. Prior to 0.9.1-rc.1, the optional graph UI's POST /api/process-kill route omitted the indexing-job ownership check on Windows while retaining that check on POSIX systems. A requester able to reach the optional UI could supply an arbitrary process identifier, causing TerminateProcess to stop any process that the server user was permitted to terminate. The flaw affects the Windows-specific process termination path and can cause a high availability im…"
+        },
+        {
+          "date": "2026-11-20",
+          "version": null,
+          "text": "CVE-2026-114499 [MCP]: codebase-memory-mcp provides local code intelligence for developers and AI agents through a persistent graph and MCP tools. Prior to 0.10.0, the indexer's .gitignore matcher implemented * and ** through recursive backtracking without a work bound. A repository containing a pattern with repeated wildcard groups and a long path could make matching work grow exponentially, allowing a single ignore rule to stall discovery indefinitely and, before worker isolation, stall the server. The impact is limited to availability, and the bounded matcher does not claim that every expe…"
+        },
+        {
+          "date": "2026-11-20",
+          "version": null,
+          "text": "CVE-2026-54031 [MCP]: LibreChat is an enhanced ChatGPT clone that supports multiple AI providers. Prior to 0.8.8, packages/api/src/mcp/oauth/handler.ts createOAuthFetch validates only the initial destination for MCP OAuth discovery, registration, token, refresh, and revocation requests, then uses redirect-following fetch behavior without validating each redirect target. An attacker who can initiate MCP OAuth against a controlled endpoint can redirect server requests to internal or private addresses, reaching services that the initial SSRF checks should block. The separate MCP transport path a…"
+        },
+        {
+          "date": "2026-11-20",
+          "version": null,
+          "text": "CVE-2026-54032 [MCP]: LibreChat is an enhanced ChatGPT clone that supports multiple AI providers. Prior to 0.8.6, client/src/components/Chat/Input/MCPConfigDialog.tsx renders the remote MCP details.description value through dangerouslySetInnerHTML without sanitization, allowing a malicious MCP server to execute script when a user opens the configuration dialog. The secondary client/src/components/Banners/Banner.tsx sink similarly renders administrator-controlled banner.message HTML without sanitization for all users. Script execution occurs in the LibreChat browser origin and can expose brows…"
+        },
+        {
+          "date": "2026-11-20",
+          "version": null,
+          "text": "CVE-2026-77349 [Claude Code]: pmo-platform is a modular PMO and release-management platform for Claude Code. From 3.48 until 3.69.1, release/skills/pmo-skill-refiner/eval-viewer/generate_review.py reads untrusted model or skill output from workspace/run*/outputs/ and embeds it with json.dumps into viewer.html inside an inline script without escaping HTML metacharacters. A crafted output can close the script element and execute JavaScript when an operator generates and opens the viewer. The maintainer also confirmed that DOM-based injection through renderGrades and renderBenchmark innerHTML su…"
+        },
+        {
+          "date": "2026-11-20",
+          "version": null,
+          "text": "CVE-2026-77389 [Claude Code]: pmo-platform is a modular PMO and release-management platform for Claude Code. Prior to 3.73, core/hooks/block-fragile-refs.sh and core/hooks/block-gh-path-leak.sh source co-shipped awk primitives from core/hooks/lib/ and degrade when a required primitive is absent. In a partial or corrupted deployment, block-gh-path-leak.sh skips its entire path-leak check, while block-fragile-refs.sh skips only the positional-issue-reference detector and continues running its other detectors. Both hooks operate in a warning posture, so the impact is a skipped warning rather tha…"
+        },
+        {
+          "date": "2026-11-20",
+          "version": null,
+          "text": "CVE-2026-77390 [Claude Code]: pmo-platform is a modular PMO and release-management platform for Claude Code. Prior to 3.73, release/skills/pmo-skill-refiner/eval-viewer/generate_review.py and viewer.html contain three security weaknesses in the local evaluation viewer. During workspace scanning and generation, _find_runs_recursive and build_run follow symlinks and embed_file reads their targets without confining resolved paths to the workspace, although the server do_GET path is not a traversal surface. embed_file also reads output files without a size cap or redaction, allowing secrets or pe…"
+        },
+        {
+          "date": "2026-11-20",
+          "version": null,
+          "text": "CVE-2026-99602 [Cursor]: In the Linux kernel, the following vulnerability has been resolved: udf: don't let the extent type hide an exhausted free-space table extent udf_table_new_block() takes the first block of the free-space table extent closest to the goal. It keeps that extent's type and length together in goal_elen, subtracts one block, and deletes the extent only if goal_elen then reaches zero. UDF 2.60 section 2.3.7.1 requires the free-space extents of an Unallocated Space Entry to be of type 1 (allocated but not recorded), and mkudffs writes them that way. For such an extent the type…"
+        },
+        {
+          "date": "2026-11-20",
+          "version": null,
+          "text": "CVE-2026-99689 [Cursor]: In the Linux kernel, the following vulnerability has been resolved: xfs: fix temporary cursor leak in btree shift corruption paths In xfs_btree_lshift and xfs_btree_rshift, when XFS_IS_CORRUPT detects an invalid firstrec/lastrec result after xfs_btree_dup_cursor has successfully allocated a temporary cursor, the error path jumps to error0 which returns without freeing tcur. This leaks the cursor memory, the xfs_group reference, and the per-level buffer references held by the duplicated cursor. Jump to error1 instead, which calls xfs_btree_del_cursor(tcur, XFS_BTREE_ER…"
+        }
+      ],
+      "ids": [
+        "CVE-2026-114494",
+        "CVE-2026-114495",
+        "CVE-2026-114496",
+        "CVE-2026-114497",
+        "CVE-2026-114499",
+        "CVE-2026-129995",
+        "CVE-2026-130901",
+        "CVE-2026-133505",
+        "CVE-2026-133853",
+        "CVE-2026-54031",
+        "CVE-2026-54032",
+        "CVE-2026-77329",
+        "CVE-2026-77349",
+        "CVE-2026-77350",
+        "CVE-2026-77383",
+        "CVE-2026-77389",
+        "CVE-2026-77390",
+        "CVE-2026-99602",
+        "CVE-2026-99689"
+      ],
+      "read_with": "curl"
+    },
+    {
+      "id": "F16",
+      "opened": true,
+      "reason": null,
+      "latest": "v2.3.2",
+      "latest_date": "2026-11-18",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F17",
+      "opened": true,
+      "reason": null,
+      "latest": "1.5.11",
+      "latest_date": "2026-11-20",
+      "new": [
+        {
+          "date": "2026-11-20",
+          "version": "1.5.11",
+          "text": "1.5.11IDE ## Remote SSH, Dev Containers, and Cloud Sessions in the IDE This release lets you work in a remote environment from Kiro IDE. Connect to your own Linux machine over SSH, open a project in its Dev Container, or open a cloud session in its own Kiro window. ## Connect to a Linux machine over SSH Video transcript The video shows a local Kiro IDE window. The user adds an SSH host, then opens Connect to Host, which lists the configured host my-remote, Enter SSH Destination…, and Add New SSH Host…. After the user selects my-remote, a new Kiro window opens on the host, shows its files, and…"
+        },
+        {
+          "date": "2026-11-20",
+          "version": null,
+          "text": "General ## Enterprise Management Preview in Europe (Frankfurt) Enterprise administrators can now use the Enterprise Management preview with Kiro profiles in Europe (Frankfurt) (eu-central-1), in addition to US East (N. Virginia) (us-east-1). Newly created Kiro profiles in Europe (Frankfurt) have Controls on from the start. Existing profiles there with IAM Identity Center or an external identity provider can move to Controls when Migrate to the new experience appears on the Kiro Settings page. The move is one-way. Learn more ->"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F18",
+      "opened": true,
+      "reason": null,
+      "latest": "v3.14.30833",
+      "latest_date": "2026-11-20",
+      "new": [
+        {
+          "date": "2026-11-20",
+          "version": "v3.14.30833",
+          "text": "Fixed Collapsed sidebar flyouts, such as Bots, no longer close when you move the pointer to their header controls. In a Devin Local session on a remote SSH host, pressing Enter while Devin is working now sends your follow-up message instead of returning “a turn is already running”. In a Devin Local session on a remote SSH host, withdrawn tool approval prompts no longer leave the session status on “Waiting for approval” until the turn ends. Devin Desktop now releases memory when you close tabs and uses less CPU while sessions update. In the Agents view, Select Folder now accepts a completed fo…"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F19",
+      "opened": true,
+      "reason": null,
+      "latest": "v1.60.2",
+      "latest_date": "2026-11-20",
+      "new": [
+        {
+          "date": "2026-11-20",
+          "version": "v1.60.2",
+          "text": "## ✨ Features - Gemini 4 Neon added to the model catalog [#13684](https://github.com/aaif-goose/goose/pull/13684) ## 🐛 Bug Fixes - Thinking levels now sent to Gemini 4 and later, including xhigh [#13673](https://github.com/aaif-goose/goose/pull/13673)"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F20",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-20",
+      "new": [
+        {
+          "date": "2026-11-20",
+          "version": null,
+          "text": "### Introducing Access and Sharing The access changes below are rolling out gradually and are off by default. Contact your Cognition representative to enable them for your enterprise. #### Repositories & Environments SCM access mismatch checker Admins get a report of repos where access in Devin is different from access in GitHub or GitLab. Admins can also turn on repo sync, which adds the repos you have in GitHub or GitLab to your repo picker. Repos your org already added stay. Shareable environments available All users by default will be able to create an environment once and use it in any o…"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F21",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-08-19",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F22",
+      "opened": true,
+      "reason": null,
+      "latest": "v2026.11.6",
+      "latest_date": "2026-11-19",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F23",
+      "opened": true,
+      "reason": null,
+      "latest": "1.2.24",
+      "latest_date": "2026-11-20",
+      "new": [
+        {
+          "date": "2026-11-20",
+          "version": "1.2.24",
+          "text": "Changes since 1.2.23 * release(langgraph): 1.2.24 (#9752) * fix(langgraph): handle `REMOVE_ALL_MESSAGES` in `_messages_delta_reducer` and `None` checkpoints in `DeltaChannel` (#9735)"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F24",
+      "opened": true,
+      "reason": null,
+      "latest": "1.15.44",
+      "latest_date": "2026-11-19",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F25",
+      "opened": false,
+      "reason": "git ls-remote: exit 128: remote: Repository not found.\nfatal: repository 'https://github.com/microsoft/agent-framework.git/' not found",
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F26",
+      "opened": true,
+      "reason": null,
+      "latest": "2026-07-28",
+      "latest_date": "2026-07-28",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F27",
+      "opened": true,
+      "reason": null,
+      "latest": "1.147",
+      "latest_date": "2026-11-18",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F28",
+      "opened": true,
+      "reason": null,
+      "latest": "2026.11.20",
+      "latest_date": "2026-11-20",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F29",
+      "opened": true,
+      "reason": null,
+      "latest": "1.4.24",
+      "latest_date": "2026-11-21",
+      "new": [
+        {
+          "date": "2026-11-21",
+          "version": "1.4.24",
+          "text": "### New exec --list-models prints the model IDs your provider offers, one per line, so a mistyped --model is recoverable without leaving the terminal A slow MCP tool call can move to the background with Ctrl+B or when you send another message, and its result joins the conversation when it finishes ### Improvements The skill and verify reminders are now off by default, so turns end without the verify check's wait and sessions spend fewer tokens on skill suggestions. Turn either back on in /plugins or by setting plugins.skill-reminder.enabled or plugins.verify-reminder.enabled to true in settin…"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl",
+      "date_is_detection": true
+    },
+    {
+      "id": "F31",
+      "opened": true,
+      "reason": null,
+      "latest": "n8n@3.3.0",
+      "latest_date": "2026-11-17",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F32",
+      "opened": true,
+      "reason": null,
+      "latest": "v3.4.18",
+      "latest_date": "2026-11-10",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F33",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.28.3",
+      "latest_date": "2026-11-21",
+      "new": [
+        {
+          "date": "2026-11-21",
+          "version": "v0.28.3",
+          "text": "<!-- qwen-release-notes:v1 --> ## Highlights _See the complete change list below._ ## Breaking Changes No known breaking changes. ## Complete Change List ### Features - feat(web-shell): explain background tasks from the composer chips ([#17398](https://github.com/QwenLM/qwen-code/pull/17398)) by @wenshao - Adds the backend-neutral unified chat surface contract and capability guards for Web Shell, with no user-visible behavior change yet. ([#17520](https://github.com/QwenLM/qwen-code/pull/17520)) by @wenshao - feat(channels): add GitHub as the third managed channel adapter ([#17511](https://gi…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F34",
+      "opened": true,
+      "reason": null,
+      "latest": "@moonshot-ai/kimi-code@2.7.2",
+      "latest_date": "2026-11-20",
+      "new": [
+        {
+          "date": "2026-11-20",
+          "version": "@moonshot-ai/kimi-code@2.7.2",
+          "text": "### Patch Changes - [#5191](https://github.com/MoonshotAI/kimi-code/pull/5191) [`7baee3c`](https://github.com/MoonshotAI/kimi-code/commit/7baee3cd9d74ac07efdf4a8587c19c1574fffbd2) Thanks [@chengluyu](https://github.com/chengluyu)! - Web: Fix the draft thinking effort inherited from the global thinking setting reverting to the model default after sending."
+        },
+        {
+          "date": "2026-11-20",
+          "version": "@moonshot-ai/kimi-code@2.7.1",
+          "text": "### Patch Changes - [#5170](https://github.com/MoonshotAI/kimi-code/pull/5170) [`c2bec3f`](https://github.com/MoonshotAI/kimi-code/commit/c2bec3fb8e42aca9a7f7b3b80eff9dc1230d332c) Thanks [@liruifengv](https://github.com/liruifengv)! - Web: Fix draft thinking effort selections reverting to the model default after sending. - [#5165](https://github.com/MoonshotAI/kimi-code/pull/5165) [`170c729`](https://github.com/MoonshotAI/kimi-code/commit/170c729e5e83472eea276458cf7a6c65489b57a3) Thanks [@sailist](https://github.com/sailist)! - Fix turn-specific fork failures after restoring sessions with in-…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F35",
+      "opened": true,
+      "reason": null,
+      "latest": "v2.184.0",
+      "latest_date": "2026-11-13",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F36",
+      "opened": true,
+      "reason": null,
+      "latest": "1.41.1",
+      "latest_date": "2026-11-20",
+      "new": [
+        {
+          "date": "2026-11-20",
+          "version": "1.41.1",
+          "text": "### 企业设备账号管控 功能 企业设备账号管控：企业 IT 可通过系统托管配置，限制设备仅允许登录指定企业的账号。 会话内查找：按 Ctrl/Cmd+F 搜索当前会话，支持区分大小写、全词匹配和正则表达式，快速定位历史内容。 优化 悬停在已发送的消息上即可复制，粘贴回输入框时保留引用文件等附件标签，方便修改后重新发送。 加快大仓库中通过 @ 搜索和引用文件的速度，减少等待。 缩短部分模型的上下文压缩耗时，提升长对话的流畅度。 优化文件上下文的使用，按需读取附件，并结合对话判断当前打开的文件是否相关。 缩短网页登录成功后返回 IDE 完成认证的等待时间。 修复 修复 Windows 启动和退出时的卡顿，以及服务重新连接后历史会话无法自动恢复的问题。 修复文件保存失败后 Agent 继续编辑或重试，以及 Hook 拦截后文件占用和“生成中”状态残留的问题。 修复 Agent 新建后又删除的文件仍留在 Review 列表、导致审查页无法打开的问题。 修复终端输出导致内存持续增长的问题，提升长时间使用的稳定性。 修复企业模型与官方模型同名时选择错误的问题，并在切换模型和恢复会话时保留明确选择的企业模型。"
+        },
+        {
+          "date": "2026-11-20",
+          "version": "1.1.94",
+          "text": "CLI 1.1.94 ### 修复稳定性问题并优化后台执行默认策略 修复会话在流式输出期间 Ctrl+O 展开详细记录可能崩溃并中断当前轮次的问题 修复 Edit 将文本替换为空字符串时导致相邻行合并的问题 将 Subagent 默认执行策略修改为后台执行 后台运行的 Bash 命令现默认限时 10 分钟"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F37",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.86.2",
+      "latest_date": "2026-02-12",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F38",
+      "opened": true,
+      "reason": null,
+      "latest": "v1.43.0",
+      "latest_date": "2026-11-20",
+      "new": [
+        {
+          "date": "2026-11-20",
+          "version": "v1.43.0",
+          "text": "## 1.43.0 (2026-11-20) <!-- Release notes generated using configuration in .github/release.yml at main --> ## What's Changed ### Features * feat(automations): create automations enabled from the setup wizard by @SaltGardenia in https://github.com/OpenHands/OpenHands/pull/19769 * feat(settings): Features page for experimental user feature flags, with Conversation reactions by @enyst in https://github.com/OpenHands/OpenHands/pull/19503 * feat(chat): render experimental decision cards by @enyst in https://github.com/OpenHands/OpenHands/pull/19789 * feat(chat): show the agent's message edits (exp…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F39",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-18",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F40",
+      "opened": true,
+      "reason": null,
+      "latest": "2026.11.12",
+      "latest_date": "2026-11-12",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F41",
+      "opened": true,
+      "reason": null,
+      "latest": "26.11.2",
+      "latest_date": "2026-11-19",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F42",
+      "opened": true,
+      "reason": null,
+      "latest": "v7.8.32",
+      "latest_date": "2026-11-20",
+      "new": [
+        {
+          "date": "2026-11-20",
+          "version": "v7.8.32",
+          "text": "## VS Code ### 7.8.32 #### Patch Changes - [#14982](https://github.com/Kilo-Org/kilocode/pull/14982) [`fe67f44`](https://github.com/Kilo-Org/kilocode/commit/fe67f4478855977eeabd06b33c9f80c9b25b34a7) Thanks [@ykakade](https://github.com/ykakade)! - Prevent held keys and repeated close commands from confirming worktree deletion in Agent Manager. Use the Delete confirmation button or a separate Backspace or Delete press to confirm. ### 7.8.31 #### Minor Changes - [#16342](https://github.com/Kilo-Org/kilocode/pull/16342) [`182a5f9`](https://github.com/Kilo-Org/kilocode/commit/182a5f9f501d4d2bff2b…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F44",
+      "opened": true,
+      "reason": null,
+      "latest": "v1.0.89",
+      "latest_date": "2026-11-17",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F45",
+      "opened": true,
+      "reason": null,
+      "latest": "v1.2.3",
+      "latest_date": "2026-11-18",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F46",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "watched": [
+        "Grok Bot › - [Reference](https://docs.x.ai/grok-bot/settings-and-notifications.md)"
+      ],
+      "date_is_detection": true
+    },
+    {
+      "id": "F47",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "watched": [],
+      "date_is_detection": true
+    },
+    {
+      "id": "F48",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F49",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F50",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F51",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F52",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F53",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F54",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F55",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F56",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F57",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": [
+        "use their own permission checks",
+        "They don't cover servers you start independently",
+        "provides Git authentication to sandboxed processes"
+      ]
+    },
+    {
+      "id": "F58",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F59",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F60",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F61",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F62",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F63",
+      "opened": true,
+      "reason": null,
+      "latest": "v1.4.268",
+      "latest_date": "2026-11-21",
+      "new": [
+        {
+          "date": "2026-11-21",
+          "version": "v1.4.268",
+          "text": "We shipped more than one release today. Check out [1.4.267](https://github.com/stablyai/orca/releases/tag/v1.4.267) and [1.4.266](https://github.com/stablyai/orca/releases/tag/v1.4.266) too. ## Bots on more agents, richer Slack & a faster Orca ✨ Bots can now run on Cursor, GitHub Copilot and Hermes, Slack gets scheduling and canvases, and Orca does less work in the background so it feels quicker. - 🤖 **Run bots on more agents:** Bots can run on Cursor, GitHub Copilot and Hermes, and OpenCode 2.x bots get their standing instructions. New bots get an identity card, and Soul & Memory have redesi…"
+        },
+        {
+          "date": "2026-11-20",
+          "version": "v1.4.267",
+          "text": "A quick patch on [1.4.266](https://github.com/stablyai/orca/releases/tag/v1.4.266) with stability and UI improvements. ## What's new in 1.4.267 - 🛠️ **Steadier status bar:** Stability improvements. by @brennanb2025 in https://github.com/stablyai/orca/pull/44647 - 💬 **Smoother chat:** Finished turns now settle cleanly. by @AmethystLiang in https://github.com/stablyai/orca/pull/45817 - 🤖 **Cleaner Bots card:** The sidebar intro card is simpler and fits any width. by @AmethystLiang in https://github.com/stablyai/orca/pull/45442 ## Introducing Orca Bots (Beta) <img src=\"https://raw.githubusercont…"
+        },
+        {
+          "date": "2026-11-20",
+          "version": "v1.4.266",
+          "text": "[Previous release: 1.4.265](https://github.com/stablyai/orca/releases/tag/v1.4.265): Orca Bots as first-class teammates, with a lighter desktop for busy chats. ## Introducing Orca Bots (Beta) <img src=\"https://raw.githubusercontent.com/stablyai/orca/main/src/shared/bot-mascots/A1.webp\" alt=\"Orca\" width=\"36\" height=\"36\" valign=\"middle\" /> Orca Bots work like first-class teammates: every managed agent session gets its tools and identity, bots can share on the owner's behalf, they follow Slack threads and Gmail triggers more reliably, and connecting them is clearer and safer. - <img src=\"https:/…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F64",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.16.2",
+      "latest_date": "2026-11-18",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F65",
+      "opened": true,
+      "reason": null,
+      "latest": "v1.0.20",
+      "latest_date": "2026-08-20",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F66",
+      "opened": true,
+      "reason": null,
+      "latest": "desktop-v2.0.11",
+      "latest_date": "2026-11-20",
+      "new": [
+        {
+          "date": "2026-11-20",
+          "version": "desktop-v2.0.11",
+          "text": "## What's Changed * fix(desktop): defer workspace switch follow-up work until after navigation by @Kitenite in https://github.com/ParadevAI/Paradev/pull/9991 * fix(connectors): refresh for the resource the grant was issued for by @saddlepaddle in https://github.com/ParadevAI/Paradev/pull/10001 * refactor(shared): one verifyUserBearer for the API, the MCP server and the Workers by @saddlepaddle in https://github.com/ParadevAI/Paradev/pull/10002 * fix(trpc): Codex API-key sign-in skips the WebSocket the sandbox firewall refuses by @saddlepaddle in https://github.com/ParadevAI/Paradev/pull/10005…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F67",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.25.0",
+      "latest_date": "2026-11-18",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    }
+  ],
+  "opened": 64,
+  "total": 65
+}
