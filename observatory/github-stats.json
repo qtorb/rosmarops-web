@@ -1,13 +1,64 @@
 {
-  "generated_at": "2026-11-21T09:24:52Z",
+  "generated_at": "2026-11-21T10:24:22Z",
   "repo": {
     "stargazers_count": 1,
     "subscribers_count": 0,
     "forks_count": 0,
-    "open_issues_count": 0
+    "open_issues_count": 2
   },
-  "open_pulls": 0,
+  "open_pulls": 2,
   "releases": [
+    {
+      "tag_name": "v0.17.0",
+      "published_at": "2026-11-21T10:09:35Z",
+      "draft": false,
+      "assets": [
+        {
+          "name": "exposure-potential.json",
+          "download_count": 0
+        },
+        {
+          "name": "factory-scores.json",
+          "download_count": 0
+        },
+        {
+          "name": "profile-scores.json",
+          "download_count": 0
+        },
+        {
+          "name": "rosmarops-linux-amd64",
+          "download_count": 0
+        },
+        {
+          "name": "rosmarops-linux-arm64",
+          "download_count": 0
+        },
+        {
+          "name": "rosmarops-macos-apple-silicon",
+          "download_count": 0
+        },
+        {
+          "name": "rosmarops-macos-intel",
+          "download_count": 0
+        },
+        {
+          "name": "rosmarops.exe",
+          "download_count": 0
+        },
+        {
+          "name": "sample-report.en.html",
+          "download_count": 0
+        },
+        {
+          "name": "sample-report.es.html",
+          "download_count": 0
+        },
+        {
+          "name": "SHA256SUMS.txt",
+          "download_count": 7
+        }
+      ]
+    },
     {
       "tag_name": "v0.16.0",
       "published_at": "2026-11-20T06:06:49Z",
@@ -15,11 +66,11 @@
       "assets": [
         {
           "name": "exposure-potential.json",
-          "download_count": 2
+          "download_count": 3
         },
         {
           "name": "factory-scores.json",
-          "download_count": 2
+          "download_count": 3
         },
         {
           "name": "profile-scores.json",
@@ -47,15 +98,15 @@
         },
         {
           "name": "sample-report.en.html",
-          "download_count": 2
+          "download_count": 3
         },
         {
           "name": "sample-report.es.html",
-          "download_count": 2
+          "download_count": 3
         },
         {
           "name": "SHA256SUMS.txt",
-          "download_count": 20
+          "download_count": 21
         }
       ]
     },
@@ -1516,5 +1567,5 @@
       ]
     }
   ],
-  "latest_tag": "v0.16.0"
+  "latest_tag": "v0.17.0"
 }
