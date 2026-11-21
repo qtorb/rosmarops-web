@@ -107,6 +107,7 @@
   "agent.rosmarops_detected": "Detectado desde RosmarOps {version}: RosmarOps lo encuentra en tu ordenador, pero todavía no le pone nota.",
   "agent.rosmarops_not_supported": "RosmarOps todavía no lo lee.",
   "agent.cta_download": "Revisa el tuyo: descarga RosmarOps",
+  "agent.more_h2": "Para seguir",
   "agent.history_h2": "Historial de cambios de seguridad",
   "agent.history_note": "Solo cambios que afectan a lo que puede hacer en tu ordenador o con tus cuentas. Nada se borra: las correcciones quedan anotadas.",
   "agent.history_empty": "Todavía no hay cambios de seguridad registrados.",
@@ -299,6 +300,8 @@
   "sandbox.wt.p1": "Los orquestadores de agentes, como Orca o Paseo, lanzan varios agentes a la vez y dan a cada uno una copia de tu proyecto en otra rama, una worktree de git. Eso evita que se pisen los ficheros. Pero cada agente sigue siendo tú: ve tu carpeta personal, tus claves y tiene internet. Algunos orquestadores, además, los lanzan de fábrica sin preguntarte nada.",
   "sandbox.wt.p2": "Para separar su acceso hace falta el sandbox en cada agente que lancen. Qué hace cada orquestador está en el {link}.",
   "sandbox.wt.link": "Observatorio",
+  "sandbox.wt.orch": "Qué es un orquestador y qué puede hacer sin preguntarte: {link}",
+  "sandbox.wt.orch.link": "¿Qué es un orquestador de agentes de IA?",
   "sandbox.faq.h": "Preguntas",
   "sandbox.faq.q1": "¿Me va a romper algo?",
   "sandbox.faq.a1": "Tu proyecto sigue igual. Lo que deja de funcionar son las órdenes que salen de él, como instalar paquetes de internet. Si las necesitas, elige el nivel con red.",
@@ -308,6 +311,8 @@
   "sandbox.faq.a3": "Di que no, salvo que sepas qué orden es y por qué la necesita. Fuera del sandbox corre con todos tus permisos.",
   "sandbox.faq.q4": "¿El sandbox lo cubre todo?",
   "sandbox.faq.a4": "No. Los servidores MCP, por ejemplo, suelen ir por fuera. Lo que no cubre cada agente está al final de sus pasos.",
+  "sandbox.faq.a4.mcp": "A qué llega un servidor MCP: {link}",
+  "sandbox.faq.a4.mcp.link": "¿Qué es un servidor MCP y por qué le da poder a un agente de IA?",
   "sandbox.faq.q5": "¿Cómo sé que sigue encendido?",
   "sandbox.faq.a5": "Repite la prueba del paso 3, o ejecuta RosmarOps: te dice qué puede tocar cada agente sin preguntarte."
 }

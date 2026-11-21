@@ -107,6 +107,7 @@
   "agent.rosmarops_detected": "Detected since RosmarOps {version}: RosmarOps finds it on your computer but doesn't score it yet.",
   "agent.rosmarops_not_supported": "RosmarOps doesn't read it yet.",
   "agent.cta_download": "Check yours: download RosmarOps",
+  "agent.more_h2": "Read more",
   "agent.history_h2": "Security change history",
   "agent.history_note": "Only changes that affect what it can do on your computer or with your accounts. Nothing is deleted: corrections stay on record.",
   "agent.history_empty": "No security changes recorded yet.",
@@ -299,6 +300,8 @@
   "sandbox.wt.p1": "Agent orchestrators such as Orca or Paseo launch several agents at once and give each one a copy of your project on another branch, a git worktree. That keeps their files apart. But each agent is still you: it sees your home folder and your keys, and it has the internet. Some orchestrators also launch them, by default, without asking you anything.",
   "sandbox.wt.p2": "To keep their access apart, you need the sandbox in every agent they launch. What each orchestrator does is in the {link}.",
   "sandbox.wt.link": "Observatory",
+  "sandbox.wt.orch": "What an orchestrator is and what it can do without asking you: {link}",
+  "sandbox.wt.orch.link": "What is an AI agent orchestrator?",
   "sandbox.faq.h": "Questions",
   "sandbox.faq.q1": "Will it break something?",
   "sandbox.faq.a1": "Your project stays the same. What stops working are the commands that leave it, such as installing packages from the internet. If you need them, pick the level with network.",
@@ -308,6 +311,8 @@
   "sandbox.faq.a3": "Say no, unless you know which command it is and why it needs it. Outside the sandbox it runs with all your permissions.",
   "sandbox.faq.q4": "Does the sandbox cover everything?",
   "sandbox.faq.a4": "No. MCP servers, for example, usually run outside it. What each agent's sandbox doesn't cover is at the end of its steps.",
+  "sandbox.faq.a4.mcp": "What an MCP server can reach: {link}",
+  "sandbox.faq.a4.mcp.link": "What is an MCP server, and why does it give an AI agent power?",
   "sandbox.faq.q5": "How do I know it's still on?",
   "sandbox.faq.a5": "Repeat the test in step 3, or run RosmarOps: it tells you what each agent can touch without asking you."
 }

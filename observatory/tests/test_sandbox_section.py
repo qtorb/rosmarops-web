@@ -633,7 +633,7 @@ class PageOrder(unittest.TestCase):
         keys = [set(sandbox_section.ctexts(l)) for l in LANGS]
         self.assertEqual(keys[0], keys[1])
         self.assertEqual(keys[0], keys[2])
-        self.assertEqual(len(keys[0]), 33)
+        self.assertEqual(len(keys[0]), 37)  # GTM-198: wt.orch, wt.orch.link, faq.a4.mcp, faq.a4.mcp.link
         for l in LANGS:
             for k, v in sandbox_section.ctexts(l).items():
                 self.assertTrue(v.strip(), (l, k))
