@@ -757,6 +757,8 @@ jobs:
           curl -s "https://rosmarops.com/es/sitemap.xml?gtm103=${GITHUB_SHA::7}" > /tmp/es-sitemap-103.xml
           bad=0
           for s in $(sed -n -e 's/^post done: \([a-z0-9-]*\) noindex$/\1/p' -e 's/^skipped: post \([a-z0-9-]*\) is already noindex$/\1/p' /tmp/gtm103/gtm103-es.log); do
+            # GTM-198: a legacy post that now answers 301 to a standing page (ROSMAROPS_POST_MOVES) is no longer served: fine.
+            if [ "$(curl -s -o /dev/null -w '%{http_code}' "https://rosmarops.com/es/blog/$s/?gtm103=${GITHUB_SHA::7}")" = "301" ]; then echo "moved (301): $s"; continue; fi
             curl -s "https://rosmarops.com/es/blog/$s/?gtm103=${GITHUB_SHA::7}" | grep -qi '<meta name="robots" content="[^"]*noindex' || { echo "not noindex: $s"; bad=$((bad+1)); }
             grep -q "/es/blog/$s/<" /tmp/es-sitemap-103.xml && { echo "still in the sitemap: $s"; bad=$((bad+1)); }
           done
