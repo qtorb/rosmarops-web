@@ -211,6 +211,7 @@ jobs:
           put site/assets/video/decide-tu-en.jpg assets/video/decide-tu-en.jpg
           put site/assets/video/decide-tu-ca.mp4 assets/video/decide-tu-ca.mp4
           put site/assets/video/decide-tu-ca.jpg assets/video/decide-tu-ca.jpg
+          put site/assets/video/paperclip-especial.jpg assets/video/paperclip-especial.jpg
           -mkdir assets/observatory
           put site/assets/observatory/today.js assets/observatory/today.js
           -mkdir assets/brand
@@ -327,6 +328,12 @@ jobs:
           put wp/drafts/novedades-0-16-es.json wp-content/mu-plugins/rosmarops-drafts/novedades-0-16-es.json
           put wp/drafts/novedades-0-16-ca.html wp-content/mu-plugins/rosmarops-drafts/novedades-0-16-ca.html
           put wp/drafts/novedades-0-16-ca.json wp-content/mu-plugins/rosmarops-drafts/novedades-0-16-ca.json
+          put wp/drafts/novedades-0-17-en.html wp-content/mu-plugins/rosmarops-drafts/novedades-0-17-en.html
+          put wp/drafts/novedades-0-17-en.json wp-content/mu-plugins/rosmarops-drafts/novedades-0-17-en.json
+          put wp/drafts/novedades-0-17-es.html wp-content/mu-plugins/rosmarops-drafts/novedades-0-17-es.html
+          put wp/drafts/novedades-0-17-es.json wp-content/mu-plugins/rosmarops-drafts/novedades-0-17-es.json
+          put wp/drafts/novedades-0-17-ca.html wp-content/mu-plugins/rosmarops-drafts/novedades-0-17-ca.html
+          put wp/drafts/novedades-0-17-ca.json wp-content/mu-plugins/rosmarops-drafts/novedades-0-17-ca.json
           put wp/drafts/sandbox-v3-en.html wp-content/mu-plugins/rosmarops-drafts/sandbox-v3-en.html
           put wp/drafts/sandbox-v3-en.json wp-content/mu-plugins/rosmarops-drafts/sandbox-v3-en.json
           put wp/drafts/sandbox-v3-es.html wp-content/mu-plugins/rosmarops-drafts/sandbox-v3-es.html

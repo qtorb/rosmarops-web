@@ -1,0 +1,48 @@
+<!-- wp:paragraph -->
+<p>Hace unos días quise probar Paperclip, un programa que convierte un equipo de agentes de IA en una empresa, con organigrama, tareas y presupuesto. Antes de instalarlo le pedí a un agente que leyera su código y me contara qué hace de fábrica. La primera línea de su respuesta me hizo parar: lanza Claude Code con la opción que se salta todas sus preguntas.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>No es un escándalo. Es lo que hace una herramienta que quiere que todo funcione a la primera. Pero me di cuenta de que RosmarOps no lo habría visto. Miraba cada agente por separado, y aquí el que decide cómo trabaja Claude Code es otro programa. Esta versión arregla eso.</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Los orquestadores, a la vista</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>Un orquestador es un programa que lanza varios agentes a la vez. RosmarOps ya los encuentra y te dice qué agentes pueden poner a trabajar sin preguntarte y a qué llegan esos agentes.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>Con Paperclip te avisa cuando puede poner a trabajar a un agente como Claude Code sin preguntarte, cuando tu versión tiene un fallo de seguridad grave conocido, cuando escucha fuera de tu ordenador y cuando cualquiera que llegue a él puede crearse una cuenta. Nunca abre su base de datos ni sus ficheros secretos: los conoce por su ruta.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>También lee Paseo y Claude Squad, de sus propios ficheros, para saber en qué modo lanzan cada agente. Y con Orca, que de fábrica los lanza con acceso completo, te dice que supone ese valor, porque lo que tú hayas elegido está en una base de datos que no abre.</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Los subagentes de Claude Code</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>Claude Code puede delegar tareas en subagentes: ayudantes con sus propias instrucciones y, a veces, sus propios permisos. RosmarOps lee solo la cabecera de cada uno, nunca sus instrucciones, y te avisa cuando un subagente trabaja sin preguntarte, ejecuta un comando propio, se conecta a servidores definidos en su fichero o puede usar todas las herramientas. Si está en tu carpeta personal, el informe te recuerda que funciona en todos tus proyectos.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>Tu nota puede cambiar con esto. Tres de esos cuatro avisos cuentan en ella. El de un subagente que puede usar todas las herramientas se enseña, pero no la baja.</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Un informe que se lee en un minuto</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>La semana pasada cambió también la forma de leerlo. Un amigo instaló RosmarOps en su Linux y me mandó una lista de cosas que no funcionaban. Entre otras, que el informe era una lista larga de avisos en la que costaba saber por dónde empezar. Ahora se abre con tres bloques: tu resultado, tus problemas agrupados por lo que hay detrás, y cómo evitar que vuelvan, con el ajuste que hay que cambiar y la plantilla que puedes pegar en tu agente.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>De paso arreglé lo que él encontró. Las actualizaciones te preguntan en tu idioma. En Ubuntu, los informes se guardan en <code>~/RosmarOps</code> para que Firefox los abra. Y cada versión se instala de cero y se actualiza desde la anterior en Windows, macOS y Ubuntu antes de publicarse. Esta semana eso ya paró una publicación.</p>
+<!-- /wp:paragraph -->
+<!-- wp:image {"sizeSlug":"large","linkDestination":"custom"} -->
+<figure class="wp-block-image size-large"><a href="https://youtu.be/2IKYyCEKZ0E"><img src="https://rosmarops.com/assets/video/paperclip-especial.jpg" alt="Paperclip: una empresa de agentes de IA, con límites" width="1280" height="720"/></a><figcaption class="wp-element-caption">Qué hace Paperclip de fábrica y cómo usarlo con cabeza, en tres minutos. Vídeo en YouTube.</figcaption></figure>
+<!-- /wp:image -->
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Cómo conseguirla</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>En Windows, desde la Microsoft Store o desde GitHub. En macOS y Linux, con <code>brew install qtorb/rosmarops/rosmarops</code> o desde GitHub. Si ya lo tienes, actualiza y haz una revisión.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>Qué hace cada orquestador, agente por agente: <a href="https://rosmarops.com/observatory/">el Observatorio</a>.</p>
+<!-- /wp:paragraph -->

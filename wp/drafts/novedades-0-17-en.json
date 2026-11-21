@@ -1,0 +1,17 @@
+{
+ "id": "novedades-0-17",
+ "lang": "en",
+ "slug": "when-one-agent-puts-other-agents-to-work",
+ "title": "When one agent puts other agents to work",
+ "excerpt": "A few days ago I wanted to try Paperclip, a program that turns a team of AI agents into a company, with an org chart, tasks and a budget.",
+ "content": "novedades-0-17-en.html",
+ "seo_title": "When one agent puts other agents to work",
+ "seo_description": "A few days ago I wanted to try Paperclip, a program that turns a team of AI agents into a company, with an org chart, tasks and a budget.",
+ "translations": {
+  "es": "https://rosmarops.com/es/blog/cuando-un-agente-pone-a-trabajar-a-otros-agentes/",
+  "ca": "https://rosmarops.com/ca/blog/quan-un-agent-posa-a-treballar-altres-agents/"
+ },
+ "category": "field-notes",
+ "image": "rosmarops-img-19-tres-blocs.jpg",
+ "alt": "A long column of small findings gathers into three cards: a result, three problems and a setting slid into a laptop."
+}

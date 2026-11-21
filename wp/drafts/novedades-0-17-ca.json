@@ -1,0 +1,17 @@
+{
+ "id": "novedades-0-17",
+ "lang": "ca",
+ "slug": "quan-un-agent-posa-a-treballar-altres-agents",
+ "title": "Quan un agent posa a treballar altres agents",
+ "excerpt": "Fa uns dies vaig voler provar Paperclip, un programa que converteix un equip d'agents d'IA en una empresa, amb organigrama, tasques i pressupost.",
+ "content": "novedades-0-17-ca.html",
+ "seo_title": "Quan un agent posa a treballar altres agents",
+ "seo_description": "Fa uns dies vaig voler provar Paperclip, un programa que converteix un equip d'agents d'IA en una empresa, amb organigrama, tasques i pressupost.",
+ "translations": {
+  "en": "https://rosmarops.com/blog/when-one-agent-puts-other-agents-to-work/",
+  "es": "https://rosmarops.com/es/blog/cuando-un-agente-pone-a-trabajar-a-otros-agentes/"
+ },
+ "category": "notes-de-camp",
+ "image": "rosmarops-img-19-tres-blocs.jpg",
+ "alt": "Una columna llarga d'avisos petits es reuneix en tres targetes: un resultat, tres problemes i un ajust que entra en un portàtil."
+}
