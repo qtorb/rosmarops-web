@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-21T12:28:19Z",
+  "generated_at": "2026-11-21T13:24:45Z",
   "repo": {
     "stargazers_count": 1,
     "subscribers_count": 0,
@@ -19,7 +19,7 @@
         },
         {
           "name": "factory-scores.json",
-          "download_count": 1
+          "download_count": 2
         },
         {
           "name": "profile-scores.json",
@@ -43,7 +43,7 @@
         },
         {
           "name": "rosmarops.exe",
-          "download_count": 11
+          "download_count": 13
         },
         {
           "name": "sample-report.en.html",
