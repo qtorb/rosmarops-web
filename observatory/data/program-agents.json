@@ -1,5 +1,5 @@
 {
-  "$comment": "GTM-99. The program's knowledge files (internal/knowledge/<name>.json in qtorb/rosmarops, one per agent it scores) and the Observatory agent file each one stands for. not_agents: knowledge files that are not an agent. Checked against the latest release by observatory/agent_lists.py check. scored_list_names: the name an agent takes in the generated list of scored agents, per language (signed by Albert, 07-11: GitHub Copilot is scored only in VS Code). read_not_scored: knowledge files of agents the program reads but gives no 0–100 score (no factory score in the release); their agent file keeps rosmarops.status as it is (signed by Albert, 17-11).",
+  "$comment": "GTM-99. The program's knowledge files (internal/knowledge/<name>.json in qtorb/rosmarops, one per agent it scores) and the Observatory agent file each one stands for. not_agents: knowledge files that are not an agent. Checked against the latest release by observatory/agent_lists.py check. scored_list_names: the name an agent takes in the generated list of scored agents, per language (signed by Albert, 07-11: GitHub Copilot is scored only in VS Code). read_not_scored: knowledge files of agents the program reads but gives no 0–100 score (no factory score in the release); their agent file keeps rosmarops.status as it is (signed by Albert, 17-11). orchestrators and paperclip (v0.17.0): orchestrators, not agents; no factory score in the release (advisor, 21-11).",
   "knowledge_to_file": {
     "claude-code": "claude-code",
     "cursor": "cursor",
@@ -13,7 +13,9 @@
   },
   "not_agents": [
     "mcp_catalog",
-    "startup-files"
+    "startup-files",
+    "orchestrators",
+    "paperclip"
   ],
   "read_not_scored": [
     "grok-bot"
