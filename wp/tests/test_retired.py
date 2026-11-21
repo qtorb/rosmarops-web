@@ -19,7 +19,7 @@ PRODUCT = [  # the product's own posts: never retired
     "lo-que-no-se-leyo-no-cuenta-como-limpio", "modo-auto-claude-code-que-puede-leer",
 ]
 KEPT = [  # group 1 (rewritten in place) and group 2 (to qtorb.com) samples: not retired here
-    "mcp-seguridad-agentes-cadena-suministro-confianza", "la-capa-de-inferencia-cuando-aprobar-ya-no-es-lo-mismo-que-decidir",
+    "la-capa-de-inferencia-cuando-aprobar-ya-no-es-lo-mismo-que-decidir",
     "europa-en-la-guerra-digital-la-urgencia-de-una-soberania-tecnologica",
 ]
 
@@ -136,3 +136,18 @@ class CategoryMoves(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class PostMoves(unittest.TestCase):
+    def test_mcp_post_goes_to_the_mcp_page(self):  # GTM-198, signed by Albert 21-11 18:10
+        t = targets(["/es/blog/mcp-seguridad-agentes-cadena-suministro-confianza/",
+                     "/es/blog/mcp-seguridad-agentes-cadena-suministro-confianza",
+                     "/es/blog/mcp-seguridad-agentes-cadena-suministro-confianza/feed/"])
+        self.assertEqual(set(t.values()), {"/es/servidores-mcp/"})
+
+    def test_not_in_the_retired_list(self):
+        self.assertNotIn("mcp-seguridad-agentes-cadena-suministro-confianza", listed())
+
+    def test_other_addresses_untouched(self):
+        t = targets(["/blog/mcp-seguridad-agentes-cadena-suministro-confianza/", "/es/blog/mcp-seguridad-agentes-x/"])
+        self.assertEqual(set(t.values()), {None})

@@ -56,7 +56,7 @@ jobs:
           php -l wp/mu-plugins/rosmarops-slug7-sandbox.php
           ls -l wp/drafts/*.json wp/drafts/*.html wp/drafts/rosmarops-img-13-loop-engineering.jpg wp/drafts/rosmarops-img-14-he-terminado.jpg wp/drafts/rosmarops-img-15-el-sistema-aprende.jpg wp/drafts/rosmarops-img-17-harness-engineering.jpg wp/drafts/rosmarops-img-16-novedades-0-10.jpg wp/drafts/rosmarops-img-18-microsoft-store.jpg wp/drafts/rosmarops-img-19-tres-blocs.jpg wp/drafts/sandbox-agentes-de-ia.jpg
           ls -l wp/daily/shell-en.html wp/daily/shell-es.html wp/daily/shell-ca.html wp/daily/i18n.json
-          ! grep -RIl 'noindex' site/index.html site/es/index.html site/methodology site/faq site/es/metodologia site/es/preguntas-frecuentes site/ca/index.html site/ca/metodologia site/ca/preguntes-frequents site/cloud-access site/es/acceso-en-la-nube site/ca/acces-al-nuvol site/ca/privadesa site/privacy site/es/privacidad site/legal-notice site/es/aviso-legal site/ca/avis-legal site/terms site/es/terminos site/ca/termes site/security-teams site/es/equipos-de-seguridad site/ca/equips-de-seguretat site/_static site/macos site/es/macos site/ca/macos site/linux site/es/linux site/ca/linux site/sample-report/index.html site/es/informe-de-ejemplo site/ca/informe-dexemple site/observatory/index.html site/es/observatorio/index.html site/ca/observatori/index.html site/glossary site/es/glosario site/ca/glossari site/observatory/ai-agent-map site/es/observatorio/mapa-agentes-ia site/ca/observatori/mapa-agents-ia site/observatory/ai-agents-with-sandbox site/es/observatorio/agentes-ia-con-sandbox site/ca/observatori/agents-ia-amb-sandbox site/try-an-ai-agent site/es/probar-un-agente-de-ia site/ca/provar-un-agent-dia site/sandbox site/es/sandbox site/ca/sandbox
+          ! grep -RIl 'noindex' site/index.html site/es/index.html site/methodology site/faq site/es/metodologia site/es/preguntas-frecuentes site/ca/index.html site/ca/metodologia site/ca/preguntes-frequents site/cloud-access site/es/acceso-en-la-nube site/ca/acces-al-nuvol site/ca/privadesa site/privacy site/es/privacidad site/legal-notice site/es/aviso-legal site/ca/avis-legal site/terms site/es/terminos site/ca/termes site/security-teams site/es/equipos-de-seguridad site/ca/equips-de-seguretat site/_static site/macos site/es/macos site/ca/macos site/linux site/es/linux site/ca/linux site/sample-report/index.html site/es/informe-de-ejemplo site/ca/informe-dexemple site/observatory/index.html site/es/observatorio/index.html site/ca/observatori/index.html site/glossary site/es/glosario site/ca/glossari site/observatory/ai-agent-map site/es/observatorio/mapa-agentes-ia site/ca/observatori/mapa-agents-ia site/observatory/ai-agents-with-sandbox site/es/observatorio/agentes-ia-con-sandbox site/ca/observatori/agents-ia-amb-sandbox site/try-an-ai-agent site/es/probar-un-agente-de-ia site/ca/provar-un-agent-dia site/sandbox site/es/sandbox site/ca/sandbox site/agent-orchestrators site/es/orquestadores-de-agentes site/ca/orquestradors-dagents site/claude-code-subagents site/es/subagentes-de-claude-code site/ca/subagents-de-claude-code site/mcp-servers site/es/servidores-mcp site/ca/servidors-mcp
           # Observatory: only the three index pages and the JSON files are published (GTM-11). Agent pages wait for verification.
           ls site/observatory/index.html site/es/observatorio/index.html site/ca/observatori/index.html site/observatory/*.json
 
@@ -150,6 +150,24 @@ jobs:
           put site/es/equipos-de-seguridad/index.html es/equipos-de-seguridad/index.html
           -mkdir ca/equips-de-seguretat
           put site/ca/equips-de-seguretat/index.html ca/equips-de-seguretat/index.html
+          -mkdir agent-orchestrators
+          put site/agent-orchestrators/index.html agent-orchestrators/index.html
+          -mkdir es/orquestadores-de-agentes
+          put site/es/orquestadores-de-agentes/index.html es/orquestadores-de-agentes/index.html
+          -mkdir ca/orquestradors-dagents
+          put site/ca/orquestradors-dagents/index.html ca/orquestradors-dagents/index.html
+          -mkdir claude-code-subagents
+          put site/claude-code-subagents/index.html claude-code-subagents/index.html
+          -mkdir es/subagentes-de-claude-code
+          put site/es/subagentes-de-claude-code/index.html es/subagentes-de-claude-code/index.html
+          -mkdir ca/subagents-de-claude-code
+          put site/ca/subagents-de-claude-code/index.html ca/subagents-de-claude-code/index.html
+          -mkdir mcp-servers
+          put site/mcp-servers/index.html mcp-servers/index.html
+          -mkdir es/servidores-mcp
+          put site/es/servidores-mcp/index.html es/servidores-mcp/index.html
+          -mkdir ca/servidors-mcp
+          put site/ca/servidors-mcp/index.html ca/servidors-mcp/index.html
           -mkdir try-an-ai-agent
           put site/try-an-ai-agent/index.html try-an-ai-agent/index.html
           -mkdir es/probar-un-agente-de-ia
@@ -212,6 +230,7 @@ jobs:
           put site/assets/video/decide-tu-ca.mp4 assets/video/decide-tu-ca.mp4
           put site/assets/video/decide-tu-ca.jpg assets/video/decide-tu-ca.jpg
           put site/assets/video/paperclip-especial.jpg assets/video/paperclip-especial.jpg
+          put site/assets/video/worktree-no-es-sandbox.jpg assets/video/worktree-no-es-sandbox.jpg
           -mkdir assets/observatory
           put site/assets/observatory/today.js assets/observatory/today.js
           -mkdir assets/brand
