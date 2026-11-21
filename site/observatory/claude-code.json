@@ -213,6 +213,33 @@
         "how": "official_changelog"
       },
       "rosmarops_impact": "none"
+    },
+    {
+      "id": "chg-claude-code-2-1-330-org-sign-in",
+      "version": "2.1.330",
+      "date": "2026-11-20",
+      "category": "data_destination",
+      "before": {
+        "en": "Before 2.1.330, the Claude Code changelog listed no sign-in to organizations managed in Enterprise Admin Console.",
+        "es": "Antes de 2.1.330, el changelog de Claude Code no recogía el inicio de sesión en organizaciones gestionadas en Enterprise Admin Console.",
+        "ca": "Abans de 2.1.330, el changelog de Claude Code no recollia l'inici de sessió a organitzacions gestionades a Enterprise Admin Console."
+      },
+      "after": {
+        "en": "From 2.1.330, after claude auth login to an Enterprise Admin Console organization, Claude Code applies that organization's settings and uses its cloud provider or gateway, according to the changelog.",
+        "es": "Desde 2.1.330, tras claude auth login en una organización de Enterprise Admin Console, Claude Code aplica la configuración de esa organización y usa su proveedor de nube o pasarela, según el changelog.",
+        "ca": "Des de 2.1.330, després de claude auth login a una organització d'Enterprise Admin Console, Claude Code aplica la configuració d'aquesta organització i fa servir el seu proveïdor de núvol o passarel·la, segons el changelog."
+      },
+      "source": {
+        "url": "https://code.claude.com/docs/en/changelog#2-1-330",
+        "official": true,
+        "accessed_at": "2026-11-21"
+      },
+      "verified": {
+        "by": "writer",
+        "at": "2026-11-21",
+        "how": "official_changelog"
+      },
+      "rosmarops_impact": "none"
     }
   ],
   "ratings": [],

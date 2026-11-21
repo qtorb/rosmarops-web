@@ -75,6 +75,33 @@
         "how": "official_changelog"
       },
       "rosmarops_impact": "knowledge"
+    },
+    {
+      "id": "chg-antigravity-2-34-0-mcp-headers",
+      "version": "v2.34.0",
+      "date": "2026-11-20",
+      "category": "mcp",
+      "before": {
+        "en": "Before v2.34.0, the Antigravity App changelog says configured MCP headers were sent across cross-origin redirects and lists no MCP App support.",
+        "es": "Antes de v2.34.0, el changelog de Antigravity App dice que las cabeceras MCP configuradas se enviaban en redirecciones a otro origen y no recoge soporte para MCP Apps.",
+        "ca": "Abans de v2.34.0, el changelog d'Antigravity App diu que les capçaleres MCP configurades s'enviaven en redireccions a un altre origen i no recull suport per a MCP Apps."
+      },
+      "after": {
+        "en": "From v2.34.0, the Antigravity App adds MCP App support and no longer sends configured MCP headers across cross-origin redirects, according to the changelog.",
+        "es": "Desde v2.34.0, Antigravity App añade soporte para MCP Apps y ya no envía las cabeceras MCP configuradas en redirecciones a otro origen, según el changelog.",
+        "ca": "Des de v2.34.0, Antigravity App afegeix suport per a MCP Apps i ja no envia les capçaleres MCP configurades en redireccions a un altre origen, segons el changelog."
+      },
+      "source": {
+        "url": "https://antigravity.google/docs/changelog#rel-hub-2.34.0",
+        "official": true,
+        "accessed_at": "2026-11-21"
+      },
+      "verified": {
+        "by": "writer",
+        "at": "2026-11-21",
+        "how": "official_changelog"
+      },
+      "rosmarops_impact": "none"
     }
   ],
   "ratings": []
