@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-11-21T17:24:42Z",
+  "generated_at": "2026-11-21T18:25:22Z",
   "repo": {
     "stargazers_count": 1,
     "subscribers_count": 0,
     "forks_count": 0,
-    "open_issues_count": 0
+    "open_issues_count": 1
   },
-  "open_pulls": 0,
+  "open_pulls": 1,
   "releases": [
     {
       "tag_name": "v0.17.0",
@@ -31,7 +31,7 @@
         },
         {
           "name": "rosmarops-linux-arm64",
-          "download_count": 1
+          "download_count": 3
         },
         {
           "name": "rosmarops-macos-apple-silicon",
@@ -43,7 +43,7 @@
         },
         {
           "name": "rosmarops.exe",
-          "download_count": 13
+          "download_count": 14
         },
         {
           "name": "sample-report.en.html",
@@ -55,7 +55,7 @@
         },
         {
           "name": "SHA256SUMS.txt",
-          "download_count": 13
+          "download_count": 14
         }
       ]
     },
