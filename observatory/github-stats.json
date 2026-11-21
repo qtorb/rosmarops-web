@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-11-21T10:24:22Z",
+  "generated_at": "2026-11-21T11:24:22Z",
   "repo": {
     "stargazers_count": 1,
     "subscribers_count": 0,
     "forks_count": 0,
-    "open_issues_count": 2
+    "open_issues_count": 3
   },
-  "open_pulls": 2,
+  "open_pulls": 3,
   "releases": [
     {
       "tag_name": "v0.17.0",
@@ -15,47 +15,47 @@
       "assets": [
         {
           "name": "exposure-potential.json",
-          "download_count": 0
+          "download_count": 1
         },
         {
           "name": "factory-scores.json",
-          "download_count": 0
+          "download_count": 1
         },
         {
           "name": "profile-scores.json",
-          "download_count": 0
+          "download_count": 1
         },
         {
           "name": "rosmarops-linux-amd64",
-          "download_count": 0
+          "download_count": 1
         },
         {
           "name": "rosmarops-linux-arm64",
-          "download_count": 0
+          "download_count": 1
         },
         {
           "name": "rosmarops-macos-apple-silicon",
-          "download_count": 0
+          "download_count": 1
         },
         {
           "name": "rosmarops-macos-intel",
-          "download_count": 0
+          "download_count": 1
         },
         {
           "name": "rosmarops.exe",
-          "download_count": 0
+          "download_count": 10
         },
         {
           "name": "sample-report.en.html",
-          "download_count": 0
+          "download_count": 1
         },
         {
           "name": "sample-report.es.html",
-          "download_count": 0
+          "download_count": 1
         },
         {
           "name": "SHA256SUMS.txt",
-          "download_count": 7
+          "download_count": 12
         }
       ]
     },
@@ -709,7 +709,7 @@
         },
         {
           "name": "rosmarops.exe",
-          "download_count": 8
+          "download_count": 11
         },
         {
           "name": "sample-report.en.html",
@@ -721,7 +721,7 @@
         },
         {
           "name": "SHA256SUMS.txt",
-          "download_count": 10
+          "download_count": 13
         }
       ]
     },
