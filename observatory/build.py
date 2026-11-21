@@ -955,6 +955,11 @@ def build_sitemap(agents):
         talts = "".join(f'<xhtml:link rel="alternate" hreflang="{l}" href="{BASE}{p}"/>' for l, p in group.items())
         talts += f'<xhtml:link rel="alternate" hreflang="x-default" href="{BASE}{group["en"]}"/>'
         lines.append(f"  <url><loc>{BASE}{path}</loc>{talts}</url>")
+    import topic_pages  # GTM-198: orchestrators, Claude Code subagents and MCP servers, hreflang EN<->ES<->CA
+    for path, group in topic_pages.sitemap_urls(topic_pages.load()):
+        palts = "".join(f'<xhtml:link rel="alternate" hreflang="{l}" href="{BASE}{p}"/>' for l, p in group.items())
+        palts += f'<xhtml:link rel="alternate" hreflang="x-default" href="{BASE}{group["en"]}"/>'
+        lines.append(f"  <url><loc>{BASE}{path}</loc>{palts}</url>")
     lines += [SM_END]
     xml = f.read_text(encoding="utf-8")
     if SM_START in xml:
@@ -983,6 +988,8 @@ def build_llms(agents, t_en):
             lines.append(f"- [{h1}]({BASE}{agent_path('en', ag['id'])}): observatory page, with its data at {BASE}{JSON_BASE}{ag['id']}.json")
     import templates_pages  # GTM-190: the three questions with their URL, once the pages exist
     lines += templates_pages.llms_lines(templates_pages.load())
+    import topic_pages  # GTM-198: the three questions, each with its one-sentence answer
+    lines += topic_pages.llms_lines(topic_pages.load())
     lines.append(LL_END)
     block = "\n".join(lines)
     if LL_START in txt:
@@ -1196,6 +1203,8 @@ def main():
         sandbox_section.build(agents, SITE)
         import templates_pages  # GTM-190: /templates/ and /es/plantillas/, only once BV-266's export is copied in
         templates_pages.build(SITE)
+        import topic_pages  # GTM-198: /agent-orchestrators/, /claude-code-subagents/, /mcp-servers/ and their ES and CA pages
+        topic_pages.build(SITE)
     pages = 0
     for lang in LANGS:
         t = T(cats[lang])

@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: RosmarOps retired posts
- * Description: Legacy Spanish blog posts and topic pages retired from rosmarops.com (selection in the claude.ai project, claude/criba-blog-heredado.md, group 3; asked by Albert 2026-11-03 19:48). Each listed /es/blog/<slug>/ answers 301 to /es/blog/, also when the post is a draft. A category or tag archive under /es/blog/ with no published posts answers 301 to /es/blog/ too. The blog's old category addresses (EN, ES, CA) that no longer exist answer 301 to the category that replaced them (GTM-94, 06-11). Nothing is deleted. Versioned in qtorb/rosmarops-web; do not edit on the server.
+ * Description: Legacy Spanish blog posts and topic pages retired from rosmarops.com (selection in the claude.ai project, claude/criba-blog-heredado.md, group 3; asked by Albert 2026-11-03 19:48). Each listed /es/blog/<slug>/ answers 301 to /es/blog/, also when the post is a draft. A category or tag archive under /es/blog/ with no published posts answers 301 to /es/blog/ too. The blog's old category addresses (EN, ES, CA) that no longer exist answer 301 to the category that replaced them (GTM-94, 06-11). An old post whose subject now has a standing page answers 301 to that page (GTM-198, 21-11). Nothing is deleted. Versioned in qtorb/rosmarops-web; do not edit on the server.
  */
 
 if (!defined('ABSPATH')) {
@@ -102,7 +102,13 @@ const ROSMAROPS_RETIRED = [
 	'zero-day-psicologicos-vulnerabilidades-emocionales-sin-parche',
 ];
 
-/** Target of a request URI if it is a retired post or page (or a sub-path such as its feed), else null. */
+// GTM-198 (signed by Albert 21-11 18:10): an old post whose subject now has a standing page answers 301 to that page.
+// The post is not deleted.
+const ROSMAROPS_POST_MOVES = [
+	'mcp-seguridad-agentes-cadena-suministro-confianza' => '/es/servidores-mcp/',
+];
+
+/** Target of a request URI if it is a retired or moved post or page (or a sub-path such as its feed), else null. */
 function rosmarops_retired_target($request_uri) {
 	$path = parse_url((string) $request_uri, PHP_URL_PATH);
 	if (!is_string($path) || strpos($path, ROSMAROPS_RETIRED_HOME) !== 0) {
@@ -110,6 +116,9 @@ function rosmarops_retired_target($request_uri) {
 	}
 	$parts = explode('/', trim(substr($path, strlen(ROSMAROPS_RETIRED_HOME)), '/'));
 	$slug  = rawurldecode($parts[0] ?? '');
+	if (isset(ROSMAROPS_POST_MOVES[$slug])) {
+		return ROSMAROPS_POST_MOVES[$slug];
+	}
 	return in_array($slug, ROSMAROPS_RETIRED, true) ? ROSMAROPS_RETIRED_HOME : null;
 }
 

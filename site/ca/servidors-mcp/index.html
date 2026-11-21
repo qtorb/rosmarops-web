@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Què és un servidor MCP i per què dona poder a un agent d&#x27;IA? · RosmarOps</title>
+<meta name="description" content="Un servidor MCP és una porta que obres al teu agent d&#x27;IA: al teu correu, a una base de dades o al teu repositori. La seva clau decideix fins on arriba l&#x27;agent. Com veure quines portes té cadascun.">
+<link rel="canonical" href="https://rosmarops.com/ca/servidors-mcp/">
+<link rel="alternate" hreflang="en" href="https://rosmarops.com/mcp-servers/">
+<link rel="alternate" hreflang="es" href="https://rosmarops.com/es/servidores-mcp/">
+<link rel="alternate" hreflang="ca" href="https://rosmarops.com/ca/servidors-mcp/">
+<link rel="alternate" hreflang="x-default" href="https://rosmarops.com/mcp-servers/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="RosmarOps">
+<meta property="og:title" content="Què és un servidor MCP i per què dona poder a un agent d&#x27;IA? · RosmarOps">
+<meta property="og:description" content="Un servidor MCP és una porta que obres al teu agent d&#x27;IA: al teu correu, a una base de dades o al teu repositori. La seva clau decideix fins on arriba l&#x27;agent. Com veure quines portes té cadascun.">
+<meta property="og:url" content="https://rosmarops.com/ca/servidors-mcp/">
+<meta property="og:image" content="https://rosmarops.com/assets/brand/rosmarops-social.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "TechArticle", "@id": "https://rosmarops.com/ca/servidors-mcp/#article", "headline": "Què és un servidor MCP i per què dona poder a un agent d'IA?", "description": "Un servidor MCP és una porta que obres al teu agent d'IA: al teu correu, a una base de dades o al teu repositori. La seva clau decideix fins on arriba l'agent. Com veure quines portes té cadascun.", "inLanguage": "ca", "url": "https://rosmarops.com/ca/servidors-mcp/", "mainEntityOfPage": "https://rosmarops.com/ca/servidors-mcp/", "author": {"@type": "Organization", "name": "RosmarOps", "url": "https://rosmarops.com/"}, "publisher": {"@type": "Organization", "name": "RosmarOps", "url": "https://rosmarops.com/"}, "about": {"@type": "Thing", "name": "Model Context Protocol"}, "mentions": [{"@type": "SoftwareApplication", "name": "Claude Code"}, {"@type": "SoftwareApplication", "name": "Cursor"}, {"@type": "SoftwareApplication", "name": "Cline"}, {"@type": "SoftwareApplication", "name": "Codex"}, {"@type": "SoftwareApplication", "name": "Grok Build"}, {"@type": "SoftwareApplication", "name": "Gemini CLI"}, {"@type": "SoftwareApplication", "name": "GitHub Copilot"}, {"@type": "SoftwareApplication", "name": "Antigravity CLI"}, {"@type": "SoftwareApplication", "name": "Hermes Agent"}], "isPartOf": {"@id": "https://rosmarops.com/#website"}}, {"@type": "FAQPage", "@id": "https://rosmarops.com/ca/servidors-mcp/#faq", "inLanguage": "ca", "url": "https://rosmarops.com/ca/servidors-mcp/", "mainEntity": [{"@type": "Question", "name": "Què és un servidor MCP i per què dona poder a un agent d'IA?", "acceptedAnswer": {"@type": "Answer", "text": "Un servidor MCP dona a un agent d'IA una eina nova, com llegir el teu correu o escriure al teu repositori, i a partir d'aquí l'agent pot fer tot el que permet la clau d'aquest servidor."}}]}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Inici", "item": "https://rosmarops.com/ca/"}, {"@type": "ListItem", "position": 2, "name": "Què és un servidor MCP i per què dona poder a un agent d'IA?", "item": "https://rosmarops.com/ca/servidors-mcp/"}]}]}</script>
+<link rel="stylesheet" href="/assets/consent/cookieconsent.css?v=3.1.0">
+<link rel="icon" href="/wp-content/uploads/2026/10/image-1.png">
+<style>
+:root{--bg:#F6F5F2;--ink:#1B1A18;--ink2:#3A3833;--muted:#66635D;--line:#E3E0D8;--card:#FFFFFF;--accent:#6F8F78}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+a{color:var(--ink)}a:hover{color:var(--accent)}
+.wrap{max-width:1040px;margin:0 auto;padding:0 16px}
+header .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;padding-top:24px;padding-bottom:24px}
+header img{height:40px;width:auto;display:block}
+nav{display:flex;flex-wrap:wrap;gap:24px;font-size:16px}
+main .wrap{display:flex;flex-direction:column;gap:64px;padding-top:48px;padding-bottom:64px}
+.hero{display:flex;flex-direction:column;gap:20px;max-width:760px}
+h1{margin:0;font-size:clamp(34px,6vw,52px);line-height:1.08;font-weight:700;letter-spacing:-.02em}
+.lead{margin:0;font-size:20px;line-height:1.55;color:var(--ink2)}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:16px}
+h2{margin:0;font-size:14px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:12px;font-size:17px;line-height:1.55}
+.status{border-top:1px solid var(--line);padding-top:32px;display:flex;flex-direction:column;gap:12px;max-width:760px}
+.status p{margin:0;font-size:17px;line-height:1.55}
+footer{border-top:1px solid var(--line)}
+footer .wrap{padding-top:28px;padding-bottom:28px;font-size:15px;color:var(--muted)}
+footer nav{gap:20px;font-size:15px}
+.doc{max-width:760px;display:flex;flex-direction:column;gap:18px;font-size:18px;line-height:1.65}
+.doc h1{font-size:clamp(30px,5vw,44px);line-height:1.12}
+.doc h2{font-size:22px;letter-spacing:0;text-transform:none;color:var(--ink);margin-top:20px}
+.doc p,.doc ul{margin:0}.doc ul{font-size:18px;gap:8px}
+.doc .meta{font-size:15px;color:var(--muted)}
+.doc .formula{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 20px;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:16px;overflow-wrap:anywhere}
+.doc code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:.92em}
+.faq h2{margin-top:24px}
+.doc a{overflow-wrap:anywhere}
+</style>
+<style>
+.doc{max-width:760px;display:flex;flex-direction:column;gap:18px;font-size:18px;line-height:1.65}
+.doc h1{margin:0;font-size:clamp(30px,5vw,44px);line-height:1.12;font-weight:700;letter-spacing:-.02em}
+.doc h2{margin:20px 0 0;font-size:22px;line-height:1.3}
+.doc p,.doc ul,.doc ol{margin:0}.doc ul,.doc ol{padding-left:22px;display:flex;flex-direction:column;gap:8px}
+.doc .tp-first{font-size:20px;line-height:1.55;color:var(--ink2)}
+.doc code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:.92em;overflow-wrap:anywhere}
+.tp-video{margin:8px 0 0;display:flex;flex-direction:column;gap:8px}
+.tp-video img{display:block;width:100%;height:auto;border-radius:12px;border:1px solid var(--line)}
+.tp-video figcaption{font-size:15px;color:var(--muted)}
+.tp-more{border-top:1px solid var(--line);padding-top:20px}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<a href="/ca/"><img src="/assets/brand/rosmarops-logo.png" srcset="/assets/brand/rosmarops-logo.png 1x, /assets/brand/rosmarops-logo@2x.png 2x" width="512" height="131" alt="RosmarOps"></a>
+<nav><a href="/ca/blog/">Bloc</a><a href="/ca/blog/que-es-rosmarops/">Quant a</a><a href="/ca/observatori/">Observatori</a><a href="/ca/sandbox/">Sandbox</a><a href="/ca/metodologia/">Metodologia</a><a href="/ca/preguntes-frequents/">Preguntes</a><a href="/mcp-servers/" hreflang="en" lang="en" aria-label="English">EN</a><a href="/es/servidores-mcp/" hreflang="es" lang="es" aria-label="Español">ES</a></nav>
+</div></header>
+
+<main><div class="wrap">
+<article class="doc"><h1>Què és un servidor MCP i per què dona poder a un agent d&#x27;IA?</h1>
+<p class="tp-first">Un servidor MCP dona a un agent d&#x27;IA una eina nova, com llegir el teu correu o escriure al teu repositori, i a partir d&#x27;aquí l&#x27;agent pot fer tot el que permet la clau d&#x27;aquest servidor.</p>
+<h2>Què és MCP</h2>
+<p>Un agent d'IA, sol, sap llegir i escriure text. Per fer coses al món necessita eines: llegir el teu correu, consultar una base de dades, obrir una pàgina, crear una incidència. MCP és el protocol estàndard amb què un agent es connecta a eines i dades externes. Cada servidor MCP és una porta nova que obres a l'agent.</p>
+<h2>Dos tipus de porta</h2>
+<p>Un servidor local és un programa que l'agent arrenca al teu ordinador, amb el teu usuari i tot el que tu pots fer. Un servidor remot és una adreça d'internet a la qual l'agent es connecta en nom teu.</p>
+<h2>La clau</h2>
+<p>Gairebé totes les portes tenen una clau. Per entrar al teu correu o al teu repositori, el servidor necessita una clau del servei, i moltes vegades aquesta clau està escrita al mateix fitxer de configuració, al costat del servidor, en text normal. L'agent arriba exactament fins on arriba la clau: amb un servidor del teu repositori amb permís d'escriptura, pot escriure al teu repositori.</p>
+<h2>El que no és tan evident</h2>
+<p>Cada servidor explica a l'agent quines eines té i per a què serveixen. Aquesta descripció l'escriu un tercer, i l'agent la llegeix com a part de les seves instruccions. Un servidor mal fet, o amb mala intenció, li pot colar ordres per aquí.</p>
+<h2>Qui obre les portes</h2>
+<p>Tu, quan afegeixes un servidor. Però també un projecte: un repositori pot portar el seu propi fitxer de servidors. Claude Code carrega servidors de <code>~/.claude.json</code> i del <code>.mcp.json</code> del repositori, i et demana aprovació abans de fer servir els d'un projecte. Si la dones sense mirar, la porta queda oberta.</p>
+<h2>Com fer-los servir amb seny</h2>
+<ol><li>Instal·la només servidors de qui coneixes, i treu els que ja no fas servir.</li><li>Dona a cada clau el mínim permís: només lectura, si n'hi ha prou amb llegir.</li><li>No acceptis els servidors d'un projecte sense veure què fan.</li><li>Guarda les claus fora del fitxer de configuració quan l'agent ho permeti.</li><li>Revisa de tant en tant quines portes té obertes cada agent.</li></ol>
+<h2>Què et diu RosmarOps</h2>
+<p>RosmarOps et diu quins servidors MCP té cadascun dels teus agents, des de quin fitxer es van configurar i quines credencials els arriben, sense mostrar les claus. Si el tornes a executar, et diu quins servidors són nous i quins apunten ara a un altre lloc.</p>
+<p>Llegeix la configuració MCP de Claude Code, Cursor, Cline, Codex, Grok Build, Gemini CLI, GitHub Copilot, Antigravity CLI i Hermes Agent.</p>
+<section class="tp-more"><h2>Per continuar</h2><ul><li><a href="/ca/observatori/claude-code/">Què pot fer Claude Code al teu ordinador</a></li><li><a href="/ca/observatori/cursor/">Què pot fer Cursor al teu ordinador</a></li><li><a href="/ca/subagents-de-claude-code/">Què poden fer els subagents de Claude Code sense preguntar-te?</a></li><li><a href="/ca/blog/pot-un-agent-dia-canviar-la-configuracio-dun-altre/">Pot un agent d&#x27;IA canviar la configuració d&#x27;un altre?</a></li><li><a href="/ca/descarregar/">Descarregar RosmarOps</a></li></ul></section>
+<p>RosmarOps és gratuït i de codi obert. Només llegeix, i res no surt del teu ordinador sense la teva aprovació.</p></article>
+</div></main>
+
+<footer><div class="wrap">
+<nav><a href="/ca/blog/">Bloc</a><a href="/ca/blog/que-es-rosmarops/">Quant a</a><a href="/ca/observatori/">Observatori</a><a href="/ca/sandbox/">Sandbox</a><a href="/ca/metodologia/">Metodologia</a><a href="/ca/preguntes-frequents/">Preguntes freqüents</a><a href="/ca/privadesa/">Privadesa</a><a href="/ca/avis-legal/">Avís legal</a><a href="/ca/termes/">Termes</a><a href="/mcp-servers/" hreflang="en" lang="en" aria-label="English">EN</a><a href="/es/servidores-mcp/" hreflang="es" lang="es" aria-label="Español">ES</a><a href="#" data-cc="show-preferencesModal">Configura les galetes</a></nav>
+</div></footer>
+<script src="/assets/consent/cookieconsent.umd.js?v=3.1.0" defer></script>
+<script src="/assets/consent/consent.js?v=5" defer></script><script src="/assets/visits/visits.js?v=3" defer></script>
+</body>
+</html>

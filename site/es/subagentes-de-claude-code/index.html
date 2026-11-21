@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>¿Qué pueden hacer los subagentes de Claude Code sin preguntarte? · RosmarOps</title>
+<meta name="description" content="Un subagente de Claude Code puede usar todas tus herramientas, trabajar con su propio modo de permisos, ejecutar comandos y conectarse a servidores MCP: lo decide la cabecera de su fichero.">
+<link rel="canonical" href="https://rosmarops.com/es/subagentes-de-claude-code/">
+<link rel="alternate" hreflang="en" href="https://rosmarops.com/claude-code-subagents/">
+<link rel="alternate" hreflang="es" href="https://rosmarops.com/es/subagentes-de-claude-code/">
+<link rel="alternate" hreflang="ca" href="https://rosmarops.com/ca/subagents-de-claude-code/">
+<link rel="alternate" hreflang="x-default" href="https://rosmarops.com/claude-code-subagents/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="RosmarOps">
+<meta property="og:title" content="¿Qué pueden hacer los subagentes de Claude Code sin preguntarte? · RosmarOps">
+<meta property="og:description" content="Un subagente de Claude Code puede usar todas tus herramientas, trabajar con su propio modo de permisos, ejecutar comandos y conectarse a servidores MCP: lo decide la cabecera de su fichero.">
+<meta property="og:url" content="https://rosmarops.com/es/subagentes-de-claude-code/">
+<meta property="og:image" content="https://rosmarops.com/assets/brand/rosmarops-social.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "TechArticle", "@id": "https://rosmarops.com/es/subagentes-de-claude-code/#article", "headline": "¿Qué pueden hacer los subagentes de Claude Code sin preguntarte?", "description": "Un subagente de Claude Code puede usar todas tus herramientas, trabajar con su propio modo de permisos, ejecutar comandos y conectarse a servidores MCP: lo decide la cabecera de su fichero.", "inLanguage": "es", "url": "https://rosmarops.com/es/subagentes-de-claude-code/", "mainEntityOfPage": "https://rosmarops.com/es/subagentes-de-claude-code/", "author": {"@type": "Organization", "name": "RosmarOps", "url": "https://rosmarops.com/"}, "publisher": {"@type": "Organization", "name": "RosmarOps", "url": "https://rosmarops.com/"}, "about": {"@type": "Thing", "name": "Claude Code subagents"}, "mentions": [{"@type": "SoftwareApplication", "name": "Claude Code"}], "isPartOf": {"@id": "https://rosmarops.com/#website"}}, {"@type": "FAQPage", "@id": "https://rosmarops.com/es/subagentes-de-claude-code/#faq", "inLanguage": "es", "url": "https://rosmarops.com/es/subagentes-de-claude-code/", "mainEntity": [{"@type": "Question", "name": "¿Qué pueden hacer los subagentes de Claude Code sin preguntarte?", "acceptedAnswer": {"@type": "Answer", "text": "Un subagente de Claude Code puede hacer lo que le permita la cabecera de su fichero: si la cabecera no le da herramientas, hereda todas las de la conversación, y puede tener su propio modo de permisos, sus propios comandos y sus propios servidores MCP."}}]}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://rosmarops.com/es/"}, {"@type": "ListItem", "position": 2, "name": "¿Qué pueden hacer los subagentes de Claude Code sin preguntarte?", "item": "https://rosmarops.com/es/subagentes-de-claude-code/"}]}]}</script>
+<link rel="stylesheet" href="/assets/consent/cookieconsent.css?v=3.1.0">
+<link rel="icon" href="/wp-content/uploads/2026/10/image-1.png">
+<style>
+:root{--bg:#F6F5F2;--ink:#1B1A18;--ink2:#3A3833;--muted:#66635D;--line:#E3E0D8;--card:#FFFFFF;--accent:#6F8F78}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+a{color:var(--ink)}a:hover{color:var(--accent)}
+.wrap{max-width:1040px;margin:0 auto;padding:0 16px}
+header .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;padding-top:24px;padding-bottom:24px}
+header img{height:40px;width:auto;display:block}
+nav{display:flex;flex-wrap:wrap;gap:24px;font-size:16px}
+main .wrap{display:flex;flex-direction:column;gap:64px;padding-top:48px;padding-bottom:64px}
+.hero{display:flex;flex-direction:column;gap:20px;max-width:760px}
+h1{margin:0;font-size:clamp(34px,6vw,52px);line-height:1.08;font-weight:700;letter-spacing:-.02em}
+.lead{margin:0;font-size:20px;line-height:1.55;color:var(--ink2)}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:16px}
+h2{margin:0;font-size:14px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:12px;font-size:17px;line-height:1.55}
+.status{border-top:1px solid var(--line);padding-top:32px;display:flex;flex-direction:column;gap:12px;max-width:760px}
+.status p{margin:0;font-size:17px;line-height:1.55}
+footer{border-top:1px solid var(--line)}
+footer .wrap{padding-top:28px;padding-bottom:28px;font-size:15px;color:var(--muted)}
+footer nav{gap:20px;font-size:15px}
+.doc{max-width:760px;display:flex;flex-direction:column;gap:18px;font-size:18px;line-height:1.65}
+.doc h1{font-size:clamp(30px,5vw,44px);line-height:1.12}
+.doc h2{font-size:22px;letter-spacing:0;text-transform:none;color:var(--ink);margin-top:20px}
+.doc p,.doc ul{margin:0}.doc ul{font-size:18px;gap:8px}
+.doc .meta{font-size:15px;color:var(--muted)}
+.doc .formula{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 20px;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:16px;overflow-wrap:anywhere}
+.doc code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:.92em}
+.faq h2{margin-top:24px}
+.doc a{overflow-wrap:anywhere}
+</style>
+<style>
+.doc{max-width:760px;display:flex;flex-direction:column;gap:18px;font-size:18px;line-height:1.65}
+.doc h1{margin:0;font-size:clamp(30px,5vw,44px);line-height:1.12;font-weight:700;letter-spacing:-.02em}
+.doc h2{margin:20px 0 0;font-size:22px;line-height:1.3}
+.doc p,.doc ul,.doc ol{margin:0}.doc ul,.doc ol{padding-left:22px;display:flex;flex-direction:column;gap:8px}
+.doc .tp-first{font-size:20px;line-height:1.55;color:var(--ink2)}
+.doc code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:.92em;overflow-wrap:anywhere}
+.tp-video{margin:8px 0 0;display:flex;flex-direction:column;gap:8px}
+.tp-video img{display:block;width:100%;height:auto;border-radius:12px;border:1px solid var(--line)}
+.tp-video figcaption{font-size:15px;color:var(--muted)}
+.tp-more{border-top:1px solid var(--line);padding-top:20px}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<a href="/es/"><img src="/assets/brand/rosmarops-logo.png" srcset="/assets/brand/rosmarops-logo.png 1x, /assets/brand/rosmarops-logo@2x.png 2x" width="512" height="131" alt="RosmarOps"></a>
+<nav><a href="/es/blog/">Blog</a><a href="/es/blog/que-es-rosmarops/">Acerca de</a><a href="/es/observatorio/">Observatorio</a><a href="/es/sandbox/">Sandbox</a><a href="/es/metodologia/">Metodología</a><a href="/es/preguntas-frecuentes/">Preguntas</a><a href="/claude-code-subagents/" hreflang="en" lang="en" aria-label="English">EN</a><a href="/ca/subagents-de-claude-code/" hreflang="ca" lang="ca" aria-label="Català">CA</a></nav>
+</div></header>
+
+<main><div class="wrap">
+<article class="doc"><h1>¿Qué pueden hacer los subagentes de Claude Code sin preguntarte?</h1>
+<p class="tp-first">Un subagente de Claude Code puede hacer lo que le permita la cabecera de su fichero: si la cabecera no le da herramientas, hereda todas las de la conversación, y puede tener su propio modo de permisos, sus propios comandos y sus propios servidores MCP.</p>
+<h2>Qué es un subagente</h2>
+<p>Un subagente es un encargo con nombre propio. Claude Code le pasa una tarea, por ejemplo revisar código o buscar en la documentación, y el subagente la hace con sus propias instrucciones. Cada uno es un fichero Markdown con una cabecera YAML, en la carpeta <code>.claude/agents/</code> del proyecto o en la tuya, <code>~/.claude/agents/</code>.</p>
+<h2>Cuatro cosas que decide la cabecera</h2>
+<ul><li><strong>Sus herramientas.</strong> Si la cabecera no dice ninguna, el subagente las hereda todas: leer, escribir, ejecutar comandos, salir a internet.</li><li><strong>Su modo de permisos.</strong> Un subagente puede tener el suyo, también modos que no preguntan, como <code>acceptEdits</code>, <code>auto</code>, <code>dontAsk</code> o <code>bypassPermissions</code>. Hay un límite: <code>bypassPermissions</code> solo vale si la conversación principal ya lo tiene, y si la principal está en <code>bypassPermissions</code>, <code>acceptEdits</code> o <code>auto</code>, el subagente hereda ese modo y el suyo se ignora.</li><li><strong>Hooks.</strong> Comandos que se ejecutan solos en ciertos momentos, por ejemplo antes o después de usar una herramienta.</li><li><strong>Servidores MCP.</strong> La cabecera puede definir servidores nuevos, que se conectan en cuanto el subagente arranca.</li></ul>
+<h2>Dónde vive el fichero importa</h2>
+<p>Los hooks y los servidores MCP de un subagente del proyecto esperan a que confíes en esa carpeta. Los de un subagente de tu carpeta personal corren en todos tus proyectos, sin esa pregunta.</p>
+<h2>Por qué se olvidan</h2>
+<p>Un subagente se crea en un momento y se olvida. Lo copias de un tutorial, lo trae un repositorio o lo instala una herramienta, y sigue ahí, con sus permisos, cada vez que Claude Code delega.</p>
+<h2>Cómo usarlos con cabeza</h2>
+<ol><li>Da a cada subagente solo las herramientas que necesita.</li><li>No le pongas un modo que no pregunta, salvo que sepas por qué.</li><li>Antes de confiar en un proyecto, abre su carpeta de agentes y lee las cabeceras.</li><li>Vigila sobre todo los de tu carpeta personal, porque van a todas partes.</li><li>Revisa de vez en cuando qué subagentes tienes.</li></ol>
+<h2>Qué te dice RosmarOps</h2>
+<p>Desde la versión 0.17.0, RosmarOps lee solo la cabecera de cada subagente de Claude Code, nunca sus instrucciones. Te avisa cuando uno trabaja sin preguntarte, ejecuta un comando propio, se conecta a servidores MCP definidos en su fichero o puede usar todas las herramientas. Los subagentes de tu carpeta de usuario funcionan en todos los proyectos sin la pregunta de confianza de la carpeta, y el informe lo dice.</p>
+<p>Tres de estos cuatro avisos cuentan en tu nota. Un subagente que puede usar todas las herramientas se enseña, pero no baja tu nota.</p>
+<section class="tp-more"><h2>Para seguir</h2><ul><li><a href="/es/observatorio/claude-code/">Qué puede hacer Claude Code en tu ordenador</a></li><li><a href="/es/servidores-mcp/">¿Qué es un servidor MCP y por qué le da poder a un agente de IA?</a></li><li><a href="/es/sandbox/">Enciende el sandbox de tu agente de IA en 3 pasos</a></li><li><a href="/es/descargar/">Descargar RosmarOps</a></li></ul></section>
+<p>RosmarOps es gratuito y de código abierto. Solo lee, y nada sale de tu ordenador sin tu aprobación.</p></article>
+</div></main>
+
+<footer><div class="wrap">
+<nav><a href="/es/blog/">Blog</a><a href="/es/blog/que-es-rosmarops/">Acerca de</a><a href="/es/observatorio/">Observatorio</a><a href="/es/sandbox/">Sandbox</a><a href="/es/metodologia/">Metodología</a><a href="/es/preguntas-frecuentes/">Preguntas</a><a href="/claude-code-subagents/" hreflang="en" lang="en" aria-label="English">EN</a><a href="/ca/subagents-de-claude-code/" hreflang="ca" lang="ca" aria-label="Català">CA</a><a href="/es/privacidad/">Privacidad</a><a href="/es/aviso-legal/">Aviso legal</a><a href="/es/terminos/">Términos</a><a href="#" data-cc="show-preferencesModal">Configurar cookies</a></nav>
+</div></footer>
+<script src="/assets/consent/cookieconsent.umd.js?v=3.1.0" defer></script>
+<script src="/assets/consent/consent.js?v=5" defer></script><script src="/assets/visits/visits.js?v=3" defer></script>
+</body>
+</html>
