@@ -689,7 +689,11 @@ def sections(lang, site=SITE):
     tpl = TEMPLATES_PAGE[lang]
     if (Path(site) / tpl.strip("/") / "index.html").is_file():  # §3.4: only once GTM-190's pages exist
         level.append(f'<p>{esc(C["level.more"]).replace("{link}", link(C["level.link"], tpl))}</p>')
-    faq = "".join(f'<details><summary>{esc(C[f"faq.q{i}"])}</summary><div class="sg-dbody"><p>{esc(C[f"faq.a{i}"])}</p></div></details>'
+    import topic_pages  # GTM-198: links to the standing pages on orchestrators and MCP servers
+    tp = topic_pages.load()["pages"]
+    mcp_more = f'<p>{esc(C["faq.a4.mcp"]).replace("{link}", link(C["faq.a4.mcp.link"], tp["mcp"]["path"][lang]))}</p>'
+    faq = "".join(f'<details><summary>{esc(C[f"faq.q{i}"])}</summary><div class="sg-dbody"><p>{esc(C[f"faq.a{i}"])}</p>'
+                  f'{mcp_more if i == 4 else ""}</div></details>'
                   for i in range(1, 6))
     return {
         "why": f'<section class="doc"><h2>{esc(C["why.h"])}</h2><p>{esc(C["why.p1"])}</p><p>{esc(C["why.p2"])}</p></section>',
@@ -697,7 +701,8 @@ def sections(lang, site=SITE):
                 f'<p>{esc(C["day.end"])}</p></section>'),
         "level": f'<section class="doc">{"".join(level)}</section>',
         "worktree": (f'<section class="doc"><h2>{esc(C["wt.h"])}</h2><p>{esc(C["wt.p1"])}</p>'
-                     f'<p>{esc(C["wt.p2"]).replace("{link}", link(C["wt.link"], OBS_PATH[lang]))}</p></section>'),
+                     f'<p>{esc(C["wt.p2"]).replace("{link}", link(C["wt.link"], OBS_PATH[lang]))}</p>'
+                     f'<p>{esc(C["wt.orch"]).replace("{link}", link(C["wt.orch.link"], tp["orchestrators"]["path"][lang]))}</p></section>'),
         "faq": f'<section class="doc faq"><h2>{esc(C["faq.h"])}</h2>{faq}</section>',
     }
 
