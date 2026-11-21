@@ -1,0 +1,48 @@
+<!-- wp:paragraph -->
+<p>A few days ago I wanted to try Paperclip, a program that turns a team of AI agents into a company, with an org chart, tasks and a budget. Before installing it, I asked an agent to read its code and tell me what it does by default. The first line of the answer made me stop: it launches Claude Code with the option that skips all of its questions.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>That's not a scandal. It's what a tool does when it wants everything to work the first time. But I realised RosmarOps wouldn't have seen it. It looked at each agent on its own, and here the one deciding how Claude Code works is another program. This version fixes that.</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Orchestrators, in plain sight</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>An orchestrator is a program that launches several agents at once. RosmarOps now finds them and tells you which agents they can put to work without asking you, and what those agents can reach.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>With Paperclip, it tells you when it can put an agent such as Claude Code to work without asking you, when your version has a known serious security flaw, when it listens beyond your computer, and when anyone who reaches it can create an account. It never opens Paperclip's database or its secret files: it knows them by their path.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>It also reads Paseo and Claude Squad, from their own files, to know the mode each agent is launched in. And with Orca, which launches agents with full access by default, it tells you it assumes that default, because your own choice is kept in a database it doesn't open.</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Claude Code subagents</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>Claude Code can hand tasks to subagents: helpers with their own instructions and, sometimes, their own permissions. RosmarOps reads only the header of each one, never its instructions, and tells you when a subagent works without asking you, runs a command of its own, connects to servers defined in its file, or can use every tool. If it lives in your user folder, the report reminds you that it works in every project.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>Your score can change with this. Three of those four findings count towards it. A subagent that can use every tool is shown, but doesn't lower it.</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading -->
+<h2 class="wp-block-heading">A report you can read in a minute</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>Last week also changed how you read it. A friend installed RosmarOps on his Linux machine and sent me a list of things that didn't work. Among them: the report was a long list of findings, and it was hard to know where to start. It now opens with three blocks: your result, your problems grouped by what's behind them, and how to stop them coming back, with the setting to change and the template you can paste into your agent.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>Along the way I fixed what he found. Updates ask you in your language. On Ubuntu, reports are saved in <code>~/RosmarOps</code> so Firefox can open them. And every version is installed from scratch and updated from the previous one on Windows, macOS and Ubuntu before it is published. This week that already stopped one release.</p>
+<!-- /wp:paragraph -->
+<!-- wp:image {"sizeSlug":"large","linkDestination":"custom"} -->
+<figure class="wp-block-image size-large"><a href="https://youtu.be/2IKYyCEKZ0E"><img src="https://rosmarops.com/assets/video/paperclip-especial.jpg" alt="Paperclip: una empresa de agentes de IA, con límites" width="1280" height="720"/></a><figcaption class="wp-element-caption">What Paperclip does by default and how to use it with care, in three minutes. Video on YouTube, in Spanish.</figcaption></figure>
+<!-- /wp:image -->
+<!-- wp:heading -->
+<h2 class="wp-block-heading">How to get it</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>On Windows, from the Microsoft Store or from GitHub. On macOS and Linux, with <code>brew install qtorb/rosmarops/rosmarops</code> or from GitHub. If you already have it, update and run a review.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>What each orchestrator does, agent by agent: <a href="https://rosmarops.com/observatory/">the Observatory</a>.</p>
+<!-- /wp:paragraph -->
