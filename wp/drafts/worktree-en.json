@@ -3,10 +3,10 @@
   "lang": "en",
   "slug": "a-git-worktree-is-not-a-sandbox",
   "title": "A git worktree is not a sandbox",
-  "excerpt": "If you use several AI agents at once, they probably work in worktrees.",
+  "excerpt": "Reading the README of Paradev, a program that puts several AI agents to work at once, I came across a sentence that made me stop.",
   "content": "worktree-en.html",
   "seo_title": "A git worktree is not a sandbox",
-  "seo_description": "If you use several AI agents at once, they probably work in worktrees.",
+  "seo_description": "Reading the README of Paradev, a program that puts several AI agents to work at once, I came across a sentence that made me stop.",
   "translations": {
     "es": "https://rosmarops.com/es/blog/una-worktree-de-git-no-es-un-sandbox/",
     "ca": "https://rosmarops.com/ca/blog/una-worktree-de-git-no-es-un-sandbox/"

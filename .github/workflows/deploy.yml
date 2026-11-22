@@ -43,6 +43,7 @@ jobs:
           php -l wp/mu-plugins/rosmarops-gtm124-agente.php
           php -l wp/mu-plugins/rosmarops-papelera-0-16.php
           php -l wp/mu-plugins/rosmarops-gtm198-enlace.php
+          php -l wp/mu-plugins/rosmarops-gtm195-voz.php
           php -l wp/mu-plugins/rosmarops-gtm164-sin-version.php
           php -l wp/mu-plugins/rosmarops-gtm181-promesa.php
           php -l wp/mu-plugins/rosmarops-schedule-he-terminado.php
@@ -376,6 +377,7 @@ jobs:
           put wp/mu-plugins/rosmarops-gtm124-agente.php wp-content/mu-plugins/rosmarops-gtm124-agente.php
           put wp/mu-plugins/rosmarops-papelera-0-16.php wp-content/mu-plugins/rosmarops-papelera-0-16.php
           put wp/mu-plugins/rosmarops-gtm198-enlace.php wp-content/mu-plugins/rosmarops-gtm198-enlace.php
+          put wp/mu-plugins/rosmarops-gtm195-voz.php wp-content/mu-plugins/rosmarops-gtm195-voz.php
           put wp/mu-plugins/rosmarops-gtm164-sin-version.php wp-content/mu-plugins/rosmarops-gtm164-sin-version.php
           put wp/mu-plugins/rosmarops-gtm181-promesa.php wp-content/mu-plugins/rosmarops-gtm181-promesa.php
           put wp/mu-plugins/rosmarops-schedule-he-terminado.php wp-content/mu-plugins/rosmarops-schedule-he-terminado.php
@@ -925,6 +927,38 @@ jobs:
               "$SFTP_USER@$SFTP_HOST" && echo "GTM-198 plugin removed from the server" || echo "::warning::rosmarops-gtm198-enlace.php could not be removed from the server"
           else
             echo "::warning::rosmarops-gtm198-enlace.php left on the server: a site has not logged its run yet"
+          fi
+          # GTM-195 (advisor ok 22-11): rosmarops-gtm195-voz.php puts the text in Albert's voice into the worktree drafts
+          # (EN 1262, ES 1252, CA 105), only while they are drafts, once per site. Once the three logs are read it is
+          # removed from the server.
+          for u in https://rosmarops.com/blog/ https://rosmarops.com/es/blog/ https://rosmarops.com/ca/blog/; do
+            curl -s -o /dev/null -w "%{http_code} $u\n" "$u?gtm195=${GITHUB_SHA::7}"
+          done
+          sleep 5
+          mkdir -p /tmp/gtm195
+          printf 'cd %s/wp-content/rosmarops-private\n-get gtm195-en.log /tmp/gtm195/\n-get gtm195-es.log /tmp/gtm195/\n-get gtm195-ca.log /tmp/gtm195/\n' "$SFTP_PATH" > /tmp/b195
+          sshpass -e sftp -o BatchMode=no -b /tmp/b195 \
+            -o StrictHostKeyChecking=yes \
+            -o UserKnownHostsFile="$HOME/.ssh/known_hosts" \
+            -o PreferredAuthentications=password,keyboard-interactive \
+            -o PubkeyAuthentication=no \
+            "$SFTP_USER@$SFTP_HOST" || true
+          for f in gtm195-en gtm195-es gtm195-ca; do
+            if [ -f "/tmp/gtm195/$f.log" ]; then echo "--- $f.log"; cat "/tmp/gtm195/$f.log"; else echo "::warning::$f.log not found"; fi
+            code=$(curl -s -o /dev/null -w '%{http_code}' "https://rosmarops.com/wp-content/rosmarops-private/$f.log")
+            [ "$code" != "200" ] && echo "$f.log closed to the web ($code)" || (echo "::error::$f.log is reachable from the web"; exit 1)
+          done
+          if grep -h '^\(skipped\|failed\):' /tmp/gtm195/*.log 2>/dev/null; then echo "::warning::GTM-195 left a draft alone; see the logs"; fi
+          if [ -f /tmp/gtm195/gtm195-en.log ] && [ -f /tmp/gtm195/gtm195-es.log ] && [ -f /tmp/gtm195/gtm195-ca.log ]; then
+            printf 'cd %s/wp-content/mu-plugins\n-rm rosmarops-gtm195-voz.php\n' "$SFTP_PATH" > /tmp/b195rm
+            sshpass -e sftp -o BatchMode=no -b /tmp/b195rm \
+              -o StrictHostKeyChecking=yes \
+              -o UserKnownHostsFile="$HOME/.ssh/known_hosts" \
+              -o PreferredAuthentications=password,keyboard-interactive \
+              -o PubkeyAuthentication=no \
+              "$SFTP_USER@$SFTP_HOST" && echo "GTM-195 plugin removed from the server" || echo "::warning::rosmarops-gtm195-voz.php could not be removed from the server"
+          else
+            echo "::warning::rosmarops-gtm195-voz.php left on the server: a site has not logged its run yet"
           fi
           # rosmarops-gtm164-sin-version.php runs on the first request to each site after the upload; once done it never runs again.
           for u in https://rosmarops.com/blog/ https://rosmarops.com/es/blog/ https://rosmarops.com/ca/blog/; do
