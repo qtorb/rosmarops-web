@@ -42,6 +42,7 @@ jobs:
           php -l wp/mu-plugins/rosmarops-category-loop-engineering.php
           php -l wp/mu-plugins/rosmarops-gtm124-agente.php
           php -l wp/mu-plugins/rosmarops-papelera-0-16.php
+          php -l wp/mu-plugins/rosmarops-gtm198-enlace.php
           php -l wp/mu-plugins/rosmarops-gtm164-sin-version.php
           php -l wp/mu-plugins/rosmarops-gtm181-promesa.php
           php -l wp/mu-plugins/rosmarops-schedule-he-terminado.php
@@ -357,6 +358,7 @@ jobs:
           put wp/mu-plugins/rosmarops-category-loop-engineering.php wp-content/mu-plugins/rosmarops-category-loop-engineering.php
           put wp/mu-plugins/rosmarops-gtm124-agente.php wp-content/mu-plugins/rosmarops-gtm124-agente.php
           put wp/mu-plugins/rosmarops-papelera-0-16.php wp-content/mu-plugins/rosmarops-papelera-0-16.php
+          put wp/mu-plugins/rosmarops-gtm198-enlace.php wp-content/mu-plugins/rosmarops-gtm198-enlace.php
           put wp/mu-plugins/rosmarops-gtm164-sin-version.php wp-content/mu-plugins/rosmarops-gtm164-sin-version.php
           put wp/mu-plugins/rosmarops-gtm181-promesa.php wp-content/mu-plugins/rosmarops-gtm181-promesa.php
           put wp/mu-plugins/rosmarops-schedule-he-terminado.php wp-content/mu-plugins/rosmarops-schedule-he-terminado.php
@@ -755,6 +757,8 @@ jobs:
           curl -s "https://rosmarops.com/es/sitemap.xml?gtm103=${GITHUB_SHA::7}" > /tmp/es-sitemap-103.xml
           bad=0
           for s in $(sed -n -e 's/^post done: \([a-z0-9-]*\) noindex$/\1/p' -e 's/^skipped: post \([a-z0-9-]*\) is already noindex$/\1/p' /tmp/gtm103/gtm103-es.log); do
+            # GTM-198: a legacy post that now answers 301 to a standing page (ROSMAROPS_POST_MOVES) is no longer served: fine.
+            if [ "$(curl -s -o /dev/null -w '%{http_code}' "https://rosmarops.com/es/blog/$s/?gtm103=${GITHUB_SHA::7}")" = "301" ]; then echo "moved (301): $s"; continue; fi
             curl -s "https://rosmarops.com/es/blog/$s/?gtm103=${GITHUB_SHA::7}" | grep -qi '<meta name="robots" content="[^"]*noindex' || { echo "not noindex: $s"; bad=$((bad+1)); }
             grep -q "/es/blog/$s/<" /tmp/es-sitemap-103.xml && { echo "still in the sitemap: $s"; bad=$((bad+1)); }
           done
@@ -863,6 +867,38 @@ jobs:
               "$SFTP_USER@$SFTP_HOST" && echo "0.16 bin plugin, GTM-193 plugin and 0.16 draft files removed from the server" || echo "::warning::some 0.16 files could not be removed from the server"
           else
             echo "::warning::rosmarops-papelera-0-16.php left on the server: a site has not logged its run yet"
+          fi
+          # GTM-198 (signed by Albert): rosmarops-gtm198-enlace.php adds one line at the end of the 21-11 post (EN 1258,
+          # ES 1248, CA 101), pointing to the new orchestrators page, once per site. Once the three logs are read it is
+          # removed from the server.
+          for u in https://rosmarops.com/blog/ https://rosmarops.com/es/blog/ https://rosmarops.com/ca/blog/; do
+            curl -s -o /dev/null -w "%{http_code} $u\n" "$u?gtm198=${GITHUB_SHA::7}"
+          done
+          sleep 5
+          mkdir -p /tmp/gtm198
+          printf 'cd %s/wp-content/rosmarops-private\n-get gtm198-en.log /tmp/gtm198/\n-get gtm198-es.log /tmp/gtm198/\n-get gtm198-ca.log /tmp/gtm198/\n' "$SFTP_PATH" > /tmp/b198
+          sshpass -e sftp -o BatchMode=no -b /tmp/b198 \
+            -o StrictHostKeyChecking=yes \
+            -o UserKnownHostsFile="$HOME/.ssh/known_hosts" \
+            -o PreferredAuthentications=password,keyboard-interactive \
+            -o PubkeyAuthentication=no \
+            "$SFTP_USER@$SFTP_HOST" || true
+          for f in gtm198-en gtm198-es gtm198-ca; do
+            if [ -f "/tmp/gtm198/$f.log" ]; then echo "--- $f.log"; cat "/tmp/gtm198/$f.log"; else echo "::warning::$f.log not found"; fi
+            code=$(curl -s -o /dev/null -w '%{http_code}' "https://rosmarops.com/wp-content/rosmarops-private/$f.log")
+            [ "$code" != "200" ] && echo "$f.log closed to the web ($code)" || (echo "::error::$f.log is reachable from the web"; exit 1)
+          done
+          if grep -h '^\(skipped\|failed\):' /tmp/gtm198/*.log 2>/dev/null; then echo "::warning::GTM-198 left a post alone; see the logs"; fi
+          if [ -f /tmp/gtm198/gtm198-en.log ] && [ -f /tmp/gtm198/gtm198-es.log ] && [ -f /tmp/gtm198/gtm198-ca.log ]; then
+            printf 'cd %s/wp-content/mu-plugins\n-rm rosmarops-gtm198-enlace.php\n' "$SFTP_PATH" > /tmp/b198rm
+            sshpass -e sftp -o BatchMode=no -b /tmp/b198rm \
+              -o StrictHostKeyChecking=yes \
+              -o UserKnownHostsFile="$HOME/.ssh/known_hosts" \
+              -o PreferredAuthentications=password,keyboard-interactive \
+              -o PubkeyAuthentication=no \
+              "$SFTP_USER@$SFTP_HOST" && echo "GTM-198 plugin removed from the server" || echo "::warning::rosmarops-gtm198-enlace.php could not be removed from the server"
+          else
+            echo "::warning::rosmarops-gtm198-enlace.php left on the server: a site has not logged its run yet"
           fi
           # rosmarops-gtm164-sin-version.php runs on the first request to each site after the upload; once done it never runs again.
           for u in https://rosmarops.com/blog/ https://rosmarops.com/es/blog/ https://rosmarops.com/ca/blog/; do

@@ -232,6 +232,24 @@ def loc(text, lang):
     return text["en"], ' lang="en"'
 
 
+# GTM-198: «Read more» on an agent's page: Claude Code links to the subagents and MCP pages; an agent whose
+# capabilities include MCP links to the MCP page. Other agents get no block.
+def topic_links(lang, t, a):
+    import topic_pages
+    tp = topic_pages.load()["pages"]
+    ag = a["agent"]
+    keys = []
+    if ag["id"] == "claude-code":
+        keys = ["subagents", "mcp"]
+    elif any("mcp" in (c.get("action") or "") for c in a.get("capabilities", [])):
+        keys = ["mcp"]
+    if not keys:
+        return ""
+    items = "".join(f'<li><a href="{tp[k]["path"][lang]}">{esc(tp[k][lang]["title"])}</a></li>' for k in keys)
+    return (f'<section id="more" aria-labelledby="more-h"><h2 id="more-h">{t("agent.more_h2")}</h2>'
+            f'<ul class="plain">{items}</ul></section>\n')
+
+
 def agent_path(lang, aid):
     return f"{INDEX_PATH[lang]}{aid}/"
 
@@ -828,6 +846,7 @@ def build_agent(lang, t, a):
         toc_items.append(("#storage", "agent.storage_h2"))
     toc_items.append(("#rosmarops", "agent.rosmarops_h2" + sfx))
     try_html = company_page.try_section(lang, a)  # GTM-169
+    more_html = topic_links(lang, t, a)  # GTM-198
     if try_html:
         toc_items.append(("#try", None))
     toc_items.append(("#history", "agent.history_h2"))
@@ -854,7 +873,7 @@ def build_agent(lang, t, a):
 <div class="actions"><a class="btn primary" href="{esc(t.text("site.download_url") + ("?from=observatory-" + ag["id"] if is_published(a) else ""))}" target="_blank" rel="nofollow noopener">{t("agent.cta_download")}</a></div>
 </section>
 {try_html}
-
+{more_html}
 <section id="history" aria-labelledby="history-h" data-live="{DAILY_PATH[lang]}history-{esc(ag["id"])}.html">
 <h2 id="history-h">{t("agent.history_h2")}</h2>
 <p class="note">{t("agent.history_note")}</p>

@@ -108,5 +108,20 @@
     "page": "site/llms.txt",
     "contains": "[RosmarOps 0.3.0](",
     "reason": "Title of a dated release post: what that version detected, kept as published."
+  },
+  {
+    "page": "site/faq/index.html",
+    "contains": "such as Claude Code or Codex",
+    "reason": "FAQ question on orchestrators (GTM-198, signed by Albert): examples of agents an orchestrator launches; not a list of agents RosmarOps scores or detects."
+  },
+  {
+    "page": "site/es/preguntas-frecuentes/index.html",
+    "contains": "como Claude Code o Codex",
+    "reason": "FAQ question on orchestrators (GTM-198, signed by Albert): examples of agents an orchestrator launches; not a list of agents RosmarOps scores or detects."
+  },
+  {
+    "page": "site/ca/preguntes-frequents/index.html",
+    "contains": "com Claude Code o Codex",
+    "reason": "FAQ question on orchestrators (GTM-198, signed by Albert): examples of agents an orchestrator launches; not a list of agents RosmarOps scores or detects."
   }
 ]
