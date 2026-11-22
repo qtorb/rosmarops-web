@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-11-22T13:24:46Z",
+  "generated_at": "2026-11-22T14:24:17Z",
   "repo": {
     "stargazers_count": 1,
     "subscribers_count": 0,
     "forks_count": 0,
-    "open_issues_count": 1
+    "open_issues_count": 0
   },
-  "open_pulls": 1,
+  "open_pulls": 0,
   "releases": [
     {
       "tag_name": "v0.17.0",
@@ -43,7 +43,7 @@
         },
         {
           "name": "rosmarops.exe",
-          "download_count": 18
+          "download_count": 20
         },
         {
           "name": "sample-report.en.html",
@@ -55,7 +55,7 @@
         },
         {
           "name": "SHA256SUMS.txt",
-          "download_count": 16
+          "download_count": 18
         }
       ]
     },
