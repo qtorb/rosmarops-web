@@ -230,6 +230,16 @@ jobs:
           put site/assets/video/decide-tu-en.jpg assets/video/decide-tu-en.jpg
           put site/assets/video/decide-tu-ca.mp4 assets/video/decide-tu-ca.mp4
           put site/assets/video/decide-tu-ca.jpg assets/video/decide-tu-ca.jpg
+          # Home video (horizontal «Decide tú», signed by Albert 22-11 16:55), one version per language.
+          put site/assets/video/rosmarops-hero-1080p.mp4 assets/video/rosmarops-hero-1080p.mp4
+          put site/assets/video/rosmarops-hero-4k.mp4 assets/video/rosmarops-hero-4k.mp4
+          put site/assets/video/rosmarops-hero-poster.png assets/video/rosmarops-hero-poster.png
+          put site/assets/video/rosmarops-hero-en-1080p.mp4 assets/video/rosmarops-hero-en-1080p.mp4
+          put site/assets/video/rosmarops-hero-en-4k.mp4 assets/video/rosmarops-hero-en-4k.mp4
+          put site/assets/video/rosmarops-hero-en-poster.png assets/video/rosmarops-hero-en-poster.png
+          put site/assets/video/rosmarops-hero-ca-1080p.mp4 assets/video/rosmarops-hero-ca-1080p.mp4
+          put site/assets/video/rosmarops-hero-ca-4k.mp4 assets/video/rosmarops-hero-ca-4k.mp4
+          put site/assets/video/rosmarops-hero-ca-poster.png assets/video/rosmarops-hero-ca-poster.png
           put site/assets/video/paperclip-especial.jpg assets/video/paperclip-especial.jpg
           put site/assets/video/worktree-no-es-sandbox.jpg assets/video/worktree-no-es-sandbox.jpg
           -mkdir assets/observatory
