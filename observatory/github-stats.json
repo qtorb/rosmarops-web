@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-22T12:27:59Z",
+  "generated_at": "2026-11-22T13:24:46Z",
   "repo": {
     "stargazers_count": 1,
     "subscribers_count": 0,
@@ -35,15 +35,15 @@
         },
         {
           "name": "rosmarops-macos-apple-silicon",
-          "download_count": 1
+          "download_count": 2
         },
         {
           "name": "rosmarops-macos-intel",
-          "download_count": 1
+          "download_count": 2
         },
         {
           "name": "rosmarops.exe",
-          "download_count": 17
+          "download_count": 18
         },
         {
           "name": "sample-report.en.html",
