@@ -1,0 +1,20 @@
+{
+  "id": "worktree",
+  "lang": "es",
+  "slug": "una-worktree-de-git-no-es-un-sandbox",
+  "title": "Una worktree de git no es un sandbox",
+  "excerpt": "Si usas varios agentes de IA a la vez, seguramente trabajan en worktrees.",
+  "content": "worktree-es.html",
+  "seo_title": "Una worktree de git no es un sandbox",
+  "seo_description": "Si usas varios agentes de IA a la vez, seguramente trabajan en worktrees.",
+  "translations": {
+    "en": "https://rosmarops.com/blog/a-git-worktree-is-not-a-sandbox/",
+    "ca": "https://rosmarops.com/ca/blog/una-worktree-de-git-no-es-un-sandbox/"
+  },
+  "category": "novedades-de-rosmarops",
+  "tags": {
+    "sandbox": "Sandbox"
+  },
+  "image": "rosmarops-img-20-worktree.jpg",
+  "alt": "Tres robots, cada uno en su carpeta dentro de la pantalla de un portátil; de todos salen líneas rojas hacia una llave, una carpeta personal y un globo terráqueo."
+}

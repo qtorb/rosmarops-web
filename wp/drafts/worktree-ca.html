@@ -1,0 +1,40 @@
+<!-- wp:paragraph -->
+<p>Si fas servir diversos agents d'IA alhora, segurament treballen en worktrees. És una bona idea. Però no fa el que molta gent es pensa.</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Què és una worktree</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>Una worktree és una segona còpia de treball del teu repositori, en una altra carpeta i en una altra branca. Els orquestradors d'agents, com Orca, Paseo, Claude Squad o Paradev, en donen una a cada agent perquè no es trepitgin els fitxers: un arregla un error a la seva carpeta mentre un altre escriu una funció a la seva.</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Què separa i què no</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>Separa els fitxers del projecte. Res més.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>Cada agent continua sent tu. Corre amb el teu usuari, així que veu la teva carpeta personal, les teves claus (les de <code>.ssh</code>, les del núvol, les dels teus <code>.env</code>), les sessions que tens obertes en altres agents, i internet. Si una pàgina web o un README li cola una instrucció, l'executa amb tot això a l'abast, sigui a la worktree que sigui.</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Per què ara importa més</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>Un agent que pregunta abans de cada ordre et dona una oportunitat d'aturar-lo. Diversos orquestradors treuen aquesta oportunitat de fàbrica, perquè la feina en paral·lel no s'aturi: Orca llança els agents amb accés complet per defecte, i Paradev fa el mateix amb Claude Code, Codex i uns quants més. Amb cinc agents treballant alhora i sense preguntes, la worktree és l'únic que els separa, i no en separa l'accés.</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Què fer</h2>
+<!-- /wp:heading -->
+<!-- wp:list {"ordered":true} -->
+<ol class="wp-block-list">
+<!-- wp:list-item -->
+<li><strong>Encén el sandbox a cada agent que llanci el teu orquestrador.</strong> El sandbox sí que separa l'accés: l'agent treballa al seu projecte i no arriba a la teva carpeta personal ni a internet, segons l'agent. Com fer-ho, agent per agent: <a href="/ca/sandbox/">la guia del sandbox</a>.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>Mira amb quin mode llança el teu orquestrador cada agent.</strong> Què fa cadascun de fàbrica és a l'<a href="/ca/orquestradors-dagents/">Observatori</a>.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>Comprova què poden fer de debò.</strong> RosmarOps 0.17 troba Paperclip, Paseo, Claude Squad i Orca, i et diu quins agents poden posar a treballar sense preguntar-te i a quines claus arriben. Sense que res surti del teu ordinador.</li>
+<!-- /wp:list-item -->
+</ol>
+<!-- /wp:list -->

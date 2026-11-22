@@ -1,0 +1,20 @@
+{
+  "id": "worktree",
+  "lang": "en",
+  "slug": "a-git-worktree-is-not-a-sandbox",
+  "title": "A git worktree is not a sandbox",
+  "excerpt": "If you use several AI agents at once, they probably work in worktrees.",
+  "content": "worktree-en.html",
+  "seo_title": "A git worktree is not a sandbox",
+  "seo_description": "If you use several AI agents at once, they probably work in worktrees.",
+  "translations": {
+    "es": "https://rosmarops.com/es/blog/una-worktree-de-git-no-es-un-sandbox/",
+    "ca": "https://rosmarops.com/ca/blog/una-worktree-de-git-no-es-un-sandbox/"
+  },
+  "category": "field-notes",
+  "tags": {
+    "sandbox": "Sandbox"
+  },
+  "image": "rosmarops-img-20-worktree.jpg",
+  "alt": "Three robots, each in its own folder on a laptop screen; red lines run from every one of them to a key, a home folder and a globe."
+}
