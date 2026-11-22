@@ -1,0 +1,43 @@
+<!-- wp:paragraph -->
+<p>If you use several AI agents at once, they probably work in worktrees. That's a good idea. But it doesn't do what many people think.</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading -->
+<h2 class="wp-block-heading">What a worktree is</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>A worktree is a second working copy of your repository, in another folder and on another branch. Agent orchestrators such as Orca, Paseo, Claude Squad or Paradev give one to each agent so their files don't clash: one fixes a bug in its folder while another writes a feature in its own.</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading -->
+<h2 class="wp-block-heading">What it separates, and what it doesn't</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>It separates the project's files. Nothing else.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>Each agent is still you. It runs as your user, so it sees your home folder, your keys (in <code>.ssh</code>, for the cloud, in your <code>.env</code> files), the sessions you have open in other agents, and the internet. If a web page or a README slips it an instruction, it runs it with all of that within reach, whatever worktree it's in.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>It's not just us saying it. Paradev's documentation puts it this way: "worktrees do not sandbox processes".</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Why it matters more now</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>An agent that asks before each command gives you a chance to stop it. Several orchestrators remove that chance by default, so parallel work doesn't stall: Orca launches agents with full access by default, and Paradev does the same with Claude Code, Codex and several others. With five agents working at once and no questions, the worktree is the only thing between them, and it doesn't separate their access.</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading -->
+<h2 class="wp-block-heading">What to do</h2>
+<!-- /wp:heading -->
+<!-- wp:list {"ordered":true} -->
+<ol class="wp-block-list">
+<!-- wp:list-item -->
+<li><strong>Turn on the sandbox in every agent your orchestrator launches.</strong> The sandbox does separate access: the agent works in its project and can't reach your home folder or the internet, depending on the agent. How to do it, agent by agent: <a href="/sandbox/">the sandbox guide</a>.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>Check which mode your orchestrator launches each agent in.</strong> What each one does by default is in the <a href="/agent-orchestrators/">Observatory</a>.</li>
+<!-- /wp:list-item -->
+<!-- wp:list-item -->
+<li><strong>See what they can really do.</strong> RosmarOps finds Paperclip, Paseo, Claude Squad and Orca, and tells you which agents they can put to work without asking you and which keys those agents can reach. Without anything leaving your computer.</li>
+<!-- /wp:list-item -->
+</ol>
+<!-- /wp:list -->
