@@ -22,7 +22,35 @@
     "reviewed_at": "2026-11-10"
   },
   "versions": [],
-  "changes": [],
+  "changes": [
+    {
+      "id": "chg-cline-4-1-27-model",
+      "version": "v4.1.27",
+      "date": "2026-11-21",
+      "category": "default_value",
+      "before": {
+        "en": "Before v4.1.27, with no saved model, the Cline provider started on Claude Sonnet 5.5, according to the release notes.",
+        "es": "Antes de la v4.1.27, sin modelo guardado, el proveedor Cline empezaba con Claude Sonnet 5.5, según las notas de versión.",
+        "ca": "Abans de la v4.1.27, sense model desat, el proveïdor Cline començava amb Claude Sonnet 5.5, segons les notes de versió."
+      },
+      "after": {
+        "en": "From v4.1.27, with no saved model, it starts on the first free model; saved selections stay as they were, according to the release notes.",
+        "es": "Desde la v4.1.27, sin modelo guardado, empieza con el primer modelo gratuito; las selecciones guardadas no cambian, según las notas de versión.",
+        "ca": "Des de la v4.1.27, sense model desat, comença amb el primer model gratuït; les seleccions desades no canvien, segons les notes de versió."
+      },
+      "source": {
+        "url": "https://github.com/cline/cline/releases/tag/v4.1.27",
+        "official": true,
+        "accessed_at": "2026-11-22"
+      },
+      "verified": {
+        "by": "writer",
+        "at": "2026-11-22",
+        "how": "official_changelog"
+      },
+      "rosmarops_impact": "none"
+    }
+  ],
   "ratings": [],
   "capabilities": [
     {
