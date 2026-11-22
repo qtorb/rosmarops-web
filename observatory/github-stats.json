@@ -1,13 +1,64 @@
 {
-  "generated_at": "2026-11-22T21:24:06Z",
+  "generated_at": "2026-11-22T22:24:04Z",
   "repo": {
     "stargazers_count": 1,
     "subscribers_count": 0,
     "forks_count": 0,
-    "open_issues_count": 2
+    "open_issues_count": 0
   },
-  "open_pulls": 2,
+  "open_pulls": 0,
   "releases": [
+    {
+      "tag_name": "v0.18.0",
+      "published_at": "2026-11-22T21:24:33Z",
+      "draft": false,
+      "assets": [
+        {
+          "name": "exposure-potential.json",
+          "download_count": 1
+        },
+        {
+          "name": "factory-scores.json",
+          "download_count": 1
+        },
+        {
+          "name": "profile-scores.json",
+          "download_count": 1
+        },
+        {
+          "name": "rosmarops-linux-amd64",
+          "download_count": 2
+        },
+        {
+          "name": "rosmarops-linux-arm64",
+          "download_count": 1
+        },
+        {
+          "name": "rosmarops-macos-apple-silicon",
+          "download_count": 1
+        },
+        {
+          "name": "rosmarops-macos-intel",
+          "download_count": 1
+        },
+        {
+          "name": "rosmarops.exe",
+          "download_count": 7
+        },
+        {
+          "name": "sample-report.en.html",
+          "download_count": 1
+        },
+        {
+          "name": "sample-report.es.html",
+          "download_count": 1
+        },
+        {
+          "name": "SHA256SUMS.txt",
+          "download_count": 6
+        }
+      ]
+    },
     {
       "tag_name": "v0.17.0",
       "published_at": "2026-11-21T10:09:35Z",
@@ -15,15 +66,15 @@
       "assets": [
         {
           "name": "exposure-potential.json",
-          "download_count": 2
-        },
-        {
-          "name": "factory-scores.json",
           "download_count": 3
         },
         {
+          "name": "factory-scores.json",
+          "download_count": 4
+        },
+        {
           "name": "profile-scores.json",
-          "download_count": 1
+          "download_count": 2
         },
         {
           "name": "rosmarops-linux-amd64",
@@ -43,7 +94,7 @@
         },
         {
           "name": "rosmarops.exe",
-          "download_count": 30
+          "download_count": 32
         },
         {
           "name": "sample-report.en.html",
@@ -55,7 +106,7 @@
         },
         {
           "name": "SHA256SUMS.txt",
-          "download_count": 24
+          "download_count": 27
         }
       ]
     },
@@ -66,15 +117,15 @@
       "assets": [
         {
           "name": "exposure-potential.json",
-          "download_count": 3
+          "download_count": 4
         },
         {
           "name": "factory-scores.json",
-          "download_count": 3
+          "download_count": 4
         },
         {
           "name": "profile-scores.json",
-          "download_count": 1
+          "download_count": 2
         },
         {
           "name": "rosmarops-linux-amd64",
@@ -106,7 +157,7 @@
         },
         {
           "name": "SHA256SUMS.txt",
-          "download_count": 21
+          "download_count": 22
         }
       ]
     },
@@ -117,7 +168,7 @@
       "assets": [
         {
           "name": "exposure-potential.json",
-          "download_count": 2
+          "download_count": 3
         },
         {
           "name": "factory-scores.json",
@@ -157,7 +208,7 @@
         },
         {
           "name": "SHA256SUMS.txt",
-          "download_count": 25
+          "download_count": 26
         }
       ]
     },
@@ -168,15 +219,15 @@
       "assets": [
         {
           "name": "exposure-potential.json",
-          "download_count": 1
+          "download_count": 2
         },
         {
           "name": "factory-scores.json",
-          "download_count": 1
+          "download_count": 2
         },
         {
           "name": "profile-scores.json",
-          "download_count": 1
+          "download_count": 2
         },
         {
           "name": "rosmarops-linux-amd64",
@@ -208,7 +259,7 @@
         },
         {
           "name": "SHA256SUMS.txt",
-          "download_count": 6
+          "download_count": 7
         }
       ]
     },
@@ -219,15 +270,15 @@
       "assets": [
         {
           "name": "exposure-potential.json",
-          "download_count": 2
-        },
-        {
-          "name": "factory-scores.json",
           "download_count": 3
         },
         {
-          "name": "profile-scores.json",
+          "name": "factory-scores.json",
           "download_count": 4
+        },
+        {
+          "name": "profile-scores.json",
+          "download_count": 5
         },
         {
           "name": "rosmarops-linux-amd64",
@@ -259,7 +310,7 @@
         },
         {
           "name": "SHA256SUMS.txt",
-          "download_count": 7
+          "download_count": 8
         }
       ]
     },
@@ -1567,5 +1618,5 @@
       ]
     }
   ],
-  "latest_tag": "v0.17.0"
+  "latest_tag": "v0.18.0"
 }
