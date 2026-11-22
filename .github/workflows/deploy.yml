@@ -402,6 +402,15 @@ jobs:
                 echo "put $f $d/index.html"
               fi
             done
+            # GTM-199: the videos index and one page per public video (generated from observatory/data/videos/),
+            # and every video thumbnail. New videos need no change here.
+            for d in videos es/videos ca/videos; do echo "-mkdir $d"; done
+            for f in $(find site/videos site/es/videos site/ca/videos -name index.html); do
+              d=$(dirname "${f#site/}")
+              echo "-mkdir $d"
+              echo "put $f $d/index.html"
+            done
+            for f in site/assets/video/*.jpg; do echo "put $f assets/video/$(basename "$f")"; done
           } >> /tmp/batch
           # GTM-125: the one-time IP check is over; its token file leaves the server.
           echo "-rm wp-content/rosmarops-private/ipcheck-token.php" >> /tmp/batch

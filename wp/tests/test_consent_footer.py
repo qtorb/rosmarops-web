@@ -12,9 +12,9 @@ TESTS = Path(__file__).resolve().parent
 PLUGIN = TESTS.parent / "mu-plugins" / "rosmarops-consent.php"
 STYLE = '<p class="rosmarops-cc-link" style="text-align:center;font-size:14px;margin:16px 0">'
 WANT = {
-    "es_ES": '<a href="/es/privacidad/">Privacidad</a> · <a href="/es/aviso-legal/">Aviso legal</a> · <a href="/es/terminos/">Términos</a> · <a href="#" data-cc="show-preferencesModal">Configurar cookies</a>',
-    "ca": '<a href="/ca/privadesa/">Privadesa</a> · <a href="/ca/avis-legal/">Avís legal</a> · <a href="/ca/termes/">Termes</a> · <a href="#" data-cc="show-preferencesModal">Configura les galetes</a>',
-    "en_US": '<a href="/privacy/">Privacy</a> · <a href="/legal-notice/">Legal notice</a> · <a href="/terms/">Terms</a> · <a href="#" data-cc="show-preferencesModal">Cookie settings</a>',
+    "es_ES": '<a href="/es/videos/">Vídeos</a> · <a href="/es/privacidad/">Privacidad</a> · <a href="/es/aviso-legal/">Aviso legal</a> · <a href="/es/terminos/">Términos</a> · <a href="#" data-cc="show-preferencesModal">Configurar cookies</a>',
+    "ca": '<a href="/ca/videos/">Vídeos</a> · <a href="/ca/privadesa/">Privadesa</a> · <a href="/ca/avis-legal/">Avís legal</a> · <a href="/ca/termes/">Termes</a> · <a href="#" data-cc="show-preferencesModal">Configura les galetes</a>',
+    "en_US": '<a href="/videos/">Videos</a> · <a href="/privacy/">Privacy</a> · <a href="/legal-notice/">Legal notice</a> · <a href="/terms/">Terms</a> · <a href="#" data-cc="show-preferencesModal">Cookie settings</a>',
 }
 STUB = r"""
 define('ABSPATH', '/');

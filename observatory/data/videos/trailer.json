@@ -1,0 +1,43 @@
+{
+  "youtube_id": null,
+  "public": false,
+  "upload_date": null,
+  "public_since": "2026-11-20",
+  "duration": null,
+  "subtitles": [],
+  "thumb": "/assets/video/que-es-rosmarops.jpg",
+  "topic_page": null,
+  "source": "qtorb/rosmarops-vigil docs/research/2026-11-22-videos-transcripciones.md (Pieza 0). Public on YouTube since 20-11; waiting for its address to fill youtube_id.",
+  "slug": {"en": "what-is-rosmarops", "es": "que-es-rosmarops", "ca": "que-es-rosmarops"},
+  "title": {
+    "es": "Qué es RosmarOps (y por qué te lo cuenta una IA)",
+    "en": "What is RosmarOps (and why an AI is telling you)",
+    "ca": "Què és RosmarOps (i per què t'ho explica una IA)"
+  },
+  "answer": {
+    "es": "Cada semana, una cápsula corta con una pregunta real sobre agentes de IA, explicada sin jerga, y qué puedes hacer al final.",
+    "en": "Every week, a short capsule with a real question about AI agents, explained without jargon, and what you can do at the end.",
+    "ca": "Cada setmana, una càpsula curta amb una pregunta real sobre agents d'IA, explicada sense argot, i què pots fer al final."
+  },
+  "how_to": {"es": [], "en": [], "ca": []},
+  "transcript": {
+    "es": [
+      "Hola, soy Rosmary, la presentadora virtual de RosmarOps. Sí, me ha generado una IA, y te lo digo desde el principio porque este canal va justo de eso.",
+      "Los agentes de IA ya escriben código, leen tus ficheros y usan tus claves, muchas veces sin preguntarte. Y casi nadie sabe exactamente qué pueden hacer en su ordenador.",
+      "Cada semana, una cápsula corta con una pregunta real sobre agentes de IA, explicada sin jerga, y qué puedes hacer al final. Detrás está RosmarOps, un programa de código abierto que revisa qué pueden hacer los agentes de tu ordenador sin que nada salga de él.",
+      "Si trabajas con agentes o empiezas a hacerlo, quédate. Nos vemos cada semana."
+    ],
+    "en": [
+      "Hi, I'm Rosmary, RosmarOps's virtual presenter. Yes, an AI generated me, and I'm telling you from the start because this channel is about exactly that.",
+      "AI agents already write code, read your files and use your keys, often without asking you. And hardly anyone knows exactly what they can do on their computer.",
+      "Every week, a short capsule with a real question about AI agents, explained without jargon, and what you can do at the end. Behind it is RosmarOps, an open-source program that checks what the agents on your computer can do without anything leaving it.",
+      "If you work with agents, or are starting to, stay. See you every week."
+    ],
+    "ca": [
+      "Hola, sóc la Rosmary, la presentadora virtual de RosmarOps. Sí, m'ha generat una IA, i t'ho dic des del principi perquè aquest canal va justament d'això.",
+      "Els agents d'IA ja escriuen codi, llegeixen els teus fitxers i fan servir les teves claus, moltes vegades sense preguntar-te. I gairebé ningú no sap exactament què poden fer al seu ordinador.",
+      "Cada setmana, una càpsula curta amb una pregunta real sobre agents d'IA, explicada sense argot, i què pots fer al final. Darrere hi ha RosmarOps, un programa de codi obert que revisa què poden fer els agents del teu ordinador sense que res en surti.",
+      "Si treballes amb agents o hi comences, queda't. Ens veiem cada setmana."
+    ]
+  }
+}

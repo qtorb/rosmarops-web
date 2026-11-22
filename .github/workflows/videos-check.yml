@@ -1,0 +1,60 @@
+# GTM-199 (signed by Albert 22-11 15:16): once an hour, read the YouTube channel's public list. When a video that has
+# a data file in observatory/data/videos/ becomes public, mark it public, fill its date, download its thumbnail,
+# rebuild the site and open a pull request. Nothing is deployed until Albert merges and approves the deploy.
+# The request to YouTube is made by this workflow on GitHub, never by a visitor of the website.
+name: Videos (hourly check of the public list)
+
+on:
+  schedule:
+    - cron: "17 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: videos-check
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Read the channel's public list
+        run: |
+          set -eu
+          # The channel's id, from its public page (handle @RosmarOps).
+          id=$(curl -fsSL "https://www.youtube.com/@RosmarOps" | grep -oE '"(externalId|channelId)":"UC[A-Za-z0-9_-]{22}"' | head -1 | cut -d'"' -f4)
+          [ -n "$id" ] || { echo "::error::channel id not found"; exit 1; }
+          curl -fsSL "https://www.youtube.com/feeds/videos.xml?channel_id=$id" -o /tmp/feed.xml
+          python3 observatory/videos_check.py --feed /tmp/feed.xml | tee /tmp/changes.txt
+      - name: Rebuild and open a pull request
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -eu
+          if [ -z "$(git status --porcelain)" ]; then echo "nothing new"; exit 0; fi
+          python3 observatory/build.py
+          python3 observatory/site_check.py --stage
+          branch="videos/public-$(date -u +%Y%m%d-%H%M)"
+          if gh pr list --state open --search "head:videos/public-" --json number --jq 'length' | grep -qv '^0$'; then
+            echo "::notice::a videos pull request is already open; not opening another one"; exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$branch"
+          git add -A
+          git commit -m "Videos: public on YouTube, now on the website" -m "$(cat /tmp/changes.txt)"
+          git push origin "$branch"
+          gh pr create --base main --head "$branch" \
+            --title "Videos: $(head -1 /tmp/changes.txt)" \
+            --body "The hourly check found these changes in the channel's public list:
+
+          $(sed 's/^/- /' /tmp/changes.txt)
+
+          Merging this and approving the deploy publishes the video pages. Opened by the videos-check workflow (GTM-199)."

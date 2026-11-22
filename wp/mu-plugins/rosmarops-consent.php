@@ -19,21 +19,21 @@ add_action('wp_enqueue_scripts', function () {
 });
 
 /**
- * The footer paragraph of the blogs: privacy, legal notice and terms of the blog's language, then the cookie settings
+ * The footer paragraph of the blogs: videos (GTM-199), privacy, legal notice and terms of the blog's language, then the cookie settings
  * link (GTM-130b, signed by Albert 10-11), separated by « · ». The theme's own footer is not touched.
  */
 function rosmarops_consent_footer_html($locale) {
 	$links = [
-		'es' => [['/es/privacidad/', 'Privacidad'], ['/es/aviso-legal/', 'Aviso legal'], ['/es/terminos/', 'Términos'], 'Configurar cookies'],
-		'ca' => [['/ca/privadesa/', 'Privadesa'], ['/ca/avis-legal/', 'Avís legal'], ['/ca/termes/', 'Termes'], 'Configura les galetes'],
-		'en' => [['/privacy/', 'Privacy'], ['/legal-notice/', 'Legal notice'], ['/terms/', 'Terms'], 'Cookie settings'],
+		'es' => [['/es/videos/', 'Vídeos'], ['/es/privacidad/', 'Privacidad'], ['/es/aviso-legal/', 'Aviso legal'], ['/es/terminos/', 'Términos'], 'Configurar cookies'],
+		'ca' => [['/ca/videos/', 'Vídeos'], ['/ca/privadesa/', 'Privadesa'], ['/ca/avis-legal/', 'Avís legal'], ['/ca/termes/', 'Termes'], 'Configura les galetes'],
+		'en' => [['/videos/', 'Videos'], ['/privacy/', 'Privacy'], ['/legal-notice/', 'Legal notice'], ['/terms/', 'Terms'], 'Cookie settings'],
 	];
 	$set   = $links[substr((string) $locale, 0, 2)] ?? $links['en'];
 	$parts = [];
-	foreach (array_slice($set, 0, 3) as [$href, $text]) {
+	foreach (array_slice($set, 0, 4) as [$href, $text]) {
 		$parts[] = '<a href="' . esc_attr($href) . '">' . esc_html($text) . '</a>';
 	}
-	$parts[] = '<a href="#" data-cc="show-preferencesModal">' . esc_html($set[3]) . '</a>';
+	$parts[] = '<a href="#" data-cc="show-preferencesModal">' . esc_html($set[4]) . '</a>';
 	return '<p class="rosmarops-cc-link" style="text-align:center;font-size:14px;margin:16px 0">' . implode(' · ', $parts) . '</p>';
 }
 

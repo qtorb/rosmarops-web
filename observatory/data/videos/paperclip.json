@@ -1,0 +1,59 @@
+{
+  "youtube_id": "2IKYyCEKZ0E",
+  "public": true,
+  "upload_date": null,
+  "public_since": "2026-11-21",
+  "duration": "PT3M25S",
+  "subtitles": [],
+  "thumb": "/assets/video/paperclip-especial.jpg",
+  "topic_page": "orchestrators",
+  "source": "qtorb/rosmarops-vigil docs/research/2026-11-22-videos-transcripciones.md (Especial, guion largo entero); title and description: docs/research/2026-11-20-canal-youtube.md",
+  "slug": {"en": "paperclip-ai-agent-company", "es": "paperclip-empresa-de-agentes", "ca": "paperclip-empresa-dagents"},
+  "title": {
+    "es": "Paperclip: una empresa de agentes de IA, con límites",
+    "en": "Paperclip: an AI agent company, with limits",
+    "ca": "Paperclip: una empresa d'agents d'IA, amb límits"
+  },
+  "answer": {
+    "es": "Paperclip te da una empresa de agentes, pero de fábrica no les pone límites. Esos límites los pones tú.",
+    "en": "Paperclip gives you a company of agents, but by default it puts no limits on them. You set those limits.",
+    "ca": "Paperclip et dona una empresa d'agents, però de fàbrica no els posa límits. Aquests límits els poses tu."
+  },
+  "how_to": {
+    "es": ["En una máquina dedicada, no en el ordenador donde tienes tu vida.", "Actualizado y escuchando solo en esa máquina.", "A cada agente, las claves mínimas y un presupuesto con tope.", "El sandbox encendido en cada agente que lance.", "Revisa qué puede hacer cada agente, de verdad."],
+    "en": ["On a dedicated machine, not on the computer where you keep your life.", "Up to date and listening only on that machine.", "For each agent, the fewest keys and a budget with a cap.", "The sandbox on in every agent it launches.", "Check what each agent can really do."],
+    "ca": ["En una màquina dedicada, no a l'ordinador on tens la teva vida.", "Actualitzat i escoltant només en aquesta màquina.", "A cada agent, les claus mínimes i un pressupost amb sostre.", "El sandbox encès a cada agent que llanci.", "Revisa què pot fer cada agent, de debò."]
+  },
+  "transcript": {
+    "es": [
+      "Hola, soy Rosmary, la presentadora virtual de RosmarOps. Hoy, un especial: Paperclip. Es un programa que convierte un equipo de agentes de IA en una empresa, con jefes, tareas y presupuesto. Te enseño cómo funciona, qué hace de fábrica y qué conviene ajustar antes de dejarlo trabajar solo.",
+      "Paperclip organiza a tus agentes como una empresa. Hay un organigrama, con un director y empleados. Cada empleado es un agente de IA: Claude Code, Codex, Cursor, Gemini y otros. Les asignas tareas. Cada uno tiene un presupuesto. Y hay un consejo, que eres tú, que aprueba lo importante. Las tareas pasan de mano en mano, como en una oficina. Y el gasto de cada agente se va sumando, con un tope.",
+      "La idea es muy potente. Paperclip es de código abierto y tiene más de 100.000 estrellas en GitHub. Mucha gente lo está usando para montar su primera empresa de agentes. Pero antes conviene saber qué hace cuando lo instalas y no tocas nada.",
+      "Primero: lanza la mayoría de agentes sin sus aprobaciones. A Claude Code, por ejemplo, con la opción que se salta todas sus preguntas. El agente ya no te pide permiso para nada. Segundo: los despierta solos. Paperclip tiene un latido programado que pone a trabajar a los agentes aunque no haya nadie delante. Tercero: los agentes trabajan con todo lo que hay en tu ordenador: tu carpeta personal, tus claves, internet. Si un agente lee una instrucción escondida en una página o en un documento, la ejecuta con todo eso al alcance. Cuarto: la llave que abre todos sus secretos está en el mismo disco que su base de datos. Quien pueda leer ese disco puede leer los secretos. Quinto: en modo local, cualquier programa del ordenador que llegue a su puerto entra como administrador.",
+      "Y una cosa más: Paperclip tuvo fallos de seguridad graves, corregidos en la versión 2026.416.0. Si usas una versión anterior, actualízala hoy mismo. Nada de esto significa que no debas usarlo. Significa que, de fábrica, Paperclip no le pone límites a tus agentes. Esos límites los pones tú.",
+      "¿Cómo usarlo con cabeza? Uno: en una máquina dedicada, no en el ordenador donde tienes tu vida. Dos: actualizado y escuchando solo en esa máquina. Tres: a cada agente, las claves mínimas y un presupuesto con tope. Cuatro: el sandbox encendido en cada agente que lance. Y cinco: revisa qué puede hacer cada agente, de verdad.",
+      "Para lo último está RosmarOps. Desde la versión 0.17 encuentra Paperclip en tu ordenador y te dice qué agentes puede poner a trabajar sin preguntarte, si tu versión tiene un fallo conocido y si escucha fuera de tu ordenador. Sin abrir sus secretos y sin que nada salga de tu ordenador.",
+      "Resumiendo: Paperclip te da una empresa de agentes, pero de fábrica no les pone límites. El consejo eres tú. Máquina dedicada, claves mínimas, sandbox, y revisa qué pueden hacer. Nos vemos la semana que viene."
+    ],
+    "en": [
+      "Hi, I'm Rosmary, RosmarOps's virtual presenter. Today, a special: Paperclip. It's a program that turns a team of AI agents into a company, with bosses, tasks and a budget. I'll show you how it works, what it does by default and what's worth adjusting before you let it work on its own.",
+      "Paperclip organises your agents like a company. There's an org chart, with a director and employees. Each employee is an AI agent: Claude Code, Codex, Cursor, Gemini and others. You give them tasks. Each one has a budget. And there's a board, which is you, that approves what matters. Tasks pass from hand to hand, like in an office. And each agent's spending adds up, with a cap.",
+      "The idea is very powerful. Paperclip is open source and has more than 100,000 stars on GitHub. Lots of people are using it to set up their first company of agents. But first it's worth knowing what it does when you install it and touch nothing.",
+      "First: it launches most agents without their approvals. Claude Code, for example, with the option that skips all its questions. The agent no longer asks your permission for anything. Second: it wakes them up on its own. Paperclip has a scheduled heartbeat that puts agents to work even when nobody is there. Third: the agents work with everything on your computer: your home folder, your keys, the internet. If an agent reads an instruction hidden in a page or a document, it carries it out with all of that within reach. Fourth: the key that opens all its secrets is on the same disk as its database. Whoever can read that disk can read the secrets. Fifth: in local mode, any program on the computer that reaches its port gets in as an administrator.",
+      "And one more thing: Paperclip had serious security flaws, fixed in version 2026.416.0. If you use an earlier version, update it today. None of this means you shouldn't use it. It means that, by default, Paperclip puts no limits on your agents. You set those limits.",
+      "How do you use it with care? One: on a dedicated machine, not on the computer where you keep your life. Two: up to date and listening only on that machine. Three: for each agent, the fewest keys and a budget with a cap. Four: the sandbox on in every agent it launches. And five: check what each agent can really do.",
+      "That last one is what RosmarOps is for. Since version 0.17 it finds Paperclip on your computer and tells you which agents it can put to work without asking you, whether your version has a known flaw and whether it listens beyond your computer. Without opening its secrets and without anything leaving your computer.",
+      "To sum up: Paperclip gives you a company of agents, but by default it puts no limits on them. You are the board. A dedicated machine, the fewest keys, the sandbox, and check what they can do. See you next week."
+    ],
+    "ca": [
+      "Hola, sóc la Rosmary, la presentadora virtual de RosmarOps. Avui, un especial: Paperclip. És un programa que converteix un equip d'agents d'IA en una empresa, amb caps, tasques i pressupost. T'ensenyo com funciona, què fa de fàbrica i què convé ajustar abans de deixar-lo treballar sol.",
+      "Paperclip organitza els teus agents com una empresa. Hi ha un organigrama, amb un director i empleats. Cada empleat és un agent d'IA: Claude Code, Codex, Cursor, Gemini i altres. Els assignes tasques. Cadascun té un pressupost. I hi ha un consell, que ets tu, que aprova el que és important. Les tasques passen de mà en mà, com en una oficina. I la despesa de cada agent es va sumant, amb un sostre.",
+      "La idea és molt potent. Paperclip és de codi obert i té més de 100.000 estrelles a GitHub. Molta gent l'està fent servir per muntar la seva primera empresa d'agents. Però abans convé saber què fa quan l'instal·les i no toques res.",
+      "Primer: llança la majoria d'agents sense les seves aprovacions. Claude Code, per exemple, amb l'opció que se salta totes les seves preguntes. L'agent ja no et demana permís per a res. Segon: els desperta sols. Paperclip té un batec programat que posa a treballar els agents encara que no hi hagi ningú al davant. Tercer: els agents treballen amb tot el que hi ha al teu ordinador: la teva carpeta personal, les teves claus, internet. Si un agent llegeix una instrucció amagada en una pàgina o en un document, l'executa amb tot això a l'abast. Quart: la clau que obre tots els seus secrets és al mateix disc que la seva base de dades. Qui pugui llegir aquest disc pot llegir els secrets. Cinquè: en mode local, qualsevol programa de l'ordinador que arribi al seu port hi entra com a administrador.",
+      "I una cosa més: Paperclip va tenir errors de seguretat greus, corregits a la versió 2026.416.0. Si fas servir una versió anterior, actualitza-la avui mateix. Res d'això vol dir que no l'hagis de fer servir. Vol dir que, de fàbrica, Paperclip no posa límits als teus agents. Aquests límits els poses tu.",
+      "Com fer-lo servir amb seny? U: en una màquina dedicada, no a l'ordinador on tens la teva vida. Dos: actualitzat i escoltant només en aquesta màquina. Tres: a cada agent, les claus mínimes i un pressupost amb sostre. Quatre: el sandbox encès a cada agent que llanci. I cinc: revisa què pot fer cada agent, de debò.",
+      "Per a això últim hi ha RosmarOps. Des de la versió 0.17 troba Paperclip al teu ordinador i et diu quins agents pot posar a treballar sense preguntar-te, si la teva versió té un error conegut i si escolta fora del teu ordinador. Sense obrir els seus secrets i sense que res surti del teu ordinador.",
+      "Resumint: Paperclip et dona una empresa d'agents, però de fàbrica no els posa límits. El consell ets tu. Màquina dedicada, claus mínimes, sandbox, i revisa què poden fer. Ens veiem la setmana que ve."
+    ]
+  }
+}

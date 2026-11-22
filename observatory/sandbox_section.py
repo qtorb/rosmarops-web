@@ -21,6 +21,7 @@ from pathlib import Path
 import company_page
 import map_page
 import sandbox_page
+import videos_pages
 
 ROOT = Path(__file__).resolve().parent.parent
 SITE = ROOT / "site"
@@ -746,7 +747,7 @@ def article(lang, agents, review, lab=None):
     # the article, so main .wrap puts its 64px between them.
     return f"""<article class="sg">
 <header class="sg-head"><h1>{esc(G["h1"])}</h1><p class="sg-lead">{esc(ctexts(lang)["lead"])}</p></header>
-<div class="doc">
+{top_video_html(lang)}<div class="doc">
 {S["why"]}
 {S["day"]}
 {S["level"]}
@@ -770,6 +771,12 @@ def download(lang):
     return (f'<div class="dlrow"><a class="sbadge" href="{route}?from=sandbox&amp;os=store" target="_blank" rel="nofollow noopener">'
             f'<img src="/assets/store/microsoft-store-{l}.svg" width="161" height="44" alt="{esc(alt)}"></a>'
             f'<a class="hbtn sec" href="{mac}">{esc(mac_label)}</a><a class="hbtn sec" href="{linux}">Linux</a></div>')
+
+
+def top_video_html(lang):
+    """GTM-199: the sandbox's video at the top, loaded only when the person presses play."""
+    v = videos_pages.top_video(videos_pages.load(), "sandbox")
+    return (videos_pages.player(v, lang) + "\n" + videos_pages.SCRIPT + "\n") if v else ""
 
 
 def shell_parts(lang):
@@ -824,6 +831,7 @@ def page(lang, agents, review):
 {style.strip()}
 <style>
 {GUIDE_CSS}
+{videos_pages.CSS}
 </style>
 </head>
 <body>
