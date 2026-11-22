@@ -24,3 +24,7 @@ The REST part of the stand-in only mimics WordPress routing (GET registered, any
 The hourly totals (GTM-186: `rosmarops_hourly` and `/wp-json/rosmarops/v1/hours`), with the same stand-in, «now» fixed by `HOURLY_NOW`; the privacy policy paragraphs are checked without a database:
 
     DB_USER=… DB_PASS=… DB_NAME=wptest python3 -m unittest wp/tests/test_hourly.py
+
+`rosmarops-gtm195-voz.php` (GTM-195, one time per site: puts the worktree post in Albert's voice, from `wp/drafts/worktree-<lang>.json` and `.html`, into the drafts EN 1262, ES 1252 and CA 105, only while they are drafts; the deploy removes it from the server after reading its logs), with its own stand-in (`gtm195-stub.php`):
+
+    python3 -m unittest wp/tests/test_gtm195_voz.py

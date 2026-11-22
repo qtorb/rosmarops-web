@@ -1,43 +1,49 @@
 <!-- wp:paragraph -->
-<p>Si usas varios agentes de IA a la vez, seguramente trabajan en worktrees. Es una buena idea. Pero no hace lo que mucha gente cree.</p>
+<p>Leyendo el README de Paradev, un programa que pone a trabajar a varios agentes de IA a la vez, me encontré una frase que me hizo parar. Después de explicar que cada agente trabaja en su propia worktree y su propia rama, dice: «worktrees do not sandbox processes». Las worktrees no aíslan lo que hacen los agentes.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>Me pareció honesto por su parte. Y me hizo pensar en cuánta gente usa worktrees creyendo lo contrario.</p>
 <!-- /wp:paragraph -->
 <!-- wp:heading -->
 <h2 class="wp-block-heading">Qué es una worktree</h2>
 <!-- /wp:heading -->
 <!-- wp:paragraph -->
-<p>Una worktree es una segunda copia de trabajo de tu repositorio, en otra carpeta y en otra rama. Los orquestadores de agentes, como Orca, Paseo, Claude Squad o Paradev, dan una a cada agente para que no se pisen los ficheros: uno arregla un fallo en su carpeta mientras otro escribe una función en la suya.</p>
+<p>Si trabajas con varios agentes a la vez, lo más probable es que cada uno tenga la suya. Una worktree es otra copia de trabajo de tu repositorio, en otra carpeta y en otra rama. Orquestadores como Orca, Paseo, Claude Squad o Paradev reparten una a cada agente para que no se pisen los ficheros: uno arregla un fallo en su carpeta mientras otro escribe una función en la suya. Funciona, y es una buena idea.</p>
 <!-- /wp:paragraph -->
 <!-- wp:heading -->
-<h2 class="wp-block-heading">Qué separa y qué no</h2>
+<h2 class="wp-block-heading">Lo que no separa</h2>
 <!-- /wp:heading -->
 <!-- wp:paragraph -->
-<p>Separa los ficheros del proyecto. Nada más.</p>
+<p>Pero lo único que separa son los ficheros del proyecto.</p>
 <!-- /wp:paragraph -->
 <!-- wp:paragraph -->
-<p>Cada agente sigue siendo tú. Corre con tu usuario, así que ve tu carpeta personal, tus claves (las de <code>.ssh</code>, las de la nube, las de tus <code>.env</code>), las sesiones que tienes abiertas en otros agentes, e internet. Si una página web o un README le cuela una instrucción, la ejecuta con todo eso al alcance, esté en la worktree que esté.</p>
-<!-- /wp:paragraph -->
-<!-- wp:paragraph -->
-<p>No lo decimos solo nosotros. La documentación de Paradev lo escribe así: «worktrees do not sandbox processes».</p>
+<p>Cada agente sigue corriendo con tu usuario. Ve tu carpeta personal, tus claves (las de <code>.ssh</code>, las de la nube, las de tus <code>.env</code>), las sesiones que tienes abiertas en otros agentes, e internet. Si una página web o un README le cuela una instrucción, la ejecuta con todo eso a mano, esté en la worktree que esté.</p>
 <!-- /wp:paragraph -->
 <!-- wp:heading -->
 <h2 class="wp-block-heading">Por qué ahora importa más</h2>
 <!-- /wp:heading -->
 <!-- wp:paragraph -->
-<p>Un agente que pregunta antes de cada orden te da una oportunidad de pararlo. Varios orquestadores quitan esa oportunidad de fábrica, para que el trabajo en paralelo no se detenga: Orca lanza los agentes con acceso completo por defecto, y Paradev hace lo mismo con Claude Code, Codex y varios más. Con cinco agentes trabajando a la vez y sin preguntas, la worktree es lo único que los separa, y no separa su acceso.</p>
+<p>Un agente que te pregunta antes de cada orden te da la oportunidad de decir que no. Varios orquestadores quitan esa oportunidad de fábrica, para que el trabajo en paralelo no se atasque. Orca lanza los agentes con acceso completo por defecto. Paradev hace lo mismo con Claude Code, Codex y varios más.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>Cinco agentes a la vez, ninguno pregunta, y entre ellos y tus claves solo hay una carpeta distinta.</p>
 <!-- /wp:paragraph -->
 <!-- wp:heading -->
-<h2 class="wp-block-heading">Qué hacer</h2>
+<h2 class="wp-block-heading">Qué haría yo</h2>
 <!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>Tres cosas, por este orden.</p>
+<!-- /wp:paragraph -->
 <!-- wp:list {"ordered":true} -->
 <ol class="wp-block-list">
 <!-- wp:list-item -->
-<li><strong>Enciende el sandbox en cada agente que lance tu orquestador.</strong> El sandbox sí separa el acceso: el agente trabaja en su proyecto y no llega a tu carpeta personal ni a internet, según el agente. Cómo hacerlo, agente por agente: <a href="/es/sandbox/">la guía del sandbox</a>.</li>
+<li><strong>Encender el sandbox en cada agente que lance el orquestador.</strong> El sandbox sí separa el acceso: según el agente, deja de llegar a tu carpeta personal o a internet. Cómo hacerlo, agente por agente, está en <a href="/es/sandbox/">la guía del sandbox</a>.</li>
 <!-- /wp:list-item -->
 <!-- wp:list-item -->
-<li><strong>Mira con qué modo lanza tu orquestador a cada agente.</strong> Qué hace cada uno de fábrica está en el <a href="/es/orquestadores-de-agentes/">Observatorio</a>.</li>
+<li><strong>Mirar con qué modo arranca tu orquestador a cada agente.</strong> Qué hace cada uno de fábrica lo tienes en el <a href="/es/orquestadores-de-agentes/">Observatorio</a>.</li>
 <!-- /wp:list-item -->
 <!-- wp:list-item -->
-<li><strong>Comprueba qué pueden hacer de verdad.</strong> RosmarOps encuentra Paperclip, Paseo, Claude Squad y Orca, y te dice qué agentes pueden poner a trabajar sin preguntarte y a qué claves llegan. Sin que nada salga de tu ordenador.</li>
+<li><strong>Pasar RosmarOps.</strong> Encuentra Paperclip, Paseo, Claude Squad y Orca, y te dice qué agentes pueden poner a trabajar sin preguntarte y a qué claves llegan. Sin que nada salga de tu ordenador.</li>
 <!-- /wp:list-item -->
 </ol>
 <!-- /wp:list -->
