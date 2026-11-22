@@ -63,6 +63,18 @@ footer nav{gap:20px;font-size:15px}
 .tp-video img{display:block;width:100%;height:auto;border-radius:12px;border:1px solid var(--line)}
 .tp-video figcaption{font-size:15px;color:var(--muted)}
 .tp-more{border-top:1px solid var(--line);padding-top:20px}
+.vp{position:relative;aspect-ratio:16/9;width:100%;max-width:760px;border-radius:12px;overflow:hidden;background:#111;border:1px solid var(--line)}
+.vp a,.vp iframe{display:block;width:100%;height:100%;border:0}
+.vp img{display:block;width:100%;height:100%;object-fit:cover}
+.vp-play{position:absolute;left:50%;top:50%;width:76px;height:76px;margin:-38px 0 0 -38px;border-radius:50%;background:rgba(0,0,0,.72);display:flex;align-items:center;justify-content:center}
+.vp-play::after{content:"";margin-left:6px;border-style:solid;border-width:15px 0 15px 25px;border-color:transparent transparent transparent #fff}
+.vp a:hover .vp-play,.vp a:focus-visible .vp-play{background:rgba(0,0,0,.9)}
+.vp-meta{margin:8px 0 0;font-size:15px;color:var(--muted)}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.vl{list-style:none;padding:0;margin:0;display:grid;gap:22px;grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+.vl img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;border-radius:10px;border:1px solid var(--line)}
+.vl h2{font-size:19px;margin:10px 0 4px;line-height:1.3}.vl p{margin:0;font-size:16px;color:var(--ink2)}
+.doc details summary{cursor:pointer;font-weight:600}
 </style>
 </head>
 <body>
@@ -92,9 +104,10 @@ footer nav{gap:20px;font-size:15px}
 </div></main>
 
 <footer><div class="wrap">
-<nav><a href="/ca/blog/">Bloc</a><a href="/ca/blog/que-es-rosmarops/">Quant a</a><a href="/ca/observatori/">Observatori</a><a href="/ca/sandbox/">Sandbox</a><a href="/ca/metodologia/">Metodologia</a><a href="/ca/preguntes-frequents/">Preguntes freqüents</a><a href="/ca/privadesa/">Privadesa</a><a href="/ca/avis-legal/">Avís legal</a><a href="/ca/termes/">Termes</a><a href="/claude-code-subagents/" hreflang="en" lang="en" aria-label="English">EN</a><a href="/es/subagentes-de-claude-code/" hreflang="es" lang="es" aria-label="Español">ES</a><a href="#" data-cc="show-preferencesModal">Configura les galetes</a></nav>
+<nav><a href="/ca/blog/">Bloc</a><a href="/ca/blog/que-es-rosmarops/">Quant a</a><a href="/ca/observatori/">Observatori</a><a href="/ca/sandbox/">Sandbox</a><a href="/ca/metodologia/">Metodologia</a><a href="/ca/preguntes-frequents/">Preguntes freqüents</a><a href="/ca/videos/">Vídeos</a><a href="/ca/privadesa/">Privadesa</a><a href="/ca/avis-legal/">Avís legal</a><a href="/ca/termes/">Termes</a><a href="/claude-code-subagents/" hreflang="en" lang="en" aria-label="English">EN</a><a href="/es/subagentes-de-claude-code/" hreflang="es" lang="es" aria-label="Español">ES</a><a href="#" data-cc="show-preferencesModal">Configura les galetes</a></nav>
 </div></footer>
 <script src="/assets/consent/cookieconsent.umd.js?v=3.1.0" defer></script>
 <script src="/assets/consent/consent.js?v=5" defer></script><script src="/assets/visits/visits.js?v=3" defer></script>
+
 </body>
 </html>

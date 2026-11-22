@@ -452,6 +452,7 @@ def page(lang, t, *, path, title, description, alternates, jsonld, body, og_type
         '<footer><div class="wrap">\n<nav>'
         + links
         + _templates_footer(lang)  # GTM-190: «Templates», once the pages exist
+        + f'<a href="{esc(t.text("site.footer.videos_url"))}">{t("site.footer.videos")}</a>'  # GTM-199
         + f'<a href="{esc(t.text("site.footer.privacy_url"))}">{t("site.footer.privacy")}</a>'
         + f'<a href="{esc(t.text("site.footer.legal_url"))}">{t("site.footer.legal")}</a>'  # GTM-130
         + f'<a href="{esc(t.text("site.footer.terms_url"))}">{t("site.footer.terms")}</a>'
@@ -975,7 +976,8 @@ def build_sitemap(agents):
         talts += f'<xhtml:link rel="alternate" hreflang="x-default" href="{BASE}{group["en"]}"/>'
         lines.append(f"  <url><loc>{BASE}{path}</loc>{talts}</url>")
     import topic_pages  # GTM-198: orchestrators, Claude Code subagents and MCP servers, hreflang EN<->ES<->CA
-    for path, group in topic_pages.sitemap_urls(topic_pages.load()):
+    import videos_pages  # GTM-199: the videos index and each public video's page
+    for path, group in topic_pages.sitemap_urls(topic_pages.load()) + videos_pages.sitemap_urls():
         palts = "".join(f'<xhtml:link rel="alternate" hreflang="{l}" href="{BASE}{p}"/>' for l, p in group.items())
         palts += f'<xhtml:link rel="alternate" hreflang="x-default" href="{BASE}{group["en"]}"/>'
         lines.append(f"  <url><loc>{BASE}{path}</loc>{palts}</url>")
@@ -1009,6 +1011,8 @@ def build_llms(agents, t_en):
     lines += templates_pages.llms_lines(templates_pages.load())
     import topic_pages  # GTM-198: the three questions, each with its one-sentence answer
     lines += topic_pages.llms_lines(topic_pages.load())
+    import videos_pages  # GTM-199
+    lines += videos_pages.llms_lines()
     lines.append(LL_END)
     block = "\n".join(lines)
     if LL_START in txt:
@@ -1086,11 +1090,11 @@ ABOUT_PAGES = {
 }
 ABOUT_NAV = {
     "en": ('<a href="/blog/">Blog</a><a href="/blog/about/">About</a><a href="/observatory/">Observatory</a><a href="/sandbox/">Sandbox</a><a href="/methodology/">Methodology</a><a href="/faq/">FAQ</a>',
-           '<a href="/privacy/">Privacy</a><a href="/legal-notice/">Legal notice</a><a href="/terms/">Terms</a><a href="#" data-cc="show-preferencesModal">Cookie settings</a>', "/"),
+           '<a href="/videos/">Videos</a><a href="/privacy/">Privacy</a><a href="/legal-notice/">Legal notice</a><a href="/terms/">Terms</a><a href="#" data-cc="show-preferencesModal">Cookie settings</a>', "/"),
     "es": ('<a href="/es/blog/">Blog</a><a href="/es/blog/que-es-rosmarops/">Acerca de</a><a href="/es/observatorio/">Observatorio</a><a href="/es/sandbox/">Sandbox</a><a href="/es/metodologia/">Metodología</a><a href="/es/preguntas-frecuentes/">Preguntas</a>',
-           '<a href="/es/privacidad/">Privacidad</a><a href="/es/aviso-legal/">Aviso legal</a><a href="/es/terminos/">Términos</a><a href="#" data-cc="show-preferencesModal">Configurar cookies</a>', "/es/"),
+           '<a href="/es/videos/">Vídeos</a><a href="/es/privacidad/">Privacidad</a><a href="/es/aviso-legal/">Aviso legal</a><a href="/es/terminos/">Términos</a><a href="#" data-cc="show-preferencesModal">Configurar cookies</a>', "/es/"),
     "ca": ('<a href="/ca/blog/">Bloc</a><a href="/ca/blog/que-es-rosmarops/">Quant a</a><a href="/ca/observatori/">Observatori</a><a href="/ca/sandbox/">Sandbox</a><a href="/ca/metodologia/">Metodologia</a><a href="/ca/preguntes-frequents/">Preguntes</a>',
-           '<a href="/ca/privadesa/">Privadesa</a><a href="/ca/avis-legal/">Avís legal</a><a href="/ca/termes/">Termes</a><a href="#" data-cc="show-preferencesModal">Configura les galetes</a>', "/ca/"),
+           '<a href="/ca/videos/">Vídeos</a><a href="/ca/privadesa/">Privadesa</a><a href="/ca/avis-legal/">Avís legal</a><a href="/ca/termes/">Termes</a><a href="#" data-cc="show-preferencesModal">Configura les galetes</a>', "/ca/"),
 }
 ABOUT_SWITCH_LABEL = {"en": "English", "es": "Español", "ca": "Català"}
 
@@ -1224,6 +1228,8 @@ def main():
         templates_pages.build(SITE)
         import topic_pages  # GTM-198: /agent-orchestrators/, /claude-code-subagents/, /mcp-servers/ and their ES and CA pages
         topic_pages.build(SITE)
+        import videos_pages  # GTM-199: /videos/ and one page per public video, in EN, ES and CA
+        videos_pages.build(SITE)
     pages = 0
     for lang in LANGS:
         t = T(cats[lang])

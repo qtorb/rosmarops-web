@@ -1,0 +1,53 @@
+{
+  "youtube_id": "z9GE3yc3vXQ",
+  "public": true,
+  "upload_date": null,
+  "public_since": "2026-11-20",
+  "duration": null,
+  "subtitles": [],
+  "thumb": "/assets/video/worktree-no-es-sandbox.jpg",
+  "topic_page": "sandbox",
+  "source": "qtorb/rosmarops-vigil docs/research/2026-11-22-videos-transcripciones.md (Cápsula 1)",
+  "slug": {"en": "a-worktree-is-not-a-sandbox", "es": "una-worktree-no-es-un-sandbox", "ca": "una-worktree-no-es-un-sandbox"},
+  "title": {
+    "es": "Una worktree no es un sandbox",
+    "en": "A worktree is not a sandbox",
+    "ca": "Una worktree no és un sandbox"
+  },
+  "answer": {
+    "es": "Una worktree separa los ficheros, no el acceso. Para separar el acceso, el sandbox en cada agente.",
+    "en": "A worktree keeps the files apart, not the access. To keep the access apart, the sandbox in every agent.",
+    "ca": "Una worktree separa els fitxers, no l'accés. Per separar l'accés, el sandbox a cada agent."
+  },
+  "how_to": {
+    "es": ["Enciende el sandbox en cada agente.", "Mira cómo lanza los agentes tu orquestador.", "Comprueba qué pueden hacer de verdad."],
+    "en": ["Turn on the sandbox in every agent.", "Look at how your orchestrator launches the agents.", "Check what they can really do."],
+    "ca": ["Encén el sandbox a cada agent.", "Mira com llança els agents el teu orquestrador.", "Comprova què poden fer de debò."]
+  },
+  "transcript": {
+    "es": [
+      "Hola, soy Rosmary, la presentadora virtual de RosmarOps. Si usas varios agentes de IA a la vez, seguramente trabajan en worktrees. Hoy te enseño por qué eso separa sus ficheros, pero no lo que pueden tocar en tu ordenador, y qué hacer para que sí.",
+      "Una worktree no es un sandbox. Los orquestadores de agentes lanzan varios agentes de IA a la vez sobre tu proyecto. A cada uno le dan una copia de tu proyecto en otra rama. Eso es una worktree. Sirve para una cosa: que no se pisen los ficheros.",
+      "Pero cada agente sigue siendo tú. Ve tu carpeta personal, tus claves e internet, esté en la worktree que esté. Si un README o una página web le cuela una instrucción escondida, la ejecuta con todo eso al alcance. Un agente que pregunta antes de actuar te da la oportunidad de pararlo. Pero algunos orquestadores, de fábrica, los lanzan sin preguntarte nada.",
+      "Entonces, ¿qué separa de verdad su acceso? El sandbox en cada agente. Trabaja en su proyecto y no llega a lo que queda fuera.",
+      "¿Qué hacer? Uno: enciende el sandbox en cada agente. Dos: mira cómo lanza los agentes tu orquestador. Tres: comprueba qué pueden hacer de verdad. Cómo encender el sandbox, agente por agente, en rosmarops.com/sandbox. Y qué hace cada orquestador, en el Observatorio.",
+      "Resumiendo: una worktree separa los ficheros, no el acceso. Para separar el acceso, el sandbox en cada agente. Comprueba qué pueden hacer de verdad, sin que nada salga de tu ordenador. Nos vemos la semana que viene."
+    ],
+    "en": [
+      "Hi, I'm Rosmary, RosmarOps's virtual presenter. If you use several AI agents at once, they probably work in worktrees. Today I'll show you why that keeps their files apart, but not what they can touch on your computer, and what to do so that it does.",
+      "A worktree is not a sandbox. Agent orchestrators launch several AI agents at once on your project. Each one gets a copy of your project on another branch. That's a worktree. It's good for one thing: the agents don't step on each other's files.",
+      "But every agent is still you. It sees your home folder, your keys and the internet, whichever worktree it's in. If a README or a web page slips it a hidden instruction, it carries it out with all of that within reach. An agent that asks before acting gives you the chance to stop it. But some orchestrators, by default, launch them without asking you anything.",
+      "So what really keeps their access apart? The sandbox in every agent. It works in its project and doesn't reach what's left outside.",
+      "What to do? One: turn on the sandbox in every agent. Two: look at how your orchestrator launches the agents. Three: check what they can really do. How to turn on the sandbox, agent by agent, at rosmarops.com/sandbox. And what each orchestrator does, in the Observatory.",
+      "To sum up: a worktree keeps the files apart, not the access. To keep the access apart, the sandbox in every agent. Check what they can really do, without anything leaving your computer. See you next week."
+    ],
+    "ca": [
+      "Hola, sóc la Rosmary, la presentadora virtual de RosmarOps. Si fas servir diversos agents d'IA alhora, segurament treballen en worktrees. Avui t'ensenyo per què això separa els seus fitxers, però no el que poden tocar al teu ordinador, i què fer perquè sí.",
+      "Una worktree no és un sandbox. Els orquestradors d'agents llancen diversos agents d'IA alhora sobre el teu projecte. A cadascun li donen una còpia del teu projecte en una altra branca. Això és una worktree. Serveix per a una cosa: que no es trepitgin els fitxers.",
+      "Però cada agent continua sent tu. Veu la teva carpeta personal, les teves claus i internet, sigui a la worktree que sigui. Si un README o una pàgina web li cola una instrucció amagada, l'executa amb tot això a l'abast. Un agent que pregunta abans d'actuar et dona l'oportunitat d'aturar-lo. Però alguns orquestradors, de fàbrica, els llancen sense preguntar-te res.",
+      "Aleshores, què separa de debò el seu accés? El sandbox a cada agent. Treballa en el seu projecte i no arriba al que queda fora.",
+      "Què fer? U: encén el sandbox a cada agent. Dos: mira com llança els agents el teu orquestrador. Tres: comprova què poden fer de debò. Com encendre el sandbox, agent per agent, a rosmarops.com/sandbox. I què fa cada orquestrador, a l'Observatori.",
+      "Resumint: una worktree separa els fitxers, no l'accés. Per separar l'accés, el sandbox a cada agent. Comprova què poden fer de debò, sense que res surti del teu ordinador. Ens veiem la setmana que ve."
+    ]
+  }
+}

@@ -53,29 +53,27 @@ class TopicPages(unittest.TestCase):
                 graph = json.loads(blocks[0])["@graph"]
                 types = [g["@type"] for g in graph]
                 self.assertEqual(types[:3], ["TechArticle", "FAQPage", "BreadcrumbList"])
+                self.assertLessEqual(types.count("VideoObject"), 1)
                 faq = graph[1]["mainEntity"][0]
                 self.assertEqual(faq["name"], p[lang]["title"])
                 self.assertEqual(faq["acceptedAnswer"]["text"], p[lang]["first"])
-                public = [v for v in p["videos"] if self.data["videos"][v]["public"]]
-                self.assertEqual(types.count("VideoObject"), len(public))
 
-    def test_videos_only_when_public(self):
-        for p in self.data["pages"].values():
+    def test_video_at_the_top_only_when_public(self):  # GTM-199
+        import videos_pages
+        vids = videos_pages.load()
+        for pid, p in self.data["pages"].items():
+            v = videos_pages.top_video(vids, pid)
             for lang in topic_pages.LANGS:
                 html = self.pages[p["path"][lang]]
-                for v in p["videos"]:
-                    vv = self.data["videos"][v]
-                    if vv["public"]:
-                        self.assertIn(f'href="{vv["url"]}"', html)
-                        self.assertTrue((topic_pages.SITE / vv["thumb"].lstrip("/")).exists(), vv["thumb"])
-                    else:
-                        self.assertNotIn(topic_pages.esc(vv["name"]), html)
-        # A video turned public appears; one turned private disappears.
-        d = copy.deepcopy(self.data)
-        d["videos"]["mcp"].update(public=True, url="https://youtu.be/x", id="x", thumb="/assets/video/paperclip-especial.jpg")
-        self.assertIn('href="https://youtu.be/x"', topic_pages.pages(d)["/mcp-servers/"])
-        d["videos"]["paperclip"]["public"] = False
-        self.assertNotIn("2IKYyCEKZ0E", topic_pages.pages(d)["/agent-orchestrators/"])
+                if v:
+                    first = html.index('<p class="tp-first">')
+                    self.assertLess(first, html.index('<div class="vp">'))
+                    self.assertLess(html.index('<div class="vp">'), html.index("<h2>"))
+                    self.assertIn(f'data-yt="{v["youtube_id"]}"', html)
+                else:
+                    self.assertNotIn('<div class="vp">', html)
+                self.assertNotIn("<iframe", html)
+        self.assertIsNotNone(videos_pages.top_video(vids, "orchestrators"))
 
     def test_no_forbidden_words_and_the_check_stops_the_build(self):
         for html in self.pages.values():

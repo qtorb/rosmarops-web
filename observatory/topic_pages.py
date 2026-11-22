@@ -2,8 +2,9 @@
 
 /agent-orchestrators/, /claude-code-subagents/ and /mcp-servers/ (and their ES and CA addresses), from
 observatory/data/topic-pages.json. Same shell as the sandbox guide; the text-page style (.doc). Each page carries
-TechArticle, FAQPage (its own question, answered by its first sentence) and BreadcrumbList; VideoObject only for
-videos marked public. A video that is not public yet is not linked at all.
+TechArticle, FAQPage (its own question, answered by its first sentence) and BreadcrumbList. Its video, if one is
+public (observatory/data/videos/, GTM-199), goes at the top, loaded only when the person presses play, with its
+VideoObject.
 """
 
 import html
@@ -12,6 +13,7 @@ import re
 from pathlib import Path
 
 import sandbox_section
+import videos_pages
 
 ROOT = Path(__file__).resolve().parent.parent
 SITE = ROOT / "site"
@@ -51,33 +53,23 @@ def check(data):
                     raise ValueError(f"topic page {pid}/{lang}: {k} is empty")
             if not t["sections"] or any(not s["h2"].strip() or not "".join(s["body"]).strip() for s in t["sections"]):
                 raise ValueError(f"topic page {pid}/{lang}: a section is empty")
-            blob = " ".join([t["title"], t["desc"], t["first"], *t.get("captions", {}).values(),
+            blob = " ".join([t["title"], t["desc"], t["first"],
                              *(x for s in t["sections"] for x in [s["h2"], *s["body"]]),
                              *(l[0] for l in t["links"])])
             m = FORBIDDEN.search(re.sub(r"<[^>]+>", " ", blob))
             if m:
                 raise ValueError(f"topic page {pid}/{lang}: forbidden word «{m.group(0)}»")
-            for v in p["videos"]:
-                if data["videos"][v]["public"] and not t["captions"].get(v):
-                    raise ValueError(f"topic page {pid}/{lang}: video {v} has no caption")
 
 
-def video_block(v, caption, label):
-    return (f'<figure class="tp-video"><a href="{esc(v["url"])}" rel="noopener">'
-            f'<img src="{esc(v["thumb"])}" width="1280" height="720" loading="lazy" alt="{esc(v["name"])}"></a>'
-            f'<figcaption>{esc(label)}: <a href="{esc(v["url"])}" rel="noopener">{esc(caption)}</a></figcaption></figure>')
-
-
-def body(lang, page, data):
+def body(lang, pid, page, data):
     t, L = page[lang], data["labels"][lang]
     out = [f'<article class="doc"><h1>{esc(t["title"])}</h1>', f'<p class="tp-first">{esc(t["first"])}</p>']
-    videos = [data["videos"][v] | {"key": v} for v in page["videos"] if data["videos"][v]["public"]]
-    for i, s in enumerate(t["sections"]):
+    v = videos_pages.top_video(videos_pages.load(), pid)  # GTM-199: the page's video at the top, loaded on click
+    if v:
+        out.append(videos_pages.player(v, lang))
+    for s in t["sections"]:
         out.append(f'<h2>{esc(s["h2"])}</h2>')
         out += s["body"]
-        if i == 0 and videos:  # the first video after the first section, the rest after the last one
-            out.append(video_block(videos[0], t["captions"][videos[0]["key"]], L["video"]))
-    out += [video_block(v, t["captions"][v["key"]], L["video"]) for v in videos[1:]]
     links = "".join(f'<li><a href="{esc(h)}">{esc(x)}</a></li>' for x, h in t["links"])
     links += f'<li><a href="{DOWNLOAD[lang]}">{esc(L["download"])}</a></li>'
     out.append(f'<section class="tp-more"><h2>{esc(L["more"])}</h2><ul>{links}</ul></section>')
@@ -102,12 +94,9 @@ def ld(lang, pid, page, data):
             {"@type": "ListItem", "position": 1, "name": data["labels"][lang]["home"], "item": BASE + HOME[lang]},
             {"@type": "ListItem", "position": 2, "name": t["title"], "item": url}]},
     ]
-    for v in page["videos"]:
-        vv = data["videos"][v]
-        if vv["public"]:
-            graph.append({"@type": "VideoObject", "name": vv["name"], "description": t["captions"][v],
-                          "thumbnailUrl": BASE + vv["thumb"], "embedUrl": f"https://www.youtube.com/embed/{vv['id']}",
-                          "url": vv["url"], "inLanguage": "es"})
+    v = videos_pages.top_video(videos_pages.load(), pid)
+    if v:
+        graph.append(videos_pages.video_object(v, lang))
     return json.dumps({"@context": "https://schema.org", "@graph": graph}, ensure_ascii=False)
 
 
@@ -145,17 +134,19 @@ def page_html(lang, pid, page, data):
 {style.strip()}
 <style>
 {DOC_CSS}
+{videos_pages.CSS}
 </style>
 </head>
 <body>
 {switch_langs(header, lang, paths)}
 
 <main><div class="wrap">
-{body(lang, page, data)}
+{body(lang, pid, page, data)}
 </div></main>
 
 {switch_langs(footer, lang, paths)}
 {scripts}
+{videos_pages.SCRIPT if videos_pages.top_video(videos_pages.load(), pid) else ""}
 </body>
 </html>
 """
