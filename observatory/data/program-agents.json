@@ -1,5 +1,5 @@
 {
-  "$comment": "GTM-99. The program's knowledge files (internal/knowledge/<name>.json in qtorb/rosmarops, one per agent it scores) and the Observatory agent file each one stands for. not_agents: knowledge files that are not an agent. Checked against the latest release by observatory/agent_lists.py check. scored_list_names: the name an agent takes in the generated list of scored agents, per language (signed by Albert, 07-11: GitHub Copilot is scored only in VS Code). read_not_scored: knowledge files of agents the program reads but gives no 0–100 score (no factory score in the release); their agent file keeps rosmarops.status as it is (signed by Albert, 17-11). orchestrators and paperclip (v0.17.0): orchestrators, not agents; no factory score in the release (advisor, 21-11).",
+  "$comment": "GTM-99. The program's knowledge files (internal/knowledge/<name>.json in qtorb/rosmarops, one per agent it scores) and the Observatory agent file each one stands for. not_agents: knowledge files that are not an agent. Checked against the latest release by observatory/agent_lists.py check. scored_list_names: the name an agent takes in the generated list of scored agents, per language (signed by Albert, 07-11: GitHub Copilot is scored only in VS Code). read_not_scored: knowledge files of agents the program reads but gives no 0–100 score (no factory score in the release); their agent file keeps rosmarops.status as it is (signed by Albert, 17-11). orchestrators and paperclip (v0.17.0): orchestrators, not agents; no factory score in the release (advisor, 21-11). opencode, kilo-code and claude-desktop (v0.19.0): scored (signed by Albert 23-11 17:16 in the 0.19.0 release notes); Continue has no knowledge file: the program finds it and reads its MCP servers but gives it no score.",
   "knowledge_to_file": {
     "claude-code": "claude-code",
     "cursor": "cursor",
@@ -9,7 +9,10 @@
     "antigravity-cli": "antigravity-cli",
     "github-copilot": "github-copilot",
     "gemini-cli": "gemini-cli",
-    "cline": "cline"
+    "cline": "cline",
+    "opencode": "opencode",
+    "kilo-code": "kilo-code",
+    "claude-desktop": "claude-desktop"
   },
   "not_agents": [
     "mcp_catalog",
