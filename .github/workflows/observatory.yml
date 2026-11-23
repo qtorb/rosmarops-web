@@ -4,11 +4,11 @@ on:
   push:
     branches: [observatory, main]
     paths: ["observatory/**", "wp/pages/**", "site/index.html", "site/*/index.html", "site/methodology/**", "site/faq/**", "site/*/metodologia/**",
-            "site/es/preguntas-frecuentes/**", "site/ca/preguntes-frequents/**", "site/llms.txt", "site/sample-report/**", "site/assets/observatory/**", "site/observatory/**", "site/es/observatorio/**", "site/ca/observatori/**", "wp/daily/**", "wp/mu-plugins/**", "wp/tests/**", "tools/lab-captures/**", ".github/workflows/lab-captures.yml", ".github/workflows/observatory.yml"]
+            "site/es/preguntas-frecuentes/**", "site/ca/preguntes-frequents/**", "site/llms.txt", "site/sample-report/**", "site/assets/observatory/**", "site/observatory/**", "site/es/observatorio/**", "site/ca/observatori/**", "wp/daily/**", "wp/mu-plugins/**", "wp/tests/**", "tools/lab-captures/**", "tools/sample-captures/**", ".github/workflows/lab-captures.yml", ".github/workflows/observatory.yml"]
   pull_request:
     paths: ["observatory/**", "wp/daily/**", "wp/mu-plugins/**", "wp/tests/**", "wp/pages/**", "site/index.html", "site/*/index.html",
             "site/methodology/**", "site/faq/**", "site/*/metodologia/**", "site/es/preguntas-frecuentes/**", "site/ca/preguntes-frequents/**",
-            "site/llms.txt", "site/sample-report/**", "tools/lab-captures/**", ".github/workflows/lab-captures.yml", ".github/workflows/observatory.yml"]
+            "site/llms.txt", "site/sample-report/**", "tools/lab-captures/**", "tools/sample-captures/**", ".github/workflows/lab-captures.yml", ".github/workflows/observatory.yml"]
   workflow_dispatch:
 
 permissions:
@@ -82,7 +82,7 @@ jobs:
         run: |
           set -eu
           export OBS_BASE="${{ github.event.pull_request.base.sha || github.event.before }}"
-          python -m unittest observatory/tests/test_daily_check.py observatory/tests/test_daily_alert.py observatory/tests/test_daily_raw.py observatory/tests/test_github_stats.py observatory/tests/test_collect.py observatory/tests/test_rules.py observatory/tests/test_agent_lists.py observatory/tests/test_map_data.py observatory/tests/test_map_page.py observatory/tests/test_agent_pages.py observatory/tests/test_sandbox_page.py observatory/tests/test_company_page.py observatory/tests/test_sandbox_section.py observatory/tests/test_templates_pages.py observatory/tests/test_topic_pages.py observatory/tests/test_videos_pages.py observatory/tests/test_site_check.py tools/lab-captures/test_collect.py
+          python -m unittest observatory/tests/test_daily_check.py observatory/tests/test_daily_alert.py observatory/tests/test_daily_raw.py observatory/tests/test_github_stats.py observatory/tests/test_collect.py observatory/tests/test_rules.py observatory/tests/test_agent_lists.py observatory/tests/test_map_data.py observatory/tests/test_map_page.py observatory/tests/test_agent_pages.py observatory/tests/test_sandbox_page.py observatory/tests/test_company_page.py observatory/tests/test_sandbox_section.py observatory/tests/test_templates_pages.py observatory/tests/test_topic_pages.py observatory/tests/test_videos_pages.py observatory/tests/test_site_check.py tools/lab-captures/test_collect.py tools/sample-captures/test_version_sentence.py
           if ls observatory/daily/*.json >/dev/null 2>&1; then python observatory/daily_check.py observatory/daily/*.json; else echo "no daily files yet"; fi
           php -l wp/mu-plugins/rosmarops-daily.php
           python -m unittest wp/tests/test_daily.py
