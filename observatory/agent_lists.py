@@ -72,11 +72,21 @@ def list_names(root=ROOT):
     return json.loads(f.read_text(encoding="utf-8")).get("scored_list_names", {}) if f.exists() else {}
 
 
+def not_listed(root=ROOT):
+    """GTM-126: detected agents the program will not score (program-agents.json detected_not_listed), e.g. Continue,
+    no longer maintained (0.19.0 release notes). They stay "detected" in their agent file, but the generated list of
+    detected agents, whose sentence says «doesn't score them yet», leaves them out."""
+    f = root / "observatory" / "data" / "program-agents.json"
+    return set(json.loads(f.read_text(encoding="utf-8")).get("detected_not_listed", [])) if f.exists() else set()
+
+
 def names(agents, kind, lang="en", overrides=None):
     """Names of the agents with that status, oldest since_version first, then by name. In the scored list, an agent
     with a name in scored_list_names takes that name in the page's language."""
     overrides = list_names() if overrides is None else overrides
     sel = [a for a in agents if a["rosmarops"]["status"] == KINDS[kind]]
+    if kind == "detected":  # GTM-126: agents the program finds but will not score have their own sentence
+        sel = [a for a in sel if a["id"] not in not_listed()]
     sel.sort(key=lambda a: (version_key(a["rosmarops"].get("since_version", "")), a["name"].lower()))
     if kind != "scored":
         return [a["name"] for a in sel]
