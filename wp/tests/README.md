@@ -11,6 +11,10 @@ The same with migration from the table before the os column, targets per ?os= an
 
     DB_USER=… DB_PASS=… DB_NAME=wptest python3 -m unittest wp/tests/test_downloads.py
 
+People who download (GTM-200): a click after a visit the same day is one person, the second click is not, a click with no visit is a click and not a person, robots and prefetches add nothing, the download fingerprints are emptied at the day change, and `people` comes out in the endpoint:
+
+    DB_USER=… DB_PASS=… DB_NAME=wptest python3 -m unittest wp/tests/test_download_people.py
+
 The REST part of the stand-in only mimics WordPress routing (GET registered, anything else 404); the real check is the post-deploy step in deploy.yml.
 
 `rosmarops-daily.php` (GTM-23), with its own stand-in (`daily-stub.php`, network options in a JSON file) and `php -S`:

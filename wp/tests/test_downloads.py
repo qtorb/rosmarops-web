@@ -182,7 +182,7 @@ class Downloads(unittest.TestCase):
         self.get("/download?from=home&os=windows", headers={"User-Agent": UA})
         self.assertIn("home\ten\twindows\t1", self.rows())
         cols = [c.split("\t")[0] for c in mysql(f"SHOW COLUMNS FROM {TABLE}").splitlines()]
-        self.assertEqual(cols, ["day", "src", "lang", "os", "count"])
+        self.assertEqual(cols, ["day", "src", "lang", "os", "count", "people"])  # GTM-200: people, a number
         self.assertNotIn("Mozilla", mysql(f"SELECT * FROM {TABLE}"))
 
     def test_headless_chrome_redirected_but_not_counted(self):
@@ -203,7 +203,9 @@ class Downloads(unittest.TestCase):
         self.assertEqual(set(d), {"generated_at", "rows"})
         self.assertEqual(sorted((r["from"], r["lang"], r["os"], r["count"]) for r in d["rows"]),
                          [("faq", "es", "", 3), ("home", "en", "", 7)])
-        self.assertEqual(set(d["rows"][0]), {"day", "from", "lang", "os", "count"})
+        # GTM-200: every row adds people; the rows from before the change carry 0
+        self.assertEqual(set(d["rows"][0]), {"day", "from", "lang", "os", "count", "people"})
+        self.assertEqual([r["people"] for r in d["rows"]], [0, 0])
 
 
 if __name__ == "__main__":

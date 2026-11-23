@@ -5,6 +5,8 @@
  *
  * GTM-111: visit counter, behind ROSMAROPS_VISITS_ON (off). Pages send their path and the referrer's domain with JavaScript (/assets/visits/visits.js); the server adds one to (UTC day, page, language, referrer kind), with closed lists. It stores no IP address, cookie, user agent or identifier, and no time finer than the UTC day in that table (GTM-186: the hourly totals below hold only the hour and the kind). GTM-125: different people per UTC day, from an HMAC of IP and user agent with a key of the day; only today's fingerprints and key exist, both replaced at the day change, and the IP and user agent are never stored. Public read-only totals (visits in rows, people in people) at /wp-json/rosmarops/v1/visits.
  *
+ * GTM-200 (ordered by Albert 23-11 17:53): people who download. A counted click also adds one to `people` in its own row (day, source, language, os) when the visitor's fingerprint of the day (GTM-125, the same HMAC and key) already has a visit counted today and has no click counted today. The download fingerprints live in their own table, one column, only today's, emptied at the same day change and with the same key as the visit fingerprints. Prefetch and prerender clicks are not counted at all. Nothing else is stored: no IP, user agent or referrer. Public in the `people` field of each row at /wp-json/rosmarops/v1/downloads (0 for the days before).
+ *
  * GTM-186 (signed by Albert 19-11 12:26): hourly totals. Each visit and each download click that is counted also adds one to (UTC hour, kind), kind visit or download, in a separate table with no other column: no page, language, referrer kind, system or anything about the person. Rows older than 48 hours are deleted in the same write and when the totals are read. Public read-only totals of the last 48 hours at /wp-json/rosmarops/v1/hours, with Cache-Control: max-age=60.
  */
 
@@ -94,6 +96,12 @@ function rosmarops_is_bot($server) {
 	return $ua === '' || preg_match(ROSMAROPS_VISITS_BOTS, $ua) === 1;
 }
 
+/** A prefetch or prerender, by Sec-Purpose, Purpose or X-Moz. Visits and download clicks alike; looked at, never kept. */
+function rosmarops_is_prefetch($server) {
+	$purpose = strtolower(($server['HTTP_SEC_PURPOSE'] ?? '') . ' ' . ($server['HTTP_PURPOSE'] ?? '') . ' ' . ($server['HTTP_X_MOZ'] ?? ''));
+	return strpos($purpose, 'prefetch') !== false || strpos($purpose, 'prerender') !== false;
+}
+
 /** Redirect target for an os key. */
 function rosmarops_dl_target($os) {
 	return ROSMAROPS_DL_OS[$os] ?? ROSMAROPS_DL_TARGET;
@@ -114,12 +122,18 @@ function rosmarops_dl_create_table() {
 			lang CHAR(2) NOT NULL,
 			os VARCHAR(16) NOT NULL DEFAULT '',
 			count INT UNSIGNED NOT NULL DEFAULT 0,
+			people INT UNSIGNED NOT NULL DEFAULT 0,
 			PRIMARY KEY (day, src, lang, os)
 		) " . $wpdb->get_charset_collate()
 	);
 	$cols = $wpdb->get_results("SHOW COLUMNS FROM `$t` LIKE 'os'", ARRAY_A);
 	if (is_array($cols) && count($cols) === 0) {
 		$wpdb->query("ALTER TABLE `$t` ADD COLUMN os VARCHAR(16) NOT NULL DEFAULT '' AFTER lang, DROP PRIMARY KEY, ADD PRIMARY KEY (day, src, lang, os)");
+	}
+	// GTM-200: people per row; the rows from before keep their counts with people = 0.
+	$cols = $wpdb->get_results("SHOW COLUMNS FROM `$t` LIKE 'people'", ARRAY_A);
+	if (is_array($cols) && count($cols) === 0) {
+		$wpdb->query("ALTER TABLE `$t` ADD COLUMN people INT UNSIGNED NOT NULL DEFAULT 0 AFTER count");
 	}
 }
 
@@ -151,19 +165,76 @@ function rosmarops_dl_rows($today = null) {
 	$t     = rosmarops_dl_table();
 	$today = $today ?? gmdate('Y-m-d');
 	$since = gmdate('Y-m-d', strtotime($today . ' UTC') - (ROSMAROPS_DL_DAYS - 1) * 86400);
-	$sql      = $wpdb->prepare("SELECT day, src, lang, os, count FROM `$t` WHERE day >= %s ORDER BY day, src, lang, os", $since);
+	$sql      = $wpdb->prepare("SELECT day, src, lang, os, count, people FROM `$t` WHERE day >= %s ORDER BY day, src, lang, os", $since);
 	$suppress = $wpdb->suppress_errors(true);
 	$res      = $wpdb->get_results($sql, ARRAY_A);
 	if ($res === null || $wpdb->last_error !== '') { // WordPress returns [] on a failed ARRAY_A query
-		rosmarops_dl_create_table(); // a table from before the os column
+		rosmarops_dl_create_table(); // a table from before the os or the people column
 		$res = $wpdb->get_results($sql, ARRAY_A);
 	}
 	$wpdb->suppress_errors($suppress);
 	$rows = [];
 	foreach ((array) $res as $r) {
-		$rows[] = ['day' => $r['day'], 'from' => $r['src'], 'lang' => $r['lang'], 'os' => $r['os'], 'count' => (int) $r['count']];
+		$rows[] = ['day' => $r['day'], 'from' => $r['src'], 'lang' => $r['lang'], 'os' => $r['os'], 'count' => (int) $r['count'], 'people' => (int) $r['people']];
 	}
 	return $rows;
+}
+
+/**
+ * GTM-200: a person who downloads. After a counted click: if this request's fingerprint of the day already has a visit
+ * counted today and has no click counted today, it goes into the download fingerprints and the click's row gets one
+ * more person. Anything else adds nothing. Only those two tables are written; the IP and user agent are not kept.
+ */
+function rosmarops_dl_people($server, $src, $lang, $os, $day) {
+	$h = rosmarops_people_print($server, rosmarops_people_key($day));
+	if ($h === null) {
+		return false;
+	}
+	global $wpdb;
+	$v        = rosmarops_people_prints_table();
+	$d        = rosmarops_dl_prints_table();
+	$t        = rosmarops_dl_table();
+	$suppress = $wpdb->suppress_errors(true);
+	$ok       = false;
+	$seen     = $wpdb->get_results($wpdb->prepare("SELECT h FROM `$v` WHERE h = %s", $h), ARRAY_A);
+	if (is_array($seen) && count($seen) === 1) {
+		$ins = $wpdb->prepare("INSERT IGNORE INTO `$d` (h) VALUES (%s)", $h);
+		$new = $wpdb->query($ins);
+		if ($new === false) {
+			rosmarops_people_create_tables();
+			$new = $wpdb->query($ins);
+		}
+		if ((int) $new === 1) {
+			$ok = $wpdb->query($wpdb->prepare(
+				"UPDATE `$t` SET people = people + 1 WHERE day = %s AND src = %s AND lang = %s AND os = %s",
+				$day,
+				$src,
+				$lang,
+				$os
+			)) !== false;
+		}
+	}
+	$wpdb->suppress_errors($suppress);
+	return $ok;
+}
+
+/**
+ * Counts a click on a download route, unless it comes from the team, a robot or a prefetch (GTM-200), and then the
+ * person, by rosmarops_dl_people. Returns whether the click was counted. The redirect is the same either way.
+ */
+function rosmarops_dl_handle($method, $get, $server, $cookies, $lang) {
+	if ($method !== 'GET' || rosmarops_is_team($cookies) || rosmarops_is_bot($server) || rosmarops_is_prefetch($server)) {
+		return false;
+	}
+	$src = rosmarops_dl_source($get['from'] ?? null);
+	$os  = rosmarops_dl_os($get['os'] ?? null);
+	$day = rosmarops_visits_today();
+	if (!rosmarops_dl_count($src, $lang, $os, $day)) {
+		return false;
+	}
+	rosmarops_hourly_count('download');
+	rosmarops_dl_people($server, $src, $lang, $os, $day);
+	return true;
 }
 
 // Redirect + count, before WordPress resolves the request (no page, no 404).
@@ -174,12 +245,8 @@ add_action('muplugins_loaded', function () {
 		return;
 	}
 	$os = rosmarops_dl_os($_GET['os'] ?? null);
-	// Robots and the team get the same redirect, but are not counted.
-	if ($method === 'GET' && !rosmarops_is_team($_COOKIE) && !rosmarops_is_bot($_SERVER)) {
-		if (rosmarops_dl_count(rosmarops_dl_source($_GET['from'] ?? null), $lang, $os)) {
-			rosmarops_hourly_count('download');
-		}
-	}
+	// Robots, prefetches and the team get the same redirect, but are not counted.
+	rosmarops_dl_handle($method, $_GET, $_SERVER, $_COOKIE, $lang);
 	header('Cache-Control: no-store');
 	header('Location: ' . rosmarops_dl_target($os), true, 302);
 	exit;
@@ -442,8 +509,7 @@ function rosmarops_visits_accept($server, $cookies) {
 	if (($server['HTTP_ORIGIN'] ?? '') !== ROSMAROPS_VISITS_ORIGIN) {
 		return false;
 	}
-	$purpose = strtolower(($server['HTTP_SEC_PURPOSE'] ?? '') . ' ' . ($server['HTTP_PURPOSE'] ?? '') . ' ' . ($server['HTTP_X_MOZ'] ?? ''));
-	if (strpos($purpose, 'prefetch') !== false || strpos($purpose, 'prerender') !== false) {
+	if (rosmarops_is_prefetch($server)) {
 		return false;
 	}
 	if (rosmarops_is_bot($server)) {
@@ -543,6 +609,12 @@ function rosmarops_people_prints_table() {
 	return $wpdb->base_prefix . 'rosmarops_visits_prints';
 }
 
+/** GTM-200: today's fingerprints that already have a download click counted. One column, like the visit ones. */
+function rosmarops_dl_prints_table() {
+	global $wpdb;
+	return $wpdb->base_prefix . 'rosmarops_download_prints';
+}
+
 function rosmarops_people_table() {
 	global $wpdb;
 	return $wpdb->base_prefix . 'rosmarops_people';
@@ -553,6 +625,7 @@ function rosmarops_people_create_tables() {
 	$p = rosmarops_people_prints_table();
 	$t = rosmarops_people_table();
 	$wpdb->query("CREATE TABLE IF NOT EXISTS `$p` (h CHAR(64) NOT NULL, PRIMARY KEY (h)) " . $wpdb->get_charset_collate());
+	$wpdb->query("CREATE TABLE IF NOT EXISTS `" . rosmarops_dl_prints_table() . "` (h CHAR(64) NOT NULL, PRIMARY KEY (h)) " . $wpdb->get_charset_collate());
 	$wpdb->query(
 		"CREATE TABLE IF NOT EXISTS `$t` (
 			day DATE NOT NULL,
@@ -583,6 +656,10 @@ function rosmarops_people_key($day) {
 	$p        = rosmarops_people_prints_table();
 	$suppress = $wpdb->suppress_errors(true);
 	if ($wpdb->query("DELETE FROM `$p`") === false) {
+		rosmarops_people_create_tables();
+	}
+	// GTM-200: the download fingerprints go with the visit ones, at the same day change and with the same key.
+	if ($wpdb->query("DELETE FROM `" . rosmarops_dl_prints_table() . "`") === false) {
 		rosmarops_people_create_tables();
 	}
 	$wpdb->suppress_errors($suppress);
