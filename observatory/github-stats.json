@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-23T11:24:40Z",
+  "generated_at": "2026-11-23T12:31:49Z",
   "repo": {
     "stargazers_count": 1,
     "subscribers_count": 0,
@@ -43,19 +43,19 @@
         },
         {
           "name": "rosmarops.exe",
-          "download_count": 19
+          "download_count": 20
         },
         {
           "name": "sample-report.en.html",
-          "download_count": 3
+          "download_count": 4
         },
         {
           "name": "sample-report.es.html",
-          "download_count": 3
+          "download_count": 4
         },
         {
           "name": "SHA256SUMS.txt",
-          "download_count": 16
+          "download_count": 17
         }
       ]
     },
