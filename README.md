@@ -15,3 +15,10 @@ What the server keeps, with no IP address, cookie, browser data or identifier (t
 - **Hourly totals (GTM-186):** one total per UTC hour for visits and one for download clicks (`rosmarops_hourly`: the hour, `visit` or `download`, and the count; no page, language, referrer, system or anything about the person). Every visit and click counted above also adds one here. Rows older than 48 hours are deleted when a count is written and when the totals are read; there is no scheduled job for it. Public at `/wp-json/rosmarops/v1/hours`: the last 48 hours, oldest first, `[{"hour": "2026-11-19T10:00:00Z", "visits": n, "downloads": n}, …]`, with an hour at 0 when nothing was counted, and `Cache-Control: max-age=60`.
 
 Tests: `wp/tests/test_downloads.py`, `test_visits.py` and `test_hourly.py` (see `wp/tests/README.md`).
+
+## Ownership files at the root of the site
+
+Two files at the root of `site/` prove to search engines that the site is ours. They are not linked from any page, are not in the sitemap, carry no script and are not counted as visits. Each has its own `put` line in `.github/workflows/deploy.yml`. Do not delete them: the search engines check them again.
+
+- `google5cd09a19ba35efb6.html`: verification of the property https://rosmarops.com/ in Google Search Console (GTM-116, 23-11-2026). Its whole content is the line `google-site-verification: google5cd09a19ba35efb6.html`.
+- `24a8c2078ff9b0ee590acf6cd5901e32.txt`: the IndexNow key, used by `wp/mu-plugins/rosmarops-seo.php`.

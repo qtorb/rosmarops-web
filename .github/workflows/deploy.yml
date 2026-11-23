@@ -104,6 +104,7 @@ jobs:
           put site/llms.txt llms.txt
           put site/sitemap-pages.xml sitemap-pages.xml
           put site/24a8c2078ff9b0ee590acf6cd5901e32.txt 24a8c2078ff9b0ee590acf6cd5901e32.txt
+          put site/google5cd09a19ba35efb6.html google5cd09a19ba35efb6.html
           -mkdir methodology
           put site/methodology/index.html methodology/index.html
           -mkdir faq
