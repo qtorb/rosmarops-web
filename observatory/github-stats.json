@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-11-23T15:25:36Z",
+  "generated_at": "2026-11-23T16:26:05Z",
   "repo": {
     "stargazers_count": 1,
     "subscribers_count": 0,
     "forks_count": 0,
-    "open_issues_count": 2
+    "open_issues_count": 0
   },
-  "open_pulls": 2,
+  "open_pulls": 0,
   "releases": [
     {
       "tag_name": "v0.18.0",
