@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-23T18:27:16Z",
+  "generated_at": "2026-11-23T19:24:41Z",
   "repo": {
     "stargazers_count": 1,
     "subscribers_count": 0,
@@ -8,6 +8,57 @@
   },
   "open_pulls": 2,
   "releases": [
+    {
+      "tag_name": "v0.19.0",
+      "published_at": "2026-11-23T19:03:05Z",
+      "draft": false,
+      "assets": [
+        {
+          "name": "exposure-potential.json",
+          "download_count": 1
+        },
+        {
+          "name": "factory-scores.json",
+          "download_count": 1
+        },
+        {
+          "name": "profile-scores.json",
+          "download_count": 1
+        },
+        {
+          "name": "rosmarops-linux-amd64",
+          "download_count": 1
+        },
+        {
+          "name": "rosmarops-linux-arm64",
+          "download_count": 1
+        },
+        {
+          "name": "rosmarops-macos-apple-silicon",
+          "download_count": 1
+        },
+        {
+          "name": "rosmarops-macos-intel",
+          "download_count": 1
+        },
+        {
+          "name": "rosmarops.exe",
+          "download_count": 3
+        },
+        {
+          "name": "sample-report.en.html",
+          "download_count": 1
+        },
+        {
+          "name": "sample-report.es.html",
+          "download_count": 1
+        },
+        {
+          "name": "SHA256SUMS.txt",
+          "download_count": 7
+        }
+      ]
+    },
     {
       "tag_name": "v0.18.0",
       "published_at": "2026-11-22T21:24:33Z",
@@ -43,7 +94,7 @@
         },
         {
           "name": "rosmarops.exe",
-          "download_count": 27
+          "download_count": 29
         },
         {
           "name": "sample-report.en.html",
@@ -55,7 +106,7 @@
         },
         {
           "name": "SHA256SUMS.txt",
-          "download_count": 24
+          "download_count": 26
         }
       ]
     },
@@ -1618,5 +1669,5 @@
       ]
     }
   ],
-  "latest_tag": "v0.18.0"
+  "latest_tag": "v0.19.0"
 }
