@@ -148,7 +148,7 @@ jobs:
           set -eu
           sudo systemctl start mysql
           mysql -h 127.0.0.1 -uroot -proot -e "CREATE DATABASE IF NOT EXISTS wptest"
-          DB_USER=root DB_PASS=root DB_NAME=wptest python -m unittest wp/tests/test_downloads.py wp/tests/test_visits.py wp/tests/test_hourly.py
+          DB_USER=root DB_PASS=root DB_NAME=wptest python -m unittest wp/tests/test_downloads.py wp/tests/test_visits.py wp/tests/test_hourly.py wp/tests/test_download_people.py
 
       - name: Publication rules hold in the output
         run: |
