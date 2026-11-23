@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-23T07:28:00Z",
+  "generated_at": "2026-11-23T08:31:17Z",
   "repo": {
     "stargazers_count": 1,
     "subscribers_count": 0,
@@ -19,7 +19,7 @@
         },
         {
           "name": "factory-scores.json",
-          "download_count": 1
+          "download_count": 2
         },
         {
           "name": "profile-scores.json",
@@ -43,19 +43,19 @@
         },
         {
           "name": "rosmarops.exe",
-          "download_count": 9
+          "download_count": 14
         },
         {
           "name": "sample-report.en.html",
-          "download_count": 1
+          "download_count": 2
         },
         {
           "name": "sample-report.es.html",
-          "download_count": 1
+          "download_count": 2
         },
         {
           "name": "SHA256SUMS.txt",
-          "download_count": 7
+          "download_count": 12
         }
       ]
     },
