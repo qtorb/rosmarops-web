@@ -19,6 +19,34 @@
     "reviewed_at": "2026-11-20"
   },
   "versions": [],
-  "changes": [],
+  "changes": [
+    {
+      "id": "chg-paseo-0-17-2-usage",
+      "version": "v0.17.2",
+      "date": "2026-11-22",
+      "category": "default_value",
+      "before": {
+        "en": "Before v0.17.2, the sidebar usage summary was not on by default, according to the release notes.",
+        "es": "Antes de la v0.17.2, el resumen de uso de la barra lateral no estaba activado por defecto, según las notas de versión.",
+        "ca": "Abans de la v0.17.2, el resum d'ús de la barra lateral no estava activat per defecte, segons les notes de versió."
+      },
+      "after": {
+        "en": "From v0.17.2, the sidebar usage summary is on by default and sources for inactive providers start hidden, according to the release notes.",
+        "es": "Desde la v0.17.2, el resumen de uso de la barra lateral está activado por defecto y las fuentes de proveedores inactivos empiezan ocultas, según las notas de versión.",
+        "ca": "Des de la v0.17.2, el resum d'ús de la barra lateral està activat per defecte i les fonts de proveïdors inactius comencen amagades, segons les notes de versió."
+      },
+      "source": {
+        "url": "https://github.com/getpaseo/paseo/releases/tag/v0.17.2",
+        "official": true,
+        "accessed_at": "2026-11-23"
+      },
+      "verified": {
+        "by": "writer",
+        "at": "2026-11-23",
+        "how": "official_changelog"
+      },
+      "rosmarops_impact": "none"
+    }
+  ],
   "ratings": []
 }
