@@ -1,0 +1,738 @@
+{
+  "date": "2026-11-23",
+  "collected_at": "2026-11-23T05:34:50Z",
+  "sources": [
+    {
+      "id": "F1",
+      "opened": true,
+      "reason": null,
+      "latest": "2.1.330",
+      "latest_date": "2026-11-20",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F2",
+      "opened": true,
+      "reason": null,
+      "latest": "v2026.11.17",
+      "latest_date": "2026-11-17",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F3",
+      "opened": true,
+      "reason": null,
+      "latest": "rust-v0.171.0",
+      "latest_date": "2026-11-19",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F4",
+      "opened": true,
+      "reason": null,
+      "latest": "v2.34.0",
+      "latest_date": "2026-11-20",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F5",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.23.3",
+      "latest_date": "2026-11-20",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F6",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-18",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F7",
+      "opened": true,
+      "reason": null,
+      "latest": "v4.1.27",
+      "latest_date": "2026-11-21",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F8",
+      "opened": true,
+      "reason": null,
+      "latest": "v2.1.0-vscode",
+      "latest_date": "2026-06-19",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F9",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.5.0",
+      "latest_date": "2026-11-09",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F10",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-23",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F11",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.70.0",
+      "latest_date": "2026-11-19",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F12",
+      "opened": true,
+      "reason": null,
+      "latest": "1.0.114",
+      "latest_date": "2026-11-18",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F13",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-20",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F14",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-23",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F15",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-23",
+      "new": [
+        {
+          "date": "2026-11-23",
+          "version": null,
+          "text": "CVE-2026-129830 [Cursor]: When the rsyslog's `imuxsock` is parsing the TAG field from a message with a accepted shorter timestamp, the cursor used to read the message fields and the remaining message length to be read are left in a inconsistent state in relation to the content in the raw message, leading the module to read one byte past the end of the buffer holding the message."
+        },
+        {
+          "date": "2026-11-22",
+          "version": null,
+          "text": "CVE-2026-134803 [MCP]: DBHub before 1.7.0 contains a read-only mode bypass vulnerability that allows MCP clients restricted to readonly execute_sql to run write and DDL statements via backslash-escaped quotes. Attackers can hide stacked statements that clear transaction_read_only or COMMIT inside strings misparsed by scanSingleQuotedString, letting them modify or drop MySQL, MariaDB, or PostgreSQL data."
+        },
+        {
+          "date": "2026-11-22",
+          "version": null,
+          "text": "CVE-2026-134817 [MCP]: mcp-server-kubernetes before 4.2.0 contains an argument injection vulnerability that allows remote MCP clients to inject kubectl flags by supplying dash-prefixed values as positional operands in tools such as exec_in_pod, kubectl_patch, and kubectl_logs. Attackers connected over SSE or Streamable HTTP transport can supply values like --filename to make kubectl read files from the server host, bypassing file-read restrictions."
+        }
+      ],
+      "ids": [
+        "CVE-2026-129830",
+        "CVE-2026-134803",
+        "CVE-2026-134817"
+      ],
+      "read_with": "curl"
+    },
+    {
+      "id": "F16",
+      "opened": true,
+      "reason": null,
+      "latest": "v2.3.2",
+      "latest_date": "2026-11-18",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F17",
+      "opened": true,
+      "reason": null,
+      "latest": "1.5.11",
+      "latest_date": "2026-11-20",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F18",
+      "opened": true,
+      "reason": null,
+      "latest": "v3.14.30833",
+      "latest_date": "2026-11-20",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F19",
+      "opened": true,
+      "reason": null,
+      "latest": "v1.60.2",
+      "latest_date": "2026-11-20",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F20",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-20",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F21",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-08-19",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F22",
+      "opened": true,
+      "reason": null,
+      "latest": "v2026.11.7",
+      "latest_date": "2026-11-22",
+      "new": [
+        {
+          "date": "2026-11-22",
+          "version": "v2026.11.7",
+          "text": "## 2026.11.7 ### Highlights - **Conversation recovery:** Recover interrupted replies and child results across Gateway restarts without losing pending work. (#198905, #201544, #200924, #200967) Authored by @steipete. Thanks @RomneyDa, @galiniliev, and @vincentkoc. - **Reliable automations:** Let an automation’s owner conversation repair failures, and distinguish recovered or intentionally skipped runs from genuine failures. (#161007, #201638, #152165, #194276) Related #194261 Thanks @RomneyDa, @vyctorbrzezowski, @vincentkoc, @obviyus, @pash-openai, @wr-web, and @slatem. - **Smoother updates:**…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F23",
+      "opened": true,
+      "reason": null,
+      "latest": "1.2.24",
+      "latest_date": "2026-11-20",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F24",
+      "opened": true,
+      "reason": null,
+      "latest": "1.15.44",
+      "latest_date": "2026-11-19",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F25",
+      "opened": false,
+      "reason": "git ls-remote: exit 128: remote: Repository not found.\nfatal: repository 'https://github.com/microsoft/agent-framework.git/' not found",
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F26",
+      "opened": true,
+      "reason": null,
+      "latest": "2026-07-28",
+      "latest_date": "2026-07-28",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F27",
+      "opened": true,
+      "reason": null,
+      "latest": "1.147",
+      "latest_date": "2026-11-18",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F28",
+      "opened": true,
+      "reason": null,
+      "latest": "2026.11.20",
+      "latest_date": "2026-11-20",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F29",
+      "opened": true,
+      "reason": null,
+      "latest": "1.4.24",
+      "latest_date": "2026-11-23",
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "date_is_detection": true
+    },
+    {
+      "id": "F31",
+      "opened": true,
+      "reason": null,
+      "latest": "n8n@3.3.0",
+      "latest_date": "2026-11-17",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F32",
+      "opened": true,
+      "reason": null,
+      "latest": "v3.4.18",
+      "latest_date": "2026-11-10",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F33",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.28.4",
+      "latest_date": "2026-11-22",
+      "new": [
+        {
+          "date": "2026-11-22",
+          "version": "v0.28.4",
+          "text": "<!-- qwen-release-notes:v2 --> ## Highlights - Web Shell local daemon mode adds a workspace artifact library page with progressive scanning and streaming updates. ([#18071](https://github.com/QwenLM/qwen-code/pull/18071)) - Web Shell chat adds a shared ChatSurface, Continue badges, suggestion chips, and mobile layout fixes for sessions. ([#17952](https://github.com/QwenLM/qwen-code/pull/17952), [#18044](https://github.com/QwenLM/qwen-code/pull/18044), [#17918](https://github.com/QwenLM/qwen-code/pull/17918), [#17883](https://github.com/QwenLM/qwen-code/pull/17883), [#18011](https://github.com…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F34",
+      "opened": true,
+      "reason": null,
+      "latest": "@moonshot-ai/kimi-code@2.7.2",
+      "latest_date": "2026-11-20",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F35",
+      "opened": true,
+      "reason": null,
+      "latest": "v2.184.0",
+      "latest_date": "2026-11-13",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F36",
+      "opened": true,
+      "reason": null,
+      "latest": "1.1.95",
+      "latest_date": "2026-11-21",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F37",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.86.2",
+      "latest_date": "2026-02-12",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F38",
+      "opened": true,
+      "reason": null,
+      "latest": "v1.43.0",
+      "latest_date": "2026-11-20",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F39",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-21",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F40",
+      "opened": true,
+      "reason": null,
+      "latest": "2026.11.12",
+      "latest_date": "2026-11-12",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F41",
+      "opened": true,
+      "reason": null,
+      "latest": "26.11.2",
+      "latest_date": "2026-11-19",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F42",
+      "opened": true,
+      "reason": null,
+      "latest": "v7.8.32",
+      "latest_date": "2026-11-20",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F44",
+      "opened": true,
+      "reason": null,
+      "latest": "v1.0.89",
+      "latest_date": "2026-11-17",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F45",
+      "opened": true,
+      "reason": null,
+      "latest": "v1.2.3",
+      "latest_date": "2026-11-18",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F46",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "watched": [
+        "Grok Bot › - [Reference](https://docs.x.ai/grok-bot/settings-and-notifications.md)"
+      ],
+      "date_is_detection": true
+    },
+    {
+      "id": "F47",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "watched": [],
+      "date_is_detection": true
+    },
+    {
+      "id": "F48",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F49",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F50",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F51",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F52",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F53",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F54",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F55",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F56",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F57",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": [
+        "use their own permission checks",
+        "They don't cover servers you start independently",
+        "provides Git authentication to sandboxed processes"
+      ]
+    },
+    {
+      "id": "F58",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F59",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F60",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F61",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F62",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F63",
+      "opened": false,
+      "reason": "new version without notes: v1.4.270",
+      "latest": "v1.4.271",
+      "latest_date": "2026-11-22",
+      "new": [
+        {
+          "date": "2026-11-22",
+          "version": "v1.4.271",
+          "text": "Following [1.4.269](https://github.com/stablyai/orca/releases/tag/v1.4.269), here is the next round of Orca. Bots reach Qwen Code and span your paired computers, the phone app manages agents end to end, and chats get lighter and quicker. ## Bots across computers, a phone that runs your agents & snappier chats ✨ One bot group can now hold bots from your paired computers, bots can run on Qwen Code, chats can be deleted and continue on their own after a usage limit, and the phone app can share, import and connect agents without the desktop. - 🤖 **Bots across computers and agents:** One bot group…"
+        },
+        {
+          "date": "2026-11-22",
+          "version": "v1.4.270",
+          "text": "notes not available"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F64",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.17.3",
+      "latest_date": "2026-11-22",
+      "new": [
+        {
+          "date": "2026-11-22",
+          "version": "v0.17.3",
+          "text": "## 0.17.3 - 2026-11-22 ### Fixed - Fixed iPhone sheets such as Workspace tabs ignoring body swipes to expand, scroll, or collapse ([#10525](https://github.com/getpaseo/paseo/pull/10525)) - Fixed Antigravity applying the default model's thinking levels to every model, which blocked Orchestrator chats from opening ([#10524](https://github.com/getpaseo/paseo/pull/10524)) - Fixed `/` and `@` pickers disappearing until reload after returning to a workspace through window history ([#8954](https://github.com/getpaseo/paseo/pull/8954) by @viking1201)"
+        },
+        {
+          "date": "2026-11-22",
+          "version": "v0.17.2",
+          "text": "## 0.17.2 - 2026-11-22 - **Turn and session stats:** View per-turn and session timing, token, cache, and cost metrics for Claude, OpenCode v2, Pi, Oh My Pi, and plugin providers. ([#10496](https://github.com/getpaseo/paseo/pull/10496), [#10510](https://github.com/getpaseo/paseo/pull/10510)) - **Automatic model list refresh:** Enabled providers refresh their model lists in the background every 30 minutes. ([#10481](https://github.com/getpaseo/paseo/pull/10481)) - **Sidebar usage by default:** The sidebar usage summary is enabled by default, sources for inactive providers start hidden, and sour…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F65",
+      "opened": true,
+      "reason": null,
+      "latest": "v1.0.20",
+      "latest_date": "2026-08-20",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F66",
+      "opened": true,
+      "reason": null,
+      "latest": "desktop-v2.0.11",
+      "latest_date": "2026-11-20",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F67",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.25.0",
+      "latest_date": "2026-11-18",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    }
+  ],
+  "opened": 63,
+  "total": 65
+}
