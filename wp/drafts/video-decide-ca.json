@@ -1,0 +1,17 @@
+{
+  "id": "video-decide",
+  "lang": "ca",
+  "slug": "fes-servir-agents-dia-decideix-tu",
+  "title": "Fes servir agents d’IA. Decideix tu.",
+  "excerpt": "Els teus agents d'IA fan cada cop més per tu.",
+  "content": "video-decide-ca.html",
+  "seo_title": "Fes servir agents d’IA. Decideix tu.",
+  "seo_description": "Els teus agents d'IA fan cada cop més per tu.",
+  "translations": {
+    "en": "https://rosmarops.com/blog/use-ai-agents-you-decide/",
+    "es": "https://rosmarops.com/es/blog/usa-agentes-de-ia-decide-tu/"
+  },
+  "category": "notes-de-camp",
+  "image": "video-decide-ca.jpg",
+  "alt": "Vídeo: Fes servir agents d’IA. Decideix tu."
+}

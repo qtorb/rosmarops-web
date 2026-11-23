@@ -23,7 +23,7 @@ class Pages(unittest.TestCase):
     def setUpClass(cls):
         cls.videos = videos_pages.load()
         cls.pages = videos_pages.pages(cls.videos)
-        cls.public = videos_pages.public(cls.videos)
+        cls.public = videos_pages.on_youtube(cls.videos)  # videos with a page of their own
 
     def test_index_and_one_page_per_public_video(self):
         self.assertEqual(len(self.pages), 3 + 3 * len(self.public))
@@ -31,7 +31,7 @@ class Pages(unittest.TestCase):
             self.assertIn(videos_pages.INDEX[lang], self.pages)
         for k, v in self.videos.items():
             for lang in videos_pages.LANGS:
-                self.assertEqual(videos_pages.path(v, lang) in self.pages, bool(v["public"]), (k, lang))
+                self.assertEqual(videos_pages.path(v, lang) in self.pages, bool(v["public"] and not v.get("post")), (k, lang))
 
     def test_nothing_from_google_loads_before_play(self):
         for p, html in self.pages.items():
@@ -76,7 +76,23 @@ class Pages(unittest.TestCase):
                 self.assertEqual(g[1]["@type"], "BreadcrumbList")
         for lang in videos_pages.LANGS:
             g = json.loads(LD.findall(self.pages[videos_pages.INDEX[lang]])[0])["@graph"]
-            self.assertEqual(len(g[0]["itemListElement"]), len(self.public))
+            self.assertEqual(len(g[0]["itemListElement"]), len(videos_pages.public(self.videos)))
+
+    def test_video_in_a_blog_post(self):
+        """GTM-67: the homepage video lives in a blog post: a card in the index that links to the post, nothing else."""
+        v = self.videos["decide-tu"]
+        for lang in videos_pages.LANGS:
+            post = v["post"][lang]
+            self.assertNotIn(post, self.pages)
+            idx = self.pages[videos_pages.INDEX[lang]]
+            self.assertIn(f'<h2><a href="{post}">', idx)
+            self.assertIn(f'src="{v["thumb"][lang]}"', idx)
+            self.assertNotIn(post, [p for p, _ in videos_pages.sitemap_urls(self.videos)])
+        self.assertIsNone(videos_pages.top_video({"x": dict(v, topic_page="sandbox")}, "sandbox"))
+        bad = copy.deepcopy(self.videos)
+        del bad["decide-tu"]["post"]["ca"]
+        with self.assertRaises(ValueError):
+            videos_pages.check(bad)
 
     def test_index_newest_first(self):
         html = self.pages["/videos/"]
