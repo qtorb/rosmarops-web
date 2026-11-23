@@ -1,0 +1,51 @@
+{
+  "youtube_id": null,
+  "public": true,
+  "upload_date": null,
+  "public_since": "2026-11-23",
+  "duration": null,
+  "subtitles": [],
+  "thumb": {
+    "en": "/assets/video/rosmarops-hero-en-poster.png",
+    "es": "/assets/video/rosmarops-hero-poster.png",
+    "ca": "/assets/video/rosmarops-hero-ca-poster.png"
+  },
+  "topic_page": null,
+  "source": "GTM-67 (Albert 23-11 09:51): the homepage video moved to a blog post; title and text as on the homepage until 23-11. The card's line is the first sentence of the video text.",
+  "post": {
+    "en": "/blog/use-ai-agents-you-decide/",
+    "es": "/es/blog/usa-agentes-de-ia-decide-tu/",
+    "ca": "/ca/blog/fes-servir-agents-dia-decideix-tu/"
+  },
+  "slug": {
+    "en": "use-ai-agents-you-decide",
+    "es": "usa-agentes-de-ia-decide-tu",
+    "ca": "fes-servir-agents-dia-decideix-tu"
+  },
+  "title": {
+    "es": "Usa agentes de IA. Decide tú.",
+    "en": "Use AI agents. You decide.",
+    "ca": "Fes servir agents d’IA. Decideix tu."
+  },
+  "answer": {
+    "es": "Tus agentes de IA hacen cada vez más por ti.",
+    "en": "Your AI agents do more and more for you.",
+    "ca": "Els teus agents d'IA fan cada cop més per tu."
+  },
+  "how_to": {
+    "es": [],
+    "en": [],
+    "ca": []
+  },
+  "transcript": {
+    "es": [
+      "Tus agentes de IA hacen cada vez más por ti. ¿Sabes qué pueden hacer sin pedirte permiso? Tus ficheros, tus claves, internet y otras apps, sin preguntarte. RosmarOps revisa tu ordenador y te dice qué cambiar. Ejemplo, en un ordenador inventado: tu agente tiene un 11 de 100, expuesto. Lo primero que conviene cambiar: tu clave de Stripe está guardada en git. Con el cambio exacto, listo para copiar y pegar en tu agente. Si lo cambias, tu nota sube de 11 a 13. Usa agentes de IA. Decide tú."
+    ],
+    "en": [
+      "Your AI agents do more and more for you. Do you know what they can do without asking you? Your files, your keys, the internet and other apps, without asking. RosmarOps checks your computer and tells you what to change. Example, on a made-up computer: your agent scores 11 out of 100, exposed. The first thing to change: your Stripe key is stored in git. With the exact change, ready to copy and paste into your agent. If you change it, your score goes from 11 to 13. Use AI agents. You decide."
+    ],
+    "ca": [
+      "Els teus agents d'IA fan cada cop més per tu. Saps què poden fer sense demanar-te permís? Els teus fitxers, les teves claus, internet i altres apps, sense preguntar-te. RosmarOps revisa el teu ordinador i et diu què cal canviar. Exemple, en un ordinador inventat: el teu agent té un 11 de 100, exposat. El primer que convé canviar: la teva clau de Stripe és a git. Amb el canvi exacte, a punt per copiar i enganxar al teu agent. Si el canvies, la teva nota puja d'11 a 13. Fes servir agents d'IA. Decideix tu."
+    ]
+  }
+}

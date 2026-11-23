@@ -1,0 +1,17 @@
+{
+  "id": "video-decide",
+  "lang": "es",
+  "slug": "usa-agentes-de-ia-decide-tu",
+  "title": "Usa agentes de IA. Decide tú.",
+  "excerpt": "Tus agentes de IA hacen cada vez más por ti.",
+  "content": "video-decide-es.html",
+  "seo_title": "Usa agentes de IA. Decide tú.",
+  "seo_description": "Tus agentes de IA hacen cada vez más por ti.",
+  "translations": {
+    "en": "https://rosmarops.com/blog/use-ai-agents-you-decide/",
+    "ca": "https://rosmarops.com/ca/blog/fes-servir-agents-dia-decideix-tu/"
+  },
+  "category": "novedades-de-rosmarops",
+  "image": "video-decide-es.jpg",
+  "alt": "Vídeo: Usa agentes de IA. Decide tú."
+}

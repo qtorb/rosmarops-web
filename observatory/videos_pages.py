@@ -5,6 +5,11 @@ the index (/videos/, /es/videos/, /ca/videos/), a place in the sitemap and llms.
 page. The player shows a thumbnail served by rosmarops.com; nothing is loaded from Google until the person presses
 play. Then a small inline script swaps the thumbnail for the YouTube player in privacy-enhanced mode
 (youtube-nocookie.com). Without JavaScript, the thumbnail is a plain link to the video on YouTube.
+
+GTM-67 (signed by Albert 23-11 09:51): a video that lives in a blog post instead of YouTube has "post" (its post path per
+language) instead of "youtube_id". It gets a card in the index that links to the post, and nothing else here: no page of
+its own, no sitemap entry (the post is in WordPress's sitemap), no player on a standing page. Its "thumb" may be one
+path per language.
 """
 
 import html
@@ -89,12 +94,17 @@ def check(videos, site=SITE):
                 raise ValueError(f"video {k}/{lang}: forbidden word «{m.group(0)}»")
         if not v.get("public"):
             continue
-        if not YT_ID.match(v.get("youtube_id") or ""):
+        if v.get("post"):
+            for lang in LANGS:
+                if not str(v["post"].get(lang, "")).startswith("/"):
+                    raise ValueError(f"video {k}/{lang}: post without a path")
+        elif not YT_ID.match(v.get("youtube_id") or ""):
             raise ValueError(f"video {k}: public without a valid youtube_id")
         if not v.get("public_since"):
             raise ValueError(f"video {k}: public without public_since")
-        if not (Path(site) / v["thumb"].lstrip("/")).exists():
-            raise ValueError(f"video {k}: thumbnail {v['thumb']} is not in site/")
+        for t in sorted({thumb(v, lang) for lang in LANGS}):
+            if not (Path(site) / t.lstrip("/")).exists():
+                raise ValueError(f"video {k}: thumbnail {t} is not in site/")
         for lang in LANGS:
             for f in ("title", "answer"):
                 if not v[f].get(lang, "").strip():
@@ -108,7 +118,19 @@ def check(videos, site=SITE):
 
 
 def path(v, lang):
+    if v.get("post"):
+        return v["post"][lang]
     return INDEX[lang] + v["slug"][lang] + "/"
+
+
+def thumb(v, lang):
+    t = v["thumb"]
+    return t[lang] if isinstance(t, dict) else t
+
+
+def on_youtube(videos):
+    """Public videos that have their own page (on YouTube), newest first."""
+    return [(k, v) for k, v in public(videos) if not v.get("post")]
 
 
 def mmss(iso):
@@ -155,7 +177,7 @@ def topic_link(v, lang):
 
 def top_video(videos, topic):
     """The newest public video of a standing page, or None."""
-    for _, v in public(videos):
+    for _, v in on_youtube(videos):
         if v.get("topic_page") == topic:
             return v
     return None
@@ -239,7 +261,7 @@ def video_page(k, v, lang):
 def index_page(videos, lang):
     pub = public(videos)
     cards = "".join(
-        f'<li><a href="{path(v, lang)}"><img src="{esc(v["thumb"])}" width="1280" height="720" loading="lazy" alt="{esc(v["title"][lang])}"></a>'
+        f'<li><a href="{path(v, lang)}"><img src="{esc(thumb(v, lang))}" width="1280" height="720" loading="lazy" alt="{esc(v["title"][lang])}"></a>'
         f'<h2><a href="{path(v, lang)}">{esc(v["title"][lang])}</a></h2>'
         f'<p>{esc(v["answer"][lang])}{(" · " + mmss(v["duration"])) if mmss(v.get("duration")) else ""}</p></li>'
         for _, v in pub)
@@ -247,7 +269,8 @@ def index_page(videos, lang):
             f'<ul class="vl" style="margin-top:28px">{cards}</ul>')
     url = BASE + INDEX[lang]
     ld = [{"@type": "ItemList", "itemListElement": [
-              {"@type": "ListItem", "position": i + 1, "url": BASE + path(v, lang), "item": video_object(v, lang, BASE + path(v, lang))}
+              ({"@type": "ListItem", "position": i + 1, "url": BASE + path(v, lang)} if v.get("post") else
+               {"@type": "ListItem", "position": i + 1, "url": BASE + path(v, lang), "item": video_object(v, lang, BASE + path(v, lang))})
               for i, (_, v) in enumerate(pub)]},
           {"@type": "BreadcrumbList", "itemListElement": [
               {"@type": "ListItem", "position": 1, "name": L[lang]["home"], "item": BASE + HOME[lang]},
@@ -259,7 +282,7 @@ def pages(videos=None):
     videos = load() if videos is None else videos
     check(videos)
     out = {INDEX[lang]: index_page(videos, lang) for lang in LANGS}
-    for k, v in public(videos):
+    for k, v in on_youtube(videos):
         for lang in LANGS:
             out[path(v, lang)] = video_page(k, v, lang)
     return out
@@ -267,7 +290,7 @@ def pages(videos=None):
 
 def sitemap_urls(videos=None):
     videos = load() if videos is None else videos
-    groups = [INDEX] + [{l: path(v, l) for l in LANGS} for _, v in public(videos)]
+    groups = [INDEX] + [{l: path(v, l) for l in LANGS} for _, v in on_youtube(videos)]
     return [(g[l], g) for g in groups for l in LANGS]
 
 

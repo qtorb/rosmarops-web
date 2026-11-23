@@ -1,0 +1,17 @@
+{
+  "id": "video-decide",
+  "lang": "en",
+  "slug": "use-ai-agents-you-decide",
+  "title": "Use AI agents. You decide.",
+  "excerpt": "Your AI agents do more and more for you.",
+  "content": "video-decide-en.html",
+  "seo_title": "Use AI agents. You decide.",
+  "seo_description": "Your AI agents do more and more for you.",
+  "translations": {
+    "es": "https://rosmarops.com/es/blog/usa-agentes-de-ia-decide-tu/",
+    "ca": "https://rosmarops.com/ca/blog/fes-servir-agents-dia-decideix-tu/"
+  },
+  "category": "field-notes",
+  "image": "video-decide-en.jpg",
+  "alt": "Video: Use AI agents. You decide."
+}

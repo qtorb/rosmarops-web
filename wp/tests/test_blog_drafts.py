@@ -17,11 +17,11 @@ DRAFTS = TESTS.parent / "drafts"
 SITES = {"en": "https://rosmarops.com", "es": "https://rosmarops.com/es", "ca": "https://rosmarops.com/ca"}
 ALBERT = {"ID": 3, "display_name": "Albert Garcia Pujadas", "roles": ["administrator"]}
 ADMIN = {"ID": 1, "display_name": "admin6244", "roles": ["administrator"]}
-IDS = {"loop-engineering", "agente-he-terminado", "errores-repetidos", "harness-engineering", "novedades-0-10", "microsoft-store", "mapa-agentes", "novedades-0-11", "sandbox-v3", "novedades-0-17", "worktree"}
-IN_NEWS = {"harness-engineering", "novedades-0-10", "microsoft-store", "mapa-agentes", "novedades-0-11", "sandbox-v3", "novedades-0-17", "worktree"}
+IDS = {"loop-engineering", "agente-he-terminado", "errores-repetidos", "harness-engineering", "novedades-0-10", "microsoft-store", "mapa-agentes", "novedades-0-11", "sandbox-v3", "novedades-0-17", "worktree", "video-decide"}
+IN_NEWS = {"harness-engineering", "novedades-0-10", "microsoft-store", "mapa-agentes", "novedades-0-11", "sandbox-v3", "novedades-0-17", "worktree", "video-decide"}
 NO_IMAGE = {"microsoft-store", "mapa-agentes"}  # GTM-139: news post without a featured image (optional in the plugin)  # the rest of the series goes in loop-engineering
 ONLY = {}  # every post in EN, ES and CA (Albert, 20-11)
-NO_TAGS = {"novedades-0-17"}  # plan 23-29-11: the 0.16 + 0.17 post goes without tags, like the 0.16 one
+NO_TAGS = {"novedades-0-17", "video-decide"}  # plan 23-29-11: the 0.16 + 0.17 post goes without tags, like the 0.16 one
 NEWS = {"en": "field-notes", "es": "novedades-de-rosmarops", "ca": "notes-de-camp"}
 
 
