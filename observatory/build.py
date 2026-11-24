@@ -1228,6 +1228,8 @@ def main():
         templates_pages.build(SITE)
         import topic_pages  # GTM-198: /agent-orchestrators/, /claude-code-subagents/, /mcp-servers/ and their ES and CA pages
         topic_pages.build(SITE)
+        import course_pages  # GTM-206: lesson 2 of the course, noindex and not linked until Albert opens it
+        course_pages.build(SITE)
         import videos_pages  # GTM-199: /videos/ and one page per public video, in EN, ES and CA
         videos_pages.build(SITE)
     pages = 0
