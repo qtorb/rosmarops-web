@@ -122,7 +122,9 @@ class Drafts(unittest.TestCase):
                     continue
                 x = d[lang]
                 p = by_slug[x["slug"]]
-                self.assertEqual(p["post_status"], "draft")
+                # GTM-203: scheduled only with a publish_at still ahead and its image; every other post is a draft
+                ahead = "publish_at" in x and x["publish_at"] > "2026-11-24" and "image" in x
+                self.assertEqual(p["post_status"], "future" if ahead else "draft", (pid, lang))
                 self.assertEqual(p["post_type"], "post")
                 self.assertEqual((p["post_title"], p["post_excerpt"]), (x["title"], x["excerpt"]))
                 self.assertEqual(p["post_content"], (DRAFTS / x["content"]).read_text(encoding="utf-8"))
