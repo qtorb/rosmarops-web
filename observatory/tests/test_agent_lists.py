@@ -294,3 +294,13 @@ class HomeNine(unittest.TestCase):
             out = al.render_text(text, lang, fewer, page)
             self.assertIn(f"<!-- agents:scored count -->{al.COUNT_WORDS[lang][len(scored) - 1]}<!-- /agents:scored -->", out, lang)
             self.assertNotIn("Gemini CLI<!-- /agents:scored -->", out, lang)
+
+
+class DetectedNotListed(unittest.TestCase):
+    """GTM-126: Continue is found but will not be scored (0.19.0), so it leaves the «not scored yet» list."""
+
+    def test_continue_is_left_out_of_the_detected_list(self):
+        agents = al.load_agents()
+        self.assertIn("continue", al.not_listed())
+        self.assertNotIn("Continue", al.names(agents, "detected"))
+        self.assertEqual(next(a for a in agents if a["id"] == "continue")["rosmarops"]["status"], "detected")
