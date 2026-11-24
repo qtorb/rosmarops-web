@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-24T09:27:01Z",
+  "generated_at": "2026-11-24T10:24:23Z",
   "repo": {
     "stargazers_count": 1,
     "subscribers_count": 0,
@@ -15,11 +15,11 @@
       "assets": [
         {
           "name": "exposure-potential.json",
-          "download_count": 1
+          "download_count": 3
         },
         {
           "name": "factory-scores.json",
-          "download_count": 1
+          "download_count": 3
         },
         {
           "name": "profile-scores.json",
@@ -27,7 +27,7 @@
         },
         {
           "name": "rosmarops-linux-amd64",
-          "download_count": 2
+          "download_count": 3
         },
         {
           "name": "rosmarops-linux-arm64",
@@ -43,19 +43,19 @@
         },
         {
           "name": "rosmarops.exe",
-          "download_count": 14
+          "download_count": 17
         },
         {
           "name": "sample-report.en.html",
-          "download_count": 1
+          "download_count": 4
         },
         {
           "name": "sample-report.es.html",
-          "download_count": 1
+          "download_count": 4
         },
         {
           "name": "SHA256SUMS.txt",
-          "download_count": 10
+          "download_count": 13
         }
       ]
     },
