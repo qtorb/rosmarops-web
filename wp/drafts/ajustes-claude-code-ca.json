@@ -1,0 +1,19 @@
+{
+  "id": "ajustes-claude-code",
+  "lang": "ca",
+  "slug": "on-desa-claude-code-els-seus-ajustos",
+  "title": "On desa Claude Code els seus ajustos?",
+  "excerpt": "Claude Code desa els teus ajustos personals a ~/.claude/settings.json (a Windows, %USERPROFILE%\\.claude\\settings.json), i els de cada projecte a .claude/settings.json, dins de la carpeta del projecte.",
+  "content": "ajustes-claude-code-ca.html",
+  "seo_title": "On desa Claude Code els seus ajustos?",
+  "seo_description": "Claude Code desa els teus ajustos personals a ~/.claude/settings.json (a Windows, %USERPROFILE%\\.claude\\settings.json), i els de cada projecte a…",
+  "translations": {
+    "en": "https://rosmarops.com/blog/where-does-claude-code-keep-its-settings/",
+    "es": "https://rosmarops.com/es/blog/donde-guarda-claude-code-sus-ajustes/"
+  },
+  "category": "notes-de-camp",
+  "tags": {
+    "claude-code": "Claude Code"
+  },
+  "publish_at": "2026-12-02T08:00:00+01:00"
+}

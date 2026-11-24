@@ -17,9 +17,9 @@ DRAFTS = TESTS.parent / "drafts"
 SITES = {"en": "https://rosmarops.com", "es": "https://rosmarops.com/es", "ca": "https://rosmarops.com/ca"}
 ALBERT = {"ID": 3, "display_name": "Albert Garcia Pujadas", "roles": ["administrator"]}
 ADMIN = {"ID": 1, "display_name": "admin6244", "roles": ["administrator"]}
-IDS = {"loop-engineering", "agente-he-terminado", "errores-repetidos", "harness-engineering", "novedades-0-10", "microsoft-store", "mapa-agentes", "novedades-0-11", "sandbox-v3", "novedades-0-17", "worktree", "video-decide"}
-IN_NEWS = {"harness-engineering", "novedades-0-10", "microsoft-store", "mapa-agentes", "novedades-0-11", "sandbox-v3", "novedades-0-17", "worktree", "video-decide"}
-NO_IMAGE = {"microsoft-store", "mapa-agentes"}  # GTM-139: news post without a featured image (optional in the plugin)  # the rest of the series goes in loop-engineering
+IDS = {"loop-engineering", "agente-he-terminado", "errores-repetidos", "harness-engineering", "novedades-0-10", "microsoft-store", "mapa-agentes", "novedades-0-11", "sandbox-v3", "novedades-0-17", "worktree", "video-decide", "week", "aceptar-todo", "ajustes-claude-code"}
+IN_NEWS = {"harness-engineering", "novedades-0-10", "microsoft-store", "mapa-agentes", "novedades-0-11", "sandbox-v3", "novedades-0-17", "worktree", "video-decide", "week", "aceptar-todo", "ajustes-claude-code"}
+NO_IMAGE = {"microsoft-store", "mapa-agentes", "week", "aceptar-todo", "ajustes-claude-code"}  # GTM-203: images still to come from Albert; without them the posts stay drafts
 ONLY = {}  # every post in EN, ES and CA (Albert, 20-11)
 NO_TAGS = {"novedades-0-17", "video-decide"}  # plan 23-29-11: the 0.16 + 0.17 post goes without tags, like the 0.16 one
 NEWS = {"en": "field-notes", "es": "novedades-de-rosmarops", "ca": "notes-de-camp"}
@@ -212,6 +212,55 @@ class Drafts(unittest.TestCase):
         for word in ["wp_update_post", "wp_publish_post", "wp_delete_post", "'publish'", "wp_trash_post", "wp_delete_term"]:
             self.assertNotIn(word, src)
 
+
+
+class Scheduled(unittest.TestCase):
+    """GTM-203: publish_at schedules a post only when it is ahead and its featured image is there."""
+
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(self.tmp.cleanup)
+        root = Path(self.tmp.name)
+        self.dbf = root / "db.json"
+        self.content = root / "wp-content"
+        self.content.mkdir()
+        self.dir = root / "rosmarops-drafts"
+        self.dir.mkdir()
+        (self.dir / "x-en.html").write_text("<p>Body.</p>", encoding="utf-8")
+        (self.dir / "img-x.jpg").write_bytes(b"jpg")
+
+    def run_with(self, **extra):
+        d = {"id": "x", "lang": "en", "slug": "x-post", "title": "X", "excerpt": "X.", "content": "x-en.html",
+             "seo_title": "X", "seo_description": "X.", "image": "img-x.jpg", "alt": "An image."}
+        d.update(extra)
+        d = {k: v for k, v in d.items() if v is not None}
+        (self.dir / "x-en.json").write_text(json.dumps(d), encoding="utf-8")
+        self.dbf.write_text(json.dumps(Drafts.db()), encoding="utf-8")
+        env = dict(os.environ, DRAFTS_DB=str(self.dbf), DRAFTS_CONTENT=str(self.content), DRAFTS_DIR=str(self.dir))
+        p = subprocess.run(["php", str(TESTS / "drafts-stub.php"), SITES["en"]], env=env, capture_output=True, text=True, check=True)
+        return json.loads(p.stdout), json.loads(self.dbf.read_text(encoding="utf-8"))["posts"][0]
+
+    def test_ahead_with_image_is_scheduled_in_madrid_time(self):
+        log, post = self.run_with(publish_at="2099-11-30T08:00:00+01:00")
+        self.assertEqual(post["post_status"], "future")
+        self.assertEqual((post["post_date"], post["post_date_gmt"]), ("2099-11-30 08:00:00", "2099-11-30 07:00:00"))
+        self.assertTrue(any("scheduled for 2099-11-30 07:00:00 UTC" in l for l in log))
+
+    def test_otherwise_it_stays_a_draft(self):
+        for extra, why in (({"publish_at": "2099-11-30T08:00:00+01:00", "image": None, "alt": None}, "no featured image"),
+                           ({"publish_at": "2020-01-01T08:00:00+01:00"}, "not ahead"),
+                           ({"publish_at": "30-11-2099 08:00"}, "malformed"),
+                           ({"publish_at": "2099-11-30T08:00:00+01:00", "image": "img-missing.jpg"}, "no featured image")):
+            with self.subTest(why=why):
+                log, post = self.run_with(**extra)
+                self.assertEqual(post["post_status"], "draft")
+                self.assertNotIn("post_date", post)
+                self.assertTrue(any(why in l for l in log), log)
+
+    def test_no_draft_without_publish_at_changes(self):
+        log, post = self.run_with()
+        self.assertEqual(post["post_status"], "draft")
+        self.assertFalse(any("not scheduled" in l for l in log))
 
 if __name__ == "__main__":
     unittest.main()

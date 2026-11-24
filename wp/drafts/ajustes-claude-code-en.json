@@ -1,0 +1,19 @@
+{
+  "id": "ajustes-claude-code",
+  "lang": "en",
+  "slug": "where-does-claude-code-keep-its-settings",
+  "title": "Where does Claude Code keep its settings?",
+  "excerpt": "Claude Code keeps your personal settings in ~/.claude/settings.json (on Windows, %USERPROFILE%\\.claude\\settings.json), and each project's settings in .claude/settings.json, inside the project folder.",
+  "content": "ajustes-claude-code-en.html",
+  "seo_title": "Where does Claude Code keep its settings?",
+  "seo_description": "Claude Code keeps your personal settings in ~/.claude/settings.json (on Windows, %USERPROFILE%\\.claude\\settings.json), and each project's settings in…",
+  "translations": {
+    "es": "https://rosmarops.com/es/blog/donde-guarda-claude-code-sus-ajustes/",
+    "ca": "https://rosmarops.com/ca/blog/on-desa-claude-code-els-seus-ajustos/"
+  },
+  "category": "field-notes",
+  "tags": {
+    "claude-code": "Claude Code"
+  },
+  "publish_at": "2026-12-02T08:00:00+01:00"
+}

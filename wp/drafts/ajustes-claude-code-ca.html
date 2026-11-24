@@ -1,0 +1,43 @@
+<!-- wp:paragraph -->
+<p>Claude Code desa els teus ajustos personals a <code>~/.claude/settings.json</code> (a Windows, <code>%USERPROFILE%\.claude\settings.json</code>), i els de cada projecte a <code>.claude/settings.json</code>, dins de la carpeta del projecte.</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Els fitxers que pots tocar tu</h2>
+<!-- /wp:heading -->
+<!-- wp:list -->
+<ul class="wp-block-list">
+<li><strong>Els teus ajustos, per a tots els teus projectes:</strong> <code>~/.claude/settings.json</code>. A Windows, <code>~/.claude</code> és <code>%USERPROFILE%\.claude</code>.</li>
+<li><strong>Els del projecte, compartits amb l'equip:</strong> <code>.claude/settings.json</code>, a la carpeta del projecte. Es pugen a git amb la resta del codi.</li>
+<li><strong>Els teus en aquest projecte:</strong> <code>.claude/settings.local.json</code>. Quan Claude Code crea aquest fitxer, configura git perquè l'ignori.</li>
+<li><strong>La resta de la configuració:</strong> <code>~/.claude.json</code>. Desa les dades del teu compte, la configuració dels servidors MCP, l'estat de cada projecte (com les decisions de confiança) i les opcions globals que escriu <code>/config</code>.</li>
+<li><strong>Els servidors MCP del projecte:</strong> <code>.mcp.json</code>, a la carpeta del projecte.</li>
+</ul>
+<!-- /wp:list -->
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Els que posa la teva empresa</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>Els ajustos gestionats no els crees ni els edites tu, i cap ajust d'usuari o de projecte els anul·la. Si n'hi ha, són aquí:</p>
+<!-- /wp:paragraph -->
+<!-- wp:list -->
+<ul class="wp-block-list">
+<li><strong>macOS:</strong> <code>/Library/Application Support/ClaudeCode/managed-settings.json</code></li>
+<li><strong>Linux i WSL:</strong> <code>/etc/claude-code/managed-settings.json</code></li>
+<li><strong>Windows:</strong> <code>C:\Program Files\ClaudeCode\managed-settings.json</code>. Claude Code no llegeix la ruta antiga, <code>C:\ProgramData\ClaudeCode\managed-settings.json</code>.</li>
+</ul>
+<!-- /wp:list -->
+<!-- wp:paragraph -->
+<p>També poden arribar per la gestió de dispositius del sistema (a macOS, el domini <code>com.anthropic.claudecode</code>; a Windows, el registre, a <code>HKLM\SOFTWARE\Policies\ClaudeCode</code> o <code>HKCU\SOFTWARE\Policies\ClaudeCode</code>) o des de la consola d'administració de Claude.</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Quin mana</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>De més fort a més feble: els gestionats, el que passes amb <code>--settings</code> en arrencar, els teus al projecte, els del projecte i, per últim, els teus ajustos d'usuari.</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Què convé mirar</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p><code>settings.json</code> i <code>.claude.json</code> poden tenir claus sense xifrar. Obre'ls i mira què hi ha. A la <a href="https://rosmarops.com/ca/observatori/claude-code/">fitxa de Claude Code</a> de l'Observatori tens què desa cadascun i què fa Claude Code de fàbrica.</p>
+<!-- /wp:paragraph -->

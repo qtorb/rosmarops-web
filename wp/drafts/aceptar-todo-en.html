@@ -1,0 +1,79 @@
+<!-- wp:paragraph -->
+<p>Almost every AI coding agent has a mode that skips the questions. Here is what it does, who can switch it on and how to tell whether it is on, on your computer.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>Video (in Spanish, with English subtitles): <a href="https://www.youtube.com/watch?v=JUpfX5Gt9CI">https://www.youtube.com/watch?v=JUpfX5Gt9CI</a></p>
+<!-- /wp:paragraph -->
+<!-- wp:heading -->
+<h2 class="wp-block-heading">What it does</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>With factory settings, an agent such as Claude Code, Codex or Gemini CLI asks you before doing something that matters: running a command, touching a file, going out to the internet. You read and accept. It is slower, but you decide.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>The accept-everything button removes those questions. The agent does whatever it thinks is needed, without waiting for you.</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading -->
+<h2 class="wp-block-heading">What each agent calls it</h2>
+<!-- /wp:heading -->
+<!-- wp:list -->
+<ul class="wp-block-list">
+<li><strong>Claude Code:</strong> the launch option <code>--dangerously-skip-permissions</code>, which puts it in <code>bypassPermissions</code> mode.</li>
+<li><strong>Gemini CLI:</strong> YOLO mode (<code>--yolo</code>).</li>
+<li><strong>Codex:</strong> the option <code>--dangerously-bypass-approvals-and-sandbox</code>, which skips approvals and the sandbox at once. In its configuration, <code>sandbox_mode: danger-full-access</code> and <code>approval_policy</code>.</li>
+<li><strong>Cursor:</strong> «Run Everything» mode, instead of the list of allowed commands.</li>
+<li><strong>Cline:</strong> its YOLO switch.</li>
+</ul>
+<!-- /wp:list -->
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Why it exists</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>Because it works. An agent that does not ask finishes sooner and keeps working while you are away. For a short task, in a folder with nothing important in it, it can make sense.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>The problem is what stays within its reach. An agent without questions works with your permissions: it sees your home folder, your keys and the internet. If it reads an instruction hidden in a web page or a README, it runs it without anyone seeing it happen.</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Who can switch it on</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>There are three ways, and only one is obvious.</p>
+<!-- /wp:paragraph -->
+<!-- wp:list {"ordered":true} -->
+<ol class="wp-block-list">
+<li><strong>You.</strong> You start the agent with that option, or leave it set in your configuration.</li>
+<li><strong>An orchestrator.</strong> Some launch your agents with the button already pressed. Paperclip, for example, starts Claude Code with <code>--dangerously-skip-permissions</code>. More on <a href="https://rosmarops.com/agent-orchestrators/">agent orchestrators</a>.</li>
+<li><strong>A file inside the project.</strong> Here each agent is different:
+   - Since version 2.1.257, Claude Code does not let a project's configuration turn on the no-questions mode: <code>bypassPermissions</code> and <code>auto</code> only count when they come from your user configuration or the managed one. The project can still allow specific commands.
+   - Codex only loads a project's configuration if that project is trusted.
+   - Gemini CLI only takes a project's settings into account if the folder is trusted.</li>
+</ol>
+<!-- /wp:list -->
+<!-- wp:paragraph -->
+<p>That is why it pays to think twice before trusting a repository you have just cloned.</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Your organization can switch it off</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>In Claude Code, managed settings switch it off for everyone with <code>disableBypassPermissionsMode</code>. In Gemini CLI, with <code>security.disableYoloMode</code>. If you work in a team, it is worth asking.</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading -->
+<h2 class="wp-block-heading">How to use it sensibly</h2>
+<!-- /wp:heading -->
+<!-- wp:list {"ordered":true} -->
+<ol class="wp-block-list">
+<li>Do not leave it on by default: switch it on for one task and off afterwards.</li>
+<li>If you use it, do so with the <a href="https://rosmarops.com/sandbox/">sandbox</a> on and in a folder with no keys.</li>
+<li>Before trusting a project, look at the configuration it brings.</li>
+<li>If you use an orchestrator, look at how it launches your agents.</li>
+<li>Check now and then which of your agents has it on.</li>
+</ol>
+<!-- /wp:list -->
+<!-- wp:paragraph -->
+<p>That last one is what RosmarOps is for: it reviews your agents' configuration and tells you which ones can act without asking you, where that was switched on and what they can reach, and nothing leaves your computer unless you approve it.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>The accept-everything button is not bad. It is powerful. What matters is knowing when it is pressed and who pressed it.</p>
+<!-- /wp:paragraph -->

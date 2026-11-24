@@ -370,6 +370,24 @@ jobs:
           put wp/drafts/worktree-es.html wp-content/mu-plugins/rosmarops-drafts/worktree-es.html
           put wp/drafts/worktree-es.json wp-content/mu-plugins/rosmarops-drafts/worktree-es.json
           put wp/drafts/worktree-ca.html wp-content/mu-plugins/rosmarops-drafts/worktree-ca.html
+          put wp/drafts/week-en.json wp-content/mu-plugins/rosmarops-drafts/week-en.json
+          put wp/drafts/week-en.html wp-content/mu-plugins/rosmarops-drafts/week-en.html
+          put wp/drafts/week-es.json wp-content/mu-plugins/rosmarops-drafts/week-es.json
+          put wp/drafts/week-es.html wp-content/mu-plugins/rosmarops-drafts/week-es.html
+          put wp/drafts/week-ca.json wp-content/mu-plugins/rosmarops-drafts/week-ca.json
+          put wp/drafts/week-ca.html wp-content/mu-plugins/rosmarops-drafts/week-ca.html
+          put wp/drafts/aceptar-todo-en.json wp-content/mu-plugins/rosmarops-drafts/aceptar-todo-en.json
+          put wp/drafts/aceptar-todo-en.html wp-content/mu-plugins/rosmarops-drafts/aceptar-todo-en.html
+          put wp/drafts/aceptar-todo-es.json wp-content/mu-plugins/rosmarops-drafts/aceptar-todo-es.json
+          put wp/drafts/aceptar-todo-es.html wp-content/mu-plugins/rosmarops-drafts/aceptar-todo-es.html
+          put wp/drafts/aceptar-todo-ca.json wp-content/mu-plugins/rosmarops-drafts/aceptar-todo-ca.json
+          put wp/drafts/aceptar-todo-ca.html wp-content/mu-plugins/rosmarops-drafts/aceptar-todo-ca.html
+          put wp/drafts/ajustes-claude-code-en.json wp-content/mu-plugins/rosmarops-drafts/ajustes-claude-code-en.json
+          put wp/drafts/ajustes-claude-code-en.html wp-content/mu-plugins/rosmarops-drafts/ajustes-claude-code-en.html
+          put wp/drafts/ajustes-claude-code-es.json wp-content/mu-plugins/rosmarops-drafts/ajustes-claude-code-es.json
+          put wp/drafts/ajustes-claude-code-es.html wp-content/mu-plugins/rosmarops-drafts/ajustes-claude-code-es.html
+          put wp/drafts/ajustes-claude-code-ca.json wp-content/mu-plugins/rosmarops-drafts/ajustes-claude-code-ca.json
+          put wp/drafts/ajustes-claude-code-ca.html wp-content/mu-plugins/rosmarops-drafts/ajustes-claude-code-ca.html
           put wp/drafts/worktree-ca.json wp-content/mu-plugins/rosmarops-drafts/worktree-ca.json
           put wp/drafts/video-decide-en.html wp-content/mu-plugins/rosmarops-drafts/video-decide-en.html
           put wp/drafts/video-decide-en.json wp-content/mu-plugins/rosmarops-drafts/video-decide-en.json

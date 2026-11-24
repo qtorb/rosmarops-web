@@ -1,0 +1,21 @@
+{
+  "id": "aceptar-todo",
+  "lang": "es",
+  "slug": "el-boton-de-aceptarlo-todo",
+  "title": "El botón de aceptarlo todo: qué has aprobado",
+  "excerpt": "Casi todos los agentes de IA que programan tienen un modo que se salta las preguntas.",
+  "content": "aceptar-todo-es.html",
+  "seo_title": "El botón de aceptarlo todo: qué has aprobado",
+  "seo_description": "Casi todos los agentes de IA que programan tienen un modo que se salta las preguntas.",
+  "translations": {
+    "en": "https://rosmarops.com/blog/the-accept-everything-button/",
+    "ca": "https://rosmarops.com/ca/blog/el-boto-dacceptar-ho-tot/"
+  },
+  "category": "novedades-de-rosmarops",
+  "tags": {
+    "claude-code": "Claude Code",
+    "codex": "Codex",
+    "cursor": "Cursor"
+  },
+  "publish_at": "2026-11-30T08:00:00+01:00"
+}
