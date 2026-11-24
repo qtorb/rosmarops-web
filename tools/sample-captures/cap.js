@@ -1,4 +1,6 @@
 // Sample report captures for the homes and the sample report pages (GTM-45).
+// GTM-88 (signed by Albert 23-11): since the 0.16 report opens in three blocks, the desktop capture runs to the end of
+// the «Findings» block (r3-h2) and the mobile one to the end of the «Result» block (r3-h1).
 // Usage: node tools/sample-captures/cap.js <folder with sample-report.en.html and .es.html> <output folder>
 // Serves the input folder with «python3 -m http.server 8777» and writes the eight PNG to the output folder.
 const { spawn } = require('child_process');
@@ -32,7 +34,7 @@ function waitForPort(port, ms) {
     const b = await chromium.launch();
     try {
       for (const l of ['en', 'es']) {
-        for (const [kind, w, sel] of [['desktop', 1280, 'section.now .tbox'], ['mobile', 390, 'section.now .proj']]) {
+        for (const [kind, w, sel] of [['desktop', 1280, 'section[aria-labelledby="r3-h2"]'], ['mobile', 390, 'section[aria-labelledby="r3-h1"]']]) {
           for (const dsf of [1, 2]) {
             const ctx = await b.newContext({ viewport: { width: w, height: 900 }, deviceScaleFactor: dsf });
             const p = await ctx.newPage();

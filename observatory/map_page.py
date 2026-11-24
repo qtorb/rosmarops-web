@@ -12,6 +12,7 @@ by hand from the data.
 
 import html
 import json
+import os
 import sys
 import urllib.request
 from pathlib import Path
@@ -368,7 +369,12 @@ window.addEventListener('hashchange', openFromHash);
 
 def fetch(tag=None):
     api = "https://api.github.com/repos/qtorb/rosmarops/releases/" + (f"tags/{tag}" if tag else "latest")
-    rel = json.loads(urllib.request.urlopen(urllib.request.Request(api, headers={"User-Agent": "RosmarOps-Observatory/1"}), timeout=60).read())
+    req = urllib.request.Request(api, headers={"User-Agent": "RosmarOps-Observatory/1"})
+    # GTM-88: with the workflow's token, so the call is not left to the shared unauthenticated limit (18-11 failed on it).
+    token = os.environ.get("GH_TOKEN") or os.environ.get("GITHUB_TOKEN")
+    if token:
+        req.add_header("Authorization", "Bearer " + token)
+    rel = json.loads(urllib.request.urlopen(req, timeout=60).read())
     got = {a["name"]: a["browser_download_url"] for a in rel.get("assets", [])}
     MAP_DATA.mkdir(parents=True, exist_ok=True)
     for name in ASSETS:

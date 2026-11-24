@@ -115,6 +115,8 @@ jobs:
           set -eu
           branch="sample-report-$TAG"
           echo "$TAG" > site/sample-report/VERSION
+          # GTM-88: the version and date sentence of the three sample report pages, from VERSION and the report's run date.
+          python3 tools/sample-captures/version_sentence.py site
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git checkout -b "$branch"
