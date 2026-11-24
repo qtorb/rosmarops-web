@@ -190,6 +190,8 @@ def body(lang, t_site, agents_files):
         # Card.
         does = "".join(f"<li>{esc(phrase(code, lang, phrases)[0].upper() + phrase(code, lang, phrases)[1:])}</li>"
                        for code in ((axes.get("autonomy") or {}).get("inputs") or []) if phrase(code, lang, phrases))
+        if not does:  # GTM-143 (signed by Albert 24-11): an agent with no entry gets one line, not an empty list
+            does = f"<li>{esc(T['b5.does.none'])}</li>"
         who = "".join(f'<li><span>{esc(T["action." + act[0]])}</span><span class="m-pill m-p-{decider(a, act)}">{esc(T["decider." + decider(a, act)])}</span></li>' for act in ACTIONS)
         card = f'''<div class="m-detail" id="m-d{i}" hidden>
 <h3>{esc(t("b5.title", agent=n, **{"class": c}))}</h3>

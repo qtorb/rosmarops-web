@@ -1,12 +1,12 @@
 {
   "format": "rosmarops.factory-scores/1",
-  "rosmarops_version": "v0.12.1",
-  "commit": "1719cbfc5ec98186676a3d533e1a7a3226797052",
-  "generated_at": "2026-11-15T21:48:37Z",
+  "rosmarops_version": "v0.19.0",
+  "commit": "a2f67240d88204ee3423e557d66860b56de4a493",
+  "generated_at": "2026-11-23T19:03:30Z",
   "reference_computer": "R2",
-  "index_version": 5,
+  "index_version": 7,
   "rules_version": "0",
-  "knowledge_version": "antigravity-cli@2026-11-01;claude-code@2026-10-24;cline@2026-11-03;codex@2026-11-01;cursor@2026-10-25;gemini-cli@2026-11-08;github-copilot@2026-11-01;grok-build@2026-11-08;hermes@2026-10-29",
+  "knowledge_version": "antigravity-cli@2026-11-01;claude-code@2026-10-24;claude-desktop@2026-11-23;cline@2026-11-03;codex@2026-11-01;cursor@2026-11-22;gemini-cli@2026-11-08;github-copilot@2026-11-01;grok-bot@2026-11-14;grok-build@2026-11-22;hermes@2026-10-29;kilo-code@2026-11-22;opencode@2026-11-22",
   "agents": [
     {
       "product": "claude-code",
@@ -32,6 +32,7 @@
         "bash_tool_available",
         "no_pretooluse_hook_blocks",
         "process_runs_as_user",
+        "startup_file_runs_later",
         "ui_mode_choice_unknown",
         "version_behaves_as_documented"
       ]
@@ -57,8 +58,10 @@
       "assumptions": [
         "auto_classifier_permits",
         "config_file_protection_scope_unknown",
-        "ide_run_mode_not_readable",
+        "declared_by_you",
         "process_runs_as_user",
+        "shell_write_unchecked",
+        "startup_file_runs_later",
         "team_policy_unknown",
         "version_behaves_as_documented"
       ]
@@ -197,6 +200,57 @@
         "process_runs_as_user",
         "version_behaves_as_documented"
       ]
+    },
+    {
+      "product": "opencode",
+      "score": 31,
+      "band": "exposed",
+      "findings": [
+        {
+          "code": "cred_read_and_send",
+          "weight": 30
+        },
+        {
+          "code": "cred_read_and_send",
+          "weight": 12
+        },
+        {
+          "code": "own_instructions_writable",
+          "weight": 4
+        }
+      ],
+      "assumptions": [
+        "launch_flags_not_readable",
+        "process_runs_as_user",
+        "version_behaves_as_documented"
+      ]
+    },
+    {
+      "product": "kilo-code",
+      "score": 75,
+      "band": "open_gaps",
+      "findings": [
+        {
+          "code": "cred_read_and_send",
+          "weight": 8
+        },
+        {
+          "code": "own_instructions_writable",
+          "weight": 4
+        }
+      ],
+      "assumptions": [
+        "launch_flags_not_readable",
+        "process_runs_as_user",
+        "version_behaves_as_documented"
+      ]
+    },
+    {
+      "product": "claude-desktop",
+      "score": 100,
+      "band": "contained",
+      "findings": [],
+      "assumptions": []
     }
   ]
 }

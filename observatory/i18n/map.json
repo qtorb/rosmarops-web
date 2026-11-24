@@ -44,6 +44,7 @@
    "b4.example": "Ejemplo: {agent}, {phrase}.",
    "b5.title": "{agent} · clase {class}",
    "b5.does": "Qué hace sin preguntarte",
+   "b5.does.none": "Con los ajustes de fábrica, RosmarOps no ve que haga nada sin preguntarte.",
    "b5.who": "Quién decide",
    "b5.shares": "Con quién comparte ficheros",
    "b5.shares.none": "No comparte ficheros de instrucciones con otros agentes en el ordenador de prueba.",
@@ -137,6 +138,7 @@
    "b4.example": "Example: {agent}, {phrase}.",
    "b5.title": "{agent} · class {class}",
    "b5.does": "What it does without asking you",
+   "b5.does.none": "With factory settings, RosmarOps sees nothing it does without asking you.",
    "b5.who": "Who decides",
    "b5.shares": "Who it shares files with",
    "b5.shares.none": "It doesn't share instruction files with other agents on the test computer.",
@@ -230,6 +232,7 @@
    "b4.example": "Exemple: {agent}, {phrase}.",
    "b5.title": "{agent} · classe {class}",
    "b5.does": "Què fa sense preguntar-te",
+   "b5.does.none": "Amb els ajustos de fàbrica, RosmarOps no veu que faci res sense preguntar-te.",
    "b5.who": "Qui decideix",
    "b5.shares": "Amb qui comparteix fitxers",
    "b5.shares.none": "No comparteix fitxers d'instruccions amb altres agents a l'ordinador de prova.",
@@ -378,6 +381,11 @@
    "ca": "el mode que tries a l'aplicació no es desa on es pugui llegir"
   },
   "ide_run_mode_not_readable": {
+   "es": "su modo de ejecución vive dentro del editor y no se puede leer",
+   "en": "its run mode lives inside the editor and can't be read",
+   "ca": "el seu mode d'execució viu dins de l'editor i no es pot llegir"
+  },
+  "declared_by_you": {
    "es": "su modo de ejecución vive dentro del editor y no se puede leer",
    "en": "its run mode lives inside the editor and can't be read",
    "ca": "el seu mode d'execució viu dins de l'editor i no es pot llegir"

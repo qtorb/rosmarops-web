@@ -63,7 +63,7 @@ class PublishedPage(unittest.TestCase):
             html = f.read_text(encoding="utf-8")
             self.assertNotIn('name="robots"', html, lang)
             self.assertIn(f'{mp.DOWNLOAD[lang]}?from=observatory-map"', html, lang)
-            self.assertEqual(html.count('class="m-row"'), 9, lang)
+            self.assertEqual(html.count('class="m-row"'), 12, lang)  # 12 agents with a factory score since 0.19.0
             title = json.loads(mp.MAP_TEXTS.read_text(encoding="utf-8"))["texts"][lang]["title"]
             self.assertIn(f"<title>{title}</title>", html.replace("&#x27;", "'"), lang)
             self.assertIn(f'<meta property="og:title" content="{title}">', html.replace("&#x27;", "'"), lang)
