@@ -87,11 +87,15 @@ def see_also(tid, lang):
     return out
 
 
-def term(tid, lang):
+def entry(tid):
     for t in TERMS:
         if t['id'] == tid:
-            return t[lang]
+            return t
     raise KeyError(tid)
+
+
+def term(tid, lang):
+    return entry(tid)[lang]
 
 
 def add_assets(s):
@@ -105,7 +109,7 @@ def add_assets(s):
 def mark(s, lang, tids):
     start = s.index('<main')
     end = s.index('</main>')
-    done = {m for m in re.findall(r'data-gi="([a-z]+)"', s)}
+    done = {m for m in re.findall(r'data-gi="([a-z-]+)"', s)}  # GTM-206: ids can have hyphens (asks-first)
     todo = [t for t in tids if t not in done]
     if not todo:
         return s, []
@@ -144,7 +148,7 @@ def mark(s, lang, tids):
         shown = name if len(name) > 1 and name[1].isupper() else name[0].lower() + name[1:]
         label = html.escape(LABEL[lang].format(t=shown), quote=True)
         i = ('<a class="gi" href="%s#%s" data-gi="%s" aria-label="%s"><span aria-hidden="true">i</span></a>'
-             % (GLOSS[lang], tid, tid, label))
+             % (GLOSS[lang], anchor(entry(tid), lang), tid, label))  # GTM-206: the term's own anchor, as on the page
         s = s[:a] + '<span class="gt">' + s[a:b] + i + '</span>' + s[b:]
     return s, missing
 
