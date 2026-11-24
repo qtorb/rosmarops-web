@@ -51,6 +51,33 @@
         "how": "official_changelog"
       },
       "rosmarops_impact": "none"
+    },
+    {
+      "id": "chg-codex-0-172-0-mcp-lazy-start",
+      "version": "rust-v0.172.0",
+      "date": "2026-11-23",
+      "category": "mcp",
+      "before": {
+        "en": "Before rust-v0.172.0, the Codex release notes did not say that optional stdio MCP servers with cached tool lists start on their first tool call by default.",
+        "es": "Antes de rust-v0.172.0, las notas de versión de Codex no decían que los servidores MCP stdio opcionales con lista de herramientas en caché arrancan por defecto en su primera llamada.",
+        "ca": "Abans de rust-v0.172.0, les notes de versió de Codex no deien que els servidors MCP stdio opcionals amb llista d'eines en memòria cau arrenquen per defecte a la seva primera crida."
+      },
+      "after": {
+        "en": "From rust-v0.172.0, Codex starts optional stdio MCP servers with cached tool lists on their first tool call by default, according to the release notes.",
+        "es": "Desde rust-v0.172.0, Codex arranca por defecto los servidores MCP stdio opcionales con lista de herramientas en caché en su primera llamada a una herramienta, según las notas de versión.",
+        "ca": "Des de rust-v0.172.0, Codex arrenca per defecte els servidors MCP stdio opcionals amb llista d'eines en memòria cau a la seva primera crida a una eina, segons les notes de versió."
+      },
+      "source": {
+        "url": "https://github.com/openai/codex/releases/tag/rust-v0.172.0",
+        "official": true,
+        "accessed_at": "2026-11-24"
+      },
+      "verified": {
+        "by": "writer",
+        "at": "2026-11-24",
+        "how": "official_changelog"
+      },
+      "rosmarops_impact": "none"
     }
   ],
   "ratings": [],
