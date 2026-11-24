@@ -243,8 +243,9 @@ class Repository(unittest.TestCase):
         self.assertEqual(al.check_candidates(agents, json.loads((OBS / "data" / "candidates.json").read_text(encoding="utf-8"))), [])
         program = json.loads((OBS / "data" / "program-agents.json").read_text(encoding="utf-8"))
         # v0.13.0 (17-11, GTM-177): internal/knowledge/ adds grok-bot (an agent) and startup-files (not an agent).
-        self.assertEqual(al.check_scored(agents, ["antigravity-cli", "claude-code", "cline", "codex", "cursor", "gemini-cli", "github-copilot",
-                                                  "grok-bot", "grok-build", "hermes", "mcp_catalog", "startup-files"], program), [])
+        self.assertEqual(al.check_scored(agents, ["antigravity-cli", "claude-code", "claude-desktop", "cline", "codex", "cursor", "gemini-cli",
+                                                  "github-copilot", "grok-bot", "grok-build", "hermes", "kilo-code", "mcp_catalog",
+                                                  "opencode", "orchestrators", "paperclip", "startup-files"], program), [])  # the v0.19.0 knowledge files
 
 
 class FocoAlert(unittest.TestCase):

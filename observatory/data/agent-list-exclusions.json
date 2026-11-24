@@ -123,5 +123,35 @@
     "page": "site/ca/preguntes-frequents/index.html",
     "contains": "com Claude Code o Codex",
     "reason": "FAQ question on orchestrators (GTM-198, signed by Albert): examples of agents an orchestrator launches; not a list of agents RosmarOps scores or detects."
+  },
+  {
+    "page": "site/index.html",
+    "contains": "It also reads the orchestrators Paperclip",
+    "reason": "Homepage (GTM-72, signed by Albert 23-11): prose about orchestrators and Claude Code subagents, v0.17.0 release notes; not a list of agents RosmarOps scores or detects."
+  },
+  {
+    "page": "site/es/index.html",
+    "contains": "Además, lee los orquestadores Paperclip",
+    "reason": "Homepage (GTM-72, signed by Albert 23-11): prose about orquestadores y subagentes de Claude Code, notas de la v0.17.0; not a list of agents RosmarOps scores or detects."
+  },
+  {
+    "page": "site/ca/index.html",
+    "contains": "A més, llegeix els orquestradors Paperclip",
+    "reason": "Homepage (GTM-72, signed by Albert 23-11): prose about orquestradors i subagents de Claude Code, notes de la v0.17.0; not a list of agents RosmarOps scores or detects."
+  },
+  {
+    "page": "site/index.html",
+    "contains": "If you already use a RosmarOps template in Claude Code, Grok Build or Cursor",
+    "reason": "Homepage (GTM-72, signed by Albert 23-11): prose about the agents with RosmarOps templates the report recognises, v0.18.0 release notes; not a list of agents RosmarOps scores or detects."
+  },
+  {
+    "page": "site/es/index.html",
+    "contains": "Si ya usas una plantilla de RosmarOps en Claude Code, Grok Build o Cursor",
+    "reason": "Homepage (GTM-72, signed by Albert 23-11): prose about the agents with RosmarOps templates the report recognises, v0.18.0 release notes; not a list of agents RosmarOps scores or detects."
+  },
+  {
+    "page": "site/ca/index.html",
+    "contains": "Si ja fas servir una plantilla de RosmarOps a Claude Code, Grok Build o Cursor",
+    "reason": "Homepage (GTM-72, signed by Albert 23-11): prose about the agents with RosmarOps templates the report recognises, v0.18.0 release notes; not a list of agents RosmarOps scores or detects."
   }
 ]

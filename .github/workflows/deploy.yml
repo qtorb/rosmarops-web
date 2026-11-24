@@ -43,6 +43,7 @@ jobs:
           php -l wp/mu-plugins/rosmarops-gtm124-agente.php
           php -l wp/mu-plugins/rosmarops-papelera-0-16.php
           php -l wp/mu-plugins/rosmarops-gtm198-enlace.php
+          php -l wp/mu-plugins/rosmarops-gtm121-titulos.php
           php -l wp/mu-plugins/rosmarops-gtm195-voz.php
           php -l wp/mu-plugins/rosmarops-gtm164-sin-version.php
           php -l wp/mu-plugins/rosmarops-gtm181-promesa.php
@@ -104,6 +105,7 @@ jobs:
           put site/llms.txt llms.txt
           put site/sitemap-pages.xml sitemap-pages.xml
           put site/24a8c2078ff9b0ee590acf6cd5901e32.txt 24a8c2078ff9b0ee590acf6cd5901e32.txt
+          put site/google5cd09a19ba35efb6.html google5cd09a19ba35efb6.html
           -mkdir methodology
           put site/methodology/index.html methodology/index.html
           -mkdir faq
@@ -386,6 +388,7 @@ jobs:
           put wp/mu-plugins/rosmarops-gtm124-agente.php wp-content/mu-plugins/rosmarops-gtm124-agente.php
           put wp/mu-plugins/rosmarops-papelera-0-16.php wp-content/mu-plugins/rosmarops-papelera-0-16.php
           put wp/mu-plugins/rosmarops-gtm198-enlace.php wp-content/mu-plugins/rosmarops-gtm198-enlace.php
+          put wp/mu-plugins/rosmarops-gtm121-titulos.php wp-content/mu-plugins/rosmarops-gtm121-titulos.php
           put wp/mu-plugins/rosmarops-gtm195-voz.php wp-content/mu-plugins/rosmarops-gtm195-voz.php
           put wp/mu-plugins/rosmarops-gtm164-sin-version.php wp-content/mu-plugins/rosmarops-gtm164-sin-version.php
           put wp/mu-plugins/rosmarops-gtm181-promesa.php wp-content/mu-plugins/rosmarops-gtm181-promesa.php
@@ -936,6 +939,38 @@ jobs:
               "$SFTP_USER@$SFTP_HOST" && echo "GTM-198 plugin removed from the server" || echo "::warning::rosmarops-gtm198-enlace.php could not be removed from the server"
           else
             echo "::warning::rosmarops-gtm198-enlace.php left on the server: a site has not logged its run yet"
+          fi
+          # GTM-121 (signed by Albert 23-11): rosmarops-gtm121-titulos.php sets the Google title and description of the
+          # EN post «Can one AI agent change another agent's configuration?» and of the ES auto mode post, once per
+          # site; CA has nothing to do. Once the two logs are read it is removed from the server.
+          for u in https://rosmarops.com/blog/ https://rosmarops.com/es/blog/; do
+            curl -s -o /dev/null -w "%{http_code} $u\n" "$u?gtm121=${GITHUB_SHA::7}"
+          done
+          sleep 5
+          mkdir -p /tmp/gtm121
+          printf 'cd %s/wp-content/rosmarops-private\n-get gtm121-en.log /tmp/gtm121/\n-get gtm121-es.log /tmp/gtm121/\n' "$SFTP_PATH" > /tmp/b121
+          sshpass -e sftp -o BatchMode=no -b /tmp/b121 \
+            -o StrictHostKeyChecking=yes \
+            -o UserKnownHostsFile="$HOME/.ssh/known_hosts" \
+            -o PreferredAuthentications=password,keyboard-interactive \
+            -o PubkeyAuthentication=no \
+            "$SFTP_USER@$SFTP_HOST" || true
+          for f in gtm121-en gtm121-es; do
+            if [ -f "/tmp/gtm121/$f.log" ]; then echo "--- $f.log"; cat "/tmp/gtm121/$f.log"; else echo "::warning::$f.log not found"; fi
+            code=$(curl -s -o /dev/null -w '%{http_code}' "https://rosmarops.com/wp-content/rosmarops-private/$f.log")
+            [ "$code" != "200" ] && echo "$f.log closed to the web ($code)" || (echo "::error::$f.log is reachable from the web"; exit 1)
+          done
+          if grep -h '^\(skipped\|failed\):' /tmp/gtm121/*.log 2>/dev/null; then echo "::warning::GTM-121 left a post alone; see the logs"; fi
+          if [ -f /tmp/gtm121/gtm121-en.log ] && [ -f /tmp/gtm121/gtm121-es.log ]; then
+            printf 'cd %s/wp-content/mu-plugins\n-rm rosmarops-gtm121-titulos.php\n' "$SFTP_PATH" > /tmp/b121rm
+            sshpass -e sftp -o BatchMode=no -b /tmp/b121rm \
+              -o StrictHostKeyChecking=yes \
+              -o UserKnownHostsFile="$HOME/.ssh/known_hosts" \
+              -o PreferredAuthentications=password,keyboard-interactive \
+              -o PubkeyAuthentication=no \
+              "$SFTP_USER@$SFTP_HOST" && echo "GTM-121 plugin removed from the server" || echo "::warning::rosmarops-gtm121-titulos.php could not be removed from the server"
+          else
+            echo "::warning::rosmarops-gtm121-titulos.php left on the server: a site has not logged its run yet"
           fi
           # GTM-195 (advisor ok 22-11): rosmarops-gtm195-voz.php puts the text in Albert's voice into the worktree drafts
           # (EN 1262, ES 1252, CA 105), only while they are drafts, once per site. Once the three logs are read it is

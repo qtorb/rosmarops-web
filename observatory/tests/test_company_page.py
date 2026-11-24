@@ -63,8 +63,8 @@ class Pages(unittest.TestCase):
     def test_ten_companies_in_order_and_the_rest_apart(self):
         page = read(INDEX["es"])
         names = re.findall(r'<article class="co"><header><h3>(.*?)</h3>', page)
-        self.assertEqual([html.unescape(n) for n in names], ["Anthropic", "Anysphere", "Cline", "Continue", "Google",
-                         "Microsoft (GitHub)", "n8n", "Nous Research", "OpenAI", "xAI"])
+        self.assertEqual([html.unescape(n) for n in names], ["Anomaly", "Anthropic", "Anysphere", "Cline", "Continue", "Google",
+                         "Kilo Code", "Microsoft (GitHub)", "n8n", "Nous Research", "OpenAI", "xAI"])  # + Anomaly, Kilo Code: 0.19.0
         rest = text(page[page.index('class="co-rest"'):])
         for n in names:
             self.assertNotIn(html.unescape(n) + " (", rest)

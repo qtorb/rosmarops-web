@@ -125,6 +125,8 @@ jobs:
           python -m unittest wp/tests/test_papelera_0_16.py
           php -l wp/mu-plugins/rosmarops-gtm198-enlace.php
           python -m unittest wp/tests/test_gtm198_enlace.py
+          php -l wp/mu-plugins/rosmarops-gtm121-titulos.php
+          python -m unittest wp/tests/test_gtm121_titulos.py
           php -l wp/mu-plugins/rosmarops-schedule-novedades-0-11.php
           python -m unittest wp/tests/test_schedule_novedades_0_11.py
           python -m unittest wp/tests/test_download_sources.py
@@ -146,7 +148,7 @@ jobs:
           set -eu
           sudo systemctl start mysql
           mysql -h 127.0.0.1 -uroot -proot -e "CREATE DATABASE IF NOT EXISTS wptest"
-          DB_USER=root DB_PASS=root DB_NAME=wptest python -m unittest wp/tests/test_downloads.py wp/tests/test_visits.py wp/tests/test_hourly.py
+          DB_USER=root DB_PASS=root DB_NAME=wptest python -m unittest wp/tests/test_downloads.py wp/tests/test_visits.py wp/tests/test_hourly.py wp/tests/test_download_people.py
 
       - name: Publication rules hold in the output
         run: |
