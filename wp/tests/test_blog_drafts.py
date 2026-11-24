@@ -10,6 +10,7 @@ import shutil
 import subprocess
 import tempfile
 import unittest
+from datetime import datetime, timezone
 from pathlib import Path
 
 TESTS = Path(__file__).resolve().parent
@@ -123,7 +124,7 @@ class Drafts(unittest.TestCase):
                 x = d[lang]
                 p = by_slug[x["slug"]]
                 # GTM-203: scheduled only with a publish_at still ahead and its image; every other post is a draft
-                ahead = "publish_at" in x and x["publish_at"] > "2026-11-24" and "image" in x
+                ahead = "publish_at" in x and "image" in x and datetime.fromisoformat(x["publish_at"]) > datetime.now(timezone.utc)
                 self.assertEqual(p["post_status"], "future" if ahead else "draft", (pid, lang))
                 self.assertEqual(p["post_type"], "post")
                 self.assertEqual((p["post_title"], p["post_excerpt"]), (x["title"], x["excerpt"]))
@@ -134,7 +135,8 @@ class Drafts(unittest.TestCase):
                 self.assertEqual(meta["_genesis_description"], x["seo_description"])
                 self.assertEqual({k: v for k, v in meta.items() if k.startswith("rosmarops_url_")},
                                  {f"rosmarops_url_{o}": u for o, u in x["translations"].items()})
-                self.assertIn(f"done: {x['slug']} created as draft, post {p['ID']}, author 3", log)
+                self.assertIn(f"done: {x['slug']} scheduled for " if ahead else f"done: {x['slug']} created as draft, post {p['ID']}, author 3",
+                              log if not ahead else " ".join(log))
                 if pid == "loop-engineering":
                     self.assertNotIn("_thumbnail_id", meta)
                     continue
