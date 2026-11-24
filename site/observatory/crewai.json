@@ -19,6 +19,34 @@
     "reviewed_at": "2026-10-30"
   },
   "versions": [],
-  "changes": [],
+  "changes": [
+    {
+      "id": "chg-crewai-1-15-45-empty-credentials",
+      "version": "1.15.45",
+      "date": "2026-11-24",
+      "category": "credentials",
+      "before": {
+        "en": "Before 1.15.45, the CrewAI release notes listed no rejection of empty credentials or constant-time comparison in server authentication.",
+        "es": "Antes de 1.15.45, las notas de versión de CrewAI no recogían el rechazo de credenciales vacías ni la comparación en tiempo constante en la autenticación del servidor.",
+        "ca": "Abans de 1.15.45, les notes de versió de CrewAI no recollien el rebuig de credencials buides ni la comparació en temps constant a l'autenticació del servidor."
+      },
+      "after": {
+        "en": "From 1.15.45, CrewAI rejects empty credentials in server authentication and compares them in constant time, according to the release notes.",
+        "es": "Desde 1.15.45, CrewAI rechaza credenciales vacías en la autenticación del servidor y las compara en tiempo constante, según las notas de versión.",
+        "ca": "Des de 1.15.45, CrewAI rebutja credencials buides a l'autenticació del servidor i les compara en temps constant, segons les notes de versió."
+      },
+      "source": {
+        "url": "https://github.com/crewAIInc/crewAI/releases/tag/1.15.45",
+        "official": true,
+        "accessed_at": "2026-11-24"
+      },
+      "verified": {
+        "by": "writer",
+        "at": "2026-11-24",
+        "how": "official_changelog"
+      },
+      "rosmarops_impact": "none"
+    }
+  ],
   "ratings": []
 }

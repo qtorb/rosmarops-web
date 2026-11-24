@@ -49,6 +49,33 @@
         "how": "official_changelog"
       },
       "rosmarops_impact": "none"
+    },
+    {
+      "id": "chg-opencode-2-4-0-desktop-browser",
+      "version": "v2.4.0",
+      "date": "2026-11-23",
+      "category": "agent_scope",
+      "before": {
+        "en": "Before v2.4.0, the OpenCode release notes listed no built-in desktop browser for the agent to read and drive.",
+        "es": "Antes de v2.4.0, las notas de versión de OpenCode no recogían un navegador de escritorio integrado que el agente pudiera leer y manejar.",
+        "ca": "Abans de v2.4.0, les notes de versió d'OpenCode no recollien un navegador d'escriptori integrat que l'agent pogués llegir i manejar."
+      },
+      "after": {
+        "en": "From v2.4.0, OpenCode has a desktop browser that imports Chrome, Edge, Firefox or Safari sign-ins and that the agent can read and drive, according to the release notes.",
+        "es": "Desde v2.4.0, OpenCode tiene un navegador de escritorio que importa los inicios de sesión de Chrome, Edge, Firefox o Safari y que el agente puede leer y manejar, según las notas de versión.",
+        "ca": "Des de v2.4.0, OpenCode té un navegador d'escriptori que importa els inicis de sessió de Chrome, Edge, Firefox o Safari i que l'agent pot llegir i manejar, segons les notes de versió."
+      },
+      "source": {
+        "url": "https://github.com/anomalyco/opencode/releases/tag/v2.4.0",
+        "official": true,
+        "accessed_at": "2026-11-24"
+      },
+      "verified": {
+        "by": "writer",
+        "at": "2026-11-24",
+        "how": "official_changelog"
+      },
+      "rosmarops_impact": "none"
     }
   ],
   "ratings": [],
