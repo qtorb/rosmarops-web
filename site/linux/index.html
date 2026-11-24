@@ -57,6 +57,7 @@ footer nav{gap:20px;font-size:15px}
 .btn{display:inline-block;background:var(--ink);color:#fff;text-decoration:none;font-size:17px;font-weight:600;line-height:1;padding:16px 24px;border-radius:12px}
 .btn:hover,.btn:focus-visible{background:var(--accent);color:#fff}
 </style>
+<link rel="stylesheet" href="/assets/star/star.css?v=1">
 </head>
 <body>
 <header><div class="wrap">
@@ -73,7 +74,7 @@ footer nav{gap:20px;font-size:15px}
 <code>rosmarops</code></div>
 <p>To update: <code>brew upgrade rosmarops</code>. Or download it by hand:</p>
 <p>Download the file for your computer:</p>
-<div class="dl"><a class="btn" href="/download?from=linux-page&amp;os=linux-amd64" target="_blank" rel="nofollow noopener">x86-64 (most computers and WSL)</a><a class="btn" href="/download?from=linux-page&amp;os=linux-arm64" target="_blank" rel="nofollow noopener">ARM (Raspberry Pi, ARM servers)</a></div>
+<div class="dl" data-star-block><a class="btn" href="/download?from=linux-page&amp;os=linux-amd64" target="_blank" rel="nofollow noopener">x86-64 (most computers and WSL)</a><a class="btn" href="/download?from=linux-page&amp;os=linux-arm64" target="_blank" rel="nofollow noopener">ARM (Raspberry Pi, ARM servers)</a></div><div class="star-card" id="star-card" role="status" hidden><p>Thanks for trying it. If you find it useful, a star on GitHub helps others find it.</p><a class="star-btn" href="https://github.com/qtorb/rosmarops" target="_blank" rel="noopener"><svg class="star-ico" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M8 1.5l1.9 4.1 4.4.5-3.3 3 .9 4.4L8 11.3l-3.9 2.2.9-4.4-3.3-3 4.4-.5z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>Star on GitHub</a></div>
 <p class="meta">Not sure which one? In a terminal, run uname -m: "x86_64" means x86-64, "aarch64" means ARM.</p>
 <p>In a terminal, in the folder where you saved it. For ARM, use rosmarops-linux-arm64 instead:</p>
 <div class="formula"><code>cd ~/Downloads</code><br>
@@ -90,5 +91,6 @@ footer nav{gap:20px;font-size:15px}
 </div></footer>
 <script src="/assets/consent/cookieconsent.umd.js?v=3.1.0" defer></script>
 <script src="/assets/consent/consent.js?v=5" defer></script><script src="/assets/visits/visits.js?v=3" defer></script>
+<script src="/assets/star/star.js?v=1" defer></script>
 </body>
 </html>

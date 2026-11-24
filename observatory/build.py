@@ -471,6 +471,8 @@ def page(lang, t, *, path, title, description, alternates, jsonld, body, og_type
 
 
 def write(path, content):
+    import star_card  # GTM-206: the GitHub star card, on pages with a marked download block
+    content = star_card.apply(content)
     out = SITE / path.lstrip("/")
     if path.endswith("/"):
         out = out / "index.html"
@@ -871,7 +873,7 @@ def build_agent(lang, t, a):
 <section id="rosmarops" class="box panel" aria-labelledby="rosmarops-h">
 <h2 id="rosmarops-h">{t("agent.rosmarops_h2" + sfx)}</h2>
 <p>{rosm}</p>
-<div class="actions"><a class="btn primary" href="{esc(t.text("site.download_url") + ("?from=observatory-" + ag["id"] if is_published(a) else ""))}" target="_blank" rel="nofollow noopener">{t("agent.cta_download")}</a></div>
+<div class="actions" data-star-block><a class="btn primary" href="{esc(t.text("site.download_url") + ("?from=observatory-" + ag["id"] if is_published(a) else ""))}" target="_blank" rel="nofollow noopener">{t("agent.cta_download")}</a></div>
 </section>
 {try_html}
 {more_html}

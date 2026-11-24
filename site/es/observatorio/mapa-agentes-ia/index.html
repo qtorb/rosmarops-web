@@ -173,6 +173,7 @@ td{padding:4px 0;border:0;display:grid;grid-template-columns:minmax(110px,40%) 1
 td::before{content:attr(data-label);font-size:13px;color:var(--muted)}
 td:empty{display:none}}
 </style>
+<link rel="stylesheet" href="/assets/star/star.css?v=1">
 </head>
 <body>
 <header><div class="wrap">
@@ -304,7 +305,7 @@ td:empty{display:none}}
 </div></section>
 <section class="m-band" aria-labelledby="m-h7"><div class="m-wrap">
 <div class="m-cta"><div class="m-stack"><h2 id="m-h7">Esto es cada agente de fábrica. El tuyo puede ser distinto.</h2><p>Depende de cómo lo tengas configurado, de las claves que haya en tu ordenador y de los demás agentes que uses.</p></div>
-<div class="m-ctab"><a class="m-btn" href="/es/descargar?from=observatory-map" target="_blank" rel="nofollow noopener">Comprobar mi ordenador</a><small>Gratis · Windows, Mac (vista previa) y Linux</small></div></div>
+<div class="m-ctab" data-star-block="inside"><a class="m-btn" href="/es/descargar?from=observatory-map" target="_blank" rel="nofollow noopener">Comprobar mi ordenador</a><small>Gratis · Windows, Mac (vista previa) y Linux</small><div class="star-card" id="star-card" role="status" hidden><p>Gracias por probarlo. Si te resulta útil, una estrella en GitHub ayuda a que otros lo encuentren.</p><a class="star-btn" href="https://github.com/qtorb/rosmarops" target="_blank" rel="noopener"><svg class="star-ico" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M8 1.5l1.9 4.1 4.4.5-3.3 3 .9 4.4L8 11.3l-3.9 2.2.9-4.4-3.3-3 4.4-.5z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>Poner una estrella en GitHub</a></div></div></div>
 </div></section>
 <section class="m-band m-alt" aria-labelledby="m-h8"><div class="m-wrap m-stack">
 <h2 id="m-h8">Cómo lo medimos y qué no mide</h2>
@@ -345,5 +346,6 @@ function openFromHash() {
 openFromHash();
 window.addEventListener('hashchange', openFromHash);
 </script>
+<script src="/assets/star/star.js?v=1" defer></script>
 </body>
 </html>

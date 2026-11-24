@@ -103,7 +103,8 @@ class Pages(unittest.TestCase):
     def test_no_external_urls(self):
         for lang in MESSAGES:
             for u in re.findall(r'(?:href|src)="(https?:[^"]+|//[^"]+)"', page(lang)):
-                self.assertTrue(u.startswith("https://rosmarops.com/"), (lang, u))
+                # The one outside address: the repository, in the GitHub star card (GTM-206 PR 3).
+                self.assertTrue(u.startswith("https://rosmarops.com/") or u == "https://github.com/qtorb/rosmarops", (lang, u))
         for name, s in (("chain.js", JS), ("chain.css", CSS)):
             self.assertIsNone(re.search(r"https?:", s), name)
             self.assertNotIn("@import", s)

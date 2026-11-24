@@ -245,7 +245,7 @@ def body(lang, t_site, agents_files):
     # 7: check yours.
     out.append(f'''<section class="m-band" aria-labelledby="m-h7"><div class="m-wrap">
 <div class="m-cta"><div class="m-stack"><h2 id="m-h7">{esc(T["b7.h2"])}</h2><p>{esc(T["b7.text"])}</p></div>
-<div class="m-ctab"><a class="m-btn" href="{DOWNLOAD[lang]}?from=observatory-map" target="_blank" rel="nofollow noopener">{esc(T["b7.button"])}</a><small>{esc(T["b7.line"])}</small></div></div>
+<div class="m-ctab" data-star-block="inside"><a class="m-btn" href="{DOWNLOAD[lang]}?from=observatory-map" target="_blank" rel="nofollow noopener">{esc(T["b7.button"])}</a><small>{esc(T["b7.line"])}</small></div></div>
 </div></section>''')
 
     # 8: method and limits. «Detected but not measured» only when the JSON has agents that were not evaluated.

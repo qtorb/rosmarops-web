@@ -46,6 +46,7 @@ footer nav{gap:20px;font-size:15px}
 .doc a{overflow-wrap:anywhere}
 </style>
 <link rel="stylesheet" href="/assets/course/chain.css?v=1">
+<link rel="stylesheet" href="/assets/star/star.css?v=1">
 </head>
 <body>
 <header><div class="wrap">
@@ -81,7 +82,7 @@ footer nav{gap:20px;font-size:15px}
 <p class="cs-q">You change something. Where does it show?</p>
 <div id="cs-game"></div></div>
 <div class="doc"><h2>Now, on your computer</h2><p class="sub">Ten minutes. Find a real chain in your own report.</p>
-<div class="cs-piece cs-ex"><ol><li>Run RosmarOps and open the report.<br><a class="cs-btn primary" href="/download?from=course" target="_blank" rel="nofollow noopener">Don&#x27;t have it yet? Download it</a></li><li>Scroll down to the <b>Findings</b> block. Look for a problem with the word <b>KEY</b> above its title. Its title says something like «Your Stripe is within reach of 2 agents.»</li><li>Read the line underneath: «These agents can read its keys without asking you: …». There you have the <b>agents</b>, the first link. And «without asking you» is the <b>capability</b>, the second one.</li><li>Tap <b>See the steps ›</b> (or the link in the «How to fix it» column) to go to that problem in «The detail, problem by problem». Its title says, for example, «Your Stripe key: Claude Code can read it without asking you». There you have the <b>credential</b>, the third link.</li><li>Read the sentence that follows: «With it anyone can move money or read your customers&#x27; payments.» That&#x27;s the <b>resource</b>, the fourth link.</li><li>Write down your chain in four words: agent → capability → credential → resource.</li><li>Now decide which link you would break. It&#x27;s almost always the second one: the agent asking you before reading that file. The first problem in your report and the <b>Start here</b> card tell you how.</li></ol>
+<div class="cs-piece cs-ex"><ol><li>Run RosmarOps and open the report.<br><a class="cs-btn primary" data-star-block href="/download?from=course" target="_blank" rel="nofollow noopener">Don&#x27;t have it yet? Download it</a><div class="star-card" id="star-card" role="status" hidden><p>Thanks for trying it. If you find it useful, a star on GitHub helps others find it.</p><a class="star-btn" href="https://github.com/qtorb/rosmarops" target="_blank" rel="noopener"><svg class="star-ico" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M8 1.5l1.9 4.1 4.4.5-3.3 3 .9 4.4L8 11.3l-3.9 2.2.9-4.4-3.3-3 4.4-.5z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>Star on GitHub</a></div></li><li>Scroll down to the <b>Findings</b> block. Look for a problem with the word <b>KEY</b> above its title. Its title says something like «Your Stripe is within reach of 2 agents.»</li><li>Read the line underneath: «These agents can read its keys without asking you: …». There you have the <b>agents</b>, the first link. And «without asking you» is the <b>capability</b>, the second one.</li><li>Tap <b>See the steps ›</b> (or the link in the «How to fix it» column) to go to that problem in «The detail, problem by problem». Its title says, for example, «Your Stripe key: Claude Code can read it without asking you». There you have the <b>credential</b>, the third link.</li><li>Read the sentence that follows: «With it anyone can move money or read your customers&#x27; payments.» That&#x27;s the <b>resource</b>, the fourth link.</li><li>Write down your chain in four words: agent → capability → credential → resource.</li><li>Now decide which link you would break. It&#x27;s almost always the second one: the agent asking you before reading that file. The first problem in your report and the <b>Start here</b> card tell you how.</li></ol>
 <h3>What if you don&#x27;t have any problem marked «KEY»?</h3><p>It means that, in what RosmarOps was able to read, no agent reaches a key without asking you. Also look at the line «Outside the scope of this analysis» in your report: what it couldn&#x27;t read doesn&#x27;t count as clean.</p></div></div>
 <div class="doc cs-quiz"><h2>Test</h2>
 <div id="cs-test"></div></div>
@@ -96,5 +97,6 @@ footer nav{gap:20px;font-size:15px}
 <script src="/assets/course/chain.js?v=1" defer></script>
 <script src="/assets/consent/cookieconsent.umd.js?v=3.1.0" defer></script>
 <script src="/assets/consent/consent.js?v=5" defer></script><script src="/assets/visits/visits.js?v=3" defer></script>
+<script src="/assets/star/star.js?v=1" defer></script>
 </body>
 </html>
