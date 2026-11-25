@@ -1232,6 +1232,36 @@
       "public_url": "https://relevanceai.com/docs/changelog",
       "fragile": false,
       "notes": "GTM-208 (signed by Albert 25-11): no-code agent builders and the second «agent company». No versions: dated entries «Month D, YYYY». The per-entry links do not open their entry; only the page is linked."
+    },
+    {
+      "id": "F72",
+      "name": "Gumloop",
+      "scope": "gumloop",
+      "method": "changelog-web",
+      "read": {
+        "urls": [
+          "https://gumloop.com/changelog"
+        ]
+      },
+      "public_url": "https://gumloop.com/changelog",
+      "fragile": false,
+      "notes": "GTM-212 (signed by Albert 25-11): no-code agent builders, second pass. Dated entries «Month D, YYYY», each with a version (14.2.0)."
+    },
+    {
+      "id": "F73",
+      "name": "Dify",
+      "scope": "dify",
+      "method": "git-tags",
+      "read": {
+        "git": "https://github.com/langgenius/dify.git",
+        "tags": "N.N.N",
+        "notes": [
+          "github-api"
+        ]
+      },
+      "public_url": "https://github.com/langgenius/dify/releases",
+      "fragile": false,
+      "notes": "GTM-212 (signed by Albert 25-11): no-code agent builders, second pass. The product's releases on GitHub (one changelog for the cloud and the self-hosted versions; no separate cloud changelog)."
     }
   ]
 }
