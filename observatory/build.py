@@ -282,13 +282,22 @@ def ld(obj):
     return '<script type="application/ld+json">' + s.replace("</", "<\\/") + "</script>"
 
 
+# GTM-210 (advisor, 25-11): schema.org applicationCategory by family. No-code agent builders are
+# BusinessApplication; every other family stays DeveloperApplication, workflow automation included.
+APP_CATEGORY = {"builders": "BusinessApplication"}
+
+
+def app_category(a):
+    return APP_CATEGORY.get(family(a), "DeveloperApplication")
+
+
 def software_app(a):
     ag = a["agent"]
     os_names = {"windows": "Windows", "macos": "macOS", "linux": "Linux", "web": "Web", "python": "Python"}
     return {
         "@type": "SoftwareApplication",
         "name": ag["name"],
-        "applicationCategory": "DeveloperApplication",
+        "applicationCategory": app_category(a),
         "operatingSystem": ", ".join(os_names[p] for p in ag["platforms"]),
         "author": {"@type": "Organization", "name": ag["vendor"]},
     }
