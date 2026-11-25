@@ -17,6 +17,14 @@ What the server keeps, with no IP address, cookie, browser data or identifier (t
 
 Tests: `wp/tests/test_downloads.py`, `test_visits.py`, `test_hourly.py` and `test_download_people.py` (see `wp/tests/README.md`).
 
+## The glossary (`tools/glossary/`)
+
+The glossary pages (`/glossary/`, `/es/glosario/`, `/ca/glossari/`), the «i» help next to terms and `site/assets/help/glossary.json` all come from one file, `tools/glossary/terms.json`. To add or change a term, edit that file with the signed texts and run `python3 tools/glossary/build.py` by hand, then commit what it changes under `site/`.
+
+- Each term is listed under its `id`. A term can carry `anchors` with its own address per language (for example `#huella-de-una-clave` in Spanish); without it, the address is the `id` in every language.
+- The «i» next to a term on a page links to that same address (GTM-206: before, it always used the `id`, so in Spanish and Catalan it could point to a place that does not exist on the page).
+- Tests: `tools/glossary/test_build.py` checks that the «i» uses the term's own address, and that every glossary link on the site points to an address that exists.
+
 ## Ownership files at the root of the site
 
 Two files at the root of `site/` prove to search engines that the site is ours. They are not linked from any page, are not in the sitemap, carry no script and are not counted as visits. Each has its own `put` line in `.github/workflows/deploy.yml`. Do not delete them: the search engines check them again.
