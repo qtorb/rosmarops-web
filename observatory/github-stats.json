@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-25T03:29:58Z",
+  "generated_at": "2026-11-25T04:26:56Z",
   "repo": {
     "stargazers_count": 1,
     "subscribers_count": 0,
@@ -27,7 +27,7 @@
         },
         {
           "name": "rosmarops-linux-amd64",
-          "download_count": 6
+          "download_count": 7
         },
         {
           "name": "rosmarops-linux-arm64",
