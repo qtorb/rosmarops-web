@@ -36,6 +36,15 @@ Lesson 2 of the public course, «The chain», lives at `/course/the-chain/`, `/e
 - Not open yet: the pages carry `noindex`, no page or menu links to them, and they are not in the sitemap or `llms.txt`. The deploy fails if the `noindex` goes missing. Opening them is Albert's decision.
 - Tests: `observatory/tests/test_course_pages.py`. Captures of this version: `docs/captures/gtm-206-leccion-2/`.
 
+## The GitHub star card (`observatory/star_card.py`)
+
+After a click on a download button, a small card appears under that block: «Thanks for trying it. If you find it useful, a star on GitHub helps others find it.» with a button to https://github.com/qtorb/rosmarops (GTM-206; texts in EN, ES and CA in `star_card.py`, signed by Albert). No star count, no GitHub badge or icon from outside, nothing stored in the browser and nothing sent. Without JavaScript it never appears.
+
+- Pages that take part: the homes (both download blocks), the macOS and Linux pages, the Observatory agent pages, the map, the Sandbox section and the course lesson, in the three languages. Not the FAQ (its download links are inside an answer) or the topic and video pages (a plain link in a list).
+- A download block takes part when it carries `data-star-block` (on the map, the whole call-to-action row `.m-cta`, so the card goes under the row; `data-star-block="inside"` would put it inside the block, and no page uses it today). Each page then has one hidden card, `site/assets/star/star.css` and `star.js`; the script moves the card under the block that was clicked and shows it, once per visit to the page.
+- Generated pages get it from the generators. For the hand-written pages (homes, macOS, Linux), run `python3 observatory/star_card.py` after editing them; the tests fail if one is missing it.
+- Tests: `observatory/tests/test_star_card.py`. Before and after captures: `docs/captures/gtm-206-estrella/`.
+
 ## Ownership files at the root of the site
 
 Two files at the root of `site/` prove to search engines that the site is ours. They are not linked from any page, are not in the sitemap, carry no script and are not counted as visits. Each has its own `put` line in `.github/workflows/deploy.yml`. Do not delete them: the search engines check them again.

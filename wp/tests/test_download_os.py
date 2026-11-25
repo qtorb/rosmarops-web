@@ -51,7 +51,10 @@ class ServedHtml(unittest.TestCase):
         for lang, page in HOMES.items():
             html = page.read_text(encoding="utf-8")
             self.assertNotIn("os.js", html, lang)
-            self.assertIsNone(re.search(r"<[^>]*\shidden[\s>=]", re.search(r"<main>.*</main>", html, re.S).group(0)), lang)  # nothing hidden by system
+            main = re.search(r"<main>.*</main>", html, re.S).group(0)
+            # GTM-206: the GitHub star card is hidden until a download click, not by system; it is left out here.
+            main = re.sub(r'<div class="star-card" id="star-card" role="status" hidden>', "", main)
+            self.assertIsNone(re.search(r"<[^>]*\shidden[\s>=]", main), lang)  # nothing hidden by system
             self.assertNotIn({"en": "Download for Windows", "es": "Descargar para Windows", "ca": "Descarrega per a Windows"}[lang], html, lang)
             self.assertNotIn({"en": "Or install it from the Microsoft Store", "es": "O instálalo desde la Microsoft Store",
                               "ca": "O instal·la'l des de la Microsoft Store"}[lang], html, lang)

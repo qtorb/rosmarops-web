@@ -131,7 +131,7 @@ def exercise(t, lang):
     E = t["exercise"]
     steps = []
     for k, s in enumerate(E["steps"]):
-        extra = (f'<br><a class="cs-btn primary" href="{esc(DOWNLOAD[lang])}" target="_blank" rel="nofollow noopener">'
+        extra = (f'<br><a class="cs-btn primary" data-star-block href="{esc(DOWNLOAD[lang])}" target="_blank" rel="nofollow noopener">'
                  f'{esc(E["download"])}</a>') if k == 0 else ""
         steps.append(f"<li>{fmt(s)}{extra}</li>")
     intro = f"<p>{esc(E['intro'])}</p>" if E["intro"] else ""
@@ -201,8 +201,9 @@ def page_html(lang, data):
 
 
 def pages(data):
+    import star_card  # GTM-206: the GitHub star card under the download button
     check(data)
-    return {data["path"][lang]: page_html(lang, data) for lang in LANGS}
+    return {data["path"][lang]: star_card.apply(page_html(lang, data), lang) for lang in LANGS}
 
 
 def build(site=SITE, data=None):
