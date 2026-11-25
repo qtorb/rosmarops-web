@@ -25,6 +25,17 @@ The glossary pages (`/glossary/`, `/es/glosario/`, `/ca/glossari/`), the «i» h
 - The «i» next to a term on a page links to that same address (GTM-206: before, it always used the `id`, so in Spanish and Catalan it could point to a place that does not exist on the page).
 - Tests: `tools/glossary/test_build.py` checks that the «i» uses the term's own address, and that every glossary link on the site points to an address that exists.
 
+## The course (`observatory/course_pages.py`)
+
+Lesson 2 of the public course, «The chain», lives at `/course/the-chain/`, `/es/curso/la-cadena/` and `/ca/curs/la-cadena/` (GTM-206).
+
+- Its texts are in `observatory/data/course/the-chain.json`, copied literally from the signed documents in rosmarops-vigil (see the file's `_source`). Change the signed document first, then this file. `**x**` is bold and `` `x` `` is code. To check that every text is still literal, run `python3 tools/course/check_signed.py <path to a copy of rosmarops-vigil>` by hand (CI cannot read that repository); the footer is checked against `docs/briefs/GTM-215.md`, the rest against the two lesson documents.
+- `observatory/build.py` writes the three pages (or run `python3 observatory/course_pages.py`). Their styles and script are `site/assets/course/chain.css` and `chain.js`, which read the texts from the page itself.
+- What a visitor does in the lesson (the permissions they try, their answers in the game and the test) stays in the page: nothing goes into the address, the browser's storage or cookies, and nothing is sent. The page still counts a visit like every page of the site.
+- The download button in the exercise sends `from=course`, which the counter keeps as its own source, `course`.
+- Not open yet: the pages carry `noindex`, no page or menu links to them, and they are not in the sitemap or `llms.txt`. The deploy fails if the `noindex` goes missing. Opening them is Albert's decision.
+- Tests: `observatory/tests/test_course_pages.py`. Captures of this version: `docs/captures/gtm-206-leccion-2/`.
+
 ## Ownership files at the root of the site
 
 Two files at the root of `site/` prove to search engines that the site is ours. They are not linked from any page, are not in the sitemap, carry no script and are not counted as visits. Each has its own `put` line in `.github/workflows/deploy.yml`. Do not delete them: the search engines check them again.
