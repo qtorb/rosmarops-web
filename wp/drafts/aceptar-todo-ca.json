@@ -1,0 +1,23 @@
+{
+  "id": "aceptar-todo",
+  "lang": "ca",
+  "slug": "el-boto-dacceptar-ho-tot",
+  "title": "El botó d'acceptar-ho tot: què has aprovat",
+  "excerpt": "Gairebé tots els agents d'IA que programen tenen un mode que se salta les preguntes.",
+  "content": "aceptar-todo-ca.html",
+  "seo_title": "El botó d'acceptar-ho tot: què has aprovat",
+  "seo_description": "Gairebé tots els agents d'IA que programen tenen un mode que se salta les preguntes.",
+  "translations": {
+    "en": "https://rosmarops.com/blog/the-accept-everything-button/",
+    "es": "https://rosmarops.com/es/blog/el-boton-de-aceptarlo-todo/"
+  },
+  "category": "notes-de-camp",
+  "tags": {
+    "claude-code": "Claude Code",
+    "codex": "Codex",
+    "cursor": "Cursor"
+  },
+  "image": "rosmarops-img-23-aceptarlo-todo.jpg",
+  "alt": "Un gran botó amb un doble check, premut sobre la seva base, envoltat de bombolles de diàleg que s'esvaeixen.",
+  "publish_at": "2026-11-30T08:00:00+01:00"
+}

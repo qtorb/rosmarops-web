@@ -1,0 +1,21 @@
+{
+  "id": "week",
+  "lang": "en",
+  "slug": "the-week-in-agents-21-to-27-november",
+  "title": "The week in agents: 21 to 27 November",
+  "excerpt": "This week the Observatory recorded 8 changes in 8 agents: versions, permissions and notices, each with its source.",
+  "content": "week-en.html",
+  "seo_title": "The week in agents: 21 to 27 November",
+  "seo_description": "This week the Observatory recorded 8 changes in 8 agents: versions, permissions and notices, each with its source.",
+  "translations": {
+    "es": "https://rosmarops.com/es/blog/la-semana-en-agentes-del-21-al-27-de-noviembre/",
+    "ca": "https://rosmarops.com/ca/blog/la-setmana-en-agents-del-21-al-27-de-novembre/"
+  },
+  "category": "field-notes",
+  "tags": {
+    "observatory": "Observatory"
+  },
+  "image": "rosmarops-img-22-semana-en-agentes.jpg",
+  "alt": "A weekly calendar with seven columns; some days hold stacked coloured cards, and a sprig of rosemary sits in one corner.",
+  "publish_at": "2026-11-27T08:00:00+01:00"
+}

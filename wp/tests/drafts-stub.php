@@ -28,6 +28,7 @@ function get_posts($q) {
 	}
 	return $out;
 }
+function wp_timezone() { return new DateTimeZone('Europe/Madrid'); }
 function wp_insert_post($args, $wp_error = false) {
 	if (getenv('DRAFTS_FAIL')) return new WP_Error();
 	$id = count($GLOBALS['db']['posts']) + 100;

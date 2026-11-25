@@ -1,0 +1,79 @@
+<!-- wp:paragraph -->
+<p>Gairebé tots els agents d'IA que programen tenen un mode que se salta les preguntes. Aquí tens què fa, qui el pot encendre i com saber si està encès al teu ordinador.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>Vídeo (en castellà): <a href="https://www.youtube.com/watch?v=JUpfX5Gt9CI">https://www.youtube.com/watch?v=JUpfX5Gt9CI</a></p>
+<!-- /wp:paragraph -->
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Què fa</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>De fàbrica, un agent com Claude Code, Codex o Gemini CLI et pregunta abans de fer res important: executar una ordre, tocar un fitxer, sortir a internet. Tu llegeixes i acceptes. És més lent, però decideixes tu.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>El botó d'acceptar-ho tot treu aquestes preguntes. L'agent fa el que creu necessari, sense esperar-te.</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Com es diu a cada agent</h2>
+<!-- /wp:heading -->
+<!-- wp:list -->
+<ul class="wp-block-list">
+<li><strong>Claude Code:</strong> l'opció d'arrencada <code>--dangerously-skip-permissions</code>, que el posa en el mode <code>bypassPermissions</code>.</li>
+<li><strong>Gemini CLI:</strong> el mode YOLO (<code>--yolo</code>).</li>
+<li><strong>Codex:</strong> l'opció <code>--dangerously-bypass-approvals-and-sandbox</code>, que se salta alhora les aprovacions i el sandbox. A la seva configuració, <code>sandbox_mode: danger-full-access</code> i <code>approval_policy</code>.</li>
+<li><strong>Cursor:</strong> el mode «Run Everything», en lloc de la llista d'ordres permeses.</li>
+<li><strong>Cline:</strong> el seu interruptor YOLO.</li>
+</ul>
+<!-- /wp:list -->
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Per què existeix</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>Perquè funciona. Un agent que no pregunta acaba abans i treballa encara que no hi siguis. Per a una tasca curta, en una carpeta sense res important, pot tenir sentit.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>El problema és el que queda al seu abast. Un agent sense preguntes treballa amb els teus permisos: veu la teva carpeta personal, les teves claus i internet. Si llegeix una instrucció amagada en una pàgina o en un README, l'executa sense que ningú la vegi passar.</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Qui el pot encendre</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>Hi ha tres maneres, i només una és evident.</p>
+<!-- /wp:paragraph -->
+<!-- wp:list {"ordered":true} -->
+<ol class="wp-block-list">
+<li><strong>Tu.</strong> Arrenques l'agent amb aquesta opció o la deixes posada a la teva configuració.</li>
+<li><strong>Un orquestrador.</strong> Alguns llancen els teus agents amb el botó ja premut. Paperclip, per exemple, arrenca Claude Code amb <code>--dangerously-skip-permissions</code>. Més a <a href="https://rosmarops.com/ca/orquestradors-dagents/">orquestradors d'agents</a>.</li>
+<li><strong>Un fitxer dins del projecte.</strong> Aquí cada agent és diferent:
+   - Des de la versió 2.1.257, Claude Code no deixa que la configuració d'un projecte activi el mode sense preguntes: <code>bypassPermissions</code> i <code>auto</code> només compten si vénen de la teva configuració d'usuari o de la gestionada. El projecte sí que li pot donar permís per a ordres concretes.
+   - Codex només carrega la configuració d'un projecte si aquest projecte és de confiança.
+   - Gemini CLI només té en compte els ajustos d'un projecte si la carpeta és de confiança.</li>
+</ol>
+<!-- /wp:list -->
+<!-- wp:paragraph -->
+<p>Per això convé pensar-s'ho dues vegades abans de confiar en un repositori que acabes de clonar.</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading -->
+<h2 class="wp-block-heading">La teva empresa el pot apagar</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>A Claude Code, la configuració gestionada l'apaga per a tothom amb <code>disableBypassPermissionsMode</code>. A Gemini CLI, amb <code>security.disableYoloMode</code>. Si treballes en equip, val la pena preguntar-ho.</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Com fer-lo servir amb cap</h2>
+<!-- /wp:heading -->
+<!-- wp:list {"ordered":true} -->
+<ol class="wp-block-list">
+<li>No el deixis encès per defecte: encén-lo per a una tasca i apaga'l després.</li>
+<li>Si el fas servir, que sigui amb el <a href="https://rosmarops.com/ca/sandbox/">sandbox</a> encès i en una carpeta sense claus.</li>
+<li>Abans de confiar en un projecte, mira quina configuració porta.</li>
+<li>Si fas servir un orquestrador, mira com llança els teus agents.</li>
+<li>Comprova de tant en tant quin dels teus agents el té encès.</li>
+</ol>
+<!-- /wp:list -->
+<!-- wp:paragraph -->
+<p>Per a l'últim hi ha RosmarOps: revisa la configuració dels teus agents i et diu quins poden actuar sense preguntar-te, des d'on es va encendre i què tenen al seu abast, sense que res surti del teu ordinador.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>El botó d'acceptar-ho tot no és dolent. És potent. El que importa és saber quan està premut i qui el va prémer.</p>
+<!-- /wp:paragraph -->
