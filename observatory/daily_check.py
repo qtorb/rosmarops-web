@@ -40,6 +40,8 @@ ALLOWED_HOSTS = [
     "trae.cn", "moonshotai.github.io", "codebuddy.cn", "qoder.cn",  # F32-F36 (GTM-93)
     "ampcode.com", "warp.dev", "jetbrains.com", "perplexity.ai",  # F39-F41 and F43 (GTM-98)
     "x.ai",  # F44 Grok Build (GTM-99)
+    "help.make.com", "multica.ai", "lindy.ai", "relevanceai.com",  # F68-F71 (GTM-208)
+    "gumloop.com",  # F72 (GTM-212); F73 Dify is on github.com
 ]
 ID_RE = re.compile(r"MAL-\d{4}-\d+|GHSA(?:-[23456789cfghjmpqrvwx]{4}){3}|CVE-\d{4}-\d{4,}")
 VERSION_RE = re.compile(r"\d+(?:\.\d+)+")

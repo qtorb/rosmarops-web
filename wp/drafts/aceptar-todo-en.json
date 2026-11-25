@@ -1,0 +1,23 @@
+{
+  "id": "aceptar-todo",
+  "lang": "en",
+  "slug": "the-accept-everything-button",
+  "title": "The accept-everything button: what you have approved",
+  "excerpt": "Almost every AI coding agent has a mode that skips the questions.",
+  "content": "aceptar-todo-en.html",
+  "seo_title": "The accept-everything button: what you have approved",
+  "seo_description": "Almost every AI coding agent has a mode that skips the questions.",
+  "translations": {
+    "es": "https://rosmarops.com/es/blog/el-boton-de-aceptarlo-todo/",
+    "ca": "https://rosmarops.com/ca/blog/el-boto-dacceptar-ho-tot/"
+  },
+  "category": "field-notes",
+  "tags": {
+    "claude-code": "Claude Code",
+    "codex": "Codex",
+    "cursor": "Cursor"
+  },
+  "image": "rosmarops-img-23-aceptarlo-todo.jpg",
+  "alt": "A large button with a double check mark, pressed down on its base, surrounded by fading speech bubbles.",
+  "publish_at": "2026-11-30T08:00:00+01:00"
+}

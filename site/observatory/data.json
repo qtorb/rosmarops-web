@@ -3428,6 +3428,33 @@
             "how": "official_changelog"
           },
           "rosmarops_impact": "none"
+        },
+        {
+          "id": "chg-claude-code-2-1-332-pre-skill-hook",
+          "version": "2.1.332",
+          "date": "2026-11-25",
+          "category": "hooks",
+          "before": {
+            "en": "Before 2.1.332, the Claude Code changelog listed no hook event that runs before a skill's inline shell commands.",
+            "es": "Antes de 2.1.332, el changelog de Claude Code no recogía ningún evento de hook que se ejecutara antes de los comandos de shell en línea de una skill.",
+            "ca": "Abans de 2.1.332, el changelog de Claude Code no recollia cap esdeveniment de hook que s'executés abans de les ordres de shell en línia d'una skill."
+          },
+          "after": {
+            "en": "From 2.1.332, a PreSkillShellCommand hook event can block a skill's or command's inline shell commands while it loads, according to the changelog.",
+            "es": "Desde 2.1.332, un evento de hook PreSkillShellCommand puede bloquear los comandos de shell en línea de una skill o un comando mientras se carga, según el changelog.",
+            "ca": "Des de 2.1.332, un esdeveniment de hook PreSkillShellCommand pot bloquejar les ordres de shell en línia d'una skill o d'una ordre mentre es carrega, segons el changelog."
+          },
+          "source": {
+            "url": "https://code.claude.com/docs/en/changelog#2-1-332",
+            "official": true,
+            "accessed_at": "2026-11-25"
+          },
+          "verified": {
+            "by": "writer",
+            "at": "2026-11-25",
+            "how": "official_changelog"
+          },
+          "rosmarops_impact": "none"
         }
       ],
       "ratings": [],
@@ -4881,6 +4908,28 @@
     {
       "schema_version": 1,
       "agent": {
+        "id": "dify",
+        "name": "Dify",
+        "vendor": "Dify",
+        "kinds": [
+          "agent_builder"
+        ],
+        "platforms": [
+          "web"
+        ],
+        "local_footprint": "partial",
+        "rosmarops": {
+          "status": "not_supported"
+        },
+        "reviewed_at": "2026-11-25"
+      },
+      "versions": [],
+      "changes": [],
+      "ratings": []
+    },
+    {
+      "schema_version": 1,
+      "agent": {
         "id": "copilot-coding-agent",
         "name": "GitHub Copilot cloud agent",
         "vendor": "GitHub",
@@ -4922,7 +4971,35 @@
         "reviewed_at": "2026-10-30"
       },
       "versions": [],
-      "changes": [],
+      "changes": [
+        {
+          "id": "chg-goose-1-61-0-mcp-headers",
+          "version": "v1.61.0",
+          "date": "2026-11-25",
+          "category": "credentials",
+          "before": {
+            "en": "Before v1.61.0, the Goose release notes did not say that all headers in mcpServers configurations received over ACP are treated as secrets.",
+            "es": "Antes de v1.61.0, las notas de versión de Goose no decían que todas las cabeceras de las configuraciones mcpServers recibidas por ACP se traten como secretos.",
+            "ca": "Abans de v1.61.0, les notes de versió de Goose no deien que totes les capçaleres de les configuracions mcpServers rebudes per ACP es tractin com a secrets."
+          },
+          "after": {
+            "en": "From v1.61.0, Goose handles every header in mcpServers configurations received over ACP as a secret, according to its release notes.",
+            "es": "Desde v1.61.0, Goose trata como secreto cada cabecera de las configuraciones mcpServers recibidas por ACP, según sus notas de versión.",
+            "ca": "Des de v1.61.0, Goose tracta com a secret cada capçalera de les configuracions mcpServers rebudes per ACP, segons les seves notes de versió."
+          },
+          "source": {
+            "url": "https://github.com/aaif-goose/goose/releases/tag/v1.61.0",
+            "official": true,
+            "accessed_at": "2026-11-25"
+          },
+          "verified": {
+            "by": "writer",
+            "at": "2026-11-25",
+            "how": "official_changelog"
+          },
+          "rosmarops_impact": "none"
+        }
+      ],
       "ratings": []
     },
     {
@@ -5080,6 +5157,28 @@
     {
       "schema_version": 1,
       "agent": {
+        "id": "gumloop",
+        "name": "Gumloop",
+        "vendor": "Gumloop",
+        "kinds": [
+          "agent_builder"
+        ],
+        "platforms": [
+          "web"
+        ],
+        "local_footprint": "partial",
+        "rosmarops": {
+          "status": "not_supported"
+        },
+        "reviewed_at": "2026-11-25"
+      },
+      "versions": [],
+      "changes": [],
+      "ratings": []
+    },
+    {
+      "schema_version": 1,
+      "agent": {
         "id": "junie",
         "name": "Junie",
         "vendor": "JetBrains",
@@ -5099,7 +5198,35 @@
         "reviewed_at": "2026-11-06"
       },
       "versions": [],
-      "changes": [],
+      "changes": [
+        {
+          "id": "chg-junie-26-11-3-approval",
+          "version": "26.11.3",
+          "date": "2026-11-24",
+          "category": "approval_mode",
+          "before": {
+            "en": "Before 26.11.3, some Junie commands could run without approval, according to the 26.11.3 release notes.",
+            "es": "Antes de 26.11.3, algunos comandos de Junie podían ejecutarse sin aprobación, según las notas de la versión 26.11.3.",
+            "ca": "Abans de 26.11.3, algunes ordres de Junie es podien executar sense aprovació, segons les notes de la versió 26.11.3."
+          },
+          "after": {
+            "en": "From 26.11.3, Junie fixes the issue that allowed some commands to run without approval, according to its release notes.",
+            "es": "Desde 26.11.3, Junie corrige el fallo que permitía ejecutar algunos comandos sin aprobación, según sus notas de versión.",
+            "ca": "Des de 26.11.3, Junie corregeix l'error que permetia executar algunes ordres sense aprovació, segons les seves notes de versió."
+          },
+          "source": {
+            "url": "https://junie.jetbrains.com/whats-new",
+            "official": true,
+            "accessed_at": "2026-11-25"
+          },
+          "verified": {
+            "by": "writer",
+            "at": "2026-11-25",
+            "how": "official_changelog"
+          },
+          "rosmarops_impact": "none"
+        }
+      ],
       "ratings": []
     },
     {
@@ -5290,6 +5417,50 @@
     {
       "schema_version": 1,
       "agent": {
+        "id": "lindy",
+        "name": "Lindy",
+        "vendor": "Lindy",
+        "kinds": [
+          "agent_builder"
+        ],
+        "platforms": [
+          "web"
+        ],
+        "local_footprint": "partial",
+        "rosmarops": {
+          "status": "not_supported"
+        },
+        "reviewed_at": "2026-11-25"
+      },
+      "versions": [],
+      "changes": [],
+      "ratings": []
+    },
+    {
+      "schema_version": 1,
+      "agent": {
+        "id": "make",
+        "name": "Make",
+        "vendor": "Make",
+        "kinds": [
+          "workflow_automation"
+        ],
+        "platforms": [
+          "web"
+        ],
+        "local_footprint": "partial",
+        "rosmarops": {
+          "status": "not_supported"
+        },
+        "reviewed_at": "2026-11-25"
+      },
+      "versions": [],
+      "changes": [],
+      "ratings": []
+    },
+    {
+      "schema_version": 1,
+      "agent": {
         "id": "autogen",
         "name": "Microsoft Agent Framework (AutoGen)",
         "vendor": "Microsoft",
@@ -5306,6 +5477,53 @@
           "status": "not_supported"
         },
         "reviewed_at": "2026-11-20"
+      },
+      "versions": [],
+      "changes": [],
+      "ratings": []
+    },
+    {
+      "schema_version": 1,
+      "agent": {
+        "id": "copilot-studio",
+        "name": "Microsoft Copilot Studio",
+        "vendor": "Microsoft",
+        "kinds": [
+          "agent_builder"
+        ],
+        "platforms": [
+          "web"
+        ],
+        "local_footprint": "partial",
+        "rosmarops": {
+          "status": "not_supported"
+        },
+        "reviewed_at": "2026-11-25"
+      },
+      "versions": [],
+      "changes": [],
+      "ratings": []
+    },
+    {
+      "schema_version": 1,
+      "agent": {
+        "id": "multica",
+        "name": "Multica",
+        "vendor": "Multica",
+        "kinds": [
+          "orchestrator"
+        ],
+        "platforms": [
+          "windows",
+          "macos",
+          "linux",
+          "web"
+        ],
+        "local_footprint": "yes",
+        "rosmarops": {
+          "status": "not_supported"
+        },
+        "reviewed_at": "2026-11-25"
       },
       "versions": [],
       "changes": [],
@@ -5639,6 +5857,28 @@
           "rosmarops_impact": "none"
         }
       ],
+      "ratings": []
+    },
+    {
+      "schema_version": 1,
+      "agent": {
+        "id": "relevance-ai",
+        "name": "Relevance AI",
+        "vendor": "Relevance AI",
+        "kinds": [
+          "agent_builder"
+        ],
+        "platforms": [
+          "web"
+        ],
+        "local_footprint": "partial",
+        "rosmarops": {
+          "status": "not_supported"
+        },
+        "reviewed_at": "2026-11-25"
+      },
+      "versions": [],
+      "changes": [],
       "ratings": []
     },
     {

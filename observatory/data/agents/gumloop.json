@@ -1,0 +1,127 @@
+{
+  "schema_version": 1,
+  "agent": {
+    "id": "gumloop",
+    "name": "Gumloop",
+    "vendor": "Gumloop",
+    "kinds": [
+      "agent_builder"
+    ],
+    "platforms": [
+      "web"
+    ],
+    "local_footprint": "partial",
+    "rosmarops": {
+      "status": "not_supported"
+    },
+    "reviewed_at": "2026-11-25",
+    "sources": [
+      {
+        "field": "kinds",
+        "source": {
+          "url": "https://docs.gumloop.com/index.md",
+          "official": true,
+          "accessed_at": "2026-11-25"
+        },
+        "verified": {
+          "by": "writer",
+          "at": "2026-11-25",
+          "how": "official_doc"
+        }
+      },
+      {
+        "field": "local_footprint",
+        "source": {
+          "url": "https://gumloop.com/changelog",
+          "official": true,
+          "accessed_at": "2026-11-25"
+        },
+        "verified": {
+          "by": "writer",
+          "at": "2026-11-25",
+          "how": "official_changelog"
+        }
+      }
+    ]
+  },
+  "versions": [],
+  "changes": [],
+  "ratings": [],
+  "surfaces": [
+    {
+      "surface": "subagents",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://docs.gumloop.com/core-concepts/agents.md",
+        "official": true,
+        "accessed_at": "2026-11-25"
+      },
+      "verified": {
+        "by": "writer",
+        "at": "2026-11-25",
+        "how": "official_doc"
+      }
+    },
+    {
+      "surface": "permission_modes",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://docs.gumloop.com/core-concepts/human_in_the_loop.md",
+        "official": true,
+        "accessed_at": "2026-11-25"
+      },
+      "verified": {
+        "by": "writer",
+        "at": "2026-11-25",
+        "how": "official_doc"
+      }
+    },
+    {
+      "surface": "scheduled_tasks",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://docs.gumloop.com/core-concepts/agent_triggers.md",
+        "official": true,
+        "accessed_at": "2026-11-25"
+      },
+      "verified": {
+        "by": "writer",
+        "at": "2026-11-25",
+        "how": "official_doc"
+      }
+    },
+    {
+      "surface": "mcp",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://docs.gumloop.com/mcp-server/overview.md",
+        "official": true,
+        "accessed_at": "2026-11-25"
+      },
+      "verified": {
+        "by": "writer",
+        "at": "2026-11-25",
+        "how": "official_doc"
+      }
+    },
+    {
+      "surface": "browser",
+      "since": "2026-10-06",
+      "since_basis": "announced",
+      "source": {
+        "url": "https://gumloop.com/changelog",
+        "official": true,
+        "accessed_at": "2026-11-25"
+      },
+      "verified": {
+        "by": "writer",
+        "at": "2026-11-25",
+        "how": "official_changelog"
+      }
+    }
+  ]
+}

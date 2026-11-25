@@ -1,0 +1,128 @@
+{
+  "schema_version": 1,
+  "agent": {
+    "id": "multica",
+    "name": "Multica",
+    "vendor": "Multica",
+    "kinds": [
+      "orchestrator"
+    ],
+    "platforms": [
+      "windows",
+      "macos",
+      "linux",
+      "web"
+    ],
+    "local_footprint": "yes",
+    "rosmarops": {
+      "status": "not_supported"
+    },
+    "reviewed_at": "2026-11-25",
+    "sources": [
+      {
+        "field": "kinds",
+        "source": {
+          "url": "https://github.com/multica-ai/multica",
+          "official": true,
+          "accessed_at": "2026-11-25"
+        },
+        "verified": {
+          "by": "writer",
+          "at": "2026-11-25",
+          "how": "official_code"
+        }
+      },
+      {
+        "field": "platforms",
+        "source": {
+          "url": "https://multica.ai/docs/desktop-app",
+          "official": true,
+          "accessed_at": "2026-11-25"
+        },
+        "verified": {
+          "by": "writer",
+          "at": "2026-11-25",
+          "how": "official_doc"
+        }
+      },
+      {
+        "field": "local_footprint",
+        "source": {
+          "url": "https://multica.ai/docs/daemon-runtimes",
+          "official": true,
+          "accessed_at": "2026-11-25"
+        },
+        "verified": {
+          "by": "writer",
+          "at": "2026-11-25",
+          "how": "official_doc"
+        }
+      }
+    ]
+  },
+  "versions": [],
+  "changes": [],
+  "ratings": [],
+  "surfaces": [
+    {
+      "surface": "subagents",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://multica.ai/docs/providers",
+        "official": true,
+        "accessed_at": "2026-11-25"
+      },
+      "verified": {
+        "by": "writer",
+        "at": "2026-11-25",
+        "how": "official_doc"
+      }
+    },
+    {
+      "surface": "permission_modes",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://multica.ai/docs/security-model",
+        "official": true,
+        "accessed_at": "2026-11-25"
+      },
+      "verified": {
+        "by": "writer",
+        "at": "2026-11-25",
+        "how": "official_doc"
+      }
+    },
+    {
+      "surface": "scheduled_tasks",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://multica.ai/docs/autopilots",
+        "official": true,
+        "accessed_at": "2026-11-25"
+      },
+      "verified": {
+        "by": "writer",
+        "at": "2026-11-25",
+        "how": "official_doc"
+      }
+    },
+    {
+      "surface": "mcp",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://multica.ai/docs/providers",
+        "official": true,
+        "accessed_at": "2026-11-25"
+      },
+      "verified": {
+        "by": "writer",
+        "at": "2026-11-25",
+        "how": "official_doc"
+      }
+    }
+  ]
+}

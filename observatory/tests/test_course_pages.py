@@ -67,6 +67,17 @@ class Texts(unittest.TestCase):
             first = course_pages.fmt(MESSAGES[lang]["allow0"])
             self.assertIn(f'id="cs-msg" role="status" aria-live="polite">{first}</div>', page(lang), lang)
 
+    def test_footer_is_literal_from_block_178(self):
+        """GTM-215 B.5 (vigil docs/briefs/GTM-215.md): the footer names no list; the repository goes as text."""
+        want = {
+            "es": "Cada dato de esta lección sale del código de RosmarOps, que es público (github.com/qtorb/rosmarops), del Observatorio y de la documentación oficial de Claude Code.",
+            "en": "Every fact in this lesson comes from RosmarOps's code, which is public (github.com/qtorb/rosmarops), from the Observatory and from Claude Code's official documentation.",
+            "ca": "Cada dada d'aquesta lliçó surt del codi de RosmarOps, que és públic (github.com/qtorb/rosmarops), de l'Observatori i de la documentació oficial de Claude Code.",
+        }
+        for lang, text in want.items():
+            self.assertEqual(DATA[lang]["close"]["footer"], text, lang)
+            self.assertIn(course_pages.esc(text), page(lang), lang)
+
     def test_no_forbidden_words(self):
         course_pages.check(DATA)
 

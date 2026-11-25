@@ -1,0 +1,127 @@
+{
+  "schema_version": 1,
+  "agent": {
+    "id": "copilot-studio",
+    "name": "Microsoft Copilot Studio",
+    "vendor": "Microsoft",
+    "kinds": [
+      "agent_builder"
+    ],
+    "platforms": [
+      "web"
+    ],
+    "local_footprint": "partial",
+    "rosmarops": {
+      "status": "not_supported"
+    },
+    "reviewed_at": "2026-11-25",
+    "sources": [
+      {
+        "field": "kinds",
+        "source": {
+          "url": "https://learn.microsoft.com/en-us/microsoft-copilot-studio/fundamentals-what-is-copilot-studio",
+          "official": true,
+          "accessed_at": "2026-11-25"
+        },
+        "verified": {
+          "by": "writer",
+          "at": "2026-11-25",
+          "how": "official_doc"
+        }
+      },
+      {
+        "field": "local_footprint",
+        "source": {
+          "url": "https://learn.microsoft.com/en-us/microsoft-copilot-studio/configure-where-computer-use-runs",
+          "official": true,
+          "accessed_at": "2026-11-25"
+        },
+        "verified": {
+          "by": "writer",
+          "at": "2026-11-25",
+          "how": "official_doc"
+        }
+      }
+    ]
+  },
+  "versions": [],
+  "changes": [],
+  "ratings": [],
+  "surfaces": [
+    {
+      "surface": "subagents",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://learn.microsoft.com/en-us/microsoft-copilot-studio/authoring-add-other-agents",
+        "official": true,
+        "accessed_at": "2026-11-25"
+      },
+      "verified": {
+        "by": "writer",
+        "at": "2026-11-25",
+        "how": "official_doc"
+      }
+    },
+    {
+      "surface": "permission_modes",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://learn.microsoft.com/en-us/microsoft-copilot-studio/advanced-plugin-actions",
+        "official": true,
+        "accessed_at": "2026-11-25"
+      },
+      "verified": {
+        "by": "writer",
+        "at": "2026-11-25",
+        "how": "official_doc"
+      }
+    },
+    {
+      "surface": "scheduled_tasks",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://learn.microsoft.com/en-us/microsoft-copilot-studio/authoring-triggers-about",
+        "official": true,
+        "accessed_at": "2026-11-25"
+      },
+      "verified": {
+        "by": "writer",
+        "at": "2026-11-25",
+        "how": "official_doc"
+      }
+    },
+    {
+      "surface": "mcp",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://learn.microsoft.com/en-us/microsoft-copilot-studio/mcp-add-existing-server-to-agent",
+        "official": true,
+        "accessed_at": "2026-11-25"
+      },
+      "verified": {
+        "by": "writer",
+        "at": "2026-11-25",
+        "how": "official_doc"
+      }
+    },
+    {
+      "surface": "computer_use",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://learn.microsoft.com/en-us/microsoft-copilot-studio/computer-use",
+        "official": true,
+        "accessed_at": "2026-11-25"
+      },
+      "verified": {
+        "by": "writer",
+        "at": "2026-11-25",
+        "how": "official_doc"
+      }
+    }
+  ]
+}

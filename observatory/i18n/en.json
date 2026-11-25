@@ -79,6 +79,7 @@
   "index.tooling_note": "Not agents on their own: pieces developers use to build agents inside their projects. The Observatory follows their security changes.",
   "index.automation_h2": "Workflow automation",
   "index.automation_note": "Not frameworks: visual tools that connect your accounts (email, CRM, payments) and add AI steps. A flow that runs on its own acts with those accounts without asking each time.",
+  "index.builders_h2": "No-code agent builders",
   "index.cloud_h2": "In the cloud and personal agents",
   "index.cloud_note": "Agents that act with your accounts (code, email, payments, files) from the maker's servers, and personal agents that act for you in your apps. RosmarOps can't read them on your computer: their page says what they can do by default.",
   "index.candidates_h2": "Candidates we're looking at",
@@ -242,6 +243,7 @@
   "kind.personal_agent": "Personal agent",
   "kind.orchestrator": "Agent orchestrator",
   "kind.workflow_automation": "Workflow automation",
+  "kind.agent_builder": "No-code agent builder",
 
   "platform.windows": "Windows",
   "platform.macos": "macOS",

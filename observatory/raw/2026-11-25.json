@@ -1,0 +1,939 @@
+{
+  "date": "2026-11-25",
+  "collected_at": "2026-11-25T05:34:41Z",
+  "sources": [
+    {
+      "id": "F1",
+      "opened": true,
+      "reason": null,
+      "latest": "2.1.332",
+      "latest_date": "2026-11-25",
+      "new": [
+        {
+          "date": "2026-11-25",
+          "version": "2.1.332",
+          "text": "Added Added skills from MCP servers (beta). They show as server:skill in the / menu; other skills keep their names Added a PreSkillShellCommand hook event that can refuse a skill or command’s inline shell commands as it loads; on 2.1.331 and older, a settings file naming it opens a dialog at start Added “Always deliver” to the prompt for held messages from other sessions Added a footer line that stays while a flagged message has your session on a different model, until you pick one with /model Added an OpenTelemetry assistant_response event for text Claude sends through SendUserMessage or Cow…"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F2",
+      "opened": true,
+      "reason": null,
+      "latest": "v2026.11.19",
+      "latest_date": "2026-11-19",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F3",
+      "opened": true,
+      "reason": null,
+      "latest": "rust-v0.172.0",
+      "latest_date": "2026-11-23",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F4",
+      "opened": true,
+      "reason": null,
+      "latest": "v2.35.1",
+      "latest_date": "2026-11-24",
+      "new": [
+        {
+          "date": "2026-11-24",
+          "version": "v2.35.1",
+          "text": "### Resume conversations after restart, auto-opening plugin panels, and compressed diagnostic uploads This release automatically resumes active conversations after an app restart or update, opens plugin panel links directly in the side panel, and compresses background diagnostic uploads to reduce upload bandwidth while capping upload batch sizes. It includes 2 improvements and 1 fix. Improvements(2) Added automatic resumption on startup for active conversations interrupted by an app restart or update. Updated plugin panel links in live agent replies to open their view automatically in the sid…"
+        },
+        {
+          "date": "2026-11-24",
+          "version": "v1.5.16",
+          "text": "### Live step checklist, -r resume alias, ~/.agents/skills discovery, and Auto mode updates. Version 1.5.16 introduces a live step checklist during multi-step turns, -r and --resume CLI flags, discovery of user-global skills in ~/.agents/skills, and refined Auto mode permissions, alongside several fixes for macOS SSH keychain sign-in, agy acp subagent prompts, and Remote Control voice dictation. Improvements(8) Added -r and --resume command-line flag aliases for --conversation so you can resume a specific conversation by ID with agy -r <id> or agy --resume <id>. Added a live step checklist un…"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F5",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.23.4",
+      "latest_date": "2026-11-24",
+      "new": [
+        {
+          "date": "2026-11-24",
+          "version": "v0.23.4",
+          "text": "# Hermes Agent v0.23.4 **Release Date:** November 23, 2026 > Patch release. This tag rolls up the ~229 PRs merged since v0.23.3 into a stable release for the GitHub release (CLI and installers), the Microsoft Store app, Docker and Hermes Cloud. Full curated notes for this window ship with v0.24.0. <!-- HERMES_BUILDS_TABLE --> ## About this release Measured at commit `8fc03744473`, the window since v0.23.3 contains **1,122 non-merge commits** across **1,316 changed files** (+96,873 / −6,703), **229 merged PRs** and **281 closed issues**. Also in the window, undocumented here on purpose: Gemini…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F6",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-18",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F7",
+      "opened": true,
+      "reason": null,
+      "latest": "v4.1.27",
+      "latest_date": "2026-11-21",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F8",
+      "opened": true,
+      "reason": null,
+      "latest": "v2.1.0-vscode",
+      "latest_date": "2026-06-19",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F9",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.5.0",
+      "latest_date": "2026-11-09",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F10",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-25",
+      "new": [
+        {
+          "date": "2026-11-24",
+          "version": null,
+          "text": "MAL-0000-ghsa-malware-c63b25e525cc02dc @apexfdn/copilot-mcp: Malware in @apexfdn/copilot-mcp"
+        },
+        {
+          "date": "2026-11-24",
+          "version": null,
+          "text": "MAL-0000-ghsa-malware-fa0ea60717f1b2ab @guangnao/claude-cli: Malware in @guangnao/claude-cli"
+        },
+        {
+          "date": "2026-11-24",
+          "version": null,
+          "text": "MAL-0000-ghsa-malware-f7ba91bd24837d17 dowload_ebok_the_waitangi_tribunal_by_janine_hayward_nicola_wheen_xn8nn: Malware in dowload_ebok_the_waitangi_tribunal_by_janine_hayward_nicola_wheen_xn8nn"
+        }
+      ],
+      "ids": [
+        "MAL-0000-ghsa-malware-c63b25e525cc02dc",
+        "MAL-0000-ghsa-malware-f7ba91bd24837d17",
+        "MAL-0000-ghsa-malware-fa0ea60717f1b2ab"
+      ],
+      "read_with": "git"
+    },
+    {
+      "id": "F11",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.71.1",
+      "latest_date": "2026-11-24",
+      "new": [
+        {
+          "date": "2026-11-24",
+          "version": "v0.71.1",
+          "text": "## What's Changed * fix(patch): cherry-pick aafdfdf to release/v0.71.0-pr-30420 to patch version v0.71.0 and create version 0.71.1 by @gemini-cli-robot in https://github.com/google-gemini/gemini-cli/pull/30429 **Full Changelog**: https://github.com/google-gemini/gemini-cli/compare/v0.71.0...v0.71.1"
+        },
+        {
+          "date": "2026-11-24",
+          "version": "v0.71.0",
+          "text": "## What's Changed * Changelog for v0.70.0-preview.0 by @gemini-cli-robot in https://github.com/google-gemini/gemini-cli/pull/30361 * chore(release): bump version to 0.71.0-nightly.20261118.g615d6bc8c by @gemini-cli-robot in https://github.com/google-gemini/gemini-cli/pull/30366 * Changelog for v0.69.0 by @gemini-cli-robot in https://github.com/google-gemini/gemini-cli/pull/30365 * fix(core,cli): parse PowerShell commands asynchronously to prevent UI spinner freeze by @tadipavan in https://github.com/google-gemini/gemini-cli/pull/30334 * chore(gcp): push development worker to private artifact…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F12",
+      "opened": true,
+      "reason": null,
+      "latest": "1.0.115",
+      "latest_date": "2026-11-23",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F13",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-24",
+      "new": [
+        {
+          "date": "2026-11-24",
+          "version": null,
+          "text": "Monthly recap is out of beta The monthly recap (Reflect, in Settings) is now out of beta for Free, Pro, Max, and Ultra plans on the web, Claude Desktop, and Claude for iOS and Android. Recaps can now draw on your Claude Code sessions and Claude Cowork tasks in the cloud, and you can delete your stored recaps from the page. For more information, see See your monthly recap. Install artifacts as apps (beta) You can now install an artifact that Claude makes for you as an app on your Mac or Windows computer. It gets its own window and icon, opens like any other app, and can even interact with the…"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F14",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-24",
+      "new": [
+        {
+          "date": "2026-11-24",
+          "version": null,
+          "text": "MAL-2026-20505 @apexfdn/copilot-mcp: Malicious code in @apexfdn/copilot-mcp (npm)"
+        },
+        {
+          "date": "2026-11-24",
+          "version": null,
+          "text": "MAL-2026-20446 dowload_ebok_the_waitangi_tribunal_by_janine_hayward_nicola_wheen_xn8nn: Malicious code in dowload_ebok_the_waitangi_tribunal_by_janine_hayward_nicola_wheen_xn8nn (npm)"
+        }
+      ],
+      "ids": [
+        "MAL-2026-20446",
+        "MAL-2026-20505"
+      ],
+      "read_with": "curl"
+    },
+    {
+      "id": "F15",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-25",
+      "new": [
+        {
+          "date": "2026-11-25",
+          "version": null,
+          "text": "CVE-2026-133462 [MCP]: AutoGPT is a workflow automation platform for creating, deploying, and managing continuous artificial intelligence agents. From 0.6.49 before 0.11.0, the MCPToolBlock auto-lookup allows a shared agent's author to use the MCP credentials of the user who runs it. Anyone who ran a shared agent containing an MCPToolBlock node, and had already connected the MCP server URL that the node names, had that connection used for any read, write, or delete the server exposes, with the result sent to a host chosen by the author. This issue is fixed in version 0.11.0."
+        },
+        {
+          "date": "2026-11-25",
+          "version": null,
+          "text": "CVE-2026-136620 [MCP]: pain001-mcp 0.0.72 before 0.0.80 contains a path traversal vulnerability in the commit_payment_batch MCP tool that allows attackers to write files outside any output directory via output_file_path. Attackers can stage a batch, reuse the self-issued confirmation_token, and supply absolute, dot-dot, or symlinked paths to create or overwrite server-writable files with generated XML."
+        },
+        {
+          "date": "2026-11-25",
+          "version": null,
+          "text": "CVE-2026-136630 [MCP]: Electerm before 5.9.0 contains an origin validation vulnerability in the MCP Server widget that allows remote attackers to execute commands by bypassing Host and Origin checks through DNS rebinding. Attackers can lure users to a page that rebinds to 127.0.0.1 and calls unauthenticated MCP tools on port 30837 to run OS commands locally and on open SSH sessions."
+        },
+        {
+          "date": "2026-11-25",
+          "version": null,
+          "text": "CVE-2026-132260 [Claude Code]: AutoGPT is a workflow automation platform for creating, deploying, and managing continuous artificial intelligence agents. From 0.4.2 before 0.11.0, the E2B code-execution blocks ExecuteCodeBlock, InstantiateCodeSandboxBlock, and ClaudeCodeBlock can leave sandboxes running on the operator's shared E2B credential for up to the sandbox's full timeout, while users are billed only for the block's run time. Any user with a positive credit balance can keep sandboxes running for up to 24 hours on a Pro plan for a flat 1 credit, and each run adds another sandbox. This i…"
+        },
+        {
+          "date": "2026-11-24",
+          "version": null,
+          "text": "CVE-2026-130178 [MCP]: AutoGPT is a workflow automation platform for creating, deploying, and managing continuous artificial intelligence agents. In versions 0.7.1 through 0.8.4, an incomplete IPv6 blocklist in AutoGPT's outbound SSRF protection allows authenticated users to reach local or private network services. Specifically, _is_ip_blocked and BLOCKED_IP_NETWORKS in autogpt_platform/backend/backend/util/request.py fail to reject the IPv6 unspecified address :: (which connects to ::1 on Linux) as well as 6to4, NAT64, Teredo, and deprecated IPv4-compatible IPv6 encodings. An attacker can pa…"
+        },
+        {
+          "date": "2026-11-24",
+          "version": null,
+          "text": "CVE-2026-135747 [MCP]: Apache IoTDB MCP Server logs the IoTDB connection password in plaintext during startup, allowing anyone with access to the logs to obtain the credential. This issue affects Apache IoTDB MCP Server: through 0.2.0. Users are recommended to upgrade to version 0.3.0, which fixes the issue."
+        },
+        {
+          "date": "2026-11-24",
+          "version": null,
+          "text": "CVE-2026-136133 [MCP]: NocoDB before 2026.10.2 contains a denial of service vulnerability in passwordForgot() that allows unauthenticated attackers to revoke a user's sessions by requesting a password reset. Attackers who know a user's email can repeatedly request resets to sign out users, including super-admins, and permanently destroy their OAuth and MCP application authorizations."
+        },
+        {
+          "date": "2026-11-24",
+          "version": null,
+          "text": "CVE-2026-135614 [MCP]: Improper removal of sensitive information in the troubleshooting tool in the Amazon ECS MCP Server (awslabs.ecs-mcp-server) before 0.1.36 might allow a remote actor who can influence the agent's input to obtain cleartext container environment variable values and secret references from ECS task definitions, which the server's sensitive data setting is intended to redact, via prompt injection that causes the agent to request troubleshooting guidance. To remediate this issue, users should upgrade to version 0.1.36 or later and rotate any credentials stored as plaintext tas…"
+        },
+        {
+          "date": "2026-11-24",
+          "version": null,
+          "text": "CVE-2026-136441 [MCP]: Bytebase DBHub MCP Incorrect Authorization Authentication Bypass Vulnerability. This vulnerability allows remote attackers to bypass authentication on affected installations of Bytebase DBHub. Authentication is not required to exploit this vulnerability. The specific flaw exists within the implementation of the MCP server. The issue results from an incorrect authorization decision when parsing untrusted SQL. An attacker can leverage this vulnerability to bypass authentication on the system. Was ZDI-CAN-27635."
+        },
+        {
+          "date": "2026-11-24",
+          "version": null,
+          "text": "CVE-2026-133449 [MCP]: AutoGPT is a workflow automation platform for creating, deploying, and managing continuous artificial intelligence agents. In versions 0.6.1 through 0.10.0, credentials are sent to a third party when a redirect's Location header hides the new host behind a backslash. A signed-in user who connects an MCP server URL, or runs a shared or marketplace workflow with a host-scoped credential, can have that credential delivered to a third party if the host responds with a redirect whose Location the other party influenced. This issue is fixed in version 0.11.0."
+        },
+        {
+          "date": "2026-11-24",
+          "version": null,
+          "text": "CVE-2026-136535 [MCP]: LiteLLM MCP Command Injection Remote Code Execution Vulnerability. This vulnerability allows remote attackers to execute arbitrary code on affected installations of LiteLLM. Authentication is required to exploit this vulnerability. The specific flaw exists within the handling of MCP stdio configurations. The issue results from the lack of proper validation of a user-supplied string before using it to execute a system call. An attacker can leverage this vulnerability to execute code in the context of the service account. Was ZDI-CAN-31815."
+        },
+        {
+          "date": "2026-11-24",
+          "version": null,
+          "text": "CVE-2026-133448 [Claude Code]: AutoGPT is a workflow automation platform for creating, deploying, and managing continuous artificial intelligence agents. In versions 0.7.1 through 0.8.4, chat and prompt text passed to the Claude Code CLI is pre-processed before reaching the model, bypassing AutoPilot's tool allow-list and PreToolUse hooks. In both AutoPilot's Claude Agent SDK path and the graph orchestrator block's extended_thinking SDK mode, messages starting with / execute CLI commands or bundled skills, while @<path> mentions read files or list directories on the host and attach the result…"
+        },
+        {
+          "date": "2026-11-24",
+          "version": null,
+          "text": "CVE-2026-124283 [Cursor]: Deserialization of Untrusted Data vulnerability in ash-project ash allows an unauthenticated attacker to execute arbitrary code or inject SQL through a forged keyset pagination cursor. Ash.Page.Keyset.filter/4 in lib/ash/page/keyset.ex decodes the client-supplied page[:after] or page[:before] cursor from Erlang external term format and rejects decoded expressions with Ash.Expr.expr?/1. That check does not examine the fields of a struct. The cast of each value against the type of its sort field accepts structs for the :ci_string, :map, :struct and :term types. A struc…"
+        },
+        {
+          "date": "2026-11-24",
+          "version": null,
+          "text": "CVE-2026-130411 [Cursor]: Deserialization of Untrusted Data vulnerability in woylie flop allows a remote attacker to execute code on the server via a crafted pagination cursor. Flop.Cursor.decode/2 in lib/flop/cursor.ex decodes the after and before parameters with :erlang.binary_to_term/2 in :safe mode. Its check rejects functions, PIDs, ports and references, but it accepts maps, and therefore structs of any module. Flop passes the decoded values to Ecto as query parameters. A cursor value that nests an Ecto.Query.DynamicExpr struct with a DBConnection.Stream struct as its binding fails the E…"
+        }
+      ],
+      "ids": [
+        "CVE-2026-124283",
+        "CVE-2026-130178",
+        "CVE-2026-130411",
+        "CVE-2026-132260",
+        "CVE-2026-133448",
+        "CVE-2026-133449",
+        "CVE-2026-133462",
+        "CVE-2026-135614",
+        "CVE-2026-135747",
+        "CVE-2026-136133",
+        "CVE-2026-136441",
+        "CVE-2026-136535",
+        "CVE-2026-136620",
+        "CVE-2026-136630"
+      ],
+      "read_with": "curl"
+    },
+    {
+      "id": "F16",
+      "opened": true,
+      "reason": null,
+      "latest": "v2.4.1",
+      "latest_date": "2026-11-23",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F17",
+      "opened": true,
+      "reason": null,
+      "latest": "3.6.0",
+      "latest_date": "2026-11-24",
+      "new": [
+        {
+          "date": "2026-11-24",
+          "version": "3.6.0",
+          "text": "3.6.0CLI ## Subagent Stop Hooks and Guided Compaction This release adds SubagentStop hooks, full saved Hook output, and instructions for /compact summaries. It also adds conversation recaps, notification controls, managed V2 controls, and an all-users Windows installer. ## Send a subagent one more instruction from a hook In a V3 session, a SubagentStop Hook runs when a dispatched subagent finishes and can send it one more instruction before its result returns. For any Hook, when its output exceeds 3,000 characters, Kiro CLI saves the full output and gives the agent its beginning with the save…"
+        },
+        {
+          "date": "2026-11-24",
+          "version": null,
+          "text": "Mobile ## Kiro Enterprise for iPhone Kiro Enterprise is now on the App Store. It's the Kiro Mobile app for organization accounts. You can start cloud sessions from your iPhone, follow the agent while it works, review its changes, and reply when it needs your input. Sessions sync with Kiro Web, so you can start a session on your phone and pick it up on the web. ## Get the app Download Kiro Enterprise from the App Store. Requires iOS 26 or later. ## Sign in with your organization Kiro Enterprise works with AWS IAM Identity Center and external identity providers such as Okta and Microsoft Entra…"
+        },
+        {
+          "date": "2026-11-24",
+          "version": null,
+          "text": "General ## Share Kiro with Friends and Family Using Referral Codes Enterprise users can now generate referral codes in Kiro Web and share them with friends and family. Each code gives 20% off any paid individual plan (Pro, Pro+, Pro Max, or Power) for 12 billing cycles. Referrals are off by default. Administrators can turn them on for their organization in Controls. Loading image... Learn more ->"
+        },
+        {
+          "date": "2026-11-24",
+          "version": "1.5.37",
+          "text": "## Remote SSH, Dev Containers, and Cloud Sessions in the IDE This release lets you work in a remote environment from Kiro IDE. Connect to your own Linux machine over SSH, open a project in its Dev Container, or open a cloud session in its own Kiro window. ## Connect to a Linux machine over SSH Video transcript The video shows a local Kiro IDE window. The user adds an SSH host, then opens Connect to Host, which lists the configured host my-remote, Enter SSH Destination…, and Add New SSH Host…. After the user selects my-remote, a new Kiro window opens on the host, shows its files, and opens ind…"
+        },
+        {
+          "date": "2026-11-24",
+          "version": "3.6.0",
+          "text": "3.6.0CLI ## Subagent Stop Hooks and Guided Compaction This release adds SubagentStop hooks, full saved Hook output, and instructions for /compact summaries. It also adds conversation recaps, notification controls, managed V2 controls, and an all-users Windows installer. ## Send a subagent one more instruction from a hook In a V3 session, a SubagentStop Hook runs when a dispatched subagent finishes and can send it one more instruction before its result returns. For any Hook, when its output exceeds 3,000 characters, Kiro CLI saves the full output and gives the agent its beginning with the save…"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F18",
+      "opened": true,
+      "reason": null,
+      "latest": "v3.14.30833",
+      "latest_date": "2026-11-20",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F19",
+      "opened": true,
+      "reason": null,
+      "latest": "v1.61.0",
+      "latest_date": "2026-11-25",
+      "new": [
+        {
+          "date": "2026-11-25",
+          "version": "v1.61.0",
+          "text": "## ✨ Features - Show the provider before the model on the model button [#13491](https://github.com/aaif-goose/goose/pull/13491) - Gemini 4 Neon added to the model catalog [#13684](https://github.com/aaif-goose/goose/pull/13684) - Treat all headers as secret in mcpServers configs over ACP [#13435](https://github.com/aaif-goose/goose/pull/13435) - MCP extension operation for goose-agent [#13620](https://github.com/aaif-goose/goose/pull/13620) - Import MCP's server.json format into goose config [#11934](https://github.com/aaif-goose/goose/pull/11934) - Compaction operation for goose-agent [#1357…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F20",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-23",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F21",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-08-19",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F22",
+      "opened": true,
+      "reason": null,
+      "latest": "v2026.11.10",
+      "latest_date": "2026-11-25",
+      "new": [
+        {
+          "date": "2026-11-25",
+          "version": "v2026.11.10",
+          "text": "## 2026.11.10 ### OpenClaw v2026.11.10 For formatted release notes, [read this release on the docs site](https://docs.openclaw.ai/releases/2026.11.10). **Release scale:** 7,671 pull requests, 633 direct commits, and 349 contributors. #### Highlights ##### Deep Research Investigate complex questions across multiple web sources or local documents without leaving your chat, returning a cited report with side-by-side quotes when sources disagree and explicit gaps where evidence is missing. Deep Research is **enabled by default** out of the box on the portable engine using your existing model and…"
+        },
+        {
+          "date": "2026-11-24",
+          "version": "v2026.11.9",
+          "text": "<!-- openclaw-release-publication:docs-v1 --> ## OpenClaw v2026.11.9 13 commits · 15 pull requests · 14 contributors ### Changes included in this release The release notes and changelog contain the same content, presented in two formats: - [Release notes](https://docs.openclaw.ai/releases/2026.11.9) — formatted for people. - [Changelog](https://raw.githubusercontent.com/openclaw/openclaw/main/CHANGELOG/2026.11.9.md) — plain Markdown for AI agents and tools. ### Thanks [@Caitoz](https://github.com/Caitoz) [@drobison00](https://github.com/drobison00) [@ericcaiwx-star](https://github.com/ericcai…"
+        },
+        {
+          "date": "2026-11-24",
+          "version": "v2026.11.8",
+          "text": "<!-- openclaw-release-publication:docs-v1 --> ## OpenClaw v2026.11.8 314 commits · 210 pull requests · 86 contributors ### Changes included in this release The release notes and changelog contain the same content, presented in two formats: - [Release notes](https://docs.openclaw.ai/releases/2026.11.8) — formatted for people. - [Changelog](https://raw.githubusercontent.com/openclaw/openclaw/main/CHANGELOG/2026.11.8.md) — plain Markdown for AI agents and tools. ### Thanks [@1052326311](https://github.com/1052326311) [@555aaditya](https://github.com/555aaditya) [@Abinithishkumarprabakaran](https…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F23",
+      "opened": true,
+      "reason": null,
+      "latest": "1.2.24",
+      "latest_date": "2026-11-20",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F24",
+      "opened": true,
+      "reason": null,
+      "latest": "1.15.45",
+      "latest_date": "2026-11-24",
+      "new": [
+        {
+          "date": "2026-11-24",
+          "version": "1.15.45",
+          "text": "## What's Changed ### Features - Add ability to save HTML or markdown output as a PDF artifact. ### Bug Fixes - Fix dependency issue by bumping e2b for Python >=3.11 to pull patched wcmatch. - Wrap file-like inputs in `normalize_input_files`. - Reject negative checkpoint prune retention counts. - Report MongoDB tool's real environment variables. - Enable Bedrock S3 uploads with `prefer_upload`. - Validate foreign models against the target schema. - Preserve narrow dimensions when resizing images. - Reject empty credentials and use constant-time comparison in server authentication. - Make `Hyp…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F25",
+      "opened": false,
+      "reason": "git ls-remote: exit 128: remote: Repository not found.\nfatal: repository 'https://github.com/microsoft/agent-framework.git/' not found",
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F26",
+      "opened": true,
+      "reason": null,
+      "latest": "2026-07-28",
+      "latest_date": "2026-07-28",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F27",
+      "opened": true,
+      "reason": null,
+      "latest": "1.147",
+      "latest_date": "2026-11-18",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F28",
+      "opened": true,
+      "reason": null,
+      "latest": "2026.11.24",
+      "latest_date": "2026-11-24",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F29",
+      "opened": true,
+      "reason": null,
+      "latest": "1.4.25",
+      "latest_date": "2026-11-25",
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "date_is_detection": true
+    },
+    {
+      "id": "F31",
+      "opened": true,
+      "reason": null,
+      "latest": "n8n@3.4.0",
+      "latest_date": "2026-11-24",
+      "new": [
+        {
+          "date": "2026-11-24",
+          "version": "n8n@3.4.0",
+          "text": "<!-- release-prerelease --> # [3.4.0](https://github.com/n8n-io/n8n/compare/n8n@2.49.0...n8n@3.4.0) (2026-11-24) ### Bug Fixes * **AI Agent Node:** Drop chat memory turns with empty content ([#43935](https://github.com/n8n-io/n8n/issues/43935)) ([9061640](https://github.com/n8n-io/n8n/commit/90616400e834fed17424f4317f8967b06d738917)) * **ai-builder:** Accept unlisted fields of open output schemas in field reference check ([#44375](https://github.com/n8n-io/n8n/issues/44375)) ([2161005](https://github.com/n8n-io/n8n/commit/2161005364c4c0a7eb12f3d56ae3cf91793346a6)) * **ai-builder:** Apply \"Alw…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F32",
+      "opened": true,
+      "reason": null,
+      "latest": "v3.4.21",
+      "latest_date": "2026-11-17",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F33",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.28.4",
+      "latest_date": "2026-11-22",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F34",
+      "opened": true,
+      "reason": null,
+      "latest": "@moonshot-ai/kimi-code@2.7.3",
+      "latest_date": "2026-11-23",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F35",
+      "opened": true,
+      "reason": null,
+      "latest": "v2.186.0",
+      "latest_date": "2026-11-23",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F36",
+      "opened": true,
+      "reason": null,
+      "latest": "1.1.97",
+      "latest_date": "2026-11-24",
+      "new": [
+        {
+          "date": "2026-11-24",
+          "version": "1.1.97",
+          "text": "CLI 1.1.97 ### 后台任务增强与综合修复 修复后台技能改进和自动记忆提取任务的可用工具信息不准确的问题，后台任务尝试调用不可用工具时，现在会收到明确的拒绝原因 修复单次 -p 调用返回首轮结果后，后台 Agent 和 Bash 任务提前终止、后续结果无法输出的问题 修复 fork 会话在自动压缩或手动执行 /compact 后回放历史消息时，助手回答中断的问题 CodeMode 支持 Bash 命令后台运行及超时转入后台，用户也可以通过追加消息提前结束等待，尚未送达的执行结果将在下一轮返回 修复远程控制会话中模型列表的 Credits 倍率显示异常的问题 新增 MCP 连接失败时的退避重试机制"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F37",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.86.2",
+      "latest_date": "2026-02-12",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F38",
+      "opened": true,
+      "reason": null,
+      "latest": "v1.45.0",
+      "latest_date": "2026-11-24",
+      "new": [
+        {
+          "date": "2026-11-24",
+          "version": "v1.45.0",
+          "text": "## 1.45.0 (2026-11-24) <!-- Release notes generated using configuration in .github/release.yml at main --> ## What's Changed ### Features * feat(factories): show a factory's worklogs, newest first by @jpshackelford in https://github.com/OpenHands/OpenHands/pull/19811 * feat(factories): delete a factory from its page by @jpshackelford in https://github.com/OpenHands/OpenHands/pull/19861 * feat(projects): OpenHands Projects in Canvas (experimental) by @enyst in https://github.com/OpenHands/OpenHands/pull/19495 * feat(projects): project conversations in the sidebar, files and PRs beside the chat…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F39",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-21",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F40",
+      "opened": true,
+      "reason": null,
+      "latest": "2026.11.19",
+      "latest_date": "2026-11-19",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F41",
+      "opened": true,
+      "reason": null,
+      "latest": "26.11.3",
+      "latest_date": "2026-11-24",
+      "new": [
+        {
+          "date": "2026-11-24",
+          "version": "26.11.3",
+          "text": "Junie Lite now runs on GPT-6 Luna Start a session with your own custom agent using junie --agent <name> /history now shows session details and lets you delete old sessions Use new /models to choose a model for each mode Security fixes, including an issue that let some commands run without approval ### Release 26.11.2 (4100.10)"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F42",
+      "opened": true,
+      "reason": null,
+      "latest": "v7.8.32",
+      "latest_date": "2026-11-20",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F44",
+      "opened": true,
+      "reason": null,
+      "latest": "v1.0.92",
+      "latest_date": "2026-11-19",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F45",
+      "opened": true,
+      "reason": null,
+      "latest": "v1.2.3",
+      "latest_date": "2026-11-18",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F46",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "watched": [
+        "Grok Bot › - [Reference](https://docs.x.ai/grok-bot/settings-and-notifications.md)"
+      ],
+      "date_is_detection": true
+    },
+    {
+      "id": "F47",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "watched": [],
+      "date_is_detection": true
+    },
+    {
+      "id": "F48",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F49",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F50",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F51",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F52",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F53",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F54",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F55",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F56",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F57",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": [
+        "use their own permission checks",
+        "They don't cover servers you start independently",
+        "provides Git authentication to sandboxed processes"
+      ]
+    },
+    {
+      "id": "F58",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F59",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F60",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F61",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F62",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F63",
+      "opened": true,
+      "reason": null,
+      "latest": "v1.4.274",
+      "latest_date": "2026-11-24",
+      "new": [
+        {
+          "date": "2026-11-24",
+          "version": "v1.4.274",
+          "text": "## App Rail is on by default for new users This minor update enables App Rail for new Orca users. App Rail saves sidebar space by putting app navigation in a compact icon rail. Existing users can turn it on under **Settings > Experimental > App rail**. ![App Rail in the Orca sidebar](https://github.com/stablyai/orca/releases/download/v1.4.274/app-rail.png) ## In v1.4.273 Bot panels show upcoming runs and clearer item questions, the mobile app adds account and group controls, and streamed browser pages scroll more smoothly. [Read the full v1.4.273 release notes](https://github.com/stablyai/orc…"
+        },
+        {
+          "date": "2026-11-24",
+          "version": "v1.4.273",
+          "text": "Thank you for using Orca and sharing your feedback. ❤️ ## Clearer bot items, more controls on the phone & smoother browser sessions ✨ - 🤖 **See what needs attention.** Bot panels show upcoming runs. Item links preview GitHub pull requests and issues on hover, and questions retain their labels when an answer is waiting to send. - 📱 **Manage more from the phone.** Open Google, GitHub and Linear account controls, find agents and groups by name, and post to groups across computers. - 🌐 **Work with streamed browser pages.** Scroll more smoothly over slower links, open select menus from the keyboar…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F64",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.17.4",
+      "latest_date": "2026-11-23",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F65",
+      "opened": true,
+      "reason": null,
+      "latest": "v1.0.20",
+      "latest_date": "2026-08-20",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F66",
+      "opened": true,
+      "reason": null,
+      "latest": "desktop-v2.0.11",
+      "latest_date": "2026-11-20",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F67",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.26.0",
+      "latest_date": "2026-11-24",
+      "new": [
+        {
+          "date": "2026-11-24",
+          "version": "v0.26.0",
+          "text": "## [0.26.0](https://github.com/openai/openai-agents-python/compare/v0.25.0...v0.26.0) (2026-11-24) ### Features * Upgrade the GPT-Live demo to 1.1 ([6c4e4a2](https://github.com/openai/openai-agents-python/commit/6c4e4a29cd08eef454db6980d74da6afc8939d24)) ### Bug Fixes * allow SDK 0.25 in the external provider example ([#6068](https://github.com/openai/openai-agents-python/issues/6068)) ([9b17858](https://github.com/openai/openai-agents-python/commit/9b17858afb5b45f48bbf695cc7c8f34778425156)) * apply the Docker removal CPU limit to path inspection ([14d13f4](https://github.com/openai/openai-ag…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    }
+  ],
+  "opened": 64,
+  "total": 65
+}

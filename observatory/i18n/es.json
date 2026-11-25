@@ -79,6 +79,7 @@
   "index.tooling_note": "No son agentes por sí solos: piezas con las que se construyen agentes dentro de cada proyecto. El observatorio sigue sus cambios de seguridad.",
   "index.automation_h2": "Automatización de flujos",
   "index.automation_note": "No son frameworks: herramientas visuales que conectan tus cuentas (correo, CRM, pagos) y añaden pasos con IA. Un flujo que se ejecuta solo actúa con esas cuentas sin preguntar cada vez.",
+  "index.builders_h2": "Constructores de agentes sin código",
   "index.cloud_h2": "En la nube y agentes personales",
   "index.cloud_note": "Agentes que actúan con tus cuentas (código, correo, pagos, archivos) desde los servidores del fabricante, y agentes personales que actúan por ti en tus aplicaciones. RosmarOps no puede leerlos en tu ordenador: su ficha dice qué pueden hacer por defecto.",
   "index.candidates_h2": "Candidatos que estamos mirando",
@@ -242,6 +243,7 @@
   "kind.personal_agent": "Agente personal",
   "kind.orchestrator": "Orquestador de agentes",
   "kind.workflow_automation": "Automatización de flujos",
+  "kind.agent_builder": "Constructor de agentes sin código",
 
   "platform.windows": "Windows",
   "platform.macos": "macOS",
