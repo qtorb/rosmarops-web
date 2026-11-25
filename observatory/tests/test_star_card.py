@@ -88,6 +88,16 @@ class Card(unittest.TestCase):
         self.assertEqual(star_card.apply(once), once)
         self.assertIn('</div><div class="star-card"', once)
 
+    def test_on_the_map_the_card_goes_under_the_whole_row(self):
+        """GTM-215 C.1: the marked block is .m-cta, so the card follows the row, not the button column."""
+        for rel in ("observatory/ai-agent-map/index.html", "es/observatorio/mapa-agentes-ia/index.html",
+                    "ca/observatori/mapa-agents-ia/index.html"):
+            s = (SITE / rel).read_text(encoding="utf-8")
+            self.assertIn('<div class="m-cta" data-star-block>', s, rel)
+            self.assertNotIn('class="m-ctab" data-star-block', s, rel)
+            row = s.index('<div class="m-cta" data-star-block>')
+            self.assertEqual(s.index('<div class="star-card"'), star_card.end_of_element(s, row), rel)
+
     def test_inside_goes_inside_the_block(self):
         s = '<html lang="es"><head></head><body><div class="m" data-star-block="inside"><a href="/es/descargar?from=x">D</a><small>s</small></div></body></html>'
         out = star_card.apply(s)

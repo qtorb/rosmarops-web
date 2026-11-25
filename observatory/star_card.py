@@ -2,8 +2,9 @@
 
 Texts and design: vigil docs/research/2026-11-24-estrella-en-github.md §2-§4 (signed by Albert, block 166).
 
-A page takes part when one of its download blocks carries data-star-block (data-star-block="inside" when the card
-has to go inside the block, as on the map, whose block sits in a row). apply() then adds, once per page:
+A page takes part when one of its download blocks carries data-star-block (data-star-block="inside" puts the card
+inside the block instead of after it; no page uses it today). On the map the marked block is the whole row `.m-cta`,
+so the card goes under the row, not inside its button column (GTM-215 C.1). apply() then adds, once per page:
 the stylesheet, one hidden card right after the first block, and the script. The script shows the card under the
 block that was clicked, the first time only. Nothing is stored in the browser and nothing is sent.
 
