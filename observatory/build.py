@@ -191,9 +191,10 @@ CLOUD_FAMILY = {"grok-bot"}
 # Frameworks: kinds has framework or agent_tooling, without orchestrator. Workflow automation: kinds has
 # workflow_automation, even with local_footprint "no". In the cloud and personal: local_footprint "no" or kinds has
 # personal_agent. On your computer: the rest (GTM-57).
-FAMILIES = ("local", "orchestrators", "tooling", "automation", "cloud")
+# GTM-208 (signed by Albert 25-11): a sixth family, no-code agent builders (kinds has agent_builder), after automation.
+FAMILIES = ("local", "orchestrators", "tooling", "automation", "builders", "cloud")
 FAMILY_H2 = {"local": "index.agents_h2", "orchestrators": "index.orchestrators_h2", "tooling": "index.tooling_h2",
-             "automation": "index.automation_h2", "cloud": "index.cloud_h2"}
+             "automation": "index.automation_h2", "builders": "index.builders_h2", "cloud": "index.cloud_h2"}
 
 
 def family(a):
@@ -204,6 +205,8 @@ def family(a):
         return "tooling"
     if "workflow_automation" in ag["kinds"]:
         return "automation"
+    if "agent_builder" in ag["kinds"]:
+        return "builders"
     if ag["local_footprint"] == "no" or "personal_agent" in ag["kinds"] or ag["id"] in CLOUD_FAMILY:
         return "cloud"
     return "local"

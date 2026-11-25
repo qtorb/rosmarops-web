@@ -997,7 +997,8 @@ class SourcesFile(unittest.TestCase):
         self.assertEqual(IDS[:29], [f"F{i}" for i in range(1, 30)])
         self.assertEqual(IDS[29:], ["F31", "F32", "F33", "F34", "F35", "F36", "F37", "F38", "F39", "F40", "F41", "F42", "F43", "F44", "F45", "F46", "F47"]
                          + [f"F{i}" for i in range(48, 63)]  # GTM-175: the sandbox templates' pages
-                         + ["F63", "F64", "F65", "F66", "F67"])  # GTM-191: the orchestrators
+                         + ["F63", "F64", "F65", "F66", "F67"]  # GTM-191: the orchestrators
+                         + ["F68", "F69", "F70", "F71"])  # GTM-208: Make, Multica, Lindy, Relevance AI
         for s in SOURCES["sources"]:
             self.assertEqual(set(s) - {"paused"}, {"id", "name", "scope", "method", "read", "public_url", "fragile", "notes"}, s["id"])
             self.assertIn(s["method"], collect.METHODS, s["id"])
@@ -1006,7 +1007,8 @@ class SourcesFile(unittest.TestCase):
             if s["name"] not in ("Hermes Agent", "Muse Code", "n8n", "TRAE", "Qwen Code", "Kimi Code", "CodeBuddy", "Qoder CN",
                                  "Aider", "OpenHands", "Amp", "Warp", "Junie", "Kilo Code", "Comet", "Grok Build", "Grok Bot",
                                  "Grok Bot: xAI documentation index", "Grok Bot: Cursor API documentation",
-                                 "Orca", "Paseo", "Claude Squad", "Paradev", "OpenAI Agents SDK") \
+                                 "Orca", "Paseo", "Claude Squad", "Paradev", "OpenAI Agents SDK",
+                                 "Make", "Multica", "Lindy", "Relevance AI") \
                     and not s["name"].startswith("Sandbox template: "):  # GTM-175: watch only, never in the daily
                 self.assertEqual(s["public_url"], checked[s["name"]], s["id"])
         self.assertEqual(len(set(SOURCES["scope_terms"])), len(SOURCES["scope_terms"]))

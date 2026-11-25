@@ -1176,6 +1176,62 @@
       "public_url": "https://github.com/openai/openai-agents-python/releases",
       "fragile": false,
       "notes": "GTM-191 (advisor, 20-11)."
+    },
+    {
+      "id": "F68",
+      "name": "Make",
+      "scope": "make",
+      "method": "changelog-web",
+      "read": {
+        "urls": [
+          "https://help.make.com/2026"
+        ]
+      },
+      "public_url": "https://help.make.com/2026",
+      "fragile": false,
+      "notes": "GTM-208 (signed by Albert 25-11): no-code agent builders and the second «agent company». Release notes one page per year (help.make.com/release-notes is only the index): the URL changes on 1 January. Entries are a title line and a date line «Month D, YYYY»."
+    },
+    {
+      "id": "F69",
+      "name": "Multica",
+      "scope": "multica",
+      "method": "changelog-web",
+      "read": {
+        "urls": [
+          "https://multica.ai/changelog"
+        ]
+      },
+      "public_url": "https://multica.ai/changelog",
+      "fragile": false,
+      "notes": "GTM-208 (signed by Albert 25-11): no-code agent builders and the second «agent company». The site changelog, not GitHub Releases: on 25-11 the releases stopped at v0.6.5 while the changelog was at v0.12.2."
+    },
+    {
+      "id": "F70",
+      "name": "Lindy",
+      "scope": "lindy",
+      "method": "changelog-web",
+      "read": {
+        "urls": [
+          "https://www.lindy.ai/changelog"
+        ]
+      },
+      "public_url": "https://www.lindy.ai/changelog",
+      "fragile": false,
+      "notes": "GTM-208 (signed by Albert 25-11): no-code agent builders and the second «agent company». No versions: dated entries «Month D, YYYY» only. Not yet read by the collector from GitHub Actions."
+    },
+    {
+      "id": "F71",
+      "name": "Relevance AI",
+      "scope": "relevance-ai",
+      "method": "changelog-web",
+      "read": {
+        "urls": [
+          "https://relevanceai.com/docs/changelog"
+        ]
+      },
+      "public_url": "https://relevanceai.com/docs/changelog",
+      "fragile": false,
+      "notes": "GTM-208 (signed by Albert 25-11): no-code agent builders and the second «agent company». No versions: dated entries «Month D, YYYY». The per-entry links do not open their entry; only the page is linked."
     }
   ]
 }

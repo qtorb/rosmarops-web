@@ -19,6 +19,7 @@ const ROSMAROPS_DAILY_HOSTS = [
 	'trae.cn', 'moonshotai.github.io', 'codebuddy.cn', 'qoder.cn', // F32-F36 (GTM-93)
 	'ampcode.com', 'warp.dev', 'jetbrains.com', 'perplexity.ai', // F39-F41 and F43 (GTM-98)
 	'x.ai', // F44 Grok Build (GTM-99)
+	'help.make.com', 'multica.ai', 'lindy.ai', 'relevanceai.com', // F68-F71 (GTM-208)
 ];
 const ROSMAROPS_DAILY_PREFIX = ['en' => '/observatory/daily/', 'es' => '/es/observatorio/diario/', 'ca' => '/ca/observatori/diari/'];
 const ROSMAROPS_DAILY_FEED_ITEMS = 30;

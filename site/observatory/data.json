@@ -5373,6 +5373,50 @@
     {
       "schema_version": 1,
       "agent": {
+        "id": "lindy",
+        "name": "Lindy",
+        "vendor": "Lindy",
+        "kinds": [
+          "agent_builder"
+        ],
+        "platforms": [
+          "web"
+        ],
+        "local_footprint": "partial",
+        "rosmarops": {
+          "status": "not_supported"
+        },
+        "reviewed_at": "2026-11-25"
+      },
+      "versions": [],
+      "changes": [],
+      "ratings": []
+    },
+    {
+      "schema_version": 1,
+      "agent": {
+        "id": "make",
+        "name": "Make",
+        "vendor": "Make",
+        "kinds": [
+          "workflow_automation"
+        ],
+        "platforms": [
+          "web"
+        ],
+        "local_footprint": "partial",
+        "rosmarops": {
+          "status": "not_supported"
+        },
+        "reviewed_at": "2026-11-25"
+      },
+      "versions": [],
+      "changes": [],
+      "ratings": []
+    },
+    {
+      "schema_version": 1,
+      "agent": {
         "id": "autogen",
         "name": "Microsoft Agent Framework (AutoGen)",
         "vendor": "Microsoft",
@@ -5389,6 +5433,53 @@
           "status": "not_supported"
         },
         "reviewed_at": "2026-11-20"
+      },
+      "versions": [],
+      "changes": [],
+      "ratings": []
+    },
+    {
+      "schema_version": 1,
+      "agent": {
+        "id": "copilot-studio",
+        "name": "Microsoft Copilot Studio",
+        "vendor": "Microsoft",
+        "kinds": [
+          "agent_builder"
+        ],
+        "platforms": [
+          "web"
+        ],
+        "local_footprint": "partial",
+        "rosmarops": {
+          "status": "not_supported"
+        },
+        "reviewed_at": "2026-11-25"
+      },
+      "versions": [],
+      "changes": [],
+      "ratings": []
+    },
+    {
+      "schema_version": 1,
+      "agent": {
+        "id": "multica",
+        "name": "Multica",
+        "vendor": "Multica",
+        "kinds": [
+          "orchestrator"
+        ],
+        "platforms": [
+          "windows",
+          "macos",
+          "linux",
+          "web"
+        ],
+        "local_footprint": "yes",
+        "rosmarops": {
+          "status": "not_supported"
+        },
+        "reviewed_at": "2026-11-25"
       },
       "versions": [],
       "changes": [],
@@ -5722,6 +5813,28 @@
           "rosmarops_impact": "none"
         }
       ],
+      "ratings": []
+    },
+    {
+      "schema_version": 1,
+      "agent": {
+        "id": "relevance-ai",
+        "name": "Relevance AI",
+        "vendor": "Relevance AI",
+        "kinds": [
+          "agent_builder"
+        ],
+        "platforms": [
+          "web"
+        ],
+        "local_footprint": "partial",
+        "rosmarops": {
+          "status": "not_supported"
+        },
+        "reviewed_at": "2026-11-25"
+      },
+      "versions": [],
+      "changes": [],
       "ratings": []
     },
     {
