@@ -20,6 +20,34 @@
     "reviewed_at": "2026-11-06"
   },
   "versions": [],
-  "changes": [],
+  "changes": [
+    {
+      "id": "chg-junie-26-11-3-approval",
+      "version": "26.11.3",
+      "date": "2026-11-24",
+      "category": "approval_mode",
+      "before": {
+        "en": "Before 26.11.3, some Junie commands could run without approval, according to the 26.11.3 release notes.",
+        "es": "Antes de 26.11.3, algunos comandos de Junie podían ejecutarse sin aprobación, según las notas de la versión 26.11.3.",
+        "ca": "Abans de 26.11.3, algunes ordres de Junie es podien executar sense aprovació, segons les notes de la versió 26.11.3."
+      },
+      "after": {
+        "en": "From 26.11.3, Junie fixes the issue that allowed some commands to run without approval, according to its release notes.",
+        "es": "Desde 26.11.3, Junie corrige el fallo que permitía ejecutar algunos comandos sin aprobación, según sus notas de versión.",
+        "ca": "Des de 26.11.3, Junie corregeix l'error que permetia executar algunes ordres sense aprovació, segons les seves notes de versió."
+      },
+      "source": {
+        "url": "https://junie.jetbrains.com/whats-new",
+        "official": true,
+        "accessed_at": "2026-11-25"
+      },
+      "verified": {
+        "by": "writer",
+        "at": "2026-11-25",
+        "how": "official_changelog"
+      },
+      "rosmarops_impact": "none"
+    }
+  ],
   "ratings": []
 }

@@ -1,0 +1,127 @@
+{
+  "schema_version": 1,
+  "agent": {
+    "id": "relevance-ai",
+    "name": "Relevance AI",
+    "vendor": "Relevance AI",
+    "kinds": [
+      "agent_builder"
+    ],
+    "platforms": [
+      "web"
+    ],
+    "local_footprint": "partial",
+    "rosmarops": {
+      "status": "not_supported"
+    },
+    "reviewed_at": "2026-11-25",
+    "sources": [
+      {
+        "field": "kinds",
+        "source": {
+          "url": "https://relevanceai.com/docs/get-started/introduction",
+          "official": true,
+          "accessed_at": "2026-11-25"
+        },
+        "verified": {
+          "by": "writer",
+          "at": "2026-11-25",
+          "how": "official_doc"
+        }
+      },
+      {
+        "field": "local_footprint",
+        "source": {
+          "url": "https://relevanceai.com/docs/integrations/popular-integrations/chrome-extension",
+          "official": true,
+          "accessed_at": "2026-11-25"
+        },
+        "verified": {
+          "by": "writer",
+          "at": "2026-11-25",
+          "how": "official_doc"
+        }
+      }
+    ]
+  },
+  "versions": [],
+  "changes": [],
+  "ratings": [],
+  "surfaces": [
+    {
+      "surface": "subagents",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://relevanceai.com/docs/get-started/core-concepts/agents",
+        "official": true,
+        "accessed_at": "2026-11-25"
+      },
+      "verified": {
+        "by": "writer",
+        "at": "2026-11-25",
+        "how": "official_doc"
+      }
+    },
+    {
+      "surface": "permission_modes",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://relevanceai.com/docs/workforce/workforce-features/agent-to-tool-configuration",
+        "official": true,
+        "accessed_at": "2026-11-25"
+      },
+      "verified": {
+        "by": "writer",
+        "at": "2026-11-25",
+        "how": "official_doc"
+      }
+    },
+    {
+      "surface": "scheduled_tasks",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://relevanceai.com/docs/build/agents/build-your-agent/triggers",
+        "official": true,
+        "accessed_at": "2026-11-25"
+      },
+      "verified": {
+        "by": "writer",
+        "at": "2026-11-25",
+        "how": "official_doc"
+      }
+    },
+    {
+      "surface": "mcp",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://relevanceai.com/docs/integrations/mcp/mcp-client",
+        "official": true,
+        "accessed_at": "2026-11-25"
+      },
+      "verified": {
+        "by": "writer",
+        "at": "2026-11-25",
+        "how": "official_doc"
+      }
+    },
+    {
+      "surface": "browser",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://relevanceai.com/docs/build/tools/tool-steps/airtop-browser-automation/page-interaction",
+        "official": true,
+        "accessed_at": "2026-11-25"
+      },
+      "verified": {
+        "by": "writer",
+        "at": "2026-11-25",
+        "how": "official_doc"
+      }
+    }
+  ]
+}

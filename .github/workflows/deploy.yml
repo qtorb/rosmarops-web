@@ -57,7 +57,7 @@ jobs:
           php -l wp/mu-plugins/rosmarops-menu8-sandbox.php
           php -l wp/mu-plugins/rosmarops-menu9-sandbox.php
           php -l wp/mu-plugins/rosmarops-slug7-sandbox.php
-          ls -l wp/drafts/*.json wp/drafts/*.html wp/drafts/rosmarops-img-13-loop-engineering.jpg wp/drafts/rosmarops-img-14-he-terminado.jpg wp/drafts/rosmarops-img-15-el-sistema-aprende.jpg wp/drafts/rosmarops-img-17-harness-engineering.jpg wp/drafts/rosmarops-img-16-novedades-0-10.jpg wp/drafts/rosmarops-img-18-microsoft-store.jpg wp/drafts/rosmarops-img-19-tres-blocs.jpg wp/drafts/rosmarops-img-20-worktree.jpg wp/drafts/video-decide-*.jpg wp/drafts/sandbox-agentes-de-ia.jpg
+          ls -l wp/drafts/*.json wp/drafts/*.html wp/drafts/rosmarops-img-13-loop-engineering.jpg wp/drafts/rosmarops-img-14-he-terminado.jpg wp/drafts/rosmarops-img-15-el-sistema-aprende.jpg wp/drafts/rosmarops-img-17-harness-engineering.jpg wp/drafts/rosmarops-img-16-novedades-0-10.jpg wp/drafts/rosmarops-img-18-microsoft-store.jpg wp/drafts/rosmarops-img-19-tres-blocs.jpg wp/drafts/rosmarops-img-20-worktree.jpg wp/drafts/video-decide-*.jpg wp/drafts/rosmarops-img-22-semana-en-agentes.jpg wp/drafts/rosmarops-img-24-ajustes-claude-code.jpg wp/drafts/rosmarops-img-23-aceptarlo-todo.jpg wp/drafts/sandbox-agentes-de-ia.jpg
           ls -l wp/daily/shell-en.html wp/daily/shell-es.html wp/daily/shell-ca.html wp/daily/i18n.json
           ! grep -RIl 'noindex' site/index.html site/es/index.html site/methodology site/faq site/es/metodologia site/es/preguntas-frecuentes site/ca/index.html site/ca/metodologia site/ca/preguntes-frequents site/cloud-access site/es/acceso-en-la-nube site/ca/acces-al-nuvol site/ca/privadesa site/privacy site/es/privacidad site/legal-notice site/es/aviso-legal site/ca/avis-legal site/terms site/es/terminos site/ca/termes site/security-teams site/es/equipos-de-seguridad site/ca/equips-de-seguretat site/_static site/macos site/es/macos site/ca/macos site/linux site/es/linux site/ca/linux site/sample-report/index.html site/es/informe-de-ejemplo site/ca/informe-dexemple site/observatory/index.html site/es/observatorio/index.html site/ca/observatori/index.html site/glossary site/es/glosario site/ca/glossari site/observatory/ai-agent-map site/es/observatorio/mapa-agentes-ia site/ca/observatori/mapa-agents-ia site/observatory/ai-agents-with-sandbox site/es/observatorio/agentes-ia-con-sandbox site/ca/observatori/agents-ia-amb-sandbox site/try-an-ai-agent site/es/probar-un-agente-de-ia site/ca/provar-un-agent-dia site/sandbox site/es/sandbox site/ca/sandbox site/agent-orchestrators site/es/orquestadores-de-agentes site/ca/orquestradors-dagents site/claude-code-subagents site/es/subagentes-de-claude-code site/ca/subagents-de-claude-code site/mcp-servers site/es/servidores-mcp site/ca/servidors-mcp
           # GTM-206: the course lesson stays noindex until Albert opens it.
@@ -386,6 +386,27 @@ jobs:
           put wp/drafts/worktree-es.html wp-content/mu-plugins/rosmarops-drafts/worktree-es.html
           put wp/drafts/worktree-es.json wp-content/mu-plugins/rosmarops-drafts/worktree-es.json
           put wp/drafts/worktree-ca.html wp-content/mu-plugins/rosmarops-drafts/worktree-ca.html
+          put wp/drafts/rosmarops-img-22-semana-en-agentes.jpg wp-content/mu-plugins/rosmarops-drafts/rosmarops-img-22-semana-en-agentes.jpg
+          put wp/drafts/week-en.json wp-content/mu-plugins/rosmarops-drafts/week-en.json
+          put wp/drafts/week-en.html wp-content/mu-plugins/rosmarops-drafts/week-en.html
+          put wp/drafts/week-es.json wp-content/mu-plugins/rosmarops-drafts/week-es.json
+          put wp/drafts/week-es.html wp-content/mu-plugins/rosmarops-drafts/week-es.html
+          put wp/drafts/week-ca.json wp-content/mu-plugins/rosmarops-drafts/week-ca.json
+          put wp/drafts/week-ca.html wp-content/mu-plugins/rosmarops-drafts/week-ca.html
+          put wp/drafts/rosmarops-img-23-aceptarlo-todo.jpg wp-content/mu-plugins/rosmarops-drafts/rosmarops-img-23-aceptarlo-todo.jpg
+          put wp/drafts/aceptar-todo-en.json wp-content/mu-plugins/rosmarops-drafts/aceptar-todo-en.json
+          put wp/drafts/aceptar-todo-en.html wp-content/mu-plugins/rosmarops-drafts/aceptar-todo-en.html
+          put wp/drafts/aceptar-todo-es.json wp-content/mu-plugins/rosmarops-drafts/aceptar-todo-es.json
+          put wp/drafts/aceptar-todo-es.html wp-content/mu-plugins/rosmarops-drafts/aceptar-todo-es.html
+          put wp/drafts/aceptar-todo-ca.json wp-content/mu-plugins/rosmarops-drafts/aceptar-todo-ca.json
+          put wp/drafts/aceptar-todo-ca.html wp-content/mu-plugins/rosmarops-drafts/aceptar-todo-ca.html
+          put wp/drafts/rosmarops-img-24-ajustes-claude-code.jpg wp-content/mu-plugins/rosmarops-drafts/rosmarops-img-24-ajustes-claude-code.jpg
+          put wp/drafts/ajustes-claude-code-en.json wp-content/mu-plugins/rosmarops-drafts/ajustes-claude-code-en.json
+          put wp/drafts/ajustes-claude-code-en.html wp-content/mu-plugins/rosmarops-drafts/ajustes-claude-code-en.html
+          put wp/drafts/ajustes-claude-code-es.json wp-content/mu-plugins/rosmarops-drafts/ajustes-claude-code-es.json
+          put wp/drafts/ajustes-claude-code-es.html wp-content/mu-plugins/rosmarops-drafts/ajustes-claude-code-es.html
+          put wp/drafts/ajustes-claude-code-ca.json wp-content/mu-plugins/rosmarops-drafts/ajustes-claude-code-ca.json
+          put wp/drafts/ajustes-claude-code-ca.html wp-content/mu-plugins/rosmarops-drafts/ajustes-claude-code-ca.html
           put wp/drafts/worktree-ca.json wp-content/mu-plugins/rosmarops-drafts/worktree-ca.json
           put wp/drafts/video-decide-en.html wp-content/mu-plugins/rosmarops-drafts/video-decide-en.html
           put wp/drafts/video-decide-en.json wp-content/mu-plugins/rosmarops-drafts/video-decide-en.json

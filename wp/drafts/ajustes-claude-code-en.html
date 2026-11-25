@@ -1,0 +1,43 @@
+<!-- wp:paragraph -->
+<p>Claude Code keeps your personal settings in <code>~/.claude/settings.json</code> (on Windows, <code>%USERPROFILE%\.claude\settings.json</code>), and each project's settings in <code>.claude/settings.json</code>, inside the project folder.</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading -->
+<h2 class="wp-block-heading">The files you can edit</h2>
+<!-- /wp:heading -->
+<!-- wp:list -->
+<ul class="wp-block-list">
+<li><strong>Your settings, for all your projects:</strong> <code>~/.claude/settings.json</code>. On Windows, <code>~/.claude</code> is <code>%USERPROFILE%\.claude</code>.</li>
+<li><strong>The project's, shared with the team:</strong> <code>.claude/settings.json</code>, in the project folder. They go into git with the rest of the code.</li>
+<li><strong>Yours in that project:</strong> <code>.claude/settings.local.json</code>. When Claude Code creates this file, it sets git to ignore it.</li>
+<li><strong>The rest of the configuration:</strong> <code>~/.claude.json</code>. It holds your account details, the MCP server configuration, each project's state (such as trust decisions) and the global options that <code>/config</code> writes.</li>
+<li><strong>The project's MCP servers:</strong> <code>.mcp.json</code>, in the project folder.</li>
+</ul>
+<!-- /wp:list -->
+<!-- wp:heading -->
+<h2 class="wp-block-heading">The ones your organization sets</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>You do not create or edit managed settings, and no user or project setting overrides them. If they exist, they are here:</p>
+<!-- /wp:paragraph -->
+<!-- wp:list -->
+<ul class="wp-block-list">
+<li><strong>macOS:</strong> <code>/Library/Application Support/ClaudeCode/managed-settings.json</code></li>
+<li><strong>Linux and WSL:</strong> <code>/etc/claude-code/managed-settings.json</code></li>
+<li><strong>Windows:</strong> <code>C:\Program Files\ClaudeCode\managed-settings.json</code>. Claude Code does not read the old path, <code>C:\ProgramData\ClaudeCode\managed-settings.json</code>.</li>
+</ul>
+<!-- /wp:list -->
+<!-- wp:paragraph -->
+<p>They can also arrive through the system's device management (on macOS, the <code>com.anthropic.claudecode</code> domain; on Windows, the registry, under <code>HKLM\SOFTWARE\Policies\ClaudeCode</code> or <code>HKCU\SOFTWARE\Policies\ClaudeCode</code>) or from the Claude admin console.</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Which one wins</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>From strongest to weakest: managed, what you pass with <code>--settings</code> at launch, yours in the project, the project's and, last, your user settings.</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading -->
+<h2 class="wp-block-heading">What to check</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p><code>settings.json</code> and <code>.claude.json</code> can hold unencrypted keys. Open them and look at what is there. The Observatory's <a href="https://rosmarops.com/observatory/claude-code/">Claude Code page</a> lists what each one holds and what Claude Code does with factory settings.</p>
+<!-- /wp:paragraph -->

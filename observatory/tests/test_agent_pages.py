@@ -78,7 +78,7 @@ class Families(unittest.TestCase):
     NEW_FRAMEWORKS = ("openai-agents-sdk",)
 
     def test_order(self):
-        self.assertEqual(build.FAMILIES, ("local", "orchestrators", "tooling", "automation", "cloud"))
+        self.assertEqual(build.FAMILIES, ("local", "orchestrators", "tooling", "automation", "builders", "cloud"))
         self.assertEqual(list(build.FAMILY_H2), list(build.FAMILIES))
 
     def test_family_of_each_kind(self):
@@ -87,10 +87,24 @@ class Families(unittest.TestCase):
         self.assertEqual(f(["framework"]), "tooling")
         self.assertEqual(f(["agent_tooling"]), "tooling")
         self.assertEqual(f(["workflow_automation"], "no"), "automation")
+        self.assertEqual(f(["agent_builder"], "no"), "builders")  # GTM-208
         self.assertEqual(f(["cloud"], "no"), "cloud")
         self.assertEqual(f(["cli"]), "local")
         self.assertEqual(build.family(self.AGENTS["paperclip"]), "orchestrators")
         self.assertEqual(build.family(self.AGENTS["n8n"]), "automation")
+
+    def test_application_category_comes_from_the_family(self):
+        """GTM-210: BusinessApplication only for the builders family; the rest DeveloperApplication."""
+        for i, a in self.AGENTS.items():
+            want = "BusinessApplication" if build.family(a) == "builders" else "DeveloperApplication"
+            self.assertEqual(build.software_app(a)["applicationCategory"], want, i)
+        for i in ("lindy", "relevance-ai", "copilot-studio"):
+            self.assertEqual(build.software_app(self.AGENTS[i])["applicationCategory"], "BusinessApplication", i)
+        for i in ("n8n", "make", "multica", "claude-code"):
+            self.assertEqual(build.software_app(self.AGENTS[i])["applicationCategory"], "DeveloperApplication", i)
+        page = (ROOT / "site/observatory/index.html").read_text(encoding="utf-8")
+        self.assertIn('"name":"Lindy","applicationCategory":"BusinessApplication"', page)
+        self.assertIn('"name":"Make","applicationCategory":"DeveloperApplication"', page)
 
     def test_index_lists_follow_the_order(self):
         names = {"en": json.loads((ROOT / "observatory/i18n/en.json").read_text(encoding="utf-8"))}["en"]

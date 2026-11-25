@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "agent": {
+    "id": "multica",
+    "name": "Multica",
+    "vendor": "Multica",
+    "kinds": [
+      "orchestrator"
+    ],
+    "platforms": [
+      "windows",
+      "macos",
+      "linux",
+      "web"
+    ],
+    "local_footprint": "yes",
+    "rosmarops": {
+      "status": "not_supported"
+    },
+    "reviewed_at": "2026-11-25"
+  },
+  "versions": [],
+  "changes": [],
+  "ratings": []
+}

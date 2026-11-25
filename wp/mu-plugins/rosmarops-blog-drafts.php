@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: RosmarOps blog drafts from the repository (one time per draft and site)
- * Description: Creates, as a DRAFT and never published, each blog post described in wp-content/mu-plugins/rosmarops-drafts/*.json on the site of its language (EN /, ES /es/, CA /ca/), with its title, slug, excerpt, content (the HTML file named in the JSON), The SEO Framework title and description, the addresses of its translations for hreflang and, when the JSON names them, its category (an existing one, by slug), its tags (created if missing) and its featured image with alt text (a .jpg next to the JSON; added on 09-11 for posts 2 and 3 of the series and the 0.10 news post). Asked by Albert on 08-11 so that posts reach WordPress without signing in to the admin. A slug already used by any post or page on that site (in any status) is left alone and logged; nothing is ever updated, published or deleted. Idempotent: an option per draft marks it done, with a lock. The log (slugs, ids and statuses only) goes to the option rosmarops_drafts_log and to wp-content/rosmarops-private/drafts-<lang>.log, which the deploy reads over SFTP. Albert publishes from WordPress. Versioned in qtorb/rosmarops-web; do not edit on the server.
+ * Description: Creates, as a DRAFT and never published, each blog post described in wp-content/mu-plugins/rosmarops-drafts/*.json on the site of its language (EN /, ES /es/, CA /ca/), with its title, slug, excerpt, content (the HTML file named in the JSON), The SEO Framework title and description, the addresses of its translations for hreflang and, when the JSON names them, its category (an existing one, by slug), its tags (created if missing) and its featured image with alt text (a .jpg next to the JSON; added on 09-11 for posts 2 and 3 of the series and the 0.10 news post). Asked by Albert on 08-11 so that posts reach WordPress without signing in to the admin. A slug already used by any post or page on that site (in any status) is left alone and logged; nothing is ever updated, published or deleted. Idempotent: an option per draft marks it done, with a lock. The log (slugs, ids and statuses only) goes to the option rosmarops_drafts_log and to wp-content/rosmarops-private/drafts-<lang>.log, which the deploy reads over SFTP. Albert publishes from WordPress. GTM-203 (signed by Albert 24-11 12:29): a JSON can carry publish_at (an ISO 8601 date with its offset, e.g. 2026-11-30T08:00:00+01:00); then, only if that moment is still ahead and the draft's featured image file is there, the post is created as scheduled (WordPress «future» status) for that moment instead of as a draft. Without the image, or with a past or malformed date, it is created as a draft and the reason is logged: a post never goes out without its image. Versioned in qtorb/rosmarops-web; do not edit on the server.
  */
 
 if (!defined('ABSPATH')) {
@@ -146,6 +146,35 @@ function rosmarops_drafts_image($id, $d, &$log) {
 	$log[] = "image: attachment {$att} is the featured image of post {$id}";
 }
 
+/**
+ * GTM-203: when a draft may be scheduled. Returns ['local' => site time, 'gmt' => UTC], both 'Y-m-d H:i:s', or null
+ * (stays a draft): no publish_at, a malformed or past one, or no featured image file next to the JSON.
+ */
+function rosmarops_drafts_schedule($d, &$log) {
+	if (!isset($d['publish_at'])) {
+		return null;
+	}
+	$at = is_string($d['publish_at']) && preg_match('/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[+-]\d{2}:\d{2}$/', $d['publish_at'])
+		? date_create_immutable($d['publish_at']) : false;
+	if (!$at) {
+		$log[] = "not scheduled: {$d['slug']} has a malformed publish_at; created as draft";
+		return null;
+	}
+	if ($at->getTimestamp() <= time()) {
+		$log[] = "not scheduled: {$d['slug']} publish_at is not ahead; created as draft";
+		return null;
+	}
+	if (!isset($d['image']) || !is_file(rosmarops_drafts_dir() . '/' . $d['image'])) {
+		$log[] = "not scheduled: {$d['slug']} has no featured image file; created as draft";
+		return null;
+	}
+	$tz = function_exists('wp_timezone') ? wp_timezone() : new DateTimeZone('UTC');
+	return [
+		'local' => $at->setTimezone($tz)->format('Y-m-d H:i:s'),
+		'gmt'   => $at->setTimezone(new DateTimeZone('UTC'))->format('Y-m-d H:i:s'),
+	];
+}
+
 /** The author of the drafts: the user named ROSMAROPS_DRAFTS_AUTHOR on this site, else its first administrator. */
 function rosmarops_drafts_author() {
 	$users = get_users(['blog_id' => get_current_blog_id(), 'role__in' => ['administrator', 'editor'], 'orderby' => 'ID', 'order' => 'ASC']);
@@ -193,15 +222,23 @@ function rosmarops_drafts_run() {
 			update_option($done, gmdate('c'), false);
 			continue;
 		}
-		$id = wp_insert_post([
+		$args = [
 			'post_type'    => 'post',
-			'post_status'  => 'draft', // never anything else: Albert publishes
+			'post_status'  => 'draft', // draft unless it is scheduled below (GTM-203): Albert publishes
 			'post_author'  => $author,
 			'post_title'   => $d['title'],
 			'post_name'    => $d['slug'],
 			'post_excerpt' => $d['excerpt'],
 			'post_content' => $d['html'],
-		], true);
+		];
+		$when = rosmarops_drafts_schedule($d, $log);
+		if ($when !== null) {
+			$args['post_status']   = 'future';
+			$args['post_date']     = $when['local'];
+			$args['post_date_gmt'] = $when['gmt'];
+			$args['edit_date']     = true;
+		}
+		$id = wp_insert_post($args, true);
 		if (is_wp_error($id) || !$id) {
 			$log[] = "failed: {$d['slug']} not created";
 			continue; // not marked done: it is tried again on the next request
@@ -214,7 +251,9 @@ function rosmarops_drafts_run() {
 			}
 		}
 		update_option($done, gmdate('c'), false);
-		$log[] = "done: {$d['slug']} created as draft, post {$id}, author {$author}";
+		$log[] = $when !== null
+			? "done: {$d['slug']} scheduled for {$when['gmt']} UTC, post {$id}, author {$author}"
+			: "done: {$d['slug']} created as draft, post {$id}, author {$author}";
 		rosmarops_drafts_terms($id, $d, $log);
 		rosmarops_drafts_image($id, $d, $log);
 	}
