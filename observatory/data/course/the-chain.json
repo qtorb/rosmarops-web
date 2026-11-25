@@ -1,5 +1,5 @@
 {
- "_source": "qtorb/rosmarops-vigil: docs/research/2026-11-24-curso-publico-leccion-piloto.md §3-§5 (ES) and docs/research/2026-11-24-curso-publico-leccion-2-en-ca.md §3-§5 (EN, CA), signed by Albert (GTM-206, block 166). Literal: do not edit here; change the signed document first. **x** is bold and `x` is code.",
+ "_source": "qtorb/rosmarops-vigil: docs/research/2026-11-24-curso-publico-leccion-piloto.md §3-§5 (ES) and docs/research/2026-11-24-curso-publico-leccion-2-en-ca.md §3-§5 (EN, CA), signed by Albert (GTM-206, block 166); the footer (close.footer) from vigil docs/briefs/GTM-215.md, B.5 (block 178). Literal: do not edit here; change the signed document first. **x** is bold and `x` is code.",
  "path": {"en": "/course/the-chain/", "es": "/es/curso/la-cadena/", "ca": "/ca/curs/la-cadena/"},
  "en": {
   "eyebrow": "Lesson 2 of 5 · 8 minutes",
@@ -101,7 +101,7 @@
   "close": {
    "terms_label": "New terms",
    "terms": [["AI agent", "agent"], ["Capability", "capability"], ["Key or credential", "credential"], ["Resource", "resource"], ["MCP server", "mcp"], ["Allow, ask, deny", "allow-ask-deny"], ["Key fingerprint", "key-fingerprint"]],
-   "footer": "The source of every fact in this lesson is in the list «Claims and their source». RosmarOps's code is public: github.com/qtorb/rosmarops."
+   "footer": "Every fact in this lesson comes from RosmarOps's code, which is public (github.com/qtorb/rosmarops), from the Observatory and from Claude Code's official documentation."
   }
  },
  "es": {
@@ -204,7 +204,7 @@
   "close": {
    "terms_label": "Términos nuevos",
    "terms": [["Agente", "agent"], ["Capacidad", "capability"], ["Credencial", "credential"], ["Recurso", "resource"], ["Servidor MCP", "mcp"], ["Permitir, preguntar, denegar", "allow-ask-deny"], ["Huella de una clave", "key-fingerprint"]],
-   "footer": "La fuente de cada dato de esta lección está en la lista «Afirmaciones y su fuente». El código de RosmarOps es público: github.com/qtorb/rosmarops."
+   "footer": "Cada dato de esta lección sale del código de RosmarOps, que es público (github.com/qtorb/rosmarops), del Observatorio y de la documentación oficial de Claude Code."
   }
  },
  "ca": {
@@ -307,7 +307,7 @@
   "close": {
    "terms_label": "Termes nous",
    "terms": [["Agent d'IA", "agent"], ["Capacitat", "capability"], ["Clau o credencial", "credential"], ["Recurs", "resource"], ["Servidor MCP", "mcp"], ["Permetre, preguntar, denegar", "allow-ask-deny"], ["Empremta d'una clau", "key-fingerprint"]],
-   "footer": "La font de cada dada d'aquesta lliçó és a la llista «Afirmacions i la seva font». El codi de RosmarOps és públic: github.com/qtorb/rosmarops."
+   "footer": "Cada dada d'aquesta lliçó surt del codi de RosmarOps, que és públic (github.com/qtorb/rosmarops), de l'Observatori i de la documentació oficial de Claude Code."
   }
  }
 }
