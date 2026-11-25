@@ -3,6 +3,8 @@
 Run from the repository root:  python3 -m unittest observatory/tests/test_course_pages.py
 """
 
+import importlib.util
+import json
 import re
 import sys
 import unittest
@@ -77,6 +79,25 @@ class Texts(unittest.TestCase):
         for lang, text in want.items():
             self.assertEqual(DATA[lang]["close"]["footer"], text, lang)
             self.assertIn(course_pages.esc(text), page(lang), lang)
+
+    def test_retouches_of_block_188_are_in_place(self):
+        """GTM-217 (vigil docs/briefs/GTM-217.md): each retouch is in its text, the part it replaced is gone, and no
+        text points to a lesson 3 that does not exist yet. tools/course/check_signed.py checks them against the brief."""
+        spec = importlib.util.spec_from_file_location("check_signed", ROOT / "tools" / "course" / "check_signed.py")
+        mod = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(mod)
+        self.assertEqual(len(mod.RETOUCHES), 18)
+        for path, new, old in mod.RETOUCHES:
+            s = DATA
+            for k in path:
+                s = s[k]
+            self.assertIn(new, s, path)
+            if old not in new:
+                self.assertNotIn(old, s, path)
+            else:
+                self.assertNotEqual(s, old, path)
+        for lang, word in (("en", "lesson 3"), ("es", "lección 3"), ("ca", "lliçó 3")):
+            self.assertNotIn(word, json.dumps(DATA[lang], ensure_ascii=False).lower(), lang)
 
     def test_no_forbidden_words(self):
         course_pages.check(DATA)
