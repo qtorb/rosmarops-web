@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "agent": {
+    "id": "dify",
+    "name": "Dify",
+    "vendor": "Dify",
+    "kinds": [
+      "agent_builder"
+    ],
+    "platforms": [
+      "web"
+    ],
+    "local_footprint": "partial",
+    "rosmarops": {
+      "status": "not_supported"
+    },
+    "reviewed_at": "2026-11-25",
+    "sources": [
+      {
+        "field": "kinds",
+        "source": {
+          "url": "https://dify.ai/",
+          "official": true,
+          "accessed_at": "2026-11-25"
+        },
+        "verified": {
+          "by": "writer",
+          "at": "2026-11-25",
+          "how": "official_doc"
+        }
+      },
+      {
+        "field": "local_footprint",
+        "source": {
+          "url": "https://docs.dify.ai/en/cli/get-started",
+          "official": true,
+          "accessed_at": "2026-11-25"
+        },
+        "verified": {
+          "by": "writer",
+          "at": "2026-11-25",
+          "how": "official_doc"
+        }
+      }
+    ]
+  },
+  "versions": [],
+  "changes": [],
+  "ratings": [],
+  "surfaces": [
+    {
+      "surface": "subagents",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://docs.dify.ai/en/cloud/use-dify/nodes/agent",
+        "official": true,
+        "accessed_at": "2026-11-25"
+      },
+      "verified": {
+        "by": "writer",
+        "at": "2026-11-25",
+        "how": "official_doc"
+      }
+    },
+    {
+      "surface": "scheduled_tasks",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://docs.dify.ai/en/cloud/use-dify/nodes/trigger/overview",
+        "official": true,
+        "accessed_at": "2026-11-25"
+      },
+      "verified": {
+        "by": "writer",
+        "at": "2026-11-25",
+        "how": "official_doc"
+      }
+    },
+    {
+      "surface": "mcp",
+      "since": null,
+      "since_basis": null,
+      "source": {
+        "url": "https://docs.dify.ai/en/cloud/use-dify/build/mcp",
+        "official": true,
+        "accessed_at": "2026-11-25"
+      },
+      "verified": {
+        "by": "writer",
+        "at": "2026-11-25",
+        "how": "official_doc"
+      }
+    }
+  ]
+}
