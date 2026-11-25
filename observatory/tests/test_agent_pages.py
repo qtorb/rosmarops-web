@@ -78,7 +78,7 @@ class Families(unittest.TestCase):
     NEW_FRAMEWORKS = ("openai-agents-sdk",)
 
     def test_order(self):
-        self.assertEqual(build.FAMILIES, ("local", "orchestrators", "tooling", "automation", "cloud"))
+        self.assertEqual(build.FAMILIES, ("local", "orchestrators", "tooling", "automation", "builders", "cloud"))
         self.assertEqual(list(build.FAMILY_H2), list(build.FAMILIES))
 
     def test_family_of_each_kind(self):
@@ -87,6 +87,7 @@ class Families(unittest.TestCase):
         self.assertEqual(f(["framework"]), "tooling")
         self.assertEqual(f(["agent_tooling"]), "tooling")
         self.assertEqual(f(["workflow_automation"], "no"), "automation")
+        self.assertEqual(f(["agent_builder"], "no"), "builders")  # GTM-208
         self.assertEqual(f(["cloud"], "no"), "cloud")
         self.assertEqual(f(["cli"]), "local")
         self.assertEqual(build.family(self.AGENTS["paperclip"]), "orchestrators")

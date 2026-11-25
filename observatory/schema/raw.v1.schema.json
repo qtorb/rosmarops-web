@@ -2,16 +2,16 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://rosmarops.com/observatory/schema/raw.v1.schema.json",
   "title": "RosmarOps Observatory: daily raw collection (raw.v1)",
-  "description": "What observatory/collect.py read from the fixed sources F1-F67 on one day (GTM-75). Data from public sources only; no prose of ours.",
+  "description": "What observatory/collect.py read from the fixed sources F1-F71 on one day (GTM-75). Data from public sources only; no prose of ours.",
   "type": "object",
   "additionalProperties": false,
   "required": ["date", "collected_at", "sources", "opened", "total"],
   "properties": {
     "date": {"type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$", "format": "date", "description": "Day of the collection in Madrid."},
     "collected_at": {"type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$", "format": "date-time"},
-    "sources": {"type": "array", "minItems": 28, "maxItems": 67, "items": {"$ref": "#/$defs/source"}},
-    "opened": {"type": "integer", "minimum": 0, "maximum": 67},
-    "total": {"enum": [28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67], "description": "28 until GTM-77, 29 with F29 Muse Code, then F30 and F31 (n8n, GTM-86), F32-F36 (TRAE, Qwen Code, Kimi Code, CodeBuddy, Qoder CN; GTM-93), and F37-F43 (Aider, OpenHands, Amp, Warp, Junie, Kilo Code, Comet; GTM-98) and F44 (Grok Build; GTM-99), F45 (Grok Bot; GTM-159), F46 and F47 (watch of Grok Bot read access; GTM-160), F48-F61 (watch of the sandbox templates' pages; GTM-175) and F62 (Claude Code settings reference, second page of its template; 17-11), and F63-F66 (Orca, Paseo, Claude Squad, Paradev; GTM-191) and F67 (OpenAI Agents SDK; GTM-191)."}
+    "sources": {"type": "array", "minItems": 28, "maxItems": 71, "items": {"$ref": "#/$defs/source"}},
+    "opened": {"type": "integer", "minimum": 0, "maximum": 71},
+    "total": {"enum": [28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71], "description": "28 until GTM-77, 29 with F29 Muse Code, then F30 and F31 (n8n, GTM-86), F32-F36 (TRAE, Qwen Code, Kimi Code, CodeBuddy, Qoder CN; GTM-93), and F37-F43 (Aider, OpenHands, Amp, Warp, Junie, Kilo Code, Comet; GTM-98) and F44 (Grok Build; GTM-99), F45 (Grok Bot; GTM-159), F46 and F47 (watch of Grok Bot read access; GTM-160), F48-F61 (watch of the sandbox templates' pages; GTM-175) and F62 (Claude Code settings reference, second page of its template; 17-11), and F63-F66 (Orca, Paseo, Claude Squad, Paradev; GTM-191) and F67 (OpenAI Agents SDK; GTM-191), F68-F71 (Make, Multica, Lindy, Relevance AI; GTM-208)."}
   },
   "$defs": {
     "date": {"type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$", "format": "date"},
@@ -20,7 +20,7 @@
       "additionalProperties": false,
       "required": ["id", "opened", "reason", "latest", "latest_date", "new", "ids", "read_with"],
       "properties": {
-        "id": {"type": "string", "pattern": "^F([1-9]|[1-5][0-9]|6[0-7])$"},
+        "id": {"type": "string", "pattern": "^F([1-9]|[1-6][0-9]|7[01])$"},
         "opened": {"type": "boolean"},
         "reason": {"type": ["string", "null"], "maxLength": 300},
         "latest": {"type": ["string", "null"], "minLength": 1, "maxLength": 120},

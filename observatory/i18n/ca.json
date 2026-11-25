@@ -79,6 +79,7 @@
   "index.tooling_note": "No són agents per si sols: peces amb què es construeixen agents dins de cada projecte. L'observatori en segueix els canvis de seguretat.",
   "index.automation_h2": "Automatització de fluxos",
   "index.automation_note": "No són frameworks: eines visuals que connecten els teus comptes (correu, CRM, pagaments) i hi afegeixen passos amb IA. Un flux que s'executa sol actua amb aquests comptes sense preguntar cada vegada.",
+  "index.builders_h2": "Constructors d'agents sense codi",
   "index.cloud_h2": "Al núvol i agents personals",
   "index.cloud_note": "Agents que actuen amb els teus comptes (codi, correu, pagaments, fitxers) des dels servidors del fabricant, i agents personals que actuen per tu a les teves aplicacions. RosmarOps no els pot llegir al teu ordinador: la seva fitxa diu què poden fer per defecte.",
   "index.candidates_h2": "Candidats que estem mirant",
@@ -242,6 +243,7 @@
   "kind.personal_agent": "Agent personal",
   "kind.orchestrator": "Orquestrador d'agents",
   "kind.workflow_automation": "Automatització de fluxos",
+  "kind.agent_builder": "Constructor d'agents sense codi",
 
   "platform.windows": "Windows",
   "platform.macos": "macOS",
