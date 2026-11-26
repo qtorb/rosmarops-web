@@ -1,4 +1,5 @@
-"""GTM-206: lesson 2 of the course, «The chain» (observatory/course_pages.py).
+"""GTM-206, GTM-227: the course (observatory/course_pages.py): lesson 1 «The inspector», lesson 2 «The chain» and the
+entry page, which is not built while the course has no name.
 
 Run from the repository root:  python3 -m unittest observatory/tests/test_course_pages.py
 """
@@ -15,8 +16,13 @@ sys.path.insert(0, str(ROOT / "observatory"))
 import course_pages  # noqa: E402
 
 SITE = ROOT / "site"
-DATA = course_pages.load()
+ALL = course_pages.load_all()
+DATA = ALL["the-chain"]
+ONE = ALL["the-inspector"]
+ENTRY = ALL["course"]
 PATHS = DATA["path"]
+ONE_PATHS = ONE["path"]
+COURSE_PATHS = list(PATHS.values()) + list(ONE_PATHS.values()) + list(ENTRY["path"].values())
 JS = (SITE / "assets" / "course" / "chain.js").read_text(encoding="utf-8")
 CSS = (SITE / "assets" / "course" / "chain.css").read_text(encoding="utf-8")
 
@@ -49,14 +55,21 @@ MESSAGES = {
 }
 
 
-def page(lang):
-    return (SITE / PATHS[lang].strip("/") / "index.html").read_text(encoding="utf-8")
+def page(lang, paths=PATHS):
+    return (SITE / paths[lang].strip("/") / "index.html").read_text(encoding="utf-8")
+
+
+def check_signed():
+    spec = importlib.util.spec_from_file_location("check_signed", ROOT / "tools" / "course" / "check_signed.py")
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
 
 
 class Texts(unittest.TestCase):
     def test_the_six_messages_are_literal_in_three_languages(self):
         for lang, msgs in MESSAGES.items():
-            self.assertEqual(DATA[lang]["piece"]["msg"], msgs, lang)
+            self.assertEqual(DATA[lang]["try"]["piece"]["msg"], msgs, lang)
 
     def test_the_page_carries_its_messages_for_the_script(self):
         for lang, msgs in MESSAGES.items():
@@ -77,15 +90,13 @@ class Texts(unittest.TestCase):
             "ca": "Cada dada d'aquesta lliçó surt del codi de RosmarOps, que és públic (github.com/qtorb/rosmarops), de l'Observatori i de la documentació oficial de Claude Code.",
         }
         for lang, text in want.items():
-            self.assertEqual(DATA[lang]["close"]["footer"], text, lang)
+            self.assertEqual(DATA[lang]["take"]["footer"], text, lang)
             self.assertIn(course_pages.esc(text), page(lang), lang)
 
     def test_retouches_of_block_188_are_in_place(self):
         """GTM-217 (vigil docs/briefs/GTM-217.md): each retouch is in its text, the part it replaced is gone, and no
         text points to a lesson 3 that does not exist yet. tools/course/check_signed.py checks them against the brief."""
-        spec = importlib.util.spec_from_file_location("check_signed", ROOT / "tools" / "course" / "check_signed.py")
-        mod = importlib.util.module_from_spec(spec)
-        spec.loader.exec_module(mod)
+        mod = check_signed()
         self.assertEqual(len(mod.RETOUCHES), 18)
         for path, new, old in mod.RETOUCHES:
             s = DATA
@@ -98,43 +109,64 @@ class Texts(unittest.TestCase):
                 self.assertNotEqual(s, old, path)
         for lang, word in (("en", "lesson 3"), ("es", "lección 3"), ("ca", "lliçó 3")):
             self.assertNotIn(word, json.dumps(DATA[lang], ensure_ascii=False).lower(), lang)
+            self.assertNotIn(word, json.dumps(ONE[lang], ensure_ascii=False).lower(), lang)
 
-    def test_no_forbidden_words(self):
-        course_pages.check(DATA)
+    def test_the_two_corrected_sentences_of_gtm_219(self):
+        """GTM-227 §5: in the capability card and in change 1 of the game, the new sentence is in place and the two
+        old ones are gone, in the three languages, in the data and in the served page."""
+        mod = check_signed()
+        for lang, (new, old) in mod.CORRECTED.items():
+            for path in mod.CORRECTED_AT:
+                s = DATA[lang]
+                for k in path:
+                    s = s[k]
+                self.assertIn(new, s, (lang, path))
+                for o in old:
+                    self.assertNotIn(o, s, (lang, path))
+            served = page(lang)
+            self.assertEqual(served.count(new), 2, lang)
+            for o in old:
+                self.assertNotIn(o, served, lang)
+
+    def test_no_forbidden_words_and_english_quotes(self):
+        for d in ALL.values():
+            course_pages.check(d)
 
 
 class Pages(unittest.TestCase):
     def test_pages_are_up_to_date(self):
-        for path, text in course_pages.pages(DATA).items():
+        for path, text in course_pages.pages().items():
             f = SITE / path.strip("/") / "index.html"
             self.assertEqual(f.read_text(encoding="utf-8"), text, path)
 
     def test_noindex_and_hreflang(self):
-        for lang in MESSAGES:
-            s = page(lang)
-            self.assertIn('<meta name="robots" content="noindex">', s)
-            for l2, p in PATHS.items():
-                self.assertIn(f'<link rel="alternate" hreflang="{l2}" href="https://rosmarops.com{p}">', s)
+        for paths in (PATHS, ONE_PATHS):
+            for lang in MESSAGES:
+                s = page(lang, paths)
+                self.assertIn('<meta name="robots" content="noindex">', s)
+                for l2, p in paths.items():
+                    self.assertIn(f'<link rel="alternate" hreflang="{l2}" href="https://rosmarops.com{p}">', s)
 
     def test_not_in_the_sitemap_or_llms(self):
         for f in list(SITE.glob("sitemap*.xml")) + [SITE / "llms.txt"]:
             if f.exists():
                 s = f.read_text(encoding="utf-8")
-                for p in PATHS.values():
-                    self.assertNotIn(p, s, f.name)
+                for p in COURSE_PATHS:
+                    self.assertNotIn(f"rosmarops.com{p}", s, f.name)
 
-    def test_no_page_links_to_the_lesson(self):
-        own = {(SITE / p.strip("/") / "index.html").resolve() for p in PATHS.values()}
+    def test_no_page_links_to_the_course(self):
+        """Only the course pages link to each other (lesson 1 to lesson 2); no other page or menu links to them."""
+        own = {(SITE / p.strip("/") / "index.html").resolve() for p in COURSE_PATHS}
         for f in SITE.rglob("*.html"):
             if f.resolve() in own:
                 continue
             s = f.read_text(encoding="utf-8", errors="replace")
-            for p in PATHS.values():
-                self.assertNotIn(f'href="{p}', s, str(f.relative_to(ROOT)))
+            for p in COURSE_PATHS:
+                self.assertNotIn(f'href="{p}"', s, str(f.relative_to(ROOT)))
 
     def test_no_external_urls(self):
         for lang in MESSAGES:
-            for u in re.findall(r'(?:href|src)="(https?:[^"]+|//[^"]+)"', page(lang)):
+            for u in re.findall(r'(?:href|src)="(https?:[^"]+|//[^"]+)"', page(lang) + page(lang, ONE_PATHS)):
                 # The one outside address: the repository, in the GitHub star card (GTM-206 PR 3).
                 self.assertTrue(u.startswith("https://rosmarops.com/") or u == "https://github.com/qtorb/rosmarops", (lang, u))
         for name, s in (("chain.js", JS), ("chain.css", CSS)):
@@ -145,7 +177,126 @@ class Pages(unittest.TestCase):
     def test_download_link_counts_as_course(self):
         for lang in MESSAGES:
             self.assertIn(f'href="{course_pages.DOWNLOAD[lang]}"', page(lang))
+            self.assertIn(f'href="{course_pages.DOWNLOAD[lang]}"', page(lang, ONE_PATHS))
         self.assertIn("'course'", (ROOT / "wp" / "mu-plugins" / "rosmarops-downloads.php").read_text(encoding="utf-8"))
+
+
+SAMPLE = {"en": "/sample-report/", "es": "/es/informe-de-ejemplo/", "ca": "/ca/informe-dexemple/"}
+MODES = {"manual": ["alone", "you", "you", "you"], "auto": ["alone", "alone", "model", "model"],
+         "bypass": ["alone", "alone", "alone", "alone"]}
+
+
+class Six(unittest.TestCase):
+    """GTM-227: both lessons in six steps, the entry page held back, and lesson 1's own pieces."""
+
+    def test_six_steps_with_their_index(self):
+        for paths, d in ((PATHS, DATA), (ONE_PATHS, ONE)):
+            for lang in MESSAGES:
+                s = page(lang, paths)
+                for n in range(1, 7):
+                    self.assertEqual(s.count(f'<section class="cs-step" id="p{n}">'), 1, (lang, n))
+                    self.assertIn(f'<a href="#p{n}"><b>{n}</b>', s)
+                    self.assertIn(course_pages.esc(d[lang]["labels"][n - 1]), s)
+                self.assertIn(f'aria-label="{course_pages.esc(d[lang]["steps_aria"])}"', s)
+
+    def test_who_decides_in_the_three_modes(self):
+        """The table of the signed texts: who gives permission for each action, in each mode, in the three languages."""
+        for lang in MESSAGES:
+            M = ONE[lang]["try"]["modes"]
+            self.assertEqual(M["states"], MODES, lang)
+            self.assertEqual(list(M["buttons"]), ["manual", "auto", "bypass"])
+            self.assertEqual(len(M["actions"]), 4)
+            for mode in MODES:
+                html = course_pages.rows(M, mode)
+                self.assertEqual(html.count('class="cs-row"'), 4)
+                for k, key in enumerate(MODES[mode]):
+                    self.assertIn(f'<span class="cs-num">{k + 1}</span><span>{course_pages.esc(M["actions"][k])}</span></div>'
+                                  f'<span class="cs-mtag {key}">{course_pages.esc(M["tags"][key])}</span>', html)
+
+    def test_manual_is_the_first_state_without_the_script(self):
+        for lang in MESSAGES:
+            s, M = page(lang, ONE_PATHS), ONE[lang]["try"]["modes"]
+            self.assertIn(f'aria-checked="true" tabindex="0" data-m="manual">{course_pages.esc(M["buttons"]["manual"])}', s)
+            self.assertIn(f'<div class="cs-rows" id="cs-rows" aria-live="polite">{course_pages.rows(M, "manual")}</div>', s)
+            self.assertIn(f'<p class="cs-msg manual" id="cs-mmsg" role="status">{course_pages.fmt(M["msg"]["manual"])}</p>', s)
+            for m in M["msg"].values():
+                self.assertIn(json.dumps(m, ensure_ascii=False), s)  # the script's copy
+
+    def test_the_note_carries_the_date_of_the_check(self):
+        want = {"es": "comprobada el 26 de noviembre de 2026.", "en": "checked on 26 November 2026.",
+                "ca": "comprovada el 26 de novembre de 2026."}
+        for lang, w in want.items():
+            self.assertIn(course_pages.esc(w), page(lang, ONE_PATHS))
+            self.assertNotIn("{fecha", page(lang, ONE_PATHS))
+
+    def test_game_of_lesson_1(self):
+        """Six cases, two answers that go on their own; right answers as in the signed texts."""
+        for lang in MESSAGES:
+            G = ONE[lang]["check"]["game"]
+            self.assertEqual(len(G["options"]), 2)
+            self.assertEqual(G["exclusive"], [0, 1])
+            self.assertEqual([i["answer"] for i in G["items"]], [[0], [1], [0], [0], [1], [1]], lang)
+            self.assertEqual(G["question"], "")
+
+    def test_test_of_lesson_1(self):
+        for lang in MESSAGES:
+            Q = ONE[lang]["check"]["test"]
+            self.assertEqual(len(Q["items"]), 4)
+            self.assertTrue(all(len(i["options"]) == 3 for i in Q["items"]))
+            self.assertEqual([i["answer"] for i in Q["items"]], [1, 1, 1, 1], lang)
+            self.assertIn("{score}", Q["result"])
+
+    def test_lesson_2_keeps_its_answers(self):
+        for lang in MESSAGES:
+            G = DATA[lang]["check"]["game"]
+            self.assertEqual([i["answer"] for i in G["items"]], [[1], [2, 3], [0], [3], [4], [1]], lang)
+            self.assertEqual(G["exclusive"], [4])
+            self.assertEqual([i["answer"] for i in DATA[lang]["check"]["test"]["items"]], [1, 1, 1, 1], lang)
+
+    def test_sample_report_link_in_step_5(self):
+        for lang in MESSAGES:
+            s = page(lang, ONE_PATHS)
+            self.assertEqual(s.count(f'<a href="{SAMPLE[lang]}">'), 1, lang)
+
+    def test_lesson_1_leads_to_lesson_2(self):
+        for lang in MESSAGES:
+            self.assertIn(f'<a class="cs-btn primary" href="{PATHS[lang]}">{course_pages.esc(ONE[lang]["take"]["button"])}</a>',
+                          page(lang, ONE_PATHS))
+
+    def test_entry_page_held_back_while_the_course_has_no_name(self):
+        """GTM-227 point 4: no entry page, no «Back to the course» button and no link to the entry."""
+        self.assertEqual(ENTRY["name"], "")
+        self.assertFalse(course_pages.entry_ready(ENTRY))
+        built = course_pages.pages()
+        for p in ENTRY["path"].values():
+            self.assertNotIn(p, built)
+            self.assertFalse((SITE / p.strip("/") / "index.html").exists(), p)
+        for lang in MESSAGES:
+            s = page(lang)
+            self.assertNotIn(course_pages.esc(DATA[lang]["take"]["button"]), s, lang)
+            for p in ENTRY["path"].values():
+                self.assertNotIn(f'href="{p}"', s)
+
+    def test_entry_page_once_it_has_a_name(self):
+        """Rendered in memory only: with a name, the entry page appears, and lesson 2 gets its button back."""
+        e = json.loads(json.dumps(ENTRY))
+        e["name"] = "Test name"
+        built = course_pages.pages({"course": e})
+        for lang in MESSAGES:
+            s = built[ENTRY["path"][lang]]
+            self.assertIn("<h1>Test name</h1>", s)
+            self.assertIn('<meta name="robots" content="noindex">', s)
+            self.assertIn(f'href="{ONE_PATHS[lang]}"', s)
+            self.assertEqual(s.count('class="cs-lesson"'), 5)
+            self.assertIn(f'href="{ENTRY["path"][lang]}">{course_pages.esc(DATA[lang]["take"]["button"])}</a>',
+                          built[PATHS[lang]])
+
+    def test_english_quotes(self):
+        for paths in (PATHS, ONE_PATHS):
+            s = page("en", paths)
+            body = s[s.index('<main'):s.index('</main>')]
+            self.assertNotIn("«", body)
+            self.assertIn("“", body)
 
 
 class Script(unittest.TestCase):

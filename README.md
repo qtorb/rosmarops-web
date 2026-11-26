@@ -28,14 +28,17 @@ The glossary pages (`/glossary/`, `/es/glosario/`, `/ca/glossari/`), the «i» h
 
 ## The course (`observatory/course_pages.py`)
 
-Lesson 2 of the public course, «The chain», lives at `/course/the-chain/`, `/es/curso/la-cadena/` and `/ca/curs/la-cadena/` (GTM-206).
+The public course has two lessons built (GTM-206, GTM-227), each in six steps: before you start, the idea, try it, check it (a game and a test), on your computer, and what you take away.
 
-- Its texts are in `observatory/data/course/the-chain.json`, copied literally from the signed documents in rosmarops-vigil (see the file's `_source`). Change the signed document first, then this file. `**x**` is bold and `` `x` `` is code. To check that every text is still literal, run `python3 tools/course/check_signed.py <path to a copy of rosmarops-vigil>` by hand (CI cannot read that repository); the footer is checked against `docs/briefs/GTM-215.md`, the eight retouches of `docs/briefs/GTM-217.md` (listed in `RETOUCHES` in the script) against that brief, and the rest against the two lesson documents.
-- `observatory/build.py` writes the three pages (or run `python3 observatory/course_pages.py`). Their styles and script are `site/assets/course/chain.css` and `chain.js`, which read the texts from the page itself.
-- What a visitor does in the lesson (the permissions they try, their answers in the game and the test) stays in the page: nothing goes into the address, the browser's storage or cookies, and nothing is sent. The page still counts a visit like every page of the site.
-- The download button in the exercise sends `from=course`, which the counter keeps as its own source, `course`.
-- Not open yet: the pages carry `noindex`, no page or menu links to them, and they are not in the sitemap or `llms.txt`. The deploy fails if the `noindex` goes missing. Opening them is Albert's decision.
-- Tests: `observatory/tests/test_course_pages.py`. Captures of this version: `docs/captures/gtm-206-leccion-2/`.
+- Lesson 1, «The inspector»: `/course/the-inspector/`, `/es/curso/el-inspector/`, `/ca/curs/linspector/`. Its piece «Who decides?» shows the same agent (Claude Code) in three modes, Manual, Auto and Bypass permissions, and who gives permission for four actions in each.
+- Lesson 2, «The chain»: `/course/the-chain/`, `/es/curso/la-cadena/`, `/ca/curs/la-cadena/`. Its piece is «Break the chain».
+- The course entry page: `/course/`, `/es/curso/`, `/ca/curs/`. Its title is the course name, which is not decided yet. While `name` is empty in `observatory/data/course/course.json`, the entry page is not written and lesson 2 shows no «Back to the course» button. Filling in the name builds it.
+- Texts: `observatory/data/course/the-inspector.json`, `the-chain.json` and `course.json`, copied literally from the signed documents in rosmarops-vigil (see each file's `_source`). Change the signed document first, then these files. `**x**` is bold and `` `x` `` is code. In English pages the quotes are “ ” (the build stops on a « »). To check that every text is still literal, run `python3 tools/course/check_signed.py <path to a copy of rosmarops-vigil>` by hand (CI cannot read that repository). It compares every text with `docs/research/2026-11-26-curso-publico-textos-finales.md` (and the design document for the step list label), and keeps the retouches of `docs/briefs/GTM-217.md` and the two sentences corrected in GTM-219.
+- `observatory/build.py` writes the pages (or run `python3 observatory/course_pages.py`). Their styles and script are `site/assets/course/chain.css` and `chain.js`, which read the texts from the page itself.
+- What a visitor does in a lesson (the mode or permissions they try, their answers in the game and the test) stays in the page: nothing goes into the address, the browser's storage or cookies, and nothing is sent. The page still counts a visit like every page of the site.
+- The download buttons in step 5 send `from=course`, which the counter keeps as its own source, `course`. In lesson 1, step 5 also links to the sample report of each language.
+- Not open yet: the pages carry `noindex`, no page or menu links to them (only lesson 1 to lesson 2), and they are not in the sitemap or `llms.txt`. The deploy fails if the `noindex` goes missing or if an entry page appears. Opening them is Albert's decision.
+- Tests: `observatory/tests/test_course_pages.py`. Captures: `docs/captures/gtm-206-leccion-2/` and `docs/captures/gtm-227-curso/`.
 
 ## The GitHub star card (`observatory/star_card.py`)
 
