@@ -254,9 +254,10 @@ def company_of(a):
     return COMPANY.get(v, v)
 
 
-def grid(lang, agents, *, family_label, status_html, last_html, href):
+def grid(lang, agents, *, family_label, status_html, last_html, href, more_html=None):
     """The company grid and the block of the rest. family_label(a), status_html(a), last_html(a) give the literals
-    the web already uses; href(a) is the path of the published agent page, or None."""
+    the web already uses; href(a) is the path of the published agent page, or None. more_html(a), if given, adds lines
+    at the end of a product's row (GTM-223: its Control Baseline results); products without a row do not change."""
     T = texts()[lang]
     map_texts = map_page.load()[2]["texts"]
     cls = classes()
@@ -290,7 +291,7 @@ def grid(lang, agents, *, family_label, status_html, last_html, href):
                 f'<span class="co-tag">{esc(family_label(a))}</span>'
                 f'<span class="co-cl">{cl}</span>'
                 f'<p class="co-meta">{status_html(a)}</p>'
-                f'<p class="co-meta" data-last="{esc(ag["id"])}">{last_html(a)}</p>{extra}</li>'
+                f'<p class="co-meta" data-last="{esc(ag["id"])}">{last_html(a)}</p>{extra}{more_html(a) if more_html else ""}</li>'
             )
         n = len(items)
         count = T["count.one"] if n == 1 else fill(T["count.many"], n=n)

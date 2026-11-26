@@ -454,6 +454,12 @@ jobs:
             echo "-mkdir observatory"
             echo "put site/observatory/index.html observatory/index.html"
             for f in site/observatory/*.json; do echo "put $f observatory/$(basename "$f")"; done
+            # GTM-223: the Control Baseline data, with its subfolders (written by build.py: the published results,
+            # latest.json of each product and the schema).
+            if [ -d site/observatory/minimum ]; then
+              for d in $(find site/observatory/minimum -type d | sort); do echo "-mkdir ${d#site/}"; done
+              for f in $(find site/observatory/minimum -type f -name '*.json' | sort); do echo "put $f ${f#site/}"; done
+            fi
             echo "-mkdir es/observatorio"
             echo "put site/es/observatorio/index.html es/observatorio/index.html"
             echo "-mkdir ca/observatori"
@@ -469,6 +475,7 @@ jobs:
             for f in $(find site/observatory site/es/observatorio site/ca/observatori -mindepth 2 -name index.html); do
               if ! grep -q '<meta name="robots" content="noindex">' "$f"; then
                 d=$(dirname "${f#site/}")
+                echo "-mkdir $(dirname "$d")"  # GTM-223: a result page is one level deeper (control-baseline/<id>/)
                 echo "-mkdir $d"
                 echo "put $f $d/index.html"
               fi
@@ -643,7 +650,7 @@ jobs:
         run: |
           set -eu
           sleep 5
-          for u in https://rosmarops.com/ https://rosmarops.com/es/ https://rosmarops.com/llms.txt https://rosmarops.com/methodology/ https://rosmarops.com/faq/ https://rosmarops.com/es/metodologia/ https://rosmarops.com/es/preguntas-frecuentes/ https://rosmarops.com/ca/ https://rosmarops.com/ca/metodologia/ https://rosmarops.com/ca/preguntes-frequents/ https://rosmarops.com/ca/privadesa/ https://rosmarops.com/privacy/ https://rosmarops.com/es/privacidad/ https://rosmarops.com/sitemap-pages.xml https://rosmarops.com/observatory/ https://rosmarops.com/es/observatorio/ https://rosmarops.com/ca/observatori/ https://rosmarops.com/observatory/data.json https://rosmarops.com/observatory/claude-code/ https://rosmarops.com/es/observatorio/cursor/ https://rosmarops.com/ca/observatori/kanvas/ https://rosmarops.com/macos/ https://rosmarops.com/es/macos/ https://rosmarops.com/ca/macos/ https://rosmarops.com/sample-report/ https://rosmarops.com/es/informe-de-ejemplo/ https://rosmarops.com/ca/informe-dexemple/ https://rosmarops.com/sample-report/sample-report.en.html https://rosmarops.com/sample-report/sample-report.es.html https://rosmarops.com/cloud-access/ https://rosmarops.com/es/acceso-en-la-nube/ https://rosmarops.com/ca/acces-al-nuvol/ https://rosmarops.com/assets/methodology/how-rosmarops-works-en-wide.svg https://rosmarops.com/assets/methodology/how-rosmarops-works-en-narrow.svg https://rosmarops.com/assets/methodology/how-rosmarops-works-es-wide.svg https://rosmarops.com/assets/methodology/how-rosmarops-works-es-narrow.svg https://rosmarops.com/assets/methodology/how-rosmarops-works-ca-wide.svg https://rosmarops.com/assets/methodology/how-rosmarops-works-ca-narrow.svg; do
+          for u in https://rosmarops.com/ https://rosmarops.com/es/ https://rosmarops.com/llms.txt https://rosmarops.com/methodology/ https://rosmarops.com/faq/ https://rosmarops.com/es/metodologia/ https://rosmarops.com/es/preguntas-frecuentes/ https://rosmarops.com/ca/ https://rosmarops.com/ca/metodologia/ https://rosmarops.com/ca/preguntes-frequents/ https://rosmarops.com/ca/privadesa/ https://rosmarops.com/privacy/ https://rosmarops.com/es/privacidad/ https://rosmarops.com/sitemap-pages.xml https://rosmarops.com/observatory/ https://rosmarops.com/es/observatorio/ https://rosmarops.com/ca/observatori/ https://rosmarops.com/observatory/data.json https://rosmarops.com/observatory/claude-code/ https://rosmarops.com/es/observatorio/cursor/ https://rosmarops.com/ca/observatori/kanvas/ https://rosmarops.com/observatory/control-baseline/ https://rosmarops.com/es/observatorio/minimo-de-control/ https://rosmarops.com/ca/observatori/minim-de-control/ https://rosmarops.com/observatory/minimum/minim-result.v2.schema.json https://rosmarops.com/macos/ https://rosmarops.com/es/macos/ https://rosmarops.com/ca/macos/ https://rosmarops.com/sample-report/ https://rosmarops.com/es/informe-de-ejemplo/ https://rosmarops.com/ca/informe-dexemple/ https://rosmarops.com/sample-report/sample-report.en.html https://rosmarops.com/sample-report/sample-report.es.html https://rosmarops.com/cloud-access/ https://rosmarops.com/es/acceso-en-la-nube/ https://rosmarops.com/ca/acces-al-nuvol/ https://rosmarops.com/assets/methodology/how-rosmarops-works-en-wide.svg https://rosmarops.com/assets/methodology/how-rosmarops-works-en-narrow.svg https://rosmarops.com/assets/methodology/how-rosmarops-works-es-wide.svg https://rosmarops.com/assets/methodology/how-rosmarops-works-es-narrow.svg https://rosmarops.com/assets/methodology/how-rosmarops-works-ca-wide.svg https://rosmarops.com/assets/methodology/how-rosmarops-works-ca-narrow.svg; do
             code=$(curl -s -o /dev/null -w '%{http_code}' "$u?deploy=${GITHUB_SHA::7}")
             echo "$code $u"; test "$code" = "200"
           done

@@ -44,6 +44,12 @@ JSON_BASE = "/observatory/"
 
 # Daily synopsis (GTM-23): pages rendered by wp/mu-plugins/rosmarops-daily.php from these shells.
 DAILY_PATH = {"en": "/observatory/daily/", "es": "/es/observatorio/diario/", "ca": "/ca/observatori/diari/"}
+# GTM-223: the RosmarOps Control Baseline. Criterion page, one page per published result, and the data under one path.
+MIN_PATH = {"en": "/observatory/control-baseline/", "es": "/es/observatorio/minimo-de-control/", "ca": "/ca/observatori/minim-de-control/"}
+MIN_JSON = "/observatory/minimum/"
+MIN_CONTACT = "albert@rosmarops.com"  # GTM-223 point 9, as selectable text
+MIN_DATA = ROOT / "observatory" / "data" / "minimum"
+BUILD_DAY = None  # the day of the build (UTC), set in main(); results publish from vendor.publish_after on
 DAILY_DIR = ROOT / "wp" / "daily"
 # Cloud access review page (GTM-51), linked from the index (GTM-53).
 CLOUD_PATH = {"en": "/cloud-access/", "es": "/es/acceso-en-la-nube/", "ca": "/ca/acces-al-nuvol/"}
@@ -598,7 +604,8 @@ def build_index(lang, t, agents, candidates):
         return f'{esc(t.date(lc["date"]))} · {esc(t.text("category." + lc["category"]))}' if lc else t("index.no_change")
 
     companies = company_page.grid(lang, agents, family_label=family_label, status_html=status_html, last_html=last_html,
-                                  href=lambda a: agent_path(lang, a["agent"]["id"]) if is_published(a) else None)
+                                  href=lambda a: agent_path(lang, a["agent"]["id"]) if is_published(a) else None,
+                                  more_html=lambda a: min_row_lines(lang, t, a))
 
     body = f"""<section class="hero co-hero">
 <p class="obs-brand"><img src="/assets/brand/observatory/observatory-mark.svg" width="64" height="64" alt="">{t("site.observatory_brand")}</p>
@@ -984,6 +991,16 @@ def build_sitemap(agents):
         aalts = "".join(f'<xhtml:link rel="alternate" hreflang="{l}" href="{BASE}{agent_path(l, aid)}"/>' for l in LANGS)
         aalts += f'<xhtml:link rel="alternate" hreflang="x-default" href="{BASE}{agent_path("en", aid)}"/>'
         lines += [f"  <url><loc>{BASE}{agent_path(l, aid)}</loc><lastmod>{date_modified(a)}</lastmod>{aalts}</url>" for l in LANGS]
+    # GTM-223: the Control Baseline criterion page, and one page per published result.
+    malts2 = "".join(f'<xhtml:link rel="alternate" hreflang="{l}" href="{BASE}{MIN_PATH[l]}"/>' for l in LANGS)
+    malts2 += f'<xhtml:link rel="alternate" hreflang="x-default" href="{BASE}{MIN_PATH["en"]}"/>'
+    mlast2 = max((rs[-1]["measured_at"] for rs in MIN_PUBLISHED.values()), default=None)
+    mmod2 = f"<lastmod>{mlast2}</lastmod>" if mlast2 else ""
+    lines += [f"  <url><loc>{BASE}{MIN_PATH[l]}</loc>{mmod2}{malts2}</url>" for l in LANGS]
+    for rid, rs in MIN_PUBLISHED.items():
+        ralts = "".join(f'<xhtml:link rel="alternate" hreflang="{l}" href="{BASE}{min_result_path(l, rid)}"/>' for l in LANGS)
+        ralts += f'<xhtml:link rel="alternate" hreflang="x-default" href="{BASE}{min_result_path("en", rid)}"/>'
+        lines += [f"  <url><loc>{BASE}{min_result_path(l, rid)}</loc><lastmod>{rs[-1]['measured_at']}</lastmod>{ralts}</url>" for l in LANGS]
     import templates_pages  # GTM-190: the template pages, hreflang EN<->ES, once they exist
     for path, group in templates_pages.sitemap_urls(templates_pages.load()):
         talts = "".join(f'<xhtml:link rel="alternate" hreflang="{l}" href="{BASE}{p}"/>' for l, p in group.items())
@@ -1213,20 +1230,290 @@ def build_sandbox(lang, t, agents):
     write(sandbox_page.SANDBOX_PATH[lang], html_out)
 
 
+# ---------------------------------------------------------------- Control Baseline (GTM-223)
+
+def min_results():
+    """Published results by id, oldest first (vendor.publish_after on or before the day of the build)."""
+    import minimum
+    return minimum.published(minimum.load(MIN_DATA), BUILD_DAY)
+
+
+def min_result_path(lang, rid):
+    return MIN_PATH[lang] + rid + "/"
+
+
+def min_self(r):
+    return r["applies"]["runs_on"]["value"] == "user_machine"
+
+
+def min_use(t, r):
+    return t("minimum.use.self") if min_self(r) else t("minimum.use.cloud", plan=r["tested_plan"])
+
+
+def min_vendor(t, r, link=True):
+    v = r["vendor"]
+    if v["reply"] == "none":
+        return t("minimum.v.none", fecha=t.date(v["notified_at"]))
+    key = {"received": "minimum.v.received", "changed_product": "minimum.v.changed", "disputed": "minimum.v.disputed"}[v["reply"]]
+    text = t(key, fecha=t.date(v["reply_at"]))
+    if link and v["reply"] == "disputed":  # f.3: the vendor's public reply is linked next to the result
+        text = f'<a href="{esc(v["reply_url"])}" rel="noopener">{text}</a>'
+    return text
+
+
+def min_row_lines(lang, t, a):
+    """The line(s) under a product's row on the Observatory index, one per published result (row.line, or row.line.use
+    when it has two or more)."""
+    import minimum
+    res = [(rid, rs[-1]) for rid, rs in sorted(MIN_PUBLISHED.items())
+           if minimum.owner_agent(rid, {a["agent"]["id"]}) == a["agent"]["id"]]
+    out = []
+    for rid, r in res:
+        kw = {"n": str(r["met"]), "t": str(r["total"]), "fecha": t.date(r["measured_at"])}
+        if len(res) > 1:
+            text = t("minimum.row.line.use", forma=t.text("minimum.row.use." + ("self" if min_self(r) else "cloud")), **kw)
+        else:
+            text = t("minimum.row.line", **kw)
+        out.append(f'<p class="co-meta"><a href="{min_result_path(lang, rid)}">{text}</a></p>')
+    return "".join(out)
+
+
+def min_first_sentence(s):
+    i = s.find(". ")
+    return s if i < 0 else s[: i + 1]
+
+
+def min_title(t, h1):
+    return h1 + " · " + t.text("index.title").split(" · ")[-1]
+
+
+def min_crumbs(lang, t, *rest):
+    parts = [f'<a href="{INDEX_PATH[lang]}">{t("site.nav.observatory")}</a>'] + list(rest)
+    return f'<p class="crumbs"><img src="/assets/brand/observatory/observatory-mark.svg" width="24" height="24" alt="">{" › ".join(parts)}</p>'
+
+
+def min_toc(t, items):
+    return f'<nav class="toc" aria-label="{t("agent.toc")}"><p>{t("agent.toc")}</p>' + "".join(f'<a href="#{h}">{t(k)}</a>' for h, k in items) + "</nav>"
+
+
+def min_table(heads, rows):
+    """A table with the Observatory's own component: the header cells are reused as data-label for 390."""
+    th = "".join(f'<th scope="col">{h}</th>' for h in heads)
+    body = ""
+    for r in rows:
+        body += "<tr>" + f'<th scope="row">{r[0]}</th>' + "".join(f'<td data-label="{heads[i + 1]}">{c}</td>' for i, c in enumerate(r[1:])) + "</tr>"
+    return f'<div class="box tablebox"><table>\n<thead><tr>{th}</tr></thead>\n<tbody>{body}</tbody></table></div>'
+
+
+def min_breadcrumbs(lang, t, items):
+    return {"@context": "https://schema.org", "@type": "BreadcrumbList",
+            "itemListElement": [{"@type": "ListItem", "position": i + 1, "name": n, "item": BASE + u} for i, (n, u) in enumerate(items)]}
+
+
+def build_min_criterion(lang, t):
+    """The criterion page (GTM-223 point 3): published with or without results."""
+    k = lambda key, **kw: t("minimum." + key, **kw)
+    latest = [rs[-1] for rs in MIN_PUBLISHED.values()]
+    import minimum
+    if latest:
+        meta = k("meta", v=str(minimum.CRITERIA_VERSION), fecha=t.date(max(r["measured_at"] for r in latest)))
+    else:
+        meta = k("meta.none", v=str(minimum.CRITERIA_VERSION))
+    when = {"M2": "when.M2", "M3": "when.M3"}
+    crit = min_table(
+        t.raw("minimum.c.th").split(" · "),
+        [[cid, k(cid + ".name"), k(cid + ".text"), k(when.get(cid, "when.always"))] for cid in minimum.IDS],
+    )
+    if latest:
+        rows = []
+        for r in sorted(latest, key=lambda r: (r["candidate"]["name"].lower(), r["candidate"]["id"])):
+            name = f'<a href="{min_result_path(lang, r["candidate"]["id"])}">{esc(r["candidate"]["name"])}</a>'
+            rows.append([name, min_use(t, r), k("r.count", n=str(r["met"]), t=str(r["total"])), esc(t.date(r["measured_at"])), min_vendor(t, r)])
+        results = min_table([esc(x) for x in t.raw("minimum.r.th").split(" · ")], rows) + f'\n<p class="note">{k("r.note")}</p>'
+    else:
+        results = f'<p class="empty box">{k("r.empty")}</p>'
+    plain = lambda items: '<ul class="plain">' + "".join(f"<li>{x}</li>" for x in items) + "</ul>"
+    toc = min_toc(t, [("criteria", "minimum.c.h2"), ("who-meets", "minimum.p.h2"), ("how", "minimum.m.h2"), ("results", "minimum.r.h2"),
+                      ("vendor", "minimum.f.h2"), ("not", "minimum.n.h2"), ("who", "minimum.w.h2"), ("data", "minimum.d.h2")])
+    body = f"""<div class="layout">
+{toc}
+<article class="article">
+<section>
+{min_crumbs(lang, t, k("crumb"))}
+<h1>{k("h1")}</h1>
+<p class="pagemeta">{meta}</p>
+<p class="lead">{k("lead")}</p>
+</section>
+<section id="criteria" aria-labelledby="criteria-h">
+<h2 id="criteria-h">{k("c.h2")}</h2>
+{crit}
+<p class="note">{k("c.note")}</p>
+</section>
+<section id="who-meets" class="box panel" aria-labelledby="who-meets-h">
+<h2 id="who-meets-h">{k("p.h2")}</h2>
+<p>{k("p.text")}</p>
+</section>
+<section id="how" class="box panel" aria-labelledby="how-h">
+<h2 id="how-h">{k("m.h2")}</h2>
+{plain([k("m.1"), k("m.2"), k("m.3")])}
+<p>{k("m.rules")}</p>
+</section>
+<section id="results" aria-labelledby="results-h">
+<h2 id="results-h">{k("r.h2")}</h2>
+{results}
+</section>
+<section id="vendor" class="box panel" aria-labelledby="vendor-h">
+<h2 id="vendor-h">{k("f.h2")}</h2>
+{plain([k("f.1"), k("f.2"), k("f.3"), k("f.4")])}
+<p>{k("f.contact", correo=MIN_CONTACT)}</p>
+</section>
+<section id="not" class="box panel" aria-labelledby="not-h">
+<h2 id="not-h">{k("n.h2")}</h2>
+{plain([esc(x) for x in t.raw("minimum.n.list").split(" · ")])}
+</section>
+<section id="who" class="box panel" aria-labelledby="who-h">
+<h2 id="who-h">{k("w.h2")}</h2>
+<p>{k("w.text")}</p>
+</section>
+<section id="data" class="box panel" aria-labelledby="data-h">
+<h2 id="data-h">{k("d.h2")}</h2>
+<p>{k("d.text")}</p>
+{plain([f'<a href="{MIN_JSON}{minimum.SCHEMA_NAME}">{k("d.schema")}</a>'])}
+</section>
+</article>
+</div>"""
+    path = MIN_PATH[lang]
+    h1 = t.text("minimum.h1")
+    jsonld = [min_breadcrumbs(lang, t, [(t.text("index.breadcrumb_home"), t.text("site.home_url")), (t.text("site.nav.observatory"), INDEX_PATH[lang]),
+                                         (t.text("minimum.crumb"), path)])]
+    write(path, page(lang, t, path=path, title=min_title(t, h1), description=min_first_sentence(t.text("minimum.lead")), alternates=MIN_PATH,
+                     jsonld=jsonld, body=body, noindex=False))
+
+
+def build_min_result(lang, t, rid, history):
+    """One result's page (GTM-223 point 4): the latest published result of rid, and its history."""
+    k = lambda key, **kw: t("minimum." + key, **kw)
+    r = history[-1]
+    name = r["candidate"]["name"]
+    if min_self(r):
+        meta = k("x.meta.self", **{"versión": r["tested_version"]}, fecha=t.date(r["measured_at"]), fecha2=t.date(r["expires_at"]))
+    else:
+        meta = k("x.meta.cloud", plan=r["tested_plan"], fecha=t.date(r["measured_at"]), fecha2=t.date(r["expires_at"]))
+    missing = r["total"] - r["met"]
+    verdict = k("x.pass") if r["passes"] else (k("x.fail.one") if missing == 1 else k("x.fail", k=str(missing)))
+    summary = (f'<div class="box panel summary"><p class="eyebrow">{k("x.eyebrow")}</p>'
+               f'<p>{k("x.count", n=str(r["met"]), t=str(r["total"]))}</p><p>{verdict}</p><p>{k("x.what")}</p></div>')
+
+    def ev_link(x):
+        return f' <a href="{esc(x["evidence_url"])}" rel="noopener">{k("ev.link", fecha=t.date(x["accessed_at"]))}</a>' if x.get("evidence_url") else ""
+
+    f1, f2 = r["applies"]["third_party_agents"], r["applies"]["runs_on"]
+    facts = [k("a.f1.yes" if f1["value"] == "yes" else "a.f1.no") + ev_link(f1), k("a.f2.self" if f2["value"] == "user_machine" else "a.f2.cloud") + ev_link(f2)]
+    res_key = {"yes": "res.yes", "no": "res.no", "unknown": "res.unknown", "not_applicable": "res.na"}
+    how_key = {"official_doc": "how.doc", "official_code": "how.code", "test": "how.test", "vendor_reply": "how.reply"}
+    rows = []
+    for c in r["criteria"]:
+        if c["result"] == "not_applicable":
+            ev = k("ev.na")
+        elif c["result"] == "unknown":
+            ev = ("<span>" + (ev_link(c).strip() + "<br>" if c.get("evidence_url") else "") + k("ev.reason")
+                  + f'<br><span lang="en">{esc(c["unknown_reason"])}</span></span>')  # one child, so the 390 layout keeps it in one cell
+        else:
+            ev = ev_link(c).strip()
+        rows.append([f'{c["id"]} · {k(c["id"] + ".name")}', f'<strong>{k(res_key[c["result"]])}</strong>', k(how_key[c["how"]]), ev])
+    table = min_table(t.raw("minimum.t.th").split(" · "), rows)
+    v = r["vendor"]
+    links = []
+    if v.get("reply_url"):
+        links.append(f'<a href="{esc(v["reply_url"])}" rel="noopener">{k("y.link")}</a>')
+    if v.get("notice_url"):
+        links.append(f'<a href="{esc(v["notice_url"])}" rel="noopener">{k("y.notice")}</a>')
+    reply = f"<p>{min_vendor(t, r, link=False)}</p>" + (f'<ul class="plain">{"".join(f"<li>{x}</li>" for x in links)}</ul>' if links else "")
+    hist = "".join(
+        f'<li>{k("h.item", fecha=t.date(h["measured_at"]), n=str(h["met"]), t=str(h["total"]))}{(" " + k("h.current")) if h is r else ""}</li>'
+        for h in reversed(history)
+    )
+    json_url = f'{MIN_JSON}{rid}/{r["measured_at"]}.json'
+    crit_link = Markup(f'<a href="{MIN_PATH[lang]}">{t("minimum.h1")}</a>')
+    toc = min_toc(t, [("measured", "minimum.a.h2"), ("criteria", "minimum.t.h2"), ("reply", "minimum.y.h2"), ("history", "minimum.h.h2"), ("data", "minimum.d.h2")])
+    body = f"""<div class="layout">
+{toc}
+<article class="article">
+<section>
+{min_crumbs(lang, t, f'<a href="{MIN_PATH[lang]}">{k("crumb")}</a>', esc(name))}
+<h1>{k("x.h1", producto=name)}</h1>
+<p class="pagemeta">{meta}</p>
+{summary}
+</section>
+<section id="measured" class="box panel" aria-labelledby="measured-h">
+<h2 id="measured-h">{k("a.h2")}</h2>
+<ul class="plain">{"".join(f"<li>{x}</li>" for x in facts)}</ul>
+</section>
+<section id="criteria" aria-labelledby="criteria-h">
+<h2 id="criteria-h">{k("t.h2")}</h2>
+{table}
+</section>
+<section id="reply" class="box panel" aria-labelledby="reply-h">
+<h2 id="reply-h">{k("y.h2")}</h2>
+{reply}
+</section>
+<section id="history" class="box panel" aria-labelledby="history-h">
+<h2 id="history-h">{k("h.h2")}</h2>
+<ul class="plain">{hist}</ul>
+</section>
+<section id="data" class="box panel" aria-labelledby="data-h">
+<h2 id="data-h">{k("d.h2")}</h2>
+<ul class="plain"><li><a href="{json_url}">{k("j.link")}</a></li></ul>
+</section>
+<p class="disclaimer">{t("minimum.x.owner", **{"enlace a la página del criterio": crit_link})}</p>
+</article>
+</div>"""
+    path = min_result_path(lang, rid)
+    h1 = t.text("minimum.x.h1", producto=name)
+    jsonld = [min_breadcrumbs(lang, t, [(t.text("index.breadcrumb_home"), t.text("site.home_url")), (t.text("site.nav.observatory"), INDEX_PATH[lang]),
+                                         (t.text("minimum.crumb"), MIN_PATH[lang]), (name, path)])]
+    write(path, page(lang, t, path=path, title=min_title(t, h1), description=min_first_sentence(t.text("minimum.x.what")),
+                     alternates={l: min_result_path(l, rid) for l in LANGS}, jsonld=jsonld, body=body, noindex=False, modified=r["measured_at"]))
+
+
+def build_min_data():
+    """The public copies (GTM-223 point 2): every published result as it is on disk, latest.json of each id, and the
+    schema. Nothing else from observatory/data/minimum/ is copied."""
+    import minimum
+    out = SITE / MIN_JSON.strip("/")
+    out.mkdir(parents=True, exist_ok=True)
+    (out / minimum.SCHEMA_NAME).write_bytes(minimum.SCHEMA.read_bytes())
+    for rid, rs in MIN_PUBLISHED.items():
+        d = out / rid
+        d.mkdir(parents=True, exist_ok=True)
+        for r in rs:
+            (d / f'{r["measured_at"]}.json').write_bytes((MIN_DATA / rid / f'{r["measured_at"]}.json').read_bytes())
+        (d / "latest.json").write_bytes((MIN_DATA / rid / f'{rs[-1]["measured_at"]}.json').read_bytes())
+
+
+MIN_PUBLISHED = {}
+
+
 def main():
-    global DATA, SITE
+    global DATA, SITE, MIN_DATA, BUILD_DAY, MIN_PUBLISHED
+    import datetime
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--data", type=Path, default=DATA, help="folder with the agent JSON files")
     ap.add_argument("--out", type=Path, default=SITE, help="output root (default: site/)")
+    ap.add_argument("--minimum", type=Path, default=MIN_DATA, help="folder with the Control Baseline results (GTM-223)")
+    ap.add_argument("--today", default=None, help="the day of the build, YYYY-MM-DD (default: today, UTC)")
     args = ap.parse_args()
     default_out = args.out == SITE
-    DATA, SITE = args.data, args.out
+    DATA, SITE, MIN_DATA = args.data, args.out, args.minimum
+    BUILD_DAY = args.today or datetime.datetime.now(datetime.timezone.utc).date().isoformat()
+    MIN_PUBLISHED = min_results()
     cats = load_catalogs()
     agents = load_agents()
     candidates = load_candidates()
     for p in INDEX_PATH.values():
         shutil.rmtree(SITE / p.strip("/"), ignore_errors=True)
     build_data(agents)
+    build_min_data()  # GTM-223
     build_sitemap(agents)
     build_llms(agents, T(cats["en"]))
     if default_out:
@@ -1255,6 +1542,11 @@ def main():
         pages += 1
         build_sandbox(lang, t, agents)
         pages += 1
+        build_min_criterion(lang, t)  # GTM-223
+        pages += 1
+        for rid, rs in MIN_PUBLISHED.items():
+            build_min_result(lang, t, rid, rs)
+            pages += 1
         for a in agents:
             if has_page(a):
                 build_agent(lang, t, a)

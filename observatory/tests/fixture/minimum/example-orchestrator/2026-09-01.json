@@ -1,0 +1,87 @@
+{
+  "schema_version": 2,
+  "criteria_version": 4,
+  "candidate": {
+    "id": "example-orchestrator",
+    "name": "Example Orchestrator"
+  },
+  "kind": "orchestrator",
+  "tested_version": "1.2.0",
+  "measured_at": "2026-09-01",
+  "expires_at": "2026-11-30",
+  "measured_by": "rosmarops",
+  "applies": {
+    "third_party_agents": {
+      "value": "yes",
+      "evidence_url": "https://docs.example.com/agents",
+      "accessed_at": "2026-09-01"
+    },
+    "runs_on": {
+      "value": "user_machine",
+      "evidence_url": "https://docs.example.com/install",
+      "accessed_at": "2026-09-01"
+    }
+  },
+  "criteria": [
+    {
+      "id": "M1",
+      "result": "yes",
+      "how": "official_doc",
+      "evidence_url": "https://docs.example.com/m1",
+      "accessed_at": "2026-11-01"
+    },
+    {
+      "id": "M2",
+      "result": "yes",
+      "how": "official_doc",
+      "evidence_url": "https://docs.example.com/m2",
+      "accessed_at": "2026-11-01"
+    },
+    {
+      "id": "M3",
+      "result": "no",
+      "how": "official_doc",
+      "evidence_url": "https://docs.example.com/m3",
+      "accessed_at": "2026-11-01"
+    },
+    {
+      "id": "M4",
+      "result": "yes",
+      "how": "official_doc",
+      "evidence_url": "https://docs.example.com/m4",
+      "accessed_at": "2026-11-01"
+    },
+    {
+      "id": "M5",
+      "result": "yes",
+      "how": "official_doc",
+      "evidence_url": "https://docs.example.com/m5",
+      "accessed_at": "2026-11-01"
+    },
+    {
+      "id": "M6",
+      "result": "yes",
+      "how": "official_doc",
+      "evidence_url": "https://docs.example.com/m6",
+      "accessed_at": "2026-11-01"
+    },
+    {
+      "id": "M7",
+      "result": "yes",
+      "how": "official_doc",
+      "evidence_url": "https://docs.example.com/m7",
+      "accessed_at": "2026-11-01"
+    }
+  ],
+  "met": 6,
+  "total": 7,
+  "passes": false,
+  "vendor": {
+    "notified_at": "2026-09-02",
+    "notified_via": "github_issue",
+    "notice_url": "https://github.com/example/orchestrator/issues/1",
+    "publish_after": "2026-09-16",
+    "reply": "none",
+    "reply_at": ""
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "schema_version": 2,
+  "criteria_version": 4,
+  "candidate": {
+    "id": "example-builder-cloud",
+    "name": "Example Builder"
+  },
+  "kind": "agent_builder",
+  "tested_plan": "Pro",
+  "measured_at": "2026-11-01",
+  "expires_at": "2027-01-30",
+  "measured_by": "rosmarops",
+  "applies": {
+    "third_party_agents": {
+      "value": "no",
+      "evidence_url": "https://docs.example.com/builder",
+      "accessed_at": "2026-11-01"
+    },
+    "runs_on": {
+      "value": "vendor_cloud",
+      "evidence_url": "https://docs.example.com/cloud",
+      "accessed_at": "2026-11-01"
+    }
+  },
+  "criteria": [
+    {
+      "id": "M1",
+      "result": "yes",
+      "how": "official_doc",
+      "evidence_url": "https://docs.example.com/m1",
+      "accessed_at": "2026-11-01"
+    },
+    {
+      "id": "M2",
+      "result": "not_applicable",
+      "how": "official_doc"
+    },
+    {
+      "id": "M3",
+      "result": "not_applicable",
+      "how": "official_doc"
+    },
+    {
+      "id": "M4",
+      "result": "unknown",
+      "how": "official_doc",
+      "evidence_url": "https://docs.example.com/m4",
+      "accessed_at": "2026-11-01",
+      "unknown_reason": "The documentation describes the feature but not how to limit it per agent."
+    },
+    {
+      "id": "M5",
+      "result": "no",
+      "how": "official_doc",
+      "evidence_url": "https://docs.example.com/m5",
+      "accessed_at": "2026-11-01"
+    },
+    {
+      "id": "M6",
+      "result": "yes",
+      "how": "official_doc",
+      "evidence_url": "https://docs.example.com/m6",
+      "accessed_at": "2026-11-01"
+    },
+    {
+      "id": "M7",
+      "result": "yes",
+      "how": "official_doc",
+      "evidence_url": "https://docs.example.com/m7",
+      "accessed_at": "2026-11-01"
+    }
+  ],
+  "met": 3,
+  "total": 5,
+  "passes": false,
+  "vendor": {
+    "notified_at": "2026-11-02",
+    "notified_via": "email",
+    "publish_after": "2026-11-16",
+    "reply": "none",
+    "reply_at": ""
+  }
+}
