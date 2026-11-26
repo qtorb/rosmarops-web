@@ -1296,13 +1296,15 @@ def min_toc(t, items):
     return f'<nav class="toc" aria-label="{t("agent.toc")}"><p>{t("agent.toc")}</p>' + "".join(f'<a href="#{h}">{t(k)}</a>' for h, k in items) + "</nav>"
 
 
-def min_table(heads, rows):
-    """A table with the Observatory's own component: the header cells are reused as data-label for 390."""
+def min_table(heads, rows, widths=None):
+    """A table with the Observatory's own component: the header cells are reused as data-label for 390. widths (in %)
+    go in a colgroup like the agent pages' tables, which the CSS ignores below 700 px."""
     th = "".join(f'<th scope="col">{h}</th>' for h in heads)
+    cols = ("<colgroup>" + "".join(f'<col style="width:{w}%">' for w in widths) + "</colgroup>") if widths else ""
     body = ""
     for r in rows:
         body += "<tr>" + f'<th scope="row">{r[0]}</th>' + "".join(f'<td data-label="{heads[i + 1]}">{c}</td>' for i, c in enumerate(r[1:])) + "</tr>"
-    return f'<div class="box tablebox"><table>\n<thead><tr>{th}</tr></thead>\n<tbody>{body}</tbody></table></div>'
+    return f'<div class="box tablebox"><table>{cols}\n<thead><tr>{th}</tr></thead>\n<tbody>{body}</tbody></table></div>'
 
 
 def min_breadcrumbs(lang, t, items):
@@ -1323,6 +1325,7 @@ def build_min_criterion(lang, t):
     crit = min_table(
         t.raw("minimum.c.th").split(" · "),
         [[cid, k(cid + ".name"), k(cid + ".text"), k(when.get(cid, "when.always"))] for cid in minimum.IDS],
+        widths=(8, 24, 44, 24),  # GTM-224 point 1, from 700 px
     )
     if latest:
         rows = []
@@ -1402,7 +1405,7 @@ def build_min_result(lang, t, rid, history):
     missing = r["total"] - r["met"]
     verdict = k("x.pass") if r["passes"] else (k("x.fail.one") if missing == 1 else k("x.fail", k=str(missing)))
     summary = (f'<div class="box panel summary"><p class="eyebrow">{k("x.eyebrow")}</p>'
-               f'<p>{k("x.count", n=str(r["met"]), t=str(r["total"]))}</p><p>{verdict}</p><p>{k("x.what")}</p></div>')
+               f'<h2>{k("x.count", n=str(r["met"]), t=str(r["total"]))}</h2><p>{verdict}</p><p>{k("x.what")}</p></div>')  # GTM-224 point 3
 
     def ev_link(x):
         return f' <a href="{esc(x["evidence_url"])}" rel="noopener">{k("ev.link", fecha=t.date(x["accessed_at"]))}</a>' if x.get("evidence_url") else ""
@@ -1420,7 +1423,8 @@ def build_min_result(lang, t, rid, history):
                   + f'<br><span lang="en">{esc(c["unknown_reason"])}</span></span>')  # one child, so the 390 layout keeps it in one cell
         else:
             ev = ev_link(c).strip()
-        rows.append([f'{c["id"]} · {k(c["id"] + ".name")}', f'<strong>{k(res_key[c["result"]])}</strong>', k(how_key[c["how"]]), ev])
+        how = k("ev.na") if c["result"] == "not_applicable" else k(how_key[c["how"]])  # GTM-224 point 2
+        rows.append([f'{c["id"]} · {k(c["id"] + ".name")}', f'<strong>{k(res_key[c["result"]])}</strong>', how, ev])
     table = min_table(t.raw("minimum.t.th").split(" · "), rows)
     v = r["vendor"]
     links = []

@@ -251,6 +251,29 @@ class Pages(unittest.TestCase):
         finally:
             shutil.rmtree(tmp)
 
+    def test_gtm224_criteria_widths(self):
+        """GTM-224 point 1: 8, 24, 44 and 24 % from 700 px (the colgroup, which the CSS hides below 700 px)."""
+        for lang in ("en", "es", "ca"):
+            crit = self.page(lang).split('id="criteria-h"')[1].split("</section>")[0]
+            self.assertIn('<colgroup><col style="width:8%"><col style="width:24%"><col style="width:44%"><col style="width:24%"></colgroup>', crit)
+
+    def test_gtm224_not_applicable_how_is_a_dash(self):
+        """GTM-224 point 2: «No aplica» has «—» in «How it was checked», like in «Evidence»."""
+        for lang in ("en", "es", "ca"):
+            c, s = cat(lang), self.page(lang, "example-builder-cloud")
+            na = html.escape(c["minimum.res.na"], quote=True)
+            for row in re.findall(r"<tr>(.*?)</tr>", s):
+                if f"<strong>{na}</strong>" in row:
+                    cells = re.findall(r"<td[^>]*>(.*?)</td>", row)
+                    self.assertEqual(cells[1:], [c["minimum.ev.na"], c["minimum.ev.na"]], lang)
+
+    def test_gtm224_count_is_h2_in_the_box(self):
+        """GTM-224 point 3: x.count is the box's h2; the two other lines stay paragraphs."""
+        c, s = cat("es"), self.page("es", "example-builder-cloud")
+        box = s.split('<div class="box panel summary">')[1].split("</div>")[0]
+        self.assertIn("<h2>3 de 5 criterios</h2>", box)
+        self.assertIn(f'<p>{html.escape(c["minimum.x.what"], quote=True)}</p>', box)
+
     def test_english_quotes_are_curly(self):
         for k, v in cat("en").items():
             if k.startswith("minimum."):
