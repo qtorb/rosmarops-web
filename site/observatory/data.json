@@ -4998,6 +4998,33 @@
             "how": "official_changelog"
           },
           "rosmarops_impact": "none"
+        },
+        {
+          "id": "chg-goose-1-61-1-imported-approval",
+          "version": "v1.61.1",
+          "date": "2026-11-25",
+          "category": "approval_mode",
+          "before": {
+            "en": "Before v1.61.1, the Goose release notes did not say that tool approval state is dropped from imported sessions.",
+            "es": "Antes de v1.61.1, las notas de versión de Goose no decían que se descarte el estado de aprobación de herramientas de las sesiones importadas.",
+            "ca": "Abans de v1.61.1, les notes de versió de Goose no deien que es descarti l'estat d'aprovació d'eines de les sessions importades."
+          },
+          "after": {
+            "en": "From v1.61.1, Goose drops tool approval state from imported sessions so that loading one does not run tools automatically, according to its release notes.",
+            "es": "Desde v1.61.1, Goose descarta el estado de aprobación de herramientas de las sesiones importadas para que al cargarlas no se ejecuten herramientas solas, según sus notas de versión.",
+            "ca": "Des de v1.61.1, Goose descarta l'estat d'aprovació d'eines de les sessions importades perquè en carregar-les no s'executin eines soles, segons les seves notes de versió."
+          },
+          "source": {
+            "url": "https://github.com/aaif-goose/goose/releases/tag/v1.61.1",
+            "official": true,
+            "accessed_at": "2026-11-26"
+          },
+          "verified": {
+            "by": "writer",
+            "at": "2026-11-26",
+            "how": "official_changelog"
+          },
+          "rosmarops_impact": "none"
         }
       ],
       "ratings": []
