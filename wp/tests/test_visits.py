@@ -246,14 +246,14 @@ class Visits(unittest.TestCase):
         d = json.loads(body)
         self.assertEqual(set(d), {"generated_at", "rows", "people"})  # GTM-125 adds people; the rest is as before
         self.assertEqual([(r["page"], r["lang"], r["ref"], r["count"]) for r in d["rows"]], [("/methodology/", "en", "github", 1)])
-        self.assertEqual(set(d["rows"][0]), {"day", "page", "lang", "ref", "count"})
+        self.assertEqual(set(d["rows"][0]), {"day", "page", "lang", "ref", "via", "count"})
         for m in ["PUT", "DELETE", "PATCH"]:
             self.assertEqual(self.srv.req("/wp-json/rosmarops/v1/visits", m, "{}")[0], 404)
         self.assertEqual(len(self.rows()), 1)
 
     def test_api_keeps_400_days(self):
         self.visit("/methodology/", "")
-        mysql(f"INSERT INTO {TABLE} VALUES (UTC_DATE() - INTERVAL 399 DAY, '/', 'en', 'direct', 4),"
+        mysql(f"INSERT INTO {TABLE} (day, page, lang, ref, count) VALUES (UTC_DATE() - INTERVAL 399 DAY, '/', 'en', 'direct', 4),"
               f" (UTC_DATE() - INTERVAL 400 DAY, '/', 'en', 'direct', 5)")
         d = json.loads(self.srv.req("/wp-json/rosmarops/v1/visits")[2])
         self.assertEqual(sorted(r["count"] for r in d["rows"]), [1, 4])
@@ -262,7 +262,7 @@ class Visits(unittest.TestCase):
         st, h, _ = self.visit("/methodology/", "www.google.com")
         self.assertNotIn("Set-Cookie", h)
         cols = [c.split("\t")[0] for c in mysql(f"SHOW COLUMNS FROM {TABLE}").splitlines()]
-        self.assertEqual(cols, ["day", "page", "lang", "ref", "count"])
+        self.assertEqual(cols, ["day", "page", "lang", "ref", "via", "count"])
         dump = mysql(f"SELECT * FROM {TABLE}")
         for leak in ["127.0.0.1", "Mozilla", "Chrome", "google.com"]:
             self.assertNotIn(leak, dump)
@@ -389,9 +389,118 @@ class People(unittest.TestCase):
         st, h, body = self.srv.req("/wp-json/rosmarops/v1/visits")
         d = json.loads(body)
         self.assertEqual(sorted(d), ["generated_at", "people", "rows"])
-        self.assertEqual(d["rows"], [{"day": "2026-11-09", "page": "/", "lang": "en", "ref": "direct", "count": 1},
-                                     {"day": "2026-11-09", "page": "/", "lang": "en", "ref": "google", "count": 1}])
-        self.assertEqual(d["people"], [{"day": "2026-11-09", "lang": "en", "ref": "google", "count": 1}])
+        self.assertEqual(d["rows"], [{"day": "2026-11-09", "page": "/", "lang": "en", "ref": "direct", "via": "", "count": 1},
+                                     {"day": "2026-11-09", "page": "/", "lang": "en", "ref": "google", "via": "", "count": 1}])
+        self.assertEqual(d["people"], [{"day": "2026-11-09", "lang": "en", "ref": "google", "via": "", "count": 1}])
+
+
+VIAS = ["li", "x", "yt", "mail", "wa", "hn", "reddit", "lobsters", "awesome", "qtorb"]
+
+
+@unittest.skipUnless(db_available(), "no MySQL/MariaDB reachable")
+class Via(unittest.TestCase):
+    """GTM-220: the channel a link was shared on (via), a closed list in a column of its own, in visits and people."""
+
+    def setUp(self):
+        self.drop()
+        self.tmp = tempfile.mkdtemp()
+        for p in ["", "methodology"]:
+            d = Path(self.tmp, p)
+            d.mkdir(parents=True, exist_ok=True)
+            (d / "index.html").write_text("<html></html>")
+        self.srv = Server(True, self.tmp, today="2026-11-26")
+
+    def tearDown(self):
+        self.srv.stop()
+        shutil.rmtree(self.tmp)
+        self.drop()
+
+    def drop(self):
+        mysql(f"DROP TABLE IF EXISTS {TABLE}, {PRINTS}, {PEOPLE}, {OPTIONS}")
+
+    def visit(self, body, ua=UA):
+        h = {"Origin": ORIGIN, "User-Agent": ua, "Content-Type": "application/json"}
+        return self.srv.req("/wp-json/rosmarops/v1/visits", "POST", json.dumps(body), h)
+
+    def vias(self):
+        out = mysql(f"SELECT via, SUM(count) FROM {TABLE} GROUP BY via ORDER BY via")
+        return {v: int(n) for v, n in (line.split("\t") for line in out.splitlines())}
+
+    def test_closed_list(self):
+        for v in VIAS:
+            self.visit({"p": "/methodology/", "r": "", "v": v})
+        self.assertEqual(self.vias(), {v: 1 for v in VIAS})
+
+    def test_any_other_value_is_other(self):
+        for v in ["facebook", "hn2", "../hn", "li x", "\u00e9", "a" * 40]:
+            self.visit({"p": "/methodology/", "r": "", "v": v})
+        self.assertEqual(self.vias(), {"other": 6})
+
+    def test_uppercase_from_an_old_page_is_lowercased(self):
+        self.visit({"p": "/methodology/", "r": "", "v": "HN"})
+        self.assertEqual(self.vias(), {"hn": 1})
+
+    def test_none_is_empty(self):
+        self.visit({"p": "/methodology/", "r": ""})  # a page with the script from before GTM-220
+        self.visit({"p": "/methodology/", "r": "", "v": ""})
+        self.visit({"p": "/methodology/", "r": "", "v": None})
+        self.visit({"p": "/methodology/", "r": "", "v": 7})
+        self.assertEqual(self.vias(), {"": 4})
+
+    def test_referrer_is_kept_beside_via(self):
+        self.visit({"p": "/methodology/", "r": "news.ycombinator.com", "v": "hn"})
+        self.visit({"p": "/methodology/", "r": "", "v": "hn"})
+        rows = mysql(f"SELECT ref, via, count FROM {TABLE} ORDER BY ref").splitlines()
+        self.assertEqual(rows, ["direct\thn\t1", "hn\thn\t1"])
+
+    def test_person_keeps_the_via_of_the_first_visit(self):
+        self.visit({"p": "/", "r": "", "v": "li"})
+        self.visit({"p": "/methodology/", "r": "rosmarops.com", "v": ""})
+        self.visit({"p": "/", "r": "", "v": "x"}, ua=UA.replace("130.0", "131.0"))
+        people = mysql(f"SELECT day, lang, ref, via, count FROM {PEOPLE} ORDER BY via").splitlines()
+        self.assertEqual(people, ["2026-11-26\ten\tdirect\tli\t1", "2026-11-26\ten\tdirect\tx\t1"])
+
+    def test_public_output_has_via_and_nothing_per_person(self):
+        self.visit({"p": "/", "r": "", "v": "yt"})
+        d = json.loads(self.srv.req("/wp-json/rosmarops/v1/visits")[2])
+        self.assertEqual(d["rows"], [{"day": "2026-11-26", "page": "/", "lang": "en", "ref": "direct", "via": "yt", "count": 1}])
+        self.assertEqual(d["people"], [{"day": "2026-11-26", "lang": "en", "ref": "direct", "via": "yt", "count": 1}])
+        self.assertNotIn("127.0.0.1", json.dumps(d))
+        self.assertNotIn("Mozilla", json.dumps(d))
+
+    def old_tables(self):
+        """The two tables as they were before GTM-220, with a row each."""
+        mysql(f"CREATE TABLE {TABLE} (day DATE NOT NULL, page VARCHAR(160) NOT NULL, lang CHAR(2) NOT NULL,"
+              f" ref VARCHAR(16) NOT NULL, count INT UNSIGNED NOT NULL DEFAULT 0, PRIMARY KEY (day, page, lang, ref))")
+        mysql(f"CREATE TABLE {PEOPLE} (day DATE NOT NULL, lang CHAR(2) NOT NULL, ref VARCHAR(16) NOT NULL,"
+              f" count INT UNSIGNED NOT NULL DEFAULT 0, PRIMARY KEY (day, lang, ref))")
+        mysql(f"INSERT INTO {TABLE} VALUES ('2026-11-25', '/', 'en', 'direct', 7)")
+        mysql(f"INSERT INTO {PEOPLE} VALUES ('2026-11-25', 'en', 'direct', 5)")
+
+    def key(self, table):
+        out = mysql(f"SHOW KEYS FROM {table} WHERE Key_name = 'PRIMARY'")
+        return [line.split("\t")[4] for line in out.splitlines()]
+
+    def test_migration_on_the_first_visit_keeps_the_old_rows(self):
+        self.old_tables()
+        self.visit({"p": "/", "r": "", "v": "hn"})
+        self.assertEqual(self.key(TABLE), ["day", "page", "lang", "ref", "via"])
+        self.assertEqual(self.key(PEOPLE), ["day", "lang", "ref", "via"])
+        self.assertEqual(mysql(f"SELECT day, page, ref, via, count FROM {TABLE} ORDER BY day").splitlines(),
+                         ["2026-11-25\t/\tdirect\t\t7", "2026-11-26\t/\tdirect\thn\t1"])
+        self.assertEqual(mysql(f"SELECT day, ref, via, count FROM {PEOPLE} ORDER BY day").splitlines(),
+                         ["2026-11-25\tdirect\t\t5", "2026-11-26\tdirect\thn\t1"])
+
+    def test_migration_on_a_read_before_any_visit(self):
+        self.old_tables()
+        d = json.loads(self.srv.req("/wp-json/rosmarops/v1/visits")[2])
+        self.assertEqual(d["rows"], [{"day": "2026-11-25", "page": "/", "lang": "en", "ref": "direct", "via": "", "count": 7}])
+        self.assertEqual(d["people"], [{"day": "2026-11-25", "lang": "en", "ref": "direct", "via": "", "count": 5}])
+
+    def test_a_read_creates_no_table(self):
+        d = json.loads(self.srv.req("/wp-json/rosmarops/v1/visits")[2])
+        self.assertEqual((d["rows"], d["people"]), ([], []))
+        self.assertEqual(mysql(f"SHOW TABLES LIKE '{TABLE}'").strip(), "")
 
 
 @unittest.skipUnless(db_available(), "no MySQL/MariaDB reachable")
@@ -463,7 +572,7 @@ class Script(unittest.TestCase):
         c = r["calls"][0]
         self.assertEqual(c["url"], "/es/wp-json/rosmarops/v1/visits")
         self.assertEqual(c["opts"]["method"], "POST")
-        self.assertEqual(json.loads(c["opts"]["body"]), {"p": "/es/metodologia/", "r": "www.google.com"})
+        self.assertEqual(json.loads(c["opts"]["body"]), {"p": "/es/metodologia/", "r": "www.google.com", "v": ""})
         self.assertEqual(r["touched"], [])
 
     def test_waits_until_visible(self):
@@ -471,7 +580,7 @@ class Script(unittest.TestCase):
         self.assertEqual(r["before"], 0)
         self.assertEqual(len(r["calls"]), 1)
         self.assertEqual(r["calls"][0]["url"], "/wp-json/rosmarops/v1/visits")
-        self.assertEqual(json.loads(r["calls"][0]["opts"]["body"]), {"p": "/methodology/", "r": ""})
+        self.assertEqual(json.loads(r["calls"][0]["opts"]["body"]), {"p": "/methodology/", "r": "", "v": ""})
 
     def test_switched_off_sends_nothing(self):
         r = self.run_js("visible", "https://x.com/", "/", on=False)
@@ -513,7 +622,29 @@ class Script(unittest.TestCase):
     def test_normal_browser_counts_and_sends_nothing_about_it(self):
         r = self.run_js("visible", "", "/methodology/")
         self.assertEqual(len(r["calls"]), 1)
-        self.assertEqual(json.loads(r["calls"][0]["opts"]["body"]), {"p": "/methodology/", "r": ""})
+        self.assertEqual(json.loads(r["calls"][0]["opts"]["body"]), {"p": "/methodology/", "r": "", "v": ""})
+
+    # GTM-220: the channel from ?via= (or ?utm_source=), in lowercase; nothing kept in the browser.
+    def test_via_is_sent_in_lowercase(self):
+        r = self.run_js("visible", "", "/methodology/", search="?via=HN")
+        self.assertEqual(json.loads(r["calls"][0]["opts"]["body"]), {"p": "/methodology/", "r": "", "v": "hn"})
+        self.assertEqual(r["touched"], [])
+
+    def test_utm_source_when_there_is_no_via(self):
+        r = self.run_js("visible", "", "/methodology/", search="?utm_source=Reddit&utm_medium=social")
+        self.assertEqual(json.loads(r["calls"][0]["opts"]["body"])["v"], "reddit")
+
+    def test_via_wins_over_utm_source(self):
+        r = self.run_js("visible", "", "/methodology/", search="?utm_source=reddit&via=li")
+        self.assertEqual(json.loads(r["calls"][0]["opts"]["body"])["v"], "li")
+
+    def test_no_parameter_sends_empty_via(self):
+        r = self.run_js("visible", "", "/methodology/", search="?q=1")
+        self.assertEqual(json.loads(r["calls"][0]["opts"]["body"])["v"], "")
+
+    def test_a_long_value_is_cut_before_sending(self):
+        r = self.run_js("visible", "", "/methodology/", search="?via=" + "a" * 300)
+        self.assertEqual(len(json.loads(r["calls"][0]["opts"]["body"])["v"]), 40)
 
     def test_no_mark_counts_and_only_reads_the_mark(self):
         r = self.run_js("visible", "", "/methodology/")

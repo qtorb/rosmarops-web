@@ -15,6 +15,10 @@ People who download (GTM-200): a click after a visit the same day is one person,
 
     DB_USER=… DB_PASS=… DB_NAME=wptest python3 -m unittest wp/tests/test_download_people.py
 
+The visit counter and its people (GTM-111, GTM-125), and the channel of a shared link (GTM-220, class `Via`: the closed list, `other`, empty without a parameter, the person's first channel, the field in the endpoint, and the migration of the two tables from before the `via` column, on a visit and on a read). The script's tests (`?via=`, `utm_source` when there is no `via`, lowercase) run with node and need no database:
+
+    DB_USER=… DB_PASS=… DB_NAME=wptest python3 -m unittest wp/tests/test_visits.py
+
 The REST part of the stand-in only mimics WordPress routing (GET registered, anything else 404); the real check is the post-deploy step in deploy.yml.
 
 `rosmarops-daily.php` (GTM-23), with its own stand-in (`daily-stub.php`, network options in a JSON file) and `php -S`:

@@ -1,4 +1,4 @@
-/* RosmarOps visit counter (GTM-111). Sends this page's path and the referrer's domain, once, when the page is
+/* RosmarOps visit counter (GTM-111). Sends this page's path, the referrer's domain and the channel (GTM-220), once, when the page is
    actually seen, to /wp-json/rosmarops/v1/visits on this same site. Nothing else: no cookie, no storage, no
    identifier. The server keeps only a count per day, page, language and kind of referrer, and an hourly total with none of these, deleted after 48 hours.
    On since the privacy policy texts were signed (Albert, 07-11): ON must match ROSMAROPS_VISITS_ON in
@@ -6,7 +6,10 @@
    GTM-126: the team's own browsers are not counted. A page opened with ?rosmarops_internal=1, or a browser marked
    by consent.js (the key rosmarops_internal in localStorage, read only), sends nothing; ?rosmarops_internal=0 counts.
    GTM-178: an automated browser sends nothing either: navigator.webdriver is true, or the user agent says
-   HeadlessChrome. Both are only looked at here, in the browser; nothing about them is sent or kept. */
+   HeadlessChrome. Both are only looked at here, in the browser; nothing about them is sent or kept.
+   GTM-220: also the channel a link was shared on, from ?via= in this page's address, or ?utm_source= when there is no
+   via, in lowercase (v; empty when there is none). The server keeps it only if it is on its closed list, else "other".
+   Nothing about it is kept in the browser. */
 (function () {
   var ON = true;
   if (!ON || !window.fetch || window.rosmaropsVisit) return;
@@ -26,13 +29,18 @@
     sent = true;
     var host = '';
     try { if (document.referrer) host = new URL(document.referrer).hostname; } catch (e) { host = ''; }
+    var via = '';
+    try {
+      var q = new URLSearchParams(location.search);
+      via = String(q.get('via') || q.get('utm_source') || '').toLowerCase().slice(0, 40);
+    } catch (e) { via = ''; }
     var path = location.pathname;
     var m = /^\/(es|ca)\//.exec(path);
     var base = m ? '/' + m[1] : '';
     fetch(base + '/wp-json/rosmarops/v1/visits', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ p: path, r: host }),
+      body: JSON.stringify({ p: path, r: host, v: via }),
       credentials: 'same-origin',
       keepalive: true
     }).catch(function () {});
