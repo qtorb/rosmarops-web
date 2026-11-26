@@ -140,7 +140,7 @@ function rosmarops_daily_validate($d, $date) {
 			}
 		}
 	}
-	if (!is_array($d['checked']) || !array_is_list($d['checked']) || count($d['checked']) > 50
+	if (!is_array($d['checked']) || !array_is_list($d['checked']) || count($d['checked']) > 60
 		|| ($d['status'] !== 'incomplete' && count($d['checked']) < 1)) {
 		return 'checked';
 	}
@@ -153,7 +153,7 @@ function rosmarops_daily_validate($d, $date) {
 		}
 	}
 	if (array_key_exists('not_checked', $d)) {
-		if (!is_array($d['not_checked']) || !array_is_list($d['not_checked']) || count($d['not_checked']) > 50) {
+		if (!is_array($d['not_checked']) || !array_is_list($d['not_checked']) || count($d['not_checked']) > 60) {
 			return 'not_checked';
 		}
 		foreach ($d['not_checked'] as $n) {

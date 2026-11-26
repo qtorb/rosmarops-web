@@ -289,12 +289,22 @@ class Daily(unittest.TestCase):
         d["not_checked"] = []
         self.assertEqual(self.store_day(d), "not stored")
 
-    def test_up_to_fifty_sources(self):  # GTM-98: 42 sources F1-F43 (no F30); the cap is 50
+    def test_up_to_sixty_sources(self):  # GTM-98: the cap was 50; F68-F73 (GTM-209, GTM-212) took it to 60, as in daily.v1
         d = copy.deepcopy(self.valid)
         d.update(date="2026-01-09", status="incomplete", summary_ref="docs/observatorio/2026-01-09.md",
-                 checked=[dict(d["checked"][0], name=f"Source {i}") for i in range(42)], not_checked=["F43 Comet"])
-        self.assertEqual(self.store_day(d), "stored")
-        self.rejected(lambda x: x.update(checked=[x["checked"][0]] * 51))
+                 checked=[dict(d["checked"][0], name=f"Source {i}") for i in range(53)], not_checked=["F43 Comet"])
+        self.assertEqual(self.store_day(d), "stored")  # 53 checked, like 26-11-2026
+        self.rejected(lambda x: x.update(checked=[x["checked"][0]] * 61))
+        self.rejected(lambda x: x.update(status="incomplete", not_checked=["F1"] * 61))
+
+    def test_caps_match_the_schema(self):
+        """The mu-plugin refuses what daily.v1 refuses, no more: on 26-11 a day with 53 checked was valid in the
+        repository and refused by the site, which kept showing 25-11."""
+        schema = json.loads((ROOT / "observatory/schema/daily.v1.schema.json").read_text(encoding="utf-8"))
+        php = (ROOT / "wp/mu-plugins/rosmarops-daily.php").read_text(encoding="utf-8")
+        for key in ("checked", "not_checked"):
+            cap = schema["properties"][key]["maxItems"]
+            self.assertIn(f"count($d['{key}']) > {cap}", php, key)
 
     # ---- incomplete days are published too (GTM-48). Dates before 2026-01-15, so the index and feed tests keep their order.
 
