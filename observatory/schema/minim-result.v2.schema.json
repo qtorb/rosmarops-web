@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rosmarops.com/observatory/minimum/minim-result.v2.schema.json",
+  "title": "Minimum of control: one result for one product",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "criteria_version", "candidate", "kind", "measured_at", "expires_at", "measured_by", "applies", "criteria", "met", "total", "passes", "vendor"],
+  "properties": {
+    "schema_version": { "const": 2 },
+    "criteria_version": { "type": "integer", "minimum": 4 },
+    "candidate": {
+      "type": "object", "additionalProperties": false, "required": ["id", "name"],
+      "properties": { "id": { "type": "string", "pattern": "^[a-z0-9-]+$" }, "name": { "type": "string", "minLength": 1 } }
+    },
+    "kind": { "enum": ["orchestrator", "agent_framework", "workflow_automation", "agent_builder"] },
+    "tested_version": { "type": "string" },
+    "tested_plan": { "type": "string" },
+    "measured_at": { "$ref": "#/$defs/date" },
+    "expires_at": { "$ref": "#/$defs/date" },
+    "measured_by": { "const": "rosmarops" },
+    "reviewed_by": { "type": "string" },
+    "reviewed_at": { "anyOf": [{ "$ref": "#/$defs/date" }, { "const": "" }] },
+    "supersedes": { "anyOf": [{ "$ref": "#/$defs/date" }, { "const": "" }] },
+    "applies": {
+      "type": "object", "additionalProperties": false, "required": ["third_party_agents", "runs_on"],
+      "properties": {
+        "third_party_agents": { "$ref": "#/$defs/fact", "properties": { "value": { "enum": ["yes", "no", "unknown"] } } },
+        "runs_on": { "$ref": "#/$defs/fact", "properties": { "value": { "enum": ["user_machine", "vendor_cloud", "unknown"] } } }
+      }
+    },
+    "criteria": {
+      "type": "array", "minItems": 7, "maxItems": 7,
+      "items": {
+        "type": "object", "additionalProperties": false, "required": ["id", "result", "how"],
+        "properties": {
+          "id": { "enum": ["M1", "M2", "M3", "M4", "M5", "M6", "M7"] },
+          "result": { "enum": ["yes", "no", "unknown", "not_applicable"] },
+          "how": { "enum": ["official_doc", "official_code", "test", "vendor_reply", "none"] },
+          "evidence_url": { "type": "string", "pattern": "^https://" },
+          "accessed_at": { "$ref": "#/$defs/date" },
+          "unknown_reason": { "type": "string" }
+        },
+        "allOf": [
+          { "if": { "properties": { "result": { "enum": ["yes", "no"] } } }, "then": { "required": ["evidence_url", "accessed_at"], "properties": { "how": { "enum": ["official_doc", "official_code", "test", "vendor_reply"] } } } },
+          { "if": { "properties": { "result": { "const": "unknown" } } }, "then": { "required": ["unknown_reason"] } }
+        ]
+      }
+    },
+    "met": { "type": "integer", "minimum": 0, "maximum": 7 },
+    "total": { "type": "integer", "minimum": 1, "maximum": 7 },
+    "passes": { "type": "boolean" },
+    "vendor": {
+      "type": "object", "additionalProperties": false, "required": ["notified_at", "publish_after", "reply"],
+      "properties": {
+        "notified_at": { "$ref": "#/$defs/date" },
+        "notified_via": { "enum": ["github_issue", "email", "docs_issue"] },
+        "notice_url": { "type": "string", "pattern": "^https://" },
+        "publish_after": { "$ref": "#/$defs/date" },
+        "reply": { "enum": ["none", "received", "changed_product", "disputed"] },
+        "reply_at": { "anyOf": [{ "$ref": "#/$defs/date" }, { "const": "" }] },
+        "reply_url": { "type": "string", "pattern": "^https://" }
+      }
+    }
+  },
+  "$defs": {
+    "date": { "type": "string", "pattern": "^20[0-9]{2}-[0-9]{2}-[0-9]{2}$" },
+    "fact": {
+      "type": "object", "required": ["value"],
+      "properties": { "value": { "type": "string" }, "evidence_url": { "type": "string", "pattern": "^https://" }, "accessed_at": { "$ref": "#/$defs/date" } }
+    }
+  }
+}
