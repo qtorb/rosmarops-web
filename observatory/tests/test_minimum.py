@@ -135,13 +135,29 @@ class Published(unittest.TestCase):
         self.assertEqual(minimum.owner_agent("dify-cloud", ids), "dify")
         self.assertIsNone(minimum.owner_agent("gumloop", ids))
 
-    def test_no_result_of_25_11_in_the_data(self):
-        """Point 10: the five results of 25-11 come later, after the notices."""
-        self.assertEqual(minimum.files(), [])
+    def test_data_waits_for_publish_after(self):
+        """GTM-225: the five results of 25-11 are in the data from 26-11, to be published on 10-12-2026."""
+        res = minimum.load()
+        self.assertEqual(sorted(r["candidate"]["id"] for _, r in res), ["dify-cloud", "gumloop", "n8n", "n8n-cloud", "paperclip"])
+        self.assertEqual({r["vendor"]["publish_after"] for _, r in res}, {"2026-12-10"})
+        self.assertEqual(minimum.published(res, "2026-12-09"), {})
+        self.assertEqual(len(minimum.published(res, "2026-12-10")), 5)
+
+
+def committed_day():
+    """The day the committed site was built for: the criterion page carries «meta.none» until a result is published."""
+    import datetime
+    return datetime.datetime.now(datetime.timezone.utc).date().isoformat()
 
 
 class Site(unittest.TestCase):
-    """The committed site: the criterion page is published, with no results yet, and in the sitemap."""
+    """The committed site, before 10-12-2026: the criterion page is published, with no results yet, and in the
+    sitemap. From the day the first results publish, the committed site is the one the build of that day writes,
+    which Pages checks with the fixture."""
+
+    def setUp(self):
+        if minimum.published(minimum.load(), committed_day()):
+            self.skipTest("results are published from their publish_after on; site_check checks the committed site")
 
     def test_criterion_page_published_empty(self):
         for lang, p in CRIT.items():

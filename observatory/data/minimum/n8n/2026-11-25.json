@@ -1,0 +1,92 @@
+{
+  "schema_version": 2,
+  "criteria_version": 4,
+  "candidate": {
+    "id": "n8n",
+    "name": "n8n"
+  },
+  "kind": "workflow_automation",
+  "tested_version": "2.49.5",
+  "tested_plan": "self-hosted",
+  "measured_at": "2026-11-25",
+  "expires_at": "2027-02-23",
+  "measured_by": "rosmarops",
+  "reviewed_by": "",
+  "reviewed_at": "",
+  "applies": {
+    "third_party_agents": {
+      "value": "no",
+      "evidence_url": "https://docs.n8n.io/build/integrate-ai/ai-examples/human-in-the-loop-for-tools",
+      "accessed_at": "2026-11-25"
+    },
+    "runs_on": {
+      "value": "user_machine",
+      "evidence_url": "https://docs.n8n.io/choose-n8n/",
+      "accessed_at": "2026-11-25"
+    }
+  },
+  "criteria": [
+    {
+      "id": "M1",
+      "result": "unknown",
+      "how": "official_doc",
+      "evidence_url": "https://docs.n8n.io/build/integrate-ai/ai-examples/human-in-the-loop-for-tools",
+      "accessed_at": "2026-11-25",
+      "unknown_reason": "The page says approval can be required for a tool but does not say what an AI Agent can do without asking as installed."
+    },
+    {
+      "id": "M2",
+      "result": "not_applicable",
+      "how": "official_doc"
+    },
+    {
+      "id": "M3",
+      "result": "unknown",
+      "how": "official_doc",
+      "evidence_url": "https://docs.n8n.io/deploy/host-n8n/configure-n8n/basic-configuration/use-environment-variables/security",
+      "accessed_at": "2026-11-25",
+      "unknown_reason": "The docs contradict each other on the default of N8N_BLOCK_ENV_ACCESS_IN_NODE: false on the security variables page, true on https://docs.n8n.io/2-0-breaking-changes/; no per-workflow limit is documented."
+    },
+    {
+      "id": "M4",
+      "result": "unknown",
+      "how": "official_doc",
+      "evidence_url": "https://docs.n8n.io/connect/n8n-api/credential",
+      "accessed_at": "2026-11-25",
+      "unknown_reason": "Credentials are kept one by one and can be deleted one by one, but the docs do not say whether the AI Agent sees their values in clear."
+    },
+    {
+      "id": "M5",
+      "result": "yes",
+      "how": "official_doc",
+      "evidence_url": "https://docs.n8n.io/build/understand-workflows/create-and-run-workflows",
+      "accessed_at": "2026-11-25"
+    },
+    {
+      "id": "M6",
+      "result": "yes",
+      "how": "official_doc",
+      "evidence_url": "https://docs.n8n.io/connect/n8n-api/executions",
+      "accessed_at": "2026-11-25"
+    },
+    {
+      "id": "M7",
+      "result": "yes",
+      "how": "official_code",
+      "evidence_url": "https://github.com/n8n-io/n8n/blob/9b01c1a440f5a5c0a795f09271bba7f7da595be7/SECURITY.md#L1-L3",
+      "accessed_at": "2026-11-25"
+    }
+  ],
+  "met": 3,
+  "total": 6,
+  "passes": false,
+  "vendor": {
+    "notified_at": "2026-11-26",
+    "notified_via": "docs_issue",
+    "publish_after": "2026-12-10",
+    "reply": "none",
+    "reply_at": "",
+    "notice_url": "https://github.com/n8n-io/n8n-docs/issues/5816"
+  },
+  "supersedes": ""
+}
