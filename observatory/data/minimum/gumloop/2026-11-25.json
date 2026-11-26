@@ -1,0 +1,88 @@
+{
+  "schema_version": 2,
+  "criteria_version": 4,
+  "candidate": {
+    "id": "gumloop",
+    "name": "Gumloop"
+  },
+  "kind": "agent_builder",
+  "tested_plan": "Pro",
+  "measured_at": "2026-11-25",
+  "expires_at": "2027-02-23",
+  "measured_by": "rosmarops",
+  "reviewed_by": "",
+  "reviewed_at": "",
+  "applies": {
+    "third_party_agents": {
+      "value": "no",
+      "evidence_url": "https://docs.gumloop.com/core-concepts/agents.md",
+      "accessed_at": "2026-11-25"
+    },
+    "runs_on": {
+      "value": "vendor_cloud",
+      "evidence_url": "https://docs.gumloop.com/core-concepts/agents.md",
+      "accessed_at": "2026-11-25"
+    }
+  },
+  "criteria": [
+    {
+      "id": "M1",
+      "result": "yes",
+      "how": "official_doc",
+      "evidence_url": "https://docs.gumloop.com/core-concepts/human_in_the_loop.md",
+      "accessed_at": "2026-11-25"
+    },
+    {
+      "id": "M2",
+      "result": "not_applicable",
+      "how": "official_doc"
+    },
+    {
+      "id": "M3",
+      "result": "not_applicable",
+      "how": "official_doc"
+    },
+    {
+      "id": "M4",
+      "result": "unknown",
+      "how": "official_doc",
+      "evidence_url": "https://docs.gumloop.com/core-concepts/credentials.md",
+      "accessed_at": "2026-11-25",
+      "unknown_reason": "Connected accounts are kept per connector and revoked one by one, but the docs do not say whether the agent sees connector credentials in clear (only Vault secrets are said to be stand-ins)."
+    },
+    {
+      "id": "M5",
+      "result": "yes",
+      "how": "official_doc",
+      "evidence_url": "https://docs.gumloop.com/core-concepts/agent_triggers.md",
+      "accessed_at": "2026-11-25"
+    },
+    {
+      "id": "M6",
+      "result": "unknown",
+      "how": "official_doc",
+      "evidence_url": "https://docs.gumloop.com/core-concepts/agents.md",
+      "accessed_at": "2026-11-25",
+      "unknown_reason": "Stopping one run is documented; stopping every run at once is not."
+    },
+    {
+      "id": "M7",
+      "result": "unknown",
+      "how": "official_doc",
+      "evidence_url": "https://trust.gumloop.com/",
+      "accessed_at": "2026-11-25",
+      "unknown_reason": "The trust center shows a security contact address (security@gumloop.com) but, on its first tab, neither states how to report a vulnerability nor where security advisories are published; its other tabs were not read."
+    }
+  ],
+  "met": 2,
+  "total": 5,
+  "passes": false,
+  "vendor": {
+    "notified_at": "2026-11-26",
+    "notified_via": "email",
+    "publish_after": "2026-12-10",
+    "reply": "none",
+    "reply_at": ""
+  },
+  "supersedes": ""
+}

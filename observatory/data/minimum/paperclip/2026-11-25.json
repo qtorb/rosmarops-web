@@ -1,0 +1,92 @@
+{
+  "schema_version": 2,
+  "criteria_version": 4,
+  "candidate": {
+    "id": "paperclip",
+    "name": "Paperclip"
+  },
+  "kind": "orchestrator",
+  "tested_version": "v2026.1117.0",
+  "measured_at": "2026-11-25",
+  "expires_at": "2027-02-23",
+  "measured_by": "rosmarops",
+  "reviewed_by": "",
+  "reviewed_at": "",
+  "applies": {
+    "third_party_agents": {
+      "value": "yes",
+      "evidence_url": "https://github.com/paperclipai/paperclip/blob/c0f132898d2a2677312d8c72096187b27a3d9a38/docs/adapters/overview.md#L21-L26",
+      "accessed_at": "2026-11-25"
+    },
+    "runs_on": {
+      "value": "user_machine",
+      "evidence_url": "https://github.com/paperclipai/paperclip/blob/c0f132898d2a2677312d8c72096187b27a3d9a38/README.md#L348",
+      "accessed_at": "2026-11-25"
+    }
+  },
+  "criteria": [
+    {
+      "id": "M1",
+      "result": "yes",
+      "how": "official_doc",
+      "evidence_url": "https://github.com/paperclipai/paperclip/blob/c0f132898d2a2677312d8c72096187b27a3d9a38/docs/adapters/claude-local.md#L38",
+      "accessed_at": "2026-11-25"
+    },
+    {
+      "id": "M2",
+      "result": "unknown",
+      "how": "official_code",
+      "evidence_url": "https://github.com/paperclipai/paperclip/blob/c0f132898d2a2677312d8c72096187b27a3d9a38/packages/adapters/cursor-local/src/index.ts#L104",
+      "accessed_at": "2026-11-25",
+      "unknown_reason": "The docs say how to keep the questions for Claude Code (dangerouslySkipPermissions false) but not for every agent it launches: Cursor gets --yolo added, and the Codex and Gemini pages do not give the default."
+    },
+    {
+      "id": "M3",
+      "result": "unknown",
+      "how": "official_doc",
+      "evidence_url": "https://github.com/paperclipai/paperclip/blob/c0f132898d2a2677312d8c72096187b27a3d9a38/docs/deploy/environment-variables.md#L190-L205",
+      "accessed_at": "2026-11-25",
+      "unknown_reason": "The docs list the variables injected into each agent and mention the host environment, but give no way to limit per agent what it inherits from the host."
+    },
+    {
+      "id": "M4",
+      "result": "yes",
+      "how": "official_doc",
+      "evidence_url": "https://github.com/paperclipai/paperclip/blob/c0f132898d2a2677312d8c72096187b27a3d9a38/docs/api/secrets.md#L509-L513",
+      "accessed_at": "2026-11-25"
+    },
+    {
+      "id": "M5",
+      "result": "yes",
+      "how": "official_doc",
+      "evidence_url": "https://github.com/paperclipai/paperclip/blob/c0f132898d2a2677312d8c72096187b27a3d9a38/docs/api/routines.md#L80-L90",
+      "accessed_at": "2026-11-25"
+    },
+    {
+      "id": "M6",
+      "result": "yes",
+      "how": "test",
+      "evidence_url": "https://github.com/qtorb/rosmarops-lab/actions/runs/45681882389",
+      "accessed_at": "2026-11-25"
+    },
+    {
+      "id": "M7",
+      "result": "yes",
+      "how": "official_code",
+      "evidence_url": "https://github.com/paperclipai/paperclip/blob/c0f132898d2a2677312d8c72096187b27a3d9a38/SECURITY.md#L3-L8",
+      "accessed_at": "2026-11-25"
+    }
+  ],
+  "met": 5,
+  "total": 7,
+  "passes": false,
+  "vendor": {
+    "notified_at": "2026-11-26",
+    "notified_via": "github_issue",
+    "publish_after": "2026-12-10",
+    "reply": "none",
+    "reply_at": "",
+    "notice_url": "https://github.com/paperclipai/paperclip/issues/22924"
+  },
+  "supersedes": ""
+}

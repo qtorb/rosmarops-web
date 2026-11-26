@@ -1,0 +1,90 @@
+{
+  "schema_version": 2,
+  "criteria_version": 4,
+  "candidate": {
+    "id": "dify-cloud",
+    "name": "Dify (cloud)"
+  },
+  "kind": "agent_builder",
+  "tested_plan": "Professional",
+  "measured_at": "2026-11-25",
+  "expires_at": "2027-02-23",
+  "measured_by": "rosmarops",
+  "reviewed_by": "",
+  "reviewed_at": "",
+  "applies": {
+    "third_party_agents": {
+      "value": "no",
+      "evidence_url": "https://docs.dify.ai/en/cli/integrate-agents/overview",
+      "accessed_at": "2026-11-25"
+    },
+    "runs_on": {
+      "value": "vendor_cloud",
+      "evidence_url": "https://docs.dify.ai/en/cloud/use-dify/build/new-agent/build",
+      "accessed_at": "2026-11-25"
+    }
+  },
+  "criteria": [
+    {
+      "id": "M1",
+      "result": "unknown",
+      "how": "official_doc",
+      "evidence_url": "https://docs.dify.ai/en/cloud/use-dify/nodes/agent",
+      "accessed_at": "2026-11-25",
+      "unknown_reason": "No page declares what an agent can do without asking on a new workspace."
+    },
+    {
+      "id": "M2",
+      "result": "not_applicable",
+      "how": "official_doc"
+    },
+    {
+      "id": "M3",
+      "result": "not_applicable",
+      "how": "official_doc"
+    },
+    {
+      "id": "M4",
+      "result": "unknown",
+      "how": "official_doc",
+      "evidence_url": "https://docs.dify.ai/en/cloud/use-dify/workspace/model-providers",
+      "accessed_at": "2026-11-25",
+      "unknown_reason": "Keys are kept per provider and can be deleted, but the docs do not say whether they are encrypted or whether the model sees them in clear."
+    },
+    {
+      "id": "M5",
+      "result": "unknown",
+      "how": "official_doc",
+      "evidence_url": "https://docs.dify.ai/en/cloud/use-dify/nodes/trigger/overview",
+      "accessed_at": "2026-11-25",
+      "unknown_reason": "Each trigger can be switched off on its app, but no documented list of all scheduled or triggered runs exists."
+    },
+    {
+      "id": "M6",
+      "result": "unknown",
+      "how": "official_doc",
+      "evidence_url": "https://docs.dify.ai/en/api-reference/workflow-runs/stop-workflow-task",
+      "accessed_at": "2026-11-25",
+      "unknown_reason": "One run can be stopped through the API; stopping every run at once is not documented."
+    },
+    {
+      "id": "M7",
+      "result": "yes",
+      "how": "official_code",
+      "evidence_url": "https://github.com/langgenius/dify/blob/5d9b49fb217899aa96b5159e3000a53a4befed74/SECURITY.md#L3-L9",
+      "accessed_at": "2026-11-25"
+    }
+  ],
+  "met": 1,
+  "total": 5,
+  "passes": false,
+  "vendor": {
+    "notified_at": "2026-11-26",
+    "notified_via": "docs_issue",
+    "publish_after": "2026-12-10",
+    "reply": "none",
+    "reply_at": "",
+    "notice_url": "https://github.com/langgenius/dify-docs/issues/1276"
+  },
+  "supersedes": ""
+}
