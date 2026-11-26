@@ -1,7 +1,7 @@
-// GTM-206: lesson 2 of the course, «The chain». The piece «Break the chain», the game and the test.
-// Texts come from the page itself (<script type="application/json" id="cs-data">), built from
-// observatory/data/course/the-chain.json. State lives only in this page: nothing is read from or written to
-// the address, the browser's storage or cookies, and nothing is sent anywhere.
+// GTM-206, GTM-227: the course lessons. Lesson 1: the piece «Who decides?»; lesson 2: the piece «Break the chain»;
+// both: the game and the test. Texts come from the page itself (<script type="application/json" id="cs-data">),
+// built from observatory/data/course/the-inspector.json and the-chain.json. State lives only in this page: nothing
+// is read from or written to the address, the browser's storage or cookies, and nothing is sent anywhere.
 (function () {
   'use strict';
   var node = document.getElementById('cs-data');
@@ -23,7 +23,42 @@
     return e;
   }
 
-  // ---- The piece ----
+  // ---- Lesson 1, «Who decides?»: three modes, four actions ----
+  function modes() {
+    var M = T.modes, mode = 'manual';
+    var btns = Array.prototype.slice.call(document.querySelectorAll('#cs-modes .cs-pill'));
+    function render() {
+      btns.forEach(function (b) {
+        var on = b.getAttribute('data-m') === mode;
+        b.setAttribute('aria-checked', String(on));
+        b.tabIndex = on ? 0 : -1;
+      });
+      $('cs-rows').innerHTML = M.actions.map(function (a, k) {
+        var s = M.states[mode][k];
+        return '<div class="cs-row"><div class="cs-act"><span class="cs-num">' + (k + 1) + '</span><span>' + esc(a) +
+          '</span></div><span class="cs-mtag ' + s + '">' + esc(M.tags[s]) + '</span></div>';
+      }).join('');
+      var msg = $('cs-mmsg');
+      msg.className = 'cs-msg ' + mode;
+      msg.innerHTML = fmt(M.msg[mode]);
+    }
+    btns.forEach(function (b, i) {
+      b.addEventListener('click', function () { mode = b.getAttribute('data-m'); render(); });
+      b.addEventListener('keydown', function (e) {
+        var d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+        if (!d) return;
+        e.preventDefault();
+        var n = btns[(i + d + btns.length) % btns.length];
+        mode = n.getAttribute('data-m');
+        render();
+        n.focus();
+      });
+    });
+    render();
+  }
+
+  // ---- Lesson 2, «Break the chain» ----
+  function chain() {
   var P = T.piece, A = 'allow', B = false, K = 0;
   var tags = Array.prototype.slice.call(document.querySelectorAll('.cs-tag'));
   var pills = Array.prototype.slice.call(document.querySelectorAll('#cs-a .cs-pill'));
@@ -69,6 +104,9 @@
   });
   sw.addEventListener('click', function () { B = !B; render(); });
   render();
+  }
+  if (T.modes) modes();
+  if (T.piece) chain();
 
   // ---- Game and test: one card at a time ----
   function button(text, cls, onClick) {
@@ -88,21 +126,26 @@
       c.appendChild(el('span', 'cs-l', esc(G.card.replace('{i}', i + 1))));
       c.appendChild(el('h3', '', fmt(it.text)));
       var qid = 'cs-gq' + i;
-      var q = el('p', 'cs-q', esc(G.question)); q.id = qid;
-      c.appendChild(q);
       var group = el('div', 'cs-pills');
       group.setAttribute('role', 'group');
-      group.setAttribute('aria-labelledby', qid);
+      if (G.question) {
+        var q = el('p', 'cs-q', esc(G.question)); q.id = qid;
+        c.appendChild(q);
+        group.setAttribute('aria-labelledby', qid);
+      } else {
+        group.setAttribute('aria-label', G.header);
+      }
       var opts = G.options.map(function (o, k) {
         var b = el('button', 'cs-pill');
         b.type = 'button';
         b.textContent = o;
         b.setAttribute('aria-pressed', 'false');
         b.addEventListener('click', function () {
-          var at = picked.indexOf(k);
+          // An option in G.exclusive goes on its own: lesson 2's «Nowhere», and both answers of lesson 1.
+          var at = picked.indexOf(k), only = G.exclusive || [];
           if (at >= 0) picked.splice(at, 1);
-          else if (k === 4) picked = [4];
-          else { picked = picked.filter(function (x) { return x !== 4; }); picked.push(k); }
+          else if (only.indexOf(k) >= 0) picked = [k];
+          else { picked = picked.filter(function (x) { return only.indexOf(x) < 0; }); picked.push(k); }
           opts.forEach(function (ob, j) { ob.setAttribute('aria-pressed', String(picked.indexOf(j) >= 0)); });
           check.disabled = picked.length === 0;
         });

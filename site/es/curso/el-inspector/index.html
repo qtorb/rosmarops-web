@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>El inspector · RosmarOps</title>
+<meta name="description" content="Un agente de IA no solo contesta: también hace cosas en tu ordenador, y algunas sin preguntarte. En esta lección verás quién le da permiso y cómo lo mira RosmarOps, sin cambiar nada.">
+<link rel="canonical" href="https://rosmarops.com/es/curso/el-inspector/">
+<link rel="alternate" hreflang="en" href="https://rosmarops.com/course/the-inspector/">
+<link rel="alternate" hreflang="es" href="https://rosmarops.com/es/curso/el-inspector/">
+<link rel="alternate" hreflang="ca" href="https://rosmarops.com/ca/curs/linspector/">
+<link rel="alternate" hreflang="x-default" href="https://rosmarops.com/course/the-inspector/">
+<link rel="stylesheet" href="/assets/consent/cookieconsent.css?v=3.1.0">
+<link rel="icon" href="/wp-content/uploads/2026/10/image-1.png">
+<style>
+:root{--bg:#F6F5F2;--ink:#1B1A18;--ink2:#3A3833;--muted:#66635D;--line:#E3E0D8;--card:#FFFFFF;--accent:#6F8F78}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+a{color:var(--ink)}a:hover{color:var(--accent)}
+.wrap{max-width:1040px;margin:0 auto;padding:0 16px}
+header .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;padding-top:24px;padding-bottom:24px}
+header img{height:40px;width:auto;display:block}
+nav{display:flex;flex-wrap:wrap;gap:24px;font-size:16px}
+main .wrap{display:flex;flex-direction:column;gap:64px;padding-top:48px;padding-bottom:64px}
+.hero{display:flex;flex-direction:column;gap:20px;max-width:760px}
+h1{margin:0;font-size:clamp(34px,6vw,52px);line-height:1.08;font-weight:700;letter-spacing:-.02em}
+.lead{margin:0;font-size:20px;line-height:1.55;color:var(--ink2)}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:16px}
+h2{margin:0;font-size:14px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:12px;font-size:17px;line-height:1.55}
+.status{border-top:1px solid var(--line);padding-top:32px;display:flex;flex-direction:column;gap:12px;max-width:760px}
+.status p{margin:0;font-size:17px;line-height:1.55}
+footer{border-top:1px solid var(--line)}
+footer .wrap{padding-top:28px;padding-bottom:28px;font-size:15px;color:var(--muted)}
+footer nav{gap:20px;font-size:15px}
+.doc{max-width:760px;display:flex;flex-direction:column;gap:18px;font-size:18px;line-height:1.65}
+.doc h1{font-size:clamp(30px,5vw,44px);line-height:1.12}
+.doc h2{font-size:22px;letter-spacing:0;text-transform:none;color:var(--ink);margin-top:20px}
+.doc p,.doc ul{margin:0}.doc ul{font-size:18px;gap:8px}
+.doc .meta{font-size:15px;color:var(--muted)}
+.doc .formula{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 20px;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:16px;overflow-wrap:anywhere}
+.doc code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:.92em}
+.faq h2{margin-top:24px}
+.doc a{overflow-wrap:anywhere}
+</style>
+<link rel="stylesheet" href="/assets/course/chain.css?v=2">
+</head>
+<body>
+<header><div class="wrap">
+<a href="/es/"><img src="/assets/brand/rosmarops-logo.png" srcset="/assets/brand/rosmarops-logo.png 1x, /assets/brand/rosmarops-logo@2x.png 2x" width="512" height="131" alt="RosmarOps"></a>
+<nav><a href="/es/blog/">Blog</a><a href="/es/blog/que-es-rosmarops/">Acerca de</a><a href="/es/observatorio/">Observatorio</a><a href="/es/sandbox/">Sandbox</a><a href="/es/metodologia/">Metodología</a><a href="/es/preguntas-frecuentes/">Preguntas</a><a href="/course/the-inspector/" hreflang="en" lang="en" aria-label="English">EN</a><a href="/ca/curs/linspector/" hreflang="ca" lang="ca" aria-label="Català">CA</a></nav>
+</div></header>
+
+<main class="course"><div class="wrap">
+<div class="doc"><p class="eyebrow">Lección 1 de 5 · 7 minutos de lectura, más 10 en tu informe</p><h1>El inspector</h1>
+<p class="lead">Un agente de IA no solo contesta: también hace cosas en tu ordenador, y algunas sin preguntarte. En esta lección verás quién le da permiso y cómo lo mira RosmarOps, sin cambiar nada.</p>
+<ol class="cs-steps" aria-label="Los seis pasos de la lección"><li><a href="#p1"><b>1</b>Antes de empezar</a></li><li><a href="#p2"><b>2</b>La idea, con un ejemplo</a></li><li><a href="#p3"><b>3</b>Pruébalo</a></li><li><a href="#p4"><b>4</b>Compruébalo</a></li><li><a href="#p5"><b>5</b>En tu ordenador</a></li><li><a href="#p6"><b>6</b>Lo que te llevas</a></li></ol></div>
+<section class="cs-step" id="p1"><div class="doc"><p class="cs-label">Paso 1 de 6 · Antes de empezar</p></div>
+<div class="doc"><div class="cs-before"><p><b>Vas a aprender</b> qué es un agente de IA, quién le da permiso para actuar y qué mira RosmarOps.</p><p><b>Necesitas</b> nada para los pasos 1 a 4. Para el paso 5, RosmarOps.</p><p><b>Antes de esta</b>, nada: es la primera lección.</p></div></div>
+</section>
+<section class="cs-step" id="p2"><div class="doc"><p class="cs-label">Paso 2 de 6 · La idea, con un ejemplo</p></div>
+<div class="doc"><h2 class="cs-st">El inspector</h2><p class="sub">Antes de cambiar nada, alguien tiene que mirar.</p><div class="cs-para"><p>Imagina que, antes de comprar un piso, llamas a un inspector. Entra, abre las puertas, mira qué llaves hay y quién tiene copia. Lo apunta todo en un informe. No arregla nada: te dice qué ha visto y qué cambiaría. Tampoco se queda a vivir allí, así que no ve lo que pase en el piso cuando se vaya. RosmarOps hace ese trabajo con los agentes de IA de tu ordenador.</p></div></div>
+<div class="cs-cards"><div class="cs-c"><span class="cs-l">Agente de IA</span><h3>¿Qué es?</h3><p>Un programa de inteligencia artificial que no solo contesta: también hace cosas por ti, como leer ficheros, ejecutar comandos o usar tus cuentas. Claude Code, Cursor y Codex son agentes.</p></div><div class="cs-c"><span class="cs-l">Sin preguntarte</span><h3>¿Qué hace solo?</h3><p>Algunas acciones las hace sin que tengas que aprobarlas antes. Cuantas más hace así, más lejos puede llegar si algo lo engaña.</p></div><div class="cs-c"><span class="cs-l">Quién decide</span><h3>¿Quién da el permiso?</h3><p>Cuando una acción necesita permiso, lo da una de tres partes: tú, otro modelo de IA que revisa la acción, o nadie. Depende del modo, que es el ajuste del agente que decide cuánto te pregunta.</p></div><div class="cs-c"><span class="cs-l">RosmarOps</span><h3>¿Qué hace el inspector?</h3><p>Lee los ajustes que cada agente guarda en ficheros de tu ordenador y te hace un informe: qué puede hacer cada uno sin preguntarte y qué conviene cambiar primero.</p></div></div>
+<div class="doc cs-blocks"><h3>Qué mira</h3><ul><li>Los ajustes de doce agentes, entre ellos Claude Code, Cursor, Codex y GitHub Copilot.</li><li>Tus proyectos, que encuentra solo, y las instrucciones que leen tus agentes en ellos.</li><li>Las claves guardadas en ficheros de tu ordenador. De cada una apunta de qué tipo es y dónde está, nunca el valor.</li></ul><h3>Qué no mira</h3><ul><li>Lo que hace un agente mientras trabaja. Lee lo que está escrito en los ficheros, lo que se llama configuración en reposo: los ajustes tal como están guardados, no lo que el agente hace con ellos.</li><li>Lo que hace por dentro una herramienta MCP, que es una pieza que añade herramientas a un agente.</li><li>El almacén de credenciales de Windows.</li><li>Y lo que no ha podido leer no lo cuenta como limpio: te dice que no lo ha podido leer.</li></ul><h3>Qué no hace</h3><ul><li>No cambia tus ficheros ni tus agentes. Te dice qué cambiar y lo decides tú.</li><li>Lo que lee de tu ordenador no sale sin tu permiso, y tus claves nunca.</li></ul></div>
+</section>
+<section class="cs-step" id="p3"><div class="doc"><p class="cs-label">Paso 3 de 6 · Pruébalo</p></div>
+<div class="doc"><h2 class="cs-st">¿Quién decide?</h2><p class="sub">El mismo agente, en tres modos. Mira quién da el permiso en cada acción.</p></div>
+<div class="cs-try"><div class="cs-how"><p class="cs-do">Haz esto, en orden:</p><ol class="cs-todo"><li>Mira el selector de arriba: está marcado «Manual».</li><li>Lee las cuatro acciones. Solo la primera dice «Lo hace sin preguntarte».</li><li>Pulsa «Auto».</li><li>Mira las acciones 3 y 4: ahora dicen «Lo decide otro modelo de IA».</li><li>Mira la acción 2: editar un fichero ya no te pregunta.</li><li>Pulsa «Sin permisos».</li><li>Mira las cuatro acciones: todas dicen «Lo hace sin preguntarte».</li><li>Lee el mensaje de debajo del selector.</li><li>Vuelve a pulsar «Manual».</li></ol></div>
+<div class="cs-piece cs-who" aria-label="¿Quién decide?" role="group">
+<p class="cs-q" id="cs-ml">Modo de Claude Code</p>
+<div class="cs-pills" id="cs-modes" role="radiogroup" aria-labelledby="cs-ml"><button type="button" class="cs-pill" role="radio" aria-checked="true" tabindex="0" data-m="manual">Manual</button><button type="button" class="cs-pill" role="radio" aria-checked="false" tabindex="-1" data-m="auto">Auto</button><button type="button" class="cs-pill" role="radio" aria-checked="false" tabindex="-1" data-m="bypass">Sin permisos</button></div>
+<div class="cs-rows" id="cs-rows" aria-live="polite"><div class="cs-row"><div class="cs-act"><span class="cs-num">1</span><span>Leer un fichero del proyecto</span></div><span class="cs-mtag alone">Lo hace sin preguntarte</span></div><div class="cs-row"><div class="cs-act"><span class="cs-num">2</span><span>Editar un fichero del proyecto</span></div><span class="cs-mtag you">Te pregunta a ti</span></div><div class="cs-row"><div class="cs-act"><span class="cs-num">3</span><span>Ejecutar un comando que instala un programa</span></div><span class="cs-mtag you">Te pregunta a ti</span></div><div class="cs-row"><div class="cs-act"><span class="cs-num">4</span><span>Buscar en internet</span></div><span class="cs-mtag you">Te pregunta a ti</span></div></div>
+<p class="cs-msg manual" id="cs-mmsg" role="status"><b>En modo manual, das tú casi todos los permisos.</b> Lee los ficheros del proyecto sin preguntarte, y ejecuta también sin preguntarte algunos comandos que solo leen, como <code>ls</code> o <code>cat</code>. Lo demás te lo pregunta.</p>
+<p class="cs-fixed">Desde la versión 2.1.283, Claude Code empieza en modo auto cuando lo abres en un terminal o en VS Code, si ese modo está disponible. Si no lo está, empieza en modo manual.</p>
+</div></div>
+<div class="doc"><p class="cs-note">El ejemplo es Claude Code. Los datos salen de su documentación oficial, comprobada el 26 de noviembre de 2026.</p>
+<div class="cs-seen"><h3>Lo que acabas de ver</h3><ul><li>El mismo agente puede hacer mucho o poco sin preguntarte.</li><li>No depende solo del agente: depende del modo y de los ajustes que tenga.</li><li>Esos ajustes están escritos en ficheros de tu ordenador. Eso es lo que lee RosmarOps.</li></ul></div></div>
+</section>
+<section class="cs-step" id="p4"><div class="doc"><p class="cs-label">Paso 4 de 6 · Compruébalo</p></div>
+<div class="doc cs-quiz"><h2 class="cs-st">¿Lo ve RosmarOps?</h2><p class="sub">Pasa algo en tu ordenador. ¿Lo ve el inspector?</p>
+<p class="cs-q">Pasa algo. ¿Lo ve?</p>
+<div id="cs-game"></div></div>
+<div class="doc cs-quiz"><h2>Test</h2>
+<div id="cs-test"></div></div>
+</section>
+<section class="cs-step" id="p5"><div class="doc"><p class="cs-label">Paso 5 de 6 · En tu ordenador</p></div>
+<div class="doc"><p class="sub cs-st5">Diez minutos. Pasa RosmarOps por primera vez y lee el bloque «Resultado».</p>
+<div class="cs-piece cs-ex"><ol><li>Descarga RosmarOps.<br><a class="cs-btn primary" href="/es/descargar?from=course" target="_blank" rel="nofollow noopener">Descárgalo</a><p class="cs-see"><b>Lo que ves:</b> la página de descarga, con el programa para tu sistema: Windows, macOS o Linux.</p><p class="cs-also">Si todavía no quieres instalarlo, haz estos pasos con el <a href="/es/informe-de-ejemplo/">informe de ejemplo</a>.</p></li><li>Ábrelo. En Windows, haz doble clic en <code>rosmarops.exe</code>. En macOS y Linux, sigue las instrucciones de la página de descarga.<p class="cs-see"><b>Lo que ves:</b> el programa busca tus proyectos solo. Si no encuentra ninguno, te pide que elijas la carpeta donde los guardas.</p></li><li>Espera a que acabe. Suele tardar menos de 5 minutos; con muchos proyectos, hasta 20.<p class="cs-see"><b>Lo que ves:</b> el informe se abre solo en tu navegador. Arriba pone «Informe RosmarOps».</p></li><li>Mira el primer bloque, «Resultado», y lee la primera frase.<p class="cs-see"><b>Lo que ves:</b> una de estas tres frases:</p><ul class="cs-see-list"><li>«Al menos uno de tus agentes puede hacer mucho en este ordenador sin preguntarte.»</li><li>«Tus agentes te preguntan casi siempre, pero quedan huecos abiertos.»</li><li>«En lo que RosmarOps ha revisado, tus agentes te preguntan antes de actuar.»</li></ul></li><li>Mira el número de al lado.<p class="cs-see"><b>Lo que ves:</b> una nota sobre 100 y una palabra: «Expuesto», «Huecos abiertos» o «Contenido». Cuanto más alta es la nota, menos expuestos están tus agentes.</p></li><li>Lee la frase de debajo.<p class="cs-see"><b>Lo que ves:</b> algo como «Nota de Claude Code, tu agente con menos control: hace bastante sin preguntarte (clase C). Con los ajustes de fábrica sacaría 70.»</p><p class="cs-also">El agente que nombra es el que más hace sin preguntarte. Apúntalo.</p></li><li>Busca la tarjeta «Empieza por aquí», en el mismo bloque.<p class="cs-see"><b>Lo que ves:</b> lo primero que conviene cambiar. Puedes hacerlo ya, o esperar a la lección 2, que explica por qué es eso y no otra cosa.</p></li></ol>
+<h3>¿Y si no ves una nota?</h3><p>Si pone «Sin nota:», el informe te dice por qué. Por ejemplo: «no se encontró ningún agente de IA» o «no se pudo leer todo».</p></div></div>
+</section>
+<section class="cs-step" id="p6"><div class="doc"><p class="cs-label">Paso 6 de 6 · Lo que te llevas</p></div>
+<div class="doc"><ul class="cs-take"><li>Un agente de IA hace cosas en tu ordenador, y parte de ellas sin preguntarte.</li><li>Quién da el permiso depende del modo: tú, otro modelo de IA o nadie.</li><li>RosmarOps lee lo que cada agente tiene permitido, no lo que hace mientras trabaja, y no cambia nada.</li></ul></div>
+<div class="doc cs-terms"><h2>Términos nuevos</h2><p><a href="/es/glosario/#agent">Agente de IA</a> · <a href="/es/glosario/#ask">Sin preguntarte</a> · <a href="/es/glosario/#te-pregunta-antes">Te pregunta antes</a> · <a href="/es/glosario/#classifier">Modelo clasificador</a> · <a href="/es/glosario/#mcp">Servidor MCP</a> · <a href="/es/glosario/#credential">Clave o credencial</a> · <a href="/es/glosario/#huella-de-una-clave">Huella de una clave</a></p>
+<p class="cs-next"><a class="cs-btn primary" href="/es/curso/la-cadena/">Siguiente: Lección 2 · La cadena</a></p><p class="cs-note">Cada dato de esta lección sale del código de RosmarOps, que es público (github.com/qtorb/rosmarops), del Observatorio y de la documentación oficial de Claude Code.</p></div>
+</section>
+</div></main>
+
+<footer><div class="wrap">
+<nav><a href="/es/blog/">Blog</a><a href="/es/blog/que-es-rosmarops/">Acerca de</a><a href="/es/observatorio/">Observatorio</a><a href="/es/sandbox/">Sandbox</a><a href="/es/metodologia/">Metodología</a><a href="/es/preguntas-frecuentes/">Preguntas</a><a href="/course/the-inspector/" hreflang="en" lang="en" aria-label="English">EN</a><a href="/ca/curs/linspector/" hreflang="ca" lang="ca" aria-label="Català">CA</a><a href="/es/videos/">Vídeos</a><a href="/es/privacidad/">Privacidad</a><a href="/es/aviso-legal/">Aviso legal</a><a href="/es/terminos/">Términos</a><a href="#" data-cc="show-preferencesModal">Configurar cookies</a></nav>
+</div></footer>
+<script type="application/json" id="cs-data">{"game": {"title": "¿Lo ve RosmarOps?", "sub": "Pasa algo en tu ordenador. ¿Lo ve el inspector?", "header": "Pasa algo. ¿Lo ve?", "question": "", "options": ["Lo ve", "No lo ve"], "exclusive": [0, 1], "buttons": {"check": "Comprobar", "next": "Siguiente", "result": "Ver el resultado", "again": "Volver a jugar"}, "card": "Caso {i} de 6", "right": "Correcto.", "wrong": "No del todo.", "source": "Dónde se dice: {source}", "items": [{"text": "Claude Code trabaja en modo auto, porque así viene de fábrica.", "answer": [0], "expl": "El modo está en los ajustes del agente o es el valor que trae de fábrica. RosmarOps lee los dos.", "source": "Observatorio, ficha de Claude Code; documentación oficial de Claude Code, «Permission modes»."}, {"text": "Ayer, durante una sesión, tu agente borró una carpeta.", "answer": [1], "expl": "RosmarOps no ve lo que pasa mientras el agente trabaja. Puede decirte que tenía permiso para ejecutar comandos sin preguntarte, pero no qué hizo con él.", "source": "Metodología de la web, apartado «Lo que no mide»."}, {"text": "Tienes una clave de Stripe guardada en un fichero `.env` de un proyecto.", "answer": [0], "expl": "Un fichero `.env` es un fichero de texto donde muchos programas guardan sus claves. RosmarOps apunta de qué tipo es la clave, dónde está y una huella para reconocerla. Nunca el valor.", "source": "Glosario de la web, «Huella de una clave»."}, {"text": "En los ajustes de Claude Code has escrito que puede ejecutar cualquier comando sin preguntarte.", "answer": [0], "expl": "Es un ajuste escrito en un fichero. Es justo lo que lee RosmarOps: qué permiso tiene cada cosa que el agente puede hacer.", "source": "Glosario de la web, «Permitir, preguntar, denegar»."}, {"text": "Una herramienta MCP que usa tu agente manda, por dentro, tus datos a otro sitio.", "answer": [1], "expl": "Ve que el agente tiene esa herramienta y qué le deja hacer, pero no lo que la herramienta hace por dentro.", "source": "Metodología de la web, apartado «Lo que no mide»."}, {"text": "Guardas una contraseña en el almacén de credenciales de Windows.", "answer": [1], "expl": "Ese almacén queda fuera de lo que lee hoy. El informe lo dice en la línea «Fuera del alcance de este análisis».", "source": "Metodología de la web, apartado «Lo que no mide»."}], "end": {"high": "Ya sabes qué mira el inspector.", "mid": "Vas bien.", "low": "Vuelve al paso 2."}, "always": "En la lección 2 verás cómo se encadena todo esto."}, "test": {"title": "Test", "counter": "Pregunta {i} de 4", "right": "Exacto.", "wrong": "No del todo.", "buttons": {"next": "Siguiente", "result": "Ver el resultado", "again": "Empezar de nuevo"}, "result": "{score} de 4.", "all": "Ya sabes qué mira el inspector.", "less": "Vuelve al paso 3, prueba los tres modos y repite el test.", "items": [{"q": "¿Qué es un agente de IA?", "options": ["Un programa que solo contesta preguntas", "Un programa de IA que también hace cosas por ti: leer ficheros, ejecutar comandos, usar tus cuentas", "Un programa que vigila tu ordenador"], "answer": 1, "expl": "No solo contesta: actúa. Por eso importa lo que puede hacer sin preguntarte."}, {"q": "Claude Code está en modo auto y va a ejecutar un comando que instala un programa. ¿Quién decide?", "options": ["Tú", "Otro modelo de IA, que revisa si la acción encaja con lo que le has pedido", "Nadie"], "answer": 1, "expl": "En modo auto no te pregunta casi nada. Antes de ejecutar un comando, otro modelo revisa la acción."}, {"q": "¿Qué lee RosmarOps?", "options": ["Lo que hace cada agente mientras trabaja", "Lo que cada agente tiene permitido, en los ficheros de tu ordenador", "Nada de tu ordenador: solo mira internet"], "answer": 1, "expl": "Lee la configuración en reposo: los ajustes tal como están guardados."}, {"q": "Tu informe saca un 100. ¿Qué quiere decir?", "options": ["Que tu ordenador no tiene ningún riesgo", "Que no encontró exposición en lo que pudo leer", "Que tus agentes están apagados"], "answer": 1, "expl": "Un 100 nunca quiere decir que no haya riesgo. Quiere decir que, en lo que leyó, no encontró nada al alcance de un agente sin preguntarte."}]}, "modes": {"tags": {"alone": "Lo hace sin preguntarte", "you": "Te pregunta a ti", "model": "Lo decide otro modelo de IA"}, "actions": ["Leer un fichero del proyecto", "Editar un fichero del proyecto", "Ejecutar un comando que instala un programa", "Buscar en internet"], "states": {"manual": ["alone", "you", "you", "you"], "auto": ["alone", "alone", "model", "model"], "bypass": ["alone", "alone", "alone", "alone"]}, "msg": {"manual": "**En modo manual, das tú casi todos los permisos.** Lee los ficheros del proyecto sin preguntarte, y ejecuta también sin preguntarte algunos comandos que solo leen, como `ls` o `cat`. Lo demás te lo pregunta.", "auto": "**En modo auto, casi no te pregunta.** Antes de ejecutar un comando o de salir a internet, otro modelo de IA revisa si la acción encaja con lo que le has pedido. A ese modelo se le llama clasificador.", "bypass": "**En modo sin permisos, nadie decide: lo hace casi todo sin preguntar.** La documentación de Claude Code dice que este modo solo se use en entornos aislados, como un contenedor o una máquina virtual."}}}</script>
+<script src="/assets/course/chain.js?v=2" defer></script>
+<script src="/assets/consent/cookieconsent.umd.js?v=3.1.0" defer></script>
+<script src="/assets/consent/consent.js?v=5" defer></script><script src="/assets/visits/visits.js?v=4" defer></script>
+</body>
+</html>

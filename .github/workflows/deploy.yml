@@ -64,6 +64,11 @@ jobs:
           grep -q '<meta name="robots" content="noindex">' site/course/the-chain/index.html
           grep -q '<meta name="robots" content="noindex">' site/es/curso/la-cadena/index.html
           grep -q '<meta name="robots" content="noindex">' site/ca/curs/la-cadena/index.html
+          # GTM-227: lesson 1 too; the course entry page is not built until the course has a name.
+          grep -q '<meta name="robots" content="noindex">' site/course/the-inspector/index.html
+          grep -q '<meta name="robots" content="noindex">' site/es/curso/el-inspector/index.html
+          grep -q '<meta name="robots" content="noindex">' site/ca/curs/linspector/index.html
+          test ! -e site/course/index.html && test ! -e site/es/curso/index.html && test ! -e site/ca/curs/index.html
           # Observatory: only the three index pages and the JSON files are published (GTM-11). Agent pages wait for verification.
           ls site/observatory/index.html site/es/observatorio/index.html site/ca/observatori/index.html site/observatory/*.json
 
@@ -185,6 +190,12 @@ jobs:
           -mkdir ca/curs
           -mkdir ca/curs/la-cadena
           put site/ca/curs/la-cadena/index.html ca/curs/la-cadena/index.html
+          -mkdir course/the-inspector
+          put site/course/the-inspector/index.html course/the-inspector/index.html
+          -mkdir es/curso/el-inspector
+          put site/es/curso/el-inspector/index.html es/curso/el-inspector/index.html
+          -mkdir ca/curs/linspector
+          put site/ca/curs/linspector/index.html ca/curs/linspector/index.html
           -mkdir try-an-ai-agent
           put site/try-an-ai-agent/index.html try-an-ai-agent/index.html
           -mkdir es/probar-un-agente-de-ia

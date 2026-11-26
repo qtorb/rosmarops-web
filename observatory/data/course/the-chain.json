@@ -1,106 +1,456 @@
 {
- "_source": "qtorb/rosmarops-vigil: docs/research/2026-11-24-curso-publico-leccion-piloto.md §3-§5 (ES) and docs/research/2026-11-24-curso-publico-leccion-2-en-ca.md §3-§5 (EN, CA), signed by Albert (GTM-206, block 166); the footer (close.footer) from vigil docs/briefs/GTM-215.md, B.5 (block 178); eight retouches from vigil docs/briefs/GTM-217.md (block 188). Literal: do not edit here; change the signed document first. **x** is bold and `x` is code.",
- "path": {"en": "/course/the-chain/", "es": "/es/curso/la-cadena/", "ca": "/ca/curs/la-cadena/"},
+ "_source": "qtorb/rosmarops-vigil: docs/research/2026-11-26-curso-publico-textos-finales.md (§1.3, §2.3, §3.3), signed by Albert with block 211 (GTM-227; EN and CA signed by passing the block); step names list label and layout from docs/research/2026-11-26-curso-diseno-entrada-y-seis-pasos.md. Literal: do not edit here; change the signed document first. **x** is bold and `x` is code. In English pages, quotes are “ ” (design §6). The piece's other texts and the answers are the ones built in GTM-206.",
+ "path": {
+  "en": "/course/the-chain/",
+  "es": "/es/curso/la-cadena/",
+  "ca": "/ca/curs/la-cadena/"
+ },
  "en": {
   "eyebrow": "Lesson 2 of 5 · 8 minutes of reading, plus 10 on your report",
   "title": "The chain",
   "lead": "A single permission doesn't tell you much. What matters is the chain: who gets in, what they can do, which keys they find and what those keys open. If one link is missing, the chain breaks.",
-  "piece": {
-   "title": "Break the chain",
-   "instr": "Tap each link to see what it is. Then change the permissions and watch where the chain breaks.",
-   "note": "A made-up example, with the real shape of what RosmarOps draws. Source: the glossary and the program's public schema.",
-   "links": [["Agent", "Claude Code", "AI program on your computer"], ["Capability", "Read project files", ""], ["Credential", "Stripe key in a .env", "sk_l…9f2a · fingerprint only"], ["Resource", "Your Stripe account", "What the key opens"]],
-   "small2": {"allow": "Without asking you", "ask": "Asks you first", "deny": "Denied"},
-   "partly_suffix": " · through a command",
-   "arrows": {"can": "can", "reaches": "reaches", "opens": "opens", "broken": "✕ reaches", "partly": "reaches, partly"},
-   "a_label": "Can Claude Code read your .env?",
-   "a": {"allow": "Allow", "ask": "Ask", "deny": "Deny"},
-   "b_label": "Can it run any command without asking you?",
-   "b": {"no": "No", "yes": "Yes"},
-   "msg": {
-    "allow0": "**The chain is whole.** Claude Code can read the .env without asking you, and the key opens your Stripe account.",
-    "allow1": "**The chain is whole.** Claude Code can read the .env without asking you. And since it can also run commands, it has a second way to get there.",
-    "ask0": "**The chain breaks at the second link.** Before reading the .env, Claude Code has to ask you. You hold the door.",
-    "ask1": "**The chain still holds, partly.** Claude Code would ask you before opening the .env, but it can launch a program without asking you, and that program can read it.",
-    "deny0": "**The chain breaks at the second link.** Claude Code can't read the .env. There's no path to the key or to your Stripe account.",
-    "deny1": "**The chain still holds, partly.** The rule stops Claude Code from opening the .env itself, but a program it launches without asking you can read it. To break it completely, take that away too."
-   },
-   "sandbox": "On macOS, Linux and WSL2, with Claude Code's sandbox turned on, the rule also stops the programs it launches. RosmarOps takes this into account.",
-   "detail": [
-    [["What it is", "An AI program that can act on your computer."], ["Other examples", "Cursor, Codex, an MCP server, an editor extension."], ["How RosmarOps finds it", "It reads the configuration files each agent leaves on your computer."]],
-    [["What it is", "Something the agent can do: read, write, run commands, go online."], ["Its three permissions", "Allow (without asking you), ask (it asks your permission every time) and deny (never)."], ["Where it comes from", "From a file of yours, or from the value the agent comes with. Claude Code reads the files of the project it works in without asking, in any mode. In Manual mode, Claude Code asks you before reading outside the project. In auto mode, another AI model decides."], ["If you deny reading the .env", "The rule stops Claude Code when it opens the file with its own tools and also with the file commands it recognises: `cat .env` is stopped. It doesn't stop any other program it launches, or a command that reads the file without naming it."]],
-    [["What it is", "A secret the agent can find: a key, a token, a private key."], ["What RosmarOps keeps", "What type it is, where it is and a fingerprint. Never the value. If it shows it, only the first 4 and the last 4 characters."], ["How it knows which service it's for", "By its shape. Stripe keys start in a recognisable way."]],
-    [["What it is", "What the agent can open or change with what it finds."], ["Other examples", "Your repositories, a database, another agent's configuration or instructions."], ["Why it matters", "It's where the damage is. With a Stripe key, anyone can move money or read your customers' payments."]]
+  "steps_aria": "The six steps of the lesson",
+  "labels": [
+   "Step 1 of 6 · Before you start",
+   "Step 2 of 6 · The idea, with an example",
+   "Step 3 of 6 · Try it",
+   "Step 4 of 6 · Check it",
+   "Step 5 of 6 · On your computer",
+   "Step 6 of 6 · What you take away"
+  ],
+  "before": [
+   [
+    "You'll learn",
+    "how what an agent can do links up until it reaches something of yours that has value, and where to break it."
+   ],
+   [
+    "You need",
+    "nothing for steps 1 to 4. For step 5, RosmarOps."
+   ],
+   [
+    "In the previous lesson",
+    "you saw what an AI agent is, who gives it permission and how to read the “Result” block of your report."
    ]
-  },
+  ],
   "idea": {
    "title": "The building's keyring",
    "sub": "Four questions, always in the same order.",
-   "cards": [["Agent", "Who gets in?", "The painter who comes to work in the building. Claude Code, Cursor, an MCP server: any program that can act on your computer."], ["Capability", "What do you let it do?", "Walk into the flats without knocking, only with permission, or never. Read, write, run commands, go online."], ["Credential", "Which keys does it find?", "The keys hanging in the flats it can walk into: a service's key saved in a `.env` file (a text file where many programs keep their keys), a token, a private key."], ["Resource", "What does each key open?", "The garage, the strongbox, the bank account. Your Stripe account, your repositories, a database or another agent's configuration."]],
+   "para": [
+    "In lesson 1 we were looking at the inspector. Now we look at the painter: what it can open while it works."
+   ],
+   "cards": [
+    [
+     "Agent",
+     "Who gets in?",
+     "The painter who comes to work in the building. Claude Code, Cursor, an MCP server: any program that can act on your computer."
+    ],
+    [
+     "Capability",
+     "What do you let it do?",
+     "Walk into the flats without knocking, only with permission, or never. Read, write, run commands, go online."
+    ],
+    [
+     "Credential",
+     "Which keys does it find?",
+     "The keys hanging in the flats it can walk into: a service's key saved in a `.env` file (a text file where many programs keep their keys), a token, a private key."
+    ],
+    [
+     "Resource",
+     "What does each key open?",
+     "The garage, the strongbox, the bank account. Your Stripe account, your repositories, a database or another agent's configuration."
+    ]
+   ],
    "blocks": [
-    ["Why the order matters", ["A key on its own isn't a problem if nobody can reach it without asking you.", "An agent with lots of permissions isn't a problem if there's nothing valuable within its reach.", "The problem is the whole chain. And to break it, you only need to remove one link: the easiest is almost always the second one, what you let it do."]],
-    ["A common trap", ["Forbidding the agent to read a file cuts the direct path.", "But if the agent can run any command without asking you, a program it launches can read that file anyway.", "RosmarOps sees this and flags it: the chain still holds, «partly»."]],
-    ["What you can't see", ["RosmarOps reads what each agent is allowed to do, not what it does while it works.", "And what it couldn't read, it doesn't count as clean: it tells you it couldn't read it."]]
+    [
+     "Why the order matters",
+     [
+      "A key on its own isn't a problem if nobody can reach it without asking you.",
+      "An agent with lots of permissions isn't a problem if there's nothing valuable within its reach.",
+      "The problem is the whole chain. And to break it, you only need to remove one link: the easiest is almost always the second one, what you let it do."
+     ]
+    ],
+    [
+     "What you can't see",
+     [
+      "RosmarOps reads what each agent is allowed to do, not what it does while it works.",
+      "And what it couldn't read, it doesn't count as clean: it tells you it couldn't read it."
+     ]
+    ]
    ]
   },
-  "game": {
-   "title": "What breaks?",
-   "sub": "You change one thing on your computer. In which link of the chain does RosmarOps see it? It can be more than one, or none.",
-   "header": "You change something. Where does it show?",
-   "question": "Where does it show up?",
-   "options": ["Agent", "Capability", "Credential", "Resource", "Nowhere: it doesn't see it"],
-   "buttons": {"check": "Check", "next": "Next", "result": "See the result", "again": "Play again"},
-   "card": "Change {i} of 6",
-   "right": "Correct.",
-   "wrong": "Not quite.",
-   "source": "Where it says so: {source}",
-   "items": [
-    {"text": "You change Claude Code so it reads files outside the project without asking you.", "answer": [1], "expl": "It's a capability: reading files. In Manual mode, Claude Code asks you before reading outside the project. In auto mode, another AI model decides. If you change it so it doesn't ask, RosmarOps records it as something you set up yourself.", "source": "Observatory, Claude Code page; Claude Code's official permissions documentation."},
-    {"text": "You save a Stripe secret key in a `.env` file in the project.", "answer": [2, 3], "expl": "A new credential appears. RosmarOps doesn't keep the key: it keeps a fingerprint that lets it recognise it. And since the key's format says it's a Stripe key, what it opens appears too: your Stripe account.", "source": "Website glossary, «Key or credential»."},
-    {"text": "You add a new MCP server to a project.", "answer": [0], "expl": "An MCP server is a program that gives your agent new tools. For RosmarOps it's one more agent, loaded by the first one.", "source": "Website glossary, «MCP server»."},
-    {"text": "One agent can rewrite another agent's instructions (its CLAUDE.md file, for example).", "answer": [3], "expl": "Another agent's instructions are a resource: something that can be changed. Whoever changes them decides what the other agent will do next time.", "source": "Website glossary, «AGENTS.md»."},
-    {"text": "During a session, the agent runs a command that deletes a folder.", "answer": [4], "expl": "RosmarOps doesn't see what happens while the agent works. It can tell you the agent had permission to run commands without asking you, but not what it did with it.", "source": "Website methodology, section «What it does not measure» (rosmarops.com/methodology/#limits)."},
-    {"text": "You forbid Claude Code to read your `.env`, but you let it run any command without asking you.", "answer": [1], "expl": "The direct path is cut, but there's another one: a program the agent launches can open the file. That path goes through another capability, running commands. RosmarOps keeps the chain and marks it «partly».", "source": "Claude Code's official permissions documentation."}
+  "try": {
+   "title": "Break the chain",
+   "sub": "",
+   "do_label": "Do this, in order:",
+   "do": [
+    "Read the card on the right (on a phone, below). It's the one for the “Agent” link.",
+    "Tap the “Capability” link and read its card.",
+    "Tap “Credential” and read its card.",
+    "Tap “Resource” and read its card.",
+    "Read the message under the controls. It says “The chain is whole”.",
+    "Press “Ask”. Look at the arrow between the second and third links: now it's dashed and red, and links 3 and 4 fade out.",
+    "Press “Deny”. The arrow is still broken. Read the message.",
+    "Set the switch “Can it run any command without asking you?” to “Yes”. Look at the same arrow: it turns amber and says “reaches, partly”. Links 3 and 4 come back.",
+    "Press “Ask”. It's still “partly”.",
+    "Set the switch to “No”. The chain breaks again.",
+    "Press “Allow”. The chain is whole again."
    ],
-   "end": {"high": "You already think in chains.", "mid": "You're on the right track.", "low": "Go back to the chain above."},
-   "always": "Later you'll see what RosmarOps can know and what it can't."
+   "piece": {
+    "note": "A made-up example, with the real shape of what RosmarOps draws. Source: the glossary and the program's public schema.",
+    "links": [
+     [
+      "Agent",
+      "Claude Code",
+      "AI program on your computer"
+     ],
+     [
+      "Capability",
+      "Read project files",
+      ""
+     ],
+     [
+      "Credential",
+      "Stripe key in a .env",
+      "sk_l…9f2a · fingerprint only"
+     ],
+     [
+      "Resource",
+      "Your Stripe account",
+      "What the key opens"
+     ]
+    ],
+    "small2": {
+     "allow": "Without asking you",
+     "ask": "Asks you first",
+     "deny": "Denied"
+    },
+    "partly_suffix": " · through a command",
+    "arrows": {
+     "can": "can",
+     "reaches": "reaches",
+     "opens": "opens",
+     "broken": "✕ reaches",
+     "partly": "reaches, partly"
+    },
+    "a_label": "Can Claude Code read your .env?",
+    "a": {
+     "allow": "Allow",
+     "ask": "Ask",
+     "deny": "Deny"
+    },
+    "b_label": "Can it run any command without asking you?",
+    "b": {
+     "no": "No",
+     "yes": "Yes"
+    },
+    "msg": {
+     "allow0": "**The chain is whole.** Claude Code can read the .env without asking you, and the key opens your Stripe account.",
+     "allow1": "**The chain is whole.** Claude Code can read the .env without asking you. And since it can also run commands, it has a second way to get there.",
+     "ask0": "**The chain breaks at the second link.** Before reading the .env, Claude Code has to ask you. You hold the door.",
+     "ask1": "**The chain still holds, partly.** Claude Code would ask you before opening the .env, but it can launch a program without asking you, and that program can read it.",
+     "deny0": "**The chain breaks at the second link.** Claude Code can't read the .env. There's no path to the key or to your Stripe account.",
+     "deny1": "**The chain still holds, partly.** The rule stops Claude Code from opening the .env itself, but a program it launches without asking you can read it. To break it completely, take that away too."
+    },
+    "sandbox": "On macOS, Linux and WSL2, with Claude Code's sandbox turned on, the rule also stops the programs it launches. RosmarOps takes this into account.",
+    "detail": [
+     [
+      [
+       "What it is",
+       "An AI program that can act on your computer."
+      ],
+      [
+       "Other examples",
+       "Cursor, Codex, an MCP server, an editor extension."
+      ],
+      [
+       "How RosmarOps finds it",
+       "It reads the configuration files each agent leaves on your computer."
+      ]
+     ],
+     [
+      [
+       "What it is",
+       "Something the agent can do: read, write, run commands, go online."
+      ],
+      [
+       "Its three permissions",
+       "Allow (without asking you), ask (it asks your permission every time) and deny (never)."
+      ],
+      [
+       "Where it comes from",
+       "From a file of yours, or from the value the agent comes with. Claude Code reads the files of the project it works in without asking, in any mode. In Manual mode, Claude Code asks you before opening a file outside the project with its own tools. In auto mode, it asks you the first time. Depending on your answer, it stops asking or stops reading outside the project."
+      ],
+      [
+       "If you deny reading the .env",
+       "The rule stops Claude Code when it opens the file with its own tools and also with the file commands it recognises: `cat .env` is stopped. It doesn't stop any other program it launches, or a command that reads the file without naming it."
+      ]
+     ],
+     [
+      [
+       "What it is",
+       "A secret the agent can find: a key, a token, a private key."
+      ],
+      [
+       "What RosmarOps keeps",
+       "What type it is, where it is and a fingerprint. Never the value. If it shows it, only the first 4 and the last 4 characters."
+      ],
+      [
+       "How it knows which service it's for",
+       "By its shape. Stripe keys start in a recognisable way."
+      ]
+     ],
+     [
+      [
+       "What it is",
+       "What the agent can open or change with what it finds."
+      ],
+      [
+       "Other examples",
+       "Your repositories, a database, another agent's configuration or instructions."
+      ],
+      [
+       "Why it matters",
+       "It's where the damage is. With a Stripe key, anyone can move money or read your customers' payments."
+      ]
+     ]
+    ]
+   },
+   "seen": [
+    "What you've just seen: a common trap",
+    [
+     "Forbidding the agent to read a file cuts the direct path.",
+     "But if the agent can run any command without asking you, a program it launches can read that file anyway.",
+     "RosmarOps sees this and flags it: the chain still holds, “partly”."
+    ]
+   ]
   },
-  "exercise": {
-   "title": "Now, on your computer",
+  "check": {
+   "intro": "First a game of six changes, then a test of four questions.",
+   "game": {
+    "title": "What breaks?",
+    "sub": "You change one thing on your computer. In which link of the chain does RosmarOps see it? It can be more than one, or none.",
+    "header": "You change something. Where does it show?",
+    "question": "Where does it show up?",
+    "options": [
+     "Agent",
+     "Capability",
+     "Credential",
+     "Resource",
+     "Nowhere: it doesn't see it"
+    ],
+    "exclusive": [
+     4
+    ],
+    "buttons": {
+     "check": "Check",
+     "next": "Next",
+     "result": "See the result",
+     "again": "Play again"
+    },
+    "card": "Change {i} of 6",
+    "right": "Correct.",
+    "wrong": "Not quite.",
+    "source": "Where it says so: {source}",
+    "items": [
+     {
+      "text": "You change Claude Code so it reads files outside the project without asking you.",
+      "answer": [
+       1
+      ],
+      "expl": "It's a capability: reading files. In Manual mode, Claude Code asks you before opening a file outside the project with its own tools. In auto mode, it asks you the first time. Depending on your answer, it stops asking or stops reading outside the project. If you change it so it doesn't ask, RosmarOps records it as something you set up yourself.",
+      "source": "Observatory, Claude Code page; Claude Code's official permissions documentation."
+     },
+     {
+      "text": "You save a Stripe secret key in a `.env` file in the project.",
+      "answer": [
+       2,
+       3
+      ],
+      "expl": "A new credential appears. RosmarOps doesn't keep the key: it keeps a fingerprint that lets it recognise it. And since the key's format says it's a Stripe key, what it opens appears too: your Stripe account.",
+      "source": "Website glossary, “Key or credential”."
+     },
+     {
+      "text": "You add a new MCP server to a project.",
+      "answer": [
+       0
+      ],
+      "expl": "An MCP server is a program that gives your agent new tools. For RosmarOps it's one more agent, loaded by the first one.",
+      "source": "Website glossary, “MCP server”."
+     },
+     {
+      "text": "One agent can rewrite another agent's instructions (its CLAUDE.md file, for example).",
+      "answer": [
+       3
+      ],
+      "expl": "Another agent's instructions are a resource: something that can be changed. Whoever changes them decides what the other agent will do next time.",
+      "source": "Website glossary, “AGENTS.md”."
+     },
+     {
+      "text": "During a session, the agent runs a command that deletes a folder.",
+      "answer": [
+       4
+      ],
+      "expl": "RosmarOps doesn't see what happens while the agent works. It can tell you the agent had permission to run commands without asking you, but not what it did with it.",
+      "source": "Website methodology, section “What it does not measure” (rosmarops.com/methodology/#limits)."
+     },
+     {
+      "text": "You forbid Claude Code to read your `.env`, but you let it run any command without asking you.",
+      "answer": [
+       1
+      ],
+      "expl": "The direct path is cut, but there's another one: a program the agent launches can open the file. That path goes through another capability, running commands. RosmarOps keeps the chain and marks it “partly”.",
+      "source": "Claude Code's official permissions documentation."
+     }
+    ],
+    "end": {
+     "high": "You already think in chains.",
+     "mid": "You're on the right track.",
+     "low": "Go back to step 2."
+    },
+    "always": "Later you'll see what RosmarOps can know and what it can't."
+   },
+   "test": {
+    "title": "Test",
+    "counter": "Question {i} of 4",
+    "right": "Exactly.",
+    "wrong": "Not quite.",
+    "buttons": {
+     "next": "Next",
+     "result": "See the result",
+     "again": "Start again"
+    },
+    "result": "{score} out of 4.",
+    "all": "The chain is yours now.",
+    "less": "Go back to step 3, try the three permissions and take the test again.",
+    "items": [
+     {
+      "q": "What is the order of the chain?",
+      "options": [
+       "Credential, agent, resource, capability",
+       "Agent, capability, credential, resource",
+       "Resource, credential, capability, agent"
+      ],
+      "answer": 1,
+      "expl": "Who gets in, what you let it do, which keys it finds and what they open."
+     },
+     {
+      "q": "Claude Code has to ask you before reading your `.env`, and it can't run commands without asking you. What happens to the chain?",
+      "options": [
+       "It stays the same",
+       "It breaks at the second link: to reach the key, it needs you",
+       "It turns red"
+      ],
+      "answer": 1,
+      "expl": "RosmarOps only draws the path to a key when the agent can follow it without asking you."
+     },
+     {
+      "q": "You forbid reading `.env`, but the agent can run any command without asking you. Is the chain broken?",
+      "options": [
+       "Yes, completely",
+       "Not completely: a program the agent launches can read the file, and RosmarOps marks it “partly”",
+       "There's no way to know"
+      ],
+      "answer": 1,
+      "expl": "Cutting one path doesn't help if another one is still open."
+     },
+     {
+      "q": "What does RosmarOps keep from a key it finds?",
+      "options": [
+       "The whole key, encrypted",
+       "What type it is, where it is and a fingerprint, never the value",
+       "Nothing: keys don't interest it"
+      ],
+      "answer": 1,
+      "expl": "It knows the key is there, which service it belongs to and where, but it can't rebuild it."
+     }
+    ]
+   }
+  },
+  "computer": {
    "sub": "Ten minutes. Find a real chain in your own report.",
    "intro": "",
-   "download": "Don't have it yet? Download it",
+   "see_label": "What you see:",
    "steps": [
-    "Run RosmarOps and open the report.",
-    "Scroll down to the **Findings** block. Look for a problem with the word **KEY** above its title. Its title says something like «Your Stripe is within reach of 2 agents.»",
-    "Read the line underneath: «These agents can read its keys without asking you: …». There you have the **agents**, the first link. And «without asking you» is the **capability**, the second one.",
-    "Tap **See the steps ›** (or the link in the «How to fix it» column) to go to that problem in «The detail, problem by problem». Its title says, for example, «Your Stripe key: Claude Code can read it without asking you». There you have the **credential**, the third link.",
-    "Read the sentence that follows: «With it anyone can move money or read your customers' payments.» That's the **resource**, the fourth link.",
-    "Write down your chain in four words: agent → capability → credential → resource.",
-    "Now decide which link you would break. It's almost always the second one: the agent asking you before reading that file. The first problem in your report and the **Start here** card tell you how."
+    {
+     "do": "Run RosmarOps and open the report.",
+     "link": [
+      "Don't have it yet? Download it",
+      "/download?from=course"
+     ],
+     "star": true,
+     "see": "the report in your browser, with “RosmarOps report” at the top and the “Result” block you read in lesson 1."
+    },
+    {
+     "do": "Scroll down to the “Findings” block. Look for a problem with the word “KEY” above its title. Its title says something like “Your Stripe is within reach of 2 agents.”",
+     "see": "under the block's title, a line with the numbers, like “3 problems · 5 findings · 1 urgent · 2 to review”. The word “KEY” is in capitals, above the problem's title, with an icon on the left.",
+     "after": [
+      {
+       "text": "**Can't see the key problem?** If you have more than six problems, the rest are folded at the end of the table, in a link like “The other 5 problems (12 findings)”. Tap it to open them."
+      }
+     ]
+    },
+    {
+     "do": "Read the line underneath: “These agents can read its keys without asking you: …”. There you have the agents, the first link. And “without asking you” is the capability, the second one.",
+     "see": "the agents' names, separated by commas, at the end of that line."
+    },
+    {
+     "do": "Tap “See the steps ›” (or the link in the “How to fix it” column) to go to that problem in “The detail, problem by problem”. Its title says, for example, “Your Stripe key: Claude Code can read it without asking you”. There you have the credential, the third link.",
+     "see": "the page scrolls down to that problem."
+    },
+    {
+     "do": "Read the sentence that follows: “With it anyone can move money or read your customers' payments.” That's the resource, the fourth link.",
+     "see": "that sentence just under the problem's title."
+    },
+    {
+     "do": "Write down your chain in four words: agent → capability → credential → resource."
+    },
+    {
+     "do": "Now decide which link you would break. It's almost always the second one: the agent asking you before reading that file. The first problem in your report and the “Start here” card tell you how.",
+     "see": "the “Start here” card, right at the top, in the “Result” block."
+    }
    ],
-   "none_title": "What if you don't have any problem marked «KEY»?",
-   "none": "It means that, in what RosmarOps was able to read, no agent reaches a key without asking you. Also look at the line «Outside the scope of this analysis» in your report: what it couldn't read doesn't count as clean."
+   "none_title": "What if you don't have any problem marked “KEY”?",
+   "none": "It means that, in what RosmarOps was able to read, no agent reaches a key without asking you. Also look at the line “Outside the scope of this analysis” in your report: what it couldn't read doesn't count as clean."
   },
-  "test": {
-   "title": "Test",
-   "counter": "Question {i} of 4",
-   "right": "Exactly.",
-   "wrong": "Not quite.",
-   "buttons": {"next": "Next", "result": "See the result", "again": "Start again"},
-   "result": "{score} out of 4.",
-   "all": "The chain is yours now.",
-   "less": "Go back to the piece above, try the three permissions and take the test again.",
+  "take": {
    "items": [
-    {"q": "What is the order of the chain?", "options": ["Credential, agent, resource, capability", "Agent, capability, credential, resource", "Resource, credential, capability, agent"], "answer": 1, "expl": "Who gets in, what you let it do, which keys it finds and what they open."},
-    {"q": "Claude Code has to ask you before reading your `.env`, and it can't run commands without asking you. What happens to the chain?", "options": ["It stays the same", "It breaks at the second link: to reach the key, it needs you", "It turns red"], "answer": 1, "expl": "RosmarOps only draws the path to a key when the agent can follow it without asking you."},
-    {"q": "You forbid reading `.env`, but the agent can run any command without asking you. Is the chain broken?", "options": ["Yes, completely", "Not completely: a program the agent launches can read the file, and RosmarOps marks it «partly»", "There's no way to know"], "answer": 1, "expl": "Cutting one path doesn't help if another one is still open."},
-    {"q": "What does RosmarOps keep from a key it finds?", "options": ["The whole key, encrypted", "What type it is, where it is and a fingerprint, never the value", "Nothing: keys don't interest it"], "answer": 1, "expl": "It knows the key is there, which service it belongs to and where, but it can't rebuild it."}
-   ]
-  },
-  "close": {
+    "The chain has four links: who gets in, what it can do, which keys it finds and what they open.",
+    "To break it, removing one is enough, and the easiest is almost always the second: that it asks you.",
+    "Forbidding it to read a file isn't enough if it can run any command without asking you."
+   ],
    "terms_label": "New terms",
-   "terms": [["AI agent", "agent"], ["Capability", "capability"], ["Key or credential", "credential"], ["Resource", "resource"], ["MCP server", "mcp"], ["Allow, ask, deny", "allow-ask-deny"], ["Key fingerprint", "key-fingerprint"]],
+   "terms": [
+    [
+     "AI agent",
+     "agent"
+    ],
+    [
+     "Capability",
+     "capability"
+    ],
+    [
+     "Key or credential",
+     "credential"
+    ],
+    [
+     "Resource",
+     "resource"
+    ],
+    [
+     "MCP server",
+     "mcp"
+    ],
+    [
+     "Allow, ask, deny",
+     "allow-ask-deny"
+    ],
+    [
+     "Key fingerprint",
+     "key-fingerprint"
+    ]
+   ],
+   "button": "Back to the course",
+   "button_to": "entry",
    "footer": "Every fact in this lesson comes from RosmarOps's code, which is public (github.com/qtorb/rosmarops), from the Observatory and from Claude Code's official documentation."
   }
  },
@@ -108,102 +458,448 @@
   "eyebrow": "Lección 2 de 5 · 8 minutos de lectura, más 10 en tu informe",
   "title": "La cadena",
   "lead": "Un permiso suelto no dice mucho. Lo que importa es la cadena: quién entra, qué puede hacer, qué llaves encuentra y qué abren esas llaves. Si un eslabón falta, la cadena se corta.",
-  "piece": {
-   "title": "Corta la cadena",
-   "instr": "Toca cada eslabón para ver qué es. Después cambia los permisos y mira dónde se corta.",
-   "note": "Ejemplo inventado, con la forma real de lo que RosmarOps dibuja. Fuente: el glosario y el esquema público del programa.",
-   "links": [["Agente", "Claude Code", "Programa de IA en tu ordenador"], ["Capacidad", "Leer ficheros del proyecto", ""], ["Credencial", "Clave de Stripe en un .env", "sk_l…9f2a · solo la huella"], ["Recurso", "Tu cuenta de Stripe", "Lo que abre la clave"]],
-   "small2": {"allow": "Sin preguntarte", "ask": "Te pregunta antes", "deny": "Denegado"},
-   "partly_suffix": " · por un comando",
-   "arrows": {"can": "puede", "reaches": "llega a", "opens": "abre", "broken": "✕ llega a", "partly": "llega a, en parte"},
-   "a_label": "¿Puede Claude Code leer tu .env?",
-   "a": {"allow": "Permitir", "ask": "Preguntar", "deny": "Denegar"},
-   "b_label": "¿Puede lanzar cualquier comando sin preguntarte?",
-   "b": {"no": "No", "yes": "Sí"},
-   "msg": {
-    "allow0": "**La cadena está entera.** Claude Code puede leer el .env sin preguntarte, y la clave abre tu cuenta de Stripe.",
-    "allow1": "**La cadena está entera.** Claude Code puede leer el .env sin preguntarte. Y como además puede lanzar comandos, tiene un segundo camino para llegar.",
-    "ask0": "**La cadena se corta en el segundo eslabón.** Antes de leer el .env, Claude Code te tiene que preguntar. La puerta la tienes tú.",
-    "ask1": "**La cadena sigue, en parte.** Claude Code te preguntaría antes de abrir el .env, pero puede lanzar un programa sin preguntarte, y ese programa sí puede leerlo.",
-    "deny0": "**La cadena se corta en el segundo eslabón.** Claude Code no puede leer el .env. No hay camino hasta la clave ni hasta tu cuenta de Stripe.",
-    "deny1": "**La cadena sigue, en parte.** La regla impide que Claude Code abra el .env él mismo, pero un programa que lance sin preguntarte sí puede leerlo. Para cortarla del todo, quítale también eso."
-   },
-   "sandbox": "En macOS, Linux y WSL2, con el sandbox de Claude Code activado, la regla también para a los programas que lanza. RosmarOps lo tiene en cuenta.",
-   "detail": [
-    [["Qué es", "Un programa de IA que puede actuar en tu ordenador."], ["Otros ejemplos", "Cursor, Codex, un servidor MCP, una extensión del editor."], ["Cómo lo encuentra RosmarOps", "Lee los ficheros de configuración que cada agente deja en tu ordenador."]],
-    [["Qué es", "Algo que el agente puede hacer: leer, escribir, ejecutar comandos, conectarse a internet."], ["Sus tres permisos", "Permitir (sin preguntarte), preguntar (te pide permiso cada vez) y denegar (nunca)."], ["De dónde sale", "De un fichero tuyo, o del valor que trae el agente. Claude Code lee sin preguntar los ficheros del proyecto en el que trabaja, en cualquier modo. En modo manual, Claude Code te pregunta antes de leer fuera del proyecto. En modo auto, lo decide otro modelo de IA."], ["Si prohíbes leer el .env", "La regla para a Claude Code cuando lo abre con sus herramientas y también con los comandos de fichero que reconoce: `cat .env` queda parado. No para a un programa cualquiera que lance, ni a un comando que lee el fichero sin nombrarlo."]],
-    [["Qué es", "Un secreto que el agente puede encontrar: una clave, un token, una clave privada."], ["Qué guarda RosmarOps", "De qué tipo es, dónde está y una huella. Nunca el valor. Si la enseña, solo los 4 primeros y los 4 últimos caracteres."], ["Cómo sabe de qué servicio es", "Por su forma. Las claves de Stripe empiezan de una manera reconocible."]],
-    [["Qué es", "Lo que el agente puede abrir o cambiar con lo que encuentra."], ["Otros ejemplos", "Tus repositorios, una base de datos, la configuración o las instrucciones de otro agente."], ["Por qué importa", "Es donde está el daño. Con una clave de Stripe se puede mover dinero o leer los pagos de tus clientes."]]
+  "steps_aria": "Los seis pasos de la lección",
+  "labels": [
+   "Paso 1 de 6 · Antes de empezar",
+   "Paso 2 de 6 · La idea, con un ejemplo",
+   "Paso 3 de 6 · Pruébalo",
+   "Paso 4 de 6 · Compruébalo",
+   "Paso 5 de 6 · En tu ordenador",
+   "Paso 6 de 6 · Lo que te llevas"
+  ],
+  "before": [
+   [
+    "Vas a aprender",
+    "cómo se encadena lo que un agente puede hacer hasta llegar a algo tuyo que tiene valor, y dónde cortarlo."
+   ],
+   [
+    "Necesitas",
+    "nada para los pasos 1 a 4. Para el paso 5, RosmarOps."
+   ],
+   [
+    "En la lección anterior",
+    "viste qué es un agente de IA, quién le da permiso y cómo leer el bloque «Resultado» de tu informe."
    ]
-  },
+  ],
   "idea": {
    "title": "El llavero del edificio",
    "sub": "Cuatro preguntas, siempre en el mismo orden.",
-   "cards": [["Agente", "¿Quién entra?", "El pintor que viene a trabajar al edificio. Claude Code, Cursor, un servidor MCP: cualquier programa que puede actuar en tu ordenador."], ["Capacidad", "¿Qué le dejas hacer?", "Entrar en los pisos sin llamar, solo con permiso o nunca. Leer, escribir, ejecutar comandos, conectarse a internet."], ["Credencial", "¿Qué llaves encuentra?", "Las llaves colgadas en los pisos donde puede entrar: una clave de un servicio guardada en un fichero `.env` (un fichero de texto donde muchos programas guardan sus claves), un token, una clave privada."], ["Recurso", "¿Qué abre cada llave?", "El garaje, la caja fuerte, la cuenta del banco. Tu cuenta de Stripe, tus repositorios, una base de datos o la configuración de otro agente."]],
+   "para": [
+    "En la lección 1 mirábamos al inspector. Ahora miramos al pintor: qué puede abrir mientras trabaja."
+   ],
+   "cards": [
+    [
+     "Agente",
+     "¿Quién entra?",
+     "El pintor que viene a trabajar al edificio. Claude Code, Cursor, un servidor MCP: cualquier programa que puede actuar en tu ordenador."
+    ],
+    [
+     "Capacidad",
+     "¿Qué le dejas hacer?",
+     "Entrar en los pisos sin llamar, solo con permiso o nunca. Leer, escribir, ejecutar comandos, conectarse a internet."
+    ],
+    [
+     "Credencial",
+     "¿Qué llaves encuentra?",
+     "Las llaves colgadas en los pisos donde puede entrar: una clave de un servicio guardada en un fichero `.env` (un fichero de texto donde muchos programas guardan sus claves), un token, una clave privada."
+    ],
+    [
+     "Recurso",
+     "¿Qué abre cada llave?",
+     "El garaje, la caja fuerte, la cuenta del banco. Tu cuenta de Stripe, tus repositorios, una base de datos o la configuración de otro agente."
+    ]
+   ],
    "blocks": [
-    ["Por qué importa el orden", ["Una llave sola no es un problema si nadie puede llegar a ella sin preguntarte.", "Un agente con muchos permisos no es un problema si no hay nada valioso a su alcance.", "El problema es la cadena entera. Y para cortarla basta con quitar un eslabón: casi siempre el más fácil es el segundo, lo que le dejas hacer."]],
-    ["Una trampa habitual", ["Prohibir que el agente lea un fichero corta el camino directo.", "Pero si el agente puede lanzar cualquier comando sin preguntarte, un programa que lance él puede leer ese fichero igualmente.", "RosmarOps lo ve y lo marca: la cadena sigue, «en parte»."]],
-    ["Lo que no se ve", ["RosmarOps lee lo que cada agente tiene permitido, no lo que hace mientras trabaja.", "Y lo que no ha podido leer no lo cuenta como limpio: te dice que no lo ha podido leer."]]
+    [
+     "Por qué importa el orden",
+     [
+      "Una llave sola no es un problema si nadie puede llegar a ella sin preguntarte.",
+      "Un agente con muchos permisos no es un problema si no hay nada valioso a su alcance.",
+      "El problema es la cadena entera. Y para cortarla basta con quitar un eslabón: casi siempre el más fácil es el segundo, lo que le dejas hacer."
+     ]
+    ],
+    [
+     "Lo que no se ve",
+     [
+      "RosmarOps lee lo que cada agente tiene permitido, no lo que hace mientras trabaja.",
+      "Y lo que no ha podido leer no lo cuenta como limpio: te dice que no lo ha podido leer."
+     ]
+    ]
    ]
   },
-  "game": {
-   "title": "¿Qué se corta?",
-   "sub": "Cambias una cosa en tu ordenador. ¿En qué eslabón de la cadena lo ve RosmarOps? Puede ser más de uno, o ninguno.",
-   "header": "Cambias algo. ¿Dónde se ve?",
-   "question": "¿Dónde lo ve?",
-   "options": ["Agente", "Capacidad", "Credencial", "Recurso", "En ningún sitio: no lo ve"],
-   "buttons": {"check": "Comprobar", "next": "Siguiente", "result": "Ver el resultado", "again": "Volver a jugar"},
-   "card": "Cambio {i} de 6",
-   "right": "Correcto.",
-   "wrong": "No del todo.",
-   "source": "Dónde se dice: {source}",
-   "items": [
-    {"text": "Cambias Claude Code para que lea ficheros de fuera del proyecto sin preguntarte.", "answer": [1], "expl": "Es una capacidad: leer ficheros. En modo manual, Claude Code te pregunta antes de leer fuera del proyecto. En modo auto, lo decide otro modelo de IA. Si lo cambias para que no pregunte, RosmarOps lo apunta como algo que has configurado tú.", "source": "Observatorio, ficha de Claude Code; documentación oficial de permisos de Claude Code."},
-    {"text": "Guardas una clave secreta de Stripe en un fichero `.env` del proyecto.", "answer": [2, 3], "expl": "Aparece una credencial nueva. RosmarOps no guarda la clave: guarda una huella que sirve para reconocerla. Y como el formato de la clave dice que es de Stripe, aparece también lo que abre: tu cuenta de Stripe.", "source": "Glosario de la web, «Clave o credencial»."},
-    {"text": "Añades un servidor MCP nuevo a un proyecto.", "answer": [0], "expl": "Un servidor MCP es un programa que da herramientas nuevas a tu agente. Para RosmarOps es un agente más, cargado por el primero.", "source": "Glosario de la web, «Servidor MCP»."},
-    {"text": "Un agente puede reescribir las instrucciones de otro agente (su fichero CLAUDE.md, por ejemplo).", "answer": [3], "expl": "Las instrucciones de otro agente son un recurso: algo que se puede cambiar. Quien las cambia decide qué hará el otro agente la próxima vez.", "source": "Glosario de la web, «AGENTS.md»."},
-    {"text": "Durante una sesión, el agente ejecuta un comando que borra una carpeta.", "answer": [4], "expl": "RosmarOps no ve lo que pasa mientras el agente trabaja. Puede decirte que tenía permiso para ejecutar comandos sin preguntarte, pero no qué hizo con él.", "source": "Metodología de la web, apartado «Lo que no mide» (rosmarops.com/es/metodologia/#limites)."},
-    {"text": "Prohíbes que Claude Code lea tu `.env`, pero le dejas lanzar cualquier comando sin preguntarte.", "answer": [1], "expl": "El camino directo está cortado, pero queda otro: un programa que lance el agente puede abrir el fichero. Ese camino pasa por otra capacidad, ejecutar comandos. RosmarOps mantiene la cadena y la marca «en parte».", "source": "Documentación oficial de permisos de Claude Code."}
+  "try": {
+   "title": "Corta la cadena",
+   "sub": "",
+   "do_label": "Haz esto, en orden:",
+   "do": [
+    "Lee la ficha de la derecha (en el móvil, debajo). Es la del eslabón «Agente».",
+    "Toca el eslabón «Capacidad» y lee su ficha.",
+    "Toca «Credencial» y lee su ficha.",
+    "Toca «Recurso» y lee su ficha.",
+    "Lee el mensaje de debajo de los controles. Dice «La cadena está entera».",
+    "Pulsa «Preguntar». Mira la flecha entre el segundo y el tercer eslabón: ahora es discontinua y roja, y los eslabones 3 y 4 se apagan.",
+    "Pulsa «Denegar». La flecha sigue cortada. Lee el mensaje.",
+    "Pon el interruptor «¿Puede lanzar cualquier comando sin preguntarte?» en «Sí». Mira la misma flecha: pasa a ámbar y dice «llega a, en parte». Los eslabones 3 y 4 vuelven.",
+    "Pulsa «Preguntar». Sigue «en parte».",
+    "Pon el interruptor en «No». La cadena vuelve a cortarse.",
+    "Pulsa «Permitir». La cadena vuelve a estar entera."
    ],
-   "end": {"high": "Ya piensas en cadenas.", "mid": "Vas bien.", "low": "Vuelve a la cadena de arriba."},
-   "always": "Más adelante verás qué puede saber RosmarOps y qué no."
+   "piece": {
+    "note": "Ejemplo inventado, con la forma real de lo que RosmarOps dibuja. Fuente: el glosario y el esquema público del programa.",
+    "links": [
+     [
+      "Agente",
+      "Claude Code",
+      "Programa de IA en tu ordenador"
+     ],
+     [
+      "Capacidad",
+      "Leer ficheros del proyecto",
+      ""
+     ],
+     [
+      "Credencial",
+      "Clave de Stripe en un .env",
+      "sk_l…9f2a · solo la huella"
+     ],
+     [
+      "Recurso",
+      "Tu cuenta de Stripe",
+      "Lo que abre la clave"
+     ]
+    ],
+    "small2": {
+     "allow": "Sin preguntarte",
+     "ask": "Te pregunta antes",
+     "deny": "Denegado"
+    },
+    "partly_suffix": " · por un comando",
+    "arrows": {
+     "can": "puede",
+     "reaches": "llega a",
+     "opens": "abre",
+     "broken": "✕ llega a",
+     "partly": "llega a, en parte"
+    },
+    "a_label": "¿Puede Claude Code leer tu .env?",
+    "a": {
+     "allow": "Permitir",
+     "ask": "Preguntar",
+     "deny": "Denegar"
+    },
+    "b_label": "¿Puede lanzar cualquier comando sin preguntarte?",
+    "b": {
+     "no": "No",
+     "yes": "Sí"
+    },
+    "msg": {
+     "allow0": "**La cadena está entera.** Claude Code puede leer el .env sin preguntarte, y la clave abre tu cuenta de Stripe.",
+     "allow1": "**La cadena está entera.** Claude Code puede leer el .env sin preguntarte. Y como además puede lanzar comandos, tiene un segundo camino para llegar.",
+     "ask0": "**La cadena se corta en el segundo eslabón.** Antes de leer el .env, Claude Code te tiene que preguntar. La puerta la tienes tú.",
+     "ask1": "**La cadena sigue, en parte.** Claude Code te preguntaría antes de abrir el .env, pero puede lanzar un programa sin preguntarte, y ese programa sí puede leerlo.",
+     "deny0": "**La cadena se corta en el segundo eslabón.** Claude Code no puede leer el .env. No hay camino hasta la clave ni hasta tu cuenta de Stripe.",
+     "deny1": "**La cadena sigue, en parte.** La regla impide que Claude Code abra el .env él mismo, pero un programa que lance sin preguntarte sí puede leerlo. Para cortarla del todo, quítale también eso."
+    },
+    "sandbox": "En macOS, Linux y WSL2, con el sandbox de Claude Code activado, la regla también para a los programas que lanza. RosmarOps lo tiene en cuenta.",
+    "detail": [
+     [
+      [
+       "Qué es",
+       "Un programa de IA que puede actuar en tu ordenador."
+      ],
+      [
+       "Otros ejemplos",
+       "Cursor, Codex, un servidor MCP, una extensión del editor."
+      ],
+      [
+       "Cómo lo encuentra RosmarOps",
+       "Lee los ficheros de configuración que cada agente deja en tu ordenador."
+      ]
+     ],
+     [
+      [
+       "Qué es",
+       "Algo que el agente puede hacer: leer, escribir, ejecutar comandos, conectarse a internet."
+      ],
+      [
+       "Sus tres permisos",
+       "Permitir (sin preguntarte), preguntar (te pide permiso cada vez) y denegar (nunca)."
+      ],
+      [
+       "De dónde sale",
+       "De un fichero tuyo, o del valor que trae el agente. Claude Code lee sin preguntar los ficheros del proyecto en el que trabaja, en cualquier modo. En modo manual, Claude Code te pregunta antes de abrir con sus herramientas un fichero de fuera del proyecto. En modo auto, la primera vez te pregunta a ti. Según lo que contestes, ya no vuelve a preguntar o deja de leer fuera del proyecto."
+      ],
+      [
+       "Si prohíbes leer el .env",
+       "La regla para a Claude Code cuando lo abre con sus herramientas y también con los comandos de fichero que reconoce: `cat .env` queda parado. No para a un programa cualquiera que lance, ni a un comando que lee el fichero sin nombrarlo."
+      ]
+     ],
+     [
+      [
+       "Qué es",
+       "Un secreto que el agente puede encontrar: una clave, un token, una clave privada."
+      ],
+      [
+       "Qué guarda RosmarOps",
+       "De qué tipo es, dónde está y una huella. Nunca el valor. Si la enseña, solo los 4 primeros y los 4 últimos caracteres."
+      ],
+      [
+       "Cómo sabe de qué servicio es",
+       "Por su forma. Las claves de Stripe empiezan de una manera reconocible."
+      ]
+     ],
+     [
+      [
+       "Qué es",
+       "Lo que el agente puede abrir o cambiar con lo que encuentra."
+      ],
+      [
+       "Otros ejemplos",
+       "Tus repositorios, una base de datos, la configuración o las instrucciones de otro agente."
+      ],
+      [
+       "Por qué importa",
+       "Es donde está el daño. Con una clave de Stripe se puede mover dinero o leer los pagos de tus clientes."
+      ]
+     ]
+    ]
+   },
+   "seen": [
+    "Lo que acabas de ver: una trampa habitual",
+    [
+     "Prohibir que el agente lea un fichero corta el camino directo.",
+     "Pero si el agente puede lanzar cualquier comando sin preguntarte, un programa que lance él puede leer ese fichero igualmente.",
+     "RosmarOps lo ve y lo marca: la cadena sigue, «en parte»."
+    ]
+   ]
   },
-  "exercise": {
-   "title": "Ahora, en tu ordenador",
+  "check": {
+   "intro": "Primero un juego de seis cambios, después un test de cuatro preguntas.",
+   "game": {
+    "title": "¿Qué se corta?",
+    "sub": "Cambias una cosa en tu ordenador. ¿En qué eslabón de la cadena lo ve RosmarOps? Puede ser más de uno, o ninguno.",
+    "header": "Cambias algo. ¿Dónde se ve?",
+    "question": "¿Dónde lo ve?",
+    "options": [
+     "Agente",
+     "Capacidad",
+     "Credencial",
+     "Recurso",
+     "En ningún sitio: no lo ve"
+    ],
+    "exclusive": [
+     4
+    ],
+    "buttons": {
+     "check": "Comprobar",
+     "next": "Siguiente",
+     "result": "Ver el resultado",
+     "again": "Volver a jugar"
+    },
+    "card": "Cambio {i} de 6",
+    "right": "Correcto.",
+    "wrong": "No del todo.",
+    "source": "Dónde se dice: {source}",
+    "items": [
+     {
+      "text": "Cambias Claude Code para que lea ficheros de fuera del proyecto sin preguntarte.",
+      "answer": [
+       1
+      ],
+      "expl": "Es una capacidad: leer ficheros. En modo manual, Claude Code te pregunta antes de abrir con sus herramientas un fichero de fuera del proyecto. En modo auto, la primera vez te pregunta a ti. Según lo que contestes, ya no vuelve a preguntar o deja de leer fuera del proyecto. Si lo cambias para que no pregunte, RosmarOps lo apunta como algo que has configurado tú.",
+      "source": "Observatorio, ficha de Claude Code; documentación oficial de permisos de Claude Code."
+     },
+     {
+      "text": "Guardas una clave secreta de Stripe en un fichero `.env` del proyecto.",
+      "answer": [
+       2,
+       3
+      ],
+      "expl": "Aparece una credencial nueva. RosmarOps no guarda la clave: guarda una huella que sirve para reconocerla. Y como el formato de la clave dice que es de Stripe, aparece también lo que abre: tu cuenta de Stripe.",
+      "source": "Glosario de la web, «Clave o credencial»."
+     },
+     {
+      "text": "Añades un servidor MCP nuevo a un proyecto.",
+      "answer": [
+       0
+      ],
+      "expl": "Un servidor MCP es un programa que da herramientas nuevas a tu agente. Para RosmarOps es un agente más, cargado por el primero.",
+      "source": "Glosario de la web, «Servidor MCP»."
+     },
+     {
+      "text": "Un agente puede reescribir las instrucciones de otro agente (su fichero CLAUDE.md, por ejemplo).",
+      "answer": [
+       3
+      ],
+      "expl": "Las instrucciones de otro agente son un recurso: algo que se puede cambiar. Quien las cambia decide qué hará el otro agente la próxima vez.",
+      "source": "Glosario de la web, «AGENTS.md»."
+     },
+     {
+      "text": "Durante una sesión, el agente ejecuta un comando que borra una carpeta.",
+      "answer": [
+       4
+      ],
+      "expl": "RosmarOps no ve lo que pasa mientras el agente trabaja. Puede decirte que tenía permiso para ejecutar comandos sin preguntarte, pero no qué hizo con él.",
+      "source": "Metodología de la web, apartado «Lo que no mide» (rosmarops.com/es/metodologia/#limites)."
+     },
+     {
+      "text": "Prohíbes que Claude Code lea tu `.env`, pero le dejas lanzar cualquier comando sin preguntarte.",
+      "answer": [
+       1
+      ],
+      "expl": "El camino directo está cortado, pero queda otro: un programa que lance el agente puede abrir el fichero. Ese camino pasa por otra capacidad, ejecutar comandos. RosmarOps mantiene la cadena y la marca «en parte».",
+      "source": "Documentación oficial de permisos de Claude Code."
+     }
+    ],
+    "end": {
+     "high": "Ya piensas en cadenas.",
+     "mid": "Vas bien.",
+     "low": "Vuelve al paso 2."
+    },
+    "always": "Más adelante verás qué puede saber RosmarOps y qué no."
+   },
+   "test": {
+    "title": "Test",
+    "counter": "Pregunta {i} de 4",
+    "right": "Exacto.",
+    "wrong": "No del todo.",
+    "buttons": {
+     "next": "Siguiente",
+     "result": "Ver el resultado",
+     "again": "Empezar de nuevo"
+    },
+    "result": "{score} de 4.",
+    "all": "La cadena ya es tuya.",
+    "less": "Vuelve al paso 3, prueba los tres permisos y repite el test.",
+    "items": [
+     {
+      "q": "¿Cuál es el orden de la cadena?",
+      "options": [
+       "Credencial, agente, recurso, capacidad",
+       "Agente, capacidad, credencial, recurso",
+       "Recurso, credencial, capacidad, agente"
+      ],
+      "answer": 1,
+      "expl": "Quién entra, qué le dejas hacer, qué llaves encuentra y qué abren."
+     },
+     {
+      "q": "Claude Code tiene que preguntarte antes de leer tu `.env`, y no puede lanzar comandos sin preguntarte. ¿Qué pasa con la cadena?",
+      "options": [
+       "Sigue igual",
+       "Se corta en el segundo eslabón: para llegar a la llave te necesita a ti",
+       "Se vuelve roja"
+      ],
+      "answer": 1,
+      "expl": "RosmarOps solo dibuja el camino hasta una llave cuando el agente puede recorrerlo sin preguntarte."
+     },
+     {
+      "q": "Prohíbes leer el `.env`, pero el agente puede lanzar cualquier comando sin preguntarte. ¿Está cortada la cadena?",
+      "options": [
+       "Sí, del todo",
+       "No del todo: un programa que lance el agente puede leer el fichero, y RosmarOps lo marca «en parte»",
+       "No se puede saber"
+      ],
+      "answer": 1,
+      "expl": "Cortar un camino no sirve si queda otro abierto."
+     },
+     {
+      "q": "¿Qué guarda RosmarOps de una clave que encuentra?",
+      "options": [
+       "La clave entera, cifrada",
+       "De qué tipo es, dónde está y una huella, nunca el valor",
+       "Nada: las claves no le interesan"
+      ],
+      "answer": 1,
+      "expl": "Sabe que la clave está, de qué servicio es y dónde, pero no puede reconstruirla."
+     }
+    ]
+   }
+  },
+  "computer": {
    "sub": "Diez minutos. Busca una cadena de verdad en tu propio informe.",
    "intro": "",
-   "download": "¿Todavía no lo tienes? Descárgalo",
+   "see_label": "Lo que ves:",
    "steps": [
-    "Pasa RosmarOps y abre el informe.",
-    "Baja al bloque **Avisos**. Busca un problema con la palabra **CLAVE** encima del título. Su título dice algo como «Tu Stripe está al alcance de 2 agentes».",
-    "Lee la línea de debajo: «Pueden leer sus claves sin preguntarte: …». Ahí tienes los **agentes**, el primer eslabón. Y «sin preguntarte» es la **capacidad**, el segundo.",
-    "Toca **Ver los pasos** (o el enlace de la columna «Cómo se arregla») para ir a ese problema en «El detalle, problema a problema». Su título dice, por ejemplo, «Tu clave de Stripe: al alcance de Claude Code sin preguntarte». Ahí tienes la **credencial**, el tercer eslabón.",
-    "Lee la frase que sigue: «Con ella se puede mover dinero o leer los pagos de tus clientes». Ese es el **recurso**, el cuarto eslabón.",
-    "Apunta tu cadena en cuatro palabras: agente → capacidad → credencial → recurso.",
-    "Ahora decide qué eslabón cortarías tú. Casi siempre es el segundo: que el agente te pregunte antes de leer ese fichero. El primer problema de tu informe y la tarjeta **Empieza por aquí** te dicen cómo."
+    {
+     "do": "Pasa RosmarOps y abre el informe.",
+     "link": [
+      "¿Todavía no lo tienes? Descárgalo",
+      "/es/descargar?from=course"
+     ],
+     "star": true,
+     "see": "el informe en tu navegador, con «Informe RosmarOps» arriba y el bloque «Resultado» que leíste en la lección 1."
+    },
+    {
+     "do": "Baja al bloque «Avisos». Busca un problema con la palabra «CLAVE» encima del título. Su título dice algo como «Tu Stripe está al alcance de 2 agentes».",
+     "see": "debajo del título del bloque, una línea con los números, como «3 problemas · 5 avisos · 1 urgente · 2 para revisar». La palabra «CLAVE» va en mayúsculas, encima del título del problema, con un icono a la izquierda.",
+     "after": [
+      {
+       "text": "**¿No ves el problema de la clave?** Si tienes más de seis problemas, los demás están plegados al final de la tabla, en un enlace como «Los otros 5 problemas (12 avisos)». Tócalo para abrirlos."
+      }
+     ]
+    },
+    {
+     "do": "Lee la línea de debajo: «Pueden leer sus claves sin preguntarte: …». Ahí tienes los agentes, el primer eslabón. Y «sin preguntarte» es la capacidad, el segundo.",
+     "see": "los nombres de los agentes, separados por comas, al final de esa línea."
+    },
+    {
+     "do": "Toca «Ver los pasos ›» (o el enlace de la columna «Cómo se arregla») para ir a ese problema en «El detalle, problema a problema». Su título dice, por ejemplo, «Tu clave de Stripe: al alcance de Claude Code sin preguntarte». Ahí tienes la credencial, el tercer eslabón.",
+     "see": "la página baja hasta ese problema."
+    },
+    {
+     "do": "Lee la frase que sigue: «Con ella se puede mover dinero o leer los pagos de tus clientes». Ese es el recurso, el cuarto eslabón.",
+     "see": "esa frase justo debajo del título del problema."
+    },
+    {
+     "do": "Apunta tu cadena en cuatro palabras: agente → capacidad → credencial → recurso."
+    },
+    {
+     "do": "Ahora decide qué eslabón cortarías tú. Casi siempre es el segundo: que el agente te pregunte antes de leer ese fichero. El primer problema de tu informe y la tarjeta «Empieza por aquí» te dicen cómo.",
+     "see": "la tarjeta «Empieza por aquí», arriba del todo, en el bloque «Resultado»."
+    }
    ],
    "none_title": "¿Y si no tienes ningún problema con «CLAVE»?",
    "none": "Quiere decir que, en lo que RosmarOps ha podido leer, ningún agente llega a una clave sin preguntarte. Mira también la línea «Fuera del alcance de este análisis» de tu informe: lo que no ha podido leer no cuenta como limpio."
   },
-  "test": {
-   "title": "Test",
-   "counter": "Pregunta {i} de 4",
-   "right": "Exacto.",
-   "wrong": "No del todo.",
-   "buttons": {"next": "Siguiente", "result": "Ver el resultado", "again": "Empezar de nuevo"},
-   "result": "{score} de 4.",
-   "all": "La cadena ya es tuya.",
-   "less": "Vuelve a la pieza de arriba, prueba los tres permisos y repite el test.",
+  "take": {
    "items": [
-    {"q": "¿Cuál es el orden de la cadena?", "options": ["Credencial, agente, recurso, capacidad", "Agente, capacidad, credencial, recurso", "Recurso, credencial, capacidad, agente"], "answer": 1, "expl": "Quién entra, qué le dejas hacer, qué llaves encuentra y qué abren."},
-    {"q": "Claude Code tiene que preguntarte antes de leer tu `.env`, y no puede lanzar comandos sin preguntarte. ¿Qué pasa con la cadena?", "options": ["Sigue igual", "Se corta en el segundo eslabón: para llegar a la llave te necesita a ti", "Se vuelve roja"], "answer": 1, "expl": "RosmarOps solo dibuja el camino hasta una llave cuando el agente puede recorrerlo sin preguntarte."},
-    {"q": "Prohíbes leer el `.env`, pero el agente puede lanzar cualquier comando sin preguntarte. ¿Está cortada la cadena?", "options": ["Sí, del todo", "No del todo: un programa que lance el agente puede leer el fichero, y RosmarOps lo marca «en parte»", "No se puede saber"], "answer": 1, "expl": "Cortar un camino no sirve si queda otro abierto."},
-    {"q": "¿Qué guarda RosmarOps de una clave que encuentra?", "options": ["La clave entera, cifrada", "De qué tipo es, dónde está y una huella, nunca el valor", "Nada: las claves no le interesan"], "answer": 1, "expl": "Sabe que la clave está, de qué servicio es y dónde, pero no puede reconstruirla."}
-   ]
-  },
-  "close": {
+    "La cadena tiene cuatro eslabones: quién entra, qué puede hacer, qué llaves encuentra y qué abren.",
+    "Para cortarla basta con quitar uno, y casi siempre el más fácil es el segundo: que te pregunte.",
+    "Prohibir que lea un fichero no basta si puede lanzar cualquier comando sin preguntarte."
+   ],
    "terms_label": "Términos nuevos",
-   "terms": [["Agente de IA", "agent"], ["Capacidad", "capability"], ["Clave o credencial", "credential"], ["Recurso", "resource"], ["Servidor MCP", "mcp"], ["Permitir, preguntar, denegar", "allow-ask-deny"], ["Huella de una clave", "key-fingerprint"]],
+   "terms": [
+    [
+     "Agente de IA",
+     "agent"
+    ],
+    [
+     "Capacidad",
+     "capability"
+    ],
+    [
+     "Clave o credencial",
+     "credential"
+    ],
+    [
+     "Recurso",
+     "resource"
+    ],
+    [
+     "Servidor MCP",
+     "mcp"
+    ],
+    [
+     "Permitir, preguntar, denegar",
+     "allow-ask-deny"
+    ],
+    [
+     "Huella de una clave",
+     "key-fingerprint"
+    ]
+   ],
+   "button": "Volver al curso",
+   "button_to": "entry",
    "footer": "Cada dato de esta lección sale del código de RosmarOps, que es público (github.com/qtorb/rosmarops), del Observatorio y de la documentación oficial de Claude Code."
   }
  },
@@ -211,102 +907,448 @@
   "eyebrow": "Lliçó 2 de 5 · 8 minuts de lectura, més 10 al teu informe",
   "title": "La cadena",
   "lead": "Un permís sol no diu gaire. El que importa és la cadena: qui entra, què pot fer, quines claus troba i què obren aquestes claus. Si falta una baula, la cadena es trenca.",
-  "piece": {
-   "title": "Trenca la cadena",
-   "instr": "Toca cada baula per veure què és. Després canvia els permisos i mira on es trenca.",
-   "note": "Exemple inventat, amb la forma real del que dibuixa RosmarOps. Font: el glossari i l'esquema públic del programa.",
-   "links": [["Agent", "Claude Code", "Programa d'IA al teu ordinador"], ["Capacitat", "Llegir fitxers del projecte", ""], ["Credencial", "Clau de Stripe en un .env", "sk_l…9f2a · només l'empremta"], ["Recurs", "El teu compte de Stripe", "El que obre la clau"]],
-   "small2": {"allow": "Sense preguntar-te", "ask": "Et pregunta abans", "deny": "Denegat"},
-   "partly_suffix": " · per una ordre",
-   "arrows": {"can": "pot", "reaches": "arriba a", "opens": "obre", "broken": "✕ arriba a", "partly": "arriba a, en part"},
-   "a_label": "Pot Claude Code llegir el teu .env?",
-   "a": {"allow": "Permetre", "ask": "Preguntar", "deny": "Denegar"},
-   "b_label": "Pot llançar qualsevol ordre sense preguntar-te?",
-   "b": {"no": "No", "yes": "Sí"},
-   "msg": {
-    "allow0": "**La cadena està sencera.** Claude Code pot llegir el .env sense preguntar-te, i la clau obre el teu compte de Stripe.",
-    "allow1": "**La cadena està sencera.** Claude Code pot llegir el .env sense preguntar-te. I com que a més pot llançar ordres, té un segon camí per arribar-hi.",
-    "ask0": "**La cadena es trenca a la segona baula.** Abans de llegir el .env, Claude Code t'ho ha de preguntar. La porta la tens tu.",
-    "ask1": "**La cadena continua, en part.** Claude Code et preguntaria abans d'obrir el .env, però pot llançar un programa sense preguntar-te, i aquest programa sí que el pot llegir.",
-    "deny0": "**La cadena es trenca a la segona baula.** Claude Code no pot llegir el .env. No hi ha camí fins a la clau ni fins al teu compte de Stripe.",
-    "deny1": "**La cadena continua, en part.** La regla impedeix que Claude Code obri el .env ell mateix, però un programa que llanci sense preguntar-te sí que el pot llegir. Per trencar-la del tot, treu-li també això."
-   },
-   "sandbox": "A macOS, Linux i WSL2, amb el sandbox de Claude Code activat, la regla també atura els programes que llança. RosmarOps ho té en compte.",
-   "detail": [
-    [["Què és", "Un programa d'IA que pot actuar al teu ordinador."], ["Altres exemples", "Cursor, Codex, un servidor MCP, una extensió de l'editor."], ["Com el troba RosmarOps", "Llegeix els fitxers de configuració que cada agent deixa al teu ordinador."]],
-    [["Què és", "Una cosa que l'agent pot fer: llegir, escriure, executar ordres, connectar-se a internet."], ["Els seus tres permisos", "Permetre (sense preguntar-te), preguntar (et demana permís cada vegada) i denegar (mai)."], ["D'on surt", "D'un fitxer teu, o del valor que porta l'agent. Claude Code llegeix sense preguntar els fitxers del projecte on treballa, en qualsevol mode. En mode manual, Claude Code et pregunta abans de llegir fora del projecte. En mode auto, ho decideix un altre model d'IA."], ["Si prohibeixes llegir el .env", "La regla atura Claude Code quan l'obre amb les seves eines i també amb les ordres de fitxer que reconeix: `cat .env` queda aturat. No atura un programa qualsevol que llanci, ni una ordre que llegeix el fitxer sense anomenar-lo."]],
-    [["Què és", "Un secret que l'agent pot trobar: una clau, un testimoni (token), una clau privada."], ["Què guarda RosmarOps", "De quin tipus és, on és i una empremta. Mai el valor. Si l'ensenya, només els 4 primers i els 4 últims caràcters."], ["Com sap de quin servei és", "Per la forma. Les claus de Stripe comencen d'una manera reconeixible."]],
-    [["Què és", "El que l'agent pot obrir o canviar amb el que troba."], ["Altres exemples", "Els teus repositoris, una base de dades, la configuració o les instruccions d'un altre agent."], ["Per què importa", "És on hi ha el dany. Amb una clau de Stripe es poden moure diners o llegir els pagaments dels teus clients."]]
+  "steps_aria": "Els sis passos de la lliçó",
+  "labels": [
+   "Pas 1 de 6 · Abans de començar",
+   "Pas 2 de 6 · La idea, amb un exemple",
+   "Pas 3 de 6 · Prova-ho",
+   "Pas 4 de 6 · Comprova-ho",
+   "Pas 5 de 6 · Al teu ordinador",
+   "Pas 6 de 6 · El que t'emportes"
+  ],
+  "before": [
+   [
+    "Aprendràs",
+    "com s'encadena el que un agent pot fer fins a arribar a una cosa teva que té valor, i on tallar-ho."
+   ],
+   [
+    "Necessites",
+    "res per als passos 1 a 4. Per al pas 5, RosmarOps."
+   ],
+   [
+    "A la lliçó anterior",
+    "vas veure què és un agent d'IA, qui li dona permís i com llegir el bloc «Resultado» del teu informe."
    ]
-  },
+  ],
   "idea": {
    "title": "El clauer de l'edifici",
    "sub": "Quatre preguntes, sempre en el mateix ordre.",
-   "cards": [["Agent", "Qui entra?", "El pintor que ve a treballar a l'edifici. Claude Code, Cursor, un servidor MCP: qualsevol programa que pot actuar al teu ordinador."], ["Capacitat", "Què li deixes fer?", "Entrar als pisos sense trucar, només amb permís o mai. Llegir, escriure, executar ordres, connectar-se a internet."], ["Credencial", "Quines claus troba?", "Les claus penjades als pisos on pot entrar: una clau d'un servei desada en un fitxer `.env` (un fitxer de text on molts programes desen les seves claus), un testimoni (token), una clau privada."], ["Recurs", "Què obre cada clau?", "El garatge, la caixa forta, el compte del banc. El teu compte de Stripe, els teus repositoris, una base de dades o la configuració d'un altre agent."]],
+   "para": [
+    "A la lliçó 1 miràvem l'inspector. Ara mirem el pintor: què pot obrir mentre treballa."
+   ],
+   "cards": [
+    [
+     "Agent",
+     "Qui entra?",
+     "El pintor que ve a treballar a l'edifici. Claude Code, Cursor, un servidor MCP: qualsevol programa que pot actuar al teu ordinador."
+    ],
+    [
+     "Capacitat",
+     "Què li deixes fer?",
+     "Entrar als pisos sense trucar, només amb permís o mai. Llegir, escriure, executar ordres, connectar-se a internet."
+    ],
+    [
+     "Credencial",
+     "Quines claus troba?",
+     "Les claus penjades als pisos on pot entrar: una clau d'un servei desada en un fitxer `.env` (un fitxer de text on molts programes desen les seves claus), un testimoni (token), una clau privada."
+    ],
+    [
+     "Recurs",
+     "Què obre cada clau?",
+     "El garatge, la caixa forta, el compte del banc. El teu compte de Stripe, els teus repositoris, una base de dades o la configuració d'un altre agent."
+    ]
+   ],
    "blocks": [
-    ["Per què importa l'ordre", ["Una clau sola no és un problema si ningú hi pot arribar sense preguntar-te.", "Un agent amb molts permisos no és un problema si no té res de valor al seu abast.", "El problema és la cadena sencera. I per trencar-la n'hi ha prou de treure una baula: gairebé sempre, la més fàcil és la segona, el que li deixes fer."]],
-    ["Un parany habitual", ["Prohibir que l'agent llegeixi un fitxer talla el camí directe.", "Però si l'agent pot llançar qualsevol ordre sense preguntar-te, un programa que llanci ell pot llegir aquest fitxer igualment.", "RosmarOps ho veu i ho marca: la cadena continua, «en part»."]],
-    ["El que no es veu", ["RosmarOps llegeix el que cada agent té permès, no el que fa mentre treballa.", "I el que no ha pogut llegir no ho compta com a net: et diu que no ho ha pogut llegir."]]
+    [
+     "Per què importa l'ordre",
+     [
+      "Una clau sola no és un problema si ningú hi pot arribar sense preguntar-te.",
+      "Un agent amb molts permisos no és un problema si no té res de valor al seu abast.",
+      "El problema és la cadena sencera. I per trencar-la n'hi ha prou de treure una baula: gairebé sempre, la més fàcil és la segona, el que li deixes fer."
+     ]
+    ],
+    [
+     "El que no es veu",
+     [
+      "RosmarOps llegeix el que cada agent té permès, no el que fa mentre treballa.",
+      "I el que no ha pogut llegir no ho compta com a net: et diu que no ho ha pogut llegir."
+     ]
+    ]
    ]
   },
-  "game": {
-   "title": "Què es trenca?",
-   "sub": "Canvies una cosa al teu ordinador. A quina baula de la cadena ho veu RosmarOps? Pot ser més d'una, o cap.",
-   "header": "Canvies alguna cosa. On es veu?",
-   "question": "On ho veu?",
-   "options": ["Agent", "Capacitat", "Credencial", "Recurs", "Enlloc: no ho veu"],
-   "buttons": {"check": "Comprova", "next": "Següent", "result": "Mira el resultat", "again": "Torna a jugar"},
-   "card": "Canvi {i} de 6",
-   "right": "Correcte.",
-   "wrong": "No del tot.",
-   "source": "On es diu: {source}",
-   "items": [
-    {"text": "Canvies Claude Code perquè llegeixi fitxers de fora del projecte sense preguntar-te.", "answer": [1], "expl": "És una capacitat: llegir fitxers. En mode manual, Claude Code et pregunta abans de llegir fora del projecte. En mode auto, ho decideix un altre model d'IA. Si ho canvies perquè no pregunti, RosmarOps ho apunta com una cosa que has configurat tu.", "source": "Observatori, fitxa de Claude Code; documentació oficial de permisos de Claude Code."},
-    {"text": "Deses una clau secreta de Stripe en un fitxer `.env` del projecte.", "answer": [2, 3], "expl": "Apareix una credencial nova. RosmarOps no guarda la clau: en guarda una empremta que serveix per reconèixer-la. I com que el format de la clau diu que és de Stripe, apareix també el que obre: el teu compte de Stripe.", "source": "Glossari del web, «Clau o credencial»."},
-    {"text": "Afegeixes un servidor MCP nou a un projecte.", "answer": [0], "expl": "Un servidor MCP és un programa que dona eines noves al teu agent. Per a RosmarOps és un agent més, carregat pel primer.", "source": "Glossari del web, «Servidor MCP»."},
-    {"text": "Un agent pot reescriure les instruccions d'un altre agent (el seu fitxer CLAUDE.md, per exemple).", "answer": [3], "expl": "Les instruccions d'un altre agent són un recurs: una cosa que es pot canviar. Qui les canvia decideix què farà l'altre agent la propera vegada.", "source": "Glossari del web, «AGENTS.md»."},
-    {"text": "Durant una sessió, l'agent executa una ordre que esborra una carpeta.", "answer": [4], "expl": "RosmarOps no veu què passa mentre l'agent treballa. Et pot dir que tenia permís per executar ordres sense preguntar-te, però no què n'ha fet.", "source": "Metodologia del web, apartat «El que no mesura» (rosmarops.com/ca/metodologia/#limits)."},
-    {"text": "Prohibeixes que Claude Code llegeixi el teu `.env`, però li deixes llançar qualsevol ordre sense preguntar-te.", "answer": [1], "expl": "El camí directe està tallat, però en queda un altre: un programa que llanci l'agent pot obrir el fitxer. Aquest camí passa per una altra capacitat, executar ordres. RosmarOps manté la cadena i la marca «en part».", "source": "Documentació oficial de permisos de Claude Code."}
+  "try": {
+   "title": "Trenca la cadena",
+   "sub": "",
+   "do_label": "Fes això, en ordre:",
+   "do": [
+    "Llegeix la fitxa de la dreta (al mòbil, a sota). És la de la baula «Agent».",
+    "Toca la baula «Capacitat» i llegeix-ne la fitxa.",
+    "Toca «Credencial» i llegeix-ne la fitxa.",
+    "Toca «Recurs» i llegeix-ne la fitxa.",
+    "Llegeix el missatge de sota els controls. Diu «La cadena està sencera».",
+    "Prem «Preguntar». Mira la fletxa entre la segona i la tercera baula: ara és discontínua i vermella, i les baules 3 i 4 s'apaguen.",
+    "Prem «Denegar». La fletxa continua tallada. Llegeix el missatge.",
+    "Posa l'interruptor «Pot llançar qualsevol ordre sense preguntar-te?» a «Sí». Mira la mateixa fletxa: es torna ambre i diu «arriba a, en part». Les baules 3 i 4 tornen.",
+    "Prem «Preguntar». Continua «en part».",
+    "Posa l'interruptor a «No». La cadena es torna a trencar.",
+    "Prem «Permetre». La cadena torna a estar sencera."
    ],
-   "end": {"high": "Ja penses en cadenes.", "mid": "Vas bé.", "low": "Torna a la cadena de dalt."},
-   "always": "Més endavant veuràs què pot saber RosmarOps i què no."
+   "piece": {
+    "note": "Exemple inventat, amb la forma real del que dibuixa RosmarOps. Font: el glossari i l'esquema públic del programa.",
+    "links": [
+     [
+      "Agent",
+      "Claude Code",
+      "Programa d'IA al teu ordinador"
+     ],
+     [
+      "Capacitat",
+      "Llegir fitxers del projecte",
+      ""
+     ],
+     [
+      "Credencial",
+      "Clau de Stripe en un .env",
+      "sk_l…9f2a · només l'empremta"
+     ],
+     [
+      "Recurs",
+      "El teu compte de Stripe",
+      "El que obre la clau"
+     ]
+    ],
+    "small2": {
+     "allow": "Sense preguntar-te",
+     "ask": "Et pregunta abans",
+     "deny": "Denegat"
+    },
+    "partly_suffix": " · per una ordre",
+    "arrows": {
+     "can": "pot",
+     "reaches": "arriba a",
+     "opens": "obre",
+     "broken": "✕ arriba a",
+     "partly": "arriba a, en part"
+    },
+    "a_label": "Pot Claude Code llegir el teu .env?",
+    "a": {
+     "allow": "Permetre",
+     "ask": "Preguntar",
+     "deny": "Denegar"
+    },
+    "b_label": "Pot llançar qualsevol ordre sense preguntar-te?",
+    "b": {
+     "no": "No",
+     "yes": "Sí"
+    },
+    "msg": {
+     "allow0": "**La cadena està sencera.** Claude Code pot llegir el .env sense preguntar-te, i la clau obre el teu compte de Stripe.",
+     "allow1": "**La cadena està sencera.** Claude Code pot llegir el .env sense preguntar-te. I com que a més pot llançar ordres, té un segon camí per arribar-hi.",
+     "ask0": "**La cadena es trenca a la segona baula.** Abans de llegir el .env, Claude Code t'ho ha de preguntar. La porta la tens tu.",
+     "ask1": "**La cadena continua, en part.** Claude Code et preguntaria abans d'obrir el .env, però pot llançar un programa sense preguntar-te, i aquest programa sí que el pot llegir.",
+     "deny0": "**La cadena es trenca a la segona baula.** Claude Code no pot llegir el .env. No hi ha camí fins a la clau ni fins al teu compte de Stripe.",
+     "deny1": "**La cadena continua, en part.** La regla impedeix que Claude Code obri el .env ell mateix, però un programa que llanci sense preguntar-te sí que el pot llegir. Per trencar-la del tot, treu-li també això."
+    },
+    "sandbox": "A macOS, Linux i WSL2, amb el sandbox de Claude Code activat, la regla també atura els programes que llança. RosmarOps ho té en compte.",
+    "detail": [
+     [
+      [
+       "Què és",
+       "Un programa d'IA que pot actuar al teu ordinador."
+      ],
+      [
+       "Altres exemples",
+       "Cursor, Codex, un servidor MCP, una extensió de l'editor."
+      ],
+      [
+       "Com el troba RosmarOps",
+       "Llegeix els fitxers de configuració que cada agent deixa al teu ordinador."
+      ]
+     ],
+     [
+      [
+       "Què és",
+       "Una cosa que l'agent pot fer: llegir, escriure, executar ordres, connectar-se a internet."
+      ],
+      [
+       "Els seus tres permisos",
+       "Permetre (sense preguntar-te), preguntar (et demana permís cada vegada) i denegar (mai)."
+      ],
+      [
+       "D'on surt",
+       "D'un fitxer teu, o del valor que porta l'agent. Claude Code llegeix sense preguntar els fitxers del projecte on treballa, en qualsevol mode. En mode manual, Claude Code et pregunta abans d'obrir amb les seves eines un fitxer de fora del projecte. En mode auto, la primera vegada et pregunta a tu. Segons el que responguis, ja no torna a preguntar o deixa de llegir fora del projecte."
+      ],
+      [
+       "Si prohibeixes llegir el .env",
+       "La regla atura Claude Code quan l'obre amb les seves eines i també amb les ordres de fitxer que reconeix: `cat .env` queda aturat. No atura un programa qualsevol que llanci, ni una ordre que llegeix el fitxer sense anomenar-lo."
+      ]
+     ],
+     [
+      [
+       "Què és",
+       "Un secret que l'agent pot trobar: una clau, un testimoni (token), una clau privada."
+      ],
+      [
+       "Què guarda RosmarOps",
+       "De quin tipus és, on és i una empremta. Mai el valor. Si l'ensenya, només els 4 primers i els 4 últims caràcters."
+      ],
+      [
+       "Com sap de quin servei és",
+       "Per la forma. Les claus de Stripe comencen d'una manera reconeixible."
+      ]
+     ],
+     [
+      [
+       "Què és",
+       "El que l'agent pot obrir o canviar amb el que troba."
+      ],
+      [
+       "Altres exemples",
+       "Els teus repositoris, una base de dades, la configuració o les instruccions d'un altre agent."
+      ],
+      [
+       "Per què importa",
+       "És on hi ha el dany. Amb una clau de Stripe es poden moure diners o llegir els pagaments dels teus clients."
+      ]
+     ]
+    ]
+   },
+   "seen": [
+    "El que acabes de veure: un parany habitual",
+    [
+     "Prohibir que l'agent llegeixi un fitxer talla el camí directe.",
+     "Però si l'agent pot llançar qualsevol ordre sense preguntar-te, un programa que llanci ell pot llegir aquest fitxer igualment.",
+     "RosmarOps ho veu i ho marca: la cadena continua, «en part»."
+    ]
+   ]
   },
-  "exercise": {
-   "title": "Ara, al teu ordinador",
+  "check": {
+   "intro": "Primer un joc de sis canvis, després un test de quatre preguntes.",
+   "game": {
+    "title": "Què es trenca?",
+    "sub": "Canvies una cosa al teu ordinador. A quina baula de la cadena ho veu RosmarOps? Pot ser més d'una, o cap.",
+    "header": "Canvies alguna cosa. On es veu?",
+    "question": "On ho veu?",
+    "options": [
+     "Agent",
+     "Capacitat",
+     "Credencial",
+     "Recurs",
+     "Enlloc: no ho veu"
+    ],
+    "exclusive": [
+     4
+    ],
+    "buttons": {
+     "check": "Comprova",
+     "next": "Següent",
+     "result": "Mira el resultat",
+     "again": "Torna a jugar"
+    },
+    "card": "Canvi {i} de 6",
+    "right": "Correcte.",
+    "wrong": "No del tot.",
+    "source": "On es diu: {source}",
+    "items": [
+     {
+      "text": "Canvies Claude Code perquè llegeixi fitxers de fora del projecte sense preguntar-te.",
+      "answer": [
+       1
+      ],
+      "expl": "És una capacitat: llegir fitxers. En mode manual, Claude Code et pregunta abans d'obrir amb les seves eines un fitxer de fora del projecte. En mode auto, la primera vegada et pregunta a tu. Segons el que responguis, ja no torna a preguntar o deixa de llegir fora del projecte. Si ho canvies perquè no pregunti, RosmarOps ho apunta com una cosa que has configurat tu.",
+      "source": "Observatori, fitxa de Claude Code; documentació oficial de permisos de Claude Code."
+     },
+     {
+      "text": "Deses una clau secreta de Stripe en un fitxer `.env` del projecte.",
+      "answer": [
+       2,
+       3
+      ],
+      "expl": "Apareix una credencial nova. RosmarOps no guarda la clau: en guarda una empremta que serveix per reconèixer-la. I com que el format de la clau diu que és de Stripe, apareix també el que obre: el teu compte de Stripe.",
+      "source": "Glossari del web, «Clau o credencial»."
+     },
+     {
+      "text": "Afegeixes un servidor MCP nou a un projecte.",
+      "answer": [
+       0
+      ],
+      "expl": "Un servidor MCP és un programa que dona eines noves al teu agent. Per a RosmarOps és un agent més, carregat pel primer.",
+      "source": "Glossari del web, «Servidor MCP»."
+     },
+     {
+      "text": "Un agent pot reescriure les instruccions d'un altre agent (el seu fitxer CLAUDE.md, per exemple).",
+      "answer": [
+       3
+      ],
+      "expl": "Les instruccions d'un altre agent són un recurs: una cosa que es pot canviar. Qui les canvia decideix què farà l'altre agent la propera vegada.",
+      "source": "Glossari del web, «AGENTS.md»."
+     },
+     {
+      "text": "Durant una sessió, l'agent executa una ordre que esborra una carpeta.",
+      "answer": [
+       4
+      ],
+      "expl": "RosmarOps no veu què passa mentre l'agent treballa. Et pot dir que tenia permís per executar ordres sense preguntar-te, però no què n'ha fet.",
+      "source": "Metodologia del web, apartat «El que no mesura» (rosmarops.com/ca/metodologia/#limits)."
+     },
+     {
+      "text": "Prohibeixes que Claude Code llegeixi el teu `.env`, però li deixes llançar qualsevol ordre sense preguntar-te.",
+      "answer": [
+       1
+      ],
+      "expl": "El camí directe està tallat, però en queda un altre: un programa que llanci l'agent pot obrir el fitxer. Aquest camí passa per una altra capacitat, executar ordres. RosmarOps manté la cadena i la marca «en part».",
+      "source": "Documentació oficial de permisos de Claude Code."
+     }
+    ],
+    "end": {
+     "high": "Ja penses en cadenes.",
+     "mid": "Vas bé.",
+     "low": "Torna al pas 2."
+    },
+    "always": "Més endavant veuràs què pot saber RosmarOps i què no."
+   },
+   "test": {
+    "title": "Test",
+    "counter": "Pregunta {i} de 4",
+    "right": "Exacte.",
+    "wrong": "No del tot.",
+    "buttons": {
+     "next": "Següent",
+     "result": "Mira el resultat",
+     "again": "Torna a començar"
+    },
+    "result": "{score} de 4.",
+    "all": "La cadena ja és teva.",
+    "less": "Torna al pas 3, prova els tres permisos i repeteix el test.",
+    "items": [
+     {
+      "q": "Quin és l'ordre de la cadena?",
+      "options": [
+       "Credencial, agent, recurs, capacitat",
+       "Agent, capacitat, credencial, recurs",
+       "Recurs, credencial, capacitat, agent"
+      ],
+      "answer": 1,
+      "expl": "Qui entra, què li deixes fer, quines claus troba i què obren."
+     },
+     {
+      "q": "Claude Code t'ha de preguntar abans de llegir el teu `.env`, i no pot llançar ordres sense preguntar-te. Què passa amb la cadena?",
+      "options": [
+       "Continua igual",
+       "Es trenca a la segona baula: per arribar a la clau et necessita a tu",
+       "Es torna vermella"
+      ],
+      "answer": 1,
+      "expl": "RosmarOps només dibuixa el camí fins a una clau quan l'agent el pot fer sense preguntar-te."
+     },
+     {
+      "q": "Prohibeixes llegir el `.env`, però l'agent pot llançar qualsevol ordre sense preguntar-te. La cadena està trencada?",
+      "options": [
+       "Sí, del tot",
+       "No del tot: un programa que llanci l'agent pot llegir el fitxer, i RosmarOps ho marca «en part»",
+       "No es pot saber"
+      ],
+      "answer": 1,
+      "expl": "Tallar un camí no serveix de res si en queda un altre d'obert."
+     },
+     {
+      "q": "Què guarda RosmarOps d'una clau que troba?",
+      "options": [
+       "La clau sencera, xifrada",
+       "De quin tipus és, on és i una empremta, mai el valor",
+       "Res: les claus no li interessen"
+      ],
+      "answer": 1,
+      "expl": "Sap que la clau hi és, de quin servei és i on és, però no la pot reconstruir."
+     }
+    ]
+   }
+  },
+  "computer": {
    "sub": "Deu minuts. Busca una cadena de veritat al teu propi informe.",
    "intro": "L'informe de RosmarOps encara no està en català: si tens l'ordinador en català, el veuràs en castellà. Per això, aquí els textos de l'informe surten en castellà.",
-   "download": "Encara no el tens? Descarrega'l",
+   "see_label": "El que veus:",
    "steps": [
-    "Passa RosmarOps i obre l'informe.",
-    "Baixa al bloc **«Avisos»**. Busca un problema amb la paraula **«CLAVE»** damunt del títol. El títol diu una cosa com «Tu Stripe está al alcance de 2 agentes».",
-    "Llegeix la línia de sota: «Pueden leer sus claves sin preguntarte: …». Aquí tens els **agents**, la primera baula. I «sin preguntarte» és la **capacitat**, la segona.",
-    "Toca **«Ver los pasos ›»** (o l'enllaç de la columna «Cómo se arregla») per anar a aquest problema a «El detalle, problema a problema». El títol diu, per exemple, «Tu clave de Stripe: al alcance de Claude Code sin preguntarte». Aquí tens la **credencial**, la tercera baula.",
-    "Llegeix la frase que ve després: «Con ella se puede mover dinero o leer los pagos de tus clientes». Aquest és el **recurs**, la quarta baula.",
-    "Apunta la teva cadena en quatre paraules: agent → capacitat → credencial → recurs.",
-    "Ara decideix quina baula trencaries tu. Gairebé sempre és la segona: que l'agent et pregunti abans de llegir aquest fitxer. El primer problema del teu informe i la targeta **«Empieza por aquí»** et diuen com fer-ho."
+    {
+     "do": "Passa RosmarOps i obre l'informe.",
+     "link": [
+      "Encara no el tens? Descarrega'l",
+      "/ca/descarregar?from=course"
+     ],
+     "star": true,
+     "see": "l'informe al navegador, amb «Informe RosmarOps» a dalt i el bloc «Resultado» que vas llegir a la lliçó 1."
+    },
+    {
+     "do": "Baixa al bloc «Avisos». Busca un problema amb la paraula «CLAVE» damunt del títol. El títol diu una cosa com «Tu Stripe está al alcance de 2 agentes».",
+     "see": "sota el títol del bloc, una línia amb els números, com «3 problemas · 5 avisos · 1 urgente · 2 para revisar». La paraula «CLAVE» va en majúscules, damunt del títol del problema, amb una icona a l'esquerra.",
+     "after": [
+      {
+       "text": "**No veus el problema de la clau?** Si tens més de sis problemes, els altres estan plegats al final de la taula, en un enllaç com «Los otros 5 problemas (12 avisos)». Toca'l per obrir-los."
+      }
+     ]
+    },
+    {
+     "do": "Llegeix la línia de sota: «Pueden leer sus claves sin preguntarte: …». Aquí tens els agents, la primera baula. I «sin preguntarte» és la capacitat, la segona.",
+     "see": "els noms dels agents, separats per comes, al final d'aquesta línia."
+    },
+    {
+     "do": "Toca «Ver los pasos ›» (o l'enllaç de la columna «Cómo se arregla») per anar a aquest problema a «El detalle, problema a problema». El títol diu, per exemple, «Tu clave de Stripe: al alcance de Claude Code sin preguntarte». Aquí tens la credencial, la tercera baula.",
+     "see": "la pàgina baixa fins a aquest problema."
+    },
+    {
+     "do": "Llegeix la frase que ve després: «Con ella se puede mover dinero o leer los pagos de tus clientes». Aquest és el recurs, la quarta baula.",
+     "see": "aquesta frase just sota el títol del problema."
+    },
+    {
+     "do": "Apunta la teva cadena en quatre paraules: agent → capacitat → credencial → recurs."
+    },
+    {
+     "do": "Ara decideix quina baula trencaries tu. Gairebé sempre és la segona: que l'agent et pregunti abans de llegir aquest fitxer. El primer problema del teu informe i la targeta «Empieza por aquí» et diuen com fer-ho.",
+     "see": "la targeta «Empieza por aquí», a dalt de tot, al bloc «Resultado»."
+    }
    ],
    "none_title": "I si no tens cap problema amb «CLAVE»?",
    "none": "Vol dir que, en el que RosmarOps ha pogut llegir, cap agent no arriba a una clau sense preguntar-te. Mira també la línia «Fuera del alcance de este análisis» del teu informe: el que no ha pogut llegir no compta com a net."
   },
-  "test": {
-   "title": "Test",
-   "counter": "Pregunta {i} de 4",
-   "right": "Exacte.",
-   "wrong": "No del tot.",
-   "buttons": {"next": "Següent", "result": "Mira el resultat", "again": "Torna a començar"},
-   "result": "{score} de 4.",
-   "all": "La cadena ja és teva.",
-   "less": "Torna a la peça de dalt, prova els tres permisos i repeteix el test.",
+  "take": {
    "items": [
-    {"q": "Quin és l'ordre de la cadena?", "options": ["Credencial, agent, recurs, capacitat", "Agent, capacitat, credencial, recurs", "Recurs, credencial, capacitat, agent"], "answer": 1, "expl": "Qui entra, què li deixes fer, quines claus troba i què obren."},
-    {"q": "Claude Code t'ha de preguntar abans de llegir el teu `.env`, i no pot llançar ordres sense preguntar-te. Què passa amb la cadena?", "options": ["Continua igual", "Es trenca a la segona baula: per arribar a la clau et necessita a tu", "Es torna vermella"], "answer": 1, "expl": "RosmarOps només dibuixa el camí fins a una clau quan l'agent el pot fer sense preguntar-te."},
-    {"q": "Prohibeixes llegir el `.env`, però l'agent pot llançar qualsevol ordre sense preguntar-te. La cadena està trencada?", "options": ["Sí, del tot", "No del tot: un programa que llanci l'agent pot llegir el fitxer, i RosmarOps ho marca «en part»", "No es pot saber"], "answer": 1, "expl": "Tallar un camí no serveix de res si en queda un altre d'obert."},
-    {"q": "Què guarda RosmarOps d'una clau que troba?", "options": ["La clau sencera, xifrada", "De quin tipus és, on és i una empremta, mai el valor", "Res: les claus no li interessen"], "answer": 1, "expl": "Sap que la clau hi és, de quin servei és i on és, però no la pot reconstruir."}
-   ]
-  },
-  "close": {
+    "La cadena té quatre baules: qui entra, què pot fer, quines claus troba i què obren.",
+    "Per trencar-la n'hi ha prou de treure'n una, i gairebé sempre la més fàcil és la segona: que et pregunti.",
+    "Prohibir que llegeixi un fitxer no n'hi ha prou si pot llançar qualsevol ordre sense preguntar-te."
+   ],
    "terms_label": "Termes nous",
-   "terms": [["Agent d'IA", "agent"], ["Capacitat", "capability"], ["Clau o credencial", "credential"], ["Recurs", "resource"], ["Servidor MCP", "mcp"], ["Permetre, preguntar, denegar", "allow-ask-deny"], ["Empremta d'una clau", "key-fingerprint"]],
+   "terms": [
+    [
+     "Agent d'IA",
+     "agent"
+    ],
+    [
+     "Capacitat",
+     "capability"
+    ],
+    [
+     "Clau o credencial",
+     "credential"
+    ],
+    [
+     "Recurs",
+     "resource"
+    ],
+    [
+     "Servidor MCP",
+     "mcp"
+    ],
+    [
+     "Permetre, preguntar, denegar",
+     "allow-ask-deny"
+    ],
+    [
+     "Empremta d'una clau",
+     "key-fingerprint"
+    ]
+   ],
+   "button": "Torna al curs",
+   "button_to": "entry",
    "footer": "Cada dada d'aquesta lliçó surt del codi de RosmarOps, que és públic (github.com/qtorb/rosmarops), de l'Observatori i de la documentació oficial de Claude Code."
   }
  }

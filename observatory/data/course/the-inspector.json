@@ -1,0 +1,1190 @@
+{
+ "_source": "qtorb/rosmarops-vigil: docs/research/2026-11-26-curso-publico-textos-finales.md (§1.2, §2.2, §3.2), signed by Albert with block 211 (GTM-227; EN and CA signed by passing the block); step names list label and layout from docs/research/2026-11-26-curso-diseno-entrada-y-seis-pasos.md. Literal: do not edit here; change the signed document first. **x** is bold and `x` is code. In English pages, quotes are “ ” (design §6).",
+ "path": {
+  "en": "/course/the-inspector/",
+  "es": "/es/curso/el-inspector/",
+  "ca": "/ca/curs/linspector/"
+ },
+ "en": {
+  "eyebrow": "Lesson 1 of 5 · 7 minutes of reading, plus 10 on your report",
+  "title": "The inspector",
+  "lead": "An AI agent doesn't just answer: it also does things on your computer, and some of them without asking you. In this lesson you'll see who gives it permission and how RosmarOps looks at it, without changing anything.",
+  "steps_aria": "The six steps of the lesson",
+  "labels": [
+   "Step 1 of 6 · Before you start",
+   "Step 2 of 6 · The idea, with an example",
+   "Step 3 of 6 · Try it",
+   "Step 4 of 6 · Check it",
+   "Step 5 of 6 · On your computer",
+   "Step 6 of 6 · What you take away"
+  ],
+  "before": [
+   [
+    "You'll learn",
+    "what an AI agent is, who gives it permission to act and what RosmarOps looks at."
+   ],
+   [
+    "You need",
+    "nothing for steps 1 to 4. For step 5, RosmarOps."
+   ],
+   [
+    "Before this one",
+    ", nothing: it's the first lesson."
+   ]
+  ],
+  "idea": {
+   "title": "The inspector",
+   "sub": "Before changing anything, someone has to look.",
+   "para": [
+    "Imagine that, before buying a flat, you call in an inspector. They go in, open the doors, check which keys there are and who has a copy. They write it all down in a report. They don't fix anything: they tell you what they saw and what they would change. They don't move in either, so they don't see what happens in the flat once they've left. RosmarOps does that job with the AI agents on your computer."
+   ],
+   "cards": [
+    [
+     "AI agent",
+     "What is it?",
+     "An artificial intelligence program that doesn't just answer: it also does things for you, like reading files, running commands or using your accounts. Claude Code, Cursor and Codex are agents."
+    ],
+    [
+     "Without asking",
+     "What does it do on its own?",
+     "Some actions it takes without you having to approve them first. The more it does that way, the further it can go if something tricks it."
+    ],
+    [
+     "Who decides",
+     "Who gives permission?",
+     "When an action needs permission, one of three gives it: you, another AI model that reviews the action, or nobody. It depends on the mode, the agent's setting that decides how much it asks you."
+    ],
+    [
+     "RosmarOps",
+     "What does the inspector do?",
+     "It reads the settings each agent keeps in files on your computer and writes you a report: what each one can do without asking you and what is worth changing first."
+    ]
+   ],
+   "blocks": [
+    [
+     "What it looks at",
+     [
+      "The settings of twelve agents, among them Claude Code, Cursor, Codex and GitHub Copilot.",
+      "Your projects, which it finds on its own, and the instructions your agents read in them.",
+      "The keys saved in files on your computer. For each one it notes what type it is and where it is, never the value."
+     ]
+    ],
+    [
+     "What it doesn't look at",
+     [
+      "What an agent does while it works. It reads what is written in the files, what is called configuration at rest: the settings as they are saved, not what the agent does with them.",
+      "What an MCP tool does inside. An MCP tool is a piece that adds tools to an agent.",
+      "The Windows Credential Manager.",
+      "And what it couldn't read, it doesn't count as clean: it tells you it couldn't read it."
+     ]
+    ],
+    [
+     "What it doesn't do",
+     [
+      "It doesn't change your files or your agents. It tells you what to change and you decide.",
+      "What it reads from your computer doesn't leave without your permission, and your keys never do."
+     ]
+    ]
+   ]
+  },
+  "try": {
+   "title": "Who decides?",
+   "sub": "The same agent, in three modes. See who gives permission for each action.",
+   "do_label": "Do this, in order:",
+   "do": [
+    "Look at the selector at the top: “Manual” is selected.",
+    "Read the four actions. Only the first one says “Without asking you”.",
+    "Press “Auto”.",
+    "Look at actions 3 and 4: now they say “Another AI model decides”.",
+    "Look at action 2: editing a file no longer asks you.",
+    "Press “Bypass permissions”.",
+    "Look at the four actions: they all say “Without asking you”.",
+    "Read the message under the selector.",
+    "Press “Manual” again."
+   ],
+   "modes": {
+    "label": "Claude Code mode",
+    "buttons": {
+     "manual": "Manual",
+     "auto": "Auto",
+     "bypass": "Bypass permissions"
+    },
+    "tags": {
+     "alone": "Without asking you",
+     "you": "Asks you",
+     "model": "Another AI model decides"
+    },
+    "actions": [
+     "Read a project file",
+     "Edit a project file",
+     "Run a command that installs a program",
+     "Search the web"
+    ],
+    "states": {
+     "manual": [
+      "alone",
+      "you",
+      "you",
+      "you"
+     ],
+     "auto": [
+      "alone",
+      "alone",
+      "model",
+      "model"
+     ],
+     "bypass": [
+      "alone",
+      "alone",
+      "alone",
+      "alone"
+     ]
+    },
+    "msg": {
+     "manual": "**In Manual mode, you give almost every permission.** It reads the project's files without asking you, and also runs without asking you some commands that only read, like `ls` or `cat`. Everything else it asks you.",
+     "auto": "**In auto mode, it hardly asks you.** Before running a command or going online, another AI model checks whether the action fits what you asked for. That model is called a classifier.",
+     "bypass": "**In bypass permissions mode, nobody decides: it does almost everything without asking.** Claude Code's documentation says to use this mode only in isolated environments, like a container or a virtual machine."
+    },
+    "fixed": "Since version 2.1.283, Claude Code starts in auto mode when you open it in a terminal or in VS Code, if that mode is available. If it isn't, it starts in Manual mode.",
+    "note": "The example is Claude Code. The facts come from its official documentation, checked on {fecha de la comprobación}.",
+    "checked": "2026-11-26"
+   },
+   "seen": [
+    "What you've just seen",
+    [
+     "The same agent can do a lot or a little without asking you.",
+     "It doesn't depend only on the agent: it depends on its mode and its settings.",
+     "Those settings are written in files on your computer. That's what RosmarOps reads."
+    ]
+   ]
+  },
+  "check": {
+   "intro": "",
+   "game": {
+    "title": "Does RosmarOps see it?",
+    "sub": "Something happens on your computer. Does the inspector see it?",
+    "header": "Something happens. Does it see it?",
+    "question": "",
+    "options": [
+     "It sees it",
+     "It doesn't see it"
+    ],
+    "exclusive": [
+     0,
+     1
+    ],
+    "buttons": {
+     "check": "Check",
+     "next": "Next",
+     "result": "See the result",
+     "again": "Play again"
+    },
+    "card": "Case {i} of 6",
+    "right": "Correct.",
+    "wrong": "Not quite.",
+    "source": "Where it says so: {source}",
+    "items": [
+     {
+      "text": "Claude Code works in auto mode, because that's how it comes out of the box.",
+      "answer": [
+       0
+      ],
+      "expl": "The mode is in the agent's settings, or it's the value the agent comes with. RosmarOps reads both.",
+      "source": "Observatory, Claude Code page; Claude Code's official documentation, “Permission modes”."
+     },
+     {
+      "text": "Yesterday, during a session, your agent deleted a folder.",
+      "answer": [
+       1
+      ],
+      "expl": "RosmarOps doesn't see what happens while the agent works. It can tell you the agent had permission to run commands without asking you, but not what it did with it.",
+      "source": "Website methodology, section “What it does not measure”."
+     },
+     {
+      "text": "You have a Stripe key saved in a `.env` file in a project.",
+      "answer": [
+       0
+      ],
+      "expl": "A `.env` file is a text file where many programs keep their keys. RosmarOps notes what type the key is, where it is and a fingerprint to recognise it. Never the value.",
+      "source": "Website glossary, “Key fingerprint”."
+     },
+     {
+      "text": "In Claude Code's settings, you've written that it can run any command without asking you.",
+      "answer": [
+       0
+      ],
+      "expl": "It's a setting written in a file. That's exactly what RosmarOps reads: which permission each thing the agent can do has.",
+      "source": "Website glossary, “Allow, ask, deny”."
+     },
+     {
+      "text": "An MCP tool your agent uses sends your data somewhere else, inside.",
+      "answer": [
+       1
+      ],
+      "expl": "It sees that the agent has that tool and what it lets it do, but not what the tool does inside.",
+      "source": "Website methodology, section “What it does not measure”."
+     },
+     {
+      "text": "You save a password in the Windows Credential Manager.",
+      "answer": [
+       1
+      ],
+      "expl": "That store is outside what it reads today. The report says so in the line “Outside the scope of this analysis”.",
+      "source": "Website methodology, section “What it does not measure”."
+     }
+    ],
+    "end": {
+     "high": "You know what the inspector looks at.",
+     "mid": "You're on the right track.",
+     "low": "Go back to step 2."
+    },
+    "always": "In lesson 2 you'll see how all of this chains together."
+   },
+   "test": {
+    "title": "Test",
+    "counter": "Question {i} of 4",
+    "right": "Exactly.",
+    "wrong": "Not quite.",
+    "buttons": {
+     "next": "Next",
+     "result": "See the result",
+     "again": "Start again"
+    },
+    "result": "{score} out of 4.",
+    "all": "You know what the inspector looks at.",
+    "less": "Go back to step 3, try the three modes and take the test again.",
+    "items": [
+     {
+      "q": "What is an AI agent?",
+      "options": [
+       "A program that only answers questions",
+       "An AI program that also does things for you: reading files, running commands, using your accounts",
+       "A program that watches your computer"
+      ],
+      "answer": 1,
+      "expl": "It doesn't just answer: it acts. That's why what it can do without asking you matters."
+     },
+     {
+      "q": "Claude Code is in auto mode and is about to run a command that installs a program. Who decides?",
+      "options": [
+       "You",
+       "Another AI model, which checks whether the action fits what you asked for",
+       "Nobody"
+      ],
+      "answer": 1,
+      "expl": "In auto mode it hardly asks you anything. Before running a command, another model reviews the action."
+     },
+     {
+      "q": "What does RosmarOps read?",
+      "options": [
+       "What each agent does while it works",
+       "What each agent is allowed to do, in the files on your computer",
+       "Nothing on your computer: it only looks at the internet"
+      ],
+      "answer": 1,
+      "expl": "It reads the configuration at rest: the settings as they are saved."
+     },
+     {
+      "q": "Your report scores 100. What does that mean?",
+      "options": [
+       "That your computer has no risk at all",
+       "That it found no exposure in what it could read",
+       "That your agents are switched off"
+      ],
+      "answer": 1,
+      "expl": "A 100 never means there is no risk. It means that, in what it read, it found nothing within an agent's reach without asking you."
+     }
+    ]
+   }
+  },
+  "computer": {
+   "sub": "Ten minutes. Run RosmarOps for the first time and read the “Result” block.",
+   "intro": "",
+   "see_label": "What you see:",
+   "steps": [
+    {
+     "do": "Download RosmarOps.",
+     "link": [
+      "Download it",
+      "/download?from=course"
+     ],
+     "see": "the download page, with the program for your system: Windows, macOS or Linux.",
+     "after": [
+      {
+       "text": "If you don't want to install it yet, do these steps with the sample report.",
+       "link": [
+        "sample report",
+        "/sample-report/"
+       ]
+      }
+     ]
+    },
+    {
+     "do": "Open it. On Windows, double-click `rosmarops.exe`. On macOS and Linux, follow the instructions on the download page.",
+     "see": "the program finds your projects on its own. If it finds none, it asks you to choose the folder where you keep them."
+    },
+    {
+     "do": "Wait for it to finish. It usually takes under 5 minutes; with many projects, up to 20.",
+     "see": "the report opens on its own in your browser. At the top it says “RosmarOps report”."
+    },
+    {
+     "do": "Look at the first block, “Result”, and read the first sentence.",
+     "see": "one of these three sentences:",
+     "see_list": [
+      "“At least one of your agents can do a lot on this computer without asking you.”",
+      "“Your agents ask you before most things, but some gaps are open.”",
+      "“In what RosmarOps checked, your agents ask you before they act.”"
+     ]
+    },
+    {
+     "do": "Look at the number next to it.",
+     "see": "a score out of 100 and one word: “Exposed”, “Open gaps” or “Contained”. The higher the score, the less exposed your agents are."
+    },
+    {
+     "do": "Read the sentence underneath.",
+     "see": "something like “Score of Claude Code, your agent with the least control: does quite a lot without asking you (class C). With factory settings it would get 70.”",
+     "after": [
+      {
+       "text": "The agent it names is the one that does most without asking you. Write it down."
+      }
+     ]
+    },
+    {
+     "do": "Look for the “Start here” card, in the same block.",
+     "see": "the first thing worth changing. You can do it now, or wait for lesson 2, which explains why it's that and not something else."
+    }
+   ],
+   "none_title": "What if you don't see a score?",
+   "none": "If it says “No score:”, the report tells you why. For example: “no AI agents found” or “some sources could not be read”."
+  },
+  "take": {
+   "items": [
+    "An AI agent does things on your computer, and some of them without asking you.",
+    "Who gives permission depends on the mode: you, another AI model or nobody.",
+    "RosmarOps reads what each agent is allowed to do, not what it does while it works, and changes nothing."
+   ],
+   "terms_label": "New terms",
+   "terms": [
+    [
+     "AI agent",
+     "agent"
+    ],
+    [
+     "Without asking",
+     "ask"
+    ],
+    [
+     "Asks first",
+     "asks-first"
+    ],
+    [
+     "Classifier model",
+     "classifier"
+    ],
+    [
+     "MCP server",
+     "mcp"
+    ],
+    [
+     "Key or credential",
+     "credential"
+    ],
+    [
+     "Key fingerprint",
+     "key-fingerprint"
+    ]
+   ],
+   "button": "Next: Lesson 2 · The chain",
+   "button_to": "the-chain",
+   "footer": "Every fact in this lesson comes from RosmarOps's code, which is public (github.com/qtorb/rosmarops), from the Observatory and from Claude Code's official documentation."
+  }
+ },
+ "es": {
+  "eyebrow": "Lección 1 de 5 · 7 minutos de lectura, más 10 en tu informe",
+  "title": "El inspector",
+  "lead": "Un agente de IA no solo contesta: también hace cosas en tu ordenador, y algunas sin preguntarte. En esta lección verás quién le da permiso y cómo lo mira RosmarOps, sin cambiar nada.",
+  "steps_aria": "Los seis pasos de la lección",
+  "labels": [
+   "Paso 1 de 6 · Antes de empezar",
+   "Paso 2 de 6 · La idea, con un ejemplo",
+   "Paso 3 de 6 · Pruébalo",
+   "Paso 4 de 6 · Compruébalo",
+   "Paso 5 de 6 · En tu ordenador",
+   "Paso 6 de 6 · Lo que te llevas"
+  ],
+  "before": [
+   [
+    "Vas a aprender",
+    "qué es un agente de IA, quién le da permiso para actuar y qué mira RosmarOps."
+   ],
+   [
+    "Necesitas",
+    "nada para los pasos 1 a 4. Para el paso 5, RosmarOps."
+   ],
+   [
+    "Antes de esta",
+    ", nada: es la primera lección."
+   ]
+  ],
+  "idea": {
+   "title": "El inspector",
+   "sub": "Antes de cambiar nada, alguien tiene que mirar.",
+   "para": [
+    "Imagina que, antes de comprar un piso, llamas a un inspector. Entra, abre las puertas, mira qué llaves hay y quién tiene copia. Lo apunta todo en un informe. No arregla nada: te dice qué ha visto y qué cambiaría. Tampoco se queda a vivir allí, así que no ve lo que pase en el piso cuando se vaya. RosmarOps hace ese trabajo con los agentes de IA de tu ordenador."
+   ],
+   "cards": [
+    [
+     "Agente de IA",
+     "¿Qué es?",
+     "Un programa de inteligencia artificial que no solo contesta: también hace cosas por ti, como leer ficheros, ejecutar comandos o usar tus cuentas. Claude Code, Cursor y Codex son agentes."
+    ],
+    [
+     "Sin preguntarte",
+     "¿Qué hace solo?",
+     "Algunas acciones las hace sin que tengas que aprobarlas antes. Cuantas más hace así, más lejos puede llegar si algo lo engaña."
+    ],
+    [
+     "Quién decide",
+     "¿Quién da el permiso?",
+     "Cuando una acción necesita permiso, lo da una de tres partes: tú, otro modelo de IA que revisa la acción, o nadie. Depende del modo, que es el ajuste del agente que decide cuánto te pregunta."
+    ],
+    [
+     "RosmarOps",
+     "¿Qué hace el inspector?",
+     "Lee los ajustes que cada agente guarda en ficheros de tu ordenador y te hace un informe: qué puede hacer cada uno sin preguntarte y qué conviene cambiar primero."
+    ]
+   ],
+   "blocks": [
+    [
+     "Qué mira",
+     [
+      "Los ajustes de doce agentes, entre ellos Claude Code, Cursor, Codex y GitHub Copilot.",
+      "Tus proyectos, que encuentra solo, y las instrucciones que leen tus agentes en ellos.",
+      "Las claves guardadas en ficheros de tu ordenador. De cada una apunta de qué tipo es y dónde está, nunca el valor."
+     ]
+    ],
+    [
+     "Qué no mira",
+     [
+      "Lo que hace un agente mientras trabaja. Lee lo que está escrito en los ficheros, lo que se llama configuración en reposo: los ajustes tal como están guardados, no lo que el agente hace con ellos.",
+      "Lo que hace por dentro una herramienta MCP, que es una pieza que añade herramientas a un agente.",
+      "El almacén de credenciales de Windows.",
+      "Y lo que no ha podido leer no lo cuenta como limpio: te dice que no lo ha podido leer."
+     ]
+    ],
+    [
+     "Qué no hace",
+     [
+      "No cambia tus ficheros ni tus agentes. Te dice qué cambiar y lo decides tú.",
+      "Lo que lee de tu ordenador no sale sin tu permiso, y tus claves nunca."
+     ]
+    ]
+   ]
+  },
+  "try": {
+   "title": "¿Quién decide?",
+   "sub": "El mismo agente, en tres modos. Mira quién da el permiso en cada acción.",
+   "do_label": "Haz esto, en orden:",
+   "do": [
+    "Mira el selector de arriba: está marcado «Manual».",
+    "Lee las cuatro acciones. Solo la primera dice «Lo hace sin preguntarte».",
+    "Pulsa «Auto».",
+    "Mira las acciones 3 y 4: ahora dicen «Lo decide otro modelo de IA».",
+    "Mira la acción 2: editar un fichero ya no te pregunta.",
+    "Pulsa «Sin permisos».",
+    "Mira las cuatro acciones: todas dicen «Lo hace sin preguntarte».",
+    "Lee el mensaje de debajo del selector.",
+    "Vuelve a pulsar «Manual»."
+   ],
+   "modes": {
+    "label": "Modo de Claude Code",
+    "buttons": {
+     "manual": "Manual",
+     "auto": "Auto",
+     "bypass": "Sin permisos"
+    },
+    "tags": {
+     "alone": "Lo hace sin preguntarte",
+     "you": "Te pregunta a ti",
+     "model": "Lo decide otro modelo de IA"
+    },
+    "actions": [
+     "Leer un fichero del proyecto",
+     "Editar un fichero del proyecto",
+     "Ejecutar un comando que instala un programa",
+     "Buscar en internet"
+    ],
+    "states": {
+     "manual": [
+      "alone",
+      "you",
+      "you",
+      "you"
+     ],
+     "auto": [
+      "alone",
+      "alone",
+      "model",
+      "model"
+     ],
+     "bypass": [
+      "alone",
+      "alone",
+      "alone",
+      "alone"
+     ]
+    },
+    "msg": {
+     "manual": "**En modo manual, das tú casi todos los permisos.** Lee los ficheros del proyecto sin preguntarte, y ejecuta también sin preguntarte algunos comandos que solo leen, como `ls` o `cat`. Lo demás te lo pregunta.",
+     "auto": "**En modo auto, casi no te pregunta.** Antes de ejecutar un comando o de salir a internet, otro modelo de IA revisa si la acción encaja con lo que le has pedido. A ese modelo se le llama clasificador.",
+     "bypass": "**En modo sin permisos, nadie decide: lo hace casi todo sin preguntar.** La documentación de Claude Code dice que este modo solo se use en entornos aislados, como un contenedor o una máquina virtual."
+    },
+    "fixed": "Desde la versión 2.1.283, Claude Code empieza en modo auto cuando lo abres en un terminal o en VS Code, si ese modo está disponible. Si no lo está, empieza en modo manual.",
+    "note": "El ejemplo es Claude Code. Los datos salen de su documentación oficial, comprobada el {fecha de la comprobación}.",
+    "checked": "2026-11-26"
+   },
+   "seen": [
+    "Lo que acabas de ver",
+    [
+     "El mismo agente puede hacer mucho o poco sin preguntarte.",
+     "No depende solo del agente: depende del modo y de los ajustes que tenga.",
+     "Esos ajustes están escritos en ficheros de tu ordenador. Eso es lo que lee RosmarOps."
+    ]
+   ]
+  },
+  "check": {
+   "intro": "",
+   "game": {
+    "title": "¿Lo ve RosmarOps?",
+    "sub": "Pasa algo en tu ordenador. ¿Lo ve el inspector?",
+    "header": "Pasa algo. ¿Lo ve?",
+    "question": "",
+    "options": [
+     "Lo ve",
+     "No lo ve"
+    ],
+    "exclusive": [
+     0,
+     1
+    ],
+    "buttons": {
+     "check": "Comprobar",
+     "next": "Siguiente",
+     "result": "Ver el resultado",
+     "again": "Volver a jugar"
+    },
+    "card": "Caso {i} de 6",
+    "right": "Correcto.",
+    "wrong": "No del todo.",
+    "source": "Dónde se dice: {source}",
+    "items": [
+     {
+      "text": "Claude Code trabaja en modo auto, porque así viene de fábrica.",
+      "answer": [
+       0
+      ],
+      "expl": "El modo está en los ajustes del agente o es el valor que trae de fábrica. RosmarOps lee los dos.",
+      "source": "Observatorio, ficha de Claude Code; documentación oficial de Claude Code, «Permission modes»."
+     },
+     {
+      "text": "Ayer, durante una sesión, tu agente borró una carpeta.",
+      "answer": [
+       1
+      ],
+      "expl": "RosmarOps no ve lo que pasa mientras el agente trabaja. Puede decirte que tenía permiso para ejecutar comandos sin preguntarte, pero no qué hizo con él.",
+      "source": "Metodología de la web, apartado «Lo que no mide»."
+     },
+     {
+      "text": "Tienes una clave de Stripe guardada en un fichero `.env` de un proyecto.",
+      "answer": [
+       0
+      ],
+      "expl": "Un fichero `.env` es un fichero de texto donde muchos programas guardan sus claves. RosmarOps apunta de qué tipo es la clave, dónde está y una huella para reconocerla. Nunca el valor.",
+      "source": "Glosario de la web, «Huella de una clave»."
+     },
+     {
+      "text": "En los ajustes de Claude Code has escrito que puede ejecutar cualquier comando sin preguntarte.",
+      "answer": [
+       0
+      ],
+      "expl": "Es un ajuste escrito en un fichero. Es justo lo que lee RosmarOps: qué permiso tiene cada cosa que el agente puede hacer.",
+      "source": "Glosario de la web, «Permitir, preguntar, denegar»."
+     },
+     {
+      "text": "Una herramienta MCP que usa tu agente manda, por dentro, tus datos a otro sitio.",
+      "answer": [
+       1
+      ],
+      "expl": "Ve que el agente tiene esa herramienta y qué le deja hacer, pero no lo que la herramienta hace por dentro.",
+      "source": "Metodología de la web, apartado «Lo que no mide»."
+     },
+     {
+      "text": "Guardas una contraseña en el almacén de credenciales de Windows.",
+      "answer": [
+       1
+      ],
+      "expl": "Ese almacén queda fuera de lo que lee hoy. El informe lo dice en la línea «Fuera del alcance de este análisis».",
+      "source": "Metodología de la web, apartado «Lo que no mide»."
+     }
+    ],
+    "end": {
+     "high": "Ya sabes qué mira el inspector.",
+     "mid": "Vas bien.",
+     "low": "Vuelve al paso 2."
+    },
+    "always": "En la lección 2 verás cómo se encadena todo esto."
+   },
+   "test": {
+    "title": "Test",
+    "counter": "Pregunta {i} de 4",
+    "right": "Exacto.",
+    "wrong": "No del todo.",
+    "buttons": {
+     "next": "Siguiente",
+     "result": "Ver el resultado",
+     "again": "Empezar de nuevo"
+    },
+    "result": "{score} de 4.",
+    "all": "Ya sabes qué mira el inspector.",
+    "less": "Vuelve al paso 3, prueba los tres modos y repite el test.",
+    "items": [
+     {
+      "q": "¿Qué es un agente de IA?",
+      "options": [
+       "Un programa que solo contesta preguntas",
+       "Un programa de IA que también hace cosas por ti: leer ficheros, ejecutar comandos, usar tus cuentas",
+       "Un programa que vigila tu ordenador"
+      ],
+      "answer": 1,
+      "expl": "No solo contesta: actúa. Por eso importa lo que puede hacer sin preguntarte."
+     },
+     {
+      "q": "Claude Code está en modo auto y va a ejecutar un comando que instala un programa. ¿Quién decide?",
+      "options": [
+       "Tú",
+       "Otro modelo de IA, que revisa si la acción encaja con lo que le has pedido",
+       "Nadie"
+      ],
+      "answer": 1,
+      "expl": "En modo auto no te pregunta casi nada. Antes de ejecutar un comando, otro modelo revisa la acción."
+     },
+     {
+      "q": "¿Qué lee RosmarOps?",
+      "options": [
+       "Lo que hace cada agente mientras trabaja",
+       "Lo que cada agente tiene permitido, en los ficheros de tu ordenador",
+       "Nada de tu ordenador: solo mira internet"
+      ],
+      "answer": 1,
+      "expl": "Lee la configuración en reposo: los ajustes tal como están guardados."
+     },
+     {
+      "q": "Tu informe saca un 100. ¿Qué quiere decir?",
+      "options": [
+       "Que tu ordenador no tiene ningún riesgo",
+       "Que no encontró exposición en lo que pudo leer",
+       "Que tus agentes están apagados"
+      ],
+      "answer": 1,
+      "expl": "Un 100 nunca quiere decir que no haya riesgo. Quiere decir que, en lo que leyó, no encontró nada al alcance de un agente sin preguntarte."
+     }
+    ]
+   }
+  },
+  "computer": {
+   "sub": "Diez minutos. Pasa RosmarOps por primera vez y lee el bloque «Resultado».",
+   "intro": "",
+   "see_label": "Lo que ves:",
+   "steps": [
+    {
+     "do": "Descarga RosmarOps.",
+     "link": [
+      "Descárgalo",
+      "/es/descargar?from=course"
+     ],
+     "see": "la página de descarga, con el programa para tu sistema: Windows, macOS o Linux.",
+     "after": [
+      {
+       "text": "Si todavía no quieres instalarlo, haz estos pasos con el informe de ejemplo.",
+       "link": [
+        "informe de ejemplo",
+        "/es/informe-de-ejemplo/"
+       ]
+      }
+     ]
+    },
+    {
+     "do": "Ábrelo. En Windows, haz doble clic en `rosmarops.exe`. En macOS y Linux, sigue las instrucciones de la página de descarga.",
+     "see": "el programa busca tus proyectos solo. Si no encuentra ninguno, te pide que elijas la carpeta donde los guardas."
+    },
+    {
+     "do": "Espera a que acabe. Suele tardar menos de 5 minutos; con muchos proyectos, hasta 20.",
+     "see": "el informe se abre solo en tu navegador. Arriba pone «Informe RosmarOps»."
+    },
+    {
+     "do": "Mira el primer bloque, «Resultado», y lee la primera frase.",
+     "see": "una de estas tres frases:",
+     "see_list": [
+      "«Al menos uno de tus agentes puede hacer mucho en este ordenador sin preguntarte.»",
+      "«Tus agentes te preguntan casi siempre, pero quedan huecos abiertos.»",
+      "«En lo que RosmarOps ha revisado, tus agentes te preguntan antes de actuar.»"
+     ]
+    },
+    {
+     "do": "Mira el número de al lado.",
+     "see": "una nota sobre 100 y una palabra: «Expuesto», «Huecos abiertos» o «Contenido». Cuanto más alta es la nota, menos expuestos están tus agentes."
+    },
+    {
+     "do": "Lee la frase de debajo.",
+     "see": "algo como «Nota de Claude Code, tu agente con menos control: hace bastante sin preguntarte (clase C). Con los ajustes de fábrica sacaría 70.»",
+     "after": [
+      {
+       "text": "El agente que nombra es el que más hace sin preguntarte. Apúntalo."
+      }
+     ]
+    },
+    {
+     "do": "Busca la tarjeta «Empieza por aquí», en el mismo bloque.",
+     "see": "lo primero que conviene cambiar. Puedes hacerlo ya, o esperar a la lección 2, que explica por qué es eso y no otra cosa."
+    }
+   ],
+   "none_title": "¿Y si no ves una nota?",
+   "none": "Si pone «Sin nota:», el informe te dice por qué. Por ejemplo: «no se encontró ningún agente de IA» o «no se pudo leer todo»."
+  },
+  "take": {
+   "items": [
+    "Un agente de IA hace cosas en tu ordenador, y parte de ellas sin preguntarte.",
+    "Quién da el permiso depende del modo: tú, otro modelo de IA o nadie.",
+    "RosmarOps lee lo que cada agente tiene permitido, no lo que hace mientras trabaja, y no cambia nada."
+   ],
+   "terms_label": "Términos nuevos",
+   "terms": [
+    [
+     "Agente de IA",
+     "agent"
+    ],
+    [
+     "Sin preguntarte",
+     "ask"
+    ],
+    [
+     "Te pregunta antes",
+     "asks-first"
+    ],
+    [
+     "Modelo clasificador",
+     "classifier"
+    ],
+    [
+     "Servidor MCP",
+     "mcp"
+    ],
+    [
+     "Clave o credencial",
+     "credential"
+    ],
+    [
+     "Huella de una clave",
+     "key-fingerprint"
+    ]
+   ],
+   "button": "Siguiente: Lección 2 · La cadena",
+   "button_to": "the-chain",
+   "footer": "Cada dato de esta lección sale del código de RosmarOps, que es público (github.com/qtorb/rosmarops), del Observatorio y de la documentación oficial de Claude Code."
+  }
+ },
+ "ca": {
+  "eyebrow": "Lliçó 1 de 5 · 7 minuts de lectura, més 10 al teu informe",
+  "title": "L'inspector",
+  "lead": "Un agent d'IA no només respon: també fa coses al teu ordinador, i algunes sense preguntar-te. En aquesta lliçó veuràs qui li dona permís i com el mira RosmarOps, sense canviar res.",
+  "steps_aria": "Els sis passos de la lliçó",
+  "labels": [
+   "Pas 1 de 6 · Abans de començar",
+   "Pas 2 de 6 · La idea, amb un exemple",
+   "Pas 3 de 6 · Prova-ho",
+   "Pas 4 de 6 · Comprova-ho",
+   "Pas 5 de 6 · Al teu ordinador",
+   "Pas 6 de 6 · El que t'emportes"
+  ],
+  "before": [
+   [
+    "Aprendràs",
+    "què és un agent d'IA, qui li dona permís per actuar i què mira RosmarOps."
+   ],
+   [
+    "Necessites",
+    "res per als passos 1 a 4. Per al pas 5, RosmarOps."
+   ],
+   [
+    "Abans d'aquesta",
+    ", res: és la primera lliçó."
+   ]
+  ],
+  "idea": {
+   "title": "L'inspector",
+   "sub": "Abans de canviar res, algú ha de mirar.",
+   "para": [
+    "Imagina que, abans de comprar un pis, truques a un inspector. Entra, obre les portes, mira quines claus hi ha i qui en té còpia. Ho apunta tot en un informe. No arregla res: et diu què ha vist i què canviaria. Tampoc s'hi queda a viure, i per això no veu què passa al pis quan se'n va. RosmarOps fa aquesta feina amb els agents d'IA del teu ordinador."
+   ],
+   "cards": [
+    [
+     "Agent d'IA",
+     "Què és?",
+     "Un programa d'intel·ligència artificial que no només respon: també fa coses per tu, com llegir fitxers, executar ordres o fer servir els teus comptes. Claude Code, Cursor i Codex són agents."
+    ],
+    [
+     "Sense preguntar-te",
+     "Què fa tot sol?",
+     "Algunes accions les fa sense que les hagis d'aprovar abans. Com més en fa així, més lluny pot arribar si alguna cosa l'enganya."
+    ],
+    [
+     "Qui decideix",
+     "Qui dona el permís?",
+     "Quan una acció necessita permís, el dona una de tres parts: tu, un altre model d'IA que revisa l'acció, o ningú. Depèn del mode, que és l'ajust de l'agent que decideix quant et pregunta."
+    ],
+    [
+     "RosmarOps",
+     "Què fa l'inspector?",
+     "Llegeix els ajustos que cada agent desa en fitxers del teu ordinador i et fa un informe: què pot fer cadascun sense preguntar-te i què convé canviar primer."
+    ]
+   ],
+   "blocks": [
+    [
+     "Què mira",
+     [
+      "Els ajustos de dotze agents, entre ells Claude Code, Cursor, Codex i GitHub Copilot.",
+      "Els teus projectes, que troba sol, i les instruccions que hi llegeixen els teus agents.",
+      "Les claus desades en fitxers del teu ordinador. De cadascuna apunta de quin tipus és i on és, mai el valor."
+     ]
+    ],
+    [
+     "Què no mira",
+     [
+      "El que fa un agent mentre treballa. Llegeix el que hi ha escrit als fitxers, el que s'anomena configuració en repòs: els ajustos tal com estan desats, no el que l'agent en fa.",
+      "El que fa per dins una eina MCP, que és una peça que afegeix eines a un agent.",
+      "El magatzem de credencials de Windows.",
+      "I el que no ha pogut llegir no ho compta com a net: et diu que no ho ha pogut llegir."
+     ]
+    ],
+    [
+     "Què no fa",
+     [
+      "No canvia els teus fitxers ni els teus agents. Et diu què canviar i ho decideixes tu.",
+      "El que llegeix del teu ordinador no surt sense el teu permís, i les teves claus mai."
+     ]
+    ]
+   ]
+  },
+  "try": {
+   "title": "Qui decideix?",
+   "sub": "El mateix agent, en tres modes. Mira qui dona el permís en cada acció.",
+   "do_label": "Fes això, en ordre:",
+   "do": [
+    "Mira el selector de dalt: està marcat «Manual».",
+    "Llegeix les quatre accions. Només la primera diu «Ho fa sense preguntar-te».",
+    "Prem «Auto».",
+    "Mira les accions 3 i 4: ara diuen «Ho decideix un altre model d'IA».",
+    "Mira l'acció 2: editar un fitxer ja no et pregunta.",
+    "Prem «Sense permisos».",
+    "Mira les quatre accions: totes diuen «Ho fa sense preguntar-te».",
+    "Llegeix el missatge de sota el selector.",
+    "Torna a prémer «Manual»."
+   ],
+   "modes": {
+    "label": "Mode de Claude Code",
+    "buttons": {
+     "manual": "Manual",
+     "auto": "Auto",
+     "bypass": "Sense permisos"
+    },
+    "tags": {
+     "alone": "Ho fa sense preguntar-te",
+     "you": "Et pregunta a tu",
+     "model": "Ho decideix un altre model d'IA"
+    },
+    "actions": [
+     "Llegir un fitxer del projecte",
+     "Editar un fitxer del projecte",
+     "Executar una ordre que instal·la un programa",
+     "Buscar a internet"
+    ],
+    "states": {
+     "manual": [
+      "alone",
+      "you",
+      "you",
+      "you"
+     ],
+     "auto": [
+      "alone",
+      "alone",
+      "model",
+      "model"
+     ],
+     "bypass": [
+      "alone",
+      "alone",
+      "alone",
+      "alone"
+     ]
+    },
+    "msg": {
+     "manual": "**En mode manual (Manual mode), dones tu gairebé tots els permisos.** Llegeix els fitxers del projecte sense preguntar-te, i també executa sense preguntar-te algunes ordres que només llegeixen, com `ls` o `cat`. La resta t'ho pregunta.",
+     "auto": "**En mode auto (auto mode), gairebé no et pregunta.** Abans d'executar una ordre o de sortir a internet, un altre model d'IA revisa si l'acció encaixa amb el que li has demanat. Aquest model s'anomena classificador.",
+     "bypass": "**En mode sense permisos (bypassPermissions), ningú no decideix: ho fa gairebé tot sense preguntar.** La documentació de Claude Code diu que aquest mode només s'ha de fer servir en entorns aïllats, com un contenidor o una màquina virtual."
+    },
+    "fixed": "Des de la versió 2.1.283, Claude Code comença en mode auto quan l'obres en un terminal o a VS Code, si aquest mode està disponible. Si no ho està, comença en mode manual.",
+    "note": "L'exemple és Claude Code. Les dades surten de la seva documentació oficial, comprovada el {fecha de la comprobación}.",
+    "checked": "2026-11-26"
+   },
+   "seen": [
+    "El que acabes de veure",
+    [
+     "El mateix agent pot fer molt o poc sense preguntar-te.",
+     "No depèn només de l'agent: depèn del mode i dels ajustos que tingui.",
+     "Aquests ajustos estan escrits en fitxers del teu ordinador. Això és el que llegeix RosmarOps."
+    ]
+   ]
+  },
+  "check": {
+   "intro": "",
+   "game": {
+    "title": "Ho veu RosmarOps?",
+    "sub": "Passa alguna cosa al teu ordinador. L'inspector ho veu?",
+    "header": "Passa alguna cosa. Ho veu?",
+    "question": "",
+    "options": [
+     "Ho veu",
+     "No ho veu"
+    ],
+    "exclusive": [
+     0,
+     1
+    ],
+    "buttons": {
+     "check": "Comprova",
+     "next": "Següent",
+     "result": "Mira el resultat",
+     "again": "Torna a jugar"
+    },
+    "card": "Cas {i} de 6",
+    "right": "Correcte.",
+    "wrong": "No del tot.",
+    "source": "On es diu: {source}",
+    "items": [
+     {
+      "text": "Claude Code treballa en mode auto, perquè ve així de fàbrica.",
+      "answer": [
+       0
+      ],
+      "expl": "El mode és als ajustos de l'agent o és el valor que porta de fàbrica. RosmarOps llegeix tots dos.",
+      "source": "Observatori, fitxa de Claude Code; documentació oficial de Claude Code, «Permission modes»."
+     },
+     {
+      "text": "Ahir, durant una sessió, el teu agent va esborrar una carpeta.",
+      "answer": [
+       1
+      ],
+      "expl": "RosmarOps no veu què passa mentre l'agent treballa. Et pot dir que tenia permís per executar ordres sense preguntar-te, però no què n'ha fet.",
+      "source": "Metodologia del web, apartat «El que no mesura»."
+     },
+     {
+      "text": "Tens una clau de Stripe desada en un fitxer `.env` d'un projecte.",
+      "answer": [
+       0
+      ],
+      "expl": "Un fitxer `.env` és un fitxer de text on molts programes desen les seves claus. RosmarOps apunta de quin tipus és la clau, on és i una empremta per reconèixer-la. Mai el valor.",
+      "source": "Glossari del web, «Empremta d'una clau»."
+     },
+     {
+      "text": "Als ajustos de Claude Code has escrit que pot executar qualsevol ordre sense preguntar-te.",
+      "answer": [
+       0
+      ],
+      "expl": "És un ajust escrit en un fitxer. És just el que llegeix RosmarOps: quin permís té cada cosa que l'agent pot fer.",
+      "source": "Glossari del web, «Permetre, preguntar, denegar»."
+     },
+     {
+      "text": "Una eina MCP que fa servir el teu agent envia, per dins, les teves dades a un altre lloc.",
+      "answer": [
+       1
+      ],
+      "expl": "Veu que l'agent té aquesta eina i què li deixa fer, però no el que l'eina fa per dins.",
+      "source": "Metodologia del web, apartat «El que no mesura»."
+     },
+     {
+      "text": "Deses una contrasenya al magatzem de credencials de Windows.",
+      "answer": [
+       1
+      ],
+      "expl": "Aquest magatzem queda fora del que llegeix avui. L'informe ho diu a la línia «Fuera del alcance de este análisis».",
+      "source": "Metodologia del web, apartat «El que no mesura»."
+     }
+    ],
+    "end": {
+     "high": "Ja saps què mira l'inspector.",
+     "mid": "Vas bé.",
+     "low": "Torna al pas 2."
+    },
+    "always": "A la lliçó 2 veuràs com s'encadena tot això."
+   },
+   "test": {
+    "title": "Test",
+    "counter": "Pregunta {i} de 4",
+    "right": "Exacte.",
+    "wrong": "No del tot.",
+    "buttons": {
+     "next": "Següent",
+     "result": "Mira el resultat",
+     "again": "Torna a començar"
+    },
+    "result": "{score} de 4.",
+    "all": "Ja saps què mira l'inspector.",
+    "less": "Torna al pas 3, prova els tres modes i repeteix el test.",
+    "items": [
+     {
+      "q": "Què és un agent d'IA?",
+      "options": [
+       "Un programa que només respon preguntes",
+       "Un programa d'IA que també fa coses per tu: llegir fitxers, executar ordres, fer servir els teus comptes",
+       "Un programa que vigila el teu ordinador"
+      ],
+      "answer": 1,
+      "expl": "No només respon: actua. Per això importa el que pot fer sense preguntar-te."
+     },
+     {
+      "q": "Claude Code és en mode auto i està a punt d'executar una ordre que instal·la un programa. Qui decideix?",
+      "options": [
+       "Tu",
+       "Un altre model d'IA, que revisa si l'acció encaixa amb el que li has demanat",
+       "Ningú"
+      ],
+      "answer": 1,
+      "expl": "En mode auto gairebé no et pregunta res. Abans d'executar una ordre, un altre model revisa l'acció."
+     },
+     {
+      "q": "Què llegeix RosmarOps?",
+      "options": [
+       "El que fa cada agent mentre treballa",
+       "El que cada agent té permès, als fitxers del teu ordinador",
+       "Res del teu ordinador: només mira internet"
+      ],
+      "answer": 1,
+      "expl": "Llegeix la configuració en repòs: els ajustos tal com estan desats."
+     },
+     {
+      "q": "El teu informe treu un 100. Què vol dir?",
+      "options": [
+       "Que el teu ordinador no té cap risc",
+       "Que no ha trobat exposició en el que ha pogut llegir",
+       "Que els teus agents estan apagats"
+      ],
+      "answer": 1,
+      "expl": "Un 100 mai no vol dir que no hi hagi risc. Vol dir que, en el que ha llegit, no ha trobat res a l'abast d'un agent sense preguntar-te."
+     }
+    ]
+   }
+  },
+  "computer": {
+   "sub": "Deu minuts. Passa RosmarOps per primera vegada i llegeix el bloc «Resultado».",
+   "intro": "L'informe de RosmarOps encara no està en català: si tens l'ordinador en català, el veuràs en castellà. Per això, aquí els textos de l'informe surten en castellà.",
+   "see_label": "El que veus:",
+   "steps": [
+    {
+     "do": "Descarrega RosmarOps.",
+     "link": [
+      "Descarrega'l",
+      "/ca/descarregar?from=course"
+     ],
+     "see": "la pàgina de descàrrega, amb el programa per al teu sistema: Windows, macOS o Linux.",
+     "after": [
+      {
+       "text": "Si encara no el vols instal·lar, fes aquests passos amb l'informe d'exemple.",
+       "link": [
+        "informe d'exemple",
+        "/ca/informe-dexemple/"
+       ]
+      }
+     ]
+    },
+    {
+     "do": "Obre'l. A Windows, fes doble clic a `rosmarops.exe`. A macOS i Linux, segueix les instruccions de la pàgina de descàrrega.",
+     "see": "el programa busca els teus projectes sol. Si no en troba cap, et demana que triïs la carpeta on els tens."
+    },
+    {
+     "do": "Espera que acabi. Sol trigar menys de 5 minuts; amb molts projectes, fins a 20.",
+     "see": "l'informe s'obre sol al navegador. A dalt hi diu «Informe RosmarOps»."
+    },
+    {
+     "do": "Mira el primer bloc, «Resultado», i llegeix la primera frase.",
+     "see": "una d'aquestes tres frases:",
+     "see_list": [
+      "«Al menos uno de tus agentes puede hacer mucho en este ordenador sin preguntarte.»",
+      "«Tus agentes te preguntan casi siempre, pero quedan huecos abiertos.»",
+      "«En lo que RosmarOps ha revisado, tus agentes te preguntan antes de actuar.»"
+     ]
+    },
+    {
+     "do": "Mira el número del costat.",
+     "see": "una nota sobre 100 i una paraula: «Expuesto», «Huecos abiertos» o «Contenido». Com més alta és la nota, menys exposats estan els teus agents."
+    },
+    {
+     "do": "Llegeix la frase de sota.",
+     "see": "una cosa com «Nota de Claude Code, tu agente con menos control: hace bastante sin preguntarte (clase C). Con los ajustes de fábrica sacaría 70.»",
+     "after": [
+      {
+       "text": "L'agent que anomena és el que fa més coses sense preguntar-te. Apunta-te'l."
+      }
+     ]
+    },
+    {
+     "do": "Busca la targeta «Empieza por aquí», al mateix bloc.",
+     "see": "el primer que convé canviar. Ho pots fer ara, o esperar a la lliçó 2, que explica per què és això i no una altra cosa."
+    }
+   ],
+   "none_title": "I si no veus cap nota?",
+   "none": "Si hi posa «Sin nota:», l'informe et diu per què. Per exemple: «no se encontró ningún agente de IA» o «no se pudo leer todo»."
+  },
+  "take": {
+   "items": [
+    "Un agent d'IA fa coses al teu ordinador, i algunes sense preguntar-te.",
+    "Qui dona el permís depèn del mode: tu, un altre model d'IA o ningú.",
+    "RosmarOps llegeix el que cada agent té permès, no el que fa mentre treballa, i no canvia res."
+   ],
+   "terms_label": "Termes nous",
+   "terms": [
+    [
+     "Agent d'IA",
+     "agent"
+    ],
+    [
+     "Sense preguntar-te",
+     "ask"
+    ],
+    [
+     "Et pregunta abans",
+     "asks-first"
+    ],
+    [
+     "Model classificador",
+     "classifier"
+    ],
+    [
+     "Servidor MCP",
+     "mcp"
+    ],
+    [
+     "Clau o credencial",
+     "credential"
+    ],
+    [
+     "Empremta d'una clau",
+     "key-fingerprint"
+    ]
+   ],
+   "button": "Següent: Lliçó 2 · La cadena",
+   "button_to": "the-chain",
+   "footer": "Cada dada d'aquesta lliçó surt del codi de RosmarOps, que és públic (github.com/qtorb/rosmarops), de l'Observatori i de la documentació oficial de Claude Code."
+  }
+ }
+}
