@@ -419,7 +419,8 @@ class Agents(unittest.TestCase):
             for page in (SITE / index).glob("*/index.html"):
                 aid = page.parent.name
                 if aid in ("ai-agent-map", "mapa-agentes-ia", "mapa-agents-ia",  # GTM-138: the map page, not an agent page
-                           "ai-agents-with-sandbox", "agentes-ia-con-sandbox", "agents-ia-amb-sandbox"):  # GTM-167: the sandbox comparison
+                           "ai-agents-with-sandbox", "agentes-ia-con-sandbox", "agents-ia-amb-sandbox",  # GTM-167: the sandbox comparison
+                           "control-baseline", "minimo-de-control", "minim-de-control"):  # GTM-223: the Control Baseline page
                     continue
                 st = page.read_text(encoding="utf-8")
                 status, body = self.route(f"{prefix}history-{aid}.html")
