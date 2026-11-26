@@ -385,7 +385,7 @@
      "see": "under the block's title, a line with the numbers, like “3 problems · 5 findings · 1 urgent · 2 to review”. The word “KEY” is in capitals, above the problem's title, with an icon on the left.",
      "after": [
       {
-       "text": "**Can't see the key problem?** If you have more than six problems, the rest are folded at the end of the table, in the link “The other {n} problems ({m} findings)”. Tap it to open them."
+       "text": "**Can't see the key problem?** If you have more than six problems, the rest are folded at the end of the table, in a link like “The other 5 problems (12 findings)”. Tap it to open them."
       }
      ]
     },
@@ -834,7 +834,7 @@
      "see": "debajo del título del bloque, una línea con los números, como «3 problemas · 5 avisos · 1 urgente · 2 para revisar». La palabra «CLAVE» va en mayúsculas, encima del título del problema, con un icono a la izquierda.",
      "after": [
       {
-       "text": "**¿No ves el problema de la clave?** Si tienes más de seis problemas, los demás están plegados al final de la tabla, en el enlace «Los otros {n} problemas ({m} avisos)». Tócalo para abrirlos."
+       "text": "**¿No ves el problema de la clave?** Si tienes más de seis problemas, los demás están plegados al final de la tabla, en un enlace como «Los otros 5 problemas (12 avisos)». Tócalo para abrirlos."
       }
      ]
     },
@@ -1283,7 +1283,7 @@
      "see": "sota el títol del bloc, una línia amb els números, com «3 problemas · 5 avisos · 1 urgente · 2 para revisar». La paraula «CLAVE» va en majúscules, damunt del títol del problema, amb una icona a l'esquerra.",
      "after": [
       {
-       "text": "**No veus el problema de la clau?** Si tens més de sis problemes, els altres estan plegats al final de la taula, a l'enllaç «Los otros {n} problemas ({m} avisos)». Toca'l per obrir-los."
+       "text": "**No veus el problema de la clau?** Si tens més de sis problemes, els altres estan plegats al final de la taula, en un enllaç com «Los otros 5 problemas (12 avisos)». Toca'l per obrir-los."
       }
      ]
     },

@@ -291,6 +291,20 @@ class Six(unittest.TestCase):
             self.assertIn(f'href="{ENTRY["path"][lang]}">{course_pages.esc(DATA[lang]["take"]["button"])}</a>',
                           built[PATHS[lang]])
 
+    def test_no_braces_in_sight(self):
+        """GTM-229: no { or } is left for a reader to see, in the served HTML or in the texts the script shows
+        (where only {i}, {score} and {source} are placeholders the script fills in)."""
+        for paths in (PATHS, ONE_PATHS):
+            for lang in MESSAGES:
+                s = page(lang, paths)
+                body = s[s.index("<main"):s.index("</main>")]
+                text = re.sub(r"<[^>]+>", " ", re.sub(r"<(script|style)\b.*?</\1>", " ", body, flags=re.S))
+                m = re.search(r".{0,40}[{}].{0,40}", text)
+                self.assertIsNone(m, (lang, paths[lang], m and m.group(0)))
+                data = json.loads(re.search(r'<script type="application/json" id="cs-data">(.*?)</script>', s, re.S).group(1))
+                for x in course_pages.strings(data):
+                    self.assertNotRegex(re.sub(r"\{(i|score|source)\}", "", x), r"[{}]", (lang, x))
+
     def test_english_quotes(self):
         for paths in (PATHS, ONE_PATHS):
             s = page("en", paths)
