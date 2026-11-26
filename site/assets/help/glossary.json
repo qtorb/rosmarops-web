@@ -71,6 +71,22 @@
   "network-cut": [
    "Network cut",
    "A setting that stops what the agent launches from reaching the internet. It almost always lives inside the sandbox and ships turned off, and in some agents it only works on Linux. It doesn't always cover the agent's own web search. The Observatory shows which agents have it and on which systems."
+  ],
+  "key-fingerprint": [
+   "Key fingerprint",
+   "A code worked out from a key with a value unique to your computer, which lets the same key be recognised in two places without keeping it. Of a key, RosmarOps keeps what type it is, where it is and its fingerprint, never the value; if it shows it, only the first 4 and the last 4 characters."
+  ],
+  "capability": [
+   "Capability",
+   "Something an agent can do: run commands, read or write files, use the network, call an MCP tool or operate an app. For each capability RosmarOps records whether it is allowed, asked, denied or unknown, and where that comes from: a file, the product's default or your own answer."
+  ],
+  "resource": [
+   "Resource",
+   "Something an agent can reach or change: a file, a database, an outside service, a git repository, or another agent's configuration, instructions or program. RosmarOps links each resource to the agents that can reach it."
+  ],
+  "allow-ask-deny": [
+   "Allow, ask, deny",
+   "The three permissions an agent can have for a capability: it does it without asking you, it asks your permission each time, or it never does it. RosmarOps reads which one each capability has from your files or from the agent's default, and says so when it cannot tell."
   ]
  },
  "es": {
@@ -145,6 +161,22 @@
   "network-cut": [
    "Corte de red",
    "Un ajuste que impide que lo que lanza el agente se conecte a internet. Casi siempre va dentro del sandbox y viene apagado, y en algunos agentes solo funciona en Linux. No siempre cubre la búsqueda web del propio agente. En el Observatorio ves qué agentes lo tienen y en qué sistemas."
+  ],
+  "key-fingerprint": [
+   "Huella de una clave",
+   "Un código que se calcula a partir de una clave con un valor propio de tu ordenador, y que permite reconocer la misma clave en dos sitios sin guardarla. De una clave, RosmarOps guarda de qué tipo es, dónde está y su huella, nunca el valor; si la enseña, solo los 4 primeros y los 4 últimos caracteres."
+  ],
+  "capability": [
+   "Capacidad",
+   "Algo que un agente puede hacer: ejecutar órdenes, leer o escribir ficheros, usar la red, llamar a una herramienta MCP o manejar una aplicación. De cada capacidad, RosmarOps anota si se permite, se pregunta, se deniega o no se sabe, y de dónde sale: de un fichero, del valor que trae el producto o de lo que tú le contestas."
+  ],
+  "resource": [
+   "Recurso",
+   "Algo que un agente puede alcanzar o cambiar: un fichero, una base de datos, un servicio de fuera, un repositorio de git, o la configuración, las instrucciones o el programa de otro agente. RosmarOps une cada recurso con los agentes que pueden llegar a él."
+  ],
+  "allow-ask-deny": [
+   "Permitir, preguntar, denegar",
+   "Los tres permisos que un agente puede tener para una capacidad: la hace sin preguntarte, te pide permiso cada vez o no la hace nunca. RosmarOps lee cuál tiene cada capacidad en tus ficheros o en el valor que trae el agente, y si no lo puede saber, lo dice."
   ]
  },
  "ca": {
@@ -219,6 +251,22 @@
   "network-cut": [
    "Tall de xarxa",
    "Un ajust que impedeix que el que llança l'agent es connecti a internet. Gairebé sempre va dins del sandbox i ve apagat, i en alguns agents només funciona a Linux. No sempre cobreix la cerca web del mateix agent. A l'Observatori veus quins agents en tenen i en quins sistemes."
+  ],
+  "key-fingerprint": [
+   "Empremta d'una clau",
+   "Un codi que es calcula a partir d'una clau amb un valor propi del teu ordinador, i que permet reconèixer la mateixa clau en dos llocs sense desar-la. D'una clau, RosmarOps desa de quin tipus és, on és i la seva empremta, mai el valor; si l'ensenya, només els 4 primers i els 4 últims caràcters."
+  ],
+  "capability": [
+   "Capacitat",
+   "Una cosa que un agent pot fer: executar ordres, llegir o escriure fitxers, fer servir la xarxa, cridar una eina MCP o manejar una aplicació. De cada capacitat, RosmarOps anota si es permet, es pregunta, es denega o no se sap, i d'on surt: d'un fitxer, del valor que porta el producte o del que tu li contestes."
+  ],
+  "resource": [
+   "Recurs",
+   "Una cosa que un agent pot abastar o canviar: un fitxer, una base de dades, un servei de fora, un repositori de git, o la configuració, les instruccions o el programa d'un altre agent. RosmarOps uneix cada recurs amb els agents que hi poden arribar."
+  ],
+  "allow-ask-deny": [
+   "Permetre, preguntar, denegar",
+   "Els tres permisos que un agent pot tenir per a una capacitat: la fa sense preguntar-te, et demana permís cada vegada o no la fa mai. RosmarOps llegeix quin té cada capacitat als teus fitxers o al valor que porta l'agent, i si no ho pot saber, ho diu."
   ]
  }
 }

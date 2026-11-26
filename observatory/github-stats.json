@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-11-25T09:27:04Z",
+  "generated_at": "2026-11-26T05:25:56Z",
   "repo": {
-    "stargazers_count": 1,
+    "stargazers_count": 2,
     "subscribers_count": 0,
     "forks_count": 0,
     "open_issues_count": 0
@@ -15,11 +15,11 @@
       "assets": [
         {
           "name": "exposure-potential.json",
-          "download_count": 1
+          "download_count": 2
         },
         {
           "name": "factory-scores.json",
-          "download_count": 1
+          "download_count": 2
         },
         {
           "name": "profile-scores.json",
@@ -27,11 +27,11 @@
         },
         {
           "name": "rosmarops-linux-amd64",
-          "download_count": 1
+          "download_count": 2
         },
         {
           "name": "rosmarops-linux-arm64",
-          "download_count": 2
+          "download_count": 4
         },
         {
           "name": "rosmarops-macos-apple-silicon",
@@ -43,19 +43,19 @@
         },
         {
           "name": "rosmarops.exe",
-          "download_count": 1
+          "download_count": 3
         },
         {
           "name": "sample-report.en.html",
-          "download_count": 1
+          "download_count": 2
         },
         {
           "name": "sample-report.es.html",
-          "download_count": 1
+          "download_count": 2
         },
         {
           "name": "SHA256SUMS.txt",
-          "download_count": 3
+          "download_count": 5
         }
       ]
     },

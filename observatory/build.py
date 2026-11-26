@@ -191,9 +191,10 @@ CLOUD_FAMILY = {"grok-bot"}
 # Frameworks: kinds has framework or agent_tooling, without orchestrator. Workflow automation: kinds has
 # workflow_automation, even with local_footprint "no". In the cloud and personal: local_footprint "no" or kinds has
 # personal_agent. On your computer: the rest (GTM-57).
-FAMILIES = ("local", "orchestrators", "tooling", "automation", "cloud")
+# GTM-208 (signed by Albert 25-11): a sixth family, no-code agent builders (kinds has agent_builder), after automation.
+FAMILIES = ("local", "orchestrators", "tooling", "automation", "builders", "cloud")
 FAMILY_H2 = {"local": "index.agents_h2", "orchestrators": "index.orchestrators_h2", "tooling": "index.tooling_h2",
-             "automation": "index.automation_h2", "cloud": "index.cloud_h2"}
+             "automation": "index.automation_h2", "builders": "index.builders_h2", "cloud": "index.cloud_h2"}
 
 
 def family(a):
@@ -204,6 +205,8 @@ def family(a):
         return "tooling"
     if "workflow_automation" in ag["kinds"]:
         return "automation"
+    if "agent_builder" in ag["kinds"]:
+        return "builders"
     if ag["local_footprint"] == "no" or "personal_agent" in ag["kinds"] or ag["id"] in CLOUD_FAMILY:
         return "cloud"
     return "local"
@@ -279,13 +282,22 @@ def ld(obj):
     return '<script type="application/ld+json">' + s.replace("</", "<\\/") + "</script>"
 
 
+# GTM-210 (advisor, 25-11): schema.org applicationCategory by family. No-code agent builders are
+# BusinessApplication; every other family stays DeveloperApplication, workflow automation included.
+APP_CATEGORY = {"builders": "BusinessApplication"}
+
+
+def app_category(a):
+    return APP_CATEGORY.get(family(a), "DeveloperApplication")
+
+
 def software_app(a):
     ag = a["agent"]
     os_names = {"windows": "Windows", "macos": "macOS", "linux": "Linux", "web": "Web", "python": "Python"}
     return {
         "@type": "SoftwareApplication",
         "name": ag["name"],
-        "applicationCategory": "DeveloperApplication",
+        "applicationCategory": app_category(a),
         "operatingSystem": ", ".join(os_names[p] for p in ag["platforms"]),
         "author": {"@type": "Organization", "name": ag["vendor"]},
     }
@@ -471,6 +483,8 @@ def page(lang, t, *, path, title, description, alternates, jsonld, body, og_type
 
 
 def write(path, content):
+    import star_card  # GTM-206: the GitHub star card, on pages with a marked download block
+    content = star_card.apply(content)
     out = SITE / path.lstrip("/")
     if path.endswith("/"):
         out = out / "index.html"
@@ -871,7 +885,7 @@ def build_agent(lang, t, a):
 <section id="rosmarops" class="box panel" aria-labelledby="rosmarops-h">
 <h2 id="rosmarops-h">{t("agent.rosmarops_h2" + sfx)}</h2>
 <p>{rosm}</p>
-<div class="actions"><a class="btn primary" href="{esc(t.text("site.download_url") + ("?from=observatory-" + ag["id"] if is_published(a) else ""))}" target="_blank" rel="nofollow noopener">{t("agent.cta_download")}</a></div>
+<div class="actions" data-star-block><a class="btn primary" href="{esc(t.text("site.download_url") + ("?from=observatory-" + ag["id"] if is_published(a) else ""))}" target="_blank" rel="nofollow noopener">{t("agent.cta_download")}</a></div>
 </section>
 {try_html}
 {more_html}
@@ -1228,6 +1242,8 @@ def main():
         templates_pages.build(SITE)
         import topic_pages  # GTM-198: /agent-orchestrators/, /claude-code-subagents/, /mcp-servers/ and their ES and CA pages
         topic_pages.build(SITE)
+        import course_pages  # GTM-206: lesson 2 of the course, noindex and not linked until Albert opens it
+        course_pages.build(SITE)
         import videos_pages  # GTM-199: /videos/ and one page per public video, in EN, ES and CA
         videos_pages.build(SITE)
     pages = 0

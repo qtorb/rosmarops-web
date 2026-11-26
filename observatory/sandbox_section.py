@@ -768,7 +768,7 @@ def article(lang, agents, review, lab=None):
 
 def download(lang):
     route, l, alt, mac, mac_label, linux = DOWNLOAD[lang]
-    return (f'<div class="dlrow"><a class="sbadge" href="{route}?from=sandbox&amp;os=store" target="_blank" rel="nofollow noopener">'
+    return (f'<div class="dlrow" data-star-block><a class="sbadge" href="{route}?from=sandbox&amp;os=store" target="_blank" rel="nofollow noopener">'
             f'<img src="/assets/store/microsoft-store-{l}.svg" width="161" height="44" alt="{esc(alt)}"></a>'
             f'<a class="hbtn sec" href="{mac}">{esc(mac_label)}</a><a class="hbtn sec" href="{linux}">Linux</a></div>')
 
@@ -854,4 +854,5 @@ def build(agents, site=SITE):
     for lang in LANGS:
         out = Path(site) / SECTION_PATH[lang].strip("/") / "index.html"
         out.parent.mkdir(parents=True, exist_ok=True)
-        out.write_text(page(lang, agents, review), encoding="utf-8")
+        import star_card  # GTM-206
+        out.write_text(star_card.apply(page(lang, agents, review)), encoding="utf-8")

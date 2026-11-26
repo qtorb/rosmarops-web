@@ -1,0 +1,1099 @@
+{
+  "date": "2026-11-26",
+  "collected_at": "2026-11-26T05:34:41Z",
+  "sources": [
+    {
+      "id": "F1",
+      "opened": true,
+      "reason": null,
+      "latest": "2.1.332",
+      "latest_date": "2026-11-25",
+      "new": [
+        {
+          "date": "2026-11-25",
+          "version": "2.1.332",
+          "text": "Added Added skills from MCP servers (beta). They show as server:skill in the / menu; other skills keep their names Added a PreSkillShellCommand hook event that can refuse a skill or command’s inline shell commands as it loads; on 2.1.331 and older, a settings file naming it opens a dialog at start Added “Always deliver” to the prompt for held messages from other sessions Added a footer line that stays while a flagged message has your session on a different model, until you pick one with /model Added an OpenTelemetry assistant_response event for text Claude sends through SendUserMessage or Cow…"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F2",
+      "opened": true,
+      "reason": null,
+      "latest": "v2026.11.19",
+      "latest_date": "2026-11-19",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F3",
+      "opened": true,
+      "reason": null,
+      "latest": "rust-v0.172.0",
+      "latest_date": "2026-11-23",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F4",
+      "opened": true,
+      "reason": null,
+      "latest": "v2.35.2",
+      "latest_date": "2026-11-25",
+      "new": [
+        {
+          "date": "2026-11-25",
+          "version": "v2.35.2",
+          "text": "### Switch models while a turn is running This release lets you change the selected model while a conversation turn is running, with a tooltip clarifying when the change takes effect. It includes 1 fix. Fixes(1) Fixed an issue where the model selector was locked while a turn was running, preventing you from switching models before sending a /btw side question or follow-up message. The selector now stays interactive with a tooltip noting when the change takes effect."
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F5",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.23.4",
+      "latest_date": "2026-11-24",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F6",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-25",
+      "new": [
+        {
+          "date": "2026-11-25",
+          "version": null,
+          "text": "Nov.25 Improvement Copilot code review billing will default to the organization copilot ###"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F7",
+      "opened": true,
+      "reason": null,
+      "latest": "v4.1.27",
+      "latest_date": "2026-11-21",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F8",
+      "opened": true,
+      "reason": null,
+      "latest": "v2.1.0-vscode",
+      "latest_date": "2026-06-19",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F9",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.5.0",
+      "latest_date": "2026-11-09",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F10",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-26",
+      "new": [
+        {
+          "date": "2026-11-25",
+          "version": null,
+          "text": "MAL-0000-ghsa-malware-37b2b785dfe430d2 create-ai-agent-setup: Malware in create-ai-agent-setup"
+        },
+        {
+          "date": "2026-11-25",
+          "version": null,
+          "text": "MAL-0000-ghsa-malware-900fbfa48c7cc383 glbl-agent: Malware in glbl-agent"
+        },
+        {
+          "date": "2026-11-25",
+          "version": null,
+          "text": "MAL-0000-kam193-51ea75831e1ef2d4 mcp-diag-7f3a: Pentesting or research code in mcp-diag-7f3a (PyPI)"
+        },
+        {
+          "date": "2026-11-25",
+          "version": null,
+          "text": "MAL-0000-kam193-efc471317c1a84db mcp-diag-7f3a: Malicious code in mcp-diag-7f3a (PyPI)"
+        },
+        {
+          "date": "2026-11-25",
+          "version": null,
+          "text": "MAL-2026-20611 mcp-diag-7f3a: Malicious code in mcp-diag-7f3a (PyPI)"
+        },
+        {
+          "date": "2026-11-25",
+          "version": null,
+          "text": "MAL-0000-kam193-4c0bf9342dc65fdf mcp-env-report: Malicious code in mcp-env-report (PyPI)"
+        },
+        {
+          "date": "2026-11-25",
+          "version": null,
+          "text": "MAL-2026-20616 mcp-env-report: Malicious code in mcp-env-report (PyPI)"
+        },
+        {
+          "date": "2026-11-25",
+          "version": null,
+          "text": "MAL-0000-kam193-7d46b3d2a3e2eab9 mcp-runtime-report: Malicious code in mcp-runtime-report (PyPI)"
+        },
+        {
+          "date": "2026-11-25",
+          "version": null,
+          "text": "MAL-2026-20617 mcp-runtime-report: Malicious code in mcp-runtime-report (PyPI)"
+        },
+        {
+          "date": "2026-11-25",
+          "version": null,
+          "text": "MAL-0000-kam193-386219272c8bbd5e mcp-sysinfo-tools: Malicious code in mcp-sysinfo-tools (PyPI)"
+        },
+        {
+          "date": "2026-11-25",
+          "version": null,
+          "text": "MAL-2026-20618 mcp-sysinfo-tools: Malicious code in mcp-sysinfo-tools (PyPI)"
+        }
+      ],
+      "ids": [
+        "MAL-0000-ghsa-malware-37b2b785dfe430d2",
+        "MAL-0000-ghsa-malware-900fbfa48c7cc383",
+        "MAL-0000-kam193-386219272c8bbd5e",
+        "MAL-0000-kam193-4c0bf9342dc65fdf",
+        "MAL-0000-kam193-51ea75831e1ef2d4",
+        "MAL-0000-kam193-7d46b3d2a3e2eab9",
+        "MAL-0000-kam193-efc471317c1a84db",
+        "MAL-2026-20611",
+        "MAL-2026-20616",
+        "MAL-2026-20617",
+        "MAL-2026-20618"
+      ],
+      "read_with": "git"
+    },
+    {
+      "id": "F11",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.71.1",
+      "latest_date": "2026-11-24",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F12",
+      "opened": true,
+      "reason": null,
+      "latest": "1.0.116",
+      "latest_date": "2026-11-25",
+      "new": [
+        {
+          "date": "2026-11-25",
+          "version": "1.0.116",
+          "text": "- Add a build-time JSON Schema for extension manifests - Click \"Jump to latest\" in the fullscreen timeline to return to the newest output and resume following it. - Choose the context size for supported models in ACP-compatible editors without changing your saved defaults. - Set environment variables for every process Copilot starts (shell commands, local LSP and MCP servers, hooks and extensions) with the env setting, with or without the sandbox - Warn when a plugin and a standalone MCP server connect to the same endpoint, and show how to disable one in /mcp - Warn when a plugin and a standa…"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F13",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-24",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F14",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-26",
+      "new": [
+        {
+          "date": "2026-11-25",
+          "version": null,
+          "text": "MAL-2026-20623 create-ai-agent-setup: Malicious code in create-ai-agent-setup (npm)"
+        },
+        {
+          "date": "2026-11-25",
+          "version": null,
+          "text": "MAL-2026-20601 glbl-agent: Malicious code in glbl-agent (npm)"
+        },
+        {
+          "date": "2026-11-25",
+          "version": null,
+          "text": "MAL-2026-20616 mcp-env-report: Malicious code in mcp-env-report (PyPI)"
+        },
+        {
+          "date": "2026-11-25",
+          "version": null,
+          "text": "MAL-2026-20617 mcp-runtime-report: Malicious code in mcp-runtime-report (PyPI)"
+        },
+        {
+          "date": "2026-11-25",
+          "version": null,
+          "text": "MAL-2026-20618 mcp-sysinfo-tools: Malicious code in mcp-sysinfo-tools (PyPI)"
+        },
+        {
+          "date": "2026-11-25",
+          "version": null,
+          "text": "MAL-2026-20611 mcp-diag-7f3a: Malicious code in mcp-diag-7f3a (PyPI)"
+        }
+      ],
+      "ids": [
+        "MAL-2026-20601",
+        "MAL-2026-20611",
+        "MAL-2026-20616",
+        "MAL-2026-20617",
+        "MAL-2026-20618",
+        "MAL-2026-20623"
+      ],
+      "read_with": "curl"
+    },
+    {
+      "id": "F15",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-25",
+      "new": [
+        {
+          "date": "2026-11-25",
+          "version": null,
+          "text": "CVE-2026-133462 [MCP]: AutoGPT is a workflow automation platform for creating, deploying, and managing continuous artificial intelligence agents. From 0.6.49 before 0.11.0, the MCPToolBlock auto-lookup allows a shared agent's author to use the MCP credentials of the user who runs it. Anyone who ran a shared agent containing an MCPToolBlock node, and had already connected the MCP server URL that the node names, had that connection used for any read, write, or delete the server exposes, with the result sent to a host chosen by the author. This issue is fixed in version 0.11.0."
+        },
+        {
+          "date": "2026-11-25",
+          "version": null,
+          "text": "CVE-2026-136620 [MCP]: pain001-mcp 0.0.72 before 0.0.80 contains a path traversal vulnerability in the commit_payment_batch MCP tool that allows attackers to write files outside any output directory via output_file_path. Attackers can stage a batch, reuse the self-issued confirmation_token, and supply absolute, dot-dot, or symlinked paths to create or overwrite server-writable files with generated XML."
+        },
+        {
+          "date": "2026-11-25",
+          "version": null,
+          "text": "CVE-2026-136630 [MCP]: Electerm before 5.9.0 contains an origin validation vulnerability in the MCP Server widget that allows remote attackers to execute commands by bypassing Host and Origin checks through DNS rebinding. Attackers can lure users to a page that rebinds to 127.0.0.1 and calls unauthenticated MCP tools on port 30837 to run OS commands locally and on open SSH sessions."
+        },
+        {
+          "date": "2026-11-25",
+          "version": null,
+          "text": "CVE-2026-135221 [MCP]: GitLab has remediated an issue in GitLab EE affecting all versions from 18.10 before 19.4.11, 19.5 before 19.5.9, and 19.6 before 19.6.2 that under certain conditions could have allowed an authenticated user to perform server-side request forgery against internal network resources due to insufficient URL validation in MCP server OAuth handling."
+        },
+        {
+          "date": "2026-11-25",
+          "version": null,
+          "text": "CVE-2026-132260 [Claude Code]: AutoGPT is a workflow automation platform for creating, deploying, and managing continuous artificial intelligence agents. From 0.4.2 before 0.11.0, the E2B code-execution blocks ExecuteCodeBlock, InstantiateCodeSandboxBlock, and ClaudeCodeBlock can leave sandboxes running on the operator's shared E2B credential for up to the sandbox's full timeout, while users are billed only for the block's run time. Any user with a positive credit balance can keep sandboxes running for up to 24 hours on a Pro plan for a flat 1 credit, and each run adds another sandbox. This i…"
+        },
+        {
+          "date": "2026-11-25",
+          "version": null,
+          "text": "CVE-2026-136499 [Cursor]: psqlODBC read memory it had not written, or memory past the end of an application buffer, and sent it to the server or returned it to the application: - Text bound as SQL_C_CHAR to a large-object parameter was read past the end of the application's buffer, and the extra bytes were stored in the large object. - After a fetch truncated a long bytea or large-object value, positioned updates and inserts read past the bound buffer and wrote that memory into the row. - Hex text with a NUL byte, bound to a binary parameter with an explicit length, sent uninitialised heap me…"
+        },
+        {
+          "date": "2026-11-25",
+          "version": null,
+          "text": "CVE-2026-136500 [Cursor]: To escape a bound parameter, or a name passed to a catalog function, psqlODBC has to know where each multibyte character of the client encoding ends. It treated a client encoding named by an alias the server accepts, such as WIN950, Windows950 or big-5 for BIG5, as single-byte, and it accepted too narrow a range of lead bytes for JOHAB, EUC_TW, EUC_CN and EUC_KR. A quote byte that the server reads as part of such a character was then not doubled, or a quote the server reads on its own was taken for part of a character, and the literal ended early. An end user who con…"
+        },
+        {
+          "date": "2026-11-25",
+          "version": null,
+          "text": "CVE-2026-136501 [Cursor]: To build positioned updates and to describe columns, psqlODBC matches the names in a statement against the catalog. Where it matched differently from the server, it used another table or column: - Table and schema names were compared case-insensitively in its column-information cache, so users could be taken for another user's \"Users\", and the driver then evaluated that table's column default to answer @@IDENTITY. - In FROM ONLY t, ONLY was taken for the table name. - Column names were compared case-insensitively, so with Parse=1 the type of another column could deci…"
+        },
+        {
+          "date": "2026-11-25",
+          "version": null,
+          "text": "CVE-2026-136502 [Cursor]: psqlODBC scans statement text itself to substitute parameters, translate ODBC escapes, join batched statements and rewrite queries for updatable cursors. Where it read the text differently from the server, text the driver took for data ran as SQL, or a positioned write went to another table: - An escape string constant written e'…' in lower case was not recognised as one, and '…' after a keyword ending in E, as in LIKE'…', was taken for one. - A } inside a quoted literal ended an ODBC {d …}, {t …}, {ts …} or {escape …} sequence. - Dollar-quote tags containing _ were…"
+        },
+        {
+          "date": "2026-11-25",
+          "version": null,
+          "text": "CVE-2026-136503 [Cursor]: psqlODBC frees memory that is still in use, frees it twice, or writes outside an application buffer in these cases: - The clean-up the driver runs at commit and rollback sends queries of its own, and the reply to one of them can start the clean-up again while it is running. The nested run frees the rollback log, or the list of cursors and prepared statements to close, and the outer run uses and frees it again. - The callback through which libpq delivers notices could run that clean-up, and close the connection, while libpq was still using the connection. - Freeing a…"
+        },
+        {
+          "date": "2026-11-25",
+          "version": null,
+          "text": "CVE-2026-136505 [Cursor]: psqlODBC uses sizes and counts without checking their range, or keeps them in types too small for them: - A row array size of 0, set with SQLSetStmtAttr() or on the ARD, makes SQLSetPos() with SQL_REFRESH write past the bound arrays. - SQL_DESC_COUNT above 32767 on an APD or IPD writes before the start of a heap buffer. - A numeric parameter with a negative scale overflows a stack buffer. - SQLGetData() of a text value of 2 GiB or more into a wide-character buffer computes a wrapped size and overflows the heap. - The 16-bit reference count and size of the statement p…"
+        },
+        {
+          "date": "2026-11-25",
+          "version": null,
+          "text": "CVE-2026-136506 [Cursor]: psqlODBC builds queries of its own from names, and put these names into them without escaping or qualification: - the database name in SQLForeignKeys(); - the current schema name in catalog functions; - the table name in the currtid2() call that re-reads rows of updatable cursors; - column names in the inserts and updates of SQLSetPos() and SQLBulkOperations(); - cursor names set with SQLSetCursorName() or returned as refcursors (FetchRefcursors=1); - parameter names (SQL_DESC_NAME) in procedure calls; - the = operator in an OID comparison in SQLColumns(), which the…"
+        },
+        {
+          "date": "2026-11-25",
+          "version": null,
+          "text": "CVE-2026-136509 [Cursor]: psqlODBC did not check that a server reply matches the query it sent: that a FETCH returns no more rows than it asked for, that each row has the described number of columns, that one query produces one result, and that a COPY, a transaction or the connection ends where the protocol says. By sending replies that do not match, a hostile or compromised server, or anyone on the network path of a connection that does not use sslmode=verify-full (the default is disable) can corrupt memory in the application: - A FETCH reply with more rows than requested overflows the row c…"
+        },
+        {
+          "date": "2026-11-25",
+          "version": null,
+          "text": "CVE-2026-136512 [Cursor]: With SQL_C_DEFAULT, the C type of a bound column or parameter follows its SQL type. An application sizes its buffer from the type it was told when it described the statement. When the column had another type at fetch time, because the server reported another type, the table was altered, or an output parameter's result column had another type, psqlODBC wrote the larger type into the smaller buffer: 12 bytes past a 4-byte buffer for a uuid, and more in multi-row fetches, where the driver also steps through the array by the larger size. Other conversions wrote past the…"
+        },
+        {
+          "date": "2026-11-25",
+          "version": null,
+          "text": "CVE-2026-136514 [Cursor]: psqlODBC assumed that a table it reads keeps the definition it had when the statement was described or parsed. A database user who owns a table or view another user's application reads can crash that application, with an honest server and default options, in these cases: - Columns dropped or added in another session while the application updates rows through an updatable cursor, or describes the columns with Parse=1. - A view whose ctid is NULL, read through an updatable cursor, which writes past the row cache, and a view with a volatile filter scrolled backward with…"
+        },
+        {
+          "date": "2026-11-25",
+          "version": null,
+          "text": "CVE-2026-136515 [Cursor]: psqlODBC rewrites statement text for keyset-driven cursors and ODBC escapes using positions it found in the text. These positions could lie outside the text or describe another statement: - After SQLExecDirect() failed on a statement handle, the FROM and WHERE positions of the failed statement were applied to the next, shorter statement on that handle. - The parser could record a FROM position with no text after it, and the rewrite then copied a negative length. - An {fn …} escape whose arguments contain FOR UPDATE, ; or INTO … FROM made the driver remove a cursor pr…"
+        },
+        {
+          "date": "2026-11-25",
+          "version": null,
+          "text": "CVE-2026-99805 [Codex]: In the Linux kernel, the following vulnerability has been resolved: net: limit priority VLAN untag depth The priority VLAN receive path can repeatedly remove VID 0 tags and retry packet processing. Unlike the read-only VLAN protocol parser, this path has no limit on the number of nested tags it consumes. Each skb_vlan_untag() advances skb->data and resets header offsets. The offsets are stored in 16-bit fields. With enough nested tags, the network or transport offset can wrap. A later protocol handler can then derive a large pull length from the wrapped offsets and acc…"
+        }
+      ],
+      "ids": [
+        "CVE-2026-132260",
+        "CVE-2026-133462",
+        "CVE-2026-135221",
+        "CVE-2026-136499",
+        "CVE-2026-136500",
+        "CVE-2026-136501",
+        "CVE-2026-136502",
+        "CVE-2026-136503",
+        "CVE-2026-136505",
+        "CVE-2026-136506",
+        "CVE-2026-136509",
+        "CVE-2026-136512",
+        "CVE-2026-136514",
+        "CVE-2026-136515",
+        "CVE-2026-136620",
+        "CVE-2026-136630",
+        "CVE-2026-99805"
+      ],
+      "read_with": "curl"
+    },
+    {
+      "id": "F16",
+      "opened": true,
+      "reason": null,
+      "latest": "v2.4.2",
+      "latest_date": "2026-11-25",
+      "new": [
+        {
+          "date": "2026-11-25",
+          "version": "v2.4.2",
+          "text": "### Highlights - **GPT-6.2 System Prompt**: GPT-6.2 Sol and Astra, and the `gpt-latest` aliases, use a system prompt written for GPT-6.2. ([#66297](https://github.com/anomalyco/opencode/pull/66297)) - **OpenCode Go Onboarding Fix**: After you connect OpenCode, the model picker lists OpenCode Go first. ([#66363](https://github.com/anomalyco/opencode/pull/66363)) - **Esc Takes Back Your Last Message**: If the composer is empty, stopping a response with Esc before the model has written anything or called a tool removes your message and puts it back in the composer, images included, so you can ed…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F17",
+      "opened": true,
+      "reason": null,
+      "latest": "3.6.0",
+      "latest_date": "2026-11-25",
+      "new": [
+        {
+          "date": "2026-11-25",
+          "version": null,
+          "text": "Models ## GPT 6.2 Astra Preview Begins Rolling Out to Kiro Enterprise GPT 6.2 Astra is beginning to roll out in Preview across Kiro clients for Kiro Enterprise organizations. It is OpenAI's frontier model for complex, multistep projects, such as implementing and testing changes in existing codebases. It has a 1M context window and a 7.2x credit multiplier, which rises to 14.4x for requests over 272K tokens. Inference runs only in the US geography. Access is limited during Preview. Organizations with access can enable GPT 6.2 Astra through model governance. Learn more ->"
+        },
+        {
+          "date": "2026-11-25",
+          "version": null,
+          "text": "General ## Credit Pooling Usage Limits and Overages in Enterprise Management Enterprise administrators can now set credit pooling usage limits and overages in Controls. Use credit_pool.usage_limit to cap the pooled credits each user can use in a billing cycle. Set it in the control on the profile as the default limit for each user, or in a control assigned to a group or a user. A user's own limit wins, then the highest limit among the user's groups, then the profile's. Use overages in the control on the profile to turn overages on or off for the whole account. Enterprise Management is in prev…"
+        },
+        {
+          "date": "2026-11-25",
+          "version": "3.6.0",
+          "text": "## Subagent Stop Hooks and Guided Compaction This release adds SubagentStop hooks, full saved Hook output, and instructions for /compact summaries. It also adds conversation recaps, notification controls, managed V2 controls, and an all-users Windows installer. ## Send a subagent one more instruction from a hook In a V3 session, a SubagentStop Hook runs when a dispatched subagent finishes and can send it one more instruction before its result returns. For any Hook, when its output exceeds 3,000 characters, Kiro CLI saves the full output and gives the agent its beginning with the saved file's…"
+        },
+        {
+          "date": "2026-11-25",
+          "version": "20261.5.37",
+          "text": "## Remote SSH, Dev Containers, and Cloud Sessions in the IDE This release lets you work in a remote environment from Kiro IDE. Connect to your own Linux machine over SSH, open a project in its Dev Container, or open a cloud session in its own Kiro window. ## Connect to a Linux machine over SSH Video transcript The video shows a local Kiro IDE window. The user adds an SSH host, then opens Connect to Host, which lists the configured host my-remote, Enter SSH Destination…, and Add New SSH Host…. After the user selects my-remote, a new Kiro window opens on the host, shows its files, and opens ind…"
+        },
+        {
+          "date": "2026-11-25",
+          "version": "3.6.0",
+          "text": "## Subagent Stop Hooks and Guided Compaction This release adds SubagentStop hooks, full saved Hook output, and instructions for /compact summaries. It also adds conversation recaps, notification controls, managed V2 controls, and an all-users Windows installer. ## Send a subagent one more instruction from a hook In a V3 session, a SubagentStop Hook runs when a dispatched subagent finishes and can send it one more instruction before its result returns. For any Hook, when its output exceeds 3,000 characters, Kiro CLI saves the full output and gives the agent its beginning with the saved file's…"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F18",
+      "opened": true,
+      "reason": null,
+      "latest": "v3.15.14",
+      "latest_date": "2026-11-25",
+      "new": [
+        {
+          "date": "2026-11-25",
+          "version": "v3.15.14",
+          "text": "New Added the in-app browser (Browser tab) to open web pages, local dev servers, and Devin Cloud exposed ports side by side with your session, with persistent cookies, element and area selection for chat, and agent browser control. Shell code blocks in Devin Local chats now have an “Insert in terminal” button that types the command into the terminal prompt without running it. Option-click (macOS) or Alt-click (Linux and Windows) on a session link now opens that session in a split pane next to the current session. You can now Shift-click or Cmd/Ctrl-click title-bar tabs to select multiple tabs…"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F19",
+      "opened": true,
+      "reason": null,
+      "latest": "v1.61.1",
+      "latest_date": "2026-11-25",
+      "new": [
+        {
+          "date": "2026-11-25",
+          "version": "v1.61.1",
+          "text": "## 🐛 **Bug Fixes** - Drop tool approval state from imported sessions to prevent automatic tool execution on session load - Import sessions with local extensions and goose mode, dropping recipe retry, recipe values, container and provider session IDs - Remove recipe template re-rendering on session load and fork - Remove dotenv from desktop app to prevent unintended environment variable loading ## 🔧 **Improvements** - Run release follow-up workflows only for pushes to this repository - Keep rejected release runs out of the release-notes and pages concurrency groups"
+        },
+        {
+          "date": "2026-11-25",
+          "version": "v1.61.0",
+          "text": "## ✨ Features - Show the provider before the model on the model button [#13491](https://github.com/aaif-goose/goose/pull/13491) - Gemini 4 Neon added to the model catalog [#13684](https://github.com/aaif-goose/goose/pull/13684) - Treat all headers as secret in mcpServers configs over ACP [#13435](https://github.com/aaif-goose/goose/pull/13435) - MCP extension operation for goose-agent [#13620](https://github.com/aaif-goose/goose/pull/13620) - Import MCP's server.json format into goose config [#11934](https://github.com/aaif-goose/goose/pull/11934) - Compaction operation for goose-agent [#1357…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F20",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-25",
+      "new": [
+        {
+          "date": "2026-11-25",
+          "version": null,
+          "text": "## Apps ### Enable the element picker on Devin Apps in the Browser tab You can now use the element picker on a Devin App opened in a session’s Browser tab; its button was previously disabled there. ## Devin Review ### PR review: show the scan Fixes tab on the full review page The full Devin Review pull request page now has a “Fixes” tab listing the code-scan findings the PR fixes. ## Enterprise & Settings ### Let an enterprise admin add themselves to a session under the Creator-only sharing limit Under the “Creator only” session sharing limit, an enterprise admin can now add themselves to a s…"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F21",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-08-19",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F22",
+      "opened": true,
+      "reason": null,
+      "latest": "v2026.11.10",
+      "latest_date": "2026-11-25",
+      "new": [
+        {
+          "date": "2026-11-25",
+          "version": "v2026.11.10",
+          "text": "<!-- openclaw-release-publication:docs-v1 --> ## OpenClaw v2026.11.10 8,309 commits · 7,671 pull requests · 349 contributors ### Changes included in this release The release notes and changelog contain the same content, presented in two formats: - [Release notes](https://docs.openclaw.ai/releases/2026.11.10) — formatted for people. - [Changelog](https://raw.githubusercontent.com/openclaw/openclaw/main/CHANGELOG/2026.11.10.md) — plain Markdown for AI agents and tools. ### Thanks [@0xNagato](https://github.com/0xNagato) [@1052326311](https://github.com/1052326311) [@555aaditya](https://github.c…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F23",
+      "opened": true,
+      "reason": null,
+      "latest": "1.2.24",
+      "latest_date": "2026-11-20",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F24",
+      "opened": true,
+      "reason": null,
+      "latest": "1.15.45",
+      "latest_date": "2026-11-24",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F25",
+      "opened": false,
+      "reason": "git ls-remote: exit 128: remote: Repository not found.\nfatal: repository 'https://github.com/microsoft/agent-framework.git/' not found",
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F26",
+      "opened": true,
+      "reason": null,
+      "latest": "2026-07-28",
+      "latest_date": "2026-07-28",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F27",
+      "opened": true,
+      "reason": null,
+      "latest": "1.148",
+      "latest_date": "2026-11-25",
+      "new": [
+        {
+          "date": "2026-11-25",
+          "version": "1.148",
+          "text": "## Downloads for 1.148.0 Windows x64Arm64 macOS UniversalIntelApple silicon Linux .deb.rpm.tar.gzArm instructionsSnap ## Release highlights Keep agent work moving, even when you step away. This week, chat responses start faster and active agents can keep their hosts awake. Give a task its own Dev Container, and reclaim disk space from old worktrees without switching windows. Keep agents going (Preview): Prevent idle sleep of the systemon supported hosts while agents work. Worktree cleanup: Reclaim disk space from inactive agent worktrees on remote hosts. Sandbox profiles (Experimental): Tailo…"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F28",
+      "opened": true,
+      "reason": null,
+      "latest": "2026.11.25",
+      "latest_date": "2026-11-25",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F29",
+      "opened": true,
+      "reason": null,
+      "latest": "1.4.25",
+      "latest_date": "2026-11-26",
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "date_is_detection": true
+    },
+    {
+      "id": "F31",
+      "opened": true,
+      "reason": null,
+      "latest": "n8n@3.4.0",
+      "latest_date": "2026-11-24",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F32",
+      "opened": true,
+      "reason": null,
+      "latest": "v3.4.21",
+      "latest_date": "2026-11-17",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F33",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.28.4",
+      "latest_date": "2026-11-22",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F34",
+      "opened": true,
+      "reason": null,
+      "latest": "@moonshot-ai/kimi-code@2.8.0",
+      "latest_date": "2026-11-25",
+      "new": [
+        {
+          "date": "2026-11-25",
+          "version": "@moonshot-ai/kimi-code@2.8.0",
+          "text": "### Minor Changes - [#5414](https://github.com/MoonshotAI/kimi-code/pull/5414) [`132c4e8`](https://github.com/MoonshotAI/kimi-code/commit/132c4e88b1d316a7d9a9b2f20df4d59a88061dc7) Thanks [@liruifengv](https://github.com/liruifengv)! - Improve prompt prediction interactions. Enable with KIMI_CODE_EXPERIMENTAL_PROMPT_PREDICTION=1 and press Tab or Right Arrow to accept. - [#5414](https://github.com/MoonshotAI/kimi-code/pull/5414) [`132c4e8`](https://github.com/MoonshotAI/kimi-code/commit/132c4e88b1d316a7d9a9b2f20df4d59a88061dc7) Thanks [@liruifengv](https://github.com/liruifengv)! - Remove the e…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F35",
+      "opened": true,
+      "reason": null,
+      "latest": "v2.187.0",
+      "latest_date": "2026-11-25",
+      "new": [
+        {
+          "date": "2026-11-25",
+          "version": "v2.187.0",
+          "text": "# 🚀 CodeBuddy Code v2.187.0 发布 ## 📦 版本信息 组件版本 CodeBuddy Code CLIv2.187.0 Agent SDK JSv0.3.307 Agent SDK Pythonv0.3.306 ## ✨ 新功能 ### 本地会话创建对话分支 本地任务可以创建新的对话分支，保留选定轮次之前的对话历史，并与源会话共用同一个工作区，在不破坏原对话的前提下探索另一条思路。 ### Agent Home 私信支持图片和文件 同事之间发消息时可以附带图片或文件（单条最多 4 个、单个不超过 20MB），收件人能直接读取副本；出站同文判断会区分「同文不同图」，带附件的短消息也不会再被误判为已读确认。 ### 智能体常驻运行 在 Agent Home 智能体与分身的右键设置里开启「常驻运行」后，它的空闲进程不再在 10 分钟后被回收，频道和分身任务可以随时唤醒，免去冷启动等待。默认仍按原策略回收。 ### 企微频道能力补齐 企业微信频道现在支持查看频道详情与成员、按 ID 获取帖子与回复、两步搜索、展开聊天记录、主动发帖回帖、贴表情，以及附件下载与上传、群聊同步开关等操作；单条读取上限从 800 字提高到 4000 字，「接收频道内容」也有了明确的开/关状态。 ### 后台任务可以收发企微消息 Web UI 智能体、Agent Home 同事、定时任务…"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F36",
+      "opened": true,
+      "reason": null,
+      "latest": "1.1.98",
+      "latest_date": "2026-11-25",
+      "new": [
+        {
+          "date": "2026-11-25",
+          "version": "1.1.98",
+          "text": "CLI 1.1.98 ### 模型切换钩子与多项会话稳定性修复 新增模型切换钩子 PreModelSwitch / PostModelSwitch，在手动切换模型前后触发 修复在 /mcp 中切换 MCP 服务的 Enabled 开关后，当前会话中不生效的问题 用户主动终止会话时，正在进行的后台任务会被停止 修复子进程执行缓慢时，自动编辑器探测导致启动耗时过长的问题 修复恢复包含旧目录附件的历史排队消息后，发送纯文本仍提示“不支持的模型内容块”的问题 修复在 /sites 列表按 Esc 误入站点详情的问题 修复 SDK 流式聊天中，上下文压缩后上下文占用比例仍显示旧值的问题；收到新用量后即可更新，无需等待本轮对话结束"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F37",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.86.2",
+      "latest_date": "2026-02-12",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F38",
+      "opened": true,
+      "reason": null,
+      "latest": "v1.46.0",
+      "latest_date": "2026-11-25",
+      "new": [
+        {
+          "date": "2026-11-25",
+          "version": "v1.46.0",
+          "text": "## 1.46.0 (2026-11-25) <!-- Release notes generated using configuration in .github/release.yml at main --> ## What's Changed ### Features * feat(conversation): list and unshare the conversations shared with a team org (OHE-4205) by @hieptl in https://github.com/OpenHands/OpenHands/pull/19954 * feat: add Feedback button and submission flow by @DevinVinson in https://github.com/OpenHands/OpenHands/pull/19272 * feat(automations): add a Git Sync switch to keep activation status local (OHE-3927) by @hieptl in https://github.com/OpenHands/OpenHands/pull/19925 ### Maintenance * chore: bump agent-ser…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F39",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-25",
+      "new": [
+        {
+          "date": "2026-11-25",
+          "version": null,
+          "text": "### Raising an Agent Season 2 Episode 8"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F40",
+      "opened": true,
+      "reason": null,
+      "latest": "2026.11.19",
+      "latest_date": "2026-11-19",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F41",
+      "opened": true,
+      "reason": null,
+      "latest": "26.11.3",
+      "latest_date": "2026-11-24",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F42",
+      "opened": true,
+      "reason": null,
+      "latest": "v7.8.32",
+      "latest_date": "2026-11-20",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F44",
+      "opened": true,
+      "reason": null,
+      "latest": "v1.0.92",
+      "latest_date": "2026-11-19",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F45",
+      "opened": true,
+      "reason": null,
+      "latest": "v1.3.0",
+      "latest_date": "2026-11-24",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F46",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "watched": [
+        "Grok Bot › - [Reference](https://docs.x.ai/grok-bot/settings-and-notifications.md)"
+      ],
+      "date_is_detection": true
+    },
+    {
+      "id": "F47",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "watched": [],
+      "date_is_detection": true
+    },
+    {
+      "id": "F48",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F49",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F50",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F51",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F52",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F53",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F54",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F55",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F56",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F57",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": [
+        "use their own permission checks",
+        "They don't cover servers you start independently",
+        "provides Git authentication to sandboxed processes"
+      ]
+    },
+    {
+      "id": "F58",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F59",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F60",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F61",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F62",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": null,
+      "new": [],
+      "ids": [],
+      "read_with": "curl",
+      "missing": []
+    },
+    {
+      "id": "F63",
+      "opened": true,
+      "reason": null,
+      "latest": "v1.4.277",
+      "latest_date": "2026-11-25",
+      "new": [
+        {
+          "date": "2026-11-25",
+          "version": "v1.4.277",
+          "text": "Thank you for using Orca and sharing your feedback. ❤️ ## Even better Agy support, cleaner phone screens & per-agent Google accounts ✨ - 🚀 **Antigravity (Agy) gets even better.** Find installed plugin skills in the chat’s `/` menu before your first message, and choose **Approve for me** in Agy terminals. - 🤖 **Manage bot conversations in Slack.** Ask a bot to leave a thread and @mention it to bring it back. Follow-ups return to the thread they started in. - 🎨 **Recognize your bot in Slack.** Its icon shows its mascot’s colour and outfit. - 🗓️ **Manage bot automations from Activity.** Delete a…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F64",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.17.4",
+      "latest_date": "2026-11-23",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F65",
+      "opened": true,
+      "reason": null,
+      "latest": "v1.0.20",
+      "latest_date": "2026-08-20",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F66",
+      "opened": true,
+      "reason": null,
+      "latest": "desktop-v2.0.12",
+      "latest_date": "2026-11-25",
+      "new": [
+        {
+          "date": "2026-11-25",
+          "version": "desktop-v2.0.12",
+          "text": "## What's Changed * chore(desktop): bump version to 2.0.11 by @Kitenite in https://github.com/ParadevAI/Paradev/pull/10064 * fix(api): normalize pasted Claude subscription tokens by @Kitenite in https://github.com/ParadevAI/Paradev/pull/10063 * fix(desktop): close the terminal pane when the shell ends by itself by @Kitenite in https://github.com/ParadevAI/Paradev/pull/10065 * docs(marketing): guide for running Codex CLI sessions in parallel by @Kitenite in https://github.com/ParadevAI/Paradev/pull/10066 * feat(db): aws_marketplace_customers table for AWS Marketplace fulfillment by @Kitenite i…"
+        }
+      ],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F67",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.26.0",
+      "latest_date": "2026-11-24",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    },
+    {
+      "id": "F68",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-25",
+      "new": [
+        {
+          "date": "2026-11-25",
+          "version": null,
+          "text": "PREVIOUS Release notes NEXT Introducing Make Endpoints Docs powered by Archbee Docs powered by Archbee ×"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F69",
+      "opened": true,
+      "reason": null,
+      "latest": "v0.13.0",
+      "latest_date": "2026-11-25",
+      "new": [
+        {
+          "date": "2026-11-25",
+          "version": "v0.13.0",
+          "text": "## Issue dependencies that start work automatically, direct handoffs between squad members, and steering for Hermes New Features Mark an Issue as blocked by, blocking, or a duplicate of another from its Relations section or its menu. When all of an Issue's blockers end, its agent starts automatically and an assigned person is notified. Blocked Issues show a flag in lists and on the board; hover it to see what they're waiting for. Filter by Blocked to find the Issues that are still waiting on others. Squad managers can switch a squad to Members hand off directly, so members pass work to each o…"
+        }
+      ],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F70",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-20",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F71",
+      "opened": true,
+      "reason": null,
+      "latest": null,
+      "latest_date": "2026-11-02",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F72",
+      "opened": true,
+      "reason": null,
+      "latest": "14.2.0",
+      "latest_date": "2026-11-24",
+      "new": [],
+      "ids": [],
+      "read_with": "curl"
+    },
+    {
+      "id": "F73",
+      "opened": true,
+      "reason": null,
+      "latest": "1.20.0",
+      "latest_date": "2026-11-18",
+      "new": [],
+      "ids": [],
+      "read_with": "git"
+    }
+  ],
+  "opened": 70,
+  "total": 71
+}

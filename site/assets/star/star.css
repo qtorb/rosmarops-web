@@ -1,0 +1,10 @@
+/* GTM-206: the card that asks for a star on GitHub. Values from vigil docs/research/2026-11-24-estrella-en-github.md §4.
+   Each page has its own colour variables; the fallbacks are the site's values for pages that lack one. */
+.star-card{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:16px;width:100%;background:var(--card,#FFFFFF);border:1px solid var(--line,#E3E0D8);border-radius:16px;padding:16px 20px;text-align:left}
+.star-card[hidden]{display:none}
+.star-card p{margin:0;font-size:16px;line-height:1.5;color:var(--ink2,#3A3833)}
+.star-btn{display:inline-flex;align-items:center;gap:8px;flex:none;border:1px solid var(--ink,#1B1A18);background:var(--card,#FFFFFF);color:var(--ink,#1B1A18);font:600 15px/1.2 system-ui,-apple-system,"Segoe UI",sans-serif;border-radius:12px;padding:10px 16px;text-decoration:none}
+.star-btn:hover{color:var(--ink,#1B1A18)}
+.star-btn:focus-visible{outline:3px solid var(--brand,#2346B8);outline-offset:2px}
+.star-ico{flex:none}
+@media (max-width:820px){.star-card{flex-direction:column;align-items:stretch}.star-btn{justify-content:center}}
