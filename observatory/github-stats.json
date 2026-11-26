@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-26T03:27:56Z",
+  "generated_at": "2026-11-26T04:27:57Z",
   "repo": {
     "stargazers_count": 2,
     "subscribers_count": 0,
@@ -27,11 +27,11 @@
         },
         {
           "name": "rosmarops-linux-amd64",
-          "download_count": 1
+          "download_count": 2
         },
         {
           "name": "rosmarops-linux-arm64",
-          "download_count": 3
+          "download_count": 4
         },
         {
           "name": "rosmarops-macos-apple-silicon",
