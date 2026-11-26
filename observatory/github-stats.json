@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-26T17:25:03Z",
+  "generated_at": "2026-11-26T18:28:02Z",
   "repo": {
     "stargazers_count": 2,
     "subscribers_count": 0,
@@ -27,7 +27,7 @@
         },
         {
           "name": "rosmarops-linux-amd64",
-          "download_count": 2
+          "download_count": 3
         },
         {
           "name": "rosmarops-linux-arm64",
@@ -43,7 +43,7 @@
         },
         {
           "name": "rosmarops.exe",
-          "download_count": 8
+          "download_count": 10
         },
         {
           "name": "sample-report.en.html",
@@ -55,7 +55,7 @@
         },
         {
           "name": "SHA256SUMS.txt",
-          "download_count": 10
+          "download_count": 11
         }
       ]
     },
