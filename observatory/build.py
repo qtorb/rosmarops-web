@@ -465,7 +465,8 @@ def page(lang, t, *, path, title, description, alternates, jsonld, body, og_type
         f'width="512" height="131" alt="{t("site.logo_alt")}"></a>'
     )
     links = nav_links(t, lang, alternates)
-    header = f'<header><div class="wrap">\n{logo}\n<nav>{links}</nav>\n</div></header>'
+    import academy  # GTM-230: «Academy» in the header menu once RosmarOps Academy is open
+    header = academy.nav(f'<header><div class="wrap">\n{logo}\n<nav>{links}</nav>\n</div></header>', lang)
     footer = (
         '<footer><div class="wrap">\n<nav>'
         + links
@@ -1008,7 +1009,8 @@ def build_sitemap(agents):
         lines.append(f"  <url><loc>{BASE}{path}</loc>{talts}</url>")
     import topic_pages  # GTM-198: orchestrators, Claude Code subagents and MCP servers, hreflang EN<->ES<->CA
     import videos_pages  # GTM-199: the videos index and each public video's page
-    for path, group in topic_pages.sitemap_urls(topic_pages.load()) + videos_pages.sitemap_urls():
+    import academy  # GTM-230: the Academy page and the two lessons, only once Academy is open
+    for path, group in topic_pages.sitemap_urls(topic_pages.load()) + videos_pages.sitemap_urls() + academy.sitemap_urls():
         palts = "".join(f'<xhtml:link rel="alternate" hreflang="{l}" href="{BASE}{p}"/>' for l, p in group.items())
         palts += f'<xhtml:link rel="alternate" hreflang="x-default" href="{BASE}{group["en"]}"/>'
         lines.append(f"  <url><loc>{BASE}{path}</loc>{palts}</url>")
@@ -1198,6 +1200,8 @@ def build_static_about():
 </body>
 </html>
 """
+        import academy  # GTM-230: «Academy» in the header menu once RosmarOps Academy is open
+        page = academy.nav(page, lang)
         (out / f"about-{lang}.html").write_text(page, encoding="utf-8")
 
 
@@ -1516,6 +1520,9 @@ def main():
     candidates = load_candidates()
     for p in INDEX_PATH.values():
         shutil.rmtree(SITE / p.strip("/"), ignore_errors=True)
+    if default_out:
+        import academy  # GTM-230: the header menu of the hand-written pages follows the RosmarOps Academy switch
+        academy.fix_site(SITE)
     build_data(agents)
     build_min_data()  # GTM-223
     build_sitemap(agents)
@@ -1537,6 +1544,8 @@ def main():
         course_pages.build(SITE)
         import videos_pages  # GTM-199: /videos/ and one page per public video, in EN, ES and CA
         videos_pages.build(SITE)
+        import academy  # GTM-230: /academy/, /es/academy/, /ca/academy/, only while its switch is open
+        academy.build(SITE)
     pages = 0
     for lang in LANGS:
         t = T(cats[lang])

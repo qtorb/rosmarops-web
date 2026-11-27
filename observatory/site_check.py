@@ -17,7 +17,8 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-GENERATED = ["site", "wp/daily", "wp/pages", "wp/mu-plugins/rosmarops-downloads.php"]
+GENERATED = ["site", "wp/daily", "wp/pages", "wp/mu-plugins/rosmarops-downloads.php",
+             "wp/mu-plugins/rosmarops-menu10-academy.php"]  # GTM-230: its switch line follows observatory/data/academy.json
 BUILD = [sys.executable, "observatory/build.py"]
 
 

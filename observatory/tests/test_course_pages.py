@@ -1,5 +1,5 @@
 """GTM-206, GTM-227: the course (observatory/course_pages.py): lesson 1 «The inspector», lesson 2 «The chain» and the
-entry page, which is not built while the course has no name.
+RosmarOps Academy page that presents them (GTM-230, tested in test_academy.py).
 
 Run from the repository root:  python3 -m unittest observatory/tests/test_course_pages.py
 """
@@ -19,7 +19,8 @@ SITE = ROOT / "site"
 ALL = course_pages.load_all()
 DATA = ALL["the-chain"]
 ONE = ALL["the-inspector"]
-ENTRY = ALL["course"]
+import academy  # noqa: E402
+ENTRY = academy.load()
 PATHS = DATA["path"]
 ONE_PATHS = ONE["path"]
 COURSE_PATHS = list(PATHS.values()) + list(ONE_PATHS.values()) + list(ENTRY["path"].values())
@@ -263,33 +264,35 @@ class Six(unittest.TestCase):
             self.assertIn(f'<a class="cs-btn primary" href="{PATHS[lang]}">{course_pages.esc(ONE[lang]["take"]["button"])}</a>',
                           page(lang, ONE_PATHS))
 
-    def test_entry_page_held_back_while_the_course_has_no_name(self):
-        """GTM-227 point 4: no entry page, no «Back to the course» button and no link to the entry."""
-        self.assertEqual(ENTRY["name"], "")
-        self.assertFalse(course_pages.entry_ready(ENTRY))
+    def test_no_link_to_academy_while_it_is_closed(self):
+        """GTM-227 point 4, now GTM-230: while Academy is closed, no page for it and no «Back to Academy» button."""
+        self.assertFalse(academy.is_open(ENTRY))
         built = course_pages.pages()
         for p in ENTRY["path"].values():
             self.assertNotIn(p, built)
             self.assertFalse((SITE / p.strip("/") / "index.html").exists(), p)
         for lang in MESSAGES:
-            s = page(lang)
-            self.assertNotIn(course_pages.esc(DATA[lang]["take"]["button"]), s, lang)
-            for p in ENTRY["path"].values():
-                self.assertNotIn(f'href="{p}"', s)
+            for paths in (PATHS, ONE_PATHS):
+                s = page(lang, paths)
+                self.assertNotIn(ENTRY[lang]["back"], s, lang)
+                for p in ENTRY["path"].values():
+                    self.assertNotIn(f'href="{p}"', s)
 
-    def test_entry_page_once_it_has_a_name(self):
-        """Rendered in memory only: with a name, the entry page appears, and lesson 2 gets its button back."""
-        e = json.loads(json.dumps(ENTRY))
-        e["name"] = "Test name"
-        built = course_pages.pages({"course": e})
+    def test_back_to_academy_once_open(self):
+        """Rendered in memory only: with the switch open, lesson 2 ends with «Back to Academy»; lesson 1 still leads to
+        lesson 2."""
+        e = dict(json.loads(json.dumps(ENTRY)), open=True)
+        built = course_pages.pages(academy=e)
         for lang in MESSAGES:
-            s = built[ENTRY["path"][lang]]
-            self.assertIn("<h1>Test name</h1>", s)
-            self.assertIn('<meta name="robots" content="noindex">', s)
-            self.assertIn(f'href="{ONE_PATHS[lang]}"', s)
-            self.assertEqual(s.count('class="cs-lesson"'), 5)
-            self.assertIn(f'href="{ENTRY["path"][lang]}">{course_pages.esc(DATA[lang]["take"]["button"])}</a>',
+            self.assertIn(f'<a class="cs-btn primary" href="{ENTRY["path"][lang]}">{course_pages.esc(ENTRY[lang]["back"])}</a>',
                           built[PATHS[lang]])
+            self.assertIn(f'<a class="cs-btn primary" href="{PATHS[lang]}">{course_pages.esc(ONE[lang]["take"]["button"])}</a>',
+                          built[ONE_PATHS[lang]])
+            # Spec §6.1: lesson 1 keeps its button and gets «Back to Academy» under it, as a text link.
+            self.assertIn(f'<a class="cs-btn primary" href="{PATHS[lang]}">{course_pages.esc(ONE[lang]["take"]["button"])}</a></p>'
+                          f'<p class="cs-back"><a href="{ENTRY["path"][lang]}">{course_pages.esc(ENTRY[lang]["back"])}</a></p>',
+                          built[ONE_PATHS[lang]])
+            self.assertNotIn('class="cs-back"', built[PATHS[lang]])
 
     def test_no_braces_in_sight(self):
         """GTM-229: no { or } is left for a reader to see, in the served HTML or in the texts the script shows

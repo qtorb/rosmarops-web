@@ -1,12 +1,15 @@
-"""GTM-206, GTM-227: checks that every text of the course is literal in the documents Albert signed.
+"""GTM-206, GTM-227, GTM-230: checks that every text of the course and of RosmarOps Academy is literal in the documents
+Albert signed.
 
 Run by hand, with a local copy of qtorb/rosmarops-vigil (CI cannot read that repository):
 
     python3 tools/course/check_signed.py ../rosmarops-vigil
 
-The three data files of observatory/data/course/ (the-inspector.json, the-chain.json and course.json):
+The two lessons (observatory/data/course/the-inspector.json and the-chain.json) and the Academy page
+(observatory/data/academy.json, GTM-230: its texts come from docs/research/2026-11-27-academy-portada-y-menu.md, and the
+painter paragraph and the five lesson lines from the final texts document):
 - every text comes from docs/research/2026-11-26-curso-publico-textos-finales.md (ES, EN and CA; block 211), except
-  the step list label and the entry page's «Próximamente» pill, which come from the design,
+  the step list label, which comes from the design,
   docs/research/2026-11-26-curso-diseno-entrada-y-seis-pasos.md;
 - in English pages the quotes are “ ” (design §6): they are compared as « », the way the document writes them;
 - the eighteen retouches of docs/briefs/GTM-217.md (block 188) are listed in RETOUCHES: the new part must still be
@@ -21,7 +24,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 DIR = ROOT / "observatory" / "data" / "course"
-FILES = ("the-inspector", "the-chain", "course")
+FILES = ("the-inspector", "the-chain")
+ACADEMY = ROOT / "observatory" / "data" / "academy.json"
+ACADEMY_SPEC = ["docs/research/2026-11-27-academy-portada-y-menu.md"]
 DATA = DIR / "the-chain.json"
 TEXTS = ["docs/research/2026-11-26-curso-publico-textos-finales.md"]
 DESIGN = ["docs/research/2026-11-26-curso-diseno-entrada-y-seis-pasos.md"]
@@ -100,6 +105,7 @@ def missing(vigil, files):
     """files: {name: data}. The texts that are not found in the signed documents, as (path, text)."""
     texts = norm(" ".join((vigil / p).read_text(encoding="utf-8") for p in TEXTS))
     design = norm(" ".join((vigil / p).read_text(encoding="utf-8") for p in DESIGN))
+    spec = norm(" ".join((vigil / p).read_text(encoding="utf-8") for p in ACADEMY_SPEC))
     retouch_doc = norm(" ".join((vigil / p).read_text(encoding="utf-8") for p in RETOUCHES_DOC))
     out = []
     for path, new, old in RETOUCHES:
@@ -112,7 +118,9 @@ def missing(vigil, files):
                     continue
                 if path[2:4] == ("take", "terms") and path[-1] == 1:
                     continue  # glossary ids, not text
-                where = design if path[2:] in (("steps_aria",), ("soon_pill",)) else texts
+                where = design if path[2:] == ("steps_aria",) else texts
+                if name == "academy":
+                    where = texts if path[2:3] in (("ex.p",), ("course.lessons",)) else spec
                 # {name} placeholders: the signed text may use another name ({fuente}, {aciertos})
                 rx = re.escape(norm(s)).replace(r"\{", "{").replace(r"\}", "}")
                 rx = re.sub(r"\{\w+\}", r"\\{[^}]+\\}", rx)
@@ -122,7 +130,9 @@ def missing(vigil, files):
 
 
 def load():
-    return {n: json.loads((DIR / f"{n}.json").read_text(encoding="utf-8")) for n in FILES}
+    out = {n: json.loads((DIR / f"{n}.json").read_text(encoding="utf-8")) for n in FILES}
+    out["academy"] = json.loads(ACADEMY.read_text(encoding="utf-8"))
+    return out
 
 
 if __name__ == "__main__":

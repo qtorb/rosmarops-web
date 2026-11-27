@@ -56,18 +56,14 @@ jobs:
           php -l wp/mu-plugins/rosmarops-menu-sandbox.php
           php -l wp/mu-plugins/rosmarops-menu8-sandbox.php
           php -l wp/mu-plugins/rosmarops-menu9-sandbox.php
+          php -l wp/mu-plugins/rosmarops-menu10-academy.php
           php -l wp/mu-plugins/rosmarops-slug7-sandbox.php
           ls -l wp/drafts/*.json wp/drafts/*.html wp/drafts/rosmarops-img-13-loop-engineering.jpg wp/drafts/rosmarops-img-14-he-terminado.jpg wp/drafts/rosmarops-img-15-el-sistema-aprende.jpg wp/drafts/rosmarops-img-17-harness-engineering.jpg wp/drafts/rosmarops-img-16-novedades-0-10.jpg wp/drafts/rosmarops-img-18-microsoft-store.jpg wp/drafts/rosmarops-img-19-tres-blocs.jpg wp/drafts/rosmarops-img-20-worktree.jpg wp/drafts/video-decide-*.jpg wp/drafts/rosmarops-img-22-semana-en-agentes.jpg wp/drafts/rosmarops-img-24-ajustes-claude-code.jpg wp/drafts/rosmarops-img-23-aceptarlo-todo.jpg wp/drafts/sandbox-agentes-de-ia.jpg
           ls -l wp/daily/shell-en.html wp/daily/shell-es.html wp/daily/shell-ca.html wp/daily/i18n.json
           ! grep -RIl 'noindex' site/index.html site/es/index.html site/methodology site/faq site/es/metodologia site/es/preguntas-frecuentes site/ca/index.html site/ca/metodologia site/ca/preguntes-frequents site/cloud-access site/es/acceso-en-la-nube site/ca/acces-al-nuvol site/ca/privadesa site/privacy site/es/privacidad site/legal-notice site/es/aviso-legal site/ca/avis-legal site/terms site/es/terminos site/ca/termes site/security-teams site/es/equipos-de-seguridad site/ca/equips-de-seguretat site/_static site/macos site/es/macos site/ca/macos site/linux site/es/linux site/ca/linux site/sample-report/index.html site/es/informe-de-ejemplo site/ca/informe-dexemple site/observatory/index.html site/es/observatorio/index.html site/ca/observatori/index.html site/glossary site/es/glosario site/ca/glossari site/observatory/ai-agent-map site/es/observatorio/mapa-agentes-ia site/ca/observatori/mapa-agents-ia site/observatory/ai-agents-with-sandbox site/es/observatorio/agentes-ia-con-sandbox site/ca/observatori/agents-ia-amb-sandbox site/try-an-ai-agent site/es/probar-un-agente-de-ia site/ca/provar-un-agent-dia site/sandbox site/es/sandbox site/ca/sandbox site/agent-orchestrators site/es/orquestadores-de-agentes site/ca/orquestradors-dagents site/claude-code-subagents site/es/subagentes-de-claude-code site/ca/subagents-de-claude-code site/mcp-servers site/es/servidores-mcp site/ca/servidors-mcp
-          # GTM-206: the course lesson stays noindex until Albert opens it.
-          grep -q '<meta name="robots" content="noindex">' site/course/the-chain/index.html
-          grep -q '<meta name="robots" content="noindex">' site/es/curso/la-cadena/index.html
-          grep -q '<meta name="robots" content="noindex">' site/ca/curs/la-cadena/index.html
-          # GTM-227: lesson 1 too; the course entry page is not built until the course has a name.
-          grep -q '<meta name="robots" content="noindex">' site/course/the-inspector/index.html
-          grep -q '<meta name="robots" content="noindex">' site/es/curso/el-inspector/index.html
-          grep -q '<meta name="robots" content="noindex">' site/ca/curs/linspector/index.html
+          # GTM-230: RosmarOps Academy and the course lessons follow one switch ("open" in observatory/data/academy.json).
+          # Closed: no Academy page, lessons noindex and out of the sitemap, every header menu as before. Open: the opposite.
+          python3 observatory/academy.py --check-site
           test ! -e site/course/index.html && test ! -e site/es/curso/index.html && test ! -e site/ca/curs/index.html
           # Observatory: only the three index pages and the JSON files are published (GTM-11). Agent pages wait for verification.
           ls site/observatory/index.html site/es/observatorio/index.html site/ca/observatori/index.html site/observatory/*.json
@@ -196,6 +192,13 @@ jobs:
           put site/es/curso/el-inspector/index.html es/curso/el-inspector/index.html
           -mkdir ca/curs/linspector
           put site/ca/curs/linspector/index.html ca/curs/linspector/index.html
+          # GTM-230: the Academy page exists only once its switch is open; while closed these three lines do nothing.
+          -mkdir academy
+          -put site/academy/index.html academy/index.html
+          -mkdir es/academy
+          -put site/es/academy/index.html es/academy/index.html
+          -mkdir ca/academy
+          -put site/ca/academy/index.html ca/academy/index.html
           -mkdir try-an-ai-agent
           put site/try-an-ai-agent/index.html try-an-ai-agent/index.html
           -mkdir es/probar-un-agente-de-ia
@@ -452,6 +455,7 @@ jobs:
           put wp/mu-plugins/rosmarops-menu-sandbox.php wp-content/mu-plugins/rosmarops-menu-sandbox.php
           put wp/mu-plugins/rosmarops-menu8-sandbox.php wp-content/mu-plugins/rosmarops-menu8-sandbox.php
           put wp/mu-plugins/rosmarops-menu9-sandbox.php wp-content/mu-plugins/rosmarops-menu9-sandbox.php
+          put wp/mu-plugins/rosmarops-menu10-academy.php wp-content/mu-plugins/rosmarops-menu10-academy.php
           put wp/mu-plugins/rosmarops-slug7-sandbox.php wp-content/mu-plugins/rosmarops-slug7-sandbox.php
           -mkdir wp-content/mu-plugins/rosmarops-daily
           put wp/daily/shell-en.html wp-content/mu-plugins/rosmarops-daily/shell-en.html
@@ -1287,6 +1291,40 @@ jobs:
               "$SFTP_USER@$SFTP_HOST" && echo "rosmarops-menu9-sandbox.php removed from the server" || echo "::warning::rosmarops-menu9-sandbox.php could not be removed"
           else
             echo "::warning::rosmarops-menu9-sandbox.php left on the server: /es/ has not logged its run yet"
+          fi
+          # GTM-230: rosmarops-menu10-academy.php adds «Academy» after «Sandbox» in the three blog menus, only once Academy
+          # is open (its ROSMAROPS_MENU10_OPEN line follows the switch); the logs are read and the file removed once all
+          # three sites logged their run. While Academy is closed, nothing runs and the file stays on the server, inert.
+          if python3 -c "import json,sys; sys.exit(0 if json.load(open('observatory/data/academy.json'))['open'] else 1)"; then
+            for u in https://rosmarops.com/blog/ https://rosmarops.com/es/blog/ https://rosmarops.com/ca/blog/; do
+              curl -s -o /dev/null -w "%{http_code} $u\n" "$u?menu10=${GITHUB_SHA::7}"
+            done
+            sleep 5
+            mkdir -p /tmp/menu10
+            printf 'cd %s/wp-content/rosmarops-private\n-get menu10-en.log /tmp/menu10/\n-get menu10-es.log /tmp/menu10/\n-get menu10-ca.log /tmp/menu10/\n' "$SFTP_PATH" > /tmp/bs10
+            sshpass -e sftp -o BatchMode=no -b /tmp/bs10 \
+              -o StrictHostKeyChecking=yes \
+              -o UserKnownHostsFile="$HOME/.ssh/known_hosts" \
+              -o PreferredAuthentications=password,keyboard-interactive \
+              -o PubkeyAuthentication=no \
+              "$SFTP_USER@$SFTP_HOST" || true
+            for f in menu10-en menu10-es menu10-ca; do
+              if [ -f "/tmp/menu10/$f.log" ]; then echo "--- $f.log"; cat "/tmp/menu10/$f.log"; else echo "::warning::$f.log not found"; fi
+            done
+            if grep -h '^menu \(skipped\|failed\):' /tmp/menu10/*.log 2>/dev/null; then echo "::warning::«Academy» not added to the blog menu on some site; see the logs"; fi
+            if [ -f /tmp/menu10/menu10-en.log ] && [ -f /tmp/menu10/menu10-es.log ] && [ -f /tmp/menu10/menu10-ca.log ]; then
+              printf 'cd %s/wp-content/mu-plugins\n-rm rosmarops-menu10-academy.php\n' "$SFTP_PATH" > /tmp/bs10rm
+              sshpass -e sftp -o BatchMode=no -b /tmp/bs10rm \
+                -o StrictHostKeyChecking=yes \
+                -o UserKnownHostsFile="$HOME/.ssh/known_hosts" \
+                -o PreferredAuthentications=password,keyboard-interactive \
+                -o PubkeyAuthentication=no \
+                "$SFTP_USER@$SFTP_HOST" && echo "rosmarops-menu10-academy.php removed from the server" || echo "::warning::rosmarops-menu10-academy.php could not be removed"
+            else
+              echo "::warning::rosmarops-menu10-academy.php left on the server: a site has not logged its run yet"
+            fi
+          else
+            echo "RosmarOps Academy is closed: the blog menu is left as it is"
           fi
           # GTM-175 slug7 (Albert, 17-11 17:43): rosmarops-slug7-sandbox.php (/es/ and /ca/ only) sends the drafts 1238 and 90
           # to the bin and gives the published posts 1240 and 91 their address without «-2»; it is removed from the server

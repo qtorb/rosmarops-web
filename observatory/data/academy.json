@@ -1,0 +1,156 @@
+{
+ "_source": "qtorb/rosmarops-vigil: docs/research/2026-11-27-academy-portada-y-menu.md §2 (signed by Albert with block 214, GTM-230); the painter paragraph and the five lesson lines from docs/research/2026-11-26-curso-publico-textos-finales.md (course entry). Literal: do not edit here. In English pages, quotes are “ ”.",
+ "open": false,
+ "path": {
+  "en": "/academy/",
+  "es": "/es/academy/",
+  "ca": "/ca/academy/"
+ },
+ "en": {
+  "eyebrow": "RosmarOps Academy",
+  "h1": "Understand what an AI agent can do on your computer",
+  "lead": "Short lessons and videos to learn what an AI agent does without asking you, and to decide for yourself what you let it do. Free, no sign-up, no programming needed.",
+  "what.h2": "What it is",
+  "what.p": "RosmarOps Academy is where RosmarOps teaches what it knows about AI agents: a step-by-step course and short videos. Everything comes from what the program reads on real computers and from each agent's official documentation, with the source next to it.",
+  "why.h2": "What it is for",
+  "why.1": "To know what your agent does when you are not looking: what it reads, what it runs and which keys it has within reach.",
+  "why.2": "To decide for yourself what you let it do, instead of staying with what it ships with.",
+  "why.3": "To understand your RosmarOps report and know what to change first.",
+  "who.h2": "Who it is for",
+  "who.p": "For anyone who uses Claude Code, Cursor, Codex or another AI agent to program or to work. You do not need to know how to program: every technical word is explained the first time it appears.",
+  "ex.h2": "An example to start with",
+  "course.h2": "The course",
+  "course.title": "What your agent can do without asking you",
+  "course.meta": "2 of 5 lessons published · each one, 5 to 10 minutes of reading and about 10 more on your computer",
+  "course.need": "To read them you need nothing. For the “On your computer” exercises, RosmarOps, which is free and open source.",
+  "soon": "Coming soon",
+  "course.cta": "Start with lesson 1",
+  "videos.h2": "Videos",
+  "videos.p": "Three or four minutes each, with its transcript.",
+  "videos.all": "All videos",
+  "foot": "Every fact in Academy comes from RosmarOps's code, which is public (github.com/qtorb/rosmarops), from the Observatory and from the agents' official documentation.",
+  "back": "Back to Academy",
+  "nav": "Academy",
+  "ex.p": "Imagine you call a painter to paint your flat while you're away. You give them the key to the front door. Inside are your car keys, your bank card and a notebook with your passwords. You can ask them to call you before opening each drawer, or let them get on with it. An AI agent is similar: an artificial intelligence program that doesn't just answer, it also does things for you on your computer, like reading files, running commands or using your accounts. Some of them it does without asking you. Most of the time that saves you time. But if those files hold a key to your bank or your online shop, what the agent can do without asking you is also what someone who manages to trick it could do.",
+  "course.lessons": [
+   [
+    "The inspector.",
+    "What an AI agent is, what it can do without asking you and how RosmarOps looks at it."
+   ],
+   [
+    "The chain.",
+    "Why a single permission doesn't tell you much: who gets in, what they can do, which keys they find and what those keys open."
+   ],
+   [
+    "What can be known and what can't.",
+    ""
+   ],
+   [
+    "How it's measured.",
+    ""
+   ],
+   [
+    "Why trust a tool that reads your keys.",
+    ""
+   ]
+  ]
+ },
+ "es": {
+  "eyebrow": "RosmarOps Academy",
+  "h1": "Entiende qué puede hacer un agente de IA en tu ordenador",
+  "lead": "Lecciones cortas y vídeos para saber qué hace un agente de IA sin preguntarte, y decidir tú qué le dejas hacer. Gratis, sin registro y sin saber programar.",
+  "what.h2": "Qué es",
+  "what.p": "RosmarOps Academy es donde RosmarOps enseña lo que sabe sobre agentes de IA: un curso por pasos y vídeos cortos. Todo sale de lo que el programa lee en ordenadores de verdad y de la documentación oficial de cada agente, con su fuente al lado.",
+  "why.h2": "Para qué",
+  "why.1": "Para saber qué hace tu agente cuando no miras: qué lee, qué ejecuta y qué claves tiene a mano.",
+  "why.2": "Para decidir tú qué le dejas hacer, en vez de quedarte con lo que viene de fábrica.",
+  "why.3": "Para entender tu informe de RosmarOps y saber qué cambiar primero.",
+  "who.h2": "Para quién",
+  "who.p": "Para quien usa Claude Code, Cursor, Codex u otro agente de IA para programar o para trabajar. No hace falta saber programar: cada palabra técnica se explica la primera vez que sale.",
+  "ex.h2": "Un ejemplo para empezar",
+  "course.h2": "El curso",
+  "course.title": "Qué puede hacer tu agente sin preguntarte",
+  "course.meta": "2 lecciones de 5 ya publicadas · cada una, 5 a 10 minutos de lectura y unos 10 más en tu ordenador",
+  "course.need": "Para leerlas no necesitas nada. Para los ejercicios «En tu ordenador», RosmarOps, que es gratuito y de código abierto.",
+  "soon": "Próximamente",
+  "course.cta": "Empezar por la lección 1",
+  "videos.h2": "Vídeos",
+  "videos.p": "Tres o cuatro minutos cada uno, con su transcripción.",
+  "videos.all": "Todos los vídeos",
+  "foot": "Cada dato de Academy sale del código de RosmarOps, que es público (github.com/qtorb/rosmarops), del Observatorio y de la documentación oficial de los agentes.",
+  "back": "Volver a Academy",
+  "nav": "Academy",
+  "ex.p": "Imagina que llamas a un pintor para que pinte tu piso mientras estás fuera. Le das la llave de la puerta. Dentro están las llaves del coche, la tarjeta del banco y una libreta con tus contraseñas. Puedes pedirle que te llame antes de abrir cada cajón, o dejarle hacer. Un agente de IA es parecido: un programa de inteligencia artificial que no solo contesta, sino que también hace cosas por ti en tu ordenador, como leer ficheros, ejecutar comandos o usar tus cuentas. Algunas las hace sin preguntarte. Casi siempre eso te ahorra tiempo. Pero si en esos ficheros hay una clave de tu banco o de tu tienda online, lo que el agente puede hacer sin preguntarte es también lo que podría hacer alguien que consiga engañarlo.",
+  "course.lessons": [
+   [
+    "El inspector.",
+    "Qué es un agente de IA, qué puede hacer sin preguntarte y cómo lo mira RosmarOps."
+   ],
+   [
+    "La cadena.",
+    "Por qué un permiso suelto no dice mucho: quién entra, qué puede hacer, qué llaves encuentra y qué abren."
+   ],
+   [
+    "Lo que se puede saber y lo que no.",
+    ""
+   ],
+   [
+    "Cómo se mide.",
+    ""
+   ],
+   [
+    "Por qué fiarte de una herramienta que lee tus claves.",
+    ""
+   ]
+  ]
+ },
+ "ca": {
+  "eyebrow": "RosmarOps Academy",
+  "h1": "Entén què pot fer un agent d'IA al teu ordinador",
+  "lead": "Lliçons curtes i vídeos per saber què fa un agent d'IA sense preguntar-te, i decidir tu què li deixes fer. Gratis, sense registre i sense saber programar.",
+  "what.h2": "Què és",
+  "what.p": "RosmarOps Academy és on RosmarOps ensenya el que sap sobre agents d'IA: un curs per passos i vídeos curts. Tot surt del que el programa llegeix en ordinadors de debò i de la documentació oficial de cada agent, amb la font al costat.",
+  "why.h2": "Per a què",
+  "why.1": "Per saber què fa el teu agent quan no mires: què llegeix, què executa i quines claus té a mà.",
+  "why.2": "Per decidir tu què li deixes fer, en lloc de quedar-te amb el que ve de fàbrica.",
+  "why.3": "Per entendre el teu informe de RosmarOps i saber què canviar primer.",
+  "who.h2": "Per a qui",
+  "who.p": "Per a qui fa servir Claude Code, Cursor, Codex o un altre agent d'IA per programar o per treballar. No cal saber programar: cada paraula tècnica s'explica la primera vegada que surt.",
+  "ex.h2": "Un exemple per començar",
+  "course.h2": "El curs",
+  "course.title": "Què pot fer el teu agent sense preguntar-te",
+  "course.meta": "2 lliçons de 5 ja publicades · cadascuna, de 5 a 10 minuts de lectura i uns 10 més al teu ordinador",
+  "course.need": "Per llegir-les no necessites res. Per als exercicis «Al teu ordinador», RosmarOps, que és gratuït i de codi obert.",
+  "soon": "Pròximament",
+  "course.cta": "Començar per la lliçó 1",
+  "videos.h2": "Vídeos",
+  "videos.p": "Tres o quatre minuts cadascun, amb la transcripció.",
+  "videos.all": "Tots els vídeos",
+  "foot": "Cada dada d'Academy surt del codi de RosmarOps, que és públic (github.com/qtorb/rosmarops), de l'Observatori i de la documentació oficial dels agents.",
+  "back": "Tornar a Academy",
+  "nav": "Academy",
+  "ex.p": "Imagina que truques a un pintor perquè et pinti el pis mentre ets fora. Li dones la clau de la porta. A dins hi ha les claus del cotxe, la targeta del banc i una llibreta amb les teves contrasenyes. Li pots demanar que et truqui abans d'obrir cada calaix, o deixar-lo fer. Un agent d'IA s'hi assembla: un programa d'intel·ligència artificial que no només respon, sinó que també fa coses per tu al teu ordinador, com llegir fitxers, executar ordres o fer servir els teus comptes. Algunes les fa sense preguntar-te. Gairebé sempre això t'estalvia temps. Però si en aquests fitxers hi ha una clau del teu banc o de la teva botiga en línia, el que l'agent pot fer sense preguntar-te és també el que podria fer algú que aconsegueixi enganyar-lo.",
+  "course.lessons": [
+   [
+    "L'inspector.",
+    "Què és un agent d'IA, què pot fer sense preguntar-te i com el mira RosmarOps."
+   ],
+   [
+    "La cadena.",
+    "Per què un permís sol no diu gaire: qui entra, què pot fer, quines claus troba i què obren."
+   ],
+   [
+    "El que es pot saber i el que no.",
+    ""
+   ],
+   [
+    "Com es mesura.",
+    ""
+   ],
+   [
+    "Per què fiar-te d'una eina que llegeix les teves claus.",
+    ""
+   ]
+  ]
+ }
+}

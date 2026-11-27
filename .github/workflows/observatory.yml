@@ -103,7 +103,7 @@ jobs:
         run: |
           set -eu
           export OBS_BASE="${{ github.event.pull_request.base.sha || github.event.before }}"
-          python -m unittest observatory/tests/test_daily_check.py observatory/tests/test_daily_alert.py observatory/tests/test_daily_raw.py observatory/tests/test_github_stats.py observatory/tests/test_collect.py observatory/tests/test_rules.py observatory/tests/test_agent_lists.py observatory/tests/test_map_data.py observatory/tests/test_map_page.py observatory/tests/test_agent_pages.py observatory/tests/test_sandbox_page.py observatory/tests/test_company_page.py observatory/tests/test_sandbox_section.py observatory/tests/test_templates_pages.py observatory/tests/test_topic_pages.py observatory/tests/test_videos_pages.py observatory/tests/test_site_check.py tools/lab-captures/test_collect.py tools/sample-captures/test_version_sentence.py tools/glossary/test_build.py observatory/tests/test_course_pages.py observatory/tests/test_star_card.py observatory/tests/test_minimum.py
+          python -m unittest observatory/tests/test_daily_check.py observatory/tests/test_daily_alert.py observatory/tests/test_daily_raw.py observatory/tests/test_github_stats.py observatory/tests/test_collect.py observatory/tests/test_rules.py observatory/tests/test_agent_lists.py observatory/tests/test_map_data.py observatory/tests/test_map_page.py observatory/tests/test_agent_pages.py observatory/tests/test_sandbox_page.py observatory/tests/test_company_page.py observatory/tests/test_sandbox_section.py observatory/tests/test_templates_pages.py observatory/tests/test_topic_pages.py observatory/tests/test_videos_pages.py observatory/tests/test_site_check.py tools/lab-captures/test_collect.py tools/sample-captures/test_version_sentence.py tools/glossary/test_build.py observatory/tests/test_course_pages.py observatory/tests/test_star_card.py observatory/tests/test_minimum.py observatory/tests/test_academy.py
           if ls observatory/daily/*.json >/dev/null 2>&1; then python observatory/daily_check.py observatory/daily/*.json; else echo "no daily files yet"; fi
           php -l wp/mu-plugins/rosmarops-daily.php
           python -m unittest wp/tests/test_daily.py
@@ -140,6 +140,8 @@ jobs:
           python -m unittest wp/tests/test_menu_sandbox.py
           python -m unittest wp/tests/test_menu8_sandbox.py
           python -m unittest wp/tests/test_menu9_sandbox.py
+          php -l wp/mu-plugins/rosmarops-menu10-academy.php
+          python -m unittest wp/tests/test_menu10_academy.py
           php -l wp/mu-plugins/rosmarops-slug7-sandbox.php
           python -m unittest wp/tests/test_slug7_sandbox.py
           php -l wp/mu-plugins/rosmarops-papelera-0-16.php
@@ -163,6 +165,11 @@ jobs:
           npx playwright install --with-deps chromium
           NODE_PATH="$PWD/node_modules" python -m unittest -v wp/tests/test_download_os.py 2>&1 | tee /tmp/dlos.txt
           ! grep -q "skipped" /tmp/dlos.txt || { echo "::error::the one-line check was skipped"; exit 1; }
+          # GTM-230 §6.2 and block 219: with «Academy», the header menu stays on two lines at 390 px with Liberation Sans
+          # (Windows metrics) and Roboto (Android), both system packages; DejaVu Sans is pinned to what was measured.
+          sudo apt-get install -y --no-install-recommends fonts-roboto fonts-liberation fonts-dejavu-core
+          NODE_PATH="$PWD/node_modules" python -m unittest -v observatory.tests.test_academy.Layout390 2>&1 | tee /tmp/acnav.txt
+          ! grep -q "skipped" /tmp/acnav.txt || { echo "::error::the Academy menu check was skipped"; exit 1; }
 
       - name: Download and visit counters against MySQL (GTM-18, GTM-111)
         run: |

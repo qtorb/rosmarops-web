@@ -258,15 +258,19 @@ def video_page(k, v, lang):
     return shell(lang, paths, v["title"][lang], v["answer"][lang], url, ld, "\n".join(out))
 
 
-def index_page(videos, lang):
-    pub = public(videos)
-    cards = "".join(
+def cards(videos, lang):
+    """The cards of the index, newest first (also on the RosmarOps Academy page, GTM-230)."""
+    return "".join(
         f'<li><a href="{path(v, lang)}"><img src="{esc(thumb(v, lang))}" width="1280" height="720" loading="lazy" alt="{esc(v["title"][lang])}"></a>'
         f'<h2><a href="{path(v, lang)}">{esc(v["title"][lang])}</a></h2>'
         f'<p>{esc(v["answer"][lang])}{(" · " + mmss(v["duration"])) if mmss(v.get("duration")) else ""}</p></li>'
-        for _, v in pub)
+        for _, v in public(videos))
+
+
+def index_page(videos, lang):
+    pub = public(videos)
     body = (f'<article class="doc"><h1>{esc(L[lang]["videos"])}</h1><p class="tp-first">{esc(L[lang]["index_lead"])}</p></article>'
-            f'<ul class="vl" style="margin-top:28px">{cards}</ul>')
+            f'<ul class="vl" style="margin-top:28px">{cards(videos, lang)}</ul>')
     url = BASE + INDEX[lang]
     ld = [{"@type": "ItemList", "itemListElement": [
               ({"@type": "ListItem", "position": i + 1, "url": BASE + path(v, lang)} if v.get("post") else

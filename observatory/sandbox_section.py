@@ -784,6 +784,8 @@ def shell_parts(lang):
     s = (SITE / GUIDE_FILE[lang]).read_text(encoding="utf-8")
     style = s[s.index('<link rel="stylesheet"'):s.index("</head>")]
     header = s[s.index("<header>"):s.index("</header>") + len("</header>")]
+    import academy  # GTM-230: «Academy» in the header menu once RosmarOps Academy is open (the guide may not be fixed yet)
+    header = academy.nav(header, lang)
     footer = s[s.index("<footer>"):s.index("</footer>") + len("</footer>")]
     scripts = s[s.index("</footer>") + len("</footer>"):s.index("</body>")].strip()
     return style, header, footer, scripts
