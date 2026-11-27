@@ -371,6 +371,7 @@ td.keep{overflow-wrap:normal;word-break:normal;hyphens:none}
 td code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:14px;overflow-wrap:anywhere}
 .panel code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace}
 .plain{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px;font-size:16px;line-height:1.5}
+.fam-line{display:block;margin-top:2px}
 footer{border-top:1px solid var(--line)}
 footer .wrap{padding-top:28px;padding-bottom:28px;font-size:15px;color:var(--muted)}
 footer nav{gap:20px;font-size:15px}
@@ -998,6 +999,10 @@ def build_sitemap(agents):
     mlast2 = max((rs[-1]["measured_at"] for rs in MIN_PUBLISHED.values()), default=None)
     mmod2 = f"<lastmod>{mlast2}</lastmod>" if mlast2 else ""
     lines += [f"  <url><loc>{BASE}{MIN_PATH[l]}</loc>{mmod2}{malts2}</url>" for l in LANGS]
+    for fam in MIN_FAMILIES:  # GTM-232: the family pages, with or without results
+        falts = "".join(f'<xhtml:link rel="alternate" hreflang="{l}" href="{BASE}{fam["path"][l]}"/>' for l in LANGS)
+        falts += f'<xhtml:link rel="alternate" hreflang="x-default" href="{BASE}{fam["path"]["en"]}"/>'
+        lines += [f"  <url><loc>{BASE}{fam['path'][l]}</loc>{falts}</url>" for l in LANGS]
     for rid, rs in MIN_PUBLISHED.items():
         ralts = "".join(f'<xhtml:link rel="alternate" hreflang="{l}" href="{BASE}{min_result_path(l, rid)}"/>' for l in LANGS)
         ralts += f'<xhtml:link rel="alternate" hreflang="x-default" href="{BASE}{min_result_path("en", rid)}"/>'
@@ -1296,8 +1301,11 @@ def min_crumbs(lang, t, *rest):
     return f'<p class="crumbs"><img src="/assets/brand/observatory/observatory-mark.svg" width="24" height="24" alt="">{" › ".join(parts)}</p>'
 
 
-def min_toc(t, items):
-    return f'<nav class="toc" aria-label="{t("agent.toc")}"><p>{t("agent.toc")}</p>' + "".join(f'<a href="#{h}">{t(k)}</a>' for h, k in items) + "</nav>"
+def min_toc(t, items, labels=None):
+    """items: (anchor, catalog key); labels: {anchor: text already escaped} for h2 that come from data (GTM-232)."""
+    labels = labels or {}
+    return (f'<nav class="toc" aria-label="{t("agent.toc")}"><p>{t("agent.toc")}</p>'
+            + "".join(f'<a href="#{h}">{labels[h] if h in labels else t(k)}</a>' for h, k in items) + "</nav>")
 
 
 def min_table(heads, rows, widths=None):
@@ -1316,6 +1324,30 @@ def min_breadcrumbs(lang, t, items):
             "itemListElement": [{"@type": "ListItem", "position": i + 1, "name": n, "item": BASE + u} for i, (n, u) in enumerate(items)]}
 
 
+def min_results_html(lang, t, latest):
+    """The «Results» table of the criterion page (and of a family page, GTM-232): the latest published result of each
+    product, in alphabetical order; or the «no results yet» line."""
+    k = lambda key, **kw: t("minimum." + key, **kw)
+    if not latest:
+        return f'<p class="empty box">{k("r.empty")}</p>'
+    rows = []
+    for r in sorted(latest, key=lambda r: (r["candidate"]["name"].lower(), r["candidate"]["id"])):
+        name = f'<a href="{min_result_path(lang, r["candidate"]["id"])}">{esc(r["candidate"]["name"])}</a>'
+        rows.append([name, min_use(t, r), k("r.count", n=str(r["met"]), t=str(r["total"])), esc(t.date(r["measured_at"])), min_vendor(t, r)])
+    return min_table([esc(x) for x in t.raw("minimum.r.th").split(" · ")], rows) + f'\n<p class="note">{k("r.note")}</p>'
+
+
+def min_vendor_section(t):
+    """«If you are the vendor», the same on the criterion page and on each family page (GTM-232 §2)."""
+    k = lambda key, **kw: t("minimum." + key, **kw)
+    plain = '<ul class="plain">' + "".join(f"<li>{k(x)}</li>" for x in ("f.1", "f.2", "f.3", "f.4")) + "</ul>"
+    return f"""<section id="vendor" class="box panel" aria-labelledby="vendor-h">
+<h2 id="vendor-h">{k("f.h2")}</h2>
+{plain}
+<p>{k("f.contact", correo=MIN_CONTACT)}</p>
+</section>"""
+
+
 def build_min_criterion(lang, t):
     """The criterion page (GTM-223 point 3): published with or without results."""
     k = lambda key, **kw: t("minimum." + key, **kw)
@@ -1331,16 +1363,13 @@ def build_min_criterion(lang, t):
         [[cid, k(cid + ".name"), k(cid + ".text"), k(when.get(cid, "when.always"))] for cid in minimum.IDS],
         widths=(8, 24, 44, 24),  # GTM-224 point 1, from 700 px
     )
-    if latest:
-        rows = []
-        for r in sorted(latest, key=lambda r: (r["candidate"]["name"].lower(), r["candidate"]["id"])):
-            name = f'<a href="{min_result_path(lang, r["candidate"]["id"])}">{esc(r["candidate"]["name"])}</a>'
-            rows.append([name, min_use(t, r), k("r.count", n=str(r["met"]), t=str(r["total"])), esc(t.date(r["measured_at"])), min_vendor(t, r)])
-        results = min_table([esc(x) for x in t.raw("minimum.r.th").split(" · ")], rows) + f'\n<p class="note">{k("r.note")}</p>'
-    else:
-        results = f'<p class="empty box">{k("r.empty")}</p>'
+    results = min_results_html(lang, t, latest)
     plain = lambda items: '<ul class="plain">' + "".join(f"<li>{x}</li>" for x in items) + "</ul>"
-    toc = min_toc(t, [("criteria", "minimum.c.h2"), ("who-meets", "minimum.p.h2"), ("how", "minimum.m.h2"), ("results", "minimum.r.h2"),
+    # GTM-232 §4: the family's name (link, bold) on one line and its fam.line on the next, 2 px below, in the block's text.
+    fam_items = [f'<strong><a href="{f["path"][lang]}">{esc(f[lang]["h1"])}</a></strong><span class="fam-line">{esc(f[lang]["fam.line"])}</span>'
+                 for f in MIN_FAMILIES]
+    toc = min_toc(t, [("criteria", "minimum.c.h2"), ("who-meets", "minimum.p.h2"), ("families", "minimum.family.fam.h2"),
+                      ("how", "minimum.m.h2"), ("results", "minimum.r.h2"),
                       ("vendor", "minimum.f.h2"), ("not", "minimum.n.h2"), ("who", "minimum.w.h2"), ("data", "minimum.d.h2")])
     body = f"""<div class="layout">
 {toc}
@@ -1360,6 +1389,10 @@ def build_min_criterion(lang, t):
 <h2 id="who-meets-h">{k("p.h2")}</h2>
 <p>{k("p.text")}</p>
 </section>
+<section id="families" class="box panel" aria-labelledby="families-h">
+<h2 id="families-h">{k("family.fam.h2")}</h2>
+{plain(fam_items)}
+</section>
 <section id="how" class="box panel" aria-labelledby="how-h">
 <h2 id="how-h">{k("m.h2")}</h2>
 {plain([k("m.1"), k("m.2"), k("m.3")])}
@@ -1369,11 +1402,7 @@ def build_min_criterion(lang, t):
 <h2 id="results-h">{k("r.h2")}</h2>
 {results}
 </section>
-<section id="vendor" class="box panel" aria-labelledby="vendor-h">
-<h2 id="vendor-h">{k("f.h2")}</h2>
-{plain([k("f.1"), k("f.2"), k("f.3"), k("f.4")])}
-<p>{k("f.contact", correo=MIN_CONTACT)}</p>
-</section>
+{min_vendor_section(t)}
 <section id="not" class="box panel" aria-labelledby="not-h">
 <h2 id="not-h">{k("n.h2")}</h2>
 {plain([esc(x) for x in t.raw("minimum.n.list").split(" · ")])}
@@ -1443,12 +1472,15 @@ def build_min_result(lang, t, rid, history):
     )
     json_url = f'{MIN_JSON}{rid}/{r["measured_at"]}.json'
     crit_link = Markup(f'<a href="{MIN_PATH[lang]}">{t("minimum.h1")}</a>')
+    import minimum
+    fam = minimum.family_of(r, MIN_FAMILIES)  # GTM-232: Observatory › Control Baseline › family › product
+    fam_crumb = [f'<a href="{fam["path"][lang]}">{esc(fam[lang]["h1"])}</a>'] if fam else []
     toc = min_toc(t, [("measured", "minimum.a.h2"), ("criteria", "minimum.t.h2"), ("reply", "minimum.y.h2"), ("history", "minimum.h.h2"), ("data", "minimum.d.h2")])
     body = f"""<div class="layout">
 {toc}
 <article class="article">
 <section>
-{min_crumbs(lang, t, f'<a href="{MIN_PATH[lang]}">{k("crumb")}</a>', esc(name))}
+{min_crumbs(lang, t, f'<a href="{MIN_PATH[lang]}">{k("crumb")}</a>', *fam_crumb, esc(name))}
 <h1>{k("x.h1", producto=name)}</h1>
 <p class="pagemeta">{meta}</p>
 {summary}
@@ -1479,9 +1511,49 @@ def build_min_result(lang, t, rid, history):
     path = min_result_path(lang, rid)
     h1 = t.text("minimum.x.h1", producto=name)
     jsonld = [min_breadcrumbs(lang, t, [(t.text("index.breadcrumb_home"), t.text("site.home_url")), (t.text("site.nav.observatory"), INDEX_PATH[lang]),
-                                         (t.text("minimum.crumb"), MIN_PATH[lang]), (name, path)])]
+                                         (t.text("minimum.crumb"), MIN_PATH[lang])]
+                            + ([(fam[lang]["h1"], fam["path"][lang])] if fam else []) + [(name, path)])]
     write(path, page(lang, t, path=path, title=min_title(t, h1), description=min_first_sentence(t.text("minimum.x.what")),
                      alternates={l: min_result_path(l, rid) for l in LANGS}, jsonld=jsonld, body=body, noindex=False, modified=r["measured_at"]))
+
+
+def build_min_family(lang, t, fam):
+    """A family page (GTM-232): what belongs, why it matters, what is measured, (only hosted agents) what the baseline
+    does not measure yet, the family's published results and «If you are the vendor». Published with or without results;
+    a result shows only from its publish_after, like everywhere else."""
+    import minimum
+    k = lambda key, **kw: t("minimum." + key, **kw)
+    F = fam[lang]
+    latest = [rs[-1] for rs in MIN_PUBLISHED.values() if minimum.family_of(rs[-1], [fam])]
+    blocks = [("what", k("family.what.h2"), f'<p>{esc(F["what.p"])}</p>'),
+              ("why", k("family.why.h2"), f'<p>{esc(F["why.p"])}</p>'),
+              ("measure", k("family.measure.h2"), f'<p>{esc(F["measure.p"])}</p>\n<p><a href="{MIN_PATH[lang]}">{k("family.measure.link")}</a></p>')]
+    if "notyet.h2" in F:
+        blocks.append(("notyet", esc(F["notyet.h2"]), f'<p>{esc(F["notyet.p"])}</p>'))
+    panels = "\n".join(f'<section id="{i}" class="box panel" aria-labelledby="{i}-h">\n<h2 id="{i}-h">{h}</h2>\n{b}\n</section>' for i, h, b in blocks)
+    toc = min_toc(t, [(i, None) for i, _, _ in blocks] + [("results", "minimum.family.results.h2"), ("vendor", "minimum.f.h2")],
+                  labels={i: h for i, h, _ in blocks})
+    body = f"""<div class="layout">
+{toc}
+<article class="article">
+<section>
+{min_crumbs(lang, t, f'<a href="{MIN_PATH[lang]}">{k("crumb")}</a>', esc(F["h1"]))}
+<h1>{esc(F["h1"])}</h1>
+<p class="lead">{esc(F["lead"])}</p>
+</section>
+{panels}
+<section id="results" aria-labelledby="results-h">
+<h2 id="results-h">{k("family.results.h2")}</h2>
+{min_results_html(lang, t, latest)}
+</section>
+{min_vendor_section(t)}
+</article>
+</div>"""
+    path = fam["path"][lang]
+    jsonld = [min_breadcrumbs(lang, t, [(t.text("index.breadcrumb_home"), t.text("site.home_url")), (t.text("site.nav.observatory"), INDEX_PATH[lang]),
+                                         (t.text("minimum.crumb"), MIN_PATH[lang]), (F["h1"], path)])]
+    write(path, page(lang, t, path=path, title=F["h1"] + " · " + t.text("minimum.crumb"), description=F["lead"],
+                     alternates=fam["path"], jsonld=jsonld, body=body))
 
 
 def build_min_data():
@@ -1500,10 +1572,11 @@ def build_min_data():
 
 
 MIN_PUBLISHED = {}
+MIN_FAMILIES = []
 
 
 def main():
-    global DATA, SITE, MIN_DATA, BUILD_DAY, MIN_PUBLISHED
+    global DATA, SITE, MIN_DATA, BUILD_DAY, MIN_PUBLISHED, MIN_FAMILIES
     import datetime
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--data", type=Path, default=DATA, help="folder with the agent JSON files")
@@ -1515,6 +1588,11 @@ def main():
     DATA, SITE, MIN_DATA = args.data, args.out, args.minimum
     BUILD_DAY = args.today or datetime.datetime.now(datetime.timezone.utc).date().isoformat()
     MIN_PUBLISHED = min_results()
+    import minimum
+    MIN_FAMILIES = minimum.families()
+    clash = minimum.clashes(MIN_FAMILIES, minimum.load(MIN_DATA), MIN_PATH)  # GTM-232: a family and a product never share an address
+    if clash:
+        raise SystemExit("; ".join(clash))
     cats = load_catalogs()
     agents = load_agents()
     candidates = load_candidates()
@@ -1556,6 +1634,8 @@ def main():
         build_sandbox(lang, t, agents)
         pages += 1
         build_min_criterion(lang, t)  # GTM-223
+        for fam in MIN_FAMILIES:
+            build_min_family(lang, t, fam)  # GTM-232
         pages += 1
         for rid, rs in MIN_PUBLISHED.items():
             build_min_result(lang, t, rid, rs)
