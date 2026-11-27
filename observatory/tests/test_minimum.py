@@ -215,7 +215,7 @@ class Pages(unittest.TestCase):
         for lang in ("en", "es", "ca"):
             c, s = cat(lang), self.page(lang)
             ids = re.findall(r'<h2 id="([a-z-]+)-h">', s)
-            self.assertEqual(ids, ["criteria", "who-meets", "how", "results", "vendor", "not", "who", "data"])
+            self.assertEqual(ids, ["criteria", "who-meets", "families", "how", "results", "vendor", "not", "who", "data"])  # GTM-232
             for k in ["c.h2", "p.h2", "m.h2", "r.h2", "f.h2", "n.h2", "w.h2", "d.h2"]:
                 self.assertIn(f'>{html.escape(c["minimum." + k], quote=True)}</h2>', s)
 
@@ -300,6 +300,148 @@ class Pages(unittest.TestCase):
         self.assertIn("<title>El mínimo de control · Observatorio RosmarOps</title>", s)
         s = self.page("en", "example-orchestrator")
         self.assertIn("<title>Example Orchestrator: Control Baseline · RosmarOps Observatory</title>", s)
+
+
+FAMS = minimum.families()
+FAM_A, FAM_B = FAMS
+
+
+def fam_page(out, fam, lang):
+    return (Path(out) / fam["path"][lang].strip("/") / "index.html").read_text(encoding="utf-8")
+
+
+class Families(unittest.TestCase):
+    """GTM-232: the two family pages, the «Families» block of the criterion page and the family in a result's crumbs."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.tmp = Path(tempfile.mkdtemp())
+        # The fixture plus two hosted agents: one published on 2026-11-16, one notified later and not yet published.
+        cls.data = cls.tmp / "minimum"
+        shutil.copytree(FIX, cls.data)
+        for rid, notified, after in (("example-hosted", "2026-11-02", "2026-11-16"), ("example-hosted-later", "2026-11-25", "2026-12-09")):
+            r = load(FAIL)
+            r["candidate"] = {"id": rid, "name": rid.replace("-", " ").title()}
+            r["kind"] = "hosted_agent"
+            r["vendor"]["notified_at"], r["vendor"]["publish_after"] = notified, after
+            (cls.data / rid).mkdir()
+            (cls.data / rid / "2026-11-01.json").write_text(json.dumps(r), encoding="utf-8")
+        cls.out = cls.tmp / "out"
+        p = run_build(cls.out, cls.data, "2026-12-01")
+        assert p.returncode == 0, p.stderr
+
+    @classmethod
+    def tearDownClass(cls):
+        shutil.rmtree(cls.tmp)
+
+    def test_two_families_with_their_kinds(self):
+        self.assertEqual([f["kinds"] for f in FAMS], [["orchestrator", "workflow_automation", "agent_builder"], ["hosted_agent"]])
+        self.assertIsNone(minimum.family_of({"kind": "agent_framework"}, FAMS))
+        for f in FAMS:
+            for lang, p in f["path"].items():
+                self.assertTrue(p.startswith("/" + CRIT[lang]), p)
+
+    def test_the_schema_accepts_hosted_agent(self):
+        self.assertIn("hosted_agent", load(minimum.SCHEMA)["properties"]["kind"]["enum"])
+        try:
+            from jsonschema import Draft202012Validator
+        except ImportError:
+            self.skipTest("jsonschema not installed")
+        r = load(self.data / "example-hosted" / "2026-11-01.json")
+        self.assertEqual(list(Draft202012Validator(load(minimum.SCHEMA)).iter_errors(r)), [])
+
+    def test_committed_pages_exist_without_results(self):
+        """Before 10-12 the committed site has the two family pages in three languages, with the «no results yet» line,
+        in the sitemap, and nothing of the five results of 25-11."""
+        if minimum.published(minimum.load(), committed_day()):
+            self.skipTest("results are published from their publish_after on")
+        sm = (ROOT / "site" / "sitemap-pages.xml").read_text(encoding="utf-8")
+        for f in FAMS:
+            for lang in ("en", "es", "ca"):
+                s = fam_page(ROOT / "site", f, lang)
+                self.assertIn(html.escape(cat(lang)["minimum.r.empty"], quote=True), s)
+                self.assertNotIn('content="noindex"', s)
+                self.assertIn(f"<loc>https://rosmarops.com{f['path'][lang]}</loc>", sm)
+                for rid in ("paperclip", "n8n", "gumloop", "dify"):
+                    self.assertNotIn(rid, text(s).lower())
+
+    def test_block_order_and_texts(self):
+        for f in FAMS:
+            for lang in ("en", "es", "ca"):
+                c, s, F = cat(lang), fam_page(self.out, f, lang), f[lang]
+                ids = re.findall(r'<h2 id="([a-z-]+)-h">', s)
+                want = ["what", "why", "measure"] + (["notyet"] if "notyet.h2" in F else []) + ["results", "vendor"]
+                self.assertEqual(ids, want)
+                self.assertEqual(re.findall(r'<section id="([a-z-]+)" class="box panel"', s), [i for i in want if i != "results"])
+                for key in ("h1", "lead", "what.p", "why.p", "measure.p") + (("notyet.h2", "notyet.p") if "notyet.h2" in F else ()):
+                    self.assertIn(html.escape(F[key], quote=True), s, (f["id"], lang, key))
+                for key in ("family.what.h2", "family.why.h2", "family.measure.h2", "family.results.h2", "f.h2", "f.1", "f.4"):
+                    self.assertIn(html.escape(c["minimum." + key], quote=True), s)
+                self.assertIn(f'<a href="/{CRIT[lang]}">{html.escape(c["minimum.family.measure.link"], quote=True)}</a>', s)
+                self.assertIn(f'<title>{html.escape(F["h1"], quote=True)} · {html.escape(c["minimum.crumb"], quote=True)}</title>', s)
+                self.assertIn(f'<meta name="description" content="{html.escape(F["lead"], quote=True)}">', s)
+                self.assertIn(f'<a href="/{CRIT[lang]}">{html.escape(c["minimum.crumb"], quote=True)}</a> › {html.escape(F["h1"], quote=True)}</p>', s)
+
+    def test_a_published_result_shows_only_in_its_family(self):
+        for lang in ("en", "es", "ca"):
+            a, b = fam_page(self.out, FAM_A, lang), fam_page(self.out, FAM_B, lang)
+            self.assertIn('href="/' + CRIT[lang] + 'example-hosted/"', b)
+            self.assertNotIn("example-hosted/", a)
+            self.assertIn('href="/' + CRIT[lang] + 'example-orchestrator/"', a)
+            self.assertIn('href="/' + CRIT[lang] + 'example-builder-cloud/"', a)
+            self.assertNotIn("example-orchestrator", b)
+            self.assertNotIn(html.escape(cat(lang)["minimum.r.empty"], quote=True), b)
+
+    def test_an_unpublished_result_shows_in_no_family_page(self):
+        for lang in ("en", "es", "ca"):
+            for f in FAMS:
+                self.assertNotIn("example-hosted-later", fam_page(self.out, f, lang))
+            self.assertNotIn("example-hosted-later", (self.out / CRIT[lang] / "index.html").read_text(encoding="utf-8"))
+            self.assertFalse((self.out / CRIT[lang] / "example-hosted-later").exists())
+
+    def test_families_block_on_the_criterion_page(self):
+        for lang in ("en", "es", "ca"):
+            s = (self.out / CRIT[lang] / "index.html").read_text(encoding="utf-8")
+            block = s[s.index('<section id="families" class="box panel"'):]
+            block = block[:block.index("</section>")]
+            self.assertIn(html.escape(cat(lang)["minimum.family.fam.h2"], quote=True) + "</h2>", block)
+            for f in FAMS:
+                self.assertIn(f'<li><strong><a href="{f["path"][lang]}">{html.escape(f[lang]["h1"], quote=True)}</a></strong> '
+                              f'{html.escape(f[lang]["fam.line"], quote=True)}</li>', block)
+            self.assertLess(s.index('id="who-meets-h"'), s.index('id="families-h"'))
+            self.assertLess(s.index('id="families-h"'), s.index('id="how-h"'))
+
+    def test_result_crumbs_carry_the_family(self):
+        for lang in ("en", "es", "ca"):
+            for rid, f in (("example-hosted", FAM_B), ("example-orchestrator", FAM_A)):
+                s = (self.out / CRIT[lang] / rid / "index.html").read_text(encoding="utf-8")
+                crumbs = s[s.index('<p class="crumbs">'):]
+                crumbs = crumbs[:crumbs.index("</p>")]
+                self.assertIn(f'<a href="/{CRIT[lang]}">{html.escape(cat(lang)["minimum.crumb"], quote=True)}</a> › '
+                              f'<a href="{f["path"][lang]}">{html.escape(f[lang]["h1"], quote=True)}</a> › ', crumbs)
+                self.assertIn(f'"item":"https://rosmarops.com{f["path"][lang]}"', s)
+
+    def test_no_outside_resources(self):
+        for f in FAMS:
+            for lang in ("en", "es", "ca"):
+                s = fam_page(self.out, f, lang)
+                for u in re.findall(r'(?:src|href)="((?:https?:)?//[^"]+)"', s):
+                    self.assertTrue(u.startswith("https://rosmarops.com/"), u)
+
+    def test_a_family_and_a_product_never_share_an_address(self):
+        res = [(None, {"candidate": {"id": "orchestrators-and-automation"}})]
+        self.assertTrue(minimum.clashes(FAMS, res, {l: "/" + p for l, p in CRIT.items()}))
+        self.assertEqual(minimum.clashes(FAMS, minimum.load(), {l: "/" + p for l, p in CRIT.items()}), [])
+        # The build stops on such a clash.
+        data = self.tmp / "clash"
+        shutil.copytree(FIX, data)
+        r = load(FAIL)
+        r["candidate"]["id"] = "orchestrators-and-automation"
+        (data / "orchestrators-and-automation").mkdir()
+        (data / "orchestrators-and-automation" / "2026-11-01.json").write_text(json.dumps(r), encoding="utf-8")
+        p = run_build(self.tmp / "clash-out", data, "2026-12-01")
+        self.assertNotEqual(p.returncode, 0)
+        self.assertIn("is also the page of the result 'orchestrators-and-automation'", p.stderr)
 
 
 class IndexLine(unittest.TestCase):

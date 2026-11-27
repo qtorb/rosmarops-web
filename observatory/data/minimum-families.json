@@ -1,0 +1,83 @@
+{
+ "_source": "qtorb/rosmarops-vigil: docs/research/2026-11-27-minimo-de-control-fichas-de-familia.md §1 and §3 (signed by Albert with block 222, GTM-232). Literal: change the signed document first. A result belongs to the family whose kinds has its kind; agent_framework has no family (frameworks are not measured).",
+ "families": [
+  {
+   "id": "orchestrators-and-automation",
+   "kinds": [
+    "orchestrator",
+    "workflow_automation",
+    "agent_builder"
+   ],
+   "path": {
+    "en": "/observatory/control-baseline/orchestrators-and-automation/",
+    "es": "/es/observatorio/minimo-de-control/orquestadores-y-automatizacion/",
+    "ca": "/ca/observatori/minim-de-control/orquestradors-i-automatitzacio/"
+   },
+   "en": {
+    "h1": "Orchestrators and automation",
+    "fam.line": "Products that put AI agents to work for you.",
+    "lead": "Products that put one or several AI agents to work for you: they hand out tasks, start them at a set time or when something happens, and keep going when you are not looking.",
+    "what.p": "Three kinds of product belong here: orchestrators, which coordinate several agents; workflow automation, which chains steps and services with agents inside; and no-code builders, where you put an agent together without programming. Some are installed on your computer or your server and others are contracted in the vendor's cloud.",
+    "why.p": "When a product launches agents for you, what each agent can do without asking is no longer decided in the agent: the product decides it. That is why we look at what the product's documentation says, and not only the agent's.",
+    "measure.p": "The same seven criteria as for everyone, with official documentation, public code or a test."
+   },
+   "es": {
+    "h1": "Orquestadores y automatización",
+    "fam.line": "Productos que ponen a trabajar a agentes de IA por ti.",
+    "lead": "Productos que ponen a trabajar a uno o varios agentes de IA por ti: les reparten tareas, los lanzan a una hora o cuando pasa algo, y siguen cuando no miras.",
+    "what.p": "Entran tres tipos de producto: orquestadores, que coordinan a varios agentes; automatización de flujos, que encadena pasos y servicios con agentes dentro; y constructores sin código, donde montas un agente sin programar. Unos se instalan en tu ordenador o en tu servidor y otros se contratan en la nube del fabricante.",
+    "why.p": "Cuando un producto lanza agentes por ti, lo que cada agente puede hacer sin preguntar ya no lo decides en el agente: lo decide el producto. Por eso miramos qué dice la documentación del producto, y no solo la del agente.",
+    "measure.p": "Los mismos siete criterios que a todos, con documentación oficial, código público o una prueba."
+   },
+   "ca": {
+    "h1": "Orquestradors i automatització",
+    "fam.line": "Productes que posen a treballar agents d'IA per tu.",
+    "lead": "Productes que posen a treballar un o diversos agents d'IA per tu: els reparteixen tasques, els llancen a una hora o quan passa alguna cosa, i segueixen quan no mires.",
+    "what.p": "Hi entren tres tipus de producte: orquestradors, que coordinen diversos agents; automatització de fluxos, que encadena passos i serveis amb agents a dins; i constructors sense codi, on muntes un agent sense programar. Uns s'instal·len al teu ordinador o al teu servidor i d'altres es contracten al núvol del fabricant.",
+    "why.p": "Quan un producte llança agents per tu, el que cada agent pot fer sense preguntar ja no ho decideixes a l'agent: ho decideix el producte. Per això mirem què diu la documentació del producte, i no només la de l'agent.",
+    "measure.p": "Els mateixos set criteris que a tothom, amb documentació oficial, codi públic o una prova."
+   }
+  },
+  {
+   "id": "agents-on-the-vendors-computer",
+   "kinds": [
+    "hosted_agent"
+   ],
+   "path": {
+    "en": "/observatory/control-baseline/agents-on-the-vendors-computer/",
+    "es": "/es/observatorio/minimo-de-control/agentes-en-el-ordenador-del-fabricante/",
+    "ca": "/ca/observatori/minim-de-control/agents-a-lordinador-del-fabricant/"
+   },
+   "en": {
+    "h1": "Agents on the vendor's computer",
+    "fam.line": "AI agents that work on a machine the vendor provides.",
+    "lead": "AI agents that do not run on your computer: the vendor gives them a whole machine in your name, with a browser, files, memory and your open sessions, and they keep working when you are away.",
+    "what.p": "A product belongs here if the vendor gives the agent its own computer in the vendor's cloud, the agent acts with your accounts and it can work without you in front of it. Chats that only answer do not belong here.",
+    "why.p": "On your computer, RosmarOps can read what each agent is allowed to do. Nobody from outside can get into the vendor's computer: all that is left is what the vendor documents. That is why everything here is measured with official documentation, and what the documentation does not say stays as “No answer”.",
+    "measure.p": "The same seven criteria as for everyone. We cannot test these products: some are only offered in certain countries or require a company account. Each result says where each answer comes from.",
+    "notyet.h2": "What the baseline does not measure yet",
+    "notyet.p": "In several of these products, the one who approves an action is not you: it is another AI model. Today's baseline asks what the agent does without asking you, but not who decides in your place, nor whether you can read a record of what the agent sent out. These are two questions we are studying to add, for every product."
+   },
+   "es": {
+    "h1": "Agentes en el ordenador del fabricante",
+    "fam.line": "Agentes de IA que trabajan en una máquina que pone el fabricante.",
+    "lead": "Agentes de IA que no corren en tu ordenador: el fabricante les da una máquina entera a tu nombre, con navegador, ficheros, memoria y tus sesiones abiertas, y siguen trabajando cuando no estás.",
+    "what.p": "Entra un producto si el fabricante le pone al agente un ordenador propio en su nube, el agente actúa con tus cuentas y puede trabajar sin que estés delante. No entran los chats que solo contestan.",
+    "why.p": "En tu ordenador, RosmarOps puede leer qué tiene permitido cada agente. En el ordenador del fabricante no puede entrar nadie de fuera: solo queda lo que el fabricante documenta. Por eso aquí todo se mide con documentación oficial, y lo que la documentación no dice queda como «Sin respuesta».",
+    "measure.p": "Los mismos siete criterios que a todos. Estos productos no los podemos probar: algunos solo se ofrecen en ciertos países o piden una cuenta de empresa. Cada resultado dice de dónde sale cada respuesta.",
+    "notyet.h2": "Lo que el mínimo todavía no mide",
+    "notyet.p": "En varios de estos productos, quien aprueba una acción no eres tú: es otro modelo de IA. El mínimo de hoy pregunta qué hace el agente sin preguntarte, pero no quién decide en tu lugar, ni si puedes leer un registro de lo que el agente envió fuera. Son dos preguntas que estudiamos añadir, para todos los productos."
+   },
+   "ca": {
+    "h1": "Agents a l'ordinador del fabricant",
+    "fam.line": "Agents d'IA que treballen en una màquina que posa el fabricant.",
+    "lead": "Agents d'IA que no corren al teu ordinador: el fabricant els dona una màquina sencera a nom teu, amb navegador, fitxers, memòria i les teves sessions obertes, i segueixen treballant quan no hi ets.",
+    "what.p": "Hi entra un producte si el fabricant posa a l'agent un ordinador propi al seu núvol, l'agent actua amb els teus comptes i pot treballar sense que hi siguis davant. No hi entren els xats que només contesten.",
+    "why.p": "Al teu ordinador, RosmarOps pot llegir què té permès cada agent. A l'ordinador del fabricant no hi pot entrar ningú de fora: només queda el que el fabricant documenta. Per això aquí tot es mesura amb documentació oficial, i el que la documentació no diu queda com a «Sense resposta».",
+    "measure.p": "Els mateixos set criteris que a tothom. Aquests productes no els podem provar: alguns només s'ofereixen en certs països o demanen un compte d'empresa. Cada resultat diu d'on surt cada resposta.",
+    "notyet.h2": "El que el mínim encara no mesura",
+    "notyet.p": "En diversos d'aquests productes, qui aprova una acció no ets tu: és un altre model d'IA. El mínim d'avui pregunta què fa l'agent sense preguntar-te, però no qui decideix en lloc teu, ni si pots llegir un registre del que l'agent ha enviat fora. Són dues preguntes que estudiem afegir, per a tots els productes."
+   }
+  }
+ ]
+}

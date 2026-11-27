@@ -25,6 +25,9 @@ ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "observatory" / "data" / "minimum"
 SCHEMA = ROOT / "observatory" / "schema" / "minim-result.v2.schema.json"
 SCHEMA_NAME = SCHEMA.name
+# GTM-232: the families, each with the kinds it groups and its address in each language (spec
+# vigil docs/research/2026-11-27-minimo-de-control-fichas-de-familia.md §1).
+FAMILIES = ROOT / "observatory" / "data" / "minimum-families.json"
 # The criteria version the criterion page states (the v4 criteria, signed by Albert on 25-11).
 CRITERIA_VERSION = 4
 IDS = ["M1", "M2", "M3", "M4", "M5", "M6", "M7"]
@@ -116,3 +119,35 @@ def owner_agent(rid, agent_ids):
     if rid.endswith("-cloud") and rid[: -len("-cloud")] in agent_ids:
         return rid[: -len("-cloud")]
     return None
+
+
+def families(path=FAMILIES):
+    """The families, in their order. Stops if two families share a kind or an address."""
+    fams = json.loads(Path(path).read_text(encoding="utf-8"))["families"]
+    kinds = [k for f in fams for k in f["kinds"]]
+    if len(kinds) != len(set(kinds)):
+        raise SystemExit(f"{path}: a kind is in two families")
+    paths = [p for f in fams for p in f["path"].values()]
+    if len(paths) != len(set(paths)):
+        raise SystemExit(f"{path}: two families share an address")
+    return fams
+
+
+def family_of(r, fams):
+    """The family a result belongs to, by its kind; None for a kind no family groups (agent_framework)."""
+    return next((f for f in fams if r["kind"] in f["kinds"]), None)
+
+
+def clashes(fams, results, crit_path):
+    """Addresses a family page and a result page would share: a family's folder under the criterion page that is the
+    candidate.id of some result on disk (published or not). Empty when there is none."""
+    ids = {r["candidate"]["id"] for _, r in results}
+    out = []
+    for f in fams:
+        for lang, p in f["path"].items():
+            slug = p[len(crit_path[lang]):].strip("/")
+            if not p.startswith(crit_path[lang]) or "/" in slug or not slug:
+                out.append(f"{p} is not one folder under {crit_path[lang]}")
+            elif slug in ids:
+                out.append(f"{p} is also the page of the result {slug!r}")
+    return out
