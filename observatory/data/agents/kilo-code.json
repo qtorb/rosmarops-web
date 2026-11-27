@@ -65,6 +65,33 @@
         "how": "official_changelog"
       },
       "rosmarops_impact": "none"
+    },
+    {
+      "id": "chg-kilo-code-7-8-36-permissions",
+      "version": "v7.8.36",
+      "date": "2026-11-26",
+      "category": "permissions",
+      "before": {
+        "en": "Before v7.8.36, the Kilo Code release notes listed no escaped display for invisible or control characters in the permission card.",
+        "es": "Antes de v7.8.36, las notas de versión de Kilo Code no recogían ninguna forma escapada para los caracteres invisibles o de control en la tarjeta de permisos.",
+        "ca": "Abans de v7.8.36, les notes de versió de Kilo Code no recollien cap forma escapada per als caràcters invisibles o de control a la targeta de permisos."
+      },
+      "after": {
+        "en": "From v7.8.36, the VS Code permission card shows its description, paths, commands and diff file names with control characters, bidi marks and invisible characters as literal escapes, according to the release notes.",
+        "es": "Desde v7.8.36, la tarjeta de permisos de VS Code muestra su descripción, rutas, comandos y nombres de archivo del diff con los caracteres de control, las marcas bidi y los invisibles como escapes literales, según las notas de versión.",
+        "ca": "Des de v7.8.36, la targeta de permisos de VS Code mostra la seva descripció, camins, ordres i noms de fitxer del diff amb els caràcters de control, les marques bidi i els invisibles com a escapaments literals, segons les notes de versió."
+      },
+      "source": {
+        "url": "https://github.com/Kilo-Org/kilocode/releases/tag/v7.8.36",
+        "official": true,
+        "accessed_at": "2026-11-27"
+      },
+      "verified": {
+        "by": "writer",
+        "at": "2026-11-27",
+        "how": "official_changelog"
+      },
+      "rosmarops_impact": "none"
     }
   ],
   "ratings": [],

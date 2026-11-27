@@ -46,6 +46,33 @@
         "how": "official_changelog"
       },
       "rosmarops_impact": "none"
+    },
+    {
+      "id": "chg-qwen-code-0-28-7-telemetry",
+      "version": "v0.28.7",
+      "date": "2026-11-26",
+      "category": "telemetry",
+      "before": {
+        "en": "Before v0.28.7, the Qwen Code release notes listed no Harness kernel option for the CLI and no usage statistics setting for it.",
+        "es": "Antes de v0.28.7, las notas de versión de Qwen Code no recogían ninguna opción del kernel Harness para la CLI ni un ajuste de estadísticas de uso para ella.",
+        "ca": "Abans de v0.28.7, les notes de versió de Qwen Code no recollien cap opció del kernel Harness per a la CLI ni cap paràmetre d'estadístiques d'ús per a ella."
+      },
+      "after": {
+        "en": "From v0.28.7, the Qwen Code CLI can run on the Harness kernel with usage statistics off unless privacy.usageStatisticsEnabled is true, according to the release notes.",
+        "es": "Desde v0.28.7, la CLI de Qwen Code puede ejecutarse sobre el kernel Harness con las estadísticas de uso desactivadas salvo que privacy.usageStatisticsEnabled sea true, según las notas de versión.",
+        "ca": "Des de v0.28.7, la CLI de Qwen Code es pot executar sobre el kernel Harness amb les estadístiques d'ús desactivades llevat que privacy.usageStatisticsEnabled sigui true, segons les notes de versió."
+      },
+      "source": {
+        "url": "https://github.com/QwenLM/qwen-code/releases/tag/v0.28.7",
+        "official": true,
+        "accessed_at": "2026-11-27"
+      },
+      "verified": {
+        "by": "writer",
+        "at": "2026-11-27",
+        "how": "official_changelog"
+      },
+      "rosmarops_impact": "none"
     }
   ],
   "ratings": []

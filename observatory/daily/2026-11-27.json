@@ -1,0 +1,460 @@
+{
+  "date": "2026-11-27",
+  "reviewed_at": "2026-11-27T07:16:27Z",
+  "status": "incomplete",
+  "items": [
+    {
+      "source_url": "https://changelog.qoder.cn/",
+      "source_date": "2026-11-27",
+      "subject": "Qoder CN",
+      "identifier": null,
+      "text": {
+        "en": "Qoder CN IDE 1.42.0, dated 27 November 2026, adds mobile remote control to follow tasks, handle confirmation requests and stop tasks away from the computer, according to its changelog.",
+        "es": "Qoder CN IDE 1.42.0, del 27 de noviembre de 2026, añade control remoto desde el móvil para seguir tareas, atender solicitudes de confirmación y detener tareas fuera del ordenador, según su changelog.",
+        "ca": "Qoder CN IDE 1.42.0, del 27 de novembre de 2026, afegeix control remot des del mòbil per seguir tasques, atendre sol·licituds de confirmació i aturar tasques fora de l'ordinador, segons el seu changelog."
+      }
+    },
+    {
+      "source_url": "https://github.com/QwenLM/qwen-code/releases/tag/v0.28.7",
+      "source_date": "2026-11-26",
+      "subject": "Qwen Code",
+      "identifier": null,
+      "text": {
+        "en": "Qwen Code v0.28.7, dated 26 November 2026, runs its CLI on the Harness kernel with usage statistics off unless privacy.usageStatisticsEnabled is true, according to its release notes.",
+        "es": "Qwen Code v0.28.7, del 26 de noviembre de 2026, ejecuta su CLI sobre el kernel Harness con las estadísticas de uso desactivadas salvo que privacy.usageStatisticsEnabled sea true, según sus notas de versión.",
+        "ca": "Qwen Code v0.28.7, del 26 de novembre de 2026, executa la seva CLI sobre el kernel Harness amb les estadístiques d'ús desactivades llevat que privacy.usageStatisticsEnabled sigui true, segons les seves notes de versió."
+      }
+    },
+    {
+      "source_url": "https://github.com/Kilo-Org/kilocode/releases/tag/v7.8.36",
+      "source_date": "2026-11-26",
+      "subject": "Kilo Code",
+      "identifier": null,
+      "text": {
+        "en": "Kilo Code v7.8.36, dated 26 November 2026, shows control characters, bidi marks and invisible characters as literal escapes in the permission card, according to its release notes.",
+        "es": "Kilo Code v7.8.36, del 26 de noviembre de 2026, muestra los caracteres de control, las marcas bidi y los caracteres invisibles como escapes literales en la tarjeta de permisos, según sus notas de versión.",
+        "ca": "Kilo Code v7.8.36, del 26 de novembre de 2026, mostra els caràcters de control, les marques bidi i els caràcters invisibles com a escapaments literals a la targeta de permisos, segons les seves notes de versió."
+      }
+    },
+    {
+      "source_url": "https://osv.dev/vulnerability/MAL-2026-20659",
+      "source_date": "2026-11-26",
+      "subject": "tzero-mcp (npm)",
+      "identifier": "MAL-2026-20659",
+      "text": {
+        "en": "MAL-2026-20659 (also MAL-0000-ghsa-malware-2912a06e08416131), in OSV on 26 November 2026, lists the npm package tzero-mcp as malicious code, according to OSV.",
+        "es": "MAL-2026-20659 (también MAL-0000-ghsa-malware-2912a06e08416131), en OSV el 26 de noviembre de 2026, incluye el paquete de npm tzero-mcp como código malicioso, según OSV.",
+        "ca": "MAL-2026-20659 (també MAL-0000-ghsa-malware-2912a06e08416131), a OSV el 26 de novembre de 2026, inclou el paquet de npm tzero-mcp com a codi maliciós, segons OSV."
+      }
+    },
+    {
+      "source_url": "https://nvd.nist.gov/vuln/detail/CVE-2026-131589",
+      "source_date": "2026-11-26",
+      "subject": "AI Engine (WordPress)",
+      "identifier": "CVE-2026-131589",
+      "text": {
+        "en": "CVE-2026-131589, in NVD on 26 November 2026, affects the AI Engine MCP server plugin for WordPress up to 3.9.4 with a limited arbitrary file upload, according to NVD.",
+        "es": "CVE-2026-131589, en NVD el 26 de noviembre de 2026, afecta al plugin de WordPress AI Engine, con servidor MCP, hasta 3.9.4 con una subida limitada de archivos arbitrarios, según NVD.",
+        "ca": "CVE-2026-131589, a NVD el 26 de novembre de 2026, afecta el plugin de WordPress AI Engine, amb servidor MCP, fins a 3.9.4 amb una pujada limitada de fitxers arbitraris, segons NVD."
+      }
+    }
+  ],
+  "held": [
+    {
+      "text_en": "Orca v1.4.279, dated 27 November 2026, keeps custom Droid hook commands and recognizes existing hooks when refreshing, according to its release notes.",
+      "source_url": "https://github.com/stablyai/orca/releases/tag/v1.4.279",
+      "rule": 9,
+      "reason": "fuera por tope"
+    },
+    {
+      "text_en": "Orca v1.4.278, dated 26 November 2026, runs every Antigravity chat on agy and removes Gemini CLI, according to its release notes.",
+      "source_url": "https://github.com/stablyai/orca/releases/tag/v1.4.278",
+      "rule": 9,
+      "reason": "fuera por tope"
+    },
+    {
+      "text_en": "Devin, in its release notes of 26 November 2026, lets Slack Enterprise Grid users message a Bot set to Anyone in your Slack workspace.",
+      "source_url": "https://docs.devin.ai/release-notes/overview",
+      "rule": 9,
+      "reason": "fuera por tope"
+    },
+    {
+      "text_en": "Qoder CN CLI 1.1.99, dated 26 November 2026, adds per-skill enable and disable settings and fixes disabled project MCP servers shown as enabled, according to its changelog.",
+      "source_url": "https://changelog.qoder.cn/",
+      "rule": 9,
+      "reason": "fuera por tope"
+    },
+    {
+      "text_en": "Paseo v0.17.6, dated 27 November 2026, removes the Antigravity usage source that ran agy, according to its release notes.",
+      "source_url": "https://github.com/getpaseo/paseo/releases/tag/v0.17.6",
+      "rule": 9,
+      "reason": "fuera por tope"
+    },
+    {
+      "text_en": "n8n 3.4.1 (prerelease), dated 26 November 2026, applies the execution data size limit in the MCP get_workflow_execution tool, according to its release notes.",
+      "source_url": "https://github.com/n8n-io/n8n/releases/tag/n8n%403.4.1",
+      "rule": 9,
+      "reason": "fuera por tope"
+    },
+    {
+      "text_en": "Orca v1.4.277, dated 25 November 2026, adds an Approve for me choice in Antigravity terminals, according to its release notes.",
+      "source_url": "https://github.com/stablyai/orca/releases/tag/v1.4.277",
+      "rule": 9,
+      "reason": "fuera por tope (segunda vez)"
+    },
+    {
+      "text_en": "Devin Desktop v3.15.14, dated 25 November 2026, adds an in-app browser that the agent can control, according to its changelog.",
+      "source_url": "https://docs.devin.ai/desktop/changelog",
+      "rule": 9,
+      "reason": "fuera por tope (segunda vez)"
+    },
+    {
+      "text_en": "MAL-2026-20616 (also MAL-0000-kam193-4c0bf9342dc65fdf), in OSV on 25 November 2026, lists the PyPI package mcp-env-report as malicious code, according to OSV.",
+      "source_url": "https://osv.dev/vulnerability/MAL-2026-20616",
+      "rule": 9,
+      "reason": "fuera por tope (segunda vez)"
+    },
+    {
+      "text_en": "MAL-2026-20611 (also MAL-0000-kam193-efc471317c1a84db and MAL-0000-kam193-51ea75831e1ef2d4), in OSV on 25 November 2026, lists the PyPI package mcp-diag-7f3a as malicious code, according to OSV.",
+      "source_url": "https://osv.dev/vulnerability/MAL-2026-20611",
+      "rule": 9,
+      "reason": "fuera por tope (segunda vez)"
+    },
+    {
+      "text_en": "CVE-2026-131688, in NVD on 26 November 2026: an authorization bypass in an MCP server plugin for WordPress up to 1.5.8, according to NVD.",
+      "source_url": "https://nvd.nist.gov/vuln/detail/CVE-2026-131688",
+      "rule": 3,
+      "reason": "The plugin's own name contains a word R3 forbids in every language; it cannot be named without it."
+    },
+    {
+      "text_en": "CVE-2026-137463, in NVD on 26 November 2026: HKUDS nanobot 0.1.4 before 0.4.1 skips TLS verification in its OpenAI Codex provider, according to NVD.",
+      "source_url": "https://nvd.nist.gov/vuln/detail/CVE-2026-137463",
+      "rule": 11,
+      "reason": "nanobot has no file in observatory/data/agents/; it is a separate agent with a Codex provider, not a package, extension or MCP server the tracked agents use."
+    }
+  ],
+  "checked": [
+    {
+      "name": "Claude Code",
+      "url": "https://code.claude.com/docs/en/changelog",
+      "latest_seen": "2.1.332",
+      "latest_date": "2026-11-25"
+    },
+    {
+      "name": "Cursor",
+      "url": "https://cursor.com/changelog",
+      "latest_seen": "v2026.11.19",
+      "latest_date": "2026-11-19"
+    },
+    {
+      "name": "OpenAI Codex",
+      "url": "https://github.com/openai/codex/releases",
+      "latest_seen": "rust-v0.172.0",
+      "latest_date": "2026-11-23"
+    },
+    {
+      "name": "Google Antigravity",
+      "url": "https://antigravity.google/docs/changelog",
+      "latest_seen": "v2.35.2",
+      "latest_date": "2026-11-25"
+    },
+    {
+      "name": "Hermes Agent",
+      "url": "https://github.com/NousResearch/hermes-agent/releases",
+      "latest_seen": "v0.23.4",
+      "latest_date": "2026-11-24"
+    },
+    {
+      "name": "GitHub Copilot",
+      "url": "https://github.blog/changelog/",
+      "latest_seen": "",
+      "latest_date": "2026-11-25"
+    },
+    {
+      "name": "Cline",
+      "url": "https://github.com/cline/cline/releases",
+      "latest_seen": "v4.1.28",
+      "latest_date": "2026-11-26"
+    },
+    {
+      "name": "Continue",
+      "url": "https://github.com/continuedev/continue/releases",
+      "latest_seen": "v2.1.0-vscode",
+      "latest_date": "2026-06-19"
+    },
+    {
+      "name": "Kanvas",
+      "url": "https://github.com/XMihura/Kanvas/blob/main/CHANGELOG.md",
+      "latest_seen": "v0.5.0",
+      "latest_date": "2026-11-09"
+    },
+    {
+      "name": "OpenSSF malicious-packages",
+      "url": "https://github.com/ossf/malicious-packages",
+      "latest_seen": "",
+      "latest_date": "2026-11-27"
+    },
+    {
+      "name": "Gemini CLI",
+      "url": "https://github.com/google-gemini/gemini-cli/releases",
+      "latest_seen": "v0.71.1",
+      "latest_date": "2026-11-24"
+    },
+    {
+      "name": "GitHub Copilot CLI",
+      "url": "https://github.com/github/copilot-cli/blob/main/changelog.md",
+      "latest_seen": "1.0.116",
+      "latest_date": "2026-11-25"
+    },
+    {
+      "name": "Claude desktop",
+      "url": "https://support.claude.com/en/articles/12138966-release-notes",
+      "latest_seen": "",
+      "latest_date": "2026-11-24"
+    },
+    {
+      "name": "OSV npm and PyPI",
+      "url": "https://osv.dev/list?ecosystem=npm",
+      "latest_seen": "",
+      "latest_date": "2026-11-27"
+    },
+    {
+      "name": "NVD",
+      "url": "https://nvd.nist.gov/vuln/search",
+      "latest_seen": "",
+      "latest_date": "2026-11-26"
+    },
+    {
+      "name": "OpenCode",
+      "url": "https://github.com/anomalyco/opencode/releases",
+      "latest_seen": "v2.4.2",
+      "latest_date": "2026-11-25"
+    },
+    {
+      "name": "Kiro",
+      "url": "https://kiro.dev/changelog/",
+      "latest_seen": "3.6.0",
+      "latest_date": "2026-11-25"
+    },
+    {
+      "name": "Devin Desktop",
+      "url": "https://docs.devin.ai/desktop/changelog",
+      "latest_seen": "v3.15.14",
+      "latest_date": "2026-11-25"
+    },
+    {
+      "name": "Goose",
+      "url": "https://github.com/aaif-goose/goose/releases",
+      "latest_seen": "v1.61.1",
+      "latest_date": "2026-11-25"
+    },
+    {
+      "name": "Devin (cloud)",
+      "url": "https://docs.devin.ai/release-notes/overview",
+      "latest_seen": "",
+      "latest_date": "2026-11-26"
+    },
+    {
+      "name": "Codex cloud",
+      "url": "https://developers.openai.com/codex/changelog",
+      "latest_seen": "",
+      "latest_date": "2026-08-19"
+    },
+    {
+      "name": "OpenClaw",
+      "url": "https://github.com/openclaw/openclaw/releases",
+      "latest_seen": "v2026.11.10",
+      "latest_date": "2026-11-25"
+    },
+    {
+      "name": "LangGraph",
+      "url": "https://github.com/langchain-ai/langgraph/releases",
+      "latest_seen": "1.2.24",
+      "latest_date": "2026-11-20"
+    },
+    {
+      "name": "CrewAI",
+      "url": "https://github.com/crewAIInc/crewAI/releases",
+      "latest_seen": "1.15.45",
+      "latest_date": "2026-11-24"
+    },
+    {
+      "name": "MCP specification",
+      "url": "https://github.com/modelcontextprotocol/modelcontextprotocol/releases",
+      "latest_seen": "2026-07-28",
+      "latest_date": "2026-07-28"
+    },
+    {
+      "name": "VS Code",
+      "url": "https://code.visualstudio.com/updates",
+      "latest_seen": "1.148",
+      "latest_date": "2026-11-25"
+    },
+    {
+      "name": "CISA KEV",
+      "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
+      "latest_seen": "2026.11.25",
+      "latest_date": "2026-11-25"
+    },
+    {
+      "name": "Muse Code",
+      "url": "https://dev.meta.ai/docs/muse-code/changelog",
+      "latest_seen": "1.4.25",
+      "latest_date": "2026-11-27"
+    },
+    {
+      "name": "n8n",
+      "url": "https://docs.n8n.io/release-notes/",
+      "latest_seen": "n8n@3.4.1",
+      "latest_date": "2026-11-26"
+    },
+    {
+      "name": "TRAE",
+      "url": "https://docs.trae.cn/ide/changelog",
+      "latest_seen": "v3.4.21",
+      "latest_date": "2026-11-17"
+    },
+    {
+      "name": "Qwen Code",
+      "url": "https://github.com/QwenLM/qwen-code/releases",
+      "latest_seen": "v0.28.7",
+      "latest_date": "2026-11-26"
+    },
+    {
+      "name": "Kimi Code",
+      "url": "https://moonshotai.github.io/kimi-code/en/release-notes/changelog",
+      "latest_seen": "@moonshot-ai/kimi-code@2.8.1",
+      "latest_date": "2026-11-26"
+    },
+    {
+      "name": "CodeBuddy",
+      "url": "https://www.codebuddy.cn/docs/cli/release-notes/README",
+      "latest_seen": "v2.187.0",
+      "latest_date": "2026-11-25"
+    },
+    {
+      "name": "Qoder CN",
+      "url": "https://changelog.qoder.cn/",
+      "latest_seen": "1.42.0",
+      "latest_date": "2026-11-27"
+    },
+    {
+      "name": "Aider",
+      "url": "https://github.com/Aider-AI/aider/releases",
+      "latest_seen": "v0.86.2",
+      "latest_date": "2026-02-12"
+    },
+    {
+      "name": "OpenHands",
+      "url": "https://github.com/OpenHands/OpenHands/releases",
+      "latest_seen": "v1.46.0",
+      "latest_date": "2026-11-25"
+    },
+    {
+      "name": "Amp",
+      "url": "https://ampcode.com/news",
+      "latest_seen": "",
+      "latest_date": "2026-11-25"
+    },
+    {
+      "name": "Warp",
+      "url": "https://docs.warp.dev/changelog/2026/",
+      "latest_seen": "2026.11.19",
+      "latest_date": "2026-11-19"
+    },
+    {
+      "name": "Junie",
+      "url": "https://junie.jetbrains.com/whats-new",
+      "latest_seen": "26.11.3",
+      "latest_date": "2026-11-24"
+    },
+    {
+      "name": "Kilo Code",
+      "url": "https://github.com/Kilo-Org/kilocode/releases",
+      "latest_seen": "v7.8.36",
+      "latest_date": "2026-11-26"
+    },
+    {
+      "name": "Grok Build",
+      "url": "https://x.ai/changelog/build",
+      "latest_seen": "v1.0.92",
+      "latest_date": "2026-11-19"
+    },
+    {
+      "name": "Grok Bot",
+      "url": "https://x.ai/changelog/bot",
+      "latest_seen": "v1.3.0",
+      "latest_date": "2026-11-24"
+    },
+    {
+      "name": "Orca",
+      "url": "https://github.com/stablyai/orca/releases",
+      "latest_seen": "v1.4.279",
+      "latest_date": "2026-11-27"
+    },
+    {
+      "name": "Paseo",
+      "url": "https://github.com/getpaseo/paseo/releases",
+      "latest_seen": "v0.17.6",
+      "latest_date": "2026-11-27"
+    },
+    {
+      "name": "Claude Squad",
+      "url": "https://github.com/smtg-ai/claude-squad/releases",
+      "latest_seen": "v1.0.20",
+      "latest_date": "2026-08-20"
+    },
+    {
+      "name": "Paradev",
+      "url": "https://github.com/ParadevAI/Paradev/releases",
+      "latest_seen": "desktop-v2.0.12",
+      "latest_date": "2026-11-25"
+    },
+    {
+      "name": "OpenAI Agents SDK",
+      "url": "https://github.com/openai/openai-agents-python/releases",
+      "latest_seen": "v0.26.0",
+      "latest_date": "2026-11-24"
+    },
+    {
+      "name": "Make",
+      "url": "https://help.make.com/2026",
+      "latest_seen": "",
+      "latest_date": "2026-11-26"
+    },
+    {
+      "name": "Multica",
+      "url": "https://multica.ai/changelog",
+      "latest_seen": "v0.13.0",
+      "latest_date": "2026-11-25"
+    },
+    {
+      "name": "Lindy",
+      "url": "https://www.lindy.ai/changelog",
+      "latest_seen": "",
+      "latest_date": "2026-11-20"
+    },
+    {
+      "name": "Relevance AI",
+      "url": "https://relevanceai.com/docs/changelog",
+      "latest_seen": "",
+      "latest_date": "2026-11-02"
+    },
+    {
+      "name": "Gumloop",
+      "url": "https://gumloop.com/changelog",
+      "latest_seen": "14.2.0",
+      "latest_date": "2026-11-24"
+    },
+    {
+      "name": "Dify",
+      "url": "https://github.com/langgenius/dify/releases",
+      "latest_seen": "1.20.0",
+      "latest_date": "2026-11-18"
+    }
+  ],
+  "not_checked": [
+    "Microsoft Agent Framework"
+  ],
+  "summary_ref": "docs/observatorio/2026-11-27.md"
+}
