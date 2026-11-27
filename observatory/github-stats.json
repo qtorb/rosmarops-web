@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-27T08:28:52Z",
+  "generated_at": "2026-11-27T09:26:35Z",
   "repo": {
     "stargazers_count": 2,
     "subscribers_count": 0,
@@ -47,11 +47,11 @@
         },
         {
           "name": "sample-report.en.html",
-          "download_count": 1
+          "download_count": 2
         },
         {
           "name": "sample-report.es.html",
-          "download_count": 1
+          "download_count": 2
         },
         {
           "name": "SHA256SUMS.txt",
