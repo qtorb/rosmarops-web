@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RosmarOps Academy</title>
+<meta name="description" content="Lecciones cortas y vídeos para saber qué hace un agente de IA sin preguntarte, y decidir tú qué le dejas hacer. Gratis, sin registro y sin saber programar.">
+<link rel="canonical" href="https://rosmarops.com/es/academy/">
+<link rel="alternate" hreflang="en" href="https://rosmarops.com/academy/">
+<link rel="alternate" hreflang="es" href="https://rosmarops.com/es/academy/">
+<link rel="alternate" hreflang="ca" href="https://rosmarops.com/ca/academy/">
+<link rel="alternate" hreflang="x-default" href="https://rosmarops.com/academy/">
+<link rel="stylesheet" href="/assets/consent/cookieconsent.css?v=3.1.0">
+<link rel="icon" href="/wp-content/uploads/2026/10/image-1.png">
+<style>
+:root{--bg:#F6F5F2;--ink:#1B1A18;--ink2:#3A3833;--muted:#66635D;--line:#E3E0D8;--card:#FFFFFF;--accent:#6F8F78}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+a{color:var(--ink)}a:hover{color:var(--accent)}
+.wrap{max-width:1040px;margin:0 auto;padding:0 16px}
+header .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;padding-top:24px;padding-bottom:24px}
+header img{height:40px;width:auto;display:block}
+nav{display:flex;flex-wrap:wrap;gap:24px;font-size:16px}
+main .wrap{display:flex;flex-direction:column;gap:64px;padding-top:48px;padding-bottom:64px}
+.hero{display:flex;flex-direction:column;gap:20px;max-width:760px}
+h1{margin:0;font-size:clamp(34px,6vw,52px);line-height:1.08;font-weight:700;letter-spacing:-.02em}
+.lead{margin:0;font-size:20px;line-height:1.55;color:var(--ink2)}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:16px}
+h2{margin:0;font-size:14px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:12px;font-size:17px;line-height:1.55}
+.status{border-top:1px solid var(--line);padding-top:32px;display:flex;flex-direction:column;gap:12px;max-width:760px}
+.status p{margin:0;font-size:17px;line-height:1.55}
+footer{border-top:1px solid var(--line)}
+footer .wrap{padding-top:28px;padding-bottom:28px;font-size:15px;color:var(--muted)}
+footer nav{gap:20px;font-size:15px}
+.doc{max-width:760px;display:flex;flex-direction:column;gap:18px;font-size:18px;line-height:1.65}
+.doc h1{font-size:clamp(30px,5vw,44px);line-height:1.12}
+.doc h2{font-size:22px;letter-spacing:0;text-transform:none;color:var(--ink);margin-top:20px}
+.doc p,.doc ul{margin:0}.doc ul{font-size:18px;gap:8px}
+.doc .meta{font-size:15px;color:var(--muted)}
+.doc .formula{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 20px;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:16px;overflow-wrap:anywhere}
+.doc code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:.92em}
+.faq h2{margin-top:24px}
+.doc a{overflow-wrap:anywhere}
+</style>
+<link rel="stylesheet" href="/assets/course/chain.css?v=3">
+<style>.ac-two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.ac-two .cs-c h2{font-size:18px;margin:0 0 8px;line-height:1.3}
+.ac-two .cs-c p,.ac-two .cs-c ul{font-size:16px;line-height:1.55;color:var(--ink2);margin:0}
+.ac-two .cs-c ul{list-style:disc;padding-left:20px}
+.course .ac-course p{margin:0}
+.course .ac-title{font-size:22px;font-weight:700;line-height:1.3}
+.course .ac-meta{font-size:14px;color:var(--muted);margin-top:4px}
+.course .ac-need{font-size:16px;margin-top:12px;color:var(--ink2)}
+.course ul.vl{display:grid;padding:0}
+.course .ac-all{margin:16px 0 0}
+@media (max-width:820px){.ac-two{grid-template-columns:1fr}}
+.vp{position:relative;aspect-ratio:16/9;width:100%;max-width:760px;border-radius:12px;overflow:hidden;background:#111;border:1px solid var(--line)}
+.vp a,.vp iframe{display:block;width:100%;height:100%;border:0}
+.vp img{display:block;width:100%;height:100%;object-fit:cover}
+.vp-play{position:absolute;left:50%;top:50%;width:76px;height:76px;margin:-38px 0 0 -38px;border-radius:50%;background:rgba(0,0,0,.72);display:flex;align-items:center;justify-content:center}
+.vp-play::after{content:"";margin-left:6px;border-style:solid;border-width:15px 0 15px 25px;border-color:transparent transparent transparent #fff}
+.vp a:hover .vp-play,.vp a:focus-visible .vp-play{background:rgba(0,0,0,.9)}
+.vp-meta{margin:8px 0 0;font-size:15px;color:var(--muted)}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.vl{list-style:none;padding:0;margin:0;display:grid;gap:22px;grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+.vl img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;border-radius:10px;border:1px solid var(--line)}
+.vl h2{font-size:19px;margin:10px 0 4px;line-height:1.3}.vl p{margin:0;font-size:16px;color:var(--ink2)}
+.doc details summary{cursor:pointer;font-weight:600}</style>
+</head>
+<body>
+<header><div class="wrap">
+<a href="/es/"><img src="/assets/brand/rosmarops-logo.png" srcset="/assets/brand/rosmarops-logo.png 1x, /assets/brand/rosmarops-logo@2x.png 2x" width="512" height="131" alt="RosmarOps"></a>
+<nav><a href="/es/blog/">Blog</a><a href="/es/blog/que-es-rosmarops/">Acerca de</a><a href="/es/observatorio/">Observatorio</a><a href="/es/sandbox/">Sandbox</a><a href="/es/academy/" aria-current="page">Academy</a><a href="/es/metodologia/">Metodología</a><a href="/academy/" hreflang="en" lang="en" aria-label="English">EN</a><a href="/ca/academy/" hreflang="ca" lang="ca" aria-label="Català">CA</a></nav>
+</div></header>
+
+<main class="course"><div class="wrap"><div class="doc cs-entry">
+<p class="eyebrow">RosmarOps Academy</p><h1>Entiende qué puede hacer un agente de IA en tu ordenador</h1>
+<p class="lead">Lecciones cortas y vídeos para saber qué hace un agente de IA sin preguntarte, y decidir tú qué le dejas hacer. Gratis, sin registro y sin saber programar.</p>
+<div class="ac-two"><div class="cs-c"><h2>Qué es</h2><p>RosmarOps Academy es donde RosmarOps enseña lo que sabe sobre agentes de IA: un curso por pasos y vídeos cortos. Todo sale de lo que el programa lee en ordenadores de verdad y de la documentación oficial de cada agente, con su fuente al lado.</p></div>
+<div class="cs-c"><h2>Para qué</h2><ul><li>Para saber qué hace tu agente cuando no miras: qué lee, qué ejecuta y qué claves tiene a mano.</li><li>Para decidir tú qué le dejas hacer, en vez de quedarte con lo que viene de fábrica.</li><li>Para entender tu informe de RosmarOps y saber qué cambiar primero.</li></ul></div></div>
+<h2>Para quién</h2><p>Para quien usa Claude Code, Cursor, Codex u otro agente de IA para programar o para trabajar. No hace falta saber programar: cada palabra técnica se explica la primera vez que sale.</p>
+<h2>Un ejemplo para empezar</h2><p class="cs-big">Imagina que llamas a un pintor para que pinte tu piso mientras estás fuera. Le das la llave de la puerta. Dentro están las llaves del coche, la tarjeta del banco y una libreta con tus contraseñas. Puedes pedirle que te llame antes de abrir cada cajón, o dejarle hacer. Un agente de IA es parecido: un programa de inteligencia artificial que no solo contesta, sino que también hace cosas por ti en tu ordenador, como leer ficheros, ejecutar comandos o usar tus cuentas. Algunas las hace sin preguntarte. Casi siempre eso te ahorra tiempo. Pero si en esos ficheros hay una clave de tu banco o de tu tienda online, lo que el agente puede hacer sin preguntarte es también lo que podría hacer alguien que consiga engañarlo.</p>
+<h2>El curso</h2>
+<div class="ac-course"><p class="ac-title">Qué puede hacer tu agente sin preguntarte</p><p class="ac-meta">2 lecciones de 5 ya publicadas · cada una, 5 a 10 minutos de lectura y unos 10 más en tu ordenador</p>
+<p class="ac-need">Para leerlas no necesitas nada. Para los ejercicios «En tu ordenador», RosmarOps, que es gratuito y de código abierto.</p></div>
+<div class="cs-lessons"><a class="cs-lesson" href="/es/curso/el-inspector/"><span class="cs-num">1</span><span class="cs-lt"><b>El inspector.</b><span>Qué es un agente de IA, qué puede hacer sin preguntarte y cómo lo mira RosmarOps.</span></span></a><a class="cs-lesson" href="/es/curso/la-cadena/"><span class="cs-num">2</span><span class="cs-lt"><b>La cadena.</b><span>Por qué un permiso suelto no dice mucho: quién entra, qué puede hacer, qué llaves encuentra y qué abren.</span></span></a><div class="cs-lesson"><span class="cs-num">3</span><span class="cs-lt"><b>Lo que se puede saber y lo que no.</b></span><span class="cs-pill-soon">Próximamente</span></div><div class="cs-lesson"><span class="cs-num">4</span><span class="cs-lt"><b>Cómo se mide.</b></span><span class="cs-pill-soon">Próximamente</span></div><div class="cs-lesson"><span class="cs-num">5</span><span class="cs-lt"><b>Por qué fiarte de una herramienta que lee tus claves.</b></span><span class="cs-pill-soon">Próximamente</span></div></div>
+<p class="cs-next"><a class="cs-btn primary" href="/es/curso/el-inspector/">Empezar por la lección 1</a></p>
+<h2>Vídeos</h2><p>Tres o cuatro minutos cada uno, con su transcripción.</p></div>
+<ul class="vl" style="margin-top:28px"><li><a href="/es/blog/usa-agentes-de-ia-decide-tu/"><img src="/assets/video/rosmarops-hero-poster.png" width="1280" height="720" loading="lazy" alt="Usa agentes de IA. Decide tú."></a><h2><a href="/es/blog/usa-agentes-de-ia-decide-tu/">Usa agentes de IA. Decide tú.</a></h2><p>Tus agentes de IA hacen cada vez más por ti.</p></li><li><a href="/es/videos/paperclip-empresa-de-agentes/"><img src="/assets/video/paperclip-especial.jpg" width="1280" height="720" loading="lazy" alt="Paperclip: una empresa de agentes de IA, con límites"></a><h2><a href="/es/videos/paperclip-empresa-de-agentes/">Paperclip: una empresa de agentes de IA, con límites</a></h2><p>Paperclip te da una empresa de agentes, pero de fábrica no les pone límites. Esos límites los pones tú. · 3:25</p></li><li><a href="/es/videos/una-worktree-no-es-un-sandbox/"><img src="/assets/video/worktree-no-es-sandbox.jpg" width="1280" height="720" loading="lazy" alt="Una worktree no es un sandbox"></a><h2><a href="/es/videos/una-worktree-no-es-un-sandbox/">Una worktree no es un sandbox</a></h2><p>Una worktree separa los ficheros, no el acceso. Para separar el acceso, el sandbox en cada agente.</p></li></ul>
+<div class="doc"><p class="ac-all"><a href="/es/videos/">Todos los vídeos</a></p>
+<p class="cs-foot">Cada dato de Academy sale del código de RosmarOps, que es público (github.com/qtorb/rosmarops), del Observatorio y de la documentación oficial de los agentes.</p></div>
+</div></main>
+
+<footer><div class="wrap">
+<nav><a href="/es/blog/">Blog</a><a href="/es/blog/que-es-rosmarops/">Acerca de</a><a href="/es/observatorio/">Observatorio</a><a href="/es/sandbox/">Sandbox</a><a href="/es/metodologia/">Metodología</a><a href="/es/preguntas-frecuentes/">Preguntas</a><a href="/academy/" hreflang="en" lang="en" aria-label="English">EN</a><a href="/ca/academy/" hreflang="ca" lang="ca" aria-label="Català">CA</a><a href="/es/videos/">Vídeos</a><a href="/es/privacidad/">Privacidad</a><a href="/es/aviso-legal/">Aviso legal</a><a href="/es/terminos/">Términos</a><a href="#" data-cc="show-preferencesModal">Configurar cookies</a></nav>
+</div></footer>
+<script src="/assets/consent/cookieconsent.umd.js?v=3.1.0" defer></script>
+<script src="/assets/consent/consent.js?v=5" defer></script><script src="/assets/visits/visits.js?v=4" defer></script>
+</body>
+</html>

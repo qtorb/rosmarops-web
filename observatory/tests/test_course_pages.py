@@ -21,6 +21,9 @@ DATA = ALL["the-chain"]
 ONE = ALL["the-inspector"]
 import academy  # noqa: E402
 ENTRY = academy.load()
+# The two states of the Academy switch, rendered in memory whatever the committed state is (GTM-234 opened it).
+CLOSED = dict(json.loads(json.dumps(ENTRY)), open=False)
+OPENED = dict(json.loads(json.dumps(ENTRY)), open=True)
 PATHS = DATA["path"]
 ONE_PATHS = ONE["path"]
 COURSE_PATHS = list(PATHS.values()) + list(ONE_PATHS.values()) + list(ENTRY["path"].values())
@@ -141,27 +144,41 @@ class Pages(unittest.TestCase):
             self.assertEqual(f.read_text(encoding="utf-8"), text, path)
 
     def test_noindex_and_hreflang(self):
+        """noindex while Academy is closed and not once it is open: in memory in both states, and the committed pages
+        as the switch says."""
+        closed, opened = course_pages.pages(academy=CLOSED), course_pages.pages(academy=OPENED)
         for paths in (PATHS, ONE_PATHS):
             for lang in MESSAGES:
+                self.assertIn('<meta name="robots" content="noindex">', closed[paths[lang]])
+                self.assertNotIn('name="robots"', opened[paths[lang]])
                 s = page(lang, paths)
-                self.assertIn('<meta name="robots" content="noindex">', s)
+                self.assertEqual('<meta name="robots" content="noindex">' in s, not academy.is_open(ENTRY))
                 for l2, p in paths.items():
                     self.assertIn(f'<link rel="alternate" hreflang="{l2}" href="https://rosmarops.com{p}">', s)
 
     def test_not_in_the_sitemap_or_llms(self):
+        """Never in llms.txt. In sitemap-pages.xml only while Academy is open; never in another sitemap."""
+        open_ = academy.is_open(ENTRY)
         for f in list(SITE.glob("sitemap*.xml")) + [SITE / "llms.txt"]:
             if f.exists():
                 s = f.read_text(encoding="utf-8")
                 for p in COURSE_PATHS:
-                    self.assertNotIn(f"rosmarops.com{p}", s, f.name)
+                    if open_ and f.name == "sitemap-pages.xml":
+                        self.assertIn(f"<loc>https://rosmarops.com{p}</loc>", s, f.name)
+                    else:
+                        self.assertNotIn(f"rosmarops.com{p}", s, f.name)
 
     def test_no_page_links_to_the_course(self):
-        """Only the course pages link to each other (lesson 1 to lesson 2); no other page or menu links to them."""
+        """Only the course pages link to each other (lesson 1 to lesson 2), and the Academy pages to the lessons; no other
+        page links to them. The header menu links to Academy only while it is open, so the menu is taken out first."""
         own = {(SITE / p.strip("/") / "index.html").resolve() for p in COURSE_PATHS}
         for f in SITE.rglob("*.html"):
             if f.resolve() in own:
                 continue
             s = f.read_text(encoding="utf-8", errors="replace")
+            lang = academy.page_lang(s)
+            if lang:
+                s = academy.nav(s, lang, False, CLOSED)
             for p in COURSE_PATHS:
                 self.assertNotIn(f'href="{p}"', s, str(f.relative_to(ROOT)))
 
@@ -265,15 +282,18 @@ class Six(unittest.TestCase):
                           page(lang, ONE_PATHS))
 
     def test_no_link_to_academy_while_it_is_closed(self):
-        """GTM-227 point 4, now GTM-230: while Academy is closed, no page for it and no «Back to Academy» button."""
-        self.assertFalse(academy.is_open(ENTRY))
-        built = course_pages.pages()
+        """GTM-227 point 4, now GTM-230: while Academy is closed, no page for it and no «Back to Academy» button.
+        Rendered in memory with the switch closed (GTM-234 opened it in the repository)."""
+        built = course_pages.pages(academy=CLOSED)
+        self.assertEqual(academy.pages(CLOSED), {})
         for p in ENTRY["path"].values():
             self.assertNotIn(p, built)
-            self.assertFalse((SITE / p.strip("/") / "index.html").exists(), p)
+            self.assertEqual((SITE / p.strip("/") / "index.html").exists(), academy.is_open(ENTRY), p)
         for lang in MESSAGES:
             for paths in (PATHS, ONE_PATHS):
-                s = page(lang, paths)
+                # The header menu follows the switch in the data file (tested in test_academy.py); here only the
+                # lesson's own links are looked at, so the menu is put in its closed state first.
+                s = academy.nav(built[paths[lang]], lang, False, CLOSED)
                 self.assertNotIn(ENTRY[lang]["back"], s, lang)
                 for p in ENTRY["path"].values():
                     self.assertNotIn(f'href="{p}"', s)

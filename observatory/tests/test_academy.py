@@ -25,7 +25,9 @@ import videos_pages  # noqa: E402
 SITE = ROOT / "site"
 LANGS = ("en", "es", "ca")
 DATA = academy.load()
+# Both states of the switch, whatever the repository says; the committed site is checked against DATA (class Committed).
 OPEN = dict(copy.deepcopy(DATA), open=True)
+CLOSED = dict(copy.deepcopy(DATA), open=False)
 LESSONS = course_pages.load_all()
 LESSON_PATHS = [LESSONS[n]["path"] for n in course_pages.LESSONS]
 
@@ -52,50 +54,84 @@ OBS_PAGE = {"en": "observatory/index.html", "es": "es/observatorio/index.html", 
 
 
 def site_pages():
-    """Every page in site/ with the site menu, and the daily shells: (name, lang, html)."""
+    """Every page in site/ with the site menu, and the daily shells: (name, lang, html with the switch closed, html as
+    committed). The closed form is computed with academy.nav(), so the tests of both states work whichever state the
+    repository is in. The Academy pages themselves are left out: they exist only while open (class Open, and
+    Committed.test_committed_pages_are_the_open_ones)."""
+    own = {(SITE / p.strip("/") / "index.html").resolve() for p in OPEN["path"].values()}
+    # A lesson also changes outside the menu (noindex and «Back to Academy»): its closed form is rendered closed.
+    lessons = {(SITE / p.strip("/") / "index.html").resolve(): p for p in course_pages.pages(academy=CLOSED)}
+    closed_lessons = course_pages.pages(academy=CLOSED)
     out = []
     for f in sorted(list(SITE.rglob("*.html")) + sorted((ROOT / "wp" / "daily").glob("shell-*.html"))):
+        if f.resolve() in own:
+            continue
         s = f.read_text(encoding="utf-8")
         lang = academy.page_lang(s) or (f.stem[-2:] if f.stem.startswith("shell-") else None)
-        if lang and "<header" in s and academy.nav(s, lang, True, OPEN) != s:
-            out.append((str(f.relative_to(ROOT)), lang, s))
+        if lang and "<header" in s:
+            closed = academy.nav(closed_lessons[lessons[f.resolve()]] if f.resolve() in lessons else s, lang, False, CLOSED)
+            if academy.nav(closed, lang, True, OPEN) != closed:
+                out.append((str(f.relative_to(ROOT)), lang, closed, s))
     return out
 
 
 PAGES = site_pages()
 
 
-class Closed(unittest.TestCase):
-    """The repository as delivered: the switch is closed and nothing of Academy shows."""
+class Committed(unittest.TestCase):
+    """The repository as it is: Academy opened by Albert on 27-11 (GTM-234), and site/ matches the switch."""
 
-    def test_delivered_closed(self):
-        self.assertIs(DATA["open"], False)
-        self.assertEqual(academy.pages(), {})
-        self.assertEqual(academy.sitemap_urls(), [])
+    def test_delivered_open(self):
+        self.assertIs(DATA["open"], True)
+        self.assertEqual(academy.pages(), academy.pages(OPEN))
+        self.assertEqual(academy.sitemap_urls(), academy.sitemap_urls(OPEN))
 
     def test_site_matches_the_switch(self):
         self.assertEqual(academy.check_site(), [])
 
-    def test_no_academy_page_and_no_link_to_it(self):
-        for lang in LANGS:
-            self.assertFalse((SITE / DATA["path"][lang].strip("/")).exists())
-        for name, lang, s in PAGES:
-            for p in DATA["path"].values():
-                self.assertNotIn(f'href="{p}"', s, name)
+    def test_committed_pages_are_the_open_ones(self):
+        lessons = {"site" + p + "index.html" for p in course_pages.pages()}  # compared in test_course_pages.py
+        for name, lang, closed, s in PAGES:
+            if name not in lessons:
+                self.assertEqual(s, academy.nav(closed, lang, DATA["open"], DATA), name)
+        for path, text in academy.pages().items():
+            self.assertEqual((SITE / path.strip("/") / "index.html").read_text(encoding="utf-8"), text, path)
 
-    def test_menus_are_the_ones_of_today(self):
-        for name, lang, s in PAGES:
-            want = HOME[lang] if name == "site/" + HOMES[lang] else INNER[lang]
-            self.assertEqual(academy.menu_entries(s), want, name)
-
-    def test_lessons_noindex_out_of_the_sitemap_and_no_back_button(self):
+    def test_lessons_follow_the_switch(self):
         sm = (SITE / "sitemap-pages.xml").read_text(encoding="utf-8")
+        open_ = DATA["open"]
         for paths in LESSON_PATHS:
             for lang, p in paths.items():
                 s = (SITE / p.strip("/") / "index.html").read_text(encoding="utf-8")
+                self.assertEqual('<meta name="robots" content="noindex">' in s, not open_, p)
+                self.assertEqual(f"<loc>https://rosmarops.com{p}</loc>" in sm, open_, p)
+                self.assertEqual(DATA[lang]["back"] in s, open_, p)
+
+
+class Closed(unittest.TestCase):
+    """The switch closed, in memory: nothing of Academy shows (the state before 27-11, and the one closing gives back)."""
+
+    def test_closed_writes_nothing(self):
+        self.assertEqual(academy.pages(CLOSED), {})
+        self.assertEqual(academy.sitemap_urls(CLOSED), [])
+
+    def test_no_link_to_academy(self):
+        for name, lang, closed, _ in PAGES:
+            for p in CLOSED["path"].values():
+                self.assertNotIn(f'href="{p}"', closed, name)
+
+    def test_menus_are_the_ones_of_before(self):
+        for name, lang, closed, _ in PAGES:
+            want = HOME[lang] if name == "site/" + HOMES[lang] else INNER[lang]
+            self.assertEqual(academy.menu_entries(closed), want, name)
+
+    def test_lessons_noindex_and_no_back_button(self):
+        built = course_pages.pages(academy=CLOSED)
+        for paths in LESSON_PATHS:
+            for lang, p in paths.items():
+                s = built[p]
                 self.assertIn('<meta name="robots" content="noindex">', s)
-                self.assertNotIn(f"<loc>https://rosmarops.com{p}</loc>", sm)
-                self.assertNotIn(DATA[lang]["back"], s)
+                self.assertNotIn(CLOSED[lang]["back"], s)
 
     def test_no_course_entry_page(self):
         for p in ("course", "es/curso", "ca/curs"):
@@ -167,8 +203,8 @@ class Open(unittest.TestCase):
 
     def test_every_menu_open_and_back(self):
         """Every page of the site and the daily shells: open gives the menus of spec §1.3, and closing gives back the
-        page as it is today, byte for byte. Only the header menu changes: the footer keeps «FAQ»."""
-        for name, lang, s in PAGES:
+        closed page byte for byte. Only the header menu changes: the footer keeps «FAQ»."""
+        for name, lang, s, _ in PAGES:
             o = academy.nav(s, lang, True, OPEN)
             home = name == "site/" + HOMES[lang]
             self.assertEqual(academy.menu_entries(o), (HOME_OPEN if home else INNER_OPEN)[lang], name)
@@ -191,15 +227,15 @@ class MenuAcrossPages(unittest.TestCase):
 
     def test_same_entries_everywhere(self):
         kinds = {}
-        for name, lang, s in PAGES:
+        for name, lang, s, _ in PAGES:
             home = name == "site/" + HOMES[lang]
-            for state, data in (("closed", DATA), ("open", OPEN)):
+            for state, data in (("closed", CLOSED), ("open", OPEN)):
                 kinds.setdefault((lang, home, state), {}).setdefault(
                     tuple(academy.menu_entries(academy.nav(s, lang, data["open"], data))), []).append(name)
         for key, groups in kinds.items():
             self.assertEqual(len(groups), 1, (key, {k: v[:3] for k, v in groups.items()}))
         # Both kinds of source are in the comparison.
-        names = [n for n, _, _ in PAGES]
+        names = [n for n, _, _, _ in PAGES]
         for must in ("site/es/metodologia/index.html", "site/es/observatorio/index.html", "site/es/sandbox/index.html",
                      "site/es/videos/index.html", "site/es/curso/la-cadena/index.html", "site/es/glosario/index.html",
                      "site/_static/about-en.html", "wp/daily/shell-es.html", "site/es/index.html"):
