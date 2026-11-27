@@ -1,0 +1,89 @@
+{
+  "schema_version": 2,
+  "criteria_version": 4,
+  "candidate": {
+    "id": "meta-muse",
+    "name": "Meta Muse"
+  },
+  "kind": "hosted_agent",
+  "tested_plan": "",
+  "measured_at": "2026-11-27",
+  "expires_at": "2027-02-25",
+  "measured_by": "rosmarops",
+  "reviewed_by": "",
+  "reviewed_at": "",
+  "applies": {
+    "third_party_agents": {
+      "value": "no",
+      "evidence_url": "https://muse.ai/blog/security-and-safety-for-ai-agents-our-approach-with-muse",
+      "accessed_at": "2026-11-27"
+    },
+    "runs_on": {
+      "value": "vendor_cloud",
+      "evidence_url": "https://muse.ai/blog/security-and-safety-for-ai-agents-our-approach-with-muse",
+      "accessed_at": "2026-11-27"
+    }
+  },
+  "criteria": [
+    {
+      "id": "M1",
+      "result": "unknown",
+      "how": "official_doc",
+      "evidence_url": "https://www.meta.com/help/superintelligence/1385290430137537/",
+      "accessed_at": "2026-11-27",
+      "unknown_reason": "The help pages describe two settings (Ask before some actions, Always ask) and say that by default Muse will not take many important actions, such as sending an email, without approval; they do not say which setting a new account starts with, nor which actions it takes without asking."
+    },
+    {
+      "id": "M2",
+      "result": "not_applicable",
+      "how": "official_doc"
+    },
+    {
+      "id": "M3",
+      "result": "not_applicable",
+      "how": "official_doc"
+    },
+    {
+      "id": "M4",
+      "result": "yes",
+      "how": "official_doc",
+      "evidence_url": "https://muse.ai/blog/security-and-safety-for-ai-agents-our-approach-with-muse",
+      "accessed_at": "2026-11-27"
+    },
+    {
+      "id": "M5",
+      "result": "yes",
+      "how": "official_doc",
+      "evidence_url": "https://www.meta.com/help/superintelligence/1484325780075655/",
+      "accessed_at": "2026-11-27"
+    },
+    {
+      "id": "M6",
+      "result": "unknown",
+      "how": "official_doc",
+      "evidence_url": "https://www.meta.com/help/superintelligence/1385290430137537/",
+      "accessed_at": "2026-11-27",
+      "unknown_reason": "The help page says you can ask Muse in the chat to undo or stop some actions, and that resetting Muse permanently deletes everything, active tasks included; stopping every run at once without deleting is not described."
+    },
+    {
+      "id": "M7",
+      "result": "unknown",
+      "how": "official_doc",
+      "evidence_url": "https://www.meta.com/legal/security-vulnerability-disclosure-policy/",
+      "accessed_at": "2026-11-27",
+      "unknown_reason": "How to report a flaw is stated (vulnerability disclosure policy and the bug bounty program linked from the Muse safety page); where security advisories for Muse are published was not found."
+    }
+  ],
+  "met": 2,
+  "total": 5,
+  "passes": false,
+  "vendor": {
+    "notified_at": "2026-11-27",
+    "notified_via": "github_issue",
+    "publish_after": "2026-12-11",
+    "reply": "none",
+    "reply_at": "",
+    "notice_url": "https://github.com/qtorb/rosmarops/issues/184"
+  },
+  "supersedes": ""
+}

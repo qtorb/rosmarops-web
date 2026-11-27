@@ -1256,7 +1256,11 @@ def min_self(r):
 
 
 def min_use(t, r):
-    return t("minimum.use.self") if min_self(r) else t("minimum.use.cloud", plan=r["tested_plan"])
+    if min_self(r):
+        return t("minimum.use.self")
+    # A product in the vendor's cloud with no named plan to cite has an empty tested_plan: the sentence then names no
+    # plan (vigil docs/research/2026-11-27-minimo-de-control-fichas-de-familia.md §5).
+    return t("minimum.use.cloud", plan=r["tested_plan"]) if r["tested_plan"] else t("minimum.use.cloud.noplan")
 
 
 def min_vendor(t, r, link=True):
@@ -1433,8 +1437,10 @@ def build_min_result(lang, t, rid, history):
     name = r["candidate"]["name"]
     if min_self(r):
         meta = k("x.meta.self", **{"versión": r["tested_version"]}, fecha=t.date(r["measured_at"]), fecha2=t.date(r["expires_at"]))
-    else:
+    elif r["tested_plan"]:
         meta = k("x.meta.cloud", plan=r["tested_plan"], fecha=t.date(r["measured_at"]), fecha2=t.date(r["expires_at"]))
+    else:  # no named plan to cite (§5 of the family specification)
+        meta = k("x.meta.cloud.noplan", fecha=t.date(r["measured_at"]), fecha2=t.date(r["expires_at"]))
     missing = r["total"] - r["met"]
     verdict = k("x.pass") if r["passes"] else (k("x.fail.one") if missing == 1 else k("x.fail", k=str(missing)))
     summary = (f'<div class="box panel summary"><p class="eyebrow">{k("x.eyebrow")}</p>'

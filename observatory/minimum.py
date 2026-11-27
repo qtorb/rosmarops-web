@@ -13,7 +13,8 @@ Rules checked here (vigil docs/research/2026-11-25-minim-de-control-v4-canvis.md
 - vendor.publish_after >= vendor.notified_at + 14 days, expires_at = measured_at + 90 days;
 - a reply other than none has reply_at; a disputed reply has reply_url.
 And what the page needs to say it with the signed texts (GTM-223 point 7: a missing text stops the build):
-- installed by whoever uses it (F2 user_machine) needs tested_version, the vendor's cloud needs tested_plan;
+- installed by whoever uses it (F2 user_machine) needs tested_version, the vendor's cloud needs tested_plan, which is
+  empty when the vendor has no named plan to cite (the page then names no plan);
 - a criterion never has how = none (there is no text for it).
 """
 
@@ -81,7 +82,7 @@ def problems(r, path=None):
         out.append("vendor.reply is disputed without reply_url")
     if f2 == "user_machine" and not r.get("tested_version"):
         out.append("installed by whoever uses it, without tested_version")
-    if f2 == "vendor_cloud" and not r.get("tested_plan"):
+    if f2 == "vendor_cloud" and "tested_plan" not in r:  # empty when the vendor has no named plan to cite
         out.append("in the vendor's cloud, without tested_plan")
     return out
 
