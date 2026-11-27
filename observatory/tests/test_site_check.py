@@ -72,7 +72,8 @@ class SiteCheck(unittest.TestCase):
             site_check.stale(self.root, self.build)
 
     def test_the_paths_are_the_ones_the_ci_checks(self):
-        self.assertEqual(site_check.GENERATED, ["site", "wp/daily", "wp/pages", "wp/mu-plugins/rosmarops-downloads.php"])
+        self.assertEqual(site_check.GENERATED, ["site", "wp/daily", "wp/pages", "wp/mu-plugins/rosmarops-downloads.php",
+                                                "wp/mu-plugins/rosmarops-menu10-academy.php"])  # GTM-230
 
 
 if __name__ == "__main__":

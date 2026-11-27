@@ -4,15 +4,17 @@
   observatory/data/course/the-inspector.json.
 - Lesson 2, «The chain»: /course/the-chain/, /es/curso/la-cadena/, /ca/curs/la-cadena/, from
   observatory/data/course/the-chain.json.
-- The course entry page: /course/, /es/curso/, /ca/curs/, from observatory/data/course/course.json. Its title is the
-  course name, which is not decided: while `name` is empty the entry page is not written and no lesson links to it.
+- GTM-230: the course has no entry page of its own: the RosmarOps Academy page (observatory/academy.py) presents it,
+  with the course title (observatory/data/academy.json). Nothing is written at /course/, /es/curso/ or /ca/curs/.
 
 Texts are literal from the documents Albert signed (see each file's _source). Both lessons follow the same six steps.
 Design: vigil docs/research/2026-11-26-curso-diseno-entrada-y-seis-pasos.md, on top of the lesson 2 design
 (docs/research/2026-11-24-curso-leccion-2-diseno.md). Same shell as the topic pages (the sandbox guide of each
 language); styles and script in site/assets/course/.
 
-Not published yet: noindex, no link from any other page or menu, not in the sitemap or llms.txt.
+Published with RosmarOps Academy, behind its switch ("open" in observatory/data/academy.json). Closed: noindex, no link
+from any other page or menu, not in the sitemap or llms.txt, and no «Back to Academy» button. Open: no noindex, in the
+sitemap (academy.sitemap_urls), «Academy» marked as the current menu entry, and lesson 2 ends with «Back to Academy».
 """
 
 import html
@@ -51,8 +53,8 @@ def load(path=DATA):
 
 
 def load_all():
-    """{"the-inspector": …, "the-chain": …, "course": …}"""
-    return {name: load(DIR / f"{name}.json") for name in LESSONS + ("course",)}
+    """{"the-inspector": …, "the-chain": …}"""
+    return {name: load(DIR / f"{name}.json") for name in LESSONS}
 
 
 def strings(x):
@@ -87,10 +89,6 @@ def long_date(iso, lang):
     c = json.loads((CATALOG / f"{lang}.json").read_text(encoding="utf-8"))
     y, m, d = iso.split("-")
     return c["common.date"].replace("{day}", str(int(d))).replace("{month}", c["common.months"][int(m) - 1]).replace("{year}", y)
-
-
-def entry_ready(entry):
-    return bool(entry and entry.get("name"))
 
 
 # ---------------------------------------------------------------- the six steps
@@ -261,11 +259,12 @@ def step5(t, lang):
 <h3>{esc(E["none_title"])}</h3><p>{fmt(E["none"])}</p></div></div>""")
 
 
-def step6(t, lang, target):
+def step6(t, lang, button):
+    """button: (text, href) of the button at the end, or None."""
     C = t["take"]
     items = "".join(f"<li>{fmt(x)}</li>" for x in C["items"])
     links = " · ".join(f'<a href="{GLOSS[lang]}#{esc(glossary_anchor(tid, lang))}">{esc(name)}</a>' for name, tid in C["terms"])
-    btn = f'<p class="cs-next"><a class="cs-btn primary" href="{esc(target)}">{esc(C["button"])}</a></p>' if target else ""
+    btn = f'<p class="cs-next"><a class="cs-btn primary" href="{esc(button[1])}">{esc(button[0])}</a></p>' if button else ""
     return step(6, t, f"""<div class="doc"><ul class="cs-take">{items}</ul></div>
 <div class="doc cs-terms"><h2>{esc(C["terms_label"])}</h2><p>{links}</p>
 {btn}<p class="cs-note">{esc(C["footer"])}</p></div>""")
@@ -281,9 +280,13 @@ def script_data(t):
     return json.dumps(keep, ensure_ascii=False).replace("</", "<\\/")
 
 
-def head(lang, paths, t_title, desc):
+def head(lang, paths, t_title, desc, noindex=True, raw_title=False, academy=None):
+    """academy: academy.load() when the page should mark «Academy» as the current menu entry (the switch open)."""
     style, header, footer, scripts = sandbox_section.shell_parts(lang)
     header = header.replace(' aria-current="page"', "")
+    if academy is not None:
+        import academy as ac
+        header = ac.nav(header, lang, True, academy, current=True)
     url = BASE + paths[lang]
     alts = "".join(f'<link rel="alternate" hreflang="{l}" href="{BASE}{p}">\n' for l, p in paths.items())
     alts += f'<link rel="alternate" hreflang="x-default" href="{BASE}{paths["en"]}">\n'
@@ -292,8 +295,7 @@ def head(lang, paths, t_title, desc):
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex">
-<title>{esc(t_title)} · RosmarOps</title>
+{'<meta name="robots" content="noindex">' + chr(10) if noindex else ""}<title>{esc(t_title) if raw_title else esc(t_title) + " · RosmarOps"}</title>
 <meta name="description" content="{esc(desc)}">
 <link rel="canonical" href="{url}">
 {alts}{style.strip()}
@@ -305,9 +307,10 @@ def head(lang, paths, t_title, desc):
     return top, switch_langs(footer, lang, paths), scripts
 
 
-def lesson_html(lang, data, target):
+def lesson_html(lang, data, button, academy=None):
+    """academy: academy.load() when RosmarOps Academy is open (no noindex, «Academy» as the current menu entry)."""
     t, paths = data[lang], data["path"]
-    top, footer, scripts = head(lang, paths, t["title"], t["lead"])
+    top, footer, scripts = head(lang, paths, t["title"], t["lead"], noindex=academy is None, academy=academy)
     return f"""{top}
 <main class="course"><div class="wrap">
 <div class="doc"><p class="eyebrow">{esc(t["eyebrow"])}</p><h1>{esc(t["title"])}</h1>
@@ -318,7 +321,7 @@ def lesson_html(lang, data, target):
 {step3(t, lang)}
 {step4(t)}
 {step5(t, lang)}
-{step6(t, lang, target)}
+{step6(t, lang, button)}
 </div></main>
 
 {footer}
@@ -330,78 +333,32 @@ def lesson_html(lang, data, target):
 """
 
 
-# Kept for the name the GTM-206 tests and README use.
-def page_html(lang, data, target=None):
-    return lesson_html(lang, data, target)
+def buttons(every, academy):
+    """The button at the end of each lesson. Lesson 1 leads to lesson 2. Lesson 2 ends with «Back to Academy» (GTM-230),
+    only while Academy is open."""
+    import academy as ac
+    out = {"the-inspector": {l: (every["the-inspector"][l]["take"]["button"], every["the-chain"]["path"][l]) for l in LANGS},
+           "the-chain": {l: None for l in LANGS}}
+    if ac.is_open(academy):
+        out["the-chain"] = {l: (academy[l]["back"], academy["path"][l]) for l in LANGS}
+    return out
 
 
-def entry_html(lang, entry, lessons):
-    """The course entry page (design §4). Built only when the course name is set."""
-    t, paths = entry[lang], entry["path"]
-    name = entry["name"] if isinstance(entry["name"], str) else entry["name"][lang]
-    top, footer, scripts = head(lang, paths, name, t["lead"])
-    l1 = lessons["the-inspector"]["path"][lang]
-    links = [l1, lessons["the-chain"]["path"][lang]]
-
-    def soon(s):
-        m = re.fullmatch(r"(.*?)\s*(\*\([^)]*\)\*|\([^)]*\))$", s)
-        if not m:
-            return fmt(s)
-        return f'{fmt(m.group(1))} <span class="cs-soon">{esc(m.group(2).strip("*"))}</span>'
-
-    who = "".join(f"<li>{fmt(x)}</li>" for x in t["who"][1])
-    outs = "".join(f"<li>{soon(x)}</li>" for x in t["outcomes"][1])
-    need = "".join(f"<li>{fmt(x)}</li>" for x in t["need"][1])
-    cards = []
-    for k, (h, txt) in enumerate(t["lessons"][1]):
-        inner = f'<span class="cs-num">{k + 1}</span><span class="cs-lt"><b>{esc(h)}</b><span>{fmt(txt)}</span></span>'
-        if k < len(links):
-            cards.append(f'<a class="cs-lesson" href="{esc(links[k])}">{inner}</a>')
-        else:
-            cards.append(f'<div class="cs-lesson">{inner}<span class="cs-pill-soon">{esc(t["soon_pill"])}</span></div>')
-    return f"""{top}
-<main class="course"><div class="wrap"><div class="doc cs-entry">
-<p class="eyebrow">{esc(t["eyebrow"])}</p><h1>{esc(name)}</h1>
-<p class="lead">{esc(t["lead"])}</p>
-<h2>{esc(t["example"][0])}</h2><p class="cs-big">{fmt(t["example"][1])}</p>
-<h2>{esc(t["who"][0])}</h2><ul>{who}</ul>
-<h2>{esc(t["outcomes"][0])}</h2><ol class="cs-todo">{outs}</ol>
-<div class="cs-cards cs-two"><div class="cs-c"><h3>{esc(t["need"][0])}</h3><ul>{need}</ul></div>
-<div class="cs-c"><h3>{esc(t["time"][0])}</h3><p>{fmt(t["time"][1])}</p></div></div>
-<h2>{esc(t["start"][0])}</h2><p>{fmt(t["start"][1])}</p>
-<p class="cs-next"><a class="cs-btn primary" href="{esc(l1)}">{esc(t["start"][2])}</a></p>
-<h2>{esc(t["lessons"][0])}</h2><div class="cs-lessons">{"".join(cards)}</div>
-<p class="cs-foot">{esc(t["footer"])}</p>
-</div></div></main>
-
-{footer}
-{scripts}
-</body>
-</html>
-"""
-
-
-def pages(data=None):
-    """{path: html} of every page to publish. data: load_all(), or the lesson 2 data alone (GTM-206 tests)."""
+def pages(data=None, academy=None):
+    """{path: html} of every lesson page. data: load_all() (or a part of it); academy: academy.load()."""
+    import academy as ac
     import star_card  # GTM-206: the GitHub star card under the download button
     every = load_all()
-    if data is not None and "path" in data:
-        every["the-chain"] = data
-    elif data is not None:
+    if data is not None:
         every.update(data)
-    entry = every["course"]
+    academy = academy or ac.load()
+    btns = buttons(every, academy)
     out = {}
-    targets = {"the-inspector": every["the-chain"]["path"], "the-chain": entry["path"] if entry_ready(entry) else None}
     for name in LESSONS:
         d = every[name]
         check(d)
         for lang in LANGS:
-            to = targets[name][lang] if targets[name] else None
-            out[d["path"][lang]] = star_card.apply(lesson_html(lang, d, to), lang)
-    if entry_ready(entry):
-        check(entry)
-        for lang in LANGS:
-            out[entry["path"][lang]] = entry_html(lang, entry, every)
+            out[d["path"][lang]] = star_card.apply(lesson_html(lang, d, btns[name][lang], academy if ac.is_open(academy) else None), lang)
     return out
 
 

@@ -449,8 +449,6 @@
      "key-fingerprint"
     ]
    ],
-   "button": "Back to the course",
-   "button_to": "entry",
    "footer": "Every fact in this lesson comes from RosmarOps's code, which is public (github.com/qtorb/rosmarops), from the Observatory and from Claude Code's official documentation."
   }
  },
@@ -898,8 +896,6 @@
      "key-fingerprint"
     ]
    ],
-   "button": "Volver al curso",
-   "button_to": "entry",
    "footer": "Cada dato de esta lección sale del código de RosmarOps, que es público (github.com/qtorb/rosmarops), del Observatorio y de la documentación oficial de Claude Code."
   }
  },
@@ -1347,8 +1343,6 @@
      "key-fingerprint"
     ]
    ],
-   "button": "Torna al curs",
-   "button_to": "entry",
    "footer": "Cada dada d'aquesta lliçó surt del codi de RosmarOps, que és públic (github.com/qtorb/rosmarops), de l'Observatori i de la documentació oficial de Claude Code."
   }
  }
