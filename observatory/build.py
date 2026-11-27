@@ -371,6 +371,7 @@ td.keep{overflow-wrap:normal;word-break:normal;hyphens:none}
 td code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:14px;overflow-wrap:anywhere}
 .panel code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace}
 .plain{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px;font-size:16px;line-height:1.5}
+.fam-line{display:block;margin-top:2px}
 footer{border-top:1px solid var(--line)}
 footer .wrap{padding-top:28px;padding-bottom:28px;font-size:15px;color:var(--muted)}
 footer nav{gap:20px;font-size:15px}
@@ -1364,7 +1365,9 @@ def build_min_criterion(lang, t):
     )
     results = min_results_html(lang, t, latest)
     plain = lambda items: '<ul class="plain">' + "".join(f"<li>{x}</li>" for x in items) + "</ul>"
-    fam_items = [f'<strong><a href="{f["path"][lang]}">{esc(f[lang]["h1"])}</a></strong> {esc(f[lang]["fam.line"])}' for f in MIN_FAMILIES]
+    # GTM-232 §4: the family's name (link, bold) on one line and its fam.line on the next, 2 px below, in the block's text.
+    fam_items = [f'<strong><a href="{f["path"][lang]}">{esc(f[lang]["h1"])}</a></strong><span class="fam-line">{esc(f[lang]["fam.line"])}</span>'
+                 for f in MIN_FAMILIES]
     toc = min_toc(t, [("criteria", "minimum.c.h2"), ("who-meets", "minimum.p.h2"), ("families", "minimum.family.fam.h2"),
                       ("how", "minimum.m.h2"), ("results", "minimum.r.h2"),
                       ("vendor", "minimum.f.h2"), ("not", "minimum.n.h2"), ("who", "minimum.w.h2"), ("data", "minimum.d.h2")])

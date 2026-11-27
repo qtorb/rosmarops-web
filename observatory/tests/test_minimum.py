@@ -406,8 +406,9 @@ class Families(unittest.TestCase):
             block = block[:block.index("</section>")]
             self.assertIn(html.escape(cat(lang)["minimum.family.fam.h2"], quote=True) + "</h2>", block)
             for f in FAMS:
-                self.assertIn(f'<li><strong><a href="{f["path"][lang]}">{html.escape(f[lang]["h1"], quote=True)}</a></strong> '
-                              f'{html.escape(f[lang]["fam.line"], quote=True)}</li>', block)
+                self.assertIn(f'<li><strong><a href="{f["path"][lang]}">{html.escape(f[lang]["h1"], quote=True)}</a></strong>'
+                              f'<span class="fam-line">{html.escape(f[lang]["fam.line"], quote=True)}</span></li>', block)
+            self.assertIn(".fam-line{display:block;margin-top:2px}", s)  # §4: on the next line, 2 px below
             self.assertLess(s.index('id="who-meets-h"'), s.index('id="families-h"'))
             self.assertLess(s.index('id="families-h"'), s.index('id="how-h"'))
 
