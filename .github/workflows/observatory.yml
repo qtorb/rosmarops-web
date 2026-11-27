@@ -165,8 +165,8 @@ jobs:
           npx playwright install --with-deps chromium
           NODE_PATH="$PWD/node_modules" python -m unittest -v wp/tests/test_download_os.py 2>&1 | tee /tmp/dlos.txt
           ! grep -q "skipped" /tmp/dlos.txt || { echo "::error::the one-line check was skipped"; exit 1; }
-          # GTM-230 §6.2: with «Academy», the header menu stays on two lines at 390 px with phone fonts (Chromium's default,
-          # Liberation Sans for Windows metrics, Roboto installed as a system package); DejaVu Sans is pinned to what was measured.
+          # GTM-230 §6.2 and block 219: with «Academy», the header menu stays on two lines at 390 px with Liberation Sans
+          # (Windows metrics) and Roboto (Android), both system packages; DejaVu Sans is pinned to what was measured.
           sudo apt-get install -y --no-install-recommends fonts-roboto fonts-liberation fonts-dejavu-core
           NODE_PATH="$PWD/node_modules" python -m unittest -v observatory.tests.test_academy.Layout390 2>&1 | tee /tmp/acnav.txt
           ! grep -q "skipped" /tmp/acnav.txt || { echo "::error::the Academy menu check was skipped"; exit 1; }

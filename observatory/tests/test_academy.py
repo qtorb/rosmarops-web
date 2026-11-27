@@ -224,10 +224,12 @@ class Safe(unittest.TestCase):
                 self.assertNotIn("«", s, k)
 
 
-# Spec §6.2: at 390 px the visitor is a phone. The menu with «Academy» must stay on two lines with the Windows-metric
-# font (Liberation Sans), Chromium's default and Roboto (Android). With DejaVu Sans (desktop Linux) the lines measured
-# on 27-11 are pinned so they do not get worse: Spanish inner page and home up to three, everything else two.
-PHONE_FONTS = (None, "Liberation Sans", "Roboto")
+# Spec §6.2 as changed by block 219: at 390 px the visitor is a phone. The menu with «Academy» must stay on two lines
+# with two fonts asked for by name: Liberation Sans (Windows metrics) and Roboto (Android). Chromium's default is not
+# measured: it is not a named font and depends on the machine (on the CI runner it is DejaVu Sans). With DejaVu Sans
+# (desktop Linux) the lines measured on 27-11 are pinned so they do not get worse: Spanish inner page and home up to
+# three, everything else two.
+PHONE_FONTS = ("Liberation Sans", "Roboto")
 DEJAVU_MAX = {"es": {"inner": 3, "home": 3, "obs": 2}, "en": {"inner": 2, "home": 2, "obs": 2}, "ca": {"inner": 2, "home": 2, "obs": 2}}
 
 
@@ -265,7 +267,7 @@ class Layout390(unittest.TestCase):
             # Every font is measured before anything is asserted, so a failure reports all the measurements at once.
             seen, bad = {}, []
             for font in PHONE_FONTS + ("DejaVu Sans",):
-                name = font or "Chromium default"
+                name = font
                 for path, r in self.measure(tmp, list(kind), font).items():
                     lang, k = kind[path]
                     seen.setdefault(name, {})[path] = r["lines"]
