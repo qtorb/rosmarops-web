@@ -262,15 +262,18 @@ class Layout390(unittest.TestCase):
                     f.parent.mkdir(parents=True, exist_ok=True)
                     f.write_text(academy.nav(s, lang, True, OPEN), encoding="utf-8")
                     kind["/" + rel.replace("index.html", "")] = (lang, k)
-            for font in PHONE_FONTS:
+            # Every font is measured before anything is asserted, so a failure reports all the measurements at once.
+            seen, bad = {}, []
+            for font in PHONE_FONTS + ("DejaVu Sans",):
+                name = font or "Chromium default"
                 for path, r in self.measure(tmp, list(kind), font).items():
-                    self.assertIn("Academy", r["entries"], path)
-                    self.assertEqual(r["lines"], 2, (path, font or "Chromium default", r))
-                    self.assertFalse(r["overflow"], (path, font))
-            for path, r in self.measure(tmp, list(kind), "DejaVu Sans").items():
-                lang, k = kind[path]
-                self.assertLessEqual(r["lines"], DEJAVU_MAX[lang][k], (path, "DejaVu Sans", r))
-                self.assertFalse(r["overflow"], (path, "DejaVu Sans"))
+                    lang, k = kind[path]
+                    seen.setdefault(name, {})[path] = r["lines"]
+                    most = DEJAVU_MAX[lang][k] if font == "DejaVu Sans" else 2
+                    if "Academy" not in r["entries"] or r["lines"] > most or r["overflow"]:
+                        bad.append((name, path, r))
+            print("lines at 390 px:", json.dumps(seen))
+            self.assertEqual(bad, [], json.dumps(seen))
 
 
 if __name__ == "__main__":
