@@ -141,3 +141,6 @@ a.cs-lesson:hover{border-color:var(--ink)}
 }
 .course .cs-step .doc{gap:0}
 .course .doc .cs-note{margin-top:12px}
+/* GTM-230 §6.1: «Back to Academy» under lesson 1's button, as a text link. */
+.course .cs-back{margin:16px 0 0;font-size:16px;font-weight:400}
+.course .cs-back a{color:var(--ink);text-decoration:underline;background:none;border:0;padding:0}

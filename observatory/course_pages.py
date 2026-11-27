@@ -34,7 +34,7 @@ DOWNLOAD = {"en": "/download?from=course", "es": "/es/descargar?from=course", "c
 GLOSS = {"en": "/glossary/", "es": "/es/glosario/", "ca": "/ca/glossari/"}
 TERMS = ROOT / "tools" / "glossary" / "terms.json"
 CATALOG = ROOT / "observatory" / "i18n"
-ASSET_V = "2"
+ASSET_V = "3"
 
 
 def esc(s):
@@ -259,15 +259,16 @@ def step5(t, lang):
 <h3>{esc(E["none_title"])}</h3><p>{fmt(E["none"])}</p></div></div>""")
 
 
-def step6(t, lang, button):
-    """button: (text, href) of the button at the end, or None."""
+def step6(t, lang, button, back=None):
+    """button: (text, href) of the button at the end, or None. back: (text, href) of the «Back to Academy» text link
+    under it (lesson 1, spec §6.1), or None."""
     C = t["take"]
     items = "".join(f"<li>{fmt(x)}</li>" for x in C["items"])
     links = " · ".join(f'<a href="{GLOSS[lang]}#{esc(glossary_anchor(tid, lang))}">{esc(name)}</a>' for name, tid in C["terms"])
     btn = f'<p class="cs-next"><a class="cs-btn primary" href="{esc(button[1])}">{esc(button[0])}</a></p>' if button else ""
     return step(6, t, f"""<div class="doc"><ul class="cs-take">{items}</ul></div>
 <div class="doc cs-terms"><h2>{esc(C["terms_label"])}</h2><p>{links}</p>
-{btn}<p class="cs-note">{esc(C["footer"])}</p></div>""")
+{btn}{f'<p class="cs-back"><a href="{esc(back[1])}">{esc(back[0])}</a></p>' if back else ""}<p class="cs-note">{esc(C["footer"])}</p></div>""")
 
 
 def script_data(t):
@@ -307,7 +308,7 @@ def head(lang, paths, t_title, desc, noindex=True, raw_title=False, academy=None
     return top, switch_langs(footer, lang, paths), scripts
 
 
-def lesson_html(lang, data, button, academy=None):
+def lesson_html(lang, data, button, academy=None, back=None):
     """academy: academy.load() when RosmarOps Academy is open (no noindex, «Academy» as the current menu entry)."""
     t, paths = data[lang], data["path"]
     top, footer, scripts = head(lang, paths, t["title"], t["lead"], noindex=academy is None, academy=academy)
@@ -321,7 +322,7 @@ def lesson_html(lang, data, button, academy=None):
 {step3(t, lang)}
 {step4(t)}
 {step5(t, lang)}
-{step6(t, lang, button)}
+{step6(t, lang, button, back)}
 </div></main>
 
 {footer}
@@ -334,13 +335,17 @@ def lesson_html(lang, data, button, academy=None):
 
 
 def buttons(every, academy):
-    """The button at the end of each lesson. Lesson 1 leads to lesson 2. Lesson 2 ends with «Back to Academy» (GTM-230),
-    only while Academy is open."""
+    """The end of each lesson: {lesson: {lang: (button, back link)}}. Lesson 1 leads to lesson 2; lesson 2 ends with the
+    «Back to Academy» button. While Academy is open, lesson 1 also gets «Back to Academy» as a text link under its button
+    (spec §6.1). While it is closed, nothing points to Academy."""
     import academy as ac
-    out = {"the-inspector": {l: (every["the-inspector"][l]["take"]["button"], every["the-chain"]["path"][l]) for l in LANGS},
-           "the-chain": {l: None for l in LANGS}}
+    out = {"the-inspector": {l: ((every["the-inspector"][l]["take"]["button"], every["the-chain"]["path"][l]), None) for l in LANGS},
+           "the-chain": {l: (None, None) for l in LANGS}}
     if ac.is_open(academy):
-        out["the-chain"] = {l: (academy[l]["back"], academy["path"][l]) for l in LANGS}
+        for l in LANGS:
+            back = (academy[l]["back"], academy["path"][l])
+            out["the-inspector"][l] = (out["the-inspector"][l][0], back)
+            out["the-chain"][l] = (back, None)
     return out
 
 
@@ -358,7 +363,9 @@ def pages(data=None, academy=None):
         d = every[name]
         check(d)
         for lang in LANGS:
-            out[d["path"][lang]] = star_card.apply(lesson_html(lang, d, btns[name][lang], academy if ac.is_open(academy) else None), lang)
+            button, back = btns[name][lang]
+            out[d["path"][lang]] = star_card.apply(
+                lesson_html(lang, d, button, academy if ac.is_open(academy) else None, back=back), lang)
     return out
 
 

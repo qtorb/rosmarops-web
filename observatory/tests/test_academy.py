@@ -224,32 +224,53 @@ class Safe(unittest.TestCase):
                 self.assertNotIn("«", s, k)
 
 
-class Layout390(unittest.TestCase):
-    """Spec §4: at 390 px the menu with «Academy» stays on two lines in the three languages, on an inner page, a home
-    and an Observatory page. Measured in Chromium (observatory/tests/academy-nav-layout.js) on copies of the pages with
-    the switch open; skipped where node playwright is not installed."""
+# Spec §6.2: at 390 px the visitor is a phone. The menu with «Academy» must stay on two lines with the Windows-metric
+# font (Liberation Sans), Chromium's default and Roboto (Android). With DejaVu Sans (desktop Linux) the lines measured
+# on 27-11 are pinned so they do not get worse: Spanish inner page and home up to three, everything else two.
+PHONE_FONTS = (None, "Liberation Sans", "Roboto")
+DEJAVU_MAX = {"es": {"inner": 3, "home": 3, "obs": 2}, "en": {"inner": 2, "home": 2, "obs": 2}, "ca": {"inner": 2, "home": 2, "obs": 2}}
 
-    def test_two_lines_at_390(self):
+
+def font_installed(name):
+    out = subprocess.run(["fc-list", ":", "family"], capture_output=True, text=True).stdout
+    return any(name in line.split(",") for line in out.splitlines())
+
+
+class Layout390(unittest.TestCase):
+    """Spec §4 and §6.2: the header menu at 390 px with the switch open, in the three languages, on an inner page, a home
+    and an Observatory page. Measured in Chromium (observatory/tests/academy-nav-layout.js) on copies of the pages;
+    skipped where node playwright is not installed. CI installs Roboto as the system package fonts-roboto."""
+
+    def measure(self, tmp, paths, font):
+        env = dict(os.environ, LAYOUT_FONT=font) if font else None
+        p = subprocess.run(["node", str(Path(__file__).parent / "academy-nav-layout.js"), tmp, "390", *paths],
+                           capture_output=True, text=True, check=True, timeout=180, env=env)
+        return json.loads(p.stdout)
+
+    def test_lines_at_390(self):
         if not shutil.which("node") or subprocess.run(["node", "-e", "require('playwright')"], capture_output=True).returncode:
             self.skipTest("node playwright not installed")
+        for f in ("Liberation Sans", "Roboto", "DejaVu Sans"):
+            self.assertTrue(font_installed(f), f"font {f} is not installed (CI: fonts-liberation, fonts-roboto, fonts-dejavu-core)")
         with tempfile.TemporaryDirectory() as tmp:
             os.symlink(SITE / "assets", Path(tmp) / "assets")
-            paths = []
+            kind = {}
             for lang in LANGS:
-                for rel in (INNER_PAGE[lang], HOMES[lang], OBS_PAGE[lang]):
+                for k, rel in (("inner", INNER_PAGE[lang]), ("home", HOMES[lang]), ("obs", OBS_PAGE[lang])):
                     s = (SITE / rel).read_text(encoding="utf-8")
                     f = Path(tmp) / rel
                     f.parent.mkdir(parents=True, exist_ok=True)
                     f.write_text(academy.nav(s, lang, True, OPEN), encoding="utf-8")
-                    paths.append("/" + rel.replace("index.html", ""))
-            for font in (None, "Liberation Sans"):
-                env = dict(os.environ, LAYOUT_FONT=font) if font else None
-                p = subprocess.run(["node", str(Path(__file__).parent / "academy-nav-layout.js"), tmp, "390", *paths],
-                                   capture_output=True, text=True, check=True, timeout=180, env=env)
-                for path, r in json.loads(p.stdout).items():
+                    kind["/" + rel.replace("index.html", "")] = (lang, k)
+            for font in PHONE_FONTS:
+                for path, r in self.measure(tmp, list(kind), font).items():
                     self.assertIn("Academy", r["entries"], path)
-                    self.assertEqual(r["lines"], 2, (path, font, r))
+                    self.assertEqual(r["lines"], 2, (path, font or "Chromium default", r))
                     self.assertFalse(r["overflow"], (path, font))
+            for path, r in self.measure(tmp, list(kind), "DejaVu Sans").items():
+                lang, k = kind[path]
+                self.assertLessEqual(r["lines"], DEJAVU_MAX[lang][k], (path, "DejaVu Sans", r))
+                self.assertFalse(r["overflow"], (path, "DejaVu Sans"))
 
 
 if __name__ == "__main__":

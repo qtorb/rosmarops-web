@@ -45,7 +45,7 @@ The public course has two lessons built (GTM-206, GTM-227), each in six steps: b
 RosmarOps Academy gathers the course and the videos (GTM-230). Its page is `/academy/`, `/es/academy/` and `/ca/academy/`, and «Academy» goes in the header menu. Everything is behind **one switch**: `"open"` in `observatory/data/academy.json`.
 
 - **Closed** (as the repository is today): no Academy page is written, every menu is the one of before, the two lessons keep `noindex`, stay out of the sitemap and show no «Back to Academy» button, and the blog menu is not touched.
-- **Open**: the page exists; «Academy» is in every header menu, marked as the current entry on the Academy page and the lessons; the page and the lessons are in `sitemap-pages.xml` and lose `noindex`; lesson 2 ends with «Back to Academy»; and the next deploy adds «Academy» to the three blog menus.
+- **Open**: the page exists; «Academy» is in every header menu, marked as the current entry on the Academy page and the lessons; the page and the lessons are in `sitemap-pages.xml` and lose `noindex`; lesson 2 ends with the «Back to Academy» button, and lesson 1 keeps «Next: Lesson 2» with «Back to Academy» as a text link under it; and the next deploy adds «Academy» to the three blog menus.
 - **To open it** (Albert's decision): set `"open": true`, run `python3 observatory/site_check.py --stage`, commit and deploy. Closing it again is the same with `false`: the build puts every menu back as it was.
 - **The menu**: «Academy» goes right after «Sandbox». On inner pages it takes the place of «FAQ»/«Preguntas»/«Preguntes», which stays in the footer. On the homes and the blog it is added. Only the header menu changes. The five places the menu comes from all follow the switch:
   - the hand-written pages and the glossary: the build rewrites their header menu in place;
@@ -56,7 +56,8 @@ RosmarOps Academy gathers the course and the videos (GTM-230). Its page is `/aca
 - **Texts**: `observatory/data/academy.json`, literal from vigil `docs/research/2026-11-27-academy-portada-y-menu.md` (the painter paragraph and the five lesson lines from the course's final texts). `tools/course/check_signed.py` checks them too. The video cards are the ones of the videos index (`videos_pages.cards`).
 - **Checks**:
   - the deploy runs `python3 observatory/academy.py --check-site` and stops if `site/` does not match the switch;
-  - `observatory/tests/test_academy.py` tests both states. It also checks that every inner page and every home has the same header menu, hand-written or generated, and that at 390 px the menu with «Academy» stays on two lines (in Chromium, with `observatory/tests/academy-nav-layout.js`);
+  - `observatory/tests/test_academy.py` tests both states. It also checks that every inner page and every home has the same header menu, hand-written or generated;
+  - the menu at 390 px (`Layout390`, in Chromium with `observatory/tests/academy-nav-layout.js`, spec §6.2). At 390 px the visitor is on a phone, so with «Academy» the menu must stay on **two lines** with Chromium's default font, Liberation Sans (Windows metrics) and Roboto (Android), in EN, ES and CA, on an inner page, a home and an Observatory page. With DejaVu Sans (desktop Linux) it is pinned to what was measured on 27-11: Spanish inner page and home up to three lines, everything else two. CI installs the fonts as system packages (`fonts-roboto`, `fonts-liberation`, `fonts-dejavu-core`); no font file is in the repository;
   - `wp/tests/test_menu10_academy.py` tests the blog patch;
   - captures with the switch open: `docs/captures/gtm-230-academy/`.
 

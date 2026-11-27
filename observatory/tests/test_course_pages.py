@@ -288,6 +288,11 @@ class Six(unittest.TestCase):
                           built[PATHS[lang]])
             self.assertIn(f'<a class="cs-btn primary" href="{PATHS[lang]}">{course_pages.esc(ONE[lang]["take"]["button"])}</a>',
                           built[ONE_PATHS[lang]])
+            # Spec §6.1: lesson 1 keeps its button and gets «Back to Academy» under it, as a text link.
+            self.assertIn(f'<a class="cs-btn primary" href="{PATHS[lang]}">{course_pages.esc(ONE[lang]["take"]["button"])}</a></p>'
+                          f'<p class="cs-back"><a href="{ENTRY["path"][lang]}">{course_pages.esc(ENTRY[lang]["back"])}</a></p>',
+                          built[ONE_PATHS[lang]])
+            self.assertNotIn('class="cs-back"', built[PATHS[lang]])
 
     def test_no_braces_in_sight(self):
         """GTM-229: no { or } is left for a reader to see, in the served HTML or in the texts the script shows
