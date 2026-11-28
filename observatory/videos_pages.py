@@ -10,6 +10,11 @@ GTM-67 (signed by Albert 23-11 09:51): a video that lives in a blog post instead
 language) instead of "youtube_id". It gets a card in the index that links to the post, and nothing else here: no page of
 its own, no sitemap entry (the post is in WordPress's sitemap), no player on a standing page. Its "thumb" may be one
 path per language.
+
+GTM-236 (signed by Albert 28-11): a video made in each language, with no presenter. Then "youtube_id" and "thumb" are
+one per language, "presenter" is false (no «AI-generated presenter» label and no «The video is in Spanish» note), the
+language of each page's video is its own language for search engines, and "family" names a Control Baseline family, whose
+signed title and address go under «Read more».
 """
 
 import html
@@ -33,17 +38,17 @@ L = {
     "en": {"ai": "AI-generated presenter", "watch": "Watch on YouTube", "play": "Play the video", "spanish": "The video is in Spanish.",
            "how": "How to use it with care", "transcript": "Transcript", "more": "Read more", "videos": "Videos",
            "all": "All videos", "download": "Download RosmarOps", "home": "Home", "sandbox": "Turn on your AI agent's sandbox in 3 steps",
-           "index_lead": "Short videos about AI agents: one real question each, and what to do about it. In Spanish, with an AI-generated presenter.",
+           "index_lead": "Short videos about AI agents: one real question each, and what to do about it. Some are presented by Rosmary, an AI-generated presenter, in Spanish; others are text and drawings only, in your language.",
            "index_title": "Videos about AI agents", "index_desc": "Short videos about AI agents: one real question each, and what to do about it."},
     "es": {"ai": "Presentadora generada con IA", "watch": "Ver en YouTube", "play": "Reproducir el vídeo", "spanish": "",
            "how": "Cómo usarlo con cabeza", "transcript": "Transcripción", "more": "Para seguir", "videos": "Vídeos",
            "all": "Todos los vídeos", "download": "Descargar RosmarOps", "home": "Inicio", "sandbox": "Enciende el sandbox de tu agente de IA en 3 pasos",
-           "index_lead": "Vídeos cortos sobre agentes de IA: una pregunta real cada uno, y qué hacer. Con una presentadora generada con IA.",
+           "index_lead": "Vídeos cortos sobre agentes de IA: una pregunta real cada uno, y qué hacer. Unos los presenta Rosmary, una presentadora generada con IA, en castellano; otros son solo texto y dibujos, en tu idioma.",
            "index_title": "Vídeos sobre agentes de IA", "index_desc": "Vídeos cortos sobre agentes de IA: una pregunta real cada uno, y qué hacer."},
     "ca": {"ai": "Presentadora generada amb IA", "watch": "Veure a YouTube", "play": "Reproduir el vídeo", "spanish": "El vídeo és en castellà.",
            "how": "Com fer-lo servir amb seny", "transcript": "Transcripció", "more": "Per continuar", "videos": "Vídeos",
            "all": "Tots els vídeos", "download": "Descarregar RosmarOps", "home": "Inici", "sandbox": "Encén el sandbox del teu agent d'IA en 3 passos",
-           "index_lead": "Vídeos curts sobre agents d'IA: una pregunta real cadascun, i què fer. En castellà, amb una presentadora generada amb IA.",
+           "index_lead": "Vídeos curts sobre agents d'IA: una pregunta real cadascun, i què fer. Uns els presenta la Rosmary, una presentadora generada amb IA, en castellà; d'altres són només text i dibuixos, en el teu idioma.",
            "index_title": "Vídeos sobre agents d'IA", "index_desc": "Vídeos curts sobre agents d'IA: una pregunta real cadascun, i què fer."},
 }
 
@@ -98,7 +103,7 @@ def check(videos, site=SITE):
             for lang in LANGS:
                 if not str(v["post"].get(lang, "")).startswith("/"):
                     raise ValueError(f"video {k}/{lang}: post without a path")
-        elif not YT_ID.match(v.get("youtube_id") or ""):
+        elif not all(YT_ID.match(yt(v, lang) or "") for lang in LANGS):
             raise ValueError(f"video {k}: public without a valid youtube_id")
         if not v.get("public_since"):
             raise ValueError(f"video {k}: public without public_since")
@@ -128,6 +133,22 @@ def thumb(v, lang):
     return t[lang] if isinstance(t, dict) else t
 
 
+def yt(v, lang):
+    """The YouTube id of the video in this language: one for all, or one per language (GTM-236)."""
+    i = v.get("youtube_id")
+    return i.get(lang) if isinstance(i, dict) else i
+
+
+def presenter(v):
+    """Whether the video has the AI-generated presenter (every video before GTM-236)."""
+    return v.get("presenter", True)
+
+
+def video_lang(v, lang):
+    """The language spoken or shown in the video: Spanish for the presenter's videos, the page's own for GTM-236's."""
+    return "es" if presenter(v) else lang
+
+
 def on_youtube(videos):
     """Public videos that have their own page (on YouTube), newest first."""
     return [(k, v) for k, v in public(videos) if not v.get("post")]
@@ -140,22 +161,22 @@ def mmss(iso):
 
 def player(v, lang, heading_level=None):
     """The thumbnail with a play button; the player loads only on click. Plus the AI-presenter label."""
-    vid, t = v["youtube_id"], v["title"][lang]
+    vid, t = yt(v, lang), v["title"][lang]
     watch = f"https://www.youtube.com/watch?v={vid}"
     cc = lang if lang in v.get("subtitles", []) else ""
-    meta = [esc(L[lang]["ai"])] + ([mmss(v["duration"])] if mmss(v.get("duration")) else []) + \
+    meta = ([esc(L[lang]["ai"])] if presenter(v) else []) + ([mmss(v["duration"])] if mmss(v.get("duration")) else []) + \
            [f'<a href="{watch}" rel="noopener">{esc(L[lang]["watch"])}</a>']
     return (f'<div class="vp"><a href="{watch}" rel="noopener" data-yt="{vid}" data-cc="{cc}" data-title="{esc(t)}">'
-            f'<img src="{esc(v["thumb"])}" width="1280" height="720" alt="{esc(t)}">'
+            f'<img src="{esc(thumb(v, lang))}" width="1280" height="720" alt="{esc(t)}">'
             f'<span class="vp-play" aria-hidden="true"></span><span class="vh">{esc(L[lang]["play"])}: {esc(t)}</span></a></div>\n'
             f'<p class="vp-meta">{" · ".join(meta)}</p>')
 
 
 def video_object(v, lang, url=None):
     o = {"@type": "VideoObject", "name": v["title"][lang], "description": v["answer"][lang],
-         "thumbnailUrl": BASE + v["thumb"], "inLanguage": "es",
-         "embedUrl": f"https://www.youtube-nocookie.com/embed/{v['youtube_id']}",
-         "url": url or f"https://www.youtube.com/watch?v={v['youtube_id']}"}
+         "thumbnailUrl": BASE + thumb(v, lang), "inLanguage": video_lang(v, lang),
+         "embedUrl": f"https://www.youtube-nocookie.com/embed/{yt(v, lang)}",
+         "url": url or f"https://www.youtube.com/watch?v={yt(v, lang)}"}
     if v.get("upload_date"):
         o["uploadDate"] = v["upload_date"]
     if v.get("duration"):
@@ -165,6 +186,10 @@ def video_object(v, lang, url=None):
 
 def topic_link(v, lang):
     """(text, href) of the standing page of the video's topic, or None."""
+    if v.get("family"):  # GTM-236: the Control Baseline family, with its signed title
+        import minimum
+        f = next(f for f in minimum.families() if f["id"] == v["family"])
+        return (f[lang]["h1"], f["path"][lang])
     tp = v.get("topic_page")
     if tp == "sandbox":
         return (L[lang]["sandbox"], SANDBOX[lang])
@@ -239,7 +264,7 @@ def video_page(k, v, lang):
     if v["how_to"][lang]:
         out.append(f'<h2>{esc(L[lang]["how"])}</h2><ol>' + "".join(f"<li>{esc(x)}</li>" for x in v["how_to"][lang]) + "</ol>")
     if v["transcript"].get(lang):
-        note = f'<p>{esc(L[lang]["spanish"])}</p>' if L[lang]["spanish"] else ""
+        note = f'<p>{esc(L[lang]["spanish"])}</p>' if L[lang]["spanish"] and presenter(v) else ""
         out.append(f'<details><summary>{esc(L[lang]["transcript"])}</summary>{note}'
                    + "".join(f"<p>{esc(p)}</p>" for p in v["transcript"][lang]) + "</details>")
     links = []
@@ -300,7 +325,7 @@ def sitemap_urls(videos=None):
 
 def llms_lines(videos=None):
     videos = load() if videos is None else videos
-    lines = [f"- [Videos]({BASE}/videos/): short videos about AI agents, in Spanish with an AI-generated presenter."]
+    lines = [f"- [Videos]({BASE}/videos/): short videos about AI agents; some in Spanish with an AI-generated presenter, others text and drawings only in English, Spanish and Catalan."]
     lines += [f"- [{v['title']['en']}]({BASE}{path(v, 'en')}): {v['answer']['en']}" for _, v in public(videos)]
     return lines
 

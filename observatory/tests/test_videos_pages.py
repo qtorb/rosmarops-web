@@ -47,10 +47,10 @@ class Pages(unittest.TestCase):
         for k, v in self.public:
             for lang in videos_pages.LANGS:
                 html = self.pages[videos_pages.path(v, lang)]
-                self.assertIn(f'data-yt="{v["youtube_id"]}"', html)
-                self.assertIn(f'<img src="{v["thumb"]}"', html)
-                self.assertIn(videos_pages.L[lang]["ai"], html)
-                self.assertIn(f'href="https://www.youtube.com/watch?v={v["youtube_id"]}"', html)
+                self.assertIn(f'data-yt="{videos_pages.yt(v, lang)}"', html)
+                self.assertIn(f'<img src="{videos_pages.thumb(v, lang)}"', html)
+                self.assertEqual(videos_pages.L[lang]["ai"] in html, videos_pages.presenter(v))
+                self.assertIn(f'href="https://www.youtube.com/watch?v={videos_pages.yt(v, lang)}"', html)
                 self.assertIn(f'<h1>{videos_pages.esc(v["title"][lang])}</h1>\n<p class="tp-first">{videos_pages.esc(v["answer"][lang])}</p>', html)
 
     def test_transcript_and_how_to(self):
@@ -195,6 +195,86 @@ class Check(unittest.TestCase):
             self.assertEqual(json.loads((data / "b.json").read_text(encoding="utf-8")), already)
             self.assertIn("a: now public", changes)
             self.assertFalse(any(c.startswith("b:") for c in changes))
+
+
+
+FAMILY = Path(__file__).resolve().parent / "fixture" / "videos" / "familia-ordenador-fabricante.json"
+
+
+class OwnLanguageVideos(unittest.TestCase):
+    """GTM-236: a video made in each language, with no presenter (fixture: the «vendor's computer» video as it is
+    published on 1-12-2026)."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.videos = dict(videos_pages.load(), **{"familia": json.loads(FAMILY.read_text(encoding="utf-8"))})
+        cls.v = cls.videos["familia"]
+        cls.pages = videos_pages.pages(cls.videos)
+
+    def page(self, lang):
+        return self.pages[videos_pages.path(self.v, lang)]
+
+    def test_one_youtube_id_and_thumbnail_per_language(self):
+        for lang in videos_pages.LANGS:
+            html = self.page(lang)
+            self.assertIn(f'data-yt="{self.v["youtube_id"][lang]}"', html)
+            self.assertIn(f'<img src="{self.v["thumb"][lang]}"', html)
+            for other in videos_pages.LANGS:
+                if other != lang:
+                    self.assertNotIn(self.v["youtube_id"][other], html)
+
+    def test_no_presenter_label_and_no_spanish_note(self):
+        for lang in videos_pages.LANGS:
+            html = self.page(lang)
+            self.assertNotIn(videos_pages.L[lang]["ai"], html)
+            if videos_pages.L[lang]["spanish"]:
+                self.assertNotIn(videos_pages.L[lang]["spanish"], html)
+
+    def test_video_language_is_the_page_language(self):
+        for lang in videos_pages.LANGS:
+            graph = json.loads(LD.search(self.page(lang)).group(1))["@graph"]
+            vo = next(x for x in graph if x["@type"] == "VideoObject")
+            self.assertEqual(vo["inLanguage"], lang)
+            self.assertEqual(vo["description"], self.v["answer"][lang])
+            self.assertEqual(vo["thumbnailUrl"], "https://rosmarops.com" + self.v["thumb"][lang])
+        # the presenter's videos are still in Spanish
+        pc = self.videos["paperclip"]
+        self.assertEqual(videos_pages.video_object(pc, "en")["inLanguage"], "es")
+
+    def test_read_more_links_to_the_family(self):
+        import minimum
+        fam = next(f for f in minimum.families() if f["id"] == self.v["family"])
+        for lang in videos_pages.LANGS:
+            self.assertIn(f'<li><a href="{fam["path"][lang]}">{videos_pages.esc(fam[lang]["h1"])}</a></li>', self.page(lang))
+
+    def test_transcript_one_paragraph_per_sentence(self):
+        for lang in videos_pages.LANGS:
+            html = self.page(lang)
+            for x in self.v["transcript"][lang]:
+                self.assertIn(f"<p>{videos_pages.esc(x)}</p>", html)
+        self.assertEqual(self.v["transcript"]["es"][0], self.v["title"]["es"].split(" ¿")[0])
+
+    def test_card_in_each_index(self):
+        for lang in videos_pages.LANGS:
+            self.assertIn(f'<a href="{videos_pages.path(self.v, lang)}"><img src="{self.v["thumb"][lang]}"', self.pages[videos_pages.INDEX[lang]])
+
+    def test_check_wants_every_language_id(self):
+        v = copy.deepcopy(self.videos)
+        v["familia"]["youtube_id"]["ca"] = None
+        with self.assertRaises(ValueError):
+            videos_pages.check(v)
+
+    def test_check_marks_it_public_from_any_of_its_ids(self):
+        tmp = Path(tempfile.mkdtemp())
+        try:
+            d = copy.deepcopy(self.v)
+            d.update(public=False, public_since=None)
+            (tmp / "familia.json").write_text(json.dumps(d, ensure_ascii=False, indent=2), encoding="utf-8")
+            changes = videos_check.update({d["youtube_id"]["en"]: "2026-12-01"}, "2026-12-01", folder=tmp, site=tmp, thumbs=True)
+            self.assertIn("familia: now public", changes)
+            self.assertIs(json.loads((tmp / "familia.json").read_text(encoding="utf-8"))["public"], True)
+        finally:
+            shutil.rmtree(tmp)
 
 
 if __name__ == "__main__":

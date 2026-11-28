@@ -1,0 +1,120 @@
+{
+  "youtube_id": {
+    "es": "gAicl_qOTko",
+    "en": "Oba2t-P3gWk",
+    "ca": "1YrN2MHC-kY"
+  },
+  "public": true,
+  "presenter": false,
+  "upload_date": null,
+  "public_since": "2026-12-01",
+  "duration": "PT1M37S",
+  "subtitles": [],
+  "thumb": {
+    "en": "/assets/video/agents-on-the-vendors-computer.en.jpg",
+    "es": "/assets/video/agentes-en-el-ordenador-del-fabricante.es.jpg",
+    "ca": "/assets/video/agents-a-lordinador-del-fabricant.ca.jpg"
+  },
+  "family": "agents-on-the-vendors-computer",
+  "source": "qtorb/rosmarops-vigil docs/research/2026-11-28-videos-familias-sin-presentadora.md (titles: YouTube sheets; descriptions: «Textos para la web»); transcript: the on-screen sentences of docs/assets/video/familias/B.<lang>.json (GTM-236)",
+  "slug": {
+    "es": "agentes-en-el-ordenador-del-fabricante",
+    "en": "agents-on-the-vendors-computer",
+    "ca": "agents-a-lordinador-del-fabricant"
+  },
+  "title": {
+    "es": "Tu agente de IA ya tiene ordenador propio. ¿Quién manda en él?",
+    "en": "Your AI agent now has a computer of its own. Who is in charge of it?",
+    "ca": "El teu agent d'IA ja té ordinador propi. Qui hi mana?"
+  },
+  "answer": {
+    "es": "Meta Muse y Microsoft Copilot Autopilot dan al agente de IA un ordenador propio en la nube. Cinco preguntas para hacerle a su documentación antes de conectar tus cuentas.",
+    "en": "Meta Muse and Microsoft Copilot Autopilot give the AI agent its own computer in the cloud. Five questions to ask its documentation before you connect your accounts.",
+    "ca": "Meta Muse i Microsoft Copilot Autopilot donen a l'agent d'IA un ordinador propi al núvol. Cinc preguntes per fer a la seva documentació abans de connectar-hi els teus comptes."
+  },
+  "how_to": {
+    "es": [],
+    "en": [],
+    "ca": []
+  },
+  "transcript": {
+    "es": [
+      "Tu agente de IA ya tiene ordenador propio.",
+      "¿Quién manda en él?",
+      "Hasta ahora, un agente de IA era un programa en tu ordenador.",
+      "Con tus ficheros y tus claves. Lo que tenía permitido se podía leer.",
+      "Este otoño ha cambiado.",
+      "Meta Muse · 8 de septiembre de 2026",
+      "Microsoft Copilot Autopilot · 25 de septiembre de 2026",
+      "El agente recibe un ordenador entero en la nube, a tu nombre.",
+      "Y sigue trabajando cuando tú no estás.",
+      "En tu ordenador · Se puede mirar qué tiene permitido un agente.",
+      "En el del fabricante · Solo tienes lo que ha escrito en su documentación.",
+      "Y muchas veces, quien aprueba no eres tú.",
+      "Te pregunta a ti · Lo hace sin preguntarte · Lo decide otro modelo de IA",
+      "Antes de conectarle tus cuentas, hazle cinco preguntas a su ayuda.",
+      "1 · De fábrica · ¿Dice qué puede hacer sin preguntarte, tal como viene?",
+      "2 · Las claves · ¿Dice dónde las guarda, si puedes retirarlas una a una y si el agente las ve?",
+      "3 · Sin nadie delante · ¿Puedes ver lo que tiene programado y apagar cada cosa?",
+      "4 · Parar · ¿Puedes pararlo, y pararlo todo a la vez?",
+      "5 · Avisos de seguridad · ¿Los publica en un sitio fijo y dice cómo comunicarle un fallo?",
+      "Si una respuesta no está en la ayuda, ya sabes algo.",
+      "No que sea mala: que no la tienes.",
+      "Hemos hecho esas preguntas a los dos, y hemos avisado a Meta y a Microsoft antes de publicar.",
+      "Resultados: 11 de diciembre de 2026 · rosmarops.com/es/observatorio",
+      "Usa agentes de IA. Decide tú."
+    ],
+    "en": [
+      "Your AI agent now has a computer of its own.",
+      "Who is in charge of it?",
+      "Until now, an AI agent was a program on your computer.",
+      "With your files and your keys. What it was allowed to do could be read.",
+      "This autumn that changed.",
+      "Meta Muse · 8 September 2026",
+      "Microsoft Copilot Autopilot · 25 September 2026",
+      "The agent gets a whole computer in the cloud, in your name.",
+      "And it keeps working when you are away.",
+      "On your computer · Someone can look at what an agent is allowed to do.",
+      "On the vendor's · You only have what it wrote in its documentation.",
+      "And often, the one who approves is not you.",
+      "Asks you · Does it without asking you · Another AI model decides",
+      "Before you connect your accounts, ask its help pages five questions.",
+      "1 · Out of the box · Does it say what it can do without asking you, as it comes?",
+      "2 · The keys · Does it say where it keeps them, whether you can remove them one by one, and whether the agent sees them?",
+      "3 · With nobody watching · Can you see what it has scheduled and turn each item off?",
+      "4 · Stopping · Can you stop it, and stop everything at once?",
+      "5 · Security advisories · Does it publish them in a fixed place and say how to report a flaw?",
+      "If an answer is not in the help pages, you already know something.",
+      "Not that it is bad: that you do not have it.",
+      "We asked both those questions, and told Meta and Microsoft before publishing.",
+      "Results: 11 December 2026 · rosmarops.com/observatory",
+      "Use AI agents. You decide."
+    ],
+    "ca": [
+      "El teu agent d'IA ja té ordinador propi.",
+      "Qui hi mana?",
+      "Fins ara, un agent d'IA era un programa al teu ordinador.",
+      "Amb els teus fitxers i les teves claus. El que tenia permès es podia llegir.",
+      "Aquesta tardor ha canviat.",
+      "Meta Muse · 8 de setembre de 2026",
+      "Microsoft Copilot Autopilot · 25 de setembre de 2026",
+      "L'agent rep un ordinador sencer al núvol, a nom teu.",
+      "I segueix treballant quan tu no hi ets.",
+      "Al teu ordinador · Es pot mirar què té permès un agent.",
+      "Al del fabricant · Només tens el que ha escrit a la seva documentació.",
+      "I moltes vegades, qui aprova no ets tu.",
+      "Et pregunta a tu · Ho fa sense preguntar-te · Ho decideix un altre model d'IA",
+      "Abans de connectar-hi els teus comptes, fes cinc preguntes a la seva ajuda.",
+      "1 · De fàbrica · Diu què pot fer sense preguntar-te, tal com ve?",
+      "2 · Les claus · Diu on les desa, si les pots retirar una a una i si l'agent les veu?",
+      "3 · Sense ningú davant · Pots veure el que té programat i apagar cada cosa?",
+      "4 · Aturar · El pots aturar, i aturar-ho tot alhora?",
+      "5 · Avisos de seguretat · Els publica en un lloc fix i diu com comunicar-li una fallada?",
+      "Si una resposta no és a l'ajuda, ja saps alguna cosa.",
+      "No que sigui dolenta: que no la tens.",
+      "Hem fet aquestes preguntes a tots dos, i hem avisat Meta i Microsoft abans de publicar.",
+      "Resultats: 11 de desembre de 2026 · rosmarops.com/ca/observatori",
+      "Fes servir agents d'IA. Decideix tu."
+    ]
+  }
+}
