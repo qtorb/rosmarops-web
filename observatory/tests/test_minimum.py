@@ -110,6 +110,7 @@ class Rules(unittest.TestCase):
 
     def test_texts_the_page_needs(self):
         self.assertTrue(any("tested_plan" in p for p in self.broken(lambda r: r.pop("tested_plan"))))
+        self.assertEqual(self.broken(lambda r: r.update(tested_plan="")), [])  # no named plan to cite (family spec §5)
         self.assertTrue(any("tested_version" in p for p in self.broken(lambda r: r.pop("tested_version"), PASS)))
         def f(r):
             r["criteria"][3]["how"] = "none"
@@ -136,12 +137,21 @@ class Published(unittest.TestCase):
         self.assertIsNone(minimum.owner_agent("gumloop", ids))
 
     def test_data_waits_for_publish_after(self):
-        """GTM-225: the five results of 25-11 are in the data from 26-11, to be published on 10-12-2026."""
+        """GTM-225: the five results of 25-11 are in the data from 26-11, to be published on 10-12-2026.
+        GTM-233: the two agents on the vendor's computer, measured on 27-11, are published on 11-12-2026."""
         res = minimum.load()
-        self.assertEqual(sorted(r["candidate"]["id"] for _, r in res), ["dify-cloud", "gumloop", "n8n", "n8n-cloud", "paperclip"])
-        self.assertEqual({r["vendor"]["publish_after"] for _, r in res}, {"2026-12-10"})
+        first = ["dify-cloud", "gumloop", "n8n", "n8n-cloud", "paperclip"]
+        second = ["copilot-autopilot", "meta-muse"]
+        self.assertEqual(sorted(r["candidate"]["id"] for _, r in res), sorted(first + second))
+        after = {r["candidate"]["id"]: r["vendor"]["publish_after"] for _, r in res}
+        self.assertEqual({after[i] for i in first}, {"2026-12-10"})
+        self.assertEqual({after[i] for i in second}, {"2026-12-11"})
         self.assertEqual(minimum.published(res, "2026-12-09"), {})
-        self.assertEqual(len(minimum.published(res, "2026-12-10")), 5)
+        self.assertEqual(sorted(minimum.published(res, "2026-12-10")), first)
+        self.assertEqual(sorted(minimum.published(res, "2026-12-11")), sorted(first + second))
+        fam = {i: minimum.family_of(r, minimum.families())["id"] for i, r in ((r["candidate"]["id"], r) for _, r in res)}
+        self.assertEqual({fam[i] for i in second}, {"agents-on-the-vendors-computer"})
+        self.assertEqual({fam[i] for i in first}, {"orchestrators-and-automation"})
 
 
 def committed_day():
@@ -362,7 +372,7 @@ class Families(unittest.TestCase):
                 self.assertIn(html.escape(cat(lang)["minimum.r.empty"], quote=True), s)
                 self.assertNotIn('content="noindex"', s)
                 self.assertIn(f"<loc>https://rosmarops.com{f['path'][lang]}</loc>", sm)
-                for rid in ("paperclip", "n8n", "gumloop", "dify"):
+                for rid in ("paperclip", "n8n", "gumloop", "dify", "copilot", "muse"):
                     self.assertNotIn(rid, text(s).lower())
 
     def test_block_order_and_texts(self):
@@ -479,3 +489,53 @@ class IndexLine(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class NoPlan(unittest.TestCase):
+    """A result in the vendor's cloud with an empty tested_plan names no plan: use.cloud.noplan and x.meta.cloud.noplan
+    (vigil docs/research/2026-11-27-minimo-de-control-fichas-de-familia.md §5, GTM-233)."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.tmp = Path(tempfile.mkdtemp())
+        cls.data = cls.tmp / "minimum"
+        shutil.copytree(FIX, cls.data)
+        r = load(FAIL)
+        r["candidate"] = {"id": "example-noplan", "name": "Example Noplan"}
+        r["kind"] = "hosted_agent"
+        r["tested_plan"] = ""
+        (cls.data / "example-noplan").mkdir()
+        (cls.data / "example-noplan" / "2026-11-01.json").write_text(json.dumps(r), encoding="utf-8")
+        cls.out = cls.tmp / "out"
+        p = run_build(cls.out, cls.data, "2026-12-01")
+        assert p.returncode == 0, p.stderr
+
+    @classmethod
+    def tearDownClass(cls):
+        shutil.rmtree(cls.tmp)
+
+    def row(self, s, rid):
+        return text([x for x in re.findall(r"<tr>(.*?)</tr>", s, re.S) if f"/{rid}/" in x][0])
+
+    def test_use_cloud_noplan_in_the_tables(self):
+        for lang in ("en", "es", "ca"):
+            c = cat(lang)
+            for s in ((self.out / CRIT[lang] / "index.html").read_text(encoding="utf-8"), fam_page(self.out, FAM_B, lang)):
+                row = self.row(s, "example-noplan")
+                self.assertIn(c["minimum.use.cloud.noplan"], row)
+                self.assertNotIn(c["minimum.use.cloud"].split("{plan}")[0].rstrip(), row.replace(c["minimum.use.cloud.noplan"], ""))
+            # a result with a plan keeps the sentence with its plan
+            self.assertIn(c["minimum.use.cloud"].replace("{plan}", "Pro"), self.row((self.out / CRIT[lang] / "index.html").read_text(encoding="utf-8"), "example-builder-cloud"))
+
+    def test_x_meta_cloud_noplan_on_the_result_page(self):
+        want = {"en": "In the vendor's cloud · measured on 1 November 2026 · expires on 30 January 2027",
+                "es": "En la nube del fabricante · medido el 1 de noviembre de 2026 · caduca el 30 de enero de 2027",
+                "ca": "Al núvol del fabricant · mesurat el 1 de novembre de 2026 · caduca el 30 de gener de 2027"}
+        for lang in ("en", "es", "ca"):
+            s = (self.out / CRIT[lang] / "example-noplan" / "index.html").read_text(encoding="utf-8")
+            meta = text(re.search(r'<p class="pagemeta">(.*?)</p>', s, re.S).group(1)).strip()
+            self.assertEqual(meta, want[lang])
+        # a result with a plan keeps the sentence with its plan
+        s = (self.out / CRIT["en"] / "example-builder-cloud" / "index.html").read_text(encoding="utf-8")
+        meta = text(re.search(r'<p class="pagemeta">(.*?)</p>', s, re.S).group(1)).strip()
+        self.assertEqual(meta, "In the vendor's cloud · Pro plan · measured on 1 November 2026 · expires on 30 January 2027")
