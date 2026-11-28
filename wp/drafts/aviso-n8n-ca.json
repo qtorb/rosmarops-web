@@ -5,8 +5,8 @@
  "title": "Vam avisar n8n d'un resultat. L'endemà algú havia anat al codi",
  "excerpt": "Què passa quan dius a un fabricant, en públic i amb catorze dies de marge, què publicaràs sobre el seu producte.",
  "content": "aviso-n8n-ca.html",
- "seo_title": "Vam avisar n8n d'un resultat. L'endemà algú havia anat al codi",
- "seo_description": "Què passa quan dius a un fabricant, en públic i amb catorze dies de marge, què publicaràs sobre el seu producte.",
+ "seo_title": "Vam avisar n8n i algú va anar al codi",
+ "seo_description": "Vam dir a n8n en públic què publicaríem. L'endemà algú va revisar el codi i va redactar la documentació que hi faltava.",
  "translations": {
   "en": "https://rosmarops.com/blog/we-told-n8n-about-a-result/",
   "es": "https://rosmarops.com/es/blog/avisamos-a-n8n-de-un-resultado/"
@@ -15,5 +15,7 @@
  "tags": {
   "observatori": "Observatori"
  },
+ "image": "avis-a-n8n-ca.jpg",
+ "alt": "Línia de temps: avís públic a n8n el 26 de novembre, algú revisa el codi el 27, resultat el 10 de desembre.",
  "publish_at": "2026-12-08T08:00:00+01:00"
 }

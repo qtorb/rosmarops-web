@@ -6,7 +6,7 @@
  "excerpt": "Meta and Microsoft now give each person an AI agent with its own machine in the cloud. Five questions worth asking that machine before you connect your accounts to it.",
  "content": "familia-ordenador-fabricante-en.html",
  "seo_title": "When the agent's computer is not yours",
- "seo_description": "Meta and Microsoft now give each person an AI agent with its own machine in the cloud. Five questions worth asking that machine before you connect your accounts to it.",
+ "seo_description": "Meta Muse and Microsoft Copilot Autopilot give the agent its own cloud computer. Five questions to ask before you connect your accounts.",
  "translations": {
   "es": "https://rosmarops.com/es/blog/cuando-el-ordenador-del-agente-no-es-el-tuyo/",
   "ca": "https://rosmarops.com/ca/blog/quan-lordinador-de-lagent-no-es-el-teu/"
@@ -15,7 +15,7 @@
  "tags": {
   "observatory": "Observatory"
  },
- "image": "rosmarops-img-25-ordenador-del-fabricante.jpg",
- "alt": "A small laptop on the left and, on the right, a whole computer inside a cloud, with an agent at work, three accounts hanging from it and a second agent that decides what goes out.",
+ "image": "agents-on-the-vendors-computer-en.jpg",
+ "alt": "Illustration: your AI agent inside a machine in the vendor's cloud, and the question “Who is in charge?”.",
  "publish_at": "2026-12-01T08:00:00+01:00"
 }
