@@ -70,8 +70,8 @@ class Pages(unittest.TestCase):
                 g = json.loads(LD.findall(self.pages[videos_pages.path(v, lang)])[0])["@graph"]
                 vo = g[0]
                 self.assertEqual(vo["@type"], "VideoObject")
-                self.assertEqual(vo["embedUrl"], f"https://www.youtube-nocookie.com/embed/{v['youtube_id']}")
-                self.assertEqual(vo["thumbnailUrl"], "https://rosmarops.com" + v["thumb"])
+                self.assertEqual(vo["embedUrl"], f"https://www.youtube-nocookie.com/embed/{videos_pages.yt(v, lang)}")
+                self.assertEqual(vo["thumbnailUrl"], "https://rosmarops.com" + videos_pages.thumb(v, lang))
                 self.assertEqual("uploadDate" in vo, bool(v["upload_date"]))
                 self.assertEqual(g[1]["@type"], "BreadcrumbList")
         for lang in videos_pages.LANGS:
