@@ -266,13 +266,6 @@ jobs:
           put site/assets/video/decide-tu-en.jpg assets/video/decide-tu-en.jpg
           put site/assets/video/decide-tu-ca.mp4 assets/video/decide-tu-ca.mp4
           put site/assets/video/decide-tu-ca.jpg assets/video/decide-tu-ca.jpg
-          # GTM-236: thumbnails of the two family videos (linked from the GTM-235 posts and, later, the video pages)
-          put site/assets/video/agentes-en-el-ordenador-del-fabricante.es.jpg assets/video/agentes-en-el-ordenador-del-fabricante.es.jpg
-          put site/assets/video/agents-on-the-vendors-computer.en.jpg assets/video/agents-on-the-vendors-computer.en.jpg
-          put site/assets/video/agents-a-lordinador-del-fabricant.ca.jpg assets/video/agents-a-lordinador-del-fabricant.ca.jpg
-          put site/assets/video/orquestadores-y-automatizacion.es.jpg assets/video/orquestadores-y-automatizacion.es.jpg
-          put site/assets/video/orchestrators-and-automation.en.jpg assets/video/orchestrators-and-automation.en.jpg
-          put site/assets/video/orquestradors-i-automatitzacio.ca.jpg assets/video/orquestradors-i-automatitzacio.ca.jpg
           # Home video (horizontal «Decide tú», signed by Albert 22-11 16:55), one version per language.
           put site/assets/video/rosmarops-hero-1080p.mp4 assets/video/rosmarops-hero-1080p.mp4
           put site/assets/video/rosmarops-hero-4k.mp4 assets/video/rosmarops-hero-4k.mp4
