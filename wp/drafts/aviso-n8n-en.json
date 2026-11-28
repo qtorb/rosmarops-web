@@ -1,0 +1,19 @@
+{
+ "id": "aviso-n8n",
+ "lang": "en",
+ "slug": "we-told-n8n-about-a-result",
+ "title": "We told n8n about a result. The next day someone had gone to the code",
+ "excerpt": "What happens when you tell a vendor, in public and with fourteen days' notice, what you are going to publish about its product.",
+ "content": "aviso-n8n-en.html",
+ "seo_title": "We told n8n about a result. The next day someone had gone to the code",
+ "seo_description": "What happens when you tell a vendor, in public and with fourteen days' notice, what you are going to publish about its product.",
+ "translations": {
+  "es": "https://rosmarops.com/es/blog/avisamos-a-n8n-de-un-resultado/",
+  "ca": "https://rosmarops.com/ca/blog/vam-avisar-n8n-dun-resultat/"
+ },
+ "category": "field-notes",
+ "tags": {
+  "observatory": "Observatory"
+ },
+ "publish_at": "2026-12-08T08:00:00+01:00"
+}

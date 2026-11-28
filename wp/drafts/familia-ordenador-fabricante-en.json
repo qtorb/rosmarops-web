@@ -1,0 +1,19 @@
+{
+ "id": "familia-ordenador-fabricante",
+ "lang": "en",
+ "slug": "when-the-agents-computer-is-not-yours",
+ "title": "When the agent's computer is not yours",
+ "excerpt": "Meta and Microsoft now give each person an AI agent with its own machine in the cloud. Five questions worth asking that machine before you connect your accounts to it.",
+ "content": "familia-ordenador-fabricante-en.html",
+ "seo_title": "When the agent's computer is not yours",
+ "seo_description": "Meta and Microsoft now give each person an AI agent with its own machine in the cloud. Five questions worth asking that machine before you connect your accounts to it.",
+ "translations": {
+  "es": "https://rosmarops.com/es/blog/cuando-el-ordenador-del-agente-no-es-el-tuyo/",
+  "ca": "https://rosmarops.com/ca/blog/quan-lordinador-de-lagent-no-es-el-teu/"
+ },
+ "category": "field-notes",
+ "tags": {
+  "observatory": "Observatory"
+ },
+ "publish_at": "2026-12-01T08:00:00+01:00"
+}

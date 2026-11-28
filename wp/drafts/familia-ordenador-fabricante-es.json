@@ -1,0 +1,19 @@
+{
+ "id": "familia-ordenador-fabricante",
+ "lang": "es",
+ "slug": "cuando-el-ordenador-del-agente-no-es-el-tuyo",
+ "title": "Cuando el ordenador del agente no es el tuyo",
+ "excerpt": "Meta y Microsoft ya dan a cada persona un agente de IA con su propia máquina en la nube. Cinco preguntas que conviene hacerle a esa máquina antes de conectarle tus cuentas.",
+ "content": "familia-ordenador-fabricante-es.html",
+ "seo_title": "Cuando el ordenador del agente no es el tuyo",
+ "seo_description": "Meta y Microsoft ya dan a cada persona un agente de IA con su propia máquina en la nube. Cinco preguntas que conviene hacerle a esa máquina antes de conectarle tus cuentas.",
+ "translations": {
+  "en": "https://rosmarops.com/blog/when-the-agents-computer-is-not-yours/",
+  "ca": "https://rosmarops.com/ca/blog/quan-lordinador-de-lagent-no-es-el-teu/"
+ },
+ "category": "novedades-de-rosmarops",
+ "tags": {
+  "observatorio": "Observatorio"
+ },
+ "publish_at": "2026-12-01T08:00:00+01:00"
+}

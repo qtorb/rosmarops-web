@@ -1,0 +1,19 @@
+{
+ "id": "familia-ordenador-fabricante",
+ "lang": "ca",
+ "slug": "quan-lordinador-de-lagent-no-es-el-teu",
+ "title": "Quan l'ordinador de l'agent no és el teu",
+ "excerpt": "Meta i Microsoft ja donen a cada persona un agent d'IA amb la seva pròpia màquina al núvol. Cinc preguntes que convé fer a aquesta màquina abans de connectar-hi els teus comptes.",
+ "content": "familia-ordenador-fabricante-ca.html",
+ "seo_title": "Quan l'ordinador de l'agent no és el teu",
+ "seo_description": "Meta i Microsoft ja donen a cada persona un agent d'IA amb la seva pròpia màquina al núvol. Cinc preguntes que convé fer a aquesta màquina abans de connectar-hi els teus comptes.",
+ "translations": {
+  "en": "https://rosmarops.com/blog/when-the-agents-computer-is-not-yours/",
+  "es": "https://rosmarops.com/es/blog/cuando-el-ordenador-del-agente-no-es-el-tuyo/"
+ },
+ "category": "notes-de-camp",
+ "tags": {
+  "observatori": "Observatori"
+ },
+ "publish_at": "2026-12-01T08:00:00+01:00"
+}

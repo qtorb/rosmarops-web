@@ -1,0 +1,19 @@
+{
+ "id": "aviso-n8n",
+ "lang": "ca",
+ "slug": "vam-avisar-n8n-dun-resultat",
+ "title": "Vam avisar n8n d'un resultat. L'endemà algú havia anat al codi",
+ "excerpt": "Què passa quan dius a un fabricant, en públic i amb catorze dies de marge, què publicaràs sobre el seu producte.",
+ "content": "aviso-n8n-ca.html",
+ "seo_title": "Vam avisar n8n d'un resultat. L'endemà algú havia anat al codi",
+ "seo_description": "Què passa quan dius a un fabricant, en públic i amb catorze dies de marge, què publicaràs sobre el seu producte.",
+ "translations": {
+  "en": "https://rosmarops.com/blog/we-told-n8n-about-a-result/",
+  "es": "https://rosmarops.com/es/blog/avisamos-a-n8n-de-un-resultado/"
+ },
+ "category": "notes-de-camp",
+ "tags": {
+  "observatori": "Observatori"
+ },
+ "publish_at": "2026-12-08T08:00:00+01:00"
+}

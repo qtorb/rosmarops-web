@@ -1,0 +1,19 @@
+{
+ "id": "aviso-n8n",
+ "lang": "es",
+ "slug": "avisamos-a-n8n-de-un-resultado",
+ "title": "Avisamos a n8n de un resultado. Al día siguiente alguien había ido al código",
+ "excerpt": "Qué pasa cuando le dices a un fabricante, en público y con catorce días de margen, qué vas a publicar sobre su producto.",
+ "content": "aviso-n8n-es.html",
+ "seo_title": "Avisamos a n8n de un resultado. Al día siguiente alguien había ido al código",
+ "seo_description": "Qué pasa cuando le dices a un fabricante, en público y con catorce días de margen, qué vas a publicar sobre su producto.",
+ "translations": {
+  "en": "https://rosmarops.com/blog/we-told-n8n-about-a-result/",
+  "ca": "https://rosmarops.com/ca/blog/vam-avisar-n8n-dun-resultat/"
+ },
+ "category": "novedades-de-rosmarops",
+ "tags": {
+  "observatorio": "Observatorio"
+ },
+ "publish_at": "2026-12-08T08:00:00+01:00"
+}

@@ -1,0 +1,19 @@
+{
+ "id": "familia-orquestadores",
+ "lang": "es",
+ "slug": "cuando-otro-programa-lanza-a-tus-agentes",
+ "title": "Cuando otro programa lanza a tus agentes",
+ "excerpt": "Un orquestador o una herramienta de automatización pone a trabajar a varios agentes de IA por ti. Lo que cada agente puede hacer sin preguntar ya no lo decides en el agente.",
+ "content": "familia-orquestadores-es.html",
+ "seo_title": "Cuando otro programa lanza a tus agentes",
+ "seo_description": "Un orquestador o una herramienta de automatización pone a trabajar a varios agentes de IA por ti. Lo que cada agente puede hacer sin preguntar ya no lo decides en el agente.",
+ "translations": {
+  "en": "https://rosmarops.com/blog/when-another-program-launches-your-agents/",
+  "ca": "https://rosmarops.com/ca/blog/quan-un-altre-programa-llanca-els-teus-agents/"
+ },
+ "category": "novedades-de-rosmarops",
+ "tags": {
+  "observatorio": "Observatorio"
+ },
+ "publish_at": "2026-12-03T08:00:00+01:00"
+}
