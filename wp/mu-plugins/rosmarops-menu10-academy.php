@@ -9,7 +9,7 @@ if (!defined('ABSPATH')) {
 }
 
 // Written by observatory/academy.py from observatory/data/academy.json; do not change it by hand.
-const ROSMAROPS_MENU10_OPEN = false;
+const ROSMAROPS_MENU10_OPEN = true;
 const ROSMAROPS_MENU10_DONE = 'rosmarops_menu10_done';
 const ROSMAROPS_MENU10_LOCK = 'rosmarops_menu10_lock';
 const ROSMAROPS_MENU10_LOG  = 'rosmarops_menu10_log';

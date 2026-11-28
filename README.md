@@ -37,16 +37,16 @@ The public course has two lessons built (GTM-206, GTM-227), each in six steps: b
 - `observatory/build.py` writes the pages (or run `python3 observatory/course_pages.py`). Their styles and script are `site/assets/course/chain.css` and `chain.js`, which read the texts from the page itself.
 - What a visitor does in a lesson (the mode or permissions they try, their answers in the game and the test) stays in the page: nothing goes into the address, the browser's storage or cookies, and nothing is sent. The page still counts a visit like every page of the site.
 - The download buttons in step 5 send `from=course`, which the counter keeps as its own source, `course`. In lesson 1, step 5 also links to the sample report of each language.
-- Not open yet: the lessons open with RosmarOps Academy, behind its switch (next section). While it is closed they carry `noindex`, no page or menu links to them (only lesson 1 to lesson 2), and they are not in the sitemap or `llms.txt`.
+- Open since 27-11-2026, with RosmarOps Academy (next section): the Academy page links to them, they are in `sitemap-pages.xml` without `noindex`, and they end with «Back to Academy». No other page links to them, and they are not in `llms.txt`. If Academy is closed again, they go back to `noindex`, out of the sitemap, and linked only from lesson 1 to lesson 2.
 - Tests: `observatory/tests/test_course_pages.py`. Captures: `docs/captures/gtm-206-leccion-2/` and `docs/captures/gtm-227-curso/`.
 
 ## RosmarOps Academy (`observatory/academy.py`)
 
 RosmarOps Academy gathers the course and the videos (GTM-230). Its page is `/academy/`, `/es/academy/` and `/ca/academy/`, and «Academy» goes in the header menu. Everything is behind **one switch**: `"open"` in `observatory/data/academy.json`.
 
-- **Closed** (as the repository is today): no Academy page is written, every menu is the one of before, the two lessons keep `noindex`, stay out of the sitemap and show no «Back to Academy» button, and the blog menu is not touched.
-- **Open**: the page exists; «Academy» is in every header menu, marked as the current entry on the Academy page and the lessons; the page and the lessons are in `sitemap-pages.xml` and lose `noindex`; lesson 2 ends with the «Back to Academy» button, and lesson 1 keeps «Next: Lesson 2» with «Back to Academy» as a text link under it; and the next deploy adds «Academy» to the three blog menus.
-- **To open it** (Albert's decision): set `"open": true`, run `python3 observatory/site_check.py --stage`, commit and deploy. Closing it again is the same with `false`: the build puts every menu back as it was.
+- **Closed** (until 27-11-2026): no Academy page is written, every menu is the one of before, the two lessons keep `noindex`, stay out of the sitemap and show no «Back to Academy» button, and the blog menu is not touched.
+- **Open** (since 27-11-2026, Albert's decision, GTM-234): the page exists; «Academy» is in every header menu, marked as the current entry on the Academy page and the lessons; the page and the lessons are in `sitemap-pages.xml` and lose `noindex`; lesson 2 ends with the «Back to Academy» button, and lesson 1 keeps «Next: Lesson 2» with «Back to Academy» as a text link under it; and the next deploy adds «Academy» to the three blog menus.
+- **To open it** (Albert's decision): set `"open": true`, run `python3 observatory/site_check.py --stage`, commit and deploy. Closing it again is the same with `false`: the build puts every menu back as it was. The blog menu is the exception: the patch runs once and is then removed from the server, so closing does not take «Academy» out of the blog menu; that has to be done by hand in WordPress.
 - **The menu**: «Academy» goes right after «Sandbox». On inner pages it takes the place of «FAQ»/«Preguntas»/«Preguntes», which stays in the footer. On the homes and the blog it is added. Only the header menu changes. The five places the menu comes from all follow the switch:
   - the hand-written pages and the glossary: the build rewrites their header menu in place;
   - the Observatory pages and the daily shells: `build.page()`;
@@ -56,9 +56,9 @@ RosmarOps Academy gathers the course and the videos (GTM-230). Its page is `/aca
 - **Texts**: `observatory/data/academy.json`, literal from vigil `docs/research/2026-11-27-academy-portada-y-menu.md` (the painter paragraph and the five lesson lines from the course's final texts). `tools/course/check_signed.py` checks them too. The video cards are the ones of the videos index (`videos_pages.cards`).
 - **Checks**:
   - the deploy runs `python3 observatory/academy.py --check-site` and stops if `site/` does not match the switch;
-  - `observatory/tests/test_academy.py` tests both states. It also checks that every inner page and every home has the same header menu, hand-written or generated;
+  - `observatory/tests/test_academy.py` tests both states in memory, whichever state the repository is in, and checks that the committed site is the one the switch gives. It also checks that every inner page and every home has the same header menu, hand-written or generated;
   - the menu at 390 px (`Layout390`, in Chromium with `observatory/tests/academy-nav-layout.js`, spec §6.2 and block 219). At 390 px the visitor is on a phone, so the test measures the menu with «Academy» with fonts a phone would use, asked for by name: **Liberation Sans** (the metrics of Windows' Arial) and **Roboto** (Android). With both it must stay on **two lines**, in EN, ES and CA, on an inner page, a home and an Observatory page. Chromium's default font is not measured: it is not a named font and depends on the machine (on the CI runner it is DejaVu Sans). **DejaVu Sans** (desktop Linux) is measured too, pinned to what was measured on 27-11 so it does not get worse: Spanish inner page and home up to three lines, everything else two. CI installs the fonts as system packages (`fonts-roboto`, `fonts-liberation`, `fonts-dejavu-core`); no font file is in the repository;
-  - `wp/tests/test_menu10_academy.py` tests the blog patch;
+  - `wp/tests/test_menu10_academy.py` tests the blog patch, closed and open;
   - captures with the switch open: `docs/captures/gtm-230-academy/`.
 
 ## The GitHub star card (`observatory/star_card.py`)

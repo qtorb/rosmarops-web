@@ -51,10 +51,13 @@ function wp_update_post($a, $err = false) {
 	foreach ($db['posts'] as &$p) { if ($p['ID'] === $a['ID']) { $p['post_content'] = stripslashes($a['post_content']); return $a['ID']; } }
 	return 0;
 }
-// MENU10_OPEN=1 runs the plugin as observatory/academy.py writes it once Academy is open.
+// MENU10_OPEN=1 runs the plugin as observatory/academy.py writes it once Academy is open; without it, as it is written
+// while Academy is closed. Both states are tested whichever one the repository is in.
 $src = file_get_contents(__DIR__ . '/../mu-plugins/rosmarops-menu10-academy.php');
-if (getenv('MENU10_OPEN')) {
-	$src = str_replace('const ROSMAROPS_MENU10_OPEN = false;', 'const ROSMAROPS_MENU10_OPEN = true;', $src);
+$src = preg_replace('/const ROSMAROPS_MENU10_OPEN = (true|false);/', 'const ROSMAROPS_MENU10_OPEN = ' . (getenv('MENU10_OPEN') ? 'true' : 'false') . ';', $src, -1, $n);
+if ($n !== 1) {
+	fwrite(STDERR, "ROSMAROPS_MENU10_OPEN line not found once\n");
+	exit(1);
 }
 eval('?>' . $src);
 $GLOBALS['home'] = $argv[1];
