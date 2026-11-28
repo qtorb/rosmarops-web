@@ -1,0 +1,21 @@
+{
+ "id": "familia-orquestadores",
+ "lang": "ca",
+ "slug": "quan-un-altre-programa-llanca-els-teus-agents",
+ "title": "Quan un altre programa llança els teus agents",
+ "excerpt": "Un orquestrador o una eina d'automatització posa a treballar diversos agents d'IA per tu. El que cada agent pot fer sense preguntar ja no ho decideixes a l'agent.",
+ "content": "familia-orquestadores-ca.html",
+ "seo_title": "Quan un altre programa llança els teus agents",
+ "seo_description": "Quan un orquestrador llança els teus agents d'IA, decideix què poden fer sense preguntar-te. Set preguntes de sí o no per saber-ho.",
+ "translations": {
+  "en": "https://rosmarops.com/blog/when-another-program-launches-your-agents/",
+  "es": "https://rosmarops.com/es/blog/cuando-otro-programa-lanza-a-tus-agentes/"
+ },
+ "category": "notes-de-camp",
+ "tags": {
+  "observatori": "Observatori"
+ },
+ "image": "orquestradors-i-automatitzacio-ca.jpg",
+ "alt": "Il·lustració: tu llances un producte, el producte llança tres agents d'IA i les preguntes s'hi queden.",
+ "publish_at": "2026-12-03T08:00:00+01:00"
+}

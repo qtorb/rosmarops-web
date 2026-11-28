@@ -58,7 +58,7 @@ jobs:
           php -l wp/mu-plugins/rosmarops-menu9-sandbox.php
           php -l wp/mu-plugins/rosmarops-menu10-academy.php
           php -l wp/mu-plugins/rosmarops-slug7-sandbox.php
-          ls -l wp/drafts/*.json wp/drafts/*.html wp/drafts/rosmarops-img-13-loop-engineering.jpg wp/drafts/rosmarops-img-14-he-terminado.jpg wp/drafts/rosmarops-img-15-el-sistema-aprende.jpg wp/drafts/rosmarops-img-17-harness-engineering.jpg wp/drafts/rosmarops-img-16-novedades-0-10.jpg wp/drafts/rosmarops-img-18-microsoft-store.jpg wp/drafts/rosmarops-img-19-tres-blocs.jpg wp/drafts/rosmarops-img-20-worktree.jpg wp/drafts/video-decide-*.jpg wp/drafts/rosmarops-img-22-semana-en-agentes.jpg wp/drafts/rosmarops-img-24-ajustes-claude-code.jpg wp/drafts/rosmarops-img-23-aceptarlo-todo.jpg wp/drafts/sandbox-agentes-de-ia.jpg
+          ls -l wp/drafts/*.json wp/drafts/*.html wp/drafts/rosmarops-img-13-loop-engineering.jpg wp/drafts/rosmarops-img-14-he-terminado.jpg wp/drafts/rosmarops-img-15-el-sistema-aprende.jpg wp/drafts/rosmarops-img-17-harness-engineering.jpg wp/drafts/rosmarops-img-16-novedades-0-10.jpg wp/drafts/rosmarops-img-18-microsoft-store.jpg wp/drafts/rosmarops-img-19-tres-blocs.jpg wp/drafts/rosmarops-img-20-worktree.jpg wp/drafts/video-decide-*.jpg wp/drafts/rosmarops-img-22-semana-en-agentes.jpg wp/drafts/rosmarops-img-24-ajustes-claude-code.jpg wp/drafts/rosmarops-img-23-aceptarlo-todo.jpg wp/drafts/sandbox-agentes-de-ia.jpg wp/drafts/agentes-en-el-ordenador-del-fabricante-es.jpg wp/drafts/agents-on-the-vendors-computer-en.jpg wp/drafts/agents-a-lordinador-del-fabricant-ca.jpg wp/drafts/orquestadores-y-automatizacion-es.jpg wp/drafts/orchestrators-and-automation-en.jpg wp/drafts/orquestradors-i-automatitzacio-ca.jpg wp/drafts/aviso-a-n8n-es.jpg wp/drafts/notice-to-n8n-en.jpg wp/drafts/avis-a-n8n-ca.jpg
           ls -l wp/daily/shell-en.html wp/daily/shell-es.html wp/daily/shell-ca.html wp/daily/i18n.json
           ! grep -RIl 'noindex' site/index.html site/es/index.html site/methodology site/faq site/es/metodologia site/es/preguntas-frecuentes site/ca/index.html site/ca/metodologia site/ca/preguntes-frequents site/cloud-access site/es/acceso-en-la-nube site/ca/acces-al-nuvol site/ca/privadesa site/privacy site/es/privacidad site/legal-notice site/es/aviso-legal site/ca/avis-legal site/terms site/es/terminos site/ca/termes site/security-teams site/es/equipos-de-seguridad site/ca/equips-de-seguretat site/_static site/macos site/es/macos site/ca/macos site/linux site/es/linux site/ca/linux site/sample-report/index.html site/es/informe-de-ejemplo site/ca/informe-dexemple site/observatory/index.html site/es/observatorio/index.html site/ca/observatori/index.html site/glossary site/es/glosario site/ca/glossari site/observatory/ai-agent-map site/es/observatorio/mapa-agentes-ia site/ca/observatori/mapa-agents-ia site/observatory/ai-agents-with-sandbox site/es/observatorio/agentes-ia-con-sandbox site/ca/observatori/agents-ia-amb-sandbox site/try-an-ai-agent site/es/probar-un-agente-de-ia site/ca/provar-un-agent-dia site/sandbox site/es/sandbox site/ca/sandbox site/agent-orchestrators site/es/orquestadores-de-agentes site/ca/orquestradors-dagents site/claude-code-subagents site/es/subagentes-de-claude-code site/ca/subagents-de-claude-code site/mcp-servers site/es/servidores-mcp site/ca/servidors-mcp
           # GTM-230: RosmarOps Academy and the course lessons follow one switch ("open" in observatory/data/academy.json).
@@ -424,6 +424,34 @@ jobs:
           put wp/drafts/ajustes-claude-code-es.html wp-content/mu-plugins/rosmarops-drafts/ajustes-claude-code-es.html
           put wp/drafts/ajustes-claude-code-ca.json wp-content/mu-plugins/rosmarops-drafts/ajustes-claude-code-ca.json
           put wp/drafts/ajustes-claude-code-ca.html wp-content/mu-plugins/rosmarops-drafts/ajustes-claude-code-ca.html
+          # GTM-235: the three family posts (1-12, 3-12 and 8-12, 08:00 Madrid), scheduled with their featured images
+          put wp/drafts/agents-on-the-vendors-computer-en.jpg wp-content/mu-plugins/rosmarops-drafts/agents-on-the-vendors-computer-en.jpg
+          put wp/drafts/familia-ordenador-fabricante-en.json wp-content/mu-plugins/rosmarops-drafts/familia-ordenador-fabricante-en.json
+          put wp/drafts/familia-ordenador-fabricante-en.html wp-content/mu-plugins/rosmarops-drafts/familia-ordenador-fabricante-en.html
+          put wp/drafts/agentes-en-el-ordenador-del-fabricante-es.jpg wp-content/mu-plugins/rosmarops-drafts/agentes-en-el-ordenador-del-fabricante-es.jpg
+          put wp/drafts/familia-ordenador-fabricante-es.json wp-content/mu-plugins/rosmarops-drafts/familia-ordenador-fabricante-es.json
+          put wp/drafts/familia-ordenador-fabricante-es.html wp-content/mu-plugins/rosmarops-drafts/familia-ordenador-fabricante-es.html
+          put wp/drafts/agents-a-lordinador-del-fabricant-ca.jpg wp-content/mu-plugins/rosmarops-drafts/agents-a-lordinador-del-fabricant-ca.jpg
+          put wp/drafts/familia-ordenador-fabricante-ca.json wp-content/mu-plugins/rosmarops-drafts/familia-ordenador-fabricante-ca.json
+          put wp/drafts/familia-ordenador-fabricante-ca.html wp-content/mu-plugins/rosmarops-drafts/familia-ordenador-fabricante-ca.html
+          put wp/drafts/orchestrators-and-automation-en.jpg wp-content/mu-plugins/rosmarops-drafts/orchestrators-and-automation-en.jpg
+          put wp/drafts/familia-orquestadores-en.json wp-content/mu-plugins/rosmarops-drafts/familia-orquestadores-en.json
+          put wp/drafts/familia-orquestadores-en.html wp-content/mu-plugins/rosmarops-drafts/familia-orquestadores-en.html
+          put wp/drafts/orquestadores-y-automatizacion-es.jpg wp-content/mu-plugins/rosmarops-drafts/orquestadores-y-automatizacion-es.jpg
+          put wp/drafts/familia-orquestadores-es.json wp-content/mu-plugins/rosmarops-drafts/familia-orquestadores-es.json
+          put wp/drafts/familia-orquestadores-es.html wp-content/mu-plugins/rosmarops-drafts/familia-orquestadores-es.html
+          put wp/drafts/orquestradors-i-automatitzacio-ca.jpg wp-content/mu-plugins/rosmarops-drafts/orquestradors-i-automatitzacio-ca.jpg
+          put wp/drafts/familia-orquestadores-ca.json wp-content/mu-plugins/rosmarops-drafts/familia-orquestadores-ca.json
+          put wp/drafts/familia-orquestadores-ca.html wp-content/mu-plugins/rosmarops-drafts/familia-orquestadores-ca.html
+          put wp/drafts/notice-to-n8n-en.jpg wp-content/mu-plugins/rosmarops-drafts/notice-to-n8n-en.jpg
+          put wp/drafts/aviso-n8n-en.json wp-content/mu-plugins/rosmarops-drafts/aviso-n8n-en.json
+          put wp/drafts/aviso-n8n-en.html wp-content/mu-plugins/rosmarops-drafts/aviso-n8n-en.html
+          put wp/drafts/aviso-a-n8n-es.jpg wp-content/mu-plugins/rosmarops-drafts/aviso-a-n8n-es.jpg
+          put wp/drafts/aviso-n8n-es.json wp-content/mu-plugins/rosmarops-drafts/aviso-n8n-es.json
+          put wp/drafts/aviso-n8n-es.html wp-content/mu-plugins/rosmarops-drafts/aviso-n8n-es.html
+          put wp/drafts/avis-a-n8n-ca.jpg wp-content/mu-plugins/rosmarops-drafts/avis-a-n8n-ca.jpg
+          put wp/drafts/aviso-n8n-ca.json wp-content/mu-plugins/rosmarops-drafts/aviso-n8n-ca.json
+          put wp/drafts/aviso-n8n-ca.html wp-content/mu-plugins/rosmarops-drafts/aviso-n8n-ca.html
           put wp/drafts/worktree-ca.json wp-content/mu-plugins/rosmarops-drafts/worktree-ca.json
           put wp/drafts/video-decide-en.html wp-content/mu-plugins/rosmarops-drafts/video-decide-en.html
           put wp/drafts/video-decide-en.json wp-content/mu-plugins/rosmarops-drafts/video-decide-en.json
