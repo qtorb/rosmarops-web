@@ -57,9 +57,12 @@ def update(feed, today, folder=DATA, site=SITE, thumbs=True):
     for p in sorted(Path(folder).glob("*.json")):
         text = p.read_text(encoding="utf-8")
         v = json.loads(text)
-        vid = v.get("youtube_id")
-        if not vid or vid not in feed:
+        ids = v.get("youtube_id")
+        ids = list(ids.values()) if isinstance(ids, dict) else [ids]  # GTM-236: one id per language
+        found = [i for i in ids if i and i in feed]
+        if not found:
             continue
+        vid = found[0]
         new = text
         if not v.get("public"):
             new = re.sub(r'"public": false', '"public": true', new, count=1)
@@ -69,8 +72,8 @@ def update(feed, today, folder=DATA, site=SITE, thumbs=True):
         if not v.get("upload_date") and feed[vid]:
             new = re.sub(r'"upload_date": null', f'"upload_date": "{feed[vid]}"', new, count=1)
             changes.append(f"{p.stem}: upload_date {feed[vid]}")
-        thumb = Path(site) / v["thumb"].lstrip("/")
-        if thumbs and not thumb.exists():
+        thumb = None if isinstance(v["thumb"], dict) else Path(site) / v["thumb"].lstrip("/")  # per-language thumbs are in the repository
+        if thumbs and thumb and not thumb.exists():
             if fetch_thumb(vid, thumb):
                 changes.append(f"{p.stem}: thumbnail {v['thumb']}")
             else:
