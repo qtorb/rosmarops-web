@@ -1,0 +1,21 @@
+{
+ "id": "familia-orquestadores",
+ "lang": "en",
+ "slug": "when-another-program-launches-your-agents",
+ "title": "When another program launches your agents",
+ "excerpt": "An orchestrator or an automation tool puts several AI agents to work for you. What each agent can do without asking is no longer decided in the agent.",
+ "content": "familia-orquestadores-en.html",
+ "seo_title": "When another program launches your agents",
+ "seo_description": "When an orchestrator launches your AI agents, it decides what they can do without asking. Seven yes-or-no questions to find out.",
+ "translations": {
+  "es": "https://rosmarops.com/es/blog/cuando-otro-programa-lanza-a-tus-agentes/",
+  "ca": "https://rosmarops.com/ca/blog/quan-un-altre-programa-llanca-els-teus-agents/"
+ },
+ "category": "field-notes",
+ "tags": {
+  "observatory": "Observatory"
+ },
+ "image": "orchestrators-and-automation-en.jpg",
+ "alt": "Illustration: you launch a product, the product launches three AI agents, and the questions stay with it.",
+ "publish_at": "2026-12-03T08:00:00+01:00"
+}
