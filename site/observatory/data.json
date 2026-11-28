@@ -4599,6 +4599,33 @@
             "how": "official_changelog"
           },
           "rosmarops_impact": "none"
+        },
+        {
+          "id": "chg-antigravity-2-36-0-auto-mode",
+          "version": "v2.36.0",
+          "date": "2026-11-27",
+          "category": "approval_mode",
+          "before": {
+            "en": "Before v2.36.0, the Antigravity changelog does not list Auto mode approving file edits outside the current project.",
+            "es": "Antes de v2.36.0, el changelog de Antigravity no recoge que el modo Auto apruebe ediciones de archivos fuera del proyecto actual.",
+            "ca": "Abans de v2.36.0, el changelog d'Antigravity no recull que el mode Auto aprovi edicions de fitxers fora del projecte actual."
+          },
+          "after": {
+            "en": "From v2.36.0, Antigravity Auto mode can approve some file edits outside the current project, according to the changelog.",
+            "es": "Desde v2.36.0, el modo Auto de Antigravity puede aprobar algunas ediciones de archivos fuera del proyecto actual, según el changelog.",
+            "ca": "Des de v2.36.0, el mode Auto d'Antigravity pot aprovar algunes edicions de fitxers fora del projecte actual, segons el changelog."
+          },
+          "source": {
+            "url": "https://antigravity.google/docs/changelog",
+            "official": true,
+            "accessed_at": "2026-11-28"
+          },
+          "verified": {
+            "by": "writer",
+            "at": "2026-11-28",
+            "how": "official_changelog"
+          },
+          "rosmarops_impact": "none"
         }
       ],
       "ratings": []
